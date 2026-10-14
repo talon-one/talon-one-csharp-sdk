@@ -213,7 +213,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addToAudienceEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AddToAudienceEffectProps addToAudienceEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -228,7 +227,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addToAudienceEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AddToAudienceEffectProps addToAudienceEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (addToAudienceEffectProps.AudienceIdOption.IsSet)

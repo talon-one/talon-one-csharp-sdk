@@ -209,16 +209,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEvent.", nameof(type));
+                throw new JsonException("Property is required for class IntegrationEvent: type.");
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEvent.", nameof(attributes));
+                throw new JsonException("Property is required for class IntegrationEvent: attributes.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEvent.");
+                throw new JsonException("Property is not nullable for class IntegrationEvent: type.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class IntegrationEvent.");
+                throw new JsonException("Property is not nullable for class IntegrationEvent: attributes.");
 
             return new IntegrationEvent(type.Value, attributes.Value, profileId, storeIntegrationId);
         }
@@ -229,7 +229,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationEvent integrationEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -244,14 +243,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationEvent integrationEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationEvent.Type == null)
-                throw new ArgumentNullException(nameof(integrationEvent.Type), "Property is required for class IntegrationEvent.");
+                throw new JsonException("Cannot write null property IntegrationEvent.Type to non-nullable JSON property 'type'.");
 
             if (integrationEvent.Attributes == null)
-                throw new ArgumentNullException(nameof(integrationEvent.Attributes), "Property is required for class IntegrationEvent.");
+                throw new JsonException("Cannot write null property IntegrationEvent.Attributes to non-nullable JSON property 'attributes'.");
 
             writer.WriteString("type", integrationEvent.Type);
 

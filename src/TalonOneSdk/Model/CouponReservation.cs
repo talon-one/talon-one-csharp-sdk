@@ -174,16 +174,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!couponId.IsSet)
-                throw new ArgumentException("Property is required for class CouponReservation.", nameof(couponId));
+                throw new JsonException("Property is required for class CouponReservation: couponId.");
 
             if (!recipientIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class CouponReservation.", nameof(recipientIntegrationId));
+                throw new JsonException("Property is required for class CouponReservation: recipientIntegrationId.");
 
             if (couponId.IsSet && couponId.Value == null)
-                throw new ArgumentNullException(nameof(couponId), "Property is not nullable for class CouponReservation.");
+                throw new JsonException("Property is not nullable for class CouponReservation: couponId.");
 
             if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class CouponReservation.");
+                throw new JsonException("Property is not nullable for class CouponReservation: recipientIntegrationId.");
 
             return new CouponReservation(couponId.Value.Value, recipientIntegrationId.Value, createdAt);
         }
@@ -194,7 +194,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponReservation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponReservation couponReservation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -209,11 +208,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponReservation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponReservation couponReservation, JsonSerializerOptions jsonSerializerOptions)
         {
             if (couponReservation.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(couponReservation.RecipientIntegrationId), "Property is required for class CouponReservation.");
+                throw new JsonException("Cannot write null property CouponReservation.RecipientIntegrationId to non-nullable JSON property 'recipientIntegrationId'.");
 
             writer.WriteNumber("couponId", couponReservation.CouponId);
 

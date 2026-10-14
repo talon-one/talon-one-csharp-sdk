@@ -323,16 +323,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ReduceSelectorStep.", nameof(type));
+                throw new JsonException("Property is required for class ReduceSelectorStep: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class ReduceSelectorStep.", nameof(varOperator));
+                throw new JsonException("Property is required for class ReduceSelectorStep: operator.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ReduceSelectorStep.");
+                throw new JsonException("Property is not nullable for class ReduceSelectorStep: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class ReduceSelectorStep.");
+                throw new JsonException("Property is not nullable for class ReduceSelectorStep: operator.");
 
             return new ReduceSelectorStep(type.Value.Value, varOperator.Value.Value);
         }
@@ -343,7 +343,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="reduceSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ReduceSelectorStep reduceSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -358,7 +357,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="reduceSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReduceSelectorStep reduceSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = ReduceSelectorStep.TypeEnumToJsonValue(reduceSelectorStep.Type);

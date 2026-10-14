@@ -232,46 +232,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!uuid.IsSet)
-                throw new ArgumentException("Property is required for class AccessLogEntry.", nameof(uuid));
+                throw new JsonException("Property is required for class AccessLogEntry: uuid.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AccessLogEntry.", nameof(status));
+                throw new JsonException("Property is required for class AccessLogEntry: status.");
 
             if (!method.IsSet)
-                throw new ArgumentException("Property is required for class AccessLogEntry.", nameof(method));
+                throw new JsonException("Property is required for class AccessLogEntry: method.");
 
             if (!requestUri.IsSet)
-                throw new ArgumentException("Property is required for class AccessLogEntry.", nameof(requestUri));
+                throw new JsonException("Property is required for class AccessLogEntry: requestUri.");
 
             if (!time.IsSet)
-                throw new ArgumentException("Property is required for class AccessLogEntry.", nameof(time));
+                throw new JsonException("Property is required for class AccessLogEntry: time.");
 
             if (!requestPayload.IsSet)
-                throw new ArgumentException("Property is required for class AccessLogEntry.", nameof(requestPayload));
+                throw new JsonException("Property is required for class AccessLogEntry: requestPayload.");
 
             if (!responsePayload.IsSet)
-                throw new ArgumentException("Property is required for class AccessLogEntry.", nameof(responsePayload));
+                throw new JsonException("Property is required for class AccessLogEntry: responsePayload.");
 
             if (uuid.IsSet && uuid.Value == null)
-                throw new ArgumentNullException(nameof(uuid), "Property is not nullable for class AccessLogEntry.");
+                throw new JsonException("Property is not nullable for class AccessLogEntry: uuid.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AccessLogEntry.");
+                throw new JsonException("Property is not nullable for class AccessLogEntry: status.");
 
             if (method.IsSet && method.Value == null)
-                throw new ArgumentNullException(nameof(method), "Property is not nullable for class AccessLogEntry.");
+                throw new JsonException("Property is not nullable for class AccessLogEntry: method.");
 
             if (requestUri.IsSet && requestUri.Value == null)
-                throw new ArgumentNullException(nameof(requestUri), "Property is not nullable for class AccessLogEntry.");
+                throw new JsonException("Property is not nullable for class AccessLogEntry: requestUri.");
 
             if (time.IsSet && time.Value == null)
-                throw new ArgumentNullException(nameof(time), "Property is not nullable for class AccessLogEntry.");
+                throw new JsonException("Property is not nullable for class AccessLogEntry: time.");
 
             if (requestPayload.IsSet && requestPayload.Value == null)
-                throw new ArgumentNullException(nameof(requestPayload), "Property is not nullable for class AccessLogEntry.");
+                throw new JsonException("Property is not nullable for class AccessLogEntry: requestPayload.");
 
             if (responsePayload.IsSet && responsePayload.Value == null)
-                throw new ArgumentNullException(nameof(responsePayload), "Property is not nullable for class AccessLogEntry.");
+                throw new JsonException("Property is not nullable for class AccessLogEntry: responsePayload.");
 
             return new AccessLogEntry(uuid.Value, status.Value.Value, method.Value, requestUri.Value, time.Value.Value, requestPayload.Value, responsePayload.Value);
         }
@@ -282,7 +282,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accessLogEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccessLogEntry accessLogEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -297,23 +296,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accessLogEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccessLogEntry accessLogEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             if (accessLogEntry.Uuid == null)
-                throw new ArgumentNullException(nameof(accessLogEntry.Uuid), "Property is required for class AccessLogEntry.");
+                throw new JsonException("Cannot write null property AccessLogEntry.Uuid to non-nullable JSON property 'uuid'.");
 
             if (accessLogEntry.Method == null)
-                throw new ArgumentNullException(nameof(accessLogEntry.Method), "Property is required for class AccessLogEntry.");
+                throw new JsonException("Cannot write null property AccessLogEntry.Method to non-nullable JSON property 'method'.");
 
             if (accessLogEntry.RequestUri == null)
-                throw new ArgumentNullException(nameof(accessLogEntry.RequestUri), "Property is required for class AccessLogEntry.");
+                throw new JsonException("Cannot write null property AccessLogEntry.RequestUri to non-nullable JSON property 'requestUri'.");
 
             if (accessLogEntry.RequestPayload == null)
-                throw new ArgumentNullException(nameof(accessLogEntry.RequestPayload), "Property is required for class AccessLogEntry.");
+                throw new JsonException("Cannot write null property AccessLogEntry.RequestPayload to non-nullable JSON property 'requestPayload'.");
 
             if (accessLogEntry.ResponsePayload == null)
-                throw new ArgumentNullException(nameof(accessLogEntry.ResponsePayload), "Property is required for class AccessLogEntry.");
+                throw new JsonException("Cannot write null property AccessLogEntry.ResponsePayload to non-nullable JSON property 'responsePayload'.");
 
             writer.WriteString("uuid", accessLogEntry.Uuid);
 

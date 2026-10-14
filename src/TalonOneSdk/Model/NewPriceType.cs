@@ -201,16 +201,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewPriceType.", nameof(name));
+                throw new JsonException("Property is required for class NewPriceType: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class NewPriceType.", nameof(title));
+                throw new JsonException("Property is required for class NewPriceType: title.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewPriceType.");
+                throw new JsonException("Property is not nullable for class NewPriceType: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewPriceType.");
+                throw new JsonException("Property is not nullable for class NewPriceType: title.");
 
             return new NewPriceType(name.Value, title.Value, description, targetedAudiencesIds);
         }
@@ -221,7 +221,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newPriceType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewPriceType newPriceType, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -236,14 +235,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newPriceType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewPriceType newPriceType, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newPriceType.Name == null)
-                throw new ArgumentNullException(nameof(newPriceType.Name), "Property is required for class NewPriceType.");
+                throw new JsonException("Cannot write null property NewPriceType.Name to non-nullable JSON property 'name'.");
 
             if (newPriceType.Title == null)
-                throw new ArgumentNullException(nameof(newPriceType.Title), "Property is required for class NewPriceType.");
+                throw new JsonException("Cannot write null property NewPriceType.Title to non-nullable JSON property 'title'.");
 
             writer.WriteString("name", newPriceType.Name);
 

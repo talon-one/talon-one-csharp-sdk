@@ -146,16 +146,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class AddPriceAdjustmentCatalogAction.", nameof(sku));
+                throw new JsonException("Property is required for class AddPriceAdjustmentCatalogAction: sku.");
 
             if (!adjustments.IsSet)
-                throw new ArgumentException("Property is required for class AddPriceAdjustmentCatalogAction.", nameof(adjustments));
+                throw new JsonException("Property is required for class AddPriceAdjustmentCatalogAction: adjustments.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class AddPriceAdjustmentCatalogAction.");
+                throw new JsonException("Property is not nullable for class AddPriceAdjustmentCatalogAction: sku.");
 
             if (adjustments.IsSet && adjustments.Value == null)
-                throw new ArgumentNullException(nameof(adjustments), "Property is not nullable for class AddPriceAdjustmentCatalogAction.");
+                throw new JsonException("Property is not nullable for class AddPriceAdjustmentCatalogAction: adjustments.");
 
             return new AddPriceAdjustmentCatalogAction(sku.Value, adjustments.Value);
         }
@@ -166,7 +166,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addPriceAdjustmentCatalogAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AddPriceAdjustmentCatalogAction addPriceAdjustmentCatalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -181,14 +180,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addPriceAdjustmentCatalogAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AddPriceAdjustmentCatalogAction addPriceAdjustmentCatalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
             if (addPriceAdjustmentCatalogAction.Sku == null)
-                throw new ArgumentNullException(nameof(addPriceAdjustmentCatalogAction.Sku), "Property is required for class AddPriceAdjustmentCatalogAction.");
+                throw new JsonException("Cannot write null property AddPriceAdjustmentCatalogAction.Sku to non-nullable JSON property 'sku'.");
 
             if (addPriceAdjustmentCatalogAction.Adjustments == null)
-                throw new ArgumentNullException(nameof(addPriceAdjustmentCatalogAction.Adjustments), "Property is required for class AddPriceAdjustmentCatalogAction.");
+                throw new JsonException("Cannot write null property AddPriceAdjustmentCatalogAction.Adjustments to non-nullable JSON property 'adjustments'.");
 
             writer.WriteString("sku", addPriceAdjustmentCatalogAction.Sku);
 

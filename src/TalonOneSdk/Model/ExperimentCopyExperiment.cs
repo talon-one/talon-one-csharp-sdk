@@ -406,10 +406,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentCopyExperiment.", nameof(campaign));
+                throw new JsonException("Property is required for class ExperimentCopyExperiment: campaign.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class ExperimentCopyExperiment.");
+                throw new JsonException("Property is not nullable for class ExperimentCopyExperiment: campaign.");
 
             return new ExperimentCopyExperiment(campaign.Value, assignmentType, isVariantAssignmentExternal, goalType, goalDescription);
         }
@@ -420,7 +420,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentCopyExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentCopyExperiment experimentCopyExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -435,11 +434,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentCopyExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentCopyExperiment experimentCopyExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentCopyExperiment.Campaign == null)
-                throw new ArgumentNullException(nameof(experimentCopyExperiment.Campaign), "Property is required for class ExperimentCopyExperiment.");
+                throw new JsonException("Cannot write null property ExperimentCopyExperiment.Campaign to non-nullable JSON property 'campaign'.");
 
             writer.WritePropertyName("campaign");
             JsonSerializer.Serialize(writer, experimentCopyExperiment.Campaign, jsonSerializerOptions);

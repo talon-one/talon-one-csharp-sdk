@@ -38,8 +38,11 @@ namespace TalonOneSdk.Model
         /// <param name="activeOn">The date and time the loyalty points become active.</param>
         /// <param name="expireOn">The date and time the loyalty points expire.</param>
         /// <param name="sessionIntegrationID">The integration ID of the session through which the points were earned.</param>
+        /// <param name="created">The timestamp when the loyalty transaction occurred.</param>
+        /// <param name="awaitsActivation">Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpireOn&#x60; is not set. </param>
         [JsonConstructor]
-        public PendingActivePointsData(long loyaltyProgramID, string customerProfileID, decimal points, string subledgerID = @"", Option<DateTime?> activeOn = default, Option<DateTime?> expireOn = default, Option<string> sessionIntegrationID = default)
+        public PendingActivePointsData(long loyaltyProgramID, string customerProfileID, decimal points, string subledgerID = @"", Option<DateTime?> activeOn = default, Option<DateTime?> expireOn = default, Option<string> sessionIntegrationID = default, Option<DateTime?> created = default, Option<bool?> awaitsActivation = default, Option<string> validityDuration = default)
         {
             LoyaltyProgramID = loyaltyProgramID;
             CustomerProfileID = customerProfileID;
@@ -48,6 +51,9 @@ namespace TalonOneSdk.Model
             ActiveOnOption = activeOn;
             ExpireOnOption = expireOn;
             SessionIntegrationIDOption = sessionIntegrationID;
+            CreatedOption = created;
+            AwaitsActivationOption = awaitsActivation;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -131,6 +137,51 @@ namespace TalonOneSdk.Model
         public string SessionIntegrationID { get { return this.SessionIntegrationIDOption.Value; } set { this.SessionIntegrationIDOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of Created
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> CreatedOption { get; private set; }
+
+        /// <summary>
+        /// The timestamp when the loyalty transaction occurred.
+        /// </summary>
+        /// <value>The timestamp when the loyalty transaction occurred.</value>
+        /* <example>2023-08-20T12:22:00+02:00</example> */
+        [JsonPropertyName("Created")]
+        public DateTime? Created { get { return this.CreatedOption.Value; } set { this.CreatedOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of AwaitsActivation
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> AwaitsActivationOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+        /// </summary>
+        /// <value>Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("AwaitsActivation")]
+        public bool? AwaitsActivation { get { return this.AwaitsActivationOption.Value; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpireOn&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpireOn&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("ValidityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -145,6 +196,9 @@ namespace TalonOneSdk.Model
             sb.Append("  ActiveOn: ").Append(ActiveOn).Append("\n");
             sb.Append("  ExpireOn: ").Append(ExpireOn).Append("\n");
             sb.Append("  SessionIntegrationID: ").Append(SessionIntegrationID).Append("\n");
+            sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  AwaitsActivation: ").Append(AwaitsActivation).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -192,6 +246,11 @@ namespace TalonOneSdk.Model
         public string ExpireOnFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize Created
+        /// </summary>
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="PendingActivePointsData" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -215,6 +274,9 @@ namespace TalonOneSdk.Model
             Option<DateTime?> activeOn = default;
             Option<DateTime?> expireOn = default;
             Option<string> sessionIntegrationID = default;
+            Option<DateTime?> created = default;
+            Option<bool?> awaitsActivation = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -252,6 +314,15 @@ namespace TalonOneSdk.Model
                         case "SessionIntegrationID":
                             sessionIntegrationID = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "Created":
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "AwaitsActivation":
+                            awaitsActivation = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "ValidityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -259,30 +330,30 @@ namespace TalonOneSdk.Model
             }
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class PendingActivePointsData.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class PendingActivePointsData: LoyaltyProgramID.");
 
             if (!customerProfileID.IsSet)
-                throw new ArgumentException("Property is required for class PendingActivePointsData.", nameof(customerProfileID));
+                throw new JsonException("Property is required for class PendingActivePointsData: CustomerProfileID.");
 
             if (!points.IsSet)
-                throw new ArgumentException("Property is required for class PendingActivePointsData.", nameof(points));
+                throw new JsonException("Property is required for class PendingActivePointsData: Points.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class PendingActivePointsData.", nameof(subledgerID));
+                throw new JsonException("Property is required for class PendingActivePointsData: SubledgerID.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class PendingActivePointsData.");
+                throw new JsonException("Property is not nullable for class PendingActivePointsData: LoyaltyProgramID.");
 
             if (customerProfileID.IsSet && customerProfileID.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class PendingActivePointsData.");
+                throw new JsonException("Property is not nullable for class PendingActivePointsData: CustomerProfileID.");
 
             if (points.IsSet && points.Value == null)
-                throw new ArgumentNullException(nameof(points), "Property is not nullable for class PendingActivePointsData.");
+                throw new JsonException("Property is not nullable for class PendingActivePointsData: Points.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class PendingActivePointsData.");
+                throw new JsonException("Property is not nullable for class PendingActivePointsData: SubledgerID.");
 
-            return new PendingActivePointsData(loyaltyProgramID.Value.Value, customerProfileID.Value, points.Value.Value, subledgerID.Value, activeOn, expireOn, sessionIntegrationID);
+            return new PendingActivePointsData(loyaltyProgramID.Value.Value, customerProfileID.Value, points.Value.Value, subledgerID.Value, activeOn, expireOn, sessionIntegrationID, created, awaitsActivation, validityDuration);
         }
 
         /// <summary>
@@ -291,7 +362,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="pendingActivePointsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PendingActivePointsData pendingActivePointsData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -306,14 +376,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="pendingActivePointsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PendingActivePointsData pendingActivePointsData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (pendingActivePointsData.CustomerProfileID == null)
-                throw new ArgumentNullException(nameof(pendingActivePointsData.CustomerProfileID), "Property is required for class PendingActivePointsData.");
+                throw new JsonException("Cannot write null property PendingActivePointsData.CustomerProfileID to non-nullable JSON property 'CustomerProfileID'.");
 
             if (pendingActivePointsData.SubledgerID == null)
-                throw new ArgumentNullException(nameof(pendingActivePointsData.SubledgerID), "Property is required for class PendingActivePointsData.");
+                throw new JsonException("Cannot write null property PendingActivePointsData.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             writer.WriteNumber("LoyaltyProgramID", pendingActivePointsData.LoyaltyProgramID);
 
@@ -331,6 +400,15 @@ namespace TalonOneSdk.Model
 
             if (pendingActivePointsData.SessionIntegrationIDOption.IsSet)
                 writer.WriteString("SessionIntegrationID", pendingActivePointsData.SessionIntegrationID);
+
+            if (pendingActivePointsData.CreatedOption.IsSet)
+                writer.WriteString("Created", pendingActivePointsData.CreatedOption.Value.Value.ToString(CreatedFormat));
+
+            if (pendingActivePointsData.AwaitsActivationOption.IsSet)
+                writer.WriteBoolean("AwaitsActivation", pendingActivePointsData.AwaitsActivationOption.Value.Value);
+
+            if (pendingActivePointsData.ValidityDurationOption.IsSet)
+                writer.WriteString("ValidityDuration", pendingActivePointsData.ValidityDuration);
         }
     }
 }

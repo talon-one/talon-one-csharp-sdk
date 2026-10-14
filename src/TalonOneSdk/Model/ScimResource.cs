@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimResource"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ScimResource scimResource, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,7 +202,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimResource"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimResource scimResource, JsonSerializerOptions jsonSerializerOptions)
         {
             if (scimResource.IdOption.IsSet)

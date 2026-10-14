@@ -206,16 +206,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SortSelectorStep.", nameof(type));
+                throw new JsonException("Property is required for class SortSelectorStep: type.");
 
             if (!fields.IsSet)
-                throw new ArgumentException("Property is required for class SortSelectorStep.", nameof(fields));
+                throw new JsonException("Property is required for class SortSelectorStep: fields.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class SortSelectorStep.");
+                throw new JsonException("Property is not nullable for class SortSelectorStep: type.");
 
             if (fields.IsSet && fields.Value == null)
-                throw new ArgumentNullException(nameof(fields), "Property is not nullable for class SortSelectorStep.");
+                throw new JsonException("Property is not nullable for class SortSelectorStep: fields.");
 
             return new SortSelectorStep(type.Value.Value, fields.Value);
         }
@@ -226,7 +226,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="sortSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SortSelectorStep sortSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -241,11 +240,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="sortSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SortSelectorStep sortSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             if (sortSelectorStep.Fields == null)
-                throw new ArgumentNullException(nameof(sortSelectorStep.Fields), "Property is required for class SortSelectorStep.");
+                throw new JsonException("Cannot write null property SortSelectorStep.Fields to non-nullable JSON property 'fields'.");
 
             var typeRawValue = SortSelectorStep.TypeEnumToJsonValue(sortSelectorStep.Type);
             writer.WriteString("type", typeRawValue);

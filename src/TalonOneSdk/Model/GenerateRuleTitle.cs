@@ -144,16 +144,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!rule.IsSet)
-                throw new ArgumentException("Property is required for class GenerateRuleTitle.", nameof(rule));
+                throw new JsonException("Property is required for class GenerateRuleTitle: rule.");
 
             if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class GenerateRuleTitle.", nameof(currency));
+                throw new JsonException("Property is required for class GenerateRuleTitle: currency.");
 
             if (rule.IsSet && rule.Value == null)
-                throw new ArgumentNullException(nameof(rule), "Property is not nullable for class GenerateRuleTitle.");
+                throw new JsonException("Property is not nullable for class GenerateRuleTitle: rule.");
 
             if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class GenerateRuleTitle.");
+                throw new JsonException("Property is not nullable for class GenerateRuleTitle: currency.");
 
             return new GenerateRuleTitle(rule.Value, currency.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateRuleTitle"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GenerateRuleTitle generateRuleTitle, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,14 +178,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateRuleTitle"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateRuleTitle generateRuleTitle, JsonSerializerOptions jsonSerializerOptions)
         {
             if (generateRuleTitle.Rule == null)
-                throw new ArgumentNullException(nameof(generateRuleTitle.Rule), "Property is required for class GenerateRuleTitle.");
+                throw new JsonException("Cannot write null property GenerateRuleTitle.Rule to non-nullable JSON property 'rule'.");
 
             if (generateRuleTitle.Currency == null)
-                throw new ArgumentNullException(nameof(generateRuleTitle.Currency), "Property is required for class GenerateRuleTitle.");
+                throw new JsonException("Cannot write null property GenerateRuleTitle.Currency to non-nullable JSON property 'currency'.");
 
             writer.WritePropertyName("rule");
             JsonSerializer.Serialize(writer, generateRuleTitle.Rule, jsonSerializerOptions);

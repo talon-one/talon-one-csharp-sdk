@@ -330,7 +330,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateUser"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateUser updateUser, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -345,7 +344,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateUser"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateUser updateUser, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateUser.NameOption.IsSet)

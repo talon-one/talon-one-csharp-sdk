@@ -394,10 +394,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!customerSession.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationRequest.", nameof(customerSession));
+                throw new JsonException("Property is required for class IntegrationRequest: customerSession.");
 
             if (customerSession.IsSet && customerSession.Value == null)
-                throw new ArgumentNullException(nameof(customerSession), "Property is not nullable for class IntegrationRequest.");
+                throw new JsonException("Property is not nullable for class IntegrationRequest: customerSession.");
 
             return new IntegrationRequest(customerSession.Value, responseContent);
         }
@@ -408,7 +408,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationRequest integrationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -423,11 +422,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationRequest integrationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationRequest.CustomerSession == null)
-                throw new ArgumentNullException(nameof(integrationRequest.CustomerSession), "Property is required for class IntegrationRequest.");
+                throw new JsonException("Cannot write null property IntegrationRequest.CustomerSession to non-nullable JSON property 'customerSession'.");
 
             writer.WritePropertyName("customerSession");
             JsonSerializer.Serialize(writer, integrationRequest.CustomerSession, jsonSerializerOptions);

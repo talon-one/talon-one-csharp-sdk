@@ -176,10 +176,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class ProductSearchMatch.", nameof(value));
+                throw new JsonException("Property is required for class ProductSearchMatch: value.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class ProductSearchMatch.");
+                throw new JsonException("Property is not nullable for class ProductSearchMatch: value.");
 
             return new ProductSearchMatch(value.Value, productId, productSkuId);
         }
@@ -190,7 +190,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="productSearchMatch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProductSearchMatch productSearchMatch, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -205,11 +204,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="productSearchMatch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProductSearchMatch productSearchMatch, JsonSerializerOptions jsonSerializerOptions)
         {
             if (productSearchMatch.Value == null)
-                throw new ArgumentNullException(nameof(productSearchMatch.Value), "Property is required for class ProductSearchMatch.");
+                throw new JsonException("Cannot write null property ProductSearchMatch.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("value", productSearchMatch.Value);
 

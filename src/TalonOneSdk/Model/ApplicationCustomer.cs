@@ -43,8 +43,9 @@ namespace TalonOneSdk.Model
         /// <param name="audienceMemberships">The audiences the customer belongs to.</param>
         /// <param name="sandbox">An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments). </param>
         /// <param name="advocateIntegrationId">The Integration ID of the Customer Profile that referred this Customer in the Application.</param>
+        /// <param name="loyaltyProgramJoinDates">The dates on which the customer joined the profile-based loyalty programs they are part of. Returned only when the &#x60;withLoyaltyMemberships&#x60; query parameter is &#x60;true&#x60;.</param>
         [JsonConstructor]
-        public ApplicationCustomer(long id, DateTime created, string integrationId, long accountId, long closedSessions, decimal totalSales, DateTime lastActivity, Option<Dictionary<string, Object>> attributes = default, Option<List<LoyaltyMembership>> loyaltyMemberships = default, Option<List<AudienceMembership>> audienceMemberships = default, Option<bool?> sandbox = default, Option<string> advocateIntegrationId = default)
+        public ApplicationCustomer(long id, DateTime created, string integrationId, long accountId, long closedSessions, decimal totalSales, DateTime lastActivity, Option<Dictionary<string, Object>> attributes = default, Option<List<LoyaltyMembership>> loyaltyMemberships = default, Option<List<AudienceMembership>> audienceMemberships = default, Option<bool?> sandbox = default, Option<string> advocateIntegrationId = default, Option<List<LoyaltyMembership>> loyaltyProgramJoinDates = default)
         {
             Id = id;
             Created = created;
@@ -58,6 +59,7 @@ namespace TalonOneSdk.Model
             AudienceMembershipsOption = audienceMemberships;
             SandboxOption = sandbox;
             AdvocateIntegrationIdOption = advocateIntegrationId;
+            LoyaltyProgramJoinDatesOption = loyaltyProgramJoinDates;
             OnCreated();
         }
 
@@ -192,6 +194,20 @@ namespace TalonOneSdk.Model
         public string AdvocateIntegrationId { get { return this.AdvocateIntegrationIdOption.Value; } set { this.AdvocateIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of LoyaltyProgramJoinDates
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<LoyaltyMembership>> LoyaltyProgramJoinDatesOption { get; private set; }
+
+        /// <summary>
+        /// The dates on which the customer joined the profile-based loyalty programs they are part of. Returned only when the &#x60;withLoyaltyMemberships&#x60; query parameter is &#x60;true&#x60;.
+        /// </summary>
+        /// <value>The dates on which the customer joined the profile-based loyalty programs they are part of. Returned only when the &#x60;withLoyaltyMemberships&#x60; query parameter is &#x60;true&#x60;.</value>
+        [JsonPropertyName("loyaltyProgramJoinDates")]
+        public List<LoyaltyMembership> LoyaltyProgramJoinDates { get { return this.LoyaltyProgramJoinDatesOption.Value; } set { this.LoyaltyProgramJoinDatesOption = new Option<List<LoyaltyMembership>>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -211,6 +227,7 @@ namespace TalonOneSdk.Model
             sb.Append("  AudienceMemberships: ").Append(AudienceMemberships).Append("\n");
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  AdvocateIntegrationId: ").Append(AdvocateIntegrationId).Append("\n");
+            sb.Append("  LoyaltyProgramJoinDates: ").Append(LoyaltyProgramJoinDates).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -292,6 +309,7 @@ namespace TalonOneSdk.Model
             Option<List<AudienceMembership>> audienceMemberships = default;
             Option<bool?> sandbox = default;
             Option<string> advocateIntegrationId = default;
+            Option<List<LoyaltyMembership>> loyaltyProgramJoinDates = default;
 
             while (utf8JsonReader.Read())
             {
@@ -344,6 +362,9 @@ namespace TalonOneSdk.Model
                         case "advocateIntegrationId":
                             advocateIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "loyaltyProgramJoinDates":
+                            loyaltyProgramJoinDates = new Option<List<LoyaltyMembership>>(JsonSerializer.Deserialize<List<LoyaltyMembership>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -351,48 +372,48 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(id));
+                throw new JsonException("Property is required for class ApplicationCustomer: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(created));
+                throw new JsonException("Property is required for class ApplicationCustomer: created.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(integrationId));
+                throw new JsonException("Property is required for class ApplicationCustomer: integrationId.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(accountId));
+                throw new JsonException("Property is required for class ApplicationCustomer: accountId.");
 
             if (!closedSessions.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(closedSessions));
+                throw new JsonException("Property is required for class ApplicationCustomer: closedSessions.");
 
             if (!totalSales.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(totalSales));
+                throw new JsonException("Property is required for class ApplicationCustomer: totalSales.");
 
             if (!lastActivity.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCustomer.", nameof(lastActivity));
+                throw new JsonException("Property is required for class ApplicationCustomer: lastActivity.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationCustomer.");
+                throw new JsonException("Property is not nullable for class ApplicationCustomer: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationCustomer.");
+                throw new JsonException("Property is not nullable for class ApplicationCustomer: created.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class ApplicationCustomer.");
+                throw new JsonException("Property is not nullable for class ApplicationCustomer: integrationId.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class ApplicationCustomer.");
+                throw new JsonException("Property is not nullable for class ApplicationCustomer: accountId.");
 
             if (closedSessions.IsSet && closedSessions.Value == null)
-                throw new ArgumentNullException(nameof(closedSessions), "Property is not nullable for class ApplicationCustomer.");
+                throw new JsonException("Property is not nullable for class ApplicationCustomer: closedSessions.");
 
             if (totalSales.IsSet && totalSales.Value == null)
-                throw new ArgumentNullException(nameof(totalSales), "Property is not nullable for class ApplicationCustomer.");
+                throw new JsonException("Property is not nullable for class ApplicationCustomer: totalSales.");
 
             if (lastActivity.IsSet && lastActivity.Value == null)
-                throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class ApplicationCustomer.");
+                throw new JsonException("Property is not nullable for class ApplicationCustomer: lastActivity.");
 
-            return new ApplicationCustomer(id.Value.Value, created.Value.Value, integrationId.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, attributes, loyaltyMemberships, audienceMemberships, sandbox, advocateIntegrationId);
+            return new ApplicationCustomer(id.Value.Value, created.Value.Value, integrationId.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, attributes, loyaltyMemberships, audienceMemberships, sandbox, advocateIntegrationId, loyaltyProgramJoinDates);
         }
 
         /// <summary>
@@ -401,7 +422,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCustomer"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationCustomer applicationCustomer, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -416,11 +436,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCustomer"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationCustomer applicationCustomer, JsonSerializerOptions jsonSerializerOptions)
         {
             if (applicationCustomer.IntegrationId == null)
-                throw new ArgumentNullException(nameof(applicationCustomer.IntegrationId), "Property is required for class ApplicationCustomer.");
+                throw new JsonException("Cannot write null property ApplicationCustomer.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteNumber("id", applicationCustomer.Id);
 
@@ -456,6 +475,12 @@ namespace TalonOneSdk.Model
 
             if (applicationCustomer.AdvocateIntegrationIdOption.IsSet)
                 writer.WriteString("advocateIntegrationId", applicationCustomer.AdvocateIntegrationId);
+
+            if (applicationCustomer.LoyaltyProgramJoinDatesOption.IsSet)
+            {
+                writer.WritePropertyName("loyaltyProgramJoinDates");
+                JsonSerializer.Serialize(writer, applicationCustomer.LoyaltyProgramJoinDates, jsonSerializerOptions);
+            }
         }
     }
 }

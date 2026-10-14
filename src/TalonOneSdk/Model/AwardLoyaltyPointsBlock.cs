@@ -46,9 +46,8 @@ namespace TalonOneSdk.Model
         /// <param name="validityDuration">Relative duration (e.g. &#x60;30D&#x60;) after which the awarded points expire. Mutually exclusive with &#x60;expiryDate&#x60;.</param>
         /// <param name="expiryDate">Timestamp at which the awarded points expire. Mutually exclusive with &#x60;validityDuration&#x60;.</param>
         /// <param name="pendingDuration">Relative duration (e.g. &#x60;3D&#x60;) the awarded points remain pending before activation.</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public AwardLoyaltyPointsBlock(string type, string name, AwardLoyaltyPointsBlock1Program program, RecipientEnum recipient, string subledger, AwardLoyaltyPointsTarget target, AwardLoyaltyPointsBlock1Value value, Option<string> id = default, Option<List<string>> tags = default, Option<bool?> partial = default, Option<bool?> awaitsActivation = default, Option<Object> startDate = default, Option<string> validityDuration = default, Option<Object> expiryDate = default, Option<string> pendingDuration = default, Option<List<Block>> onFailure = default)
+        public AwardLoyaltyPointsBlock(string type, string name, AwardLoyaltyPointsBlock1Program program, RecipientEnum recipient, string subledger, AwardLoyaltyPointsTarget target, AwardLoyaltyPointsBlock1Value value, Option<string> id = default, Option<List<string>> tags = default, Option<bool?> partial = default, Option<bool?> awaitsActivation = default, Option<Object> startDate = default, Option<string> validityDuration = default, Option<Object> expiryDate = default, Option<string> pendingDuration = default)
         {
             Type = type;
             Name = name;
@@ -65,7 +64,6 @@ namespace TalonOneSdk.Model
             ValidityDurationOption = validityDuration;
             ExpiryDateOption = expiryDate;
             PendingDurationOption = pendingDuration;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -307,20 +305,6 @@ namespace TalonOneSdk.Model
         public string PendingDuration { get { return this.PendingDurationOption.Value; } set { this.PendingDurationOption = new Option<string>(value); } }
 
         /// <summary>
-        /// Used to track the state of OnFailure
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Block>> OnFailureOption { get; private set; }
-
-        /// <summary>
-        /// Promotion blocks evaluated when this block fails or returns false.
-        /// </summary>
-        /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
-        [JsonPropertyName("onFailure")]
-        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -343,7 +327,6 @@ namespace TalonOneSdk.Model
             sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  PendingDuration: ").Append(PendingDuration).Append("\n");
-            sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -406,7 +389,6 @@ namespace TalonOneSdk.Model
             Option<string> validityDuration = default;
             Option<Object> expiryDate = default;
             Option<string> pendingDuration = default;
-            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -475,9 +457,6 @@ namespace TalonOneSdk.Model
                         case "pendingDuration":
                             pendingDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "onFailure":
-                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         default:
                             break;
                     }
@@ -485,48 +464,48 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsBlock.", nameof(type));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsBlock: type.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsBlock.", nameof(name));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsBlock: name.");
 
             if (!program.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsBlock.", nameof(program));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsBlock: program.");
 
             if (!recipient.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsBlock.", nameof(recipient));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsBlock: recipient.");
 
             if (!subledger.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsBlock.", nameof(subledger));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsBlock: subledger.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsBlock.", nameof(target));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsBlock: target.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsBlock.", nameof(value));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsBlock: value.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsBlock: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsBlock: name.");
 
             if (program.IsSet && program.Value == null)
-                throw new ArgumentNullException(nameof(program), "Property is not nullable for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsBlock: program.");
 
             if (recipient.IsSet && recipient.Value == null)
-                throw new ArgumentNullException(nameof(recipient), "Property is not nullable for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsBlock: recipient.");
 
             if (subledger.IsSet && subledger.Value == null)
-                throw new ArgumentNullException(nameof(subledger), "Property is not nullable for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsBlock: subledger.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsBlock: target.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsBlock: value.");
 
-            return new AwardLoyaltyPointsBlock(type.Value, name.Value, program.Value, recipient.Value.Value, subledger.Value, target.Value, value.Value, id, tags, partial, awaitsActivation, startDate, validityDuration, expiryDate, pendingDuration, onFailure);
+            return new AwardLoyaltyPointsBlock(type.Value, name.Value, program.Value, recipient.Value.Value, subledger.Value, target.Value, value.Value, id, tags, partial, awaitsActivation, startDate, validityDuration, expiryDate, pendingDuration);
         }
 
         /// <summary>
@@ -535,7 +514,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardLoyaltyPointsBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardLoyaltyPointsBlock awardLoyaltyPointsBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -550,26 +528,25 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardLoyaltyPointsBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardLoyaltyPointsBlock awardLoyaltyPointsBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardLoyaltyPointsBlock.Type == null)
-                throw new ArgumentNullException(nameof(awardLoyaltyPointsBlock.Type), "Property is required for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property AwardLoyaltyPointsBlock.Type to non-nullable JSON property 'type'.");
 
             if (awardLoyaltyPointsBlock.Name == null)
-                throw new ArgumentNullException(nameof(awardLoyaltyPointsBlock.Name), "Property is required for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property AwardLoyaltyPointsBlock.Name to non-nullable JSON property 'name'.");
 
             if (awardLoyaltyPointsBlock.Program == null)
-                throw new ArgumentNullException(nameof(awardLoyaltyPointsBlock.Program), "Property is required for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property AwardLoyaltyPointsBlock.Program to non-nullable JSON property 'program'.");
 
             if (awardLoyaltyPointsBlock.Subledger == null)
-                throw new ArgumentNullException(nameof(awardLoyaltyPointsBlock.Subledger), "Property is required for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property AwardLoyaltyPointsBlock.Subledger to non-nullable JSON property 'subledger'.");
 
             if (awardLoyaltyPointsBlock.Target == null)
-                throw new ArgumentNullException(nameof(awardLoyaltyPointsBlock.Target), "Property is required for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property AwardLoyaltyPointsBlock.Target to non-nullable JSON property 'target'.");
 
             if (awardLoyaltyPointsBlock.Value == null)
-                throw new ArgumentNullException(nameof(awardLoyaltyPointsBlock.Value), "Property is required for class AwardLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property AwardLoyaltyPointsBlock.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("type", awardLoyaltyPointsBlock.Type);
 
@@ -620,12 +597,6 @@ namespace TalonOneSdk.Model
                     writer.WriteNull("expiryDate");
             if (awardLoyaltyPointsBlock.PendingDurationOption.IsSet)
                 writer.WriteString("pendingDuration", awardLoyaltyPointsBlock.PendingDuration);
-
-            if (awardLoyaltyPointsBlock.OnFailureOption.IsSet)
-            {
-                writer.WritePropertyName("onFailure");
-                JsonSerializer.Serialize(writer, awardLoyaltyPointsBlock.OnFailure, jsonSerializerOptions);
-            }
         }
     }
 }

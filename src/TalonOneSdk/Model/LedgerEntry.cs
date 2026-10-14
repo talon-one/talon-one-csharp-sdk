@@ -289,52 +289,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LedgerEntry.", nameof(id));
+                throw new JsonException("Property is required for class LedgerEntry: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class LedgerEntry.", nameof(created));
+                throw new JsonException("Property is required for class LedgerEntry: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class LedgerEntry.", nameof(accountId));
+                throw new JsonException("Property is required for class LedgerEntry: accountId.");
 
             if (!loyaltyProgramId.IsSet)
-                throw new ArgumentException("Property is required for class LedgerEntry.", nameof(loyaltyProgramId));
+                throw new JsonException("Property is required for class LedgerEntry: loyaltyProgramId.");
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class LedgerEntry.", nameof(eventId));
+                throw new JsonException("Property is required for class LedgerEntry: eventId.");
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class LedgerEntry.", nameof(amount));
+                throw new JsonException("Property is required for class LedgerEntry: amount.");
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class LedgerEntry.", nameof(reason));
+                throw new JsonException("Property is required for class LedgerEntry: reason.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class LedgerEntry.", nameof(expiryDate));
+                throw new JsonException("Property is required for class LedgerEntry: expiryDate.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LedgerEntry.");
+                throw new JsonException("Property is not nullable for class LedgerEntry: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LedgerEntry.");
+                throw new JsonException("Property is not nullable for class LedgerEntry: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class LedgerEntry.");
+                throw new JsonException("Property is not nullable for class LedgerEntry: accountId.");
 
             if (loyaltyProgramId.IsSet && loyaltyProgramId.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramId), "Property is not nullable for class LedgerEntry.");
+                throw new JsonException("Property is not nullable for class LedgerEntry: loyaltyProgramId.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class LedgerEntry.");
+                throw new JsonException("Property is not nullable for class LedgerEntry: eventId.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LedgerEntry.");
+                throw new JsonException("Property is not nullable for class LedgerEntry: amount.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class LedgerEntry.");
+                throw new JsonException("Property is not nullable for class LedgerEntry: reason.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class LedgerEntry.");
+                throw new JsonException("Property is not nullable for class LedgerEntry: expiryDate.");
 
             return new LedgerEntry(id.Value.Value, created.Value.Value, accountId.Value.Value, loyaltyProgramId.Value.Value, eventId.Value.Value, amount.Value.Value, reason.Value, expiryDate.Value.Value, profileId, referenceId);
         }
@@ -345,7 +345,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ledgerEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LedgerEntry ledgerEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -360,11 +359,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ledgerEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LedgerEntry ledgerEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ledgerEntry.Reason == null)
-                throw new ArgumentNullException(nameof(ledgerEntry.Reason), "Property is required for class LedgerEntry.");
+                throw new JsonException("Cannot write null property LedgerEntry.Reason to non-nullable JSON property 'reason'.");
 
             writer.WriteNumber("id", ledgerEntry.Id);
 

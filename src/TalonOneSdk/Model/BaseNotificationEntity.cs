@@ -151,10 +151,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!policy.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotificationEntity.", nameof(policy));
+                throw new JsonException("Property is required for class BaseNotificationEntity: policy.");
 
             if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class BaseNotificationEntity.");
+                throw new JsonException("Property is not nullable for class BaseNotificationEntity: policy.");
 
             return new BaseNotificationEntity(policy.Value, enabled);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseNotificationEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BaseNotificationEntity baseNotificationEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,11 +179,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseNotificationEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseNotificationEntity baseNotificationEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             if (baseNotificationEntity.Policy == null)
-                throw new ArgumentNullException(nameof(baseNotificationEntity.Policy), "Property is required for class BaseNotificationEntity.");
+                throw new JsonException("Cannot write null property BaseNotificationEntity.Policy to non-nullable JSON property 'policy'.");
 
             writer.WritePropertyName("policy");
             JsonSerializer.Serialize(writer, baseNotificationEntity.Policy, jsonSerializerOptions);

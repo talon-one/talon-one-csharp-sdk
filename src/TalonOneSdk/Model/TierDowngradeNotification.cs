@@ -219,22 +219,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeNotification.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class TierDowngradeNotification: TotalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeNotification.", nameof(data));
+                throw new JsonException("Property is required for class TierDowngradeNotification: Data.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeNotification.", nameof(notificationType));
+                throw new JsonException("Property is required for class TierDowngradeNotification: NotificationType.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class TierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class TierDowngradeNotification: TotalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class TierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class TierDowngradeNotification: Data.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class TierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class TierDowngradeNotification: NotificationType.");
 
             return new TierDowngradeNotification(totalResultSize.Value.Value, data.Value, notificationType.Value.Value);
         }
@@ -245,7 +245,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierDowngradeNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TierDowngradeNotification tierDowngradeNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,11 +259,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierDowngradeNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TierDowngradeNotification tierDowngradeNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (tierDowngradeNotification.Data == null)
-                throw new ArgumentNullException(nameof(tierDowngradeNotification.Data), "Property is required for class TierDowngradeNotification.");
+                throw new JsonException("Cannot write null property TierDowngradeNotification.Data to non-nullable JSON property 'Data'.");
 
             writer.WriteNumber("TotalResultSize", tierDowngradeNotification.TotalResultSize);
 

@@ -143,16 +143,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class GetCustomerActivityReportsWithoutTotalCount200Response.", nameof(hasMore));
+                throw new JsonException("Property is required for class GetCustomerActivityReportsWithoutTotalCount200Response: hasMore.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GetCustomerActivityReportsWithoutTotalCount200Response.", nameof(data));
+                throw new JsonException("Property is required for class GetCustomerActivityReportsWithoutTotalCount200Response: data.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class GetCustomerActivityReportsWithoutTotalCount200Response.");
+                throw new JsonException("Property is not nullable for class GetCustomerActivityReportsWithoutTotalCount200Response: hasMore.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetCustomerActivityReportsWithoutTotalCount200Response.");
+                throw new JsonException("Property is not nullable for class GetCustomerActivityReportsWithoutTotalCount200Response: data.");
 
             return new GetCustomerActivityReportsWithoutTotalCount200Response(hasMore.Value.Value, data.Value);
         }
@@ -163,7 +163,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCustomerActivityReportsWithoutTotalCount200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetCustomerActivityReportsWithoutTotalCount200Response getCustomerActivityReportsWithoutTotalCount200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -178,11 +177,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCustomerActivityReportsWithoutTotalCount200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetCustomerActivityReportsWithoutTotalCount200Response getCustomerActivityReportsWithoutTotalCount200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getCustomerActivityReportsWithoutTotalCount200Response.Data == null)
-                throw new ArgumentNullException(nameof(getCustomerActivityReportsWithoutTotalCount200Response.Data), "Property is required for class GetCustomerActivityReportsWithoutTotalCount200Response.");
+                throw new JsonException("Cannot write null property GetCustomerActivityReportsWithoutTotalCount200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WriteBoolean("hasMore", getCustomerActivityReportsWithoutTotalCount200Response.HasMore);
 

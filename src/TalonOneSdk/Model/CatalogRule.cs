@@ -183,22 +183,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class CatalogRule.", nameof(title));
+                throw new JsonException("Property is required for class CatalogRule: title.");
 
             if (!condition.IsSet)
-                throw new ArgumentException("Property is required for class CatalogRule.", nameof(condition));
+                throw new JsonException("Property is required for class CatalogRule: condition.");
 
             if (!effects.IsSet)
-                throw new ArgumentException("Property is required for class CatalogRule.", nameof(effects));
+                throw new JsonException("Property is required for class CatalogRule: effects.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CatalogRule.");
+                throw new JsonException("Property is not nullable for class CatalogRule: title.");
 
             if (condition.IsSet && condition.Value == null)
-                throw new ArgumentNullException(nameof(condition), "Property is not nullable for class CatalogRule.");
+                throw new JsonException("Property is not nullable for class CatalogRule: condition.");
 
             if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class CatalogRule.");
+                throw new JsonException("Property is not nullable for class CatalogRule: effects.");
 
             return new CatalogRule(title.Value, condition.Value, effects.Value, bindings);
         }
@@ -209,7 +209,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogRule"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CatalogRule catalogRule, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -224,17 +223,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogRule"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CatalogRule catalogRule, JsonSerializerOptions jsonSerializerOptions)
         {
             if (catalogRule.Title == null)
-                throw new ArgumentNullException(nameof(catalogRule.Title), "Property is required for class CatalogRule.");
+                throw new JsonException("Cannot write null property CatalogRule.Title to non-nullable JSON property 'title'.");
 
             if (catalogRule.Condition == null)
-                throw new ArgumentNullException(nameof(catalogRule.Condition), "Property is required for class CatalogRule.");
+                throw new JsonException("Cannot write null property CatalogRule.Condition to non-nullable JSON property 'condition'.");
 
             if (catalogRule.Effects == null)
-                throw new ArgumentNullException(nameof(catalogRule.Effects), "Property is required for class CatalogRule.");
+                throw new JsonException("Cannot write null property CatalogRule.Effects to non-nullable JSON property 'effects'.");
 
             writer.WriteString("title", catalogRule.Title);
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Quantity** | **string** | The number of items to award. Supports template placeholders (e.g. \&quot;{{$Session.Total / 2}}\&quot;) for dynamic quantities. | 
 **Id** | **string** | Unique identifier for this block. | [optional] [readonly] 
 **Tags** | **List&lt;string&gt;** | Semantic labels attached to this block. | [optional] [readonly] 
-**Partial** | **bool** | When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward. | [optional] 
+**Partial** | **bool** | When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward. When omitted, the Application&#39;s partial discounts setting applies. | [optional] 
 **OnFailure** | [**List&lt;Block&gt;**](Block.md) | Blocks evaluated when this block fails or returns false. | [optional] 
 **OnError** | **Dictionary&lt;string, List&lt;Block&gt;&gt;** | Named error handlers evaluated when a specific error occurs. | [optional] 
 

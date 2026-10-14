@@ -547,64 +547,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(id));
+                throw new JsonException("Property is required for class CustomerAchievement: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(name));
+                throw new JsonException("Property is required for class CustomerAchievement: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(title));
+                throw new JsonException("Property is required for class CustomerAchievement: title.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(description));
+                throw new JsonException("Property is required for class CustomerAchievement: description.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(target));
+                throw new JsonException("Property is required for class CustomerAchievement: target.");
 
             if (!recurrencePolicy.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(recurrencePolicy));
+                throw new JsonException("Property is required for class CustomerAchievement: recurrencePolicy.");
 
             if (!activationPolicy.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(activationPolicy));
+                throw new JsonException("Property is required for class CustomerAchievement: activationPolicy.");
 
             if (!allowRollbackAfterCompletion.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(allowRollbackAfterCompletion));
+                throw new JsonException("Property is required for class CustomerAchievement: allowRollbackAfterCompletion.");
 
             if (!campaignIds.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(campaignIds));
+                throw new JsonException("Property is required for class CustomerAchievement: campaignIds.");
 
             if (!referencedByCampaigns.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAchievement.", nameof(referencedByCampaigns));
+                throw new JsonException("Property is required for class CustomerAchievement: referencedByCampaigns.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: title.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: description.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: target.");
 
             if (recurrencePolicy.IsSet && recurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(recurrencePolicy), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: recurrencePolicy.");
 
             if (activationPolicy.IsSet && activationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(activationPolicy), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: activationPolicy.");
 
             if (allowRollbackAfterCompletion.IsSet && allowRollbackAfterCompletion.Value == null)
-                throw new ArgumentNullException(nameof(allowRollbackAfterCompletion), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: allowRollbackAfterCompletion.");
 
             if (campaignIds.IsSet && campaignIds.Value == null)
-                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: campaignIds.");
 
             if (referencedByCampaigns.IsSet && referencedByCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(referencedByCampaigns), "Property is not nullable for class CustomerAchievement.");
+                throw new JsonException("Property is not nullable for class CustomerAchievement: referencedByCampaigns.");
 
             return new CustomerAchievement(id.Value.Value, name.Value, title.Value, description.Value, target.Value.Value, recurrencePolicy.Value.Value, activationPolicy.Value.Value, allowRollbackAfterCompletion.Value.Value, campaignIds.Value, referencedByCampaigns.Value, fixedStartDate, endDate, campaignId, currentProgress);
         }
@@ -615,7 +615,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerAchievement"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerAchievement customerAchievement, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -630,23 +629,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerAchievement"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerAchievement customerAchievement, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerAchievement.Name == null)
-                throw new ArgumentNullException(nameof(customerAchievement.Name), "Property is required for class CustomerAchievement.");
+                throw new JsonException("Cannot write null property CustomerAchievement.Name to non-nullable JSON property 'name'.");
 
             if (customerAchievement.Title == null)
-                throw new ArgumentNullException(nameof(customerAchievement.Title), "Property is required for class CustomerAchievement.");
+                throw new JsonException("Cannot write null property CustomerAchievement.Title to non-nullable JSON property 'title'.");
 
             if (customerAchievement.Description == null)
-                throw new ArgumentNullException(nameof(customerAchievement.Description), "Property is required for class CustomerAchievement.");
+                throw new JsonException("Cannot write null property CustomerAchievement.Description to non-nullable JSON property 'description'.");
 
             if (customerAchievement.CampaignIds == null)
-                throw new ArgumentNullException(nameof(customerAchievement.CampaignIds), "Property is required for class CustomerAchievement.");
+                throw new JsonException("Cannot write null property CustomerAchievement.CampaignIds to non-nullable JSON property 'campaignIds'.");
 
             if (customerAchievement.ReferencedByCampaigns == null)
-                throw new ArgumentNullException(nameof(customerAchievement.ReferencedByCampaigns), "Property is required for class CustomerAchievement.");
+                throw new JsonException("Cannot write null property CustomerAchievement.ReferencedByCampaigns to non-nullable JSON property 'referencedByCampaigns'.");
 
             writer.WriteNumber("id", customerAchievement.Id);
 

@@ -260,34 +260,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!currentBalance.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramBalance.", nameof(currentBalance));
+                throw new JsonException("Property is required for class LoyaltyProgramBalance: currentBalance.");
 
             if (!pendingBalance.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramBalance.", nameof(pendingBalance));
+                throw new JsonException("Property is required for class LoyaltyProgramBalance: pendingBalance.");
 
             if (!expiredBalance.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramBalance.", nameof(expiredBalance));
+                throw new JsonException("Property is required for class LoyaltyProgramBalance: expiredBalance.");
 
             if (!spentBalance.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramBalance.", nameof(spentBalance));
+                throw new JsonException("Property is required for class LoyaltyProgramBalance: spentBalance.");
 
             if (!tentativeCurrentBalance.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramBalance.", nameof(tentativeCurrentBalance));
+                throw new JsonException("Property is required for class LoyaltyProgramBalance: tentativeCurrentBalance.");
 
             if (currentBalance.IsSet && currentBalance.Value == null)
-                throw new ArgumentNullException(nameof(currentBalance), "Property is not nullable for class LoyaltyProgramBalance.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramBalance: currentBalance.");
 
             if (pendingBalance.IsSet && pendingBalance.Value == null)
-                throw new ArgumentNullException(nameof(pendingBalance), "Property is not nullable for class LoyaltyProgramBalance.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramBalance: pendingBalance.");
 
             if (expiredBalance.IsSet && expiredBalance.Value == null)
-                throw new ArgumentNullException(nameof(expiredBalance), "Property is not nullable for class LoyaltyProgramBalance.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramBalance: expiredBalance.");
 
             if (spentBalance.IsSet && spentBalance.Value == null)
-                throw new ArgumentNullException(nameof(spentBalance), "Property is not nullable for class LoyaltyProgramBalance.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramBalance: spentBalance.");
 
             if (tentativeCurrentBalance.IsSet && tentativeCurrentBalance.Value == null)
-                throw new ArgumentNullException(nameof(tentativeCurrentBalance), "Property is not nullable for class LoyaltyProgramBalance.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramBalance: tentativeCurrentBalance.");
 
             return new LoyaltyProgramBalance(currentBalance.Value.Value, pendingBalance.Value.Value, expiredBalance.Value.Value, spentBalance.Value.Value, tentativeCurrentBalance.Value.Value, negativeBalance, tentativePendingBalance, tentativeNegativeBalance);
         }
@@ -298,7 +298,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyProgramBalance"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyProgramBalance loyaltyProgramBalance, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -313,7 +312,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyProgramBalance"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyProgramBalance loyaltyProgramBalance, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("currentBalance", loyaltyProgramBalance.CurrentBalance);

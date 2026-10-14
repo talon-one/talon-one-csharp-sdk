@@ -266,34 +266,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!entityId.IsSet)
-                throw new ArgumentException("Property is required for class RiskAffectedEntityItem.", nameof(entityId));
+                throw new JsonException("Property is required for class RiskAffectedEntityItem: entityId.");
 
             if (!activityValue.IsSet)
-                throw new ArgumentException("Property is required for class RiskAffectedEntityItem.", nameof(activityValue));
+                throw new JsonException("Property is required for class RiskAffectedEntityItem: activityValue.");
 
             if (!threshold.IsSet)
-                throw new ArgumentException("Property is required for class RiskAffectedEntityItem.", nameof(threshold));
+                throw new JsonException("Property is required for class RiskAffectedEntityItem: threshold.");
 
             if (!severityRatio.IsSet)
-                throw new ArgumentException("Property is required for class RiskAffectedEntityItem.", nameof(severityRatio));
+                throw new JsonException("Property is required for class RiskAffectedEntityItem: severityRatio.");
 
             if (!criticality.IsSet)
-                throw new ArgumentException("Property is required for class RiskAffectedEntityItem.", nameof(criticality));
+                throw new JsonException("Property is required for class RiskAffectedEntityItem: criticality.");
 
             if (entityId.IsSet && entityId.Value == null)
-                throw new ArgumentNullException(nameof(entityId), "Property is not nullable for class RiskAffectedEntityItem.");
+                throw new JsonException("Property is not nullable for class RiskAffectedEntityItem: entityId.");
 
             if (activityValue.IsSet && activityValue.Value == null)
-                throw new ArgumentNullException(nameof(activityValue), "Property is not nullable for class RiskAffectedEntityItem.");
+                throw new JsonException("Property is not nullable for class RiskAffectedEntityItem: activityValue.");
 
             if (threshold.IsSet && threshold.Value == null)
-                throw new ArgumentNullException(nameof(threshold), "Property is not nullable for class RiskAffectedEntityItem.");
+                throw new JsonException("Property is not nullable for class RiskAffectedEntityItem: threshold.");
 
             if (severityRatio.IsSet && severityRatio.Value == null)
-                throw new ArgumentNullException(nameof(severityRatio), "Property is not nullable for class RiskAffectedEntityItem.");
+                throw new JsonException("Property is not nullable for class RiskAffectedEntityItem: severityRatio.");
 
             if (criticality.IsSet && criticality.Value == null)
-                throw new ArgumentNullException(nameof(criticality), "Property is not nullable for class RiskAffectedEntityItem.");
+                throw new JsonException("Property is not nullable for class RiskAffectedEntityItem: criticality.");
 
             return new RiskAffectedEntityItem(entityId.Value, activityValue.Value.Value, threshold.Value.Value, severityRatio.Value.Value, criticality.Value.Value);
         }
@@ -304,7 +304,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="riskAffectedEntityItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RiskAffectedEntityItem riskAffectedEntityItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -319,11 +318,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="riskAffectedEntityItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RiskAffectedEntityItem riskAffectedEntityItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (riskAffectedEntityItem.EntityId == null)
-                throw new ArgumentNullException(nameof(riskAffectedEntityItem.EntityId), "Property is required for class RiskAffectedEntityItem.");
+                throw new JsonException("Cannot write null property RiskAffectedEntityItem.EntityId to non-nullable JSON property 'entityId'.");
 
             writer.WriteString("entityId", riskAffectedEntityItem.EntityId);
 

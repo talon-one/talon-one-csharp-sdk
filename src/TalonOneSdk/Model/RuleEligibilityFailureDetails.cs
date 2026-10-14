@@ -390,16 +390,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!failureCode.IsSet)
-                throw new ArgumentException("Property is required for class RuleEligibilityFailureDetails.", nameof(failureCode));
+                throw new JsonException("Property is required for class RuleEligibilityFailureDetails: failureCode.");
 
             if (!details.IsSet)
-                throw new ArgumentException("Property is required for class RuleEligibilityFailureDetails.", nameof(details));
+                throw new JsonException("Property is required for class RuleEligibilityFailureDetails: details.");
 
             if (failureCode.IsSet && failureCode.Value == null)
-                throw new ArgumentNullException(nameof(failureCode), "Property is not nullable for class RuleEligibilityFailureDetails.");
+                throw new JsonException("Property is not nullable for class RuleEligibilityFailureDetails: failureCode.");
 
             if (details.IsSet && details.Value == null)
-                throw new ArgumentNullException(nameof(details), "Property is not nullable for class RuleEligibilityFailureDetails.");
+                throw new JsonException("Property is not nullable for class RuleEligibilityFailureDetails: details.");
 
             return new RuleEligibilityFailureDetails(failureCode.Value.Value, details.Value, couponID, couponValue, referralID, referralValue, conditionIndex, effectIndex, ruleIndex, rulesetId);
         }
@@ -410,7 +410,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleEligibilityFailureDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RuleEligibilityFailureDetails ruleEligibilityFailureDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -425,11 +424,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleEligibilityFailureDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RuleEligibilityFailureDetails ruleEligibilityFailureDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ruleEligibilityFailureDetails.Details == null)
-                throw new ArgumentNullException(nameof(ruleEligibilityFailureDetails.Details), "Property is required for class RuleEligibilityFailureDetails.");
+                throw new JsonException("Cannot write null property RuleEligibilityFailureDetails.Details to non-nullable JSON property 'details'.");
 
             var failureCodeRawValue = RuleEligibilityFailureDetails.FailureCodeEnumToJsonValue(ruleEligibilityFailureDetails.FailureCode);
             writer.WriteString("failureCode", failureCodeRawValue);

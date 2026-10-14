@@ -229,34 +229,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps.", nameof(name));
+                throw new JsonException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps: name.");
 
             if (!additionalCostId.IsSet)
-                throw new ArgumentException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps.", nameof(additionalCostId));
+                throw new JsonException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps: additionalCostId.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps: value.");
 
             if (!position.IsSet)
-                throw new ArgumentException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps.", nameof(position));
+                throw new JsonException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps: position.");
 
             if (!additionalCost.IsSet)
-                throw new ArgumentException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps.", nameof(additionalCost));
+                throw new JsonException("Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps: additionalCost.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+                throw new JsonException("Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps: name.");
 
             if (additionalCostId.IsSet && additionalCostId.Value == null)
-                throw new ArgumentNullException(nameof(additionalCostId), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+                throw new JsonException("Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps: additionalCostId.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+                throw new JsonException("Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps: value.");
 
             if (position.IsSet && position.Value == null)
-                throw new ArgumentNullException(nameof(position), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+                throw new JsonException("Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps: position.");
 
             if (additionalCost.IsSet && additionalCost.Value == null)
-                throw new ArgumentNullException(nameof(additionalCost), "Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+                throw new JsonException("Property is not nullable for class SetDiscountPerAdditionalCostPerItemEffectProps: additionalCost.");
 
             return new SetDiscountPerAdditionalCostPerItemEffectProps(name.Value, additionalCostId.Value.Value, value.Value.Value, position.Value.Value, additionalCost.Value, subPosition, desiredValue);
         }
@@ -267,7 +267,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="setDiscountPerAdditionalCostPerItemEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SetDiscountPerAdditionalCostPerItemEffectProps setDiscountPerAdditionalCostPerItemEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -282,14 +281,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="setDiscountPerAdditionalCostPerItemEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SetDiscountPerAdditionalCostPerItemEffectProps setDiscountPerAdditionalCostPerItemEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (setDiscountPerAdditionalCostPerItemEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(setDiscountPerAdditionalCostPerItemEffectProps.Name), "Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+                throw new JsonException("Cannot write null property SetDiscountPerAdditionalCostPerItemEffectProps.Name to non-nullable JSON property 'name'.");
 
             if (setDiscountPerAdditionalCostPerItemEffectProps.AdditionalCost == null)
-                throw new ArgumentNullException(nameof(setDiscountPerAdditionalCostPerItemEffectProps.AdditionalCost), "Property is required for class SetDiscountPerAdditionalCostPerItemEffectProps.");
+                throw new JsonException("Cannot write null property SetDiscountPerAdditionalCostPerItemEffectProps.AdditionalCost to non-nullable JSON property 'additionalCost'.");
 
             writer.WriteString("name", setDiscountPerAdditionalCostPerItemEffectProps.Name);
 

@@ -36,12 +36,12 @@ namespace TalonOneSdk.Model
         /// <param name="name">The internal name of the achievement used in API requests.</param>
         /// <param name="target">The required number of actions or the transactional milestone to complete the achievement.</param>
         [JsonConstructor]
-        public AchievementBlockReference(long id, string title, string name, decimal target)
+        public AchievementBlockReference(long id, Option<string> title = default, Option<string> name = default, Option<decimal?> target = default)
         {
             Id = id;
-            Title = title;
-            Name = name;
-            Target = target;
+            TitleOption = title;
+            NameOption = name;
+            TargetOption = target;
             OnCreated();
         }
 
@@ -56,12 +56,26 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
+        /// Used to track the state of Title
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> TitleOption { get; }
+
+        /// <summary>
         /// The display name for the achievement in the Campaign Manager.
         /// </summary>
         /// <value>The display name for the achievement in the Campaign Manager.</value>
         /* <example>50% off on 50th purchase.</example> */
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return this.TitleOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of Name
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> NameOption { get; }
 
         /// <summary>
         /// The internal name of the achievement used in API requests.
@@ -69,7 +83,14 @@ namespace TalonOneSdk.Model
         /// <value>The internal name of the achievement used in API requests.</value>
         /* <example>Order50Discount</example> */
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return this.NameOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of Target
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<decimal?> TargetOption { get; }
 
         /// <summary>
         /// The required number of actions or the transactional milestone to complete the achievement.
@@ -77,7 +98,7 @@ namespace TalonOneSdk.Model
         /// <value>The required number of actions or the transactional milestone to complete the achievement.</value>
         /* <example>50</example> */
         [JsonPropertyName("target")]
-        public decimal Target { get; set; }
+        public decimal? Target { get { return this.TargetOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -177,30 +198,12 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AchievementBlockReference.", nameof(id));
-
-            if (!title.IsSet)
-                throw new ArgumentException("Property is required for class AchievementBlockReference.", nameof(title));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AchievementBlockReference.", nameof(name));
-
-            if (!target.IsSet)
-                throw new ArgumentException("Property is required for class AchievementBlockReference.", nameof(target));
+                throw new JsonException("Property is required for class AchievementBlockReference: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AchievementBlockReference.");
+                throw new JsonException("Property is not nullable for class AchievementBlockReference: id.");
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AchievementBlockReference.");
-
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AchievementBlockReference.");
-
-            if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class AchievementBlockReference.");
-
-            return new AchievementBlockReference(id.Value.Value, title.Value, name.Value, target.Value.Value);
+            return new AchievementBlockReference(id.Value.Value, title, name, target);
         }
 
         /// <summary>
@@ -209,7 +212,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AchievementBlockReference achievementBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -224,22 +226,18 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementBlockReference achievementBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (achievementBlockReference.Title == null)
-                throw new ArgumentNullException(nameof(achievementBlockReference.Title), "Property is required for class AchievementBlockReference.");
-
-            if (achievementBlockReference.Name == null)
-                throw new ArgumentNullException(nameof(achievementBlockReference.Name), "Property is required for class AchievementBlockReference.");
-
             writer.WriteNumber("id", achievementBlockReference.Id);
 
-            writer.WriteString("title", achievementBlockReference.Title);
+            if (achievementBlockReference.TitleOption.IsSet)
+                writer.WriteString("title", achievementBlockReference.Title);
 
-            writer.WriteString("name", achievementBlockReference.Name);
+            if (achievementBlockReference.NameOption.IsSet)
+                writer.WriteString("name", achievementBlockReference.Name);
 
-            writer.WriteNumber("target", achievementBlockReference.Target);
+            if (achievementBlockReference.TargetOption.IsSet)
+                writer.WriteNumber("target", achievementBlockReference.TargetOption.Value.Value);
         }
     }
 }

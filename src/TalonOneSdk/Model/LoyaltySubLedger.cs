@@ -328,40 +328,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!total.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltySubLedger.", nameof(total));
+                throw new JsonException("Property is required for class LoyaltySubLedger: total.");
 
             if (!totalActivePoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltySubLedger.", nameof(totalActivePoints));
+                throw new JsonException("Property is required for class LoyaltySubLedger: totalActivePoints.");
 
             if (!totalPendingPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltySubLedger.", nameof(totalPendingPoints));
+                throw new JsonException("Property is required for class LoyaltySubLedger: totalPendingPoints.");
 
             if (!totalSpentPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltySubLedger.", nameof(totalSpentPoints));
+                throw new JsonException("Property is required for class LoyaltySubLedger: totalSpentPoints.");
 
             if (!totalExpiredPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltySubLedger.", nameof(totalExpiredPoints));
+                throw new JsonException("Property is required for class LoyaltySubLedger: totalExpiredPoints.");
 
             if (!totalNegativePoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltySubLedger.", nameof(totalNegativePoints));
+                throw new JsonException("Property is required for class LoyaltySubLedger: totalNegativePoints.");
 
             if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class LoyaltySubLedger.");
+                throw new JsonException("Property is not nullable for class LoyaltySubLedger: total.");
 
             if (totalActivePoints.IsSet && totalActivePoints.Value == null)
-                throw new ArgumentNullException(nameof(totalActivePoints), "Property is not nullable for class LoyaltySubLedger.");
+                throw new JsonException("Property is not nullable for class LoyaltySubLedger: totalActivePoints.");
 
             if (totalPendingPoints.IsSet && totalPendingPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalPendingPoints), "Property is not nullable for class LoyaltySubLedger.");
+                throw new JsonException("Property is not nullable for class LoyaltySubLedger: totalPendingPoints.");
 
             if (totalSpentPoints.IsSet && totalSpentPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalSpentPoints), "Property is not nullable for class LoyaltySubLedger.");
+                throw new JsonException("Property is not nullable for class LoyaltySubLedger: totalSpentPoints.");
 
             if (totalExpiredPoints.IsSet && totalExpiredPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalExpiredPoints), "Property is not nullable for class LoyaltySubLedger.");
+                throw new JsonException("Property is not nullable for class LoyaltySubLedger: totalExpiredPoints.");
 
             if (totalNegativePoints.IsSet && totalNegativePoints.Value == null)
-                throw new ArgumentNullException(nameof(totalNegativePoints), "Property is not nullable for class LoyaltySubLedger.");
+                throw new JsonException("Property is not nullable for class LoyaltySubLedger: totalNegativePoints.");
 
             return new LoyaltySubLedger(total.Value.Value, totalActivePoints.Value.Value, totalPendingPoints.Value.Value, totalSpentPoints.Value.Value, totalExpiredPoints.Value.Value, totalNegativePoints.Value.Value, transactions, expiringPoints, activePoints, pendingPoints, expiredPoints, currentTier);
         }
@@ -372,7 +372,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltySubLedger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltySubLedger loyaltySubLedger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -387,7 +386,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltySubLedger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltySubLedger loyaltySubLedger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("total", loyaltySubLedger.Total);

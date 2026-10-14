@@ -182,22 +182,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubPaginatedEventPayload.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class IntegrationHubPaginatedEventPayload: TotalResultSize.");
 
             if (!eventType.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubPaginatedEventPayload.", nameof(eventType));
+                throw new JsonException("Property is required for class IntegrationHubPaginatedEventPayload: EventType.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubPaginatedEventPayload.", nameof(data));
+                throw new JsonException("Property is required for class IntegrationHubPaginatedEventPayload: Data.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class IntegrationHubPaginatedEventPayload.");
+                throw new JsonException("Property is not nullable for class IntegrationHubPaginatedEventPayload: TotalResultSize.");
 
             if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubPaginatedEventPayload.");
+                throw new JsonException("Property is not nullable for class IntegrationHubPaginatedEventPayload: EventType.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class IntegrationHubPaginatedEventPayload.");
+                throw new JsonException("Property is not nullable for class IntegrationHubPaginatedEventPayload: Data.");
 
             return new IntegrationHubPaginatedEventPayload(totalResultSize.Value.Value, eventType.Value.Value, data.Value, batchedAt);
         }
@@ -208,7 +208,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubPaginatedEventPayload"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubPaginatedEventPayload integrationHubPaginatedEventPayload, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -223,11 +222,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubPaginatedEventPayload"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubPaginatedEventPayload integrationHubPaginatedEventPayload, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubPaginatedEventPayload.Data == null)
-                throw new ArgumentNullException(nameof(integrationHubPaginatedEventPayload.Data), "Property is required for class IntegrationHubPaginatedEventPayload.");
+                throw new JsonException("Cannot write null property IntegrationHubPaginatedEventPayload.Data to non-nullable JSON property 'Data'.");
 
             writer.WriteNumber("TotalResultSize", integrationHubPaginatedEventPayload.TotalResultSize);
 

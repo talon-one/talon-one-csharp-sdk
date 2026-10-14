@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!storeId.IsSet)
-                throw new ArgumentException("Property is required for class NewCampaignStoreBudgetStoreLimit.", nameof(storeId));
+                throw new JsonException("Property is required for class NewCampaignStoreBudgetStoreLimit: storeId.");
 
             if (!limit.IsSet)
-                throw new ArgumentException("Property is required for class NewCampaignStoreBudgetStoreLimit.", nameof(limit));
+                throw new JsonException("Property is required for class NewCampaignStoreBudgetStoreLimit: limit.");
 
             if (storeId.IsSet && storeId.Value == null)
-                throw new ArgumentNullException(nameof(storeId), "Property is not nullable for class NewCampaignStoreBudgetStoreLimit.");
+                throw new JsonException("Property is not nullable for class NewCampaignStoreBudgetStoreLimit: storeId.");
 
             if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class NewCampaignStoreBudgetStoreLimit.");
+                throw new JsonException("Property is not nullable for class NewCampaignStoreBudgetStoreLimit: limit.");
 
             return new NewCampaignStoreBudgetStoreLimit(storeId.Value.Value, limit.Value.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCampaignStoreBudgetStoreLimit"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewCampaignStoreBudgetStoreLimit newCampaignStoreBudgetStoreLimit, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,7 +181,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCampaignStoreBudgetStoreLimit"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCampaignStoreBudgetStoreLimit newCampaignStoreBudgetStoreLimit, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("storeId", newCampaignStoreBudgetStoreLimit.StoreId);

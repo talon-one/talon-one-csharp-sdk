@@ -290,34 +290,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps: subLedgerId.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps: value.");
 
             if (!recipientIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps.", nameof(recipientIntegrationId));
+                throw new JsonException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps: recipientIntegrationId.");
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class RollbackDeductedLoyaltyPointsEffectProps: transactionUUID.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps: subLedgerId.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps: value.");
 
             if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps: recipientIntegrationId.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackDeductedLoyaltyPointsEffectProps: transactionUUID.");
 
             return new RollbackDeductedLoyaltyPointsEffectProps(programId.Value.Value, subLedgerId.Value, value.Value.Value, recipientIntegrationId.Value, transactionUUID.Value, startDate, expiryDate, cardIdentifier);
         }
@@ -328,7 +328,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackDeductedLoyaltyPointsEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RollbackDeductedLoyaltyPointsEffectProps rollbackDeductedLoyaltyPointsEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -343,17 +342,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackDeductedLoyaltyPointsEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RollbackDeductedLoyaltyPointsEffectProps rollbackDeductedLoyaltyPointsEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rollbackDeductedLoyaltyPointsEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(rollbackDeductedLoyaltyPointsEffectProps.SubLedgerId), "Property is required for class RollbackDeductedLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property RollbackDeductedLoyaltyPointsEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             if (rollbackDeductedLoyaltyPointsEffectProps.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(rollbackDeductedLoyaltyPointsEffectProps.RecipientIntegrationId), "Property is required for class RollbackDeductedLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property RollbackDeductedLoyaltyPointsEffectProps.RecipientIntegrationId to non-nullable JSON property 'recipientIntegrationId'.");
 
             if (rollbackDeductedLoyaltyPointsEffectProps.TransactionUUID == null)
-                throw new ArgumentNullException(nameof(rollbackDeductedLoyaltyPointsEffectProps.TransactionUUID), "Property is required for class RollbackDeductedLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property RollbackDeductedLoyaltyPointsEffectProps.TransactionUUID to non-nullable JSON property 'transactionUUID'.");
 
             writer.WriteNumber("programId", rollbackDeductedLoyaltyPointsEffectProps.ProgramId);
 

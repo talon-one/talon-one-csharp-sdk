@@ -149,16 +149,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!verdict.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVerdictResponse.", nameof(verdict));
+                throw new JsonException("Property is required for class ExperimentVerdictResponse: verdict.");
 
             if (!generated.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVerdictResponse.", nameof(generated));
+                throw new JsonException("Property is required for class ExperimentVerdictResponse: generated.");
 
             if (verdict.IsSet && verdict.Value == null)
-                throw new ArgumentNullException(nameof(verdict), "Property is not nullable for class ExperimentVerdictResponse.");
+                throw new JsonException("Property is not nullable for class ExperimentVerdictResponse: verdict.");
 
             if (generated.IsSet && generated.Value == null)
-                throw new ArgumentNullException(nameof(generated), "Property is not nullable for class ExperimentVerdictResponse.");
+                throw new JsonException("Property is not nullable for class ExperimentVerdictResponse: generated.");
 
             return new ExperimentVerdictResponse(verdict.Value, generated.Value.Value);
         }
@@ -169,7 +169,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentVerdictResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentVerdictResponse experimentVerdictResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -184,11 +183,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentVerdictResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentVerdictResponse experimentVerdictResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentVerdictResponse.Verdict == null)
-                throw new ArgumentNullException(nameof(experimentVerdictResponse.Verdict), "Property is required for class ExperimentVerdictResponse.");
+                throw new JsonException("Cannot write null property ExperimentVerdictResponse.Verdict to non-nullable JSON property 'verdict'.");
 
             writer.WritePropertyName("verdict");
             JsonSerializer.Serialize(writer, experimentVerdictResponse.Verdict, jsonSerializerOptions);

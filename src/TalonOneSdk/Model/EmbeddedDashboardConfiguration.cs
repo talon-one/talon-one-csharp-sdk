@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!workspaceId.IsSet)
-                throw new ArgumentException("Property is required for class EmbeddedDashboardConfiguration.", nameof(workspaceId));
+                throw new JsonException("Property is required for class EmbeddedDashboardConfiguration: workspaceId.");
 
             if (!dashboardId.IsSet)
-                throw new ArgumentException("Property is required for class EmbeddedDashboardConfiguration.", nameof(dashboardId));
+                throw new JsonException("Property is required for class EmbeddedDashboardConfiguration: dashboardId.");
 
             if (workspaceId.IsSet && workspaceId.Value == null)
-                throw new ArgumentNullException(nameof(workspaceId), "Property is not nullable for class EmbeddedDashboardConfiguration.");
+                throw new JsonException("Property is not nullable for class EmbeddedDashboardConfiguration: workspaceId.");
 
             if (dashboardId.IsSet && dashboardId.Value == null)
-                throw new ArgumentNullException(nameof(dashboardId), "Property is not nullable for class EmbeddedDashboardConfiguration.");
+                throw new JsonException("Property is not nullable for class EmbeddedDashboardConfiguration: dashboardId.");
 
             return new EmbeddedDashboardConfiguration(workspaceId.Value, dashboardId.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="embeddedDashboardConfiguration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EmbeddedDashboardConfiguration embeddedDashboardConfiguration, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="embeddedDashboardConfiguration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EmbeddedDashboardConfiguration embeddedDashboardConfiguration, JsonSerializerOptions jsonSerializerOptions)
         {
             if (embeddedDashboardConfiguration.WorkspaceId == null)
-                throw new ArgumentNullException(nameof(embeddedDashboardConfiguration.WorkspaceId), "Property is required for class EmbeddedDashboardConfiguration.");
+                throw new JsonException("Cannot write null property EmbeddedDashboardConfiguration.WorkspaceId to non-nullable JSON property 'workspaceId'.");
 
             if (embeddedDashboardConfiguration.DashboardId == null)
-                throw new ArgumentNullException(nameof(embeddedDashboardConfiguration.DashboardId), "Property is required for class EmbeddedDashboardConfiguration.");
+                throw new JsonException("Cannot write null property EmbeddedDashboardConfiguration.DashboardId to non-nullable JSON property 'dashboardId'.");
 
             writer.WriteString("workspaceId", embeddedDashboardConfiguration.WorkspaceId);
 

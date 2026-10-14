@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">An indicator of how the block compares its elements.</param>
-        /// <param name="subledger">The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger.</param>
+        /// <param name="subledger">The name of the subledger to check a customer&#39;s tier in. Can be empty if this block checks the loyalty program&#39;s main ledger instead of a subledger. A subledger can only be used when the loyalty program that the tier is in has subledgers enabled. To specify the main ledger, provide an empty string (\&quot;\&quot;).</param>
         /// <param name="tier">The tier to check for.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
@@ -136,9 +136,9 @@ namespace TalonOneSdk.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger.
+        /// The name of the subledger to check a customer&#39;s tier in. Can be empty if this block checks the loyalty program&#39;s main ledger instead of a subledger. A subledger can only be used when the loyalty program that the tier is in has subledgers enabled. To specify the main ledger, provide an empty string (\&quot;\&quot;).
         /// </summary>
-        /// <value>The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger.</value>
+        /// <value>The name of the subledger to check a customer&#39;s tier in. Can be empty if this block checks the loyalty program&#39;s main ledger instead of a subledger. A subledger can only be used when the loyalty program that the tier is in has subledgers enabled. To specify the main ledger, provide an empty string (\&quot;\&quot;).</value>
         [JsonPropertyName("subledger")]
         public string Subledger { get; set; }
 
@@ -312,28 +312,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckTierBlock.", nameof(type));
+                throw new JsonException("Property is required for class CheckTierBlock: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class CheckTierBlock.", nameof(varOperator));
+                throw new JsonException("Property is required for class CheckTierBlock: operator.");
 
             if (!subledger.IsSet)
-                throw new ArgumentException("Property is required for class CheckTierBlock.", nameof(subledger));
+                throw new JsonException("Property is required for class CheckTierBlock: subledger.");
 
             if (!tier.IsSet)
-                throw new ArgumentException("Property is required for class CheckTierBlock.", nameof(tier));
+                throw new JsonException("Property is required for class CheckTierBlock: tier.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckTierBlock.");
+                throw new JsonException("Property is not nullable for class CheckTierBlock: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckTierBlock.");
+                throw new JsonException("Property is not nullable for class CheckTierBlock: operator.");
 
             if (subledger.IsSet && subledger.Value == null)
-                throw new ArgumentNullException(nameof(subledger), "Property is not nullable for class CheckTierBlock.");
+                throw new JsonException("Property is not nullable for class CheckTierBlock: subledger.");
 
             if (tier.IsSet && tier.Value == null)
-                throw new ArgumentNullException(nameof(tier), "Property is not nullable for class CheckTierBlock.");
+                throw new JsonException("Property is not nullable for class CheckTierBlock: tier.");
 
             return new CheckTierBlock(type.Value, varOperator.Value.Value, subledger.Value, tier.Value, id, tags, onFailure);
         }
@@ -344,7 +344,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkTierBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckTierBlock checkTierBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -359,17 +358,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkTierBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckTierBlock checkTierBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (checkTierBlock.Type == null)
-                throw new ArgumentNullException(nameof(checkTierBlock.Type), "Property is required for class CheckTierBlock.");
+                throw new JsonException("Cannot write null property CheckTierBlock.Type to non-nullable JSON property 'type'.");
 
             if (checkTierBlock.Subledger == null)
-                throw new ArgumentNullException(nameof(checkTierBlock.Subledger), "Property is required for class CheckTierBlock.");
+                throw new JsonException("Cannot write null property CheckTierBlock.Subledger to non-nullable JSON property 'subledger'.");
 
             if (checkTierBlock.Tier == null)
-                throw new ArgumentNullException(nameof(checkTierBlock.Tier), "Property is required for class CheckTierBlock.");
+                throw new JsonException("Cannot write null property CheckTierBlock.Tier to non-nullable JSON property 'tier'.");
 
             writer.WriteString("type", checkTierBlock.Type);
 

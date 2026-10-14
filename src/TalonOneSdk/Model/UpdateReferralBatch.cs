@@ -241,10 +241,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!batchID.IsSet)
-                throw new ArgumentException("Property is required for class UpdateReferralBatch.", nameof(batchID));
+                throw new JsonException("Property is required for class UpdateReferralBatch: batchID.");
 
             if (batchID.IsSet && batchID.Value == null)
-                throw new ArgumentNullException(nameof(batchID), "Property is not nullable for class UpdateReferralBatch.");
+                throw new JsonException("Property is not nullable for class UpdateReferralBatch: batchID.");
 
             return new UpdateReferralBatch(batchID.Value, attributes, startDate, expiryDate, usageLimit);
         }
@@ -255,7 +255,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateReferralBatch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateReferralBatch updateReferralBatch, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -270,11 +269,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateReferralBatch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateReferralBatch updateReferralBatch, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateReferralBatch.BatchID == null)
-                throw new ArgumentNullException(nameof(updateReferralBatch.BatchID), "Property is required for class UpdateReferralBatch.");
+                throw new JsonException("Cannot write null property UpdateReferralBatch.BatchID to non-nullable JSON property 'batchID'.");
 
             writer.WriteString("batchID", updateReferralBatch.BatchID);
 

@@ -160,19 +160,19 @@ namespace TalonOneSdk.Model
             }
 
             if (!attributeid.IsSet)
-                throw new ArgumentException("Property is required for class ItemAttribute.", nameof(attributeid));
+                throw new JsonException("Property is required for class ItemAttribute: attributeid.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ItemAttribute.", nameof(name));
+                throw new JsonException("Property is required for class ItemAttribute: name.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class ItemAttribute.", nameof(value));
+                throw new JsonException("Property is required for class ItemAttribute: value.");
 
             if (attributeid.IsSet && attributeid.Value == null)
-                throw new ArgumentNullException(nameof(attributeid), "Property is not nullable for class ItemAttribute.");
+                throw new JsonException("Property is not nullable for class ItemAttribute: attributeid.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ItemAttribute.");
+                throw new JsonException("Property is not nullable for class ItemAttribute: name.");
 
             return new ItemAttribute(attributeid.Value.Value, name.Value, value.Value);
         }
@@ -183,7 +183,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="itemAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ItemAttribute itemAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -198,11 +197,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="itemAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ItemAttribute itemAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             if (itemAttribute.Name == null)
-                throw new ArgumentNullException(nameof(itemAttribute.Name), "Property is required for class ItemAttribute.");
+                throw new JsonException("Cannot write null property ItemAttribute.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("attributeid", itemAttribute.Attributeid);
 

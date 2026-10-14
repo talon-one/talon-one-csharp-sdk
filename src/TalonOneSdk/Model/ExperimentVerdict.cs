@@ -187,34 +187,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!winnerVariantName.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVerdict.", nameof(winnerVariantName));
+                throw new JsonException("Property is required for class ExperimentVerdict: winnerVariantName.");
 
             if (!verdictSummary.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVerdict.", nameof(verdictSummary));
+                throw new JsonException("Property is required for class ExperimentVerdict: verdictSummary.");
 
             if (!keyFindings.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVerdict.", nameof(keyFindings));
+                throw new JsonException("Property is required for class ExperimentVerdict: keyFindings.");
 
             if (!aiConfidenceLevel.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVerdict.", nameof(aiConfidenceLevel));
+                throw new JsonException("Property is required for class ExperimentVerdict: aiConfidenceLevel.");
 
             if (!recommendation.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVerdict.", nameof(recommendation));
+                throw new JsonException("Property is required for class ExperimentVerdict: recommendation.");
 
             if (winnerVariantName.IsSet && winnerVariantName.Value == null)
-                throw new ArgumentNullException(nameof(winnerVariantName), "Property is not nullable for class ExperimentVerdict.");
+                throw new JsonException("Property is not nullable for class ExperimentVerdict: winnerVariantName.");
 
             if (verdictSummary.IsSet && verdictSummary.Value == null)
-                throw new ArgumentNullException(nameof(verdictSummary), "Property is not nullable for class ExperimentVerdict.");
+                throw new JsonException("Property is not nullable for class ExperimentVerdict: verdictSummary.");
 
             if (keyFindings.IsSet && keyFindings.Value == null)
-                throw new ArgumentNullException(nameof(keyFindings), "Property is not nullable for class ExperimentVerdict.");
+                throw new JsonException("Property is not nullable for class ExperimentVerdict: keyFindings.");
 
             if (aiConfidenceLevel.IsSet && aiConfidenceLevel.Value == null)
-                throw new ArgumentNullException(nameof(aiConfidenceLevel), "Property is not nullable for class ExperimentVerdict.");
+                throw new JsonException("Property is not nullable for class ExperimentVerdict: aiConfidenceLevel.");
 
             if (recommendation.IsSet && recommendation.Value == null)
-                throw new ArgumentNullException(nameof(recommendation), "Property is not nullable for class ExperimentVerdict.");
+                throw new JsonException("Property is not nullable for class ExperimentVerdict: recommendation.");
 
             return new ExperimentVerdict(winnerVariantName.Value, verdictSummary.Value, keyFindings.Value, aiConfidenceLevel.Value, recommendation.Value);
         }
@@ -225,7 +225,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentVerdict"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentVerdict experimentVerdict, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -240,23 +239,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentVerdict"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentVerdict experimentVerdict, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentVerdict.WinnerVariantName == null)
-                throw new ArgumentNullException(nameof(experimentVerdict.WinnerVariantName), "Property is required for class ExperimentVerdict.");
+                throw new JsonException("Cannot write null property ExperimentVerdict.WinnerVariantName to non-nullable JSON property 'winnerVariantName'.");
 
             if (experimentVerdict.VerdictSummary == null)
-                throw new ArgumentNullException(nameof(experimentVerdict.VerdictSummary), "Property is required for class ExperimentVerdict.");
+                throw new JsonException("Cannot write null property ExperimentVerdict.VerdictSummary to non-nullable JSON property 'verdictSummary'.");
 
             if (experimentVerdict.KeyFindings == null)
-                throw new ArgumentNullException(nameof(experimentVerdict.KeyFindings), "Property is required for class ExperimentVerdict.");
+                throw new JsonException("Cannot write null property ExperimentVerdict.KeyFindings to non-nullable JSON property 'keyFindings'.");
 
             if (experimentVerdict.AiConfidenceLevel == null)
-                throw new ArgumentNullException(nameof(experimentVerdict.AiConfidenceLevel), "Property is required for class ExperimentVerdict.");
+                throw new JsonException("Cannot write null property ExperimentVerdict.AiConfidenceLevel to non-nullable JSON property 'aiConfidenceLevel'.");
 
             if (experimentVerdict.Recommendation == null)
-                throw new ArgumentNullException(nameof(experimentVerdict.Recommendation), "Property is required for class ExperimentVerdict.");
+                throw new JsonException("Cannot write null property ExperimentVerdict.Recommendation to non-nullable JSON property 'recommendation'.");
 
             writer.WriteString("winnerVariantName", experimentVerdict.WinnerVariantName);
 

@@ -245,40 +245,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!ruleTitle.IsSet)
-                throw new ArgumentException("Property is required for class DeductLoyaltyPointsEffectProps.", nameof(ruleTitle));
+                throw new JsonException("Property is required for class DeductLoyaltyPointsEffectProps: ruleTitle.");
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class DeductLoyaltyPointsEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class DeductLoyaltyPointsEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class DeductLoyaltyPointsEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class DeductLoyaltyPointsEffectProps: subLedgerId.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class DeductLoyaltyPointsEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class DeductLoyaltyPointsEffectProps: value.");
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class DeductLoyaltyPointsEffectProps.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class DeductLoyaltyPointsEffectProps: transactionUUID.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class DeductLoyaltyPointsEffectProps.", nameof(name));
+                throw new JsonException("Property is required for class DeductLoyaltyPointsEffectProps: name.");
 
             if (ruleTitle.IsSet && ruleTitle.Value == null)
-                throw new ArgumentNullException(nameof(ruleTitle), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class DeductLoyaltyPointsEffectProps: ruleTitle.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class DeductLoyaltyPointsEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class DeductLoyaltyPointsEffectProps: subLedgerId.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class DeductLoyaltyPointsEffectProps: value.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class DeductLoyaltyPointsEffectProps: transactionUUID.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class DeductLoyaltyPointsEffectProps: name.");
 
             return new DeductLoyaltyPointsEffectProps(ruleTitle.Value, programId.Value.Value, subLedgerId.Value, value.Value.Value, transactionUUID.Value, name.Value, cardIdentifier);
         }
@@ -289,7 +289,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="deductLoyaltyPointsEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeductLoyaltyPointsEffectProps deductLoyaltyPointsEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -304,20 +303,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="deductLoyaltyPointsEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeductLoyaltyPointsEffectProps deductLoyaltyPointsEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (deductLoyaltyPointsEffectProps.RuleTitle == null)
-                throw new ArgumentNullException(nameof(deductLoyaltyPointsEffectProps.RuleTitle), "Property is required for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property DeductLoyaltyPointsEffectProps.RuleTitle to non-nullable JSON property 'ruleTitle'.");
 
             if (deductLoyaltyPointsEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(deductLoyaltyPointsEffectProps.SubLedgerId), "Property is required for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property DeductLoyaltyPointsEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             if (deductLoyaltyPointsEffectProps.TransactionUUID == null)
-                throw new ArgumentNullException(nameof(deductLoyaltyPointsEffectProps.TransactionUUID), "Property is required for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property DeductLoyaltyPointsEffectProps.TransactionUUID to non-nullable JSON property 'transactionUUID'.");
 
             if (deductLoyaltyPointsEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(deductLoyaltyPointsEffectProps.Name), "Property is required for class DeductLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property DeductLoyaltyPointsEffectProps.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("ruleTitle", deductLoyaltyPointsEffectProps.RuleTitle);
 

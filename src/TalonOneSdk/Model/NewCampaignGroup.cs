@@ -204,10 +204,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewCampaignGroup.", nameof(name));
+                throw new JsonException("Property is required for class NewCampaignGroup: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewCampaignGroup.");
+                throw new JsonException("Property is not nullable for class NewCampaignGroup: name.");
 
             return new NewCampaignGroup(name.Value, description, subscribedApplicationsIds, campaignIds);
         }
@@ -218,7 +218,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCampaignGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewCampaignGroup newCampaignGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -233,11 +232,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCampaignGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCampaignGroup newCampaignGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newCampaignGroup.Name == null)
-                throw new ArgumentNullException(nameof(newCampaignGroup.Name), "Property is required for class NewCampaignGroup.");
+                throw new JsonException("Cannot write null property NewCampaignGroup.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", newCampaignGroup.Name);
 

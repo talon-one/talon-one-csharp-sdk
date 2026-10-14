@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class NotificationActivation.", nameof(enabled));
+                throw new JsonException("Property is required for class NotificationActivation: enabled.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NotificationActivation.");
+                throw new JsonException("Property is not nullable for class NotificationActivation: enabled.");
 
             return new NotificationActivation(enabled.Value.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="notificationActivation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NotificationActivation notificationActivation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,7 +159,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="notificationActivation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NotificationActivation notificationActivation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteBoolean("enabled", notificationActivation.Enabled);

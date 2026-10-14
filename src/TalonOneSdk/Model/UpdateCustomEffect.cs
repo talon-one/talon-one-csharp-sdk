@@ -270,34 +270,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationIds.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCustomEffect.", nameof(applicationIds));
+                throw new JsonException("Property is required for class UpdateCustomEffect: applicationIds.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCustomEffect.", nameof(name));
+                throw new JsonException("Property is required for class UpdateCustomEffect: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCustomEffect.", nameof(title));
+                throw new JsonException("Property is required for class UpdateCustomEffect: title.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCustomEffect.", nameof(payload));
+                throw new JsonException("Property is required for class UpdateCustomEffect: payload.");
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCustomEffect.", nameof(enabled));
+                throw new JsonException("Property is required for class UpdateCustomEffect: enabled.");
 
             if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class UpdateCustomEffect.");
+                throw new JsonException("Property is not nullable for class UpdateCustomEffect: applicationIds.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCustomEffect.");
+                throw new JsonException("Property is not nullable for class UpdateCustomEffect: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class UpdateCustomEffect.");
+                throw new JsonException("Property is not nullable for class UpdateCustomEffect: title.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class UpdateCustomEffect.");
+                throw new JsonException("Property is not nullable for class UpdateCustomEffect: payload.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class UpdateCustomEffect.");
+                throw new JsonException("Property is not nullable for class UpdateCustomEffect: enabled.");
 
             return new UpdateCustomEffect(applicationIds.Value, name.Value, title.Value, payload.Value, enabled.Value.Value, isPerItem, description, varParams);
         }
@@ -308,7 +308,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCustomEffect"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateCustomEffect updateCustomEffect, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -323,20 +322,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCustomEffect"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCustomEffect updateCustomEffect, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateCustomEffect.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(updateCustomEffect.ApplicationIds), "Property is required for class UpdateCustomEffect.");
+                throw new JsonException("Cannot write null property UpdateCustomEffect.ApplicationIds to non-nullable JSON property 'applicationIds'.");
 
             if (updateCustomEffect.Name == null)
-                throw new ArgumentNullException(nameof(updateCustomEffect.Name), "Property is required for class UpdateCustomEffect.");
+                throw new JsonException("Cannot write null property UpdateCustomEffect.Name to non-nullable JSON property 'name'.");
 
             if (updateCustomEffect.Title == null)
-                throw new ArgumentNullException(nameof(updateCustomEffect.Title), "Property is required for class UpdateCustomEffect.");
+                throw new JsonException("Cannot write null property UpdateCustomEffect.Title to non-nullable JSON property 'title'.");
 
             if (updateCustomEffect.Payload == null)
-                throw new ArgumentNullException(nameof(updateCustomEffect.Payload), "Property is required for class UpdateCustomEffect.");
+                throw new JsonException("Cannot write null property UpdateCustomEffect.Payload to non-nullable JSON property 'payload'.");
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, updateCustomEffect.ApplicationIds, jsonSerializerOptions);

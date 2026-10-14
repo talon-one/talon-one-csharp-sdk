@@ -164,16 +164,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!policy.IsSet)
-                throw new ArgumentException("Property is required for class NewBaseNotification.", nameof(policy));
+                throw new JsonException("Property is required for class NewBaseNotification: policy.");
 
             if (!webhook.IsSet)
-                throw new ArgumentException("Property is required for class NewBaseNotification.", nameof(webhook));
+                throw new JsonException("Property is required for class NewBaseNotification: webhook.");
 
             if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class NewBaseNotification.");
+                throw new JsonException("Property is not nullable for class NewBaseNotification: policy.");
 
             if (webhook.IsSet && webhook.Value == null)
-                throw new ArgumentNullException(nameof(webhook), "Property is not nullable for class NewBaseNotification.");
+                throw new JsonException("Property is not nullable for class NewBaseNotification: webhook.");
 
             return new NewBaseNotification(policy.Value, webhook.Value, enabled);
         }
@@ -184,7 +184,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newBaseNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewBaseNotification newBaseNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -199,14 +198,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newBaseNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewBaseNotification newBaseNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newBaseNotification.Policy == null)
-                throw new ArgumentNullException(nameof(newBaseNotification.Policy), "Property is required for class NewBaseNotification.");
+                throw new JsonException("Cannot write null property NewBaseNotification.Policy to non-nullable JSON property 'policy'.");
 
             if (newBaseNotification.Webhook == null)
-                throw new ArgumentNullException(nameof(newBaseNotification.Webhook), "Property is required for class NewBaseNotification.");
+                throw new JsonException("Cannot write null property NewBaseNotification.Webhook to non-nullable JSON property 'webhook'.");
 
             writer.WritePropertyName("policy");
             JsonSerializer.Serialize(writer, newBaseNotification.Policy, jsonSerializerOptions);

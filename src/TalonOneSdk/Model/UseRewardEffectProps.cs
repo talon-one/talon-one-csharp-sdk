@@ -162,22 +162,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class UseRewardEffectProps.", nameof(integrationId));
+                throw new JsonException("Property is required for class UseRewardEffectProps: integrationId.");
 
             if (!rewardId.IsSet)
-                throw new ArgumentException("Property is required for class UseRewardEffectProps.", nameof(rewardId));
+                throw new JsonException("Property is required for class UseRewardEffectProps: rewardId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class UseRewardEffectProps.", nameof(applicationId));
+                throw new JsonException("Property is required for class UseRewardEffectProps: applicationId.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class UseRewardEffectProps.");
+                throw new JsonException("Property is not nullable for class UseRewardEffectProps: integrationId.");
 
             if (rewardId.IsSet && rewardId.Value == null)
-                throw new ArgumentNullException(nameof(rewardId), "Property is not nullable for class UseRewardEffectProps.");
+                throw new JsonException("Property is not nullable for class UseRewardEffectProps: rewardId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class UseRewardEffectProps.");
+                throw new JsonException("Property is not nullable for class UseRewardEffectProps: applicationId.");
 
             return new UseRewardEffectProps(integrationId.Value, rewardId.Value.Value, applicationId.Value.Value);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="useRewardEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UseRewardEffectProps useRewardEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,11 +202,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="useRewardEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UseRewardEffectProps useRewardEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (useRewardEffectProps.IntegrationId == null)
-                throw new ArgumentNullException(nameof(useRewardEffectProps.IntegrationId), "Property is required for class UseRewardEffectProps.");
+                throw new JsonException("Cannot write null property UseRewardEffectProps.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("integrationId", useRewardEffectProps.IntegrationId);
 

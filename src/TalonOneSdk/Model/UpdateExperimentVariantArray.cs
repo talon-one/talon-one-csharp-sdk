@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!variants.IsSet)
-                throw new ArgumentException("Property is required for class UpdateExperimentVariantArray.", nameof(variants));
+                throw new JsonException("Property is required for class UpdateExperimentVariantArray: variants.");
 
             if (variants.IsSet && variants.Value == null)
-                throw new ArgumentNullException(nameof(variants), "Property is not nullable for class UpdateExperimentVariantArray.");
+                throw new JsonException("Property is not nullable for class UpdateExperimentVariantArray: variants.");
 
             return new UpdateExperimentVariantArray(variants.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateExperimentVariantArray"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateExperimentVariantArray updateExperimentVariantArray, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateExperimentVariantArray"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateExperimentVariantArray updateExperimentVariantArray, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateExperimentVariantArray.Variants == null)
-                throw new ArgumentNullException(nameof(updateExperimentVariantArray.Variants), "Property is required for class UpdateExperimentVariantArray.");
+                throw new JsonException("Cannot write null property UpdateExperimentVariantArray.Variants to non-nullable JSON property 'variants'.");
 
             writer.WritePropertyName("variants");
             JsonSerializer.Serialize(writer, updateExperimentVariantArray.Variants, jsonSerializerOptions);

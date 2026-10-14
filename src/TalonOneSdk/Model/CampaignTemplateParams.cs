@@ -334,22 +334,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplateParams.", nameof(name));
+                throw new JsonException("Property is required for class CampaignTemplateParams: name.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplateParams.", nameof(type));
+                throw new JsonException("Property is required for class CampaignTemplateParams: type.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplateParams.", nameof(description));
+                throw new JsonException("Property is required for class CampaignTemplateParams: description.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignTemplateParams.");
+                throw new JsonException("Property is not nullable for class CampaignTemplateParams: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CampaignTemplateParams.");
+                throw new JsonException("Property is not nullable for class CampaignTemplateParams: type.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CampaignTemplateParams.");
+                throw new JsonException("Property is not nullable for class CampaignTemplateParams: description.");
 
             return new CampaignTemplateParams(name.Value, type.Value.Value, description.Value, attributeId);
         }
@@ -360,7 +360,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignTemplateParams"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignTemplateParams campaignTemplateParams, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -375,14 +374,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignTemplateParams"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignTemplateParams campaignTemplateParams, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignTemplateParams.Name == null)
-                throw new ArgumentNullException(nameof(campaignTemplateParams.Name), "Property is required for class CampaignTemplateParams.");
+                throw new JsonException("Cannot write null property CampaignTemplateParams.Name to non-nullable JSON property 'name'.");
 
             if (campaignTemplateParams.Description == null)
-                throw new ArgumentNullException(nameof(campaignTemplateParams.Description), "Property is required for class CampaignTemplateParams.");
+                throw new JsonException("Cannot write null property CampaignTemplateParams.Description to non-nullable JSON property 'description'.");
 
             writer.WriteString("name", campaignTemplateParams.Name);
 

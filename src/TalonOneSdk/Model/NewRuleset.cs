@@ -211,16 +211,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!rules.IsSet)
-                throw new ArgumentException("Property is required for class NewRuleset.", nameof(rules));
+                throw new JsonException("Property is required for class NewRuleset: rules.");
 
             if (!bindings.IsSet)
-                throw new ArgumentException("Property is required for class NewRuleset.", nameof(bindings));
+                throw new JsonException("Property is required for class NewRuleset: bindings.");
 
             if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class NewRuleset.");
+                throw new JsonException("Property is not nullable for class NewRuleset: rules.");
 
             if (bindings.IsSet && bindings.Value == null)
-                throw new ArgumentNullException(nameof(bindings), "Property is not nullable for class NewRuleset.");
+                throw new JsonException("Property is not nullable for class NewRuleset: bindings.");
 
             return new NewRuleset(rules.Value, bindings.Value, strikethroughRules, rbVersion, activate);
         }
@@ -231,7 +231,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newRuleset"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewRuleset newRuleset, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -246,14 +245,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newRuleset"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewRuleset newRuleset, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newRuleset.Rules == null)
-                throw new ArgumentNullException(nameof(newRuleset.Rules), "Property is required for class NewRuleset.");
+                throw new JsonException("Cannot write null property NewRuleset.Rules to non-nullable JSON property 'rules'.");
 
             if (newRuleset.Bindings == null)
-                throw new ArgumentNullException(nameof(newRuleset.Bindings), "Property is required for class NewRuleset.");
+                throw new JsonException("Cannot write null property NewRuleset.Bindings to non-nullable JSON property 'bindings'.");
 
             writer.WritePropertyName("rules");
             JsonSerializer.Serialize(writer, newRuleset.Rules, jsonSerializerOptions);

@@ -210,16 +210,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class RuleV2.", nameof(title));
+                throw new JsonException("Property is required for class RuleV2: title.");
 
             if (!blocks.IsSet)
-                throw new ArgumentException("Property is required for class RuleV2.", nameof(blocks));
+                throw new JsonException("Property is required for class RuleV2: blocks.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class RuleV2.");
+                throw new JsonException("Property is not nullable for class RuleV2: title.");
 
             if (blocks.IsSet && blocks.Value == null)
-                throw new ArgumentNullException(nameof(blocks), "Property is not nullable for class RuleV2.");
+                throw new JsonException("Property is not nullable for class RuleV2: blocks.");
 
             return new RuleV2(title.Value, blocks.Value, id, parentId, description);
         }
@@ -230,7 +230,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RuleV2 ruleV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -245,14 +244,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RuleV2 ruleV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ruleV2.Title == null)
-                throw new ArgumentNullException(nameof(ruleV2.Title), "Property is required for class RuleV2.");
+                throw new JsonException("Cannot write null property RuleV2.Title to non-nullable JSON property 'title'.");
 
             if (ruleV2.Blocks == null)
-                throw new ArgumentNullException(nameof(ruleV2.Blocks), "Property is required for class RuleV2.");
+                throw new JsonException("Cannot write null property RuleV2.Blocks to non-nullable JSON property 'blocks'.");
 
             writer.WriteString("title", ruleV2.Title);
 

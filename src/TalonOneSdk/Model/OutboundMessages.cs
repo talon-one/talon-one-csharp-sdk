@@ -153,10 +153,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessages.", nameof(data));
+                throw new JsonException("Property is required for class OutboundMessages: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class OutboundMessages.");
+                throw new JsonException("Property is not nullable for class OutboundMessages: data.");
 
             return new OutboundMessages(data.Value, nextCursor);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundMessages"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutboundMessages outboundMessages, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,11 +181,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundMessages"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutboundMessages outboundMessages, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outboundMessages.Data == null)
-                throw new ArgumentNullException(nameof(outboundMessages.Data), "Property is required for class OutboundMessages.");
+                throw new JsonException("Cannot write null property OutboundMessages.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, outboundMessages.Data, jsonSerializerOptions);

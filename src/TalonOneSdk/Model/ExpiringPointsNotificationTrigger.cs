@@ -225,16 +225,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringPointsNotificationTrigger.", nameof(amount));
+                throw new JsonException("Property is required for class ExpiringPointsNotificationTrigger: amount.");
 
             if (!period.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringPointsNotificationTrigger.", nameof(period));
+                throw new JsonException("Property is required for class ExpiringPointsNotificationTrigger: period.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class ExpiringPointsNotificationTrigger.");
+                throw new JsonException("Property is not nullable for class ExpiringPointsNotificationTrigger: amount.");
 
             if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class ExpiringPointsNotificationTrigger.");
+                throw new JsonException("Property is not nullable for class ExpiringPointsNotificationTrigger: period.");
 
             return new ExpiringPointsNotificationTrigger(amount.Value.Value, period.Value.Value);
         }
@@ -245,7 +245,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringPointsNotificationTrigger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExpiringPointsNotificationTrigger expiringPointsNotificationTrigger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,7 +259,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringPointsNotificationTrigger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExpiringPointsNotificationTrigger expiringPointsNotificationTrigger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("amount", expiringPointsNotificationTrigger.Amount);

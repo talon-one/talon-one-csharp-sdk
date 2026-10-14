@@ -489,10 +489,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEventV2Request.", nameof(type));
+                throw new JsonException("Property is required for class IntegrationEventV2Request: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEventV2Request.");
+                throw new JsonException("Property is not nullable for class IntegrationEventV2Request: type.");
 
             return new IntegrationEventV2Request(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes, responseContent, loyaltyCards, rewardIntegrationIds);
         }
@@ -503,7 +503,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEventV2Request"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationEventV2Request integrationEventV2Request, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -518,11 +517,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEventV2Request"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationEventV2Request integrationEventV2Request, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationEventV2Request.Type == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Request.Type), "Property is required for class IntegrationEventV2Request.");
+                throw new JsonException("Cannot write null property IntegrationEventV2Request.Type to non-nullable JSON property 'type'.");
 
             writer.WriteString("type", integrationEventV2Request.Type);
 

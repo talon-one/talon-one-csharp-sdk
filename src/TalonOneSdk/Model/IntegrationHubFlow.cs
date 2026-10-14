@@ -188,16 +188,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!eventType.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlow.", nameof(eventType));
+                throw new JsonException("Property is required for class IntegrationHubFlow: EventType.");
 
             if (!integrationHubFlowUrl.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlow.", nameof(integrationHubFlowUrl));
+                throw new JsonException("Property is required for class IntegrationHubFlow: IntegrationHubFlowUrl.");
 
             if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubFlow.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlow: EventType.");
 
             if (integrationHubFlowUrl.IsSet && integrationHubFlowUrl.Value == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowUrl), "Property is not nullable for class IntegrationHubFlow.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlow: IntegrationHubFlowUrl.");
 
             return new IntegrationHubFlow(eventType.Value.Value, integrationHubFlowUrl.Value, applicationID, loyaltyProgramID);
         }
@@ -208,7 +208,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubFlow"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubFlow integrationHubFlow, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -223,11 +222,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubFlow"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubFlow integrationHubFlow, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubFlow.IntegrationHubFlowUrl == null)
-                throw new ArgumentNullException(nameof(integrationHubFlow.IntegrationHubFlowUrl), "Property is required for class IntegrationHubFlow.");
+                throw new JsonException("Cannot write null property IntegrationHubFlow.IntegrationHubFlowUrl to non-nullable JSON property 'IntegrationHubFlowUrl'.");
 
             var eventTypeRawValue = IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubFlow.EventType);
             writer.WriteString("EventType", eventTypeRawValue);

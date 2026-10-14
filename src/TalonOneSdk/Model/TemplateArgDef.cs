@@ -379,22 +379,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TemplateArgDef.", nameof(type));
+                throw new JsonException("Property is required for class TemplateArgDef: type.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class TemplateArgDef.", nameof(title));
+                throw new JsonException("Property is required for class TemplateArgDef: title.");
 
             if (!ui.IsSet)
-                throw new ArgumentException("Property is required for class TemplateArgDef.", nameof(ui));
+                throw new JsonException("Property is required for class TemplateArgDef: ui.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TemplateArgDef.");
+                throw new JsonException("Property is not nullable for class TemplateArgDef: type.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class TemplateArgDef.");
+                throw new JsonException("Property is not nullable for class TemplateArgDef: title.");
 
             if (ui.IsSet && ui.Value == null)
-                throw new ArgumentNullException(nameof(ui), "Property is not nullable for class TemplateArgDef.");
+                throw new JsonException("Property is not nullable for class TemplateArgDef: ui.");
 
             return new TemplateArgDef(type.Value.Value, title.Value, ui.Value, description, key, picklistID, restrictedByPicklist);
         }
@@ -405,7 +405,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="templateArgDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TemplateArgDef templateArgDef, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -420,14 +419,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="templateArgDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TemplateArgDef templateArgDef, JsonSerializerOptions jsonSerializerOptions)
         {
             if (templateArgDef.Title == null)
-                throw new ArgumentNullException(nameof(templateArgDef.Title), "Property is required for class TemplateArgDef.");
+                throw new JsonException("Cannot write null property TemplateArgDef.Title to non-nullable JSON property 'title'.");
 
             if (templateArgDef.Ui == null)
-                throw new ArgumentNullException(nameof(templateArgDef.Ui), "Property is required for class TemplateArgDef.");
+                throw new JsonException("Cannot write null property TemplateArgDef.Ui to non-nullable JSON property 'ui'.");
 
             var typeRawValue = TemplateArgDef.TypeEnumToJsonValue(templateArgDef.Type);
             writer.WriteString("type", typeRawValue);

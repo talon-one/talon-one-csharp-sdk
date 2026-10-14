@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentConfidenceTimeline.", nameof(data));
+                throw new JsonException("Property is required for class ExperimentConfidenceTimeline: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ExperimentConfidenceTimeline.");
+                throw new JsonException("Property is not nullable for class ExperimentConfidenceTimeline: data.");
 
             return new ExperimentConfidenceTimeline(data.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentConfidenceTimeline"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentConfidenceTimeline experimentConfidenceTimeline, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentConfidenceTimeline"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentConfidenceTimeline experimentConfidenceTimeline, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentConfidenceTimeline.Data == null)
-                throw new ArgumentNullException(nameof(experimentConfidenceTimeline.Data), "Property is required for class ExperimentConfidenceTimeline.");
+                throw new JsonException("Cannot write null property ExperimentConfidenceTimeline.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, experimentConfidenceTimeline.Data, jsonSerializerOptions);

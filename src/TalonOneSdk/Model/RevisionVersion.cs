@@ -32,13 +32,13 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="RevisionVersion" /> class.
         /// </summary>
         /// <param name="id">Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.</param>
-        /// <param name="accountId">accountId</param>
-        /// <param name="applicationId">applicationId</param>
-        /// <param name="campaignId">campaignId</param>
-        /// <param name="created">created</param>
-        /// <param name="createdBy">createdBy</param>
-        /// <param name="revisionId">revisionId</param>
-        /// <param name="varVersion">varVersion</param>
+        /// <param name="accountId">The ID of the account that owns this entity.</param>
+        /// <param name="applicationId">The ID of the Application that owns this entity.</param>
+        /// <param name="campaignId">The ID of the campaign that the revision was created from.</param>
+        /// <param name="created">Timestamp when the revision was created.</param>
+        /// <param name="createdBy">The ID of the user who created this revision.</param>
+        /// <param name="revisionId">The ID of the revision.</param>
+        /// <param name="varVersion">Incrementing number representing how many revisions have been activated on this campaign. Starts from &#x60;0&#x60; for a new campaign. </param>
         /// <param name="name">A user-facing name for this campaign.</param>
         /// <param name="startTime">Timestamp when the campaign will become active.</param>
         /// <param name="endTime">Timestamp when the campaign will become inactive.</param>
@@ -226,44 +226,57 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets AccountId
+        /// The ID of the account that owns this entity.
         /// </summary>
+        /// <value>The ID of the account that owns this entity.</value>
+        /* <example>3886</example> */
         [JsonPropertyName("accountId")]
         public long AccountId { get; set; }
 
         /// <summary>
-        /// Gets or Sets ApplicationId
+        /// The ID of the Application that owns this entity.
         /// </summary>
+        /// <value>The ID of the Application that owns this entity.</value>
+        /* <example>42</example> */
         [JsonPropertyName("applicationId")]
         public long ApplicationId { get; set; }
 
         /// <summary>
-        /// Gets or Sets CampaignId
+        /// The ID of the campaign that the revision was created from.
         /// </summary>
+        /// <value>The ID of the campaign that the revision was created from.</value>
+        /* <example>18</example> */
         [JsonPropertyName("campaignId")]
         public long CampaignId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Created
+        /// Timestamp when the revision was created.
         /// </summary>
+        /// <value>Timestamp when the revision was created.</value>
+        /* <example>2026-10-01T08:00:00Z</example> */
         [JsonPropertyName("created")]
         public DateTime Created { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedBy
+        /// The ID of the user who created this revision.
         /// </summary>
+        /// <value>The ID of the user who created this revision.</value>
+        /* <example>134</example> */
         [JsonPropertyName("createdBy")]
         public long CreatedBy { get; set; }
 
         /// <summary>
-        /// Gets or Sets RevisionId
+        /// The ID of the revision.
         /// </summary>
+        /// <value>The ID of the revision.</value>
+        /* <example>6</example> */
         [JsonPropertyName("revisionId")]
         public long RevisionId { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarVersion
+        /// Incrementing number representing how many revisions have been activated on this campaign. Starts from &#x60;0&#x60; for a new campaign. 
         /// </summary>
+        /// <value>Incrementing number representing how many revisions have been activated on this campaign. Starts from &#x60;0&#x60; for a new campaign. </value>
         [JsonPropertyName("version")]
         public long VarVersion { get; set; }
 
@@ -615,10 +628,10 @@ namespace TalonOneSdk.Model
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "startTime":
-                            startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            startTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "endTime":
-                            endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            endTime = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "attributes":
                             attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
@@ -678,52 +691,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RevisionVersion.", nameof(id));
+                throw new JsonException("Property is required for class RevisionVersion: id.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class RevisionVersion.", nameof(accountId));
+                throw new JsonException("Property is required for class RevisionVersion: accountId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class RevisionVersion.", nameof(applicationId));
+                throw new JsonException("Property is required for class RevisionVersion: applicationId.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class RevisionVersion.", nameof(campaignId));
+                throw new JsonException("Property is required for class RevisionVersion: campaignId.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class RevisionVersion.", nameof(created));
+                throw new JsonException("Property is required for class RevisionVersion: created.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class RevisionVersion.", nameof(createdBy));
+                throw new JsonException("Property is required for class RevisionVersion: createdBy.");
 
             if (!revisionId.IsSet)
-                throw new ArgumentException("Property is required for class RevisionVersion.", nameof(revisionId));
+                throw new JsonException("Property is required for class RevisionVersion: revisionId.");
 
             if (!varVersion.IsSet)
-                throw new ArgumentException("Property is required for class RevisionVersion.", nameof(varVersion));
+                throw new JsonException("Property is required for class RevisionVersion: version.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RevisionVersion.");
+                throw new JsonException("Property is not nullable for class RevisionVersion: id.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class RevisionVersion.");
+                throw new JsonException("Property is not nullable for class RevisionVersion: accountId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class RevisionVersion.");
+                throw new JsonException("Property is not nullable for class RevisionVersion: applicationId.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class RevisionVersion.");
+                throw new JsonException("Property is not nullable for class RevisionVersion: campaignId.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class RevisionVersion.");
+                throw new JsonException("Property is not nullable for class RevisionVersion: created.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class RevisionVersion.");
+                throw new JsonException("Property is not nullable for class RevisionVersion: createdBy.");
 
             if (revisionId.IsSet && revisionId.Value == null)
-                throw new ArgumentNullException(nameof(revisionId), "Property is not nullable for class RevisionVersion.");
+                throw new JsonException("Property is not nullable for class RevisionVersion: revisionId.");
 
             if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class RevisionVersion.");
+                throw new JsonException("Property is not nullable for class RevisionVersion: version.");
 
             return new RevisionVersion(id.Value.Value, accountId.Value.Value, applicationId.Value.Value, campaignId.Value.Value, created.Value.Value, createdBy.Value.Value, revisionId.Value.Value, varVersion.Value.Value, name, startTime, endTime, attributes, description, activeRulesetId, tags, couponSettings, referralSettings, limits, reevaluateOnReturn, features, couponAttributes);
         }
@@ -734,7 +747,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="revisionVersion"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RevisionVersion revisionVersion, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -749,7 +761,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="revisionVersion"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RevisionVersion revisionVersion, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", revisionVersion.Id);
@@ -772,10 +783,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("name", revisionVersion.Name);
 
             if (revisionVersion.StartTimeOption.IsSet)
-                writer.WriteString("startTime", revisionVersion.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+                if (revisionVersion.StartTimeOption.Value != null)
+                    writer.WriteString("startTime", revisionVersion.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+                else
+                    writer.WriteNull("startTime");
 
             if (revisionVersion.EndTimeOption.IsSet)
-                writer.WriteString("endTime", revisionVersion.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+                if (revisionVersion.EndTimeOption.Value != null)
+                    writer.WriteString("endTime", revisionVersion.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+                else
+                    writer.WriteNull("endTime");
 
             if (revisionVersion.AttributesOption.IsSet)
             {
@@ -783,10 +800,16 @@ namespace TalonOneSdk.Model
                 JsonSerializer.Serialize(writer, revisionVersion.Attributes, jsonSerializerOptions);
             }
             if (revisionVersion.DescriptionOption.IsSet)
-                writer.WriteString("description", revisionVersion.Description);
+                if (revisionVersion.DescriptionOption.Value != null)
+                    writer.WriteString("description", revisionVersion.Description);
+                else
+                    writer.WriteNull("description");
 
             if (revisionVersion.ActiveRulesetIdOption.IsSet)
-                writer.WriteNumber("activeRulesetId", revisionVersion.ActiveRulesetIdOption.Value.Value);
+                if (revisionVersion.ActiveRulesetIdOption.Value != null)
+                    writer.WriteNumber("activeRulesetId", revisionVersion.ActiveRulesetIdOption.Value.Value);
+                else
+                    writer.WriteNull("activeRulesetId");
 
             if (revisionVersion.TagsOption.IsSet)
             {

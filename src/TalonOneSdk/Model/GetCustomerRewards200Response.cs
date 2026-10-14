@@ -171,10 +171,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GetCustomerRewards200Response.", nameof(data));
+                throw new JsonException("Property is required for class GetCustomerRewards200Response: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetCustomerRewards200Response.");
+                throw new JsonException("Property is not nullable for class GetCustomerRewards200Response: data.");
 
             return new GetCustomerRewards200Response(data.Value, hasMore, totalResultSize);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCustomerRewards200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetCustomerRewards200Response getCustomerRewards200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,11 +199,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCustomerRewards200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetCustomerRewards200Response getCustomerRewards200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getCustomerRewards200Response.Data == null)
-                throw new ArgumentNullException(nameof(getCustomerRewards200Response.Data), "Property is required for class GetCustomerRewards200Response.");
+                throw new JsonException("Cannot write null property GetCustomerRewards200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, getCustomerRewards200Response.Data, jsonSerializerOptions);

@@ -266,16 +266,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotificationPolicy.", nameof(name));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotificationPolicy: name.");
 
             if (!scopes.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotificationPolicy.", nameof(scopes));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotificationPolicy: scopes.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CardAddedDeductedPointsBalancesNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotificationPolicy: name.");
 
             if (scopes.IsSet && scopes.Value == null)
-                throw new ArgumentNullException(nameof(scopes), "Property is not nullable for class CardAddedDeductedPointsBalancesNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotificationPolicy: scopes.");
 
             return new CardAddedDeductedPointsBalancesNotificationPolicy(name.Value, scopes.Value);
         }
@@ -286,7 +286,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardAddedDeductedPointsBalancesNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CardAddedDeductedPointsBalancesNotificationPolicy cardAddedDeductedPointsBalancesNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -301,14 +300,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardAddedDeductedPointsBalancesNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CardAddedDeductedPointsBalancesNotificationPolicy cardAddedDeductedPointsBalancesNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (cardAddedDeductedPointsBalancesNotificationPolicy.Name == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsBalancesNotificationPolicy.Name), "Property is required for class CardAddedDeductedPointsBalancesNotificationPolicy.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsBalancesNotificationPolicy.Name to non-nullable JSON property 'name'.");
 
             if (cardAddedDeductedPointsBalancesNotificationPolicy.Scopes == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsBalancesNotificationPolicy.Scopes), "Property is required for class CardAddedDeductedPointsBalancesNotificationPolicy.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsBalancesNotificationPolicy.Scopes to non-nullable JSON property 'scopes'.");
 
             writer.WriteString("name", cardAddedDeductedPointsBalancesNotificationPolicy.Name);
 

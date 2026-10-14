@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class NewInviteEmail.", nameof(email));
+                throw new JsonException("Property is required for class NewInviteEmail: email.");
 
             if (!token.IsSet)
-                throw new ArgumentException("Property is required for class NewInviteEmail.", nameof(token));
+                throw new JsonException("Property is required for class NewInviteEmail: token.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class NewInviteEmail.");
+                throw new JsonException("Property is not nullable for class NewInviteEmail: email.");
 
             if (token.IsSet && token.Value == null)
-                throw new ArgumentNullException(nameof(token), "Property is not nullable for class NewInviteEmail.");
+                throw new JsonException("Property is not nullable for class NewInviteEmail: token.");
 
             return new NewInviteEmail(email.Value, token.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newInviteEmail"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewInviteEmail newInviteEmail, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newInviteEmail"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewInviteEmail newInviteEmail, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newInviteEmail.Email == null)
-                throw new ArgumentNullException(nameof(newInviteEmail.Email), "Property is required for class NewInviteEmail.");
+                throw new JsonException("Cannot write null property NewInviteEmail.Email to non-nullable JSON property 'email'.");
 
             if (newInviteEmail.Token == null)
-                throw new ArgumentNullException(nameof(newInviteEmail.Token), "Property is required for class NewInviteEmail.");
+                throw new JsonException("Cannot write null property NewInviteEmail.Token to non-nullable JSON property 'token'.");
 
             writer.WriteString("email", newInviteEmail.Email);
 

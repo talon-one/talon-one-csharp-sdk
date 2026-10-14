@@ -327,22 +327,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!effects.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationResponse.", nameof(effects));
+                throw new JsonException("Property is required for class IntegrationResponse: effects.");
 
             if (!createdCoupons.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationResponse.", nameof(createdCoupons));
+                throw new JsonException("Property is required for class IntegrationResponse: createdCoupons.");
 
             if (!createdReferrals.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationResponse.", nameof(createdReferrals));
+                throw new JsonException("Property is required for class IntegrationResponse: createdReferrals.");
 
             if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationResponse.");
+                throw new JsonException("Property is not nullable for class IntegrationResponse: effects.");
 
             if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class IntegrationResponse.");
+                throw new JsonException("Property is not nullable for class IntegrationResponse: createdCoupons.");
 
             if (createdReferrals.IsSet && createdReferrals.Value == null)
-                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationResponse.");
+                throw new JsonException("Property is not nullable for class IntegrationResponse: createdReferrals.");
 
             return new IntegrationResponse(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, campaignEligibility, ruleFailureReasons, awardedGiveaways, achievements, rewards);
         }
@@ -353,7 +353,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationResponse integrationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -368,17 +367,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationResponse integrationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationResponse.Effects == null)
-                throw new ArgumentNullException(nameof(integrationResponse.Effects), "Property is required for class IntegrationResponse.");
+                throw new JsonException("Cannot write null property IntegrationResponse.Effects to non-nullable JSON property 'effects'.");
 
             if (integrationResponse.CreatedCoupons == null)
-                throw new ArgumentNullException(nameof(integrationResponse.CreatedCoupons), "Property is required for class IntegrationResponse.");
+                throw new JsonException("Cannot write null property IntegrationResponse.CreatedCoupons to non-nullable JSON property 'createdCoupons'.");
 
             if (integrationResponse.CreatedReferrals == null)
-                throw new ArgumentNullException(nameof(integrationResponse.CreatedReferrals), "Property is required for class IntegrationResponse.");
+                throw new JsonException("Cannot write null property IntegrationResponse.CreatedReferrals to non-nullable JSON property 'createdReferrals'.");
 
             writer.WritePropertyName("effects");
             JsonSerializer.Serialize(writer, integrationResponse.Effects, jsonSerializerOptions);

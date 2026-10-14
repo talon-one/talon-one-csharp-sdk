@@ -366,28 +366,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAudienceMembershipBlock.", nameof(type));
+                throw new JsonException("Property is required for class UpdateAudienceMembershipBlock: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAudienceMembershipBlock.", nameof(varOperator));
+                throw new JsonException("Property is required for class UpdateAudienceMembershipBlock: operator.");
 
             if (!profile.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAudienceMembershipBlock.", nameof(profile));
+                throw new JsonException("Property is required for class UpdateAudienceMembershipBlock: profile.");
 
             if (!audience.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAudienceMembershipBlock.", nameof(audience));
+                throw new JsonException("Property is required for class UpdateAudienceMembershipBlock: audience.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class UpdateAudienceMembershipBlock.");
+                throw new JsonException("Property is not nullable for class UpdateAudienceMembershipBlock: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class UpdateAudienceMembershipBlock.");
+                throw new JsonException("Property is not nullable for class UpdateAudienceMembershipBlock: operator.");
 
             if (profile.IsSet && profile.Value == null)
-                throw new ArgumentNullException(nameof(profile), "Property is not nullable for class UpdateAudienceMembershipBlock.");
+                throw new JsonException("Property is not nullable for class UpdateAudienceMembershipBlock: profile.");
 
             if (audience.IsSet && audience.Value == null)
-                throw new ArgumentNullException(nameof(audience), "Property is not nullable for class UpdateAudienceMembershipBlock.");
+                throw new JsonException("Property is not nullable for class UpdateAudienceMembershipBlock: audience.");
 
             return new UpdateAudienceMembershipBlock(type.Value, varOperator.Value.Value, profile.Value.Value, audience.Value, id, tags);
         }
@@ -398,7 +398,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAudienceMembershipBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateAudienceMembershipBlock updateAudienceMembershipBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -413,14 +412,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAudienceMembershipBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAudienceMembershipBlock updateAudienceMembershipBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateAudienceMembershipBlock.Type == null)
-                throw new ArgumentNullException(nameof(updateAudienceMembershipBlock.Type), "Property is required for class UpdateAudienceMembershipBlock.");
+                throw new JsonException("Cannot write null property UpdateAudienceMembershipBlock.Type to non-nullable JSON property 'type'.");
 
             if (updateAudienceMembershipBlock.Audience == null)
-                throw new ArgumentNullException(nameof(updateAudienceMembershipBlock.Audience), "Property is required for class UpdateAudienceMembershipBlock.");
+                throw new JsonException("Cannot write null property UpdateAudienceMembershipBlock.Audience to non-nullable JSON property 'audience'.");
 
             writer.WriteString("type", updateAudienceMembershipBlock.Type);
 

@@ -291,52 +291,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(id));
+                throw new JsonException("Property is required for class CouponFailureSummary: id.");
 
             if (!eventID.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(eventID));
+                throw new JsonException("Property is required for class CouponFailureSummary: eventID.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(status));
+                throw new JsonException("Property is required for class CouponFailureSummary: status.");
 
             if (!couponCode.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(couponCode));
+                throw new JsonException("Property is required for class CouponFailureSummary: couponCode.");
 
             if (!language.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(language));
+                throw new JsonException("Property is required for class CouponFailureSummary: language.");
 
             if (!summary.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(summary));
+                throw new JsonException("Property is required for class CouponFailureSummary: summary.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(createdAt));
+                throw new JsonException("Property is required for class CouponFailureSummary: createdAt.");
 
             if (!updatedAt.IsSet)
-                throw new ArgumentException("Property is required for class CouponFailureSummary.", nameof(updatedAt));
+                throw new JsonException("Property is required for class CouponFailureSummary: updatedAt.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponFailureSummary.");
+                throw new JsonException("Property is not nullable for class CouponFailureSummary: id.");
 
             if (eventID.IsSet && eventID.Value == null)
-                throw new ArgumentNullException(nameof(eventID), "Property is not nullable for class CouponFailureSummary.");
+                throw new JsonException("Property is not nullable for class CouponFailureSummary: eventID.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class CouponFailureSummary.");
+                throw new JsonException("Property is not nullable for class CouponFailureSummary: status.");
 
             if (couponCode.IsSet && couponCode.Value == null)
-                throw new ArgumentNullException(nameof(couponCode), "Property is not nullable for class CouponFailureSummary.");
+                throw new JsonException("Property is not nullable for class CouponFailureSummary: couponCode.");
 
             if (language.IsSet && language.Value == null)
-                throw new ArgumentNullException(nameof(language), "Property is not nullable for class CouponFailureSummary.");
+                throw new JsonException("Property is not nullable for class CouponFailureSummary: language.");
 
             if (summary.IsSet && summary.Value == null)
-                throw new ArgumentNullException(nameof(summary), "Property is not nullable for class CouponFailureSummary.");
+                throw new JsonException("Property is not nullable for class CouponFailureSummary: summary.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class CouponFailureSummary.");
+                throw new JsonException("Property is not nullable for class CouponFailureSummary: createdAt.");
 
             if (updatedAt.IsSet && updatedAt.Value == null)
-                throw new ArgumentNullException(nameof(updatedAt), "Property is not nullable for class CouponFailureSummary.");
+                throw new JsonException("Property is not nullable for class CouponFailureSummary: updatedAt.");
 
             return new CouponFailureSummary(id.Value.Value, eventID.Value.Value, status.Value, couponCode.Value, language.Value, summary.Value, createdAt.Value.Value, updatedAt.Value.Value, sessionID, profileID);
         }
@@ -347,7 +347,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponFailureSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponFailureSummary couponFailureSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -362,20 +361,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponFailureSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponFailureSummary couponFailureSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             if (couponFailureSummary.Status == null)
-                throw new ArgumentNullException(nameof(couponFailureSummary.Status), "Property is required for class CouponFailureSummary.");
+                throw new JsonException("Cannot write null property CouponFailureSummary.Status to non-nullable JSON property 'status'.");
 
             if (couponFailureSummary.CouponCode == null)
-                throw new ArgumentNullException(nameof(couponFailureSummary.CouponCode), "Property is required for class CouponFailureSummary.");
+                throw new JsonException("Cannot write null property CouponFailureSummary.CouponCode to non-nullable JSON property 'couponCode'.");
 
             if (couponFailureSummary.Language == null)
-                throw new ArgumentNullException(nameof(couponFailureSummary.Language), "Property is required for class CouponFailureSummary.");
+                throw new JsonException("Cannot write null property CouponFailureSummary.Language to non-nullable JSON property 'language'.");
 
             if (couponFailureSummary.Summary == null)
-                throw new ArgumentNullException(nameof(couponFailureSummary.Summary), "Property is required for class CouponFailureSummary.");
+                throw new JsonException("Cannot write null property CouponFailureSummary.Summary to non-nullable JSON property 'summary'.");
 
             writer.WriteNumber("id", couponFailureSummary.Id);
 

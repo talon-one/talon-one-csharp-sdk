@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="effectType">An effect discriminator of type &#x60;setLoyaltyPointsExpiryDate&#x60;.</param>
-        /// <param name="props">The properties of the &#x60;setLoyaltyPointsExpiryDate&#x60; effect.</param>
+        /// <param name="props">props</param>
         /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
         /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
         /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
@@ -170,9 +170,8 @@ namespace TalonOneSdk.Model
         public string RuleName { get; set; }
 
         /// <summary>
-        /// The properties of the &#x60;setLoyaltyPointsExpiryDate&#x60; effect.
+        /// Gets or Sets Props
         /// </summary>
-        /// <value>The properties of the &#x60;setLoyaltyPointsExpiryDate&#x60; effect.</value>
         [JsonPropertyName("props")]
         public SetLoyaltyPointsExpiryDateEffectProps Props { get; set; }
 
@@ -551,40 +550,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetLoyaltyPointsExpiryDate.", nameof(campaignId));
+                throw new JsonException("Property is required for class EffectSetLoyaltyPointsExpiryDate: campaignId.");
 
             if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetLoyaltyPointsExpiryDate.", nameof(rulesetId));
+                throw new JsonException("Property is required for class EffectSetLoyaltyPointsExpiryDate: rulesetId.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetLoyaltyPointsExpiryDate.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class EffectSetLoyaltyPointsExpiryDate: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetLoyaltyPointsExpiryDate.", nameof(ruleName));
+                throw new JsonException("Property is required for class EffectSetLoyaltyPointsExpiryDate: ruleName.");
 
             if (!effectType.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetLoyaltyPointsExpiryDate.", nameof(effectType));
+                throw new JsonException("Property is required for class EffectSetLoyaltyPointsExpiryDate: effectType.");
 
             if (!props.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetLoyaltyPointsExpiryDate.", nameof(props));
+                throw new JsonException("Property is required for class EffectSetLoyaltyPointsExpiryDate: props.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectSetLoyaltyPointsExpiryDate.");
+                throw new JsonException("Property is not nullable for class EffectSetLoyaltyPointsExpiryDate: campaignId.");
 
             if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectSetLoyaltyPointsExpiryDate.");
+                throw new JsonException("Property is not nullable for class EffectSetLoyaltyPointsExpiryDate: rulesetId.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectSetLoyaltyPointsExpiryDate.");
+                throw new JsonException("Property is not nullable for class EffectSetLoyaltyPointsExpiryDate: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectSetLoyaltyPointsExpiryDate.");
+                throw new JsonException("Property is not nullable for class EffectSetLoyaltyPointsExpiryDate: ruleName.");
 
             if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectSetLoyaltyPointsExpiryDate.");
+                throw new JsonException("Property is not nullable for class EffectSetLoyaltyPointsExpiryDate: effectType.");
 
             if (props.IsSet && props.Value == null)
-                throw new ArgumentNullException(nameof(props), "Property is not nullable for class EffectSetLoyaltyPointsExpiryDate.");
+                throw new JsonException("Property is not nullable for class EffectSetLoyaltyPointsExpiryDate: props.");
 
             return new EffectSetLoyaltyPointsExpiryDate(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, props.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, rewardIntegrationId);
         }
@@ -595,7 +594,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectSetLoyaltyPointsExpiryDate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EffectSetLoyaltyPointsExpiryDate effectSetLoyaltyPointsExpiryDate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -610,14 +608,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectSetLoyaltyPointsExpiryDate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EffectSetLoyaltyPointsExpiryDate effectSetLoyaltyPointsExpiryDate, JsonSerializerOptions jsonSerializerOptions)
         {
             if (effectSetLoyaltyPointsExpiryDate.RuleName == null)
-                throw new ArgumentNullException(nameof(effectSetLoyaltyPointsExpiryDate.RuleName), "Property is required for class EffectSetLoyaltyPointsExpiryDate.");
+                throw new JsonException("Cannot write null property EffectSetLoyaltyPointsExpiryDate.RuleName to non-nullable JSON property 'ruleName'.");
 
             if (effectSetLoyaltyPointsExpiryDate.Props == null)
-                throw new ArgumentNullException(nameof(effectSetLoyaltyPointsExpiryDate.Props), "Property is required for class EffectSetLoyaltyPointsExpiryDate.");
+                throw new JsonException("Cannot write null property EffectSetLoyaltyPointsExpiryDate.Props to non-nullable JSON property 'props'.");
 
             writer.WriteNumber("campaignId", effectSetLoyaltyPointsExpiryDate.CampaignId);
 

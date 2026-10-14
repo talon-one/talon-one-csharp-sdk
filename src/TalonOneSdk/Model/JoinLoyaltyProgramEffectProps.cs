@@ -152,16 +152,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class JoinLoyaltyProgramEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class JoinLoyaltyProgramEffectProps: programId.");
 
             if (!joinDate.IsSet)
-                throw new ArgumentException("Property is required for class JoinLoyaltyProgramEffectProps.", nameof(joinDate));
+                throw new JsonException("Property is required for class JoinLoyaltyProgramEffectProps: joinDate.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class JoinLoyaltyProgramEffectProps.");
+                throw new JsonException("Property is not nullable for class JoinLoyaltyProgramEffectProps: programId.");
 
             if (joinDate.IsSet && joinDate.Value == null)
-                throw new ArgumentNullException(nameof(joinDate), "Property is not nullable for class JoinLoyaltyProgramEffectProps.");
+                throw new JsonException("Property is not nullable for class JoinLoyaltyProgramEffectProps: joinDate.");
 
             return new JoinLoyaltyProgramEffectProps(programId.Value.Value, joinDate.Value.Value);
         }
@@ -172,7 +172,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="joinLoyaltyProgramEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, JoinLoyaltyProgramEffectProps joinLoyaltyProgramEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -187,7 +186,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="joinLoyaltyProgramEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, JoinLoyaltyProgramEffectProps joinLoyaltyProgramEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("programId", joinLoyaltyProgramEffectProps.ProgramId);

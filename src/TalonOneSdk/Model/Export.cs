@@ -354,40 +354,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Export.", nameof(id));
+                throw new JsonException("Property is required for class Export: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Export.", nameof(created));
+                throw new JsonException("Property is required for class Export: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Export.", nameof(accountId));
+                throw new JsonException("Property is required for class Export: accountId.");
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class Export.", nameof(userId));
+                throw new JsonException("Property is required for class Export: userId.");
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class Export.", nameof(entity));
+                throw new JsonException("Property is required for class Export: entity.");
 
             if (!filter.IsSet)
-                throw new ArgumentException("Property is required for class Export.", nameof(filter));
+                throw new JsonException("Property is required for class Export: filter.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Export.");
+                throw new JsonException("Property is not nullable for class Export: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Export.");
+                throw new JsonException("Property is not nullable for class Export: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Export.");
+                throw new JsonException("Property is not nullable for class Export: accountId.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Export.");
+                throw new JsonException("Property is not nullable for class Export: userId.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Export.");
+                throw new JsonException("Property is not nullable for class Export: entity.");
 
             if (filter.IsSet && filter.Value == null)
-                throw new ArgumentNullException(nameof(filter), "Property is not nullable for class Export.");
+                throw new JsonException("Property is not nullable for class Export: filter.");
 
             return new Export(id.Value.Value, created.Value.Value, accountId.Value.Value, userId.Value.Value, entity.Value.Value, filter.Value);
         }
@@ -398,7 +398,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="export"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Export export, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -413,11 +412,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="export"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Export export, JsonSerializerOptions jsonSerializerOptions)
         {
             if (export.Filter == null)
-                throw new ArgumentNullException(nameof(export.Filter), "Property is required for class Export.");
+                throw new JsonException("Cannot write null property Export.Filter to non-nullable JSON property 'filter'.");
 
             writer.WriteNumber("id", export.Id);
 

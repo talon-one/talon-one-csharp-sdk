@@ -164,22 +164,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!total.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatisticDiscount.", nameof(total));
+                throw new JsonException("Property is required for class AccountDashboardStatisticDiscount: total.");
 
             if (!average.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatisticDiscount.", nameof(average));
+                throw new JsonException("Property is required for class AccountDashboardStatisticDiscount: average.");
 
             if (!datetime.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatisticDiscount.", nameof(datetime));
+                throw new JsonException("Property is required for class AccountDashboardStatisticDiscount: datetime.");
 
             if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class AccountDashboardStatisticDiscount.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatisticDiscount: total.");
 
             if (average.IsSet && average.Value == null)
-                throw new ArgumentNullException(nameof(average), "Property is not nullable for class AccountDashboardStatisticDiscount.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatisticDiscount: average.");
 
             if (datetime.IsSet && datetime.Value == null)
-                throw new ArgumentNullException(nameof(datetime), "Property is not nullable for class AccountDashboardStatisticDiscount.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatisticDiscount: datetime.");
 
             return new AccountDashboardStatisticDiscount(total.Value.Value, average.Value.Value, datetime.Value.Value);
         }
@@ -190,7 +190,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountDashboardStatisticDiscount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountDashboardStatisticDiscount accountDashboardStatisticDiscount, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -205,7 +204,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountDashboardStatisticDiscount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountDashboardStatisticDiscount accountDashboardStatisticDiscount, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("total", accountDashboardStatisticDiscount.Total);

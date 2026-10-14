@@ -289,40 +289,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class NewSamlConnection.", nameof(accountId));
+                throw new JsonException("Property is required for class NewSamlConnection: accountId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewSamlConnection.", nameof(name));
+                throw new JsonException("Property is required for class NewSamlConnection: name.");
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class NewSamlConnection.", nameof(enabled));
+                throw new JsonException("Property is required for class NewSamlConnection: enabled.");
 
             if (!issuer.IsSet)
-                throw new ArgumentException("Property is required for class NewSamlConnection.", nameof(issuer));
+                throw new JsonException("Property is required for class NewSamlConnection: issuer.");
 
             if (!signOnURL.IsSet)
-                throw new ArgumentException("Property is required for class NewSamlConnection.", nameof(signOnURL));
+                throw new JsonException("Property is required for class NewSamlConnection: signOnURL.");
 
             if (!x509certificate.IsSet)
-                throw new ArgumentException("Property is required for class NewSamlConnection.", nameof(x509certificate));
+                throw new JsonException("Property is required for class NewSamlConnection: x509certificate.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class NewSamlConnection.");
+                throw new JsonException("Property is not nullable for class NewSamlConnection: accountId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewSamlConnection.");
+                throw new JsonException("Property is not nullable for class NewSamlConnection: name.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NewSamlConnection.");
+                throw new JsonException("Property is not nullable for class NewSamlConnection: enabled.");
 
             if (issuer.IsSet && issuer.Value == null)
-                throw new ArgumentNullException(nameof(issuer), "Property is not nullable for class NewSamlConnection.");
+                throw new JsonException("Property is not nullable for class NewSamlConnection: issuer.");
 
             if (signOnURL.IsSet && signOnURL.Value == null)
-                throw new ArgumentNullException(nameof(signOnURL), "Property is not nullable for class NewSamlConnection.");
+                throw new JsonException("Property is not nullable for class NewSamlConnection: signOnURL.");
 
             if (x509certificate.IsSet && x509certificate.Value == null)
-                throw new ArgumentNullException(nameof(x509certificate), "Property is not nullable for class NewSamlConnection.");
+                throw new JsonException("Property is not nullable for class NewSamlConnection: x509certificate.");
 
             return new NewSamlConnection(accountId.Value.Value, name.Value, enabled.Value.Value, issuer.Value, signOnURL.Value, x509certificate.Value, signOutURL, metadataURL, audienceURI);
         }
@@ -333,7 +333,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newSamlConnection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewSamlConnection newSamlConnection, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -348,20 +347,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newSamlConnection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewSamlConnection newSamlConnection, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newSamlConnection.Name == null)
-                throw new ArgumentNullException(nameof(newSamlConnection.Name), "Property is required for class NewSamlConnection.");
+                throw new JsonException("Cannot write null property NewSamlConnection.Name to non-nullable JSON property 'name'.");
 
             if (newSamlConnection.Issuer == null)
-                throw new ArgumentNullException(nameof(newSamlConnection.Issuer), "Property is required for class NewSamlConnection.");
+                throw new JsonException("Cannot write null property NewSamlConnection.Issuer to non-nullable JSON property 'issuer'.");
 
             if (newSamlConnection.SignOnURL == null)
-                throw new ArgumentNullException(nameof(newSamlConnection.SignOnURL), "Property is required for class NewSamlConnection.");
+                throw new JsonException("Cannot write null property NewSamlConnection.SignOnURL to non-nullable JSON property 'signOnURL'.");
 
             if (newSamlConnection.X509certificate == null)
-                throw new ArgumentNullException(nameof(newSamlConnection.X509certificate), "Property is required for class NewSamlConnection.");
+                throw new JsonException("Cannot write null property NewSamlConnection.X509certificate to non-nullable JSON property 'x509certificate'.");
 
             writer.WriteNumber("accountId", newSamlConnection.AccountId);
 

@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!riskIds.IsSet)
-                throw new ArgumentException("Property is required for class ReviewRisksRequest.", nameof(riskIds));
+                throw new JsonException("Property is required for class ReviewRisksRequest: riskIds.");
 
             if (riskIds.IsSet && riskIds.Value == null)
-                throw new ArgumentNullException(nameof(riskIds), "Property is not nullable for class ReviewRisksRequest.");
+                throw new JsonException("Property is not nullable for class ReviewRisksRequest: riskIds.");
 
             return new ReviewRisksRequest(riskIds.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="reviewRisksRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ReviewRisksRequest reviewRisksRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="reviewRisksRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReviewRisksRequest reviewRisksRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (reviewRisksRequest.RiskIds == null)
-                throw new ArgumentNullException(nameof(reviewRisksRequest.RiskIds), "Property is required for class ReviewRisksRequest.");
+                throw new JsonException("Cannot write null property ReviewRisksRequest.RiskIds to non-nullable JSON property 'riskIds'.");
 
             writer.WritePropertyName("riskIds");
             JsonSerializer.Serialize(writer, reviewRisksRequest.RiskIds, jsonSerializerOptions);

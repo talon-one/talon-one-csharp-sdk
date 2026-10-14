@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!userIds.IsSet)
-                throw new ArgumentException("Property is required for class CampaignDeactivationRequest.", nameof(userIds));
+                throw new JsonException("Property is required for class CampaignDeactivationRequest: userIds.");
 
             if (userIds.IsSet && userIds.Value == null)
-                throw new ArgumentNullException(nameof(userIds), "Property is not nullable for class CampaignDeactivationRequest.");
+                throw new JsonException("Property is not nullable for class CampaignDeactivationRequest: userIds.");
 
             return new CampaignDeactivationRequest(userIds.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignDeactivationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignDeactivationRequest campaignDeactivationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignDeactivationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignDeactivationRequest campaignDeactivationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignDeactivationRequest.UserIds == null)
-                throw new ArgumentNullException(nameof(campaignDeactivationRequest.UserIds), "Property is required for class CampaignDeactivationRequest.");
+                throw new JsonException("Cannot write null property CampaignDeactivationRequest.UserIds to non-nullable JSON property 'userIds'.");
 
             writer.WritePropertyName("userIds");
             JsonSerializer.Serialize(writer, campaignDeactivationRequest.UserIds, jsonSerializerOptions);

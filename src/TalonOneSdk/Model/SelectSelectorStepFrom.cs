@@ -175,7 +175,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="selectSelectorStepFrom"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SelectSelectorStepFrom selectSelectorStepFrom, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="selectSelectorStepFrom"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SelectSelectorStepFrom selectSelectorStepFrom, JsonSerializerOptions jsonSerializerOptions)
         {
 

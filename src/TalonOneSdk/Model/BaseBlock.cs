@@ -174,10 +174,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BaseBlock.", nameof(type));
+                throw new JsonException("Property is required for class BaseBlock: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class BaseBlock.");
+                throw new JsonException("Property is not nullable for class BaseBlock: type.");
 
             return new BaseBlock(type.Value, id, tags);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BaseBlock baseBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,11 +202,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseBlock baseBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (baseBlock.Type == null)
-                throw new ArgumentNullException(nameof(baseBlock.Type), "Property is required for class BaseBlock.");
+                throw new JsonException("Cannot write null property BaseBlock.Type to non-nullable JSON property 'type'.");
 
             writer.WriteString("type", baseBlock.Type);
 

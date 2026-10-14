@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!audiences.IsSet)
-                throw new ArgumentException("Property is required for class MultipleNewAudiences.", nameof(audiences));
+                throw new JsonException("Property is required for class MultipleNewAudiences: audiences.");
 
             if (audiences.IsSet && audiences.Value == null)
-                throw new ArgumentNullException(nameof(audiences), "Property is not nullable for class MultipleNewAudiences.");
+                throw new JsonException("Property is not nullable for class MultipleNewAudiences: audiences.");
 
             return new MultipleNewAudiences(audiences.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleNewAudiences"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MultipleNewAudiences multipleNewAudiences, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,11 +158,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleNewAudiences"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MultipleNewAudiences multipleNewAudiences, JsonSerializerOptions jsonSerializerOptions)
         {
             if (multipleNewAudiences.Audiences == null)
-                throw new ArgumentNullException(nameof(multipleNewAudiences.Audiences), "Property is required for class MultipleNewAudiences.");
+                throw new JsonException("Cannot write null property MultipleNewAudiences.Audiences to non-nullable JSON property 'audiences'.");
 
             writer.WritePropertyName("audiences");
             JsonSerializer.Serialize(writer, multipleNewAudiences.Audiences, jsonSerializerOptions);

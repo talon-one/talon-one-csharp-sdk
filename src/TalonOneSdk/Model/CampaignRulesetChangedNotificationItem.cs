@@ -230,16 +230,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class CampaignRulesetChangedNotificationItem.", nameof(varEvent));
+                throw new JsonException("Property is required for class CampaignRulesetChangedNotificationItem: Event.");
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class CampaignRulesetChangedNotificationItem.", nameof(campaign));
+                throw new JsonException("Property is required for class CampaignRulesetChangedNotificationItem: campaign.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignRulesetChangedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignRulesetChangedNotificationItem: Event.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignRulesetChangedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignRulesetChangedNotificationItem: campaign.");
 
             return new CampaignRulesetChangedNotificationItem(varEvent.Value, campaign.Value, oldRuleset, oldPlaceholders, ruleset, placeholders);
         }
@@ -250,7 +250,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignRulesetChangedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignRulesetChangedNotificationItem campaignRulesetChangedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -265,14 +264,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignRulesetChangedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignRulesetChangedNotificationItem campaignRulesetChangedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignRulesetChangedNotificationItem.Event == null)
-                throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.Event), "Property is required for class CampaignRulesetChangedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignRulesetChangedNotificationItem.Event to non-nullable JSON property 'Event'.");
 
             if (campaignRulesetChangedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignRulesetChangedNotificationItem.Campaign), "Property is required for class CampaignRulesetChangedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignRulesetChangedNotificationItem.Campaign to non-nullable JSON property 'campaign'.");
 
             writer.WriteString("Event", campaignRulesetChangedNotificationItem.Event);
 

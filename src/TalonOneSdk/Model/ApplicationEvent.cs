@@ -356,40 +356,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationEvent.", nameof(id));
+                throw new JsonException("Property is required for class ApplicationEvent: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationEvent.", nameof(created));
+                throw new JsonException("Property is required for class ApplicationEvent: created.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationEvent.", nameof(applicationId));
+                throw new JsonException("Property is required for class ApplicationEvent: applicationId.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationEvent.", nameof(type));
+                throw new JsonException("Property is required for class ApplicationEvent: type.");
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationEvent.", nameof(attributes));
+                throw new JsonException("Property is required for class ApplicationEvent: attributes.");
 
             if (!effects.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationEvent.", nameof(effects));
+                throw new JsonException("Property is required for class ApplicationEvent: effects.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationEvent.");
+                throw new JsonException("Property is not nullable for class ApplicationEvent: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationEvent.");
+                throw new JsonException("Property is not nullable for class ApplicationEvent: created.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationEvent.");
+                throw new JsonException("Property is not nullable for class ApplicationEvent: applicationId.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ApplicationEvent.");
+                throw new JsonException("Property is not nullable for class ApplicationEvent: type.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class ApplicationEvent.");
+                throw new JsonException("Property is not nullable for class ApplicationEvent: attributes.");
 
             if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class ApplicationEvent.");
+                throw new JsonException("Property is not nullable for class ApplicationEvent: effects.");
 
             return new ApplicationEvent(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, profileId, storeId, storeIntegrationId, integrationId, sessionId, ruleFailureReasons);
         }
@@ -400,7 +400,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationEvent applicationEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -415,17 +414,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationEvent applicationEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             if (applicationEvent.Type == null)
-                throw new ArgumentNullException(nameof(applicationEvent.Type), "Property is required for class ApplicationEvent.");
+                throw new JsonException("Cannot write null property ApplicationEvent.Type to non-nullable JSON property 'type'.");
 
             if (applicationEvent.Attributes == null)
-                throw new ArgumentNullException(nameof(applicationEvent.Attributes), "Property is required for class ApplicationEvent.");
+                throw new JsonException("Cannot write null property ApplicationEvent.Attributes to non-nullable JSON property 'attributes'.");
 
             if (applicationEvent.Effects == null)
-                throw new ArgumentNullException(nameof(applicationEvent.Effects), "Property is required for class ApplicationEvent.");
+                throw new JsonException("Cannot write null property ApplicationEvent.Effects to non-nullable JSON property 'effects'.");
 
             writer.WriteNumber("id", applicationEvent.Id);
 

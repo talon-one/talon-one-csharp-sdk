@@ -205,16 +205,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionRemoveMany.", nameof(type));
+                throw new JsonException("Property is required for class CatalogActionRemoveMany: type.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionRemoveMany.", nameof(payload));
+                throw new JsonException("Property is required for class CatalogActionRemoveMany: payload.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CatalogActionRemoveMany.");
+                throw new JsonException("Property is not nullable for class CatalogActionRemoveMany: type.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CatalogActionRemoveMany.");
+                throw new JsonException("Property is not nullable for class CatalogActionRemoveMany: payload.");
 
             return new CatalogActionRemoveMany(type.Value.Value, payload.Value);
         }
@@ -225,7 +225,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogActionRemoveMany"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CatalogActionRemoveMany catalogActionRemoveMany, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -240,11 +239,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogActionRemoveMany"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CatalogActionRemoveMany catalogActionRemoveMany, JsonSerializerOptions jsonSerializerOptions)
         {
             if (catalogActionRemoveMany.Payload == null)
-                throw new ArgumentNullException(nameof(catalogActionRemoveMany.Payload), "Property is required for class CatalogActionRemoveMany.");
+                throw new JsonException("Cannot write null property CatalogActionRemoveMany.Payload to non-nullable JSON property 'payload'.");
 
             var typeRawValue = CatalogActionRemoveMany.TypeEnumToJsonValue(catalogActionRemoveMany.Type);
             writer.WriteString("type", typeRawValue);

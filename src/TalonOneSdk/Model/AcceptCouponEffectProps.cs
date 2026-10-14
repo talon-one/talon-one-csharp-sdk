@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AcceptCouponEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class AcceptCouponEffectProps: value.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AcceptCouponEffectProps.");
+                throw new JsonException("Property is not nullable for class AcceptCouponEffectProps: value.");
 
             return new AcceptCouponEffectProps(value.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="acceptCouponEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AcceptCouponEffectProps acceptCouponEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="acceptCouponEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AcceptCouponEffectProps acceptCouponEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (acceptCouponEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(acceptCouponEffectProps.Value), "Property is required for class AcceptCouponEffectProps.");
+                throw new JsonException("Cannot write null property AcceptCouponEffectProps.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("value", acceptCouponEffectProps.Value);
         }

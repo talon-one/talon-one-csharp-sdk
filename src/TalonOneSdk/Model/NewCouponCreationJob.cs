@@ -356,16 +356,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!numberOfCoupons.IsSet)
-                throw new ArgumentException("Property is required for class NewCouponCreationJob.", nameof(numberOfCoupons));
+                throw new JsonException("Property is required for class NewCouponCreationJob: numberOfCoupons.");
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class NewCouponCreationJob.", nameof(attributes));
+                throw new JsonException("Property is required for class NewCouponCreationJob: attributes.");
 
             if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class NewCouponCreationJob.");
+                throw new JsonException("Property is not nullable for class NewCouponCreationJob: numberOfCoupons.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewCouponCreationJob.");
+                throw new JsonException("Property is not nullable for class NewCouponCreationJob: attributes.");
 
             return new NewCouponCreationJob(numberOfCoupons.Value.Value, attributes.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, couponSettings, isReservationMandatory);
         }
@@ -376,7 +376,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCouponCreationJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewCouponCreationJob newCouponCreationJob, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -391,11 +390,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCouponCreationJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCouponCreationJob newCouponCreationJob, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newCouponCreationJob.Attributes == null)
-                throw new ArgumentNullException(nameof(newCouponCreationJob.Attributes), "Property is required for class NewCouponCreationJob.");
+                throw new JsonException("Cannot write null property NewCouponCreationJob.Attributes to non-nullable JSON property 'attributes'.");
 
             writer.WriteNumber("numberOfCoupons", newCouponCreationJob.NumberOfCoupons);
 

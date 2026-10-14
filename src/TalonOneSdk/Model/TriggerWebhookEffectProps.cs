@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!webhookId.IsSet)
-                throw new ArgumentException("Property is required for class TriggerWebhookEffectProps.", nameof(webhookId));
+                throw new JsonException("Property is required for class TriggerWebhookEffectProps: webhookId.");
 
             if (!webhookName.IsSet)
-                throw new ArgumentException("Property is required for class TriggerWebhookEffectProps.", nameof(webhookName));
+                throw new JsonException("Property is required for class TriggerWebhookEffectProps: webhookName.");
 
             if (webhookId.IsSet && webhookId.Value == null)
-                throw new ArgumentNullException(nameof(webhookId), "Property is not nullable for class TriggerWebhookEffectProps.");
+                throw new JsonException("Property is not nullable for class TriggerWebhookEffectProps: webhookId.");
 
             if (webhookName.IsSet && webhookName.Value == null)
-                throw new ArgumentNullException(nameof(webhookName), "Property is not nullable for class TriggerWebhookEffectProps.");
+                throw new JsonException("Property is not nullable for class TriggerWebhookEffectProps: webhookName.");
 
             return new TriggerWebhookEffectProps(webhookId.Value.Value, webhookName.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="triggerWebhookEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TriggerWebhookEffectProps triggerWebhookEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,11 +179,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="triggerWebhookEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TriggerWebhookEffectProps triggerWebhookEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (triggerWebhookEffectProps.WebhookName == null)
-                throw new ArgumentNullException(nameof(triggerWebhookEffectProps.WebhookName), "Property is required for class TriggerWebhookEffectProps.");
+                throw new JsonException("Cannot write null property TriggerWebhookEffectProps.WebhookName to non-nullable JSON property 'webhookName'.");
 
             writer.WriteNumber("webhookId", triggerWebhookEffectProps.WebhookId);
 

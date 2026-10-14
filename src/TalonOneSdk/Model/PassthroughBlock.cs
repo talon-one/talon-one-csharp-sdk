@@ -227,16 +227,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PassthroughBlock.", nameof(type));
+                throw new JsonException("Property is required for class PassthroughBlock: type.");
 
             if (!expression.IsSet)
-                throw new ArgumentException("Property is required for class PassthroughBlock.", nameof(expression));
+                throw new JsonException("Property is required for class PassthroughBlock: expression.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class PassthroughBlock.");
+                throw new JsonException("Property is not nullable for class PassthroughBlock: type.");
 
             if (expression.IsSet && expression.Value == null)
-                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class PassthroughBlock.");
+                throw new JsonException("Property is not nullable for class PassthroughBlock: expression.");
 
             return new PassthroughBlock(type.Value.Value, expression.Value, id);
         }
@@ -247,7 +247,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="passthroughBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PassthroughBlock passthroughBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -262,11 +261,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="passthroughBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PassthroughBlock passthroughBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (passthroughBlock.Expression == null)
-                throw new ArgumentNullException(nameof(passthroughBlock.Expression), "Property is required for class PassthroughBlock.");
+                throw new JsonException("Cannot write null property PassthroughBlock.Expression to non-nullable JSON property 'expression'.");
 
             var typeRawValue = PassthroughBlock.TypeEnumToJsonValue(passthroughBlock.Type);
             writer.WriteString("type", typeRawValue);

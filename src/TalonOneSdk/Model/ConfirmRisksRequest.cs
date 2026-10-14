@@ -153,16 +153,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!riskIds.IsSet)
-                throw new ArgumentException("Property is required for class ConfirmRisksRequest.", nameof(riskIds));
+                throw new JsonException("Property is required for class ConfirmRisksRequest: riskIds.");
 
             if (!comment.IsSet)
-                throw new ArgumentException("Property is required for class ConfirmRisksRequest.", nameof(comment));
+                throw new JsonException("Property is required for class ConfirmRisksRequest: comment.");
 
             if (riskIds.IsSet && riskIds.Value == null)
-                throw new ArgumentNullException(nameof(riskIds), "Property is not nullable for class ConfirmRisksRequest.");
+                throw new JsonException("Property is not nullable for class ConfirmRisksRequest: riskIds.");
 
             if (comment.IsSet && comment.Value == null)
-                throw new ArgumentNullException(nameof(comment), "Property is not nullable for class ConfirmRisksRequest.");
+                throw new JsonException("Property is not nullable for class ConfirmRisksRequest: comment.");
 
             return new ConfirmRisksRequest(riskIds.Value, comment.Value);
         }
@@ -173,7 +173,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="confirmRisksRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ConfirmRisksRequest confirmRisksRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -188,14 +187,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="confirmRisksRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ConfirmRisksRequest confirmRisksRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (confirmRisksRequest.RiskIds == null)
-                throw new ArgumentNullException(nameof(confirmRisksRequest.RiskIds), "Property is required for class ConfirmRisksRequest.");
+                throw new JsonException("Cannot write null property ConfirmRisksRequest.RiskIds to non-nullable JSON property 'riskIds'.");
 
             if (confirmRisksRequest.Comment == null)
-                throw new ArgumentNullException(nameof(confirmRisksRequest.Comment), "Property is required for class ConfirmRisksRequest.");
+                throw new JsonException("Cannot write null property ConfirmRisksRequest.Comment to non-nullable JSON property 'comment'.");
 
             writer.WritePropertyName("riskIds");
             JsonSerializer.Serialize(writer, confirmRisksRequest.RiskIds, jsonSerializerOptions);

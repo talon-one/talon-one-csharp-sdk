@@ -162,22 +162,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!groupId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationPosition.", nameof(groupId));
+                throw new JsonException("Property is required for class CampaignEvaluationPosition: groupId.");
 
             if (!groupName.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationPosition.", nameof(groupName));
+                throw new JsonException("Property is required for class CampaignEvaluationPosition: groupName.");
 
             if (!position.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationPosition.", nameof(position));
+                throw new JsonException("Property is required for class CampaignEvaluationPosition: position.");
 
             if (groupId.IsSet && groupId.Value == null)
-                throw new ArgumentNullException(nameof(groupId), "Property is not nullable for class CampaignEvaluationPosition.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationPosition: groupId.");
 
             if (groupName.IsSet && groupName.Value == null)
-                throw new ArgumentNullException(nameof(groupName), "Property is not nullable for class CampaignEvaluationPosition.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationPosition: groupName.");
 
             if (position.IsSet && position.Value == null)
-                throw new ArgumentNullException(nameof(position), "Property is not nullable for class CampaignEvaluationPosition.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationPosition: position.");
 
             return new CampaignEvaluationPosition(groupId.Value.Value, groupName.Value, position.Value.Value);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEvaluationPosition"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEvaluationPosition campaignEvaluationPosition, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,11 +202,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEvaluationPosition"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEvaluationPosition campaignEvaluationPosition, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignEvaluationPosition.GroupName == null)
-                throw new ArgumentNullException(nameof(campaignEvaluationPosition.GroupName), "Property is required for class CampaignEvaluationPosition.");
+                throw new JsonException("Cannot write null property CampaignEvaluationPosition.GroupName to non-nullable JSON property 'groupName'.");
 
             writer.WriteNumber("groupId", campaignEvaluationPosition.GroupId);
 

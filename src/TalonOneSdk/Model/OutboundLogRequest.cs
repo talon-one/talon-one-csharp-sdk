@@ -177,28 +177,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!method.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLogRequest.", nameof(method));
+                throw new JsonException("Property is required for class OutboundLogRequest: method.");
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLogRequest.", nameof(url));
+                throw new JsonException("Property is required for class OutboundLogRequest: url.");
 
             if (!headers.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLogRequest.", nameof(headers));
+                throw new JsonException("Property is required for class OutboundLogRequest: headers.");
 
             if (!body.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLogRequest.", nameof(body));
+                throw new JsonException("Property is required for class OutboundLogRequest: body.");
 
             if (method.IsSet && method.Value == null)
-                throw new ArgumentNullException(nameof(method), "Property is not nullable for class OutboundLogRequest.");
+                throw new JsonException("Property is not nullable for class OutboundLogRequest: method.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class OutboundLogRequest.");
+                throw new JsonException("Property is not nullable for class OutboundLogRequest: url.");
 
             if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class OutboundLogRequest.");
+                throw new JsonException("Property is not nullable for class OutboundLogRequest: headers.");
 
             if (body.IsSet && body.Value == null)
-                throw new ArgumentNullException(nameof(body), "Property is not nullable for class OutboundLogRequest.");
+                throw new JsonException("Property is not nullable for class OutboundLogRequest: body.");
 
             return new OutboundLogRequest(method.Value, url.Value, headers.Value, body.Value);
         }
@@ -209,7 +209,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundLogRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutboundLogRequest outboundLogRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -224,20 +223,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundLogRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutboundLogRequest outboundLogRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outboundLogRequest.Method == null)
-                throw new ArgumentNullException(nameof(outboundLogRequest.Method), "Property is required for class OutboundLogRequest.");
+                throw new JsonException("Cannot write null property OutboundLogRequest.Method to non-nullable JSON property 'method'.");
 
             if (outboundLogRequest.Url == null)
-                throw new ArgumentNullException(nameof(outboundLogRequest.Url), "Property is required for class OutboundLogRequest.");
+                throw new JsonException("Cannot write null property OutboundLogRequest.Url to non-nullable JSON property 'url'.");
 
             if (outboundLogRequest.Headers == null)
-                throw new ArgumentNullException(nameof(outboundLogRequest.Headers), "Property is required for class OutboundLogRequest.");
+                throw new JsonException("Cannot write null property OutboundLogRequest.Headers to non-nullable JSON property 'headers'.");
 
             if (outboundLogRequest.Body == null)
-                throw new ArgumentNullException(nameof(outboundLogRequest.Body), "Property is required for class OutboundLogRequest.");
+                throw new JsonException("Cannot write null property OutboundLogRequest.Body to non-nullable JSON property 'body'.");
 
             writer.WriteString("method", outboundLogRequest.Method);
 

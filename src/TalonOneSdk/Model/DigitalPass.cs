@@ -237,28 +237,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!passId.IsSet)
-                throw new ArgumentException("Property is required for class DigitalPass.", nameof(passId));
+                throw new JsonException("Property is required for class DigitalPass: passId.");
 
             if (!passTemplateId.IsSet)
-                throw new ArgumentException("Property is required for class DigitalPass.", nameof(passTemplateId));
+                throw new JsonException("Property is required for class DigitalPass: passTemplateId.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class DigitalPass.", nameof(status));
+                throw new JsonException("Property is required for class DigitalPass: status.");
 
             if (!passUrl.IsSet)
-                throw new ArgumentException("Property is required for class DigitalPass.", nameof(passUrl));
+                throw new JsonException("Property is required for class DigitalPass: passUrl.");
 
             if (passId.IsSet && passId.Value == null)
-                throw new ArgumentNullException(nameof(passId), "Property is not nullable for class DigitalPass.");
+                throw new JsonException("Property is not nullable for class DigitalPass: passId.");
 
             if (passTemplateId.IsSet && passTemplateId.Value == null)
-                throw new ArgumentNullException(nameof(passTemplateId), "Property is not nullable for class DigitalPass.");
+                throw new JsonException("Property is not nullable for class DigitalPass: passTemplateId.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class DigitalPass.");
+                throw new JsonException("Property is not nullable for class DigitalPass: status.");
 
             if (passUrl.IsSet && passUrl.Value == null)
-                throw new ArgumentNullException(nameof(passUrl), "Property is not nullable for class DigitalPass.");
+                throw new JsonException("Property is not nullable for class DigitalPass: passUrl.");
 
             return new DigitalPass(passId.Value, passTemplateId.Value, status.Value.Value, passUrl.Value);
         }
@@ -269,7 +269,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="digitalPass"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DigitalPass digitalPass, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -284,17 +283,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="digitalPass"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DigitalPass digitalPass, JsonSerializerOptions jsonSerializerOptions)
         {
             if (digitalPass.PassId == null)
-                throw new ArgumentNullException(nameof(digitalPass.PassId), "Property is required for class DigitalPass.");
+                throw new JsonException("Cannot write null property DigitalPass.PassId to non-nullable JSON property 'passId'.");
 
             if (digitalPass.PassTemplateId == null)
-                throw new ArgumentNullException(nameof(digitalPass.PassTemplateId), "Property is required for class DigitalPass.");
+                throw new JsonException("Cannot write null property DigitalPass.PassTemplateId to non-nullable JSON property 'passTemplateId'.");
 
             if (digitalPass.PassUrl == null)
-                throw new ArgumentNullException(nameof(digitalPass.PassUrl), "Property is required for class DigitalPass.");
+                throw new JsonException("Cannot write null property DigitalPass.PassUrl to non-nullable JSON property 'passUrl'.");
 
             writer.WriteString("passId", digitalPass.PassId);
 

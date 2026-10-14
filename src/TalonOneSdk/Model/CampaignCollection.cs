@@ -343,40 +343,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollection.", nameof(id));
+                throw new JsonException("Property is required for class CampaignCollection: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollection.", nameof(created));
+                throw new JsonException("Property is required for class CampaignCollection: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollection.", nameof(accountId));
+                throw new JsonException("Property is required for class CampaignCollection: accountId.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollection.", nameof(modified));
+                throw new JsonException("Property is required for class CampaignCollection: modified.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollection.", nameof(name));
+                throw new JsonException("Property is required for class CampaignCollection: name.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollection.", nameof(createdBy));
+                throw new JsonException("Property is required for class CampaignCollection: createdBy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignCollection.");
+                throw new JsonException("Property is not nullable for class CampaignCollection: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignCollection.");
+                throw new JsonException("Property is not nullable for class CampaignCollection: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CampaignCollection.");
+                throw new JsonException("Property is not nullable for class CampaignCollection: accountId.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CampaignCollection.");
+                throw new JsonException("Property is not nullable for class CampaignCollection: modified.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignCollection.");
+                throw new JsonException("Property is not nullable for class CampaignCollection: name.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CampaignCollection.");
+                throw new JsonException("Property is not nullable for class CampaignCollection: createdBy.");
 
             return new CampaignCollection(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, name.Value, createdBy.Value.Value, description, modifiedBy, applicationId, campaignId, payload);
         }
@@ -387,7 +387,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignCollection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignCollection campaignCollection, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -402,11 +401,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignCollection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignCollection campaignCollection, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignCollection.Name == null)
-                throw new ArgumentNullException(nameof(campaignCollection.Name), "Property is required for class CampaignCollection.");
+                throw new JsonException("Cannot write null property CampaignCollection.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", campaignCollection.Id);
 

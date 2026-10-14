@@ -215,10 +215,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class PatchItemCatalogAction.", nameof(sku));
+                throw new JsonException("Property is required for class PatchItemCatalogAction: sku.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class PatchItemCatalogAction.");
+                throw new JsonException("Property is not nullable for class PatchItemCatalogAction: sku.");
 
             return new PatchItemCatalogAction(sku.Value, price, attributes, product, createIfNotExists);
         }
@@ -229,7 +229,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="patchItemCatalogAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PatchItemCatalogAction patchItemCatalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -244,11 +243,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="patchItemCatalogAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PatchItemCatalogAction patchItemCatalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
             if (patchItemCatalogAction.Sku == null)
-                throw new ArgumentNullException(nameof(patchItemCatalogAction.Sku), "Property is required for class PatchItemCatalogAction.");
+                throw new JsonException("Cannot write null property PatchItemCatalogAction.Sku to non-nullable JSON property 'sku'.");
 
             writer.WriteString("sku", patchItemCatalogAction.Sku);
 

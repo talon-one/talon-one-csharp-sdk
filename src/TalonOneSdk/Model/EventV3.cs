@@ -357,40 +357,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class EventV3.", nameof(id));
+                throw new JsonException("Property is required for class EventV3: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class EventV3.", nameof(created));
+                throw new JsonException("Property is required for class EventV3: created.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class EventV3.", nameof(applicationId));
+                throw new JsonException("Property is required for class EventV3: applicationId.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class EventV3.", nameof(type));
+                throw new JsonException("Property is required for class EventV3: type.");
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class EventV3.", nameof(attributes));
+                throw new JsonException("Property is required for class EventV3: attributes.");
 
             if (!effects.IsSet)
-                throw new ArgumentException("Property is required for class EventV3.", nameof(effects));
+                throw new JsonException("Property is required for class EventV3: effects.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class EventV3.");
+                throw new JsonException("Property is not nullable for class EventV3: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class EventV3.");
+                throw new JsonException("Property is not nullable for class EventV3: created.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class EventV3.");
+                throw new JsonException("Property is not nullable for class EventV3: applicationId.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class EventV3.");
+                throw new JsonException("Property is not nullable for class EventV3: type.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class EventV3.");
+                throw new JsonException("Property is not nullable for class EventV3: attributes.");
 
             if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class EventV3.");
+                throw new JsonException("Property is not nullable for class EventV3: effects.");
 
             return new EventV3(id.Value.Value, created.Value.Value, applicationId.Value.Value, type.Value, attributes.Value, effects.Value, connectedSessionId, profileId, storeIntegrationId, integrationId, referralCode);
         }
@@ -401,7 +401,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventV3"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EventV3 eventV3, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -416,17 +415,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventV3"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EventV3 eventV3, JsonSerializerOptions jsonSerializerOptions)
         {
             if (eventV3.Type == null)
-                throw new ArgumentNullException(nameof(eventV3.Type), "Property is required for class EventV3.");
+                throw new JsonException("Cannot write null property EventV3.Type to non-nullable JSON property 'type'.");
 
             if (eventV3.Attributes == null)
-                throw new ArgumentNullException(nameof(eventV3.Attributes), "Property is required for class EventV3.");
+                throw new JsonException("Cannot write null property EventV3.Attributes to non-nullable JSON property 'attributes'.");
 
             if (eventV3.Effects == null)
-                throw new ArgumentNullException(nameof(eventV3.Effects), "Property is required for class EventV3.");
+                throw new JsonException("Cannot write null property EventV3.Effects to non-nullable JSON property 'effects'.");
 
             writer.WriteNumber("id", eventV3.Id);
 

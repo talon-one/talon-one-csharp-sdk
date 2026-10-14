@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!sessionId.IsSet)
-                throw new ArgumentException("Property is required for class MCPCompleteOAuthSession.", nameof(sessionId));
+                throw new JsonException("Property is required for class MCPCompleteOAuthSession: sessionId.");
 
             if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class MCPCompleteOAuthSession.");
+                throw new JsonException("Property is not nullable for class MCPCompleteOAuthSession: sessionId.");
 
             return new MCPCompleteOAuthSession(sessionId.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPCompleteOAuthSession"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPCompleteOAuthSession mCPCompleteOAuthSession, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPCompleteOAuthSession"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPCompleteOAuthSession mCPCompleteOAuthSession, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mCPCompleteOAuthSession.SessionId == null)
-                throw new ArgumentNullException(nameof(mCPCompleteOAuthSession.SessionId), "Property is required for class MCPCompleteOAuthSession.");
+                throw new JsonException("Cannot write null property MCPCompleteOAuthSession.SessionId to non-nullable JSON property 'sessionId'.");
 
             writer.WriteString("sessionId", mCPCompleteOAuthSession.SessionId);
         }

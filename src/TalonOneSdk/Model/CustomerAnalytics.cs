@@ -215,46 +215,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!acceptedCoupons.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAnalytics.", nameof(acceptedCoupons));
+                throw new JsonException("Property is required for class CustomerAnalytics: acceptedCoupons.");
 
             if (!createdCoupons.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAnalytics.", nameof(createdCoupons));
+                throw new JsonException("Property is required for class CustomerAnalytics: createdCoupons.");
 
             if (!freeItems.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAnalytics.", nameof(freeItems));
+                throw new JsonException("Property is required for class CustomerAnalytics: freeItems.");
 
             if (!totalOrders.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAnalytics.", nameof(totalOrders));
+                throw new JsonException("Property is required for class CustomerAnalytics: totalOrders.");
 
             if (!totalDiscountedOrders.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAnalytics.", nameof(totalDiscountedOrders));
+                throw new JsonException("Property is required for class CustomerAnalytics: totalDiscountedOrders.");
 
             if (!totalRevenue.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAnalytics.", nameof(totalRevenue));
+                throw new JsonException("Property is required for class CustomerAnalytics: totalRevenue.");
 
             if (!totalDiscounts.IsSet)
-                throw new ArgumentException("Property is required for class CustomerAnalytics.", nameof(totalDiscounts));
+                throw new JsonException("Property is required for class CustomerAnalytics: totalDiscounts.");
 
             if (acceptedCoupons.IsSet && acceptedCoupons.Value == null)
-                throw new ArgumentNullException(nameof(acceptedCoupons), "Property is not nullable for class CustomerAnalytics.");
+                throw new JsonException("Property is not nullable for class CustomerAnalytics: acceptedCoupons.");
 
             if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class CustomerAnalytics.");
+                throw new JsonException("Property is not nullable for class CustomerAnalytics: createdCoupons.");
 
             if (freeItems.IsSet && freeItems.Value == null)
-                throw new ArgumentNullException(nameof(freeItems), "Property is not nullable for class CustomerAnalytics.");
+                throw new JsonException("Property is not nullable for class CustomerAnalytics: freeItems.");
 
             if (totalOrders.IsSet && totalOrders.Value == null)
-                throw new ArgumentNullException(nameof(totalOrders), "Property is not nullable for class CustomerAnalytics.");
+                throw new JsonException("Property is not nullable for class CustomerAnalytics: totalOrders.");
 
             if (totalDiscountedOrders.IsSet && totalDiscountedOrders.Value == null)
-                throw new ArgumentNullException(nameof(totalDiscountedOrders), "Property is not nullable for class CustomerAnalytics.");
+                throw new JsonException("Property is not nullable for class CustomerAnalytics: totalDiscountedOrders.");
 
             if (totalRevenue.IsSet && totalRevenue.Value == null)
-                throw new ArgumentNullException(nameof(totalRevenue), "Property is not nullable for class CustomerAnalytics.");
+                throw new JsonException("Property is not nullable for class CustomerAnalytics: totalRevenue.");
 
             if (totalDiscounts.IsSet && totalDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(totalDiscounts), "Property is not nullable for class CustomerAnalytics.");
+                throw new JsonException("Property is not nullable for class CustomerAnalytics: totalDiscounts.");
 
             return new CustomerAnalytics(acceptedCoupons.Value.Value, createdCoupons.Value.Value, freeItems.Value.Value, totalOrders.Value.Value, totalDiscountedOrders.Value.Value, totalRevenue.Value.Value, totalDiscounts.Value.Value);
         }
@@ -265,7 +265,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerAnalytics customerAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -280,7 +279,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerAnalytics customerAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("acceptedCoupons", customerAnalytics.AcceptedCoupons);

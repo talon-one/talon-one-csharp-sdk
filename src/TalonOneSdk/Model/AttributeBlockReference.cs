@@ -37,13 +37,13 @@ namespace TalonOneSdk.Model
         /// <param name="title">The human-readable name of the attribute.</param>
         /// <param name="type">The data type of the attribute.</param>
         [JsonConstructor]
-        public AttributeBlockReference(long id, string entity, string name, string title, string type)
+        public AttributeBlockReference(long id, string entity, string name, Option<string> title = default, Option<string> type = default)
         {
             Id = id;
             Entity = entity;
             Name = name;
-            Title = title;
-            Type = type;
+            TitleOption = title;
+            TypeOption = type;
             OnCreated();
         }
 
@@ -74,12 +74,26 @@ namespace TalonOneSdk.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// Used to track the state of Title
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> TitleOption { get; }
+
+        /// <summary>
         /// The human-readable name of the attribute.
         /// </summary>
         /// <value>The human-readable name of the attribute.</value>
         /* <example>City</example> */
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return this.TitleOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of Type
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> TypeOption { get; }
 
         /// <summary>
         /// The data type of the attribute.
@@ -87,7 +101,7 @@ namespace TalonOneSdk.Model
         /// <value>The data type of the attribute.</value>
         /* <example>string</example> */
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string Type { get { return this.TypeOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -192,36 +206,24 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AttributeBlockReference.", nameof(id));
+                throw new JsonException("Property is required for class AttributeBlockReference: id.");
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class AttributeBlockReference.", nameof(entity));
+                throw new JsonException("Property is required for class AttributeBlockReference: entity.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AttributeBlockReference.", nameof(name));
-
-            if (!title.IsSet)
-                throw new ArgumentException("Property is required for class AttributeBlockReference.", nameof(title));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AttributeBlockReference.", nameof(type));
+                throw new JsonException("Property is required for class AttributeBlockReference: name.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AttributeBlockReference.");
+                throw new JsonException("Property is not nullable for class AttributeBlockReference: id.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class AttributeBlockReference.");
+                throw new JsonException("Property is not nullable for class AttributeBlockReference: entity.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AttributeBlockReference.");
+                throw new JsonException("Property is not nullable for class AttributeBlockReference: name.");
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AttributeBlockReference.");
-
-            if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AttributeBlockReference.");
-
-            return new AttributeBlockReference(id.Value.Value, entity.Value, name.Value, title.Value, type.Value);
+            return new AttributeBlockReference(id.Value.Value, entity.Value, name.Value, title, type);
         }
 
         /// <summary>
@@ -230,7 +232,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="attributeBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AttributeBlockReference attributeBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -245,20 +246,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="attributeBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AttributeBlockReference attributeBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             if (attributeBlockReference.Entity == null)
-                throw new ArgumentNullException(nameof(attributeBlockReference.Entity), "Property is required for class AttributeBlockReference.");
+                throw new JsonException("Cannot write null property AttributeBlockReference.Entity to non-nullable JSON property 'entity'.");
 
             if (attributeBlockReference.Name == null)
-                throw new ArgumentNullException(nameof(attributeBlockReference.Name), "Property is required for class AttributeBlockReference.");
-
-            if (attributeBlockReference.Title == null)
-                throw new ArgumentNullException(nameof(attributeBlockReference.Title), "Property is required for class AttributeBlockReference.");
-
-            if (attributeBlockReference.Type == null)
-                throw new ArgumentNullException(nameof(attributeBlockReference.Type), "Property is required for class AttributeBlockReference.");
+                throw new JsonException("Cannot write null property AttributeBlockReference.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", attributeBlockReference.Id);
 
@@ -266,9 +260,11 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("name", attributeBlockReference.Name);
 
-            writer.WriteString("title", attributeBlockReference.Title);
+            if (attributeBlockReference.TitleOption.IsSet)
+                writer.WriteString("title", attributeBlockReference.Title);
 
-            writer.WriteString("type", attributeBlockReference.Type);
+            if (attributeBlockReference.TypeOption.IsSet)
+                writer.WriteString("type", attributeBlockReference.Type);
         }
     }
 }

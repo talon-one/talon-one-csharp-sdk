@@ -498,70 +498,70 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(id));
+                throw new JsonException("Property is required for class ApplicationSession: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(created));
+                throw new JsonException("Property is required for class ApplicationSession: created.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(integrationId));
+                throw new JsonException("Property is required for class ApplicationSession: integrationId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(applicationId));
+                throw new JsonException("Property is required for class ApplicationSession: applicationId.");
 
             if (!coupon.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(coupon));
+                throw new JsonException("Property is required for class ApplicationSession: coupon.");
 
             if (!referral.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(referral));
+                throw new JsonException("Property is required for class ApplicationSession: referral.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(state));
+                throw new JsonException("Property is required for class ApplicationSession: state.");
 
             if (!cartItems.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(cartItems));
+                throw new JsonException("Property is required for class ApplicationSession: cartItems.");
 
             if (!discounts.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(discounts));
+                throw new JsonException("Property is required for class ApplicationSession: discounts.");
 
             if (!totalDiscounts.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(totalDiscounts));
+                throw new JsonException("Property is required for class ApplicationSession: totalDiscounts.");
 
             if (!total.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSession.", nameof(total));
+                throw new JsonException("Property is required for class ApplicationSession: total.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: created.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: integrationId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: applicationId.");
 
             if (coupon.IsSet && coupon.Value == null)
-                throw new ArgumentNullException(nameof(coupon), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: coupon.");
 
             if (referral.IsSet && referral.Value == null)
-                throw new ArgumentNullException(nameof(referral), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: referral.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: state.");
 
             if (cartItems.IsSet && cartItems.Value == null)
-                throw new ArgumentNullException(nameof(cartItems), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: cartItems.");
 
             if (discounts.IsSet && discounts.Value == null)
-                throw new ArgumentNullException(nameof(discounts), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: discounts.");
 
             if (totalDiscounts.IsSet && totalDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(totalDiscounts), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: totalDiscounts.");
 
             if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class ApplicationSession.");
+                throw new JsonException("Property is not nullable for class ApplicationSession: total.");
 
             return new ApplicationSession(id.Value.Value, created.Value.Value, integrationId.Value, applicationId.Value.Value, coupon.Value, referral.Value, state.Value.Value, cartItems.Value, discounts.Value, totalDiscounts.Value.Value, total.Value.Value, storeIntegrationId, profileId, profileintegrationid, attributes);
         }
@@ -572,7 +572,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationSession"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationSession applicationSession, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -587,23 +586,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationSession"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationSession applicationSession, JsonSerializerOptions jsonSerializerOptions)
         {
             if (applicationSession.IntegrationId == null)
-                throw new ArgumentNullException(nameof(applicationSession.IntegrationId), "Property is required for class ApplicationSession.");
+                throw new JsonException("Cannot write null property ApplicationSession.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             if (applicationSession.Coupon == null)
-                throw new ArgumentNullException(nameof(applicationSession.Coupon), "Property is required for class ApplicationSession.");
+                throw new JsonException("Cannot write null property ApplicationSession.Coupon to non-nullable JSON property 'coupon'.");
 
             if (applicationSession.Referral == null)
-                throw new ArgumentNullException(nameof(applicationSession.Referral), "Property is required for class ApplicationSession.");
+                throw new JsonException("Cannot write null property ApplicationSession.Referral to non-nullable JSON property 'referral'.");
 
             if (applicationSession.CartItems == null)
-                throw new ArgumentNullException(nameof(applicationSession.CartItems), "Property is required for class ApplicationSession.");
+                throw new JsonException("Cannot write null property ApplicationSession.CartItems to non-nullable JSON property 'cartItems'.");
 
             if (applicationSession.Discounts == null)
-                throw new ArgumentNullException(nameof(applicationSession.Discounts), "Property is required for class ApplicationSession.");
+                throw new JsonException("Cannot write null property ApplicationSession.Discounts to non-nullable JSON property 'discounts'.");
 
             writer.WriteNumber("id", applicationSession.Id);
 

@@ -308,22 +308,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!profileId.IsSet)
-                throw new ArgumentException("Property is required for class EventV3RequestEntity.", nameof(profileId));
+                throw new JsonException("Property is required for class EventV3RequestEntity: profileId.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class EventV3RequestEntity.", nameof(type));
+                throw new JsonException("Property is required for class EventV3RequestEntity: type.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class EventV3RequestEntity.", nameof(integrationId));
+                throw new JsonException("Property is required for class EventV3RequestEntity: integrationId.");
 
             if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class EventV3RequestEntity.");
+                throw new JsonException("Property is not nullable for class EventV3RequestEntity: profileId.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class EventV3RequestEntity.");
+                throw new JsonException("Property is not nullable for class EventV3RequestEntity: type.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class EventV3RequestEntity.");
+                throw new JsonException("Property is not nullable for class EventV3RequestEntity: integrationId.");
 
             return new EventV3RequestEntity(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId, referralCode);
         }
@@ -334,7 +334,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventV3RequestEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EventV3RequestEntity eventV3RequestEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -349,17 +348,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventV3RequestEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EventV3RequestEntity eventV3RequestEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             if (eventV3RequestEntity.ProfileId == null)
-                throw new ArgumentNullException(nameof(eventV3RequestEntity.ProfileId), "Property is required for class EventV3RequestEntity.");
+                throw new JsonException("Cannot write null property EventV3RequestEntity.ProfileId to non-nullable JSON property 'profileId'.");
 
             if (eventV3RequestEntity.Type == null)
-                throw new ArgumentNullException(nameof(eventV3RequestEntity.Type), "Property is required for class EventV3RequestEntity.");
+                throw new JsonException("Cannot write null property EventV3RequestEntity.Type to non-nullable JSON property 'type'.");
 
             if (eventV3RequestEntity.IntegrationId == null)
-                throw new ArgumentNullException(nameof(eventV3RequestEntity.IntegrationId), "Property is required for class EventV3RequestEntity.");
+                throw new JsonException("Cannot write null property EventV3RequestEntity.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("profileId", eventV3RequestEntity.ProfileId);
 

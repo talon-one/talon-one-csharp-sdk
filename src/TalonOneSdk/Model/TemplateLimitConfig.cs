@@ -435,22 +435,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class TemplateLimitConfig.", nameof(action));
+                throw new JsonException("Property is required for class TemplateLimitConfig: action.");
 
             if (!limit.IsSet)
-                throw new ArgumentException("Property is required for class TemplateLimitConfig.", nameof(limit));
+                throw new JsonException("Property is required for class TemplateLimitConfig: limit.");
 
             if (!entities.IsSet)
-                throw new ArgumentException("Property is required for class TemplateLimitConfig.", nameof(entities));
+                throw new JsonException("Property is required for class TemplateLimitConfig: entities.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class TemplateLimitConfig.");
+                throw new JsonException("Property is not nullable for class TemplateLimitConfig: action.");
 
             if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class TemplateLimitConfig.");
+                throw new JsonException("Property is not nullable for class TemplateLimitConfig: limit.");
 
             if (entities.IsSet && entities.Value == null)
-                throw new ArgumentNullException(nameof(entities), "Property is not nullable for class TemplateLimitConfig.");
+                throw new JsonException("Property is not nullable for class TemplateLimitConfig: entities.");
 
             return new TemplateLimitConfig(action.Value, limit.Value.Value, entities.Value, period);
         }
@@ -461,7 +461,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="templateLimitConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TemplateLimitConfig templateLimitConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -476,14 +475,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="templateLimitConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TemplateLimitConfig templateLimitConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             if (templateLimitConfig.Action == null)
-                throw new ArgumentNullException(nameof(templateLimitConfig.Action), "Property is required for class TemplateLimitConfig.");
+                throw new JsonException("Cannot write null property TemplateLimitConfig.Action to non-nullable JSON property 'action'.");
 
             if (templateLimitConfig.Entities == null)
-                throw new ArgumentNullException(nameof(templateLimitConfig.Entities), "Property is required for class TemplateLimitConfig.");
+                throw new JsonException("Cannot write null property TemplateLimitConfig.Entities to non-nullable JSON property 'entities'.");
 
             writer.WriteString("action", templateLimitConfig.Action);
 

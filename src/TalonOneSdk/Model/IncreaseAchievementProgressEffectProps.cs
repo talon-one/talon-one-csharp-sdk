@@ -224,40 +224,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!achievementId.IsSet)
-                throw new ArgumentException("Property is required for class IncreaseAchievementProgressEffectProps.", nameof(achievementId));
+                throw new JsonException("Property is required for class IncreaseAchievementProgressEffectProps: achievementId.");
 
             if (!achievementName.IsSet)
-                throw new ArgumentException("Property is required for class IncreaseAchievementProgressEffectProps.", nameof(achievementName));
+                throw new JsonException("Property is required for class IncreaseAchievementProgressEffectProps: achievementName.");
 
             if (!delta.IsSet)
-                throw new ArgumentException("Property is required for class IncreaseAchievementProgressEffectProps.", nameof(delta));
+                throw new JsonException("Property is required for class IncreaseAchievementProgressEffectProps: delta.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class IncreaseAchievementProgressEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class IncreaseAchievementProgressEffectProps: value.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class IncreaseAchievementProgressEffectProps.", nameof(target));
+                throw new JsonException("Property is required for class IncreaseAchievementProgressEffectProps: target.");
 
             if (!isJustCompleted.IsSet)
-                throw new ArgumentException("Property is required for class IncreaseAchievementProgressEffectProps.", nameof(isJustCompleted));
+                throw new JsonException("Property is required for class IncreaseAchievementProgressEffectProps: isJustCompleted.");
 
             if (achievementId.IsSet && achievementId.Value == null)
-                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class IncreaseAchievementProgressEffectProps: achievementId.");
 
             if (achievementName.IsSet && achievementName.Value == null)
-                throw new ArgumentNullException(nameof(achievementName), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class IncreaseAchievementProgressEffectProps: achievementName.");
 
             if (delta.IsSet && delta.Value == null)
-                throw new ArgumentNullException(nameof(delta), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class IncreaseAchievementProgressEffectProps: delta.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class IncreaseAchievementProgressEffectProps: value.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class IncreaseAchievementProgressEffectProps: target.");
 
             if (isJustCompleted.IsSet && isJustCompleted.Value == null)
-                throw new ArgumentNullException(nameof(isJustCompleted), "Property is not nullable for class IncreaseAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class IncreaseAchievementProgressEffectProps: isJustCompleted.");
 
             return new IncreaseAchievementProgressEffectProps(achievementId.Value.Value, achievementName.Value, delta.Value.Value, value.Value.Value, target.Value.Value, isJustCompleted.Value.Value, progressTrackerId);
         }
@@ -268,7 +268,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="increaseAchievementProgressEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IncreaseAchievementProgressEffectProps increaseAchievementProgressEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -283,11 +282,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="increaseAchievementProgressEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IncreaseAchievementProgressEffectProps increaseAchievementProgressEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (increaseAchievementProgressEffectProps.AchievementName == null)
-                throw new ArgumentNullException(nameof(increaseAchievementProgressEffectProps.AchievementName), "Property is required for class IncreaseAchievementProgressEffectProps.");
+                throw new JsonException("Cannot write null property IncreaseAchievementProgressEffectProps.AchievementName to non-nullable JSON property 'achievementName'.");
 
             writer.WriteNumber("achievementId", increaseAchievementProgressEffectProps.AchievementId);
 

@@ -213,7 +213,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleV2RolesGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RoleV2RolesGroup roleV2RolesGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -228,7 +227,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleV2RolesGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleV2RolesGroup roleV2RolesGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             if (roleV2RolesGroup.ApplicationsOption.IsSet)

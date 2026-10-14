@@ -184,22 +184,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewRole.", nameof(name));
+                throw new JsonException("Property is required for class NewRole: name.");
 
             if (!acl.IsSet)
-                throw new ArgumentException("Property is required for class NewRole.", nameof(acl));
+                throw new JsonException("Property is required for class NewRole: acl.");
 
             if (!members.IsSet)
-                throw new ArgumentException("Property is required for class NewRole.", nameof(members));
+                throw new JsonException("Property is required for class NewRole: members.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewRole.");
+                throw new JsonException("Property is not nullable for class NewRole: name.");
 
             if (acl.IsSet && acl.Value == null)
-                throw new ArgumentNullException(nameof(acl), "Property is not nullable for class NewRole.");
+                throw new JsonException("Property is not nullable for class NewRole: acl.");
 
             if (members.IsSet && members.Value == null)
-                throw new ArgumentNullException(nameof(members), "Property is not nullable for class NewRole.");
+                throw new JsonException("Property is not nullable for class NewRole: members.");
 
             return new NewRole(name.Value, acl.Value, members.Value, description);
         }
@@ -210,7 +210,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newRole"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewRole newRole, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -225,17 +224,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newRole"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewRole newRole, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newRole.Name == null)
-                throw new ArgumentNullException(nameof(newRole.Name), "Property is required for class NewRole.");
+                throw new JsonException("Cannot write null property NewRole.Name to non-nullable JSON property 'name'.");
 
             if (newRole.Acl == null)
-                throw new ArgumentNullException(nameof(newRole.Acl), "Property is required for class NewRole.");
+                throw new JsonException("Cannot write null property NewRole.Acl to non-nullable JSON property 'acl'.");
 
             if (newRole.Members == null)
-                throw new ArgumentNullException(nameof(newRole.Members), "Property is required for class NewRole.");
+                throw new JsonException("Cannot write null property NewRole.Members to non-nullable JSON property 'members'.");
 
             writer.WriteString("name", newRole.Name);
 

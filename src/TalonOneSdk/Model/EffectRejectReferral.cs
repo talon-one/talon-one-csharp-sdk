@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="effectType">An effect discriminator of type &#x60;rejectReferral&#x60;.</param>
-        /// <param name="props">The properties of the &#x60;rejectReferral&#x60; effect.</param>
+        /// <param name="props">props</param>
         /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
         /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
         /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
@@ -170,9 +170,8 @@ namespace TalonOneSdk.Model
         public string RuleName { get; set; }
 
         /// <summary>
-        /// The properties of the &#x60;rejectReferral&#x60; effect.
+        /// Gets or Sets Props
         /// </summary>
-        /// <value>The properties of the &#x60;rejectReferral&#x60; effect.</value>
         [JsonPropertyName("props")]
         public RejectReferralEffectProps Props { get; set; }
 
@@ -551,40 +550,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class EffectRejectReferral.", nameof(campaignId));
+                throw new JsonException("Property is required for class EffectRejectReferral: campaignId.");
 
             if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class EffectRejectReferral.", nameof(rulesetId));
+                throw new JsonException("Property is required for class EffectRejectReferral: rulesetId.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class EffectRejectReferral.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class EffectRejectReferral: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class EffectRejectReferral.", nameof(ruleName));
+                throw new JsonException("Property is required for class EffectRejectReferral: ruleName.");
 
             if (!effectType.IsSet)
-                throw new ArgumentException("Property is required for class EffectRejectReferral.", nameof(effectType));
+                throw new JsonException("Property is required for class EffectRejectReferral: effectType.");
 
             if (!props.IsSet)
-                throw new ArgumentException("Property is required for class EffectRejectReferral.", nameof(props));
+                throw new JsonException("Property is required for class EffectRejectReferral: props.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectRejectReferral.");
+                throw new JsonException("Property is not nullable for class EffectRejectReferral: campaignId.");
 
             if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectRejectReferral.");
+                throw new JsonException("Property is not nullable for class EffectRejectReferral: rulesetId.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectRejectReferral.");
+                throw new JsonException("Property is not nullable for class EffectRejectReferral: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectRejectReferral.");
+                throw new JsonException("Property is not nullable for class EffectRejectReferral: ruleName.");
 
             if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectRejectReferral.");
+                throw new JsonException("Property is not nullable for class EffectRejectReferral: effectType.");
 
             if (props.IsSet && props.Value == null)
-                throw new ArgumentNullException(nameof(props), "Property is not nullable for class EffectRejectReferral.");
+                throw new JsonException("Property is not nullable for class EffectRejectReferral: props.");
 
             return new EffectRejectReferral(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, props.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, rewardIntegrationId);
         }
@@ -595,7 +594,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectRejectReferral"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EffectRejectReferral effectRejectReferral, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -610,14 +608,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectRejectReferral"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EffectRejectReferral effectRejectReferral, JsonSerializerOptions jsonSerializerOptions)
         {
             if (effectRejectReferral.RuleName == null)
-                throw new ArgumentNullException(nameof(effectRejectReferral.RuleName), "Property is required for class EffectRejectReferral.");
+                throw new JsonException("Cannot write null property EffectRejectReferral.RuleName to non-nullable JSON property 'ruleName'.");
 
             if (effectRejectReferral.Props == null)
-                throw new ArgumentNullException(nameof(effectRejectReferral.Props), "Property is required for class EffectRejectReferral.");
+                throw new JsonException("Cannot write null property EffectRejectReferral.Props to non-nullable JSON property 'props'.");
 
             writer.WriteNumber("campaignId", effectRejectReferral.CampaignId);
 

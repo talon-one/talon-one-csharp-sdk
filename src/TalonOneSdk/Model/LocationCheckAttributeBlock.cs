@@ -225,10 +225,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!values.IsSet)
-                throw new ArgumentException("Property is required for class LocationCheckAttributeBlock.", nameof(values));
+                throw new JsonException("Property is required for class LocationCheckAttributeBlock: values.");
 
             if (values.IsSet && values.Value == null)
-                throw new ArgumentNullException(nameof(values), "Property is not nullable for class LocationCheckAttributeBlock.");
+                throw new JsonException("Property is not nullable for class LocationCheckAttributeBlock: values.");
 
             return new LocationCheckAttributeBlock(values.Value, varOperator);
         }
@@ -239,7 +239,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="locationCheckAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LocationCheckAttributeBlock locationCheckAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,11 +253,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="locationCheckAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LocationCheckAttributeBlock locationCheckAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (locationCheckAttributeBlock.Values == null)
-                throw new ArgumentNullException(nameof(locationCheckAttributeBlock.Values), "Property is required for class LocationCheckAttributeBlock.");
+                throw new JsonException("Cannot write null property LocationCheckAttributeBlock.Values to non-nullable JSON property 'values'.");
 
             writer.WritePropertyName("values");
             JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Values, jsonSerializerOptions);

@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!resource.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthProtectedResource.", nameof(resource));
+                throw new JsonException("Property is required for class MCPOAuthProtectedResource: resource.");
 
             if (!authorizationServers.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthProtectedResource.", nameof(authorizationServers));
+                throw new JsonException("Property is required for class MCPOAuthProtectedResource: authorization_servers.");
 
             if (resource.IsSet && resource.Value == null)
-                throw new ArgumentNullException(nameof(resource), "Property is not nullable for class MCPOAuthProtectedResource.");
+                throw new JsonException("Property is not nullable for class MCPOAuthProtectedResource: resource.");
 
             if (authorizationServers.IsSet && authorizationServers.Value == null)
-                throw new ArgumentNullException(nameof(authorizationServers), "Property is not nullable for class MCPOAuthProtectedResource.");
+                throw new JsonException("Property is not nullable for class MCPOAuthProtectedResource: authorization_servers.");
 
             return new MCPOAuthProtectedResource(resource.Value, authorizationServers.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthProtectedResource"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPOAuthProtectedResource mCPOAuthProtectedResource, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthProtectedResource"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPOAuthProtectedResource mCPOAuthProtectedResource, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mCPOAuthProtectedResource.Resource == null)
-                throw new ArgumentNullException(nameof(mCPOAuthProtectedResource.Resource), "Property is required for class MCPOAuthProtectedResource.");
+                throw new JsonException("Cannot write null property MCPOAuthProtectedResource.Resource to non-nullable JSON property 'resource'.");
 
             if (mCPOAuthProtectedResource.AuthorizationServers == null)
-                throw new ArgumentNullException(nameof(mCPOAuthProtectedResource.AuthorizationServers), "Property is required for class MCPOAuthProtectedResource.");
+                throw new JsonException("Cannot write null property MCPOAuthProtectedResource.AuthorizationServers to non-nullable JSON property 'authorization_servers'.");
 
             writer.WriteString("resource", mCPOAuthProtectedResource.Resource);
 

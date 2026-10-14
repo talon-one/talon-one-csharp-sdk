@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!password.IsSet)
-                throw new ArgumentException("Property is required for class ChangeProfilePassword.", nameof(password));
+                throw new JsonException("Property is required for class ChangeProfilePassword: password.");
 
             if (!newPassword.IsSet)
-                throw new ArgumentException("Property is required for class ChangeProfilePassword.", nameof(newPassword));
+                throw new JsonException("Property is required for class ChangeProfilePassword: newPassword.");
 
             if (password.IsSet && password.Value == null)
-                throw new ArgumentNullException(nameof(password), "Property is not nullable for class ChangeProfilePassword.");
+                throw new JsonException("Property is not nullable for class ChangeProfilePassword: password.");
 
             if (newPassword.IsSet && newPassword.Value == null)
-                throw new ArgumentNullException(nameof(newPassword), "Property is not nullable for class ChangeProfilePassword.");
+                throw new JsonException("Property is not nullable for class ChangeProfilePassword: newPassword.");
 
             return new ChangeProfilePassword(password.Value, newPassword.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="changeProfilePassword"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChangeProfilePassword changeProfilePassword, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="changeProfilePassword"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChangeProfilePassword changeProfilePassword, JsonSerializerOptions jsonSerializerOptions)
         {
             if (changeProfilePassword.Password == null)
-                throw new ArgumentNullException(nameof(changeProfilePassword.Password), "Property is required for class ChangeProfilePassword.");
+                throw new JsonException("Cannot write null property ChangeProfilePassword.Password to non-nullable JSON property 'password'.");
 
             if (changeProfilePassword.NewPassword == null)
-                throw new ArgumentNullException(nameof(changeProfilePassword.NewPassword), "Property is required for class ChangeProfilePassword.");
+                throw new JsonException("Cannot write null property ChangeProfilePassword.NewPassword to non-nullable JSON property 'newPassword'.");
 
             writer.WriteString("password", changeProfilePassword.Password);
 

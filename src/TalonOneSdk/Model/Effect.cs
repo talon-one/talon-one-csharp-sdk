@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// A generic effect that is fired by a triggered campaign. The &#x60;effectType&#x60; field selects the concrete effect variant and the shape of &#x60;props&#x60;.
+    /// Effect
     /// </summary>
     public partial class Effect : IValidatableObject
     {
@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAcceptCoupon"></param>
-        public Effect(EffectAcceptCoupon effectAcceptCoupon)
+        internal Effect(EffectAcceptCoupon effectAcceptCoupon)
         {
             EffectAcceptCoupon = effectAcceptCoupon;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAcceptReferral"></param>
-        public Effect(EffectAcceptReferral effectAcceptReferral)
+        internal Effect(EffectAcceptReferral effectAcceptReferral)
         {
             EffectAcceptReferral = effectAcceptReferral;
             OnCreated();
@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAddFreeItem"></param>
-        public Effect(EffectAddFreeItem effectAddFreeItem)
+        internal Effect(EffectAddFreeItem effectAddFreeItem)
         {
             EffectAddFreeItem = effectAddFreeItem;
             OnCreated();
@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAddLoyaltyPoints"></param>
-        public Effect(EffectAddLoyaltyPoints effectAddLoyaltyPoints)
+        internal Effect(EffectAddLoyaltyPoints effectAddLoyaltyPoints)
         {
             EffectAddLoyaltyPoints = effectAddLoyaltyPoints;
             OnCreated();
@@ -72,7 +72,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAddNegativeLoyaltyPoints"></param>
-        public Effect(EffectAddNegativeLoyaltyPoints effectAddNegativeLoyaltyPoints)
+        internal Effect(EffectAddNegativeLoyaltyPoints effectAddNegativeLoyaltyPoints)
         {
             EffectAddNegativeLoyaltyPoints = effectAddNegativeLoyaltyPoints;
             OnCreated();
@@ -82,7 +82,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAddToAudience"></param>
-        public Effect(EffectAddToAudience effectAddToAudience)
+        internal Effect(EffectAddToAudience effectAddToAudience)
         {
             EffectAddToAudience = effectAddToAudience;
             OnCreated();
@@ -92,7 +92,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectAwardGiveaway"></param>
-        public Effect(EffectAwardGiveaway effectAwardGiveaway)
+        internal Effect(EffectAwardGiveaway effectAwardGiveaway)
         {
             EffectAwardGiveaway = effectAwardGiveaway;
             OnCreated();
@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectBoostLoyaltyTier"></param>
-        public Effect(EffectBoostLoyaltyTier effectBoostLoyaltyTier)
+        internal Effect(EffectBoostLoyaltyTier effectBoostLoyaltyTier)
         {
             EffectBoostLoyaltyTier = effectBoostLoyaltyTier;
             OnCreated();
@@ -112,7 +112,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectCallApi"></param>
-        public Effect(EffectCallApi effectCallApi)
+        internal Effect(EffectCallApi effectCallApi)
         {
             EffectCallApi = effectCallApi;
             OnCreated();
@@ -122,7 +122,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectChangeLoyaltyTierLevel"></param>
-        public Effect(EffectChangeLoyaltyTierLevel effectChangeLoyaltyTierLevel)
+        internal Effect(EffectChangeLoyaltyTierLevel effectChangeLoyaltyTierLevel)
         {
             EffectChangeLoyaltyTierLevel = effectChangeLoyaltyTierLevel;
             OnCreated();
@@ -132,7 +132,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectCouponCreated"></param>
-        public Effect(EffectCouponCreated effectCouponCreated)
+        internal Effect(EffectCouponCreated effectCouponCreated)
         {
             EffectCouponCreated = effectCouponCreated;
             OnCreated();
@@ -142,7 +142,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectCustomEffect"></param>
-        public Effect(EffectCustomEffect effectCustomEffect)
+        internal Effect(EffectCustomEffect effectCustomEffect)
         {
             EffectCustomEffect = effectCustomEffect;
             OnCreated();
@@ -152,7 +152,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectDeductLoyaltyPoints"></param>
-        public Effect(EffectDeductLoyaltyPoints effectDeductLoyaltyPoints)
+        internal Effect(EffectDeductLoyaltyPoints effectDeductLoyaltyPoints)
         {
             EffectDeductLoyaltyPoints = effectDeductLoyaltyPoints;
             OnCreated();
@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectError"></param>
-        public Effect(EffectError effectError)
+        internal Effect(EffectError effectError)
         {
             EffectError = effectError;
             OnCreated();
@@ -172,7 +172,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectExtendLoyaltyPointsExpiryDate"></param>
-        public Effect(EffectExtendLoyaltyPointsExpiryDate effectExtendLoyaltyPointsExpiryDate)
+        internal Effect(EffectExtendLoyaltyPointsExpiryDate effectExtendLoyaltyPointsExpiryDate)
         {
             EffectExtendLoyaltyPointsExpiryDate = effectExtendLoyaltyPointsExpiryDate;
             OnCreated();
@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectIncreaseAchievementProgress"></param>
-        public Effect(EffectIncreaseAchievementProgress effectIncreaseAchievementProgress)
+        internal Effect(EffectIncreaseAchievementProgress effectIncreaseAchievementProgress)
         {
             EffectIncreaseAchievementProgress = effectIncreaseAchievementProgress;
             OnCreated();
@@ -191,8 +191,18 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
+        /// <param name="effectIncreaseAchievementProgressPerItem"></param>
+        internal Effect(EffectIncreaseAchievementProgressPerItem effectIncreaseAchievementProgressPerItem)
+        {
+            EffectIncreaseAchievementProgressPerItem = effectIncreaseAchievementProgressPerItem;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
         /// <param name="effectJoinLoyaltyProgram"></param>
-        public Effect(EffectJoinLoyaltyProgram effectJoinLoyaltyProgram)
+        internal Effect(EffectJoinLoyaltyProgram effectJoinLoyaltyProgram)
         {
             EffectJoinLoyaltyProgram = effectJoinLoyaltyProgram;
             OnCreated();
@@ -202,7 +212,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectOffsetNegativeLoyaltyPoints"></param>
-        public Effect(EffectOffsetNegativeLoyaltyPoints effectOffsetNegativeLoyaltyPoints)
+        internal Effect(EffectOffsetNegativeLoyaltyPoints effectOffsetNegativeLoyaltyPoints)
         {
             EffectOffsetNegativeLoyaltyPoints = effectOffsetNegativeLoyaltyPoints;
             OnCreated();
@@ -212,7 +222,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRedeemReferral"></param>
-        public Effect(EffectRedeemReferral effectRedeemReferral)
+        internal Effect(EffectRedeemReferral effectRedeemReferral)
         {
             EffectRedeemReferral = effectRedeemReferral;
             OnCreated();
@@ -222,7 +232,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectReferralCreated"></param>
-        public Effect(EffectReferralCreated effectReferralCreated)
+        internal Effect(EffectReferralCreated effectReferralCreated)
         {
             EffectReferralCreated = effectReferralCreated;
             OnCreated();
@@ -232,7 +242,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRejectCoupon"></param>
-        public Effect(EffectRejectCoupon effectRejectCoupon)
+        internal Effect(EffectRejectCoupon effectRejectCoupon)
         {
             EffectRejectCoupon = effectRejectCoupon;
             OnCreated();
@@ -242,7 +252,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRejectReferral"></param>
-        public Effect(EffectRejectReferral effectRejectReferral)
+        internal Effect(EffectRejectReferral effectRejectReferral)
         {
             EffectRejectReferral = effectRejectReferral;
             OnCreated();
@@ -252,7 +262,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRemoveFromAudience"></param>
-        public Effect(EffectRemoveFromAudience effectRemoveFromAudience)
+        internal Effect(EffectRemoveFromAudience effectRemoveFromAudience)
         {
             EffectRemoveFromAudience = effectRemoveFromAudience;
             OnCreated();
@@ -262,7 +272,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectReserveCoupon"></param>
-        public Effect(EffectReserveCoupon effectReserveCoupon)
+        internal Effect(EffectReserveCoupon effectReserveCoupon)
         {
             EffectReserveCoupon = effectReserveCoupon;
             OnCreated();
@@ -272,7 +282,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackAddedLoyaltyPoints"></param>
-        public Effect(EffectRollbackAddedLoyaltyPoints effectRollbackAddedLoyaltyPoints)
+        internal Effect(EffectRollbackAddedLoyaltyPoints effectRollbackAddedLoyaltyPoints)
         {
             EffectRollbackAddedLoyaltyPoints = effectRollbackAddedLoyaltyPoints;
             OnCreated();
@@ -282,7 +292,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackCoupon"></param>
-        public Effect(EffectRollbackCoupon effectRollbackCoupon)
+        internal Effect(EffectRollbackCoupon effectRollbackCoupon)
         {
             EffectRollbackCoupon = effectRollbackCoupon;
             OnCreated();
@@ -292,7 +302,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackDeductedLoyaltyPoints"></param>
-        public Effect(EffectRollbackDeductedLoyaltyPoints effectRollbackDeductedLoyaltyPoints)
+        internal Effect(EffectRollbackDeductedLoyaltyPoints effectRollbackDeductedLoyaltyPoints)
         {
             EffectRollbackDeductedLoyaltyPoints = effectRollbackDeductedLoyaltyPoints;
             OnCreated();
@@ -302,7 +312,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackDiscount"></param>
-        public Effect(EffectRollbackDiscount effectRollbackDiscount)
+        internal Effect(EffectRollbackDiscount effectRollbackDiscount)
         {
             EffectRollbackDiscount = effectRollbackDiscount;
             OnCreated();
@@ -312,7 +322,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectRollbackIncreasedAchievementProgress"></param>
-        public Effect(EffectRollbackIncreasedAchievementProgress effectRollbackIncreasedAchievementProgress)
+        internal Effect(EffectRollbackIncreasedAchievementProgress effectRollbackIncreasedAchievementProgress)
         {
             EffectRollbackIncreasedAchievementProgress = effectRollbackIncreasedAchievementProgress;
             OnCreated();
@@ -321,8 +331,18 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
+        /// <param name="effectRollbackIncreasedAchievementProgressPerItem"></param>
+        internal Effect(EffectRollbackIncreasedAchievementProgressPerItem effectRollbackIncreasedAchievementProgressPerItem)
+        {
+            EffectRollbackIncreasedAchievementProgressPerItem = effectRollbackIncreasedAchievementProgressPerItem;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
         /// <param name="effectRollbackReferral"></param>
-        public Effect(EffectRollbackReferral effectRollbackReferral)
+        internal Effect(EffectRollbackReferral effectRollbackReferral)
         {
             EffectRollbackReferral = effectRollbackReferral;
             OnCreated();
@@ -331,8 +351,18 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
+        /// <param name="effectRollbackTierBoost"></param>
+        internal Effect(EffectRollbackTierBoost effectRollbackTierBoost)
+        {
+            EffectRollbackTierBoost = effectRollbackTierBoost;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect" /> class.
+        /// </summary>
         /// <param name="effectRollbackUseReward"></param>
-        public Effect(EffectRollbackUseReward effectRollbackUseReward)
+        internal Effect(EffectRollbackUseReward effectRollbackUseReward)
         {
             EffectRollbackUseReward = effectRollbackUseReward;
             OnCreated();
@@ -342,7 +372,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSet"></param>
-        public Effect(EffectSet effectSet)
+        internal Effect(EffectSet effectSet)
         {
             EffectSet = effectSet;
             OnCreated();
@@ -352,7 +382,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetDiscount"></param>
-        public Effect(EffectSetDiscount effectSetDiscount)
+        internal Effect(EffectSetDiscount effectSetDiscount)
         {
             EffectSetDiscount = effectSetDiscount;
             OnCreated();
@@ -362,7 +392,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetDiscountPerAdditionalCost"></param>
-        public Effect(EffectSetDiscountPerAdditionalCost effectSetDiscountPerAdditionalCost)
+        internal Effect(EffectSetDiscountPerAdditionalCost effectSetDiscountPerAdditionalCost)
         {
             EffectSetDiscountPerAdditionalCost = effectSetDiscountPerAdditionalCost;
             OnCreated();
@@ -372,7 +402,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetDiscountPerAdditionalCostPerItem"></param>
-        public Effect(EffectSetDiscountPerAdditionalCostPerItem effectSetDiscountPerAdditionalCostPerItem)
+        internal Effect(EffectSetDiscountPerAdditionalCostPerItem effectSetDiscountPerAdditionalCostPerItem)
         {
             EffectSetDiscountPerAdditionalCostPerItem = effectSetDiscountPerAdditionalCostPerItem;
             OnCreated();
@@ -382,7 +412,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetDiscountPerItem"></param>
-        public Effect(EffectSetDiscountPerItem effectSetDiscountPerItem)
+        internal Effect(EffectSetDiscountPerItem effectSetDiscountPerItem)
         {
             EffectSetDiscountPerItem = effectSetDiscountPerItem;
             OnCreated();
@@ -392,7 +422,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectSetLoyaltyPointsExpiryDate"></param>
-        public Effect(EffectSetLoyaltyPointsExpiryDate effectSetLoyaltyPointsExpiryDate)
+        internal Effect(EffectSetLoyaltyPointsExpiryDate effectSetLoyaltyPointsExpiryDate)
         {
             EffectSetLoyaltyPointsExpiryDate = effectSetLoyaltyPointsExpiryDate;
             OnCreated();
@@ -402,7 +432,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectShowBundleMetadata"></param>
-        public Effect(EffectShowBundleMetadata effectShowBundleMetadata)
+        internal Effect(EffectShowBundleMetadata effectShowBundleMetadata)
         {
             EffectShowBundleMetadata = effectShowBundleMetadata;
             OnCreated();
@@ -412,7 +442,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectShowNotification"></param>
-        public Effect(EffectShowNotification effectShowNotification)
+        internal Effect(EffectShowNotification effectShowNotification)
         {
             EffectShowNotification = effectShowNotification;
             OnCreated();
@@ -422,7 +452,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectStartAchievementProgress"></param>
-        public Effect(EffectStartAchievementProgress effectStartAchievementProgress)
+        internal Effect(EffectStartAchievementProgress effectStartAchievementProgress)
         {
             EffectStartAchievementProgress = effectStartAchievementProgress;
             OnCreated();
@@ -432,7 +462,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectUnlockReward"></param>
-        public Effect(EffectUnlockReward effectUnlockReward)
+        internal Effect(EffectUnlockReward effectUnlockReward)
         {
             EffectUnlockReward = effectUnlockReward;
             OnCreated();
@@ -442,7 +472,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectUseReward"></param>
-        public Effect(EffectUseReward effectUseReward)
+        internal Effect(EffectUseReward effectUseReward)
         {
             EffectUseReward = effectUseReward;
             OnCreated();
@@ -452,7 +482,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="Effect" /> class.
         /// </summary>
         /// <param name="effectWillAwardGiveaway"></param>
-        public Effect(EffectWillAwardGiveaway effectWillAwardGiveaway)
+        internal Effect(EffectWillAwardGiveaway effectWillAwardGiveaway)
         {
             EffectWillAwardGiveaway = effectWillAwardGiveaway;
             OnCreated();
@@ -594,6 +624,11 @@ namespace TalonOneSdk.Model
         public EffectIncreaseAchievementProgress EffectIncreaseAchievementProgress { get; set; }
 
         /// <summary>
+        /// Gets or Sets EffectIncreaseAchievementProgressPerItem
+        /// </summary>
+        public EffectIncreaseAchievementProgressPerItem EffectIncreaseAchievementProgressPerItem { get; set; }
+
+        /// <summary>
         /// Gets or Sets EffectJoinLoyaltyProgram
         /// </summary>
         public EffectJoinLoyaltyProgram EffectJoinLoyaltyProgram { get; set; }
@@ -659,9 +694,19 @@ namespace TalonOneSdk.Model
         public EffectRollbackIncreasedAchievementProgress EffectRollbackIncreasedAchievementProgress { get; set; }
 
         /// <summary>
+        /// Gets or Sets EffectRollbackIncreasedAchievementProgressPerItem
+        /// </summary>
+        public EffectRollbackIncreasedAchievementProgressPerItem EffectRollbackIncreasedAchievementProgressPerItem { get; set; }
+
+        /// <summary>
         /// Gets or Sets EffectRollbackReferral
         /// </summary>
         public EffectRollbackReferral EffectRollbackReferral { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EffectRollbackTierBoost
+        /// </summary>
+        public EffectRollbackTierBoost EffectRollbackTierBoost { get; set; }
 
         /// <summary>
         /// Gets or Sets EffectRollbackUseReward
@@ -809,6 +854,7 @@ namespace TalonOneSdk.Model
             EffectError errorEffectError = null;
             EffectExtendLoyaltyPointsExpiryDate extendLoyaltyPointsExpiryDateEffectExtendLoyaltyPointsExpiryDate = null;
             EffectIncreaseAchievementProgress increaseAchievementProgressEffectIncreaseAchievementProgress = null;
+            EffectIncreaseAchievementProgressPerItem increaseAchievementProgressPerItemEffectIncreaseAchievementProgressPerItem = null;
             EffectJoinLoyaltyProgram joinLoyaltyProgramEffectJoinLoyaltyProgram = null;
             EffectOffsetNegativeLoyaltyPoints offsetNegativeLoyaltyPointsEffectOffsetNegativeLoyaltyPoints = null;
             EffectRedeemReferral redeemReferralEffectRedeemReferral = null;
@@ -822,7 +868,9 @@ namespace TalonOneSdk.Model
             EffectRollbackDeductedLoyaltyPoints rollbackDeductedLoyaltyPointsEffectRollbackDeductedLoyaltyPoints = null;
             EffectRollbackDiscount rollbackDiscountEffectRollbackDiscount = null;
             EffectRollbackIncreasedAchievementProgress rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress = null;
+            EffectRollbackIncreasedAchievementProgressPerItem rollbackIncreasedAchievementProgressPerItemEffectRollbackIncreasedAchievementProgressPerItem = null;
             EffectRollbackReferral rollbackReferralEffectRollbackReferral = null;
+            EffectRollbackTierBoost rollbackTierBoostEffectRollbackTierBoost = null;
             EffectRollbackUseReward rollbackUseRewardEffectRollbackUseReward = null;
             EffectSet setEffectSet = null;
             EffectSetDiscount setDiscountEffectSetDiscount = null;
@@ -933,6 +981,11 @@ namespace TalonOneSdk.Model
                             Utf8JsonReader utf8JsonReaderEffectIncreaseAchievementProgress = utf8JsonReader;
                             increaseAchievementProgressEffectIncreaseAchievementProgress = JsonSerializer.Deserialize<EffectIncreaseAchievementProgress>(ref utf8JsonReaderEffectIncreaseAchievementProgress, jsonSerializerOptions);
                         }
+                        if (discriminator.Equals("increaseAchievementProgressPerItem"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectIncreaseAchievementProgressPerItem = utf8JsonReader;
+                            increaseAchievementProgressPerItemEffectIncreaseAchievementProgressPerItem = JsonSerializer.Deserialize<EffectIncreaseAchievementProgressPerItem>(ref utf8JsonReaderEffectIncreaseAchievementProgressPerItem, jsonSerializerOptions);
+                        }
                         if (discriminator.Equals("joinLoyaltyProgram"))
                         {
                             Utf8JsonReader utf8JsonReaderEffectJoinLoyaltyProgram = utf8JsonReader;
@@ -998,10 +1051,20 @@ namespace TalonOneSdk.Model
                             Utf8JsonReader utf8JsonReaderEffectRollbackIncreasedAchievementProgress = utf8JsonReader;
                             rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress = JsonSerializer.Deserialize<EffectRollbackIncreasedAchievementProgress>(ref utf8JsonReaderEffectRollbackIncreasedAchievementProgress, jsonSerializerOptions);
                         }
+                        if (discriminator.Equals("rollbackIncreasedAchievementProgressPerItem"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackIncreasedAchievementProgressPerItem = utf8JsonReader;
+                            rollbackIncreasedAchievementProgressPerItemEffectRollbackIncreasedAchievementProgressPerItem = JsonSerializer.Deserialize<EffectRollbackIncreasedAchievementProgressPerItem>(ref utf8JsonReaderEffectRollbackIncreasedAchievementProgressPerItem, jsonSerializerOptions);
+                        }
                         if (discriminator.Equals("rollbackReferral"))
                         {
                             Utf8JsonReader utf8JsonReaderEffectRollbackReferral = utf8JsonReader;
                             rollbackReferralEffectRollbackReferral = JsonSerializer.Deserialize<EffectRollbackReferral>(ref utf8JsonReaderEffectRollbackReferral, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("rollbackTierBoost"))
+                        {
+                            Utf8JsonReader utf8JsonReaderEffectRollbackTierBoost = utf8JsonReader;
+                            rollbackTierBoostEffectRollbackTierBoost = JsonSerializer.Deserialize<EffectRollbackTierBoost>(ref utf8JsonReaderEffectRollbackTierBoost, jsonSerializerOptions);
                         }
                         if (discriminator.Equals("rollbackUseReward"))
                         {
@@ -1141,6 +1204,9 @@ namespace TalonOneSdk.Model
             if (increaseAchievementProgressEffectIncreaseAchievementProgress != null)
                 return new Effect(increaseAchievementProgressEffectIncreaseAchievementProgress);
 
+            if (increaseAchievementProgressPerItemEffectIncreaseAchievementProgressPerItem != null)
+                return new Effect(increaseAchievementProgressPerItemEffectIncreaseAchievementProgressPerItem);
+
             if (joinLoyaltyProgramEffectJoinLoyaltyProgram != null)
                 return new Effect(joinLoyaltyProgramEffectJoinLoyaltyProgram);
 
@@ -1180,8 +1246,14 @@ namespace TalonOneSdk.Model
             if (rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress != null)
                 return new Effect(rollbackIncreasedAchievementProgressEffectRollbackIncreasedAchievementProgress);
 
+            if (rollbackIncreasedAchievementProgressPerItemEffectRollbackIncreasedAchievementProgressPerItem != null)
+                return new Effect(rollbackIncreasedAchievementProgressPerItemEffectRollbackIncreasedAchievementProgressPerItem);
+
             if (rollbackReferralEffectRollbackReferral != null)
                 return new Effect(rollbackReferralEffectRollbackReferral);
+
+            if (rollbackTierBoostEffectRollbackTierBoost != null)
+                return new Effect(rollbackTierBoostEffectRollbackTierBoost);
 
             if (rollbackUseRewardEffectRollbackUseReward != null)
                 return new Effect(rollbackUseRewardEffectRollbackUseReward);
@@ -1231,7 +1303,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effect"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Effect effect, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -1332,6 +1403,12 @@ namespace TalonOneSdk.Model
                 effectIncreaseAchievementProgressJsonConverter.WriteProperties(writer, effect.EffectIncreaseAchievementProgress, jsonSerializerOptions);
             }
 
+            if (effect.EffectIncreaseAchievementProgressPerItem != null)
+            {
+                EffectIncreaseAchievementProgressPerItemJsonConverter effectIncreaseAchievementProgressPerItemJsonConverter = (EffectIncreaseAchievementProgressPerItemJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectIncreaseAchievementProgressPerItem.GetType()));
+                effectIncreaseAchievementProgressPerItemJsonConverter.WriteProperties(writer, effect.EffectIncreaseAchievementProgressPerItem, jsonSerializerOptions);
+            }
+
             if (effect.EffectJoinLoyaltyProgram != null)
             {
                 EffectJoinLoyaltyProgramJsonConverter effectJoinLoyaltyProgramJsonConverter = (EffectJoinLoyaltyProgramJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectJoinLoyaltyProgram.GetType()));
@@ -1410,10 +1487,22 @@ namespace TalonOneSdk.Model
                 effectRollbackIncreasedAchievementProgressJsonConverter.WriteProperties(writer, effect.EffectRollbackIncreasedAchievementProgress, jsonSerializerOptions);
             }
 
+            if (effect.EffectRollbackIncreasedAchievementProgressPerItem != null)
+            {
+                EffectRollbackIncreasedAchievementProgressPerItemJsonConverter effectRollbackIncreasedAchievementProgressPerItemJsonConverter = (EffectRollbackIncreasedAchievementProgressPerItemJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackIncreasedAchievementProgressPerItem.GetType()));
+                effectRollbackIncreasedAchievementProgressPerItemJsonConverter.WriteProperties(writer, effect.EffectRollbackIncreasedAchievementProgressPerItem, jsonSerializerOptions);
+            }
+
             if (effect.EffectRollbackReferral != null)
             {
                 EffectRollbackReferralJsonConverter effectRollbackReferralJsonConverter = (EffectRollbackReferralJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackReferral.GetType()));
                 effectRollbackReferralJsonConverter.WriteProperties(writer, effect.EffectRollbackReferral, jsonSerializerOptions);
+            }
+
+            if (effect.EffectRollbackTierBoost != null)
+            {
+                EffectRollbackTierBoostJsonConverter effectRollbackTierBoostJsonConverter = (EffectRollbackTierBoostJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectRollbackTierBoost.GetType()));
+                effectRollbackTierBoostJsonConverter.WriteProperties(writer, effect.EffectRollbackTierBoost, jsonSerializerOptions);
             }
 
             if (effect.EffectRollbackUseReward != null)
@@ -1504,7 +1593,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effect"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Effect effect, JsonSerializerOptions jsonSerializerOptions)
         {
 

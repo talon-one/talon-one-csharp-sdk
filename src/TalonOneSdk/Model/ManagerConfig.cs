@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!schemaVersion.IsSet)
-                throw new ArgumentException("Property is required for class ManagerConfig.", nameof(schemaVersion));
+                throw new JsonException("Property is required for class ManagerConfig: schemaVersion.");
 
             if (schemaVersion.IsSet && schemaVersion.Value == null)
-                throw new ArgumentNullException(nameof(schemaVersion), "Property is not nullable for class ManagerConfig.");
+                throw new JsonException("Property is not nullable for class ManagerConfig: schemaVersion.");
 
             return new ManagerConfig(schemaVersion.Value.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="managerConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ManagerConfig managerConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,7 +158,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="managerConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ManagerConfig managerConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("schemaVersion", managerConfig.SchemaVersion);

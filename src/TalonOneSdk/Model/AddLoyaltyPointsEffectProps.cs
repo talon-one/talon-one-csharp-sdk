@@ -451,40 +451,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AddLoyaltyPointsEffectProps.", nameof(name));
+                throw new JsonException("Property is required for class AddLoyaltyPointsEffectProps: name.");
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class AddLoyaltyPointsEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class AddLoyaltyPointsEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class AddLoyaltyPointsEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class AddLoyaltyPointsEffectProps: subLedgerId.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AddLoyaltyPointsEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class AddLoyaltyPointsEffectProps: value.");
 
             if (!recipientIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class AddLoyaltyPointsEffectProps.", nameof(recipientIntegrationId));
+                throw new JsonException("Property is required for class AddLoyaltyPointsEffectProps: recipientIntegrationId.");
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class AddLoyaltyPointsEffectProps.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class AddLoyaltyPointsEffectProps: transactionUUID.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class AddLoyaltyPointsEffectProps: name.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class AddLoyaltyPointsEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class AddLoyaltyPointsEffectProps: subLedgerId.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class AddLoyaltyPointsEffectProps: value.");
 
             if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class AddLoyaltyPointsEffectProps: recipientIntegrationId.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class AddLoyaltyPointsEffectProps: transactionUUID.");
 
             return new AddLoyaltyPointsEffectProps(name.Value, programId.Value.Value, subLedgerId.Value, value.Value.Value, recipientIntegrationId.Value, transactionUUID.Value, desiredValue, startDate, expiryDate, cartItemPosition, cartItemSubPosition, cardIdentifier, bundleIndex, bundleName, awaitsActivation, validityDuration);
         }
@@ -495,7 +495,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addLoyaltyPointsEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AddLoyaltyPointsEffectProps addLoyaltyPointsEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -510,20 +509,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addLoyaltyPointsEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AddLoyaltyPointsEffectProps addLoyaltyPointsEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (addLoyaltyPointsEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.Name), "Property is required for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property AddLoyaltyPointsEffectProps.Name to non-nullable JSON property 'name'.");
 
             if (addLoyaltyPointsEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.SubLedgerId), "Property is required for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property AddLoyaltyPointsEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             if (addLoyaltyPointsEffectProps.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.RecipientIntegrationId), "Property is required for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property AddLoyaltyPointsEffectProps.RecipientIntegrationId to non-nullable JSON property 'recipientIntegrationId'.");
 
             if (addLoyaltyPointsEffectProps.TransactionUUID == null)
-                throw new ArgumentNullException(nameof(addLoyaltyPointsEffectProps.TransactionUUID), "Property is required for class AddLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property AddLoyaltyPointsEffectProps.TransactionUUID to non-nullable JSON property 'transactionUUID'.");
 
             writer.WriteString("name", addLoyaltyPointsEffectProps.Name);
 

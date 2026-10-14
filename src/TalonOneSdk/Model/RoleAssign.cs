@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!users.IsSet)
-                throw new ArgumentException("Property is required for class RoleAssign.", nameof(users));
+                throw new JsonException("Property is required for class RoleAssign: users.");
 
             if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class RoleAssign.", nameof(roles));
+                throw new JsonException("Property is required for class RoleAssign: roles.");
 
             if (users.IsSet && users.Value == null)
-                throw new ArgumentNullException(nameof(users), "Property is not nullable for class RoleAssign.");
+                throw new JsonException("Property is not nullable for class RoleAssign: users.");
 
             if (roles.IsSet && roles.Value == null)
-                throw new ArgumentNullException(nameof(roles), "Property is not nullable for class RoleAssign.");
+                throw new JsonException("Property is not nullable for class RoleAssign: roles.");
 
             return new RoleAssign(users.Value, roles.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleAssign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RoleAssign roleAssign, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleAssign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleAssign roleAssign, JsonSerializerOptions jsonSerializerOptions)
         {
             if (roleAssign.Users == null)
-                throw new ArgumentNullException(nameof(roleAssign.Users), "Property is required for class RoleAssign.");
+                throw new JsonException("Cannot write null property RoleAssign.Users to non-nullable JSON property 'users'.");
 
             if (roleAssign.Roles == null)
-                throw new ArgumentNullException(nameof(roleAssign.Roles), "Property is required for class RoleAssign.");
+                throw new JsonException("Cannot write null property RoleAssign.Roles to non-nullable JSON property 'roles'.");
 
             writer.WritePropertyName("users");
             JsonSerializer.Serialize(writer, roleAssign.Users, jsonSerializerOptions);

@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCardRegistration.", nameof(integrationId));
+                throw new JsonException("Property is required for class LoyaltyCardRegistration: integrationId.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class LoyaltyCardRegistration.");
+                throw new JsonException("Property is not nullable for class LoyaltyCardRegistration: integrationId.");
 
             return new LoyaltyCardRegistration(integrationId.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyCardRegistration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyCardRegistration loyaltyCardRegistration, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyCardRegistration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyCardRegistration loyaltyCardRegistration, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyCardRegistration.IntegrationId == null)
-                throw new ArgumentNullException(nameof(loyaltyCardRegistration.IntegrationId), "Property is required for class LoyaltyCardRegistration.");
+                throw new JsonException("Cannot write null property LoyaltyCardRegistration.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("integrationId", loyaltyCardRegistration.IntegrationId);
         }

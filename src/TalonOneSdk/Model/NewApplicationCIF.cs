@@ -246,10 +246,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewApplicationCIF.", nameof(name));
+                throw new JsonException("Property is required for class NewApplicationCIF: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewApplicationCIF.");
+                throw new JsonException("Property is not nullable for class NewApplicationCIF: name.");
 
             return new NewApplicationCIF(name.Value, description, activeExpressionId, modifiedBy, createdBy, modified);
         }
@@ -260,7 +260,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newApplicationCIF"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewApplicationCIF newApplicationCIF, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -275,11 +274,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newApplicationCIF"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewApplicationCIF newApplicationCIF, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newApplicationCIF.Name == null)
-                throw new ArgumentNullException(nameof(newApplicationCIF.Name), "Property is required for class NewApplicationCIF.");
+                throw new JsonException("Cannot write null property NewApplicationCIF.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", newApplicationCIF.Name);
 

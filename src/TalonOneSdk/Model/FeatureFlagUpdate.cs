@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class FeatureFlagUpdate.", nameof(name));
+                throw new JsonException("Property is required for class FeatureFlagUpdate: name.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class FeatureFlagUpdate.", nameof(value));
+                throw new JsonException("Property is required for class FeatureFlagUpdate: value.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class FeatureFlagUpdate.");
+                throw new JsonException("Property is not nullable for class FeatureFlagUpdate: name.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class FeatureFlagUpdate.");
+                throw new JsonException("Property is not nullable for class FeatureFlagUpdate: value.");
 
             return new FeatureFlagUpdate(name.Value, value.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="featureFlagUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FeatureFlagUpdate featureFlagUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="featureFlagUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FeatureFlagUpdate featureFlagUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             if (featureFlagUpdate.Name == null)
-                throw new ArgumentNullException(nameof(featureFlagUpdate.Name), "Property is required for class FeatureFlagUpdate.");
+                throw new JsonException("Cannot write null property FeatureFlagUpdate.Name to non-nullable JSON property 'name'.");
 
             if (featureFlagUpdate.Value == null)
-                throw new ArgumentNullException(nameof(featureFlagUpdate.Value), "Property is required for class FeatureFlagUpdate.");
+                throw new JsonException("Cannot write null property FeatureFlagUpdate.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("name", featureFlagUpdate.Name);
 

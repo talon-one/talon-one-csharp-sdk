@@ -953,19 +953,19 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckAttributeBlockBase.", nameof(type));
+                throw new JsonException("Property is required for class CheckAttributeBlockBase: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class CheckAttributeBlockBase.", nameof(varOperator));
+                throw new JsonException("Property is required for class CheckAttributeBlockBase: operator.");
 
             if (!attribute.IsSet)
-                throw new ArgumentException("Property is required for class CheckAttributeBlockBase.", nameof(attribute));
+                throw new JsonException("Property is required for class CheckAttributeBlockBase: attribute.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckAttributeBlockBase.");
+                throw new JsonException("Property is not nullable for class CheckAttributeBlockBase: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckAttributeBlockBase.");
+                throw new JsonException("Property is not nullable for class CheckAttributeBlockBase: operator.");
 
             return new CheckAttributeBlockBase(type.Value, varOperator.Value.Value, id, tags, attribute.Value, value, min, max, start, end, startInclusive, endInclusive, timezoneInsensitive, values, count, onFailure);
         }
@@ -976,7 +976,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkAttributeBlockBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckAttributeBlockBase checkAttributeBlockBase, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -991,11 +990,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkAttributeBlockBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckAttributeBlockBase checkAttributeBlockBase, JsonSerializerOptions jsonSerializerOptions)
         {
             if (checkAttributeBlockBase.Type == null)
-                throw new ArgumentNullException(nameof(checkAttributeBlockBase.Type), "Property is required for class CheckAttributeBlockBase.");
+                throw new JsonException("Cannot write null property CheckAttributeBlockBase.Type to non-nullable JSON property 'type'.");
 
             writer.WriteString("type", checkAttributeBlockBase.Type);
 

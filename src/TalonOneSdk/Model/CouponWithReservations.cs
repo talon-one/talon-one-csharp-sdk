@@ -655,28 +655,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CouponWithReservations.", nameof(id));
+                throw new JsonException("Property is required for class CouponWithReservations: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CouponWithReservations.", nameof(created));
+                throw new JsonException("Property is required for class CouponWithReservations: created.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class CouponWithReservations.", nameof(campaignId));
+                throw new JsonException("Property is required for class CouponWithReservations: campaignId.");
 
             if (!usageCounter.IsSet)
-                throw new ArgumentException("Property is required for class CouponWithReservations.", nameof(usageCounter));
+                throw new JsonException("Property is required for class CouponWithReservations: usageCounter.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponWithReservations.");
+                throw new JsonException("Property is not nullable for class CouponWithReservations: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CouponWithReservations.");
+                throw new JsonException("Property is not nullable for class CouponWithReservations: created.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CouponWithReservations.");
+                throw new JsonException("Property is not nullable for class CouponWithReservations: campaignId.");
 
             if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class CouponWithReservations.");
+                throw new JsonException("Property is not nullable for class CouponWithReservations: usageCounter.");
 
             return new CouponWithReservations(id.Value.Value, created.Value.Value, campaignId.Value.Value, usageCounter.Value.Value, value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, discountCounter, discountRemainder, reservationCounter, attributes, referralId, recipientIntegrationId, importId, reservation, batchId, isReservationMandatory, implicitlyReserved, reservations);
         }
@@ -687,7 +687,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponWithReservations"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponWithReservations couponWithReservations, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -702,7 +701,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponWithReservations"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponWithReservations couponWithReservations, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", couponWithReservations.Id);

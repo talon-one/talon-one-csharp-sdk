@@ -295,40 +295,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!achievementId.IsSet)
-                throw new ArgumentException("Property is required for class AchievementReference.", nameof(achievementId));
+                throw new JsonException("Property is required for class AchievementReference: achievementId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class AchievementReference.", nameof(applicationId));
+                throw new JsonException("Property is required for class AchievementReference: applicationId.");
 
             if (!applicationName.IsSet)
-                throw new ArgumentException("Property is required for class AchievementReference.", nameof(applicationName));
+                throw new JsonException("Property is required for class AchievementReference: applicationName.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class AchievementReference.", nameof(campaignId));
+                throw new JsonException("Property is required for class AchievementReference: campaignId.");
 
             if (!campaignName.IsSet)
-                throw new ArgumentException("Property is required for class AchievementReference.", nameof(campaignName));
+                throw new JsonException("Property is required for class AchievementReference: campaignName.");
 
             if (!campaignState.IsSet)
-                throw new ArgumentException("Property is required for class AchievementReference.", nameof(campaignState));
+                throw new JsonException("Property is required for class AchievementReference: campaignState.");
 
             if (achievementId.IsSet && achievementId.Value == null)
-                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class AchievementReference.");
+                throw new JsonException("Property is not nullable for class AchievementReference: achievementId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class AchievementReference.");
+                throw new JsonException("Property is not nullable for class AchievementReference: applicationId.");
 
             if (applicationName.IsSet && applicationName.Value == null)
-                throw new ArgumentNullException(nameof(applicationName), "Property is not nullable for class AchievementReference.");
+                throw new JsonException("Property is not nullable for class AchievementReference: applicationName.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class AchievementReference.");
+                throw new JsonException("Property is not nullable for class AchievementReference: campaignId.");
 
             if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class AchievementReference.");
+                throw new JsonException("Property is not nullable for class AchievementReference: campaignName.");
 
             if (campaignState.IsSet && campaignState.Value == null)
-                throw new ArgumentNullException(nameof(campaignState), "Property is not nullable for class AchievementReference.");
+                throw new JsonException("Property is not nullable for class AchievementReference: campaignState.");
 
             return new AchievementReference(achievementId.Value.Value, applicationId.Value.Value, applicationName.Value, campaignId.Value.Value, campaignName.Value, campaignState.Value.Value);
         }
@@ -339,7 +339,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AchievementReference achievementReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -354,14 +353,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementReference achievementReference, JsonSerializerOptions jsonSerializerOptions)
         {
             if (achievementReference.ApplicationName == null)
-                throw new ArgumentNullException(nameof(achievementReference.ApplicationName), "Property is required for class AchievementReference.");
+                throw new JsonException("Cannot write null property AchievementReference.ApplicationName to non-nullable JSON property 'applicationName'.");
 
             if (achievementReference.CampaignName == null)
-                throw new ArgumentNullException(nameof(achievementReference.CampaignName), "Property is required for class AchievementReference.");
+                throw new JsonException("Cannot write null property AchievementReference.CampaignName to non-nullable JSON property 'campaignName'.");
 
             writer.WriteNumber("achievementId", achievementReference.AchievementId);
 

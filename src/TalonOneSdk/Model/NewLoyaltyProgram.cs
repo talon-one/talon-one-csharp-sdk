@@ -840,52 +840,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(title));
+                throw new JsonException("Property is required for class NewLoyaltyProgram: title.");
 
             if (!defaultValidity.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(defaultValidity));
+                throw new JsonException("Property is required for class NewLoyaltyProgram: defaultValidity.");
 
             if (!defaultPending.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(defaultPending));
+                throw new JsonException("Property is required for class NewLoyaltyProgram: defaultPending.");
 
             if (!allowSubledger.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(allowSubledger));
+                throw new JsonException("Property is required for class NewLoyaltyProgram: allowSubledger.");
 
             if (!sandbox.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(sandbox));
+                throw new JsonException("Property is required for class NewLoyaltyProgram: sandbox.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(name));
+                throw new JsonException("Property is required for class NewLoyaltyProgram: name.");
 
             if (!timezone.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(timezone));
+                throw new JsonException("Property is required for class NewLoyaltyProgram: timezone.");
 
             if (!cardBased.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyProgram.", nameof(cardBased));
+                throw new JsonException("Property is required for class NewLoyaltyProgram: cardBased.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyProgram: title.");
 
             if (defaultValidity.IsSet && defaultValidity.Value == null)
-                throw new ArgumentNullException(nameof(defaultValidity), "Property is not nullable for class NewLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyProgram: defaultValidity.");
 
             if (defaultPending.IsSet && defaultPending.Value == null)
-                throw new ArgumentNullException(nameof(defaultPending), "Property is not nullable for class NewLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyProgram: defaultPending.");
 
             if (allowSubledger.IsSet && allowSubledger.Value == null)
-                throw new ArgumentNullException(nameof(allowSubledger), "Property is not nullable for class NewLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyProgram: allowSubledger.");
 
             if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class NewLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyProgram: sandbox.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyProgram: name.");
 
             if (timezone.IsSet && timezone.Value == null)
-                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class NewLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyProgram: timezone.");
 
             if (cardBased.IsSet && cardBased.Value == null)
-                throw new ArgumentNullException(nameof(cardBased), "Property is not nullable for class NewLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyProgram: cardBased.");
 
             return new NewLoyaltyProgram(title.Value, defaultValidity.Value, defaultPending.Value, allowSubledger.Value.Value, sandbox.Value.Value, name.Value, timezone.Value, description, subscribedApplications, usersPerCardLimit, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers, cardBased.Value.Value);
         }
@@ -896,7 +896,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newLoyaltyProgram"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewLoyaltyProgram newLoyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -911,23 +910,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newLoyaltyProgram"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewLoyaltyProgram newLoyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newLoyaltyProgram.Title == null)
-                throw new ArgumentNullException(nameof(newLoyaltyProgram.Title), "Property is required for class NewLoyaltyProgram.");
+                throw new JsonException("Cannot write null property NewLoyaltyProgram.Title to non-nullable JSON property 'title'.");
 
             if (newLoyaltyProgram.DefaultValidity == null)
-                throw new ArgumentNullException(nameof(newLoyaltyProgram.DefaultValidity), "Property is required for class NewLoyaltyProgram.");
+                throw new JsonException("Cannot write null property NewLoyaltyProgram.DefaultValidity to non-nullable JSON property 'defaultValidity'.");
 
             if (newLoyaltyProgram.DefaultPending == null)
-                throw new ArgumentNullException(nameof(newLoyaltyProgram.DefaultPending), "Property is required for class NewLoyaltyProgram.");
+                throw new JsonException("Cannot write null property NewLoyaltyProgram.DefaultPending to non-nullable JSON property 'defaultPending'.");
 
             if (newLoyaltyProgram.Name == null)
-                throw new ArgumentNullException(nameof(newLoyaltyProgram.Name), "Property is required for class NewLoyaltyProgram.");
+                throw new JsonException("Cannot write null property NewLoyaltyProgram.Name to non-nullable JSON property 'name'.");
 
             if (newLoyaltyProgram.Timezone == null)
-                throw new ArgumentNullException(nameof(newLoyaltyProgram.Timezone), "Property is required for class NewLoyaltyProgram.");
+                throw new JsonException("Cannot write null property NewLoyaltyProgram.Timezone to non-nullable JSON property 'timezone'.");
 
             writer.WriteString("title", newLoyaltyProgram.Title);
 

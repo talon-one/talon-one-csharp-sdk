@@ -159,22 +159,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Notification.", nameof(id));
+                throw new JsonException("Property is required for class Notification: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Notification.", nameof(name));
+                throw new JsonException("Property is required for class Notification: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class Notification.", nameof(description));
+                throw new JsonException("Property is required for class Notification: description.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Notification.");
+                throw new JsonException("Property is not nullable for class Notification: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Notification.");
+                throw new JsonException("Property is not nullable for class Notification: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Notification.");
+                throw new JsonException("Property is not nullable for class Notification: description.");
 
             return new Notification(id.Value.Value, name.Value, description.Value);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="notification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Notification notification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,14 +199,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="notification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Notification notification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (notification.Name == null)
-                throw new ArgumentNullException(nameof(notification.Name), "Property is required for class Notification.");
+                throw new JsonException("Cannot write null property Notification.Name to non-nullable JSON property 'name'.");
 
             if (notification.Description == null)
-                throw new ArgumentNullException(nameof(notification.Description), "Property is required for class Notification.");
+                throw new JsonException("Cannot write null property Notification.Description to non-nullable JSON property 'description'.");
 
             writer.WriteNumber("id", notification.Id);
 

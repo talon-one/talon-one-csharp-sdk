@@ -902,64 +902,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(id));
+                throw new JsonException("Property is required for class Attribute: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(created));
+                throw new JsonException("Property is required for class Attribute: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(accountId));
+                throw new JsonException("Property is required for class Attribute: accountId.");
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(entity));
+                throw new JsonException("Property is required for class Attribute: entity.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(name));
+                throw new JsonException("Property is required for class Attribute: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(title));
+                throw new JsonException("Property is required for class Attribute: title.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(type));
+                throw new JsonException("Property is required for class Attribute: type.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(description));
+                throw new JsonException("Property is required for class Attribute: description.");
 
             if (!suggestions.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(suggestions));
+                throw new JsonException("Property is required for class Attribute: suggestions.");
 
             if (!editable.IsSet)
-                throw new ArgumentException("Property is required for class Attribute.", nameof(editable));
+                throw new JsonException("Property is required for class Attribute: editable.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: accountId.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: entity.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: title.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: type.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: description.");
 
             if (suggestions.IsSet && suggestions.Value == null)
-                throw new ArgumentNullException(nameof(suggestions), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: suggestions.");
 
             if (editable.IsSet && editable.Value == null)
-                throw new ArgumentNullException(nameof(editable), "Property is not nullable for class Attribute.");
+                throw new JsonException("Property is not nullable for class Attribute: editable.");
 
             return new Attribute(id.Value.Value, created.Value.Value, accountId.Value.Value, entity.Value.Value, name.Value, title.Value, type.Value.Value, description.Value, suggestions.Value, editable.Value.Value, eventType, hasAllowedList, restrictedBySuggestions, subscribedApplicationsIds, subscribedCatalogsIds, allowedSubscriptions, eventTypeId);
         }
@@ -970,7 +970,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="attribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Attribute attribute, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -985,20 +984,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="attribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Attribute attribute, JsonSerializerOptions jsonSerializerOptions)
         {
             if (attribute.Name == null)
-                throw new ArgumentNullException(nameof(attribute.Name), "Property is required for class Attribute.");
+                throw new JsonException("Cannot write null property Attribute.Name to non-nullable JSON property 'name'.");
 
             if (attribute.Title == null)
-                throw new ArgumentNullException(nameof(attribute.Title), "Property is required for class Attribute.");
+                throw new JsonException("Cannot write null property Attribute.Title to non-nullable JSON property 'title'.");
 
             if (attribute.Description == null)
-                throw new ArgumentNullException(nameof(attribute.Description), "Property is required for class Attribute.");
+                throw new JsonException("Cannot write null property Attribute.Description to non-nullable JSON property 'description'.");
 
             if (attribute.Suggestions == null)
-                throw new ArgumentNullException(nameof(attribute.Suggestions), "Property is required for class Attribute.");
+                throw new JsonException("Cannot write null property Attribute.Suggestions to non-nullable JSON property 'suggestions'.");
 
             writer.WriteNumber("id", attribute.Id);
 

@@ -283,40 +283,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Role.", nameof(id));
+                throw new JsonException("Property is required for class Role: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Role.", nameof(created));
+                throw new JsonException("Property is required for class Role: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class Role.", nameof(modified));
+                throw new JsonException("Property is required for class Role: modified.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Role.", nameof(accountId));
+                throw new JsonException("Property is required for class Role: accountId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Role.", nameof(name));
+                throw new JsonException("Property is required for class Role: name.");
 
             if (!acl.IsSet)
-                throw new ArgumentException("Property is required for class Role.", nameof(acl));
+                throw new JsonException("Property is required for class Role: acl.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Role.");
+                throw new JsonException("Property is not nullable for class Role: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Role.");
+                throw new JsonException("Property is not nullable for class Role: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Role.");
+                throw new JsonException("Property is not nullable for class Role: modified.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Role.");
+                throw new JsonException("Property is not nullable for class Role: accountId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Role.");
+                throw new JsonException("Property is not nullable for class Role: name.");
 
             if (acl.IsSet && acl.Value == null)
-                throw new ArgumentNullException(nameof(acl), "Property is not nullable for class Role.");
+                throw new JsonException("Property is not nullable for class Role: acl.");
 
             return new Role(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name.Value, acl.Value, campaignGroupID, description, members);
         }
@@ -327,7 +327,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="role"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Role role, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -342,14 +341,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="role"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Role role, JsonSerializerOptions jsonSerializerOptions)
         {
             if (role.Name == null)
-                throw new ArgumentNullException(nameof(role.Name), "Property is required for class Role.");
+                throw new JsonException("Cannot write null property Role.Name to non-nullable JSON property 'name'.");
 
             if (role.Acl == null)
-                throw new ArgumentNullException(nameof(role.Acl), "Property is required for class Role.");
+                throw new JsonException("Cannot write null property Role.Acl to non-nullable JSON property 'acl'.");
 
             writer.WriteNumber("id", role.Id);
 

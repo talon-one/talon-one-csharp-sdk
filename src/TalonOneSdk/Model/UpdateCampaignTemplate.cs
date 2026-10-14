@@ -812,34 +812,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignTemplate.", nameof(name));
+                throw new JsonException("Property is required for class UpdateCampaignTemplate: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignTemplate.", nameof(description));
+                throw new JsonException("Property is required for class UpdateCampaignTemplate: description.");
 
             if (!instructions.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignTemplate.", nameof(instructions));
+                throw new JsonException("Property is required for class UpdateCampaignTemplate: instructions.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignTemplate.", nameof(state));
+                throw new JsonException("Property is required for class UpdateCampaignTemplate: state.");
 
             if (!applicationsIds.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignTemplate.", nameof(applicationsIds));
+                throw new JsonException("Property is required for class UpdateCampaignTemplate: applicationsIds.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCampaignTemplate.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignTemplate: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateCampaignTemplate.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignTemplate: description.");
 
             if (instructions.IsSet && instructions.Value == null)
-                throw new ArgumentNullException(nameof(instructions), "Property is not nullable for class UpdateCampaignTemplate.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignTemplate: instructions.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class UpdateCampaignTemplate.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignTemplate: state.");
 
             if (applicationsIds.IsSet && applicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationsIds), "Property is not nullable for class UpdateCampaignTemplate.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignTemplate: applicationsIds.");
 
             return new UpdateCampaignTemplate(name.Value, description.Value, instructions.Value, state.Value.Value, applicationsIds.Value, campaignAttributes, couponAttributes, activeRulesetId, tags, reevaluateOnReturn, features, couponSettings, couponReservationSettings, referralSettings, limits, templateParams, campaignCollections, defaultCampaignGroupId, campaignType);
         }
@@ -850,7 +850,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCampaignTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateCampaignTemplate updateCampaignTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -865,20 +864,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCampaignTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCampaignTemplate updateCampaignTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateCampaignTemplate.Name == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.Name), "Property is required for class UpdateCampaignTemplate.");
+                throw new JsonException("Cannot write null property UpdateCampaignTemplate.Name to non-nullable JSON property 'name'.");
 
             if (updateCampaignTemplate.Description == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.Description), "Property is required for class UpdateCampaignTemplate.");
+                throw new JsonException("Cannot write null property UpdateCampaignTemplate.Description to non-nullable JSON property 'description'.");
 
             if (updateCampaignTemplate.Instructions == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.Instructions), "Property is required for class UpdateCampaignTemplate.");
+                throw new JsonException("Cannot write null property UpdateCampaignTemplate.Instructions to non-nullable JSON property 'instructions'.");
 
             if (updateCampaignTemplate.ApplicationsIds == null)
-                throw new ArgumentNullException(nameof(updateCampaignTemplate.ApplicationsIds), "Property is required for class UpdateCampaignTemplate.");
+                throw new JsonException("Cannot write null property UpdateCampaignTemplate.ApplicationsIds to non-nullable JSON property 'applicationsIds'.");
 
             writer.WriteString("name", updateCampaignTemplate.Name);
 

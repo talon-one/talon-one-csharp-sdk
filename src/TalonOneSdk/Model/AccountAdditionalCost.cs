@@ -364,40 +364,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AccountAdditionalCost.", nameof(id));
+                throw new JsonException("Property is required for class AccountAdditionalCost: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class AccountAdditionalCost.", nameof(created));
+                throw new JsonException("Property is required for class AccountAdditionalCost: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class AccountAdditionalCost.", nameof(accountId));
+                throw new JsonException("Property is required for class AccountAdditionalCost: accountId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AccountAdditionalCost.", nameof(name));
+                throw new JsonException("Property is required for class AccountAdditionalCost: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class AccountAdditionalCost.", nameof(title));
+                throw new JsonException("Property is required for class AccountAdditionalCost: title.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class AccountAdditionalCost.", nameof(description));
+                throw new JsonException("Property is required for class AccountAdditionalCost: description.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AccountAdditionalCost.");
+                throw new JsonException("Property is not nullable for class AccountAdditionalCost: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class AccountAdditionalCost.");
+                throw new JsonException("Property is not nullable for class AccountAdditionalCost: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class AccountAdditionalCost.");
+                throw new JsonException("Property is not nullable for class AccountAdditionalCost: accountId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AccountAdditionalCost.");
+                throw new JsonException("Property is not nullable for class AccountAdditionalCost: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AccountAdditionalCost.");
+                throw new JsonException("Property is not nullable for class AccountAdditionalCost: title.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class AccountAdditionalCost.");
+                throw new JsonException("Property is not nullable for class AccountAdditionalCost: description.");
 
             return new AccountAdditionalCost(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, title.Value, description.Value, subscribedApplicationsIds, type);
         }
@@ -408,7 +408,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountAdditionalCost"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountAdditionalCost accountAdditionalCost, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -423,17 +422,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountAdditionalCost"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountAdditionalCost accountAdditionalCost, JsonSerializerOptions jsonSerializerOptions)
         {
             if (accountAdditionalCost.Name == null)
-                throw new ArgumentNullException(nameof(accountAdditionalCost.Name), "Property is required for class AccountAdditionalCost.");
+                throw new JsonException("Cannot write null property AccountAdditionalCost.Name to non-nullable JSON property 'name'.");
 
             if (accountAdditionalCost.Title == null)
-                throw new ArgumentNullException(nameof(accountAdditionalCost.Title), "Property is required for class AccountAdditionalCost.");
+                throw new JsonException("Cannot write null property AccountAdditionalCost.Title to non-nullable JSON property 'title'.");
 
             if (accountAdditionalCost.Description == null)
-                throw new ArgumentNullException(nameof(accountAdditionalCost.Description), "Property is required for class AccountAdditionalCost.");
+                throw new JsonException("Cannot write null property AccountAdditionalCost.Description to non-nullable JSON property 'description'.");
 
             writer.WriteNumber("id", accountAdditionalCost.Id);
 

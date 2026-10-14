@@ -31,7 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RevisionActivation" /> class.
         /// </summary>
-        /// <param name="activateAt">activateAt</param>
+        /// <param name="activateAt">Timestamp when the revision will be activated.</param>
         [JsonConstructor]
         public RevisionActivation(Option<DateTime?> activateAt = default)
         {
@@ -49,8 +49,10 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> ActivateAtOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ActivateAt
+        /// Timestamp when the revision will be activated.
         /// </summary>
+        /// <value>Timestamp when the revision will be activated.</value>
+        /* <example>2026-10-08T09:30:00Z</example> */
         [JsonPropertyName("activateAt")]
         public DateTime? ActivateAt { get { return this.ActivateAtOption.Value; } set { this.ActivateAtOption = new Option<DateTime?>(value); } }
 
@@ -150,7 +152,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="revisionActivation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RevisionActivation revisionActivation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -165,7 +166,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="revisionActivation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RevisionActivation revisionActivation, JsonSerializerOptions jsonSerializerOptions)
         {
             if (revisionActivation.ActivateAtOption.IsSet)

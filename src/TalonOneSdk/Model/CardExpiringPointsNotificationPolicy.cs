@@ -195,16 +195,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CardExpiringPointsNotificationPolicy.", nameof(name));
+                throw new JsonException("Property is required for class CardExpiringPointsNotificationPolicy: name.");
 
             if (!triggers.IsSet)
-                throw new ArgumentException("Property is required for class CardExpiringPointsNotificationPolicy.", nameof(triggers));
+                throw new JsonException("Property is required for class CardExpiringPointsNotificationPolicy: triggers.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CardExpiringPointsNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class CardExpiringPointsNotificationPolicy: name.");
 
             if (triggers.IsSet && triggers.Value == null)
-                throw new ArgumentNullException(nameof(triggers), "Property is not nullable for class CardExpiringPointsNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class CardExpiringPointsNotificationPolicy: triggers.");
 
             return new CardExpiringPointsNotificationPolicy(name.Value, triggers.Value, batchingEnabled, batchSize);
         }
@@ -215,7 +215,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardExpiringPointsNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CardExpiringPointsNotificationPolicy cardExpiringPointsNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -230,14 +229,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardExpiringPointsNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CardExpiringPointsNotificationPolicy cardExpiringPointsNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (cardExpiringPointsNotificationPolicy.Name == null)
-                throw new ArgumentNullException(nameof(cardExpiringPointsNotificationPolicy.Name), "Property is required for class CardExpiringPointsNotificationPolicy.");
+                throw new JsonException("Cannot write null property CardExpiringPointsNotificationPolicy.Name to non-nullable JSON property 'name'.");
 
             if (cardExpiringPointsNotificationPolicy.Triggers == null)
-                throw new ArgumentNullException(nameof(cardExpiringPointsNotificationPolicy.Triggers), "Property is required for class CardExpiringPointsNotificationPolicy.");
+                throw new JsonException("Cannot write null property CardExpiringPointsNotificationPolicy.Triggers to non-nullable JSON property 'triggers'.");
 
             writer.WriteString("name", cardExpiringPointsNotificationPolicy.Name);
 

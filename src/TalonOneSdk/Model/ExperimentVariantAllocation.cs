@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!experimentID.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVariantAllocation.", nameof(experimentID));
+                throw new JsonException("Property is required for class ExperimentVariantAllocation: experimentID.");
 
             if (!variantID.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVariantAllocation.", nameof(variantID));
+                throw new JsonException("Property is required for class ExperimentVariantAllocation: variantID.");
 
             if (experimentID.IsSet && experimentID.Value == null)
-                throw new ArgumentNullException(nameof(experimentID), "Property is not nullable for class ExperimentVariantAllocation.");
+                throw new JsonException("Property is not nullable for class ExperimentVariantAllocation: experimentID.");
 
             if (variantID.IsSet && variantID.Value == null)
-                throw new ArgumentNullException(nameof(variantID), "Property is not nullable for class ExperimentVariantAllocation.");
+                throw new JsonException("Property is not nullable for class ExperimentVariantAllocation: variantID.");
 
             return new ExperimentVariantAllocation(experimentID.Value.Value, variantID.Value.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentVariantAllocation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentVariantAllocation experimentVariantAllocation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,7 +181,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentVariantAllocation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentVariantAllocation experimentVariantAllocation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("experimentID", experimentVariantAllocation.ExperimentID);

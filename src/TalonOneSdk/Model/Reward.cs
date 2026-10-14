@@ -44,9 +44,11 @@ namespace TalonOneSdk.Model
         /// <param name="rule">Rule to apply.  **Note**: The &#x60;bindings&#x60; field inside the rule must not be used in this endpoint. All bindings should be defined at the reward level via the top-level &#x60;bindings&#x60; field. </param>
         /// <param name="bindings">A list of named variables created before the reward&#39;s rules are evaluated. Each binding pairs a name with a talang expression. The expression is evaluated once and its result is available by name in any rule condition or effect. Bindings must be defined outside of individual rules.</param>
         /// <param name="pointsRequired">The loyalty points required to activate the reward. Each object defines the specific loyalty program and subledger from which points are deducted when activating the reward.  **Note:** When creating a reward, the &#x60;id&#x60; of each entry is ignored and a new entry is always created. </param>
+        /// <param name="validityDuration">The duration for which the customer rewards unlocked from this reward remain active, relative to when the customer reward was unlocked.  The time format is an **integer** followed by one letter indicating the time unit.  Examples: &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  This field cannot be used in combination with &#x60;expiryDate&#x60;. If both &#x60;validityDuration&#x60; and &#x60;expiryDate&#x60; are not set, customer rewards have unlimited validity. </param>
+        /// <param name="expiryDate">Expiry date of the customer rewards unlocked from this reward. Customer rewards never expire if this is omitted and &#x60;validityDuration&#x60; is not set.  **Note:** - The date must be in the future. - This field cannot be used in combination with &#x60;validityDuration&#x60;. </param>
         /// <param name="modified">The timestamp when the reward was last updated in RFC3339 format.</param>
         [JsonConstructor]
-        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<Rule> eligibilityConditions = default, Option<Rule> rule = default, Option<List<Binding>> bindings = default, Option<List<RewardPointsRequired>> pointsRequired = default, Option<DateTime?> modified = default)
+        public Reward(long id, DateTime created, long accountId, string name, string apiName, List<long> applicationIds, bool sandbox, StatusEnum status, Option<string> description = default, Option<Rule> eligibilityConditions = default, Option<Rule> rule = default, Option<List<Binding>> bindings = default, Option<List<RewardPointsRequired>> pointsRequired = default, Option<string> validityDuration = default, Option<DateTime?> expiryDate = default, Option<DateTime?> modified = default)
         {
             Id = id;
             Created = created;
@@ -61,6 +63,8 @@ namespace TalonOneSdk.Model
             RuleOption = rule;
             BindingsOption = bindings;
             PointsRequiredOption = pointsRequired;
+            ValidityDurationOption = validityDuration;
+            ExpiryDateOption = expiryDate;
             ModifiedOption = modified;
             OnCreated();
         }
@@ -271,6 +275,36 @@ namespace TalonOneSdk.Model
         public List<RewardPointsRequired> PointsRequired { get { return this.PointsRequiredOption.Value; } set { this.PointsRequiredOption = new Option<List<RewardPointsRequired>>(value); } }
 
         /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the customer rewards unlocked from this reward remain active, relative to when the customer reward was unlocked.  The time format is an **integer** followed by one letter indicating the time unit.  Examples: &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  This field cannot be used in combination with &#x60;expiryDate&#x60;. If both &#x60;validityDuration&#x60; and &#x60;expiryDate&#x60; are not set, customer rewards have unlimited validity. 
+        /// </summary>
+        /// <value>The duration for which the customer rewards unlocked from this reward remain active, relative to when the customer reward was unlocked.  The time format is an **integer** followed by one letter indicating the time unit.  Examples: &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  This field cannot be used in combination with &#x60;expiryDate&#x60;. If both &#x60;validityDuration&#x60; and &#x60;expiryDate&#x60; are not set, customer rewards have unlimited validity. </value>
+        /* <example>3M_U</example> */
+        [JsonPropertyName("validityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ExpiryDate
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> ExpiryDateOption { get; private set; }
+
+        /// <summary>
+        /// Expiry date of the customer rewards unlocked from this reward. Customer rewards never expire if this is omitted and &#x60;validityDuration&#x60; is not set.  **Note:** - The date must be in the future. - This field cannot be used in combination with &#x60;validityDuration&#x60;. 
+        /// </summary>
+        /// <value>Expiry date of the customer rewards unlocked from this reward. Customer rewards never expire if this is omitted and &#x60;validityDuration&#x60; is not set.  **Note:** - The date must be in the future. - This field cannot be used in combination with &#x60;validityDuration&#x60;. </value>
+        /* <example>2026-12-31T00:00:00Z</example> */
+        [JsonPropertyName("expiryDate")]
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
         /// Used to track the state of Modified
         /// </summary>
         [JsonIgnore]
@@ -305,6 +339,8 @@ namespace TalonOneSdk.Model
             sb.Append("  Rule: ").Append(Rule).Append("\n");
             sb.Append("  Bindings: ").Append(Bindings).Append("\n");
             sb.Append("  PointsRequired: ").Append(PointsRequired).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
+            sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  Modified: ").Append(Modified).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -354,6 +390,11 @@ namespace TalonOneSdk.Model
         public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize ExpiryDate
+        /// </summary>
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// The format to use to serialize Modified
         /// </summary>
         public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
@@ -388,6 +429,8 @@ namespace TalonOneSdk.Model
             Option<Rule> rule = default;
             Option<List<Binding>> bindings = default;
             Option<List<RewardPointsRequired>> pointsRequired = default;
+            Option<string> validityDuration = default;
+            Option<DateTime?> expiryDate = default;
             Option<DateTime?> modified = default;
 
             while (utf8JsonReader.Read())
@@ -451,6 +494,12 @@ namespace TalonOneSdk.Model
                         case "pointsRequired":
                             pointsRequired = new Option<List<RewardPointsRequired>>(JsonSerializer.Deserialize<List<RewardPointsRequired>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "validityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "expiryDate":
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "modified":
                             modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -461,54 +510,54 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Reward.", nameof(id));
+                throw new JsonException("Property is required for class Reward: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Reward.", nameof(created));
+                throw new JsonException("Property is required for class Reward: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Reward.", nameof(accountId));
+                throw new JsonException("Property is required for class Reward: accountId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Reward.", nameof(name));
+                throw new JsonException("Property is required for class Reward: name.");
 
             if (!apiName.IsSet)
-                throw new ArgumentException("Property is required for class Reward.", nameof(apiName));
+                throw new JsonException("Property is required for class Reward: apiName.");
 
             if (!applicationIds.IsSet)
-                throw new ArgumentException("Property is required for class Reward.", nameof(applicationIds));
+                throw new JsonException("Property is required for class Reward: applicationIds.");
 
             if (!sandbox.IsSet)
-                throw new ArgumentException("Property is required for class Reward.", nameof(sandbox));
+                throw new JsonException("Property is required for class Reward: sandbox.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Reward.", nameof(status));
+                throw new JsonException("Property is required for class Reward: status.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Reward.");
+                throw new JsonException("Property is not nullable for class Reward: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Reward.");
+                throw new JsonException("Property is not nullable for class Reward: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Reward.");
+                throw new JsonException("Property is not nullable for class Reward: accountId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Reward.");
+                throw new JsonException("Property is not nullable for class Reward: name.");
 
             if (apiName.IsSet && apiName.Value == null)
-                throw new ArgumentNullException(nameof(apiName), "Property is not nullable for class Reward.");
+                throw new JsonException("Property is not nullable for class Reward: apiName.");
 
             if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class Reward.");
+                throw new JsonException("Property is not nullable for class Reward: applicationIds.");
 
             if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class Reward.");
+                throw new JsonException("Property is not nullable for class Reward: sandbox.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class Reward.");
+                throw new JsonException("Property is not nullable for class Reward: status.");
 
-            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, eligibilityConditions, rule, bindings, pointsRequired, modified);
+            return new Reward(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, apiName.Value, applicationIds.Value, sandbox.Value.Value, status.Value.Value, description, eligibilityConditions, rule, bindings, pointsRequired, validityDuration, expiryDate, modified);
         }
 
         /// <summary>
@@ -517,7 +566,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="reward"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Reward reward, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -532,17 +580,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="reward"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Reward reward, JsonSerializerOptions jsonSerializerOptions)
         {
             if (reward.Name == null)
-                throw new ArgumentNullException(nameof(reward.Name), "Property is required for class Reward.");
+                throw new JsonException("Cannot write null property Reward.Name to non-nullable JSON property 'name'.");
 
             if (reward.ApiName == null)
-                throw new ArgumentNullException(nameof(reward.ApiName), "Property is required for class Reward.");
+                throw new JsonException("Cannot write null property Reward.ApiName to non-nullable JSON property 'apiName'.");
 
             if (reward.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(reward.ApplicationIds), "Property is required for class Reward.");
+                throw new JsonException("Cannot write null property Reward.ApplicationIds to non-nullable JSON property 'applicationIds'.");
 
             writer.WriteNumber("id", reward.Id);
 
@@ -583,6 +630,12 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("pointsRequired");
                 JsonSerializer.Serialize(writer, reward.PointsRequired, jsonSerializerOptions);
             }
+            if (reward.ValidityDurationOption.IsSet)
+                writer.WriteString("validityDuration", reward.ValidityDuration);
+
+            if (reward.ExpiryDateOption.IsSet)
+                writer.WriteString("expiryDate", reward.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+
             if (reward.ModifiedOption.IsSet)
                 writer.WriteString("modified", reward.ModifiedOption.Value.Value.ToString(ModifiedFormat));
         }

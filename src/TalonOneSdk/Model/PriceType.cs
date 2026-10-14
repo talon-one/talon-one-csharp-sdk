@@ -286,46 +286,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PriceType.", nameof(id));
+                throw new JsonException("Property is required for class PriceType: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class PriceType.", nameof(created));
+                throw new JsonException("Property is required for class PriceType: created.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class PriceType.", nameof(name));
+                throw new JsonException("Property is required for class PriceType: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class PriceType.", nameof(title));
+                throw new JsonException("Property is required for class PriceType: title.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class PriceType.", nameof(modified));
+                throw new JsonException("Property is required for class PriceType: modified.");
 
             if (!subscribedCatalogsIds.IsSet)
-                throw new ArgumentException("Property is required for class PriceType.", nameof(subscribedCatalogsIds));
+                throw new JsonException("Property is required for class PriceType: subscribedCatalogsIds.");
 
             if (!targetedAudiencesIds.IsSet)
-                throw new ArgumentException("Property is required for class PriceType.", nameof(targetedAudiencesIds));
+                throw new JsonException("Property is required for class PriceType: targetedAudiencesIds.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class PriceType.");
+                throw new JsonException("Property is not nullable for class PriceType: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class PriceType.");
+                throw new JsonException("Property is not nullable for class PriceType: created.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class PriceType.");
+                throw new JsonException("Property is not nullable for class PriceType: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class PriceType.");
+                throw new JsonException("Property is not nullable for class PriceType: title.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class PriceType.");
+                throw new JsonException("Property is not nullable for class PriceType: modified.");
 
             if (subscribedCatalogsIds.IsSet && subscribedCatalogsIds.Value == null)
-                throw new ArgumentNullException(nameof(subscribedCatalogsIds), "Property is not nullable for class PriceType.");
+                throw new JsonException("Property is not nullable for class PriceType: subscribedCatalogsIds.");
 
             if (targetedAudiencesIds.IsSet && targetedAudiencesIds.Value == null)
-                throw new ArgumentNullException(nameof(targetedAudiencesIds), "Property is not nullable for class PriceType.");
+                throw new JsonException("Property is not nullable for class PriceType: targetedAudiencesIds.");
 
             return new PriceType(id.Value.Value, created.Value.Value, name.Value, title.Value, modified.Value.Value, subscribedCatalogsIds.Value, targetedAudiencesIds.Value, accountId, description);
         }
@@ -336,7 +336,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="priceType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PriceType priceType, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -351,20 +350,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="priceType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PriceType priceType, JsonSerializerOptions jsonSerializerOptions)
         {
             if (priceType.Name == null)
-                throw new ArgumentNullException(nameof(priceType.Name), "Property is required for class PriceType.");
+                throw new JsonException("Cannot write null property PriceType.Name to non-nullable JSON property 'name'.");
 
             if (priceType.Title == null)
-                throw new ArgumentNullException(nameof(priceType.Title), "Property is required for class PriceType.");
+                throw new JsonException("Cannot write null property PriceType.Title to non-nullable JSON property 'title'.");
 
             if (priceType.SubscribedCatalogsIds == null)
-                throw new ArgumentNullException(nameof(priceType.SubscribedCatalogsIds), "Property is required for class PriceType.");
+                throw new JsonException("Cannot write null property PriceType.SubscribedCatalogsIds to non-nullable JSON property 'subscribedCatalogsIds'.");
 
             if (priceType.TargetedAudiencesIds == null)
-                throw new ArgumentNullException(nameof(priceType.TargetedAudiencesIds), "Property is required for class PriceType.");
+                throw new JsonException("Cannot write null property PriceType.TargetedAudiencesIds to non-nullable JSON property 'targetedAudiencesIds'.");
 
             writer.WriteNumber("id", priceType.Id);
 

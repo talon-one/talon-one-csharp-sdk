@@ -206,16 +206,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class GeoJSONPoint.", nameof(type));
+                throw new JsonException("Property is required for class GeoJSONPoint: type.");
 
             if (!coordinates.IsSet)
-                throw new ArgumentException("Property is required for class GeoJSONPoint.", nameof(coordinates));
+                throw new JsonException("Property is required for class GeoJSONPoint: coordinates.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class GeoJSONPoint.");
+                throw new JsonException("Property is not nullable for class GeoJSONPoint: type.");
 
             if (coordinates.IsSet && coordinates.Value == null)
-                throw new ArgumentNullException(nameof(coordinates), "Property is not nullable for class GeoJSONPoint.");
+                throw new JsonException("Property is not nullable for class GeoJSONPoint: coordinates.");
 
             return new GeoJSONPoint(type.Value.Value, coordinates.Value);
         }
@@ -226,7 +226,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="geoJSONPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GeoJSONPoint geoJSONPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -241,11 +240,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="geoJSONPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GeoJSONPoint geoJSONPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             if (geoJSONPoint.Coordinates == null)
-                throw new ArgumentNullException(nameof(geoJSONPoint.Coordinates), "Property is required for class GeoJSONPoint.");
+                throw new JsonException("Cannot write null property GeoJSONPoint.Coordinates to non-nullable JSON property 'coordinates'.");
 
             var typeRawValue = GeoJSONPoint.TypeEnumToJsonValue(geoJSONPoint.Type);
             writer.WriteString("type", typeRawValue);

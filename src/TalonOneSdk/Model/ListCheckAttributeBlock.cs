@@ -240,7 +240,7 @@ namespace TalonOneSdk.Model
             }
 
             if (!values.IsSet)
-                throw new ArgumentException("Property is required for class ListCheckAttributeBlock.", nameof(values));
+                throw new JsonException("Property is required for class ListCheckAttributeBlock: values.");
 
             return new ListCheckAttributeBlock(varOperator, values.Value);
         }
@@ -251,7 +251,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listCheckAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListCheckAttributeBlock listCheckAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -266,7 +265,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listCheckAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListCheckAttributeBlock listCheckAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (listCheckAttributeBlock.OperatorOption.IsSet)

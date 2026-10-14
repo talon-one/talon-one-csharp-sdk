@@ -1015,40 +1015,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgram.", nameof(id));
+                throw new JsonException("Property is required for class LoyaltyProgram: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgram.", nameof(created));
+                throw new JsonException("Property is required for class LoyaltyProgram: created.");
 
             if (!accountID.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgram.", nameof(accountID));
+                throw new JsonException("Property is required for class LoyaltyProgram: accountID.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgram.", nameof(name));
+                throw new JsonException("Property is required for class LoyaltyProgram: name.");
 
             if (!timezone.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgram.", nameof(timezone));
+                throw new JsonException("Property is required for class LoyaltyProgram: timezone.");
 
             if (!cardBased.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgram.", nameof(cardBased));
+                throw new JsonException("Property is required for class LoyaltyProgram: cardBased.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: created.");
 
             if (accountID.IsSet && accountID.Value == null)
-                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class LoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: accountID.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: name.");
 
             if (timezone.IsSet && timezone.Value == null)
-                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class LoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: timezone.");
 
             if (cardBased.IsSet && cardBased.Value == null)
-                throw new ArgumentNullException(nameof(cardBased), "Property is not nullable for class LoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: cardBased.");
 
             return new LoyaltyProgram(id.Value.Value, created.Value.Value, accountID.Value.Value, name.Value, timezone.Value, title, description, subscribedApplications, defaultValidity, defaultPending, allowSubledger, usersPerCardLimit, sandbox, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers, cardBased.Value.Value, canUpdateTiers, canUpdateTierExpirationPolicy, canUpgradeToAdvancedTiers, canUpdateSubledgers);
         }
@@ -1059,7 +1059,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyProgram"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyProgram loyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -1074,14 +1073,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyProgram"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyProgram loyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyProgram.Name == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.Name), "Property is required for class LoyaltyProgram.");
+                throw new JsonException("Cannot write null property LoyaltyProgram.Name to non-nullable JSON property 'name'.");
 
             if (loyaltyProgram.Timezone == null)
-                throw new ArgumentNullException(nameof(loyaltyProgram.Timezone), "Property is required for class LoyaltyProgram.");
+                throw new JsonException("Cannot write null property LoyaltyProgram.Timezone to non-nullable JSON property 'timezone'.");
 
             writer.WriteNumber("id", loyaltyProgram.Id);
 

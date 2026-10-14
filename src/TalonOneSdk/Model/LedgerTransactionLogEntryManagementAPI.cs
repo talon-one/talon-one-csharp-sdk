@@ -535,64 +535,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: transactionUUID.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(created));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: created.");
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(programId));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: programId.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(type));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: type.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(name));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: name.");
 
             if (!startDate.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(startDate));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: startDate.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(expiryDate));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: expiryDate.");
 
             if (!subledgerId.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(subledgerId));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: subledgerId.");
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(amount));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: amount.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LedgerTransactionLogEntryManagementAPI.", nameof(id));
+                throw new JsonException("Property is required for class LedgerTransactionLogEntryManagementAPI: id.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: transactionUUID.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: created.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: programId.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: name.");
 
             if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: startDate.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: expiryDate.");
 
             if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: subledgerId.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: amount.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Property is not nullable for class LedgerTransactionLogEntryManagementAPI: id.");
 
             return new LedgerTransactionLogEntryManagementAPI(transactionUUID.Value, created.Value.Value, programId.Value.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, customerSessionId, storeIntegrationId, rulesetId, ruleName, flags, validityDuration, referenceTransactionUUIDs);
         }
@@ -603,7 +603,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ledgerTransactionLogEntryManagementAPI"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LedgerTransactionLogEntryManagementAPI ledgerTransactionLogEntryManagementAPI, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -618,23 +617,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ledgerTransactionLogEntryManagementAPI"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LedgerTransactionLogEntryManagementAPI ledgerTransactionLogEntryManagementAPI, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ledgerTransactionLogEntryManagementAPI.TransactionUUID == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryManagementAPI.TransactionUUID), "Property is required for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Cannot write null property LedgerTransactionLogEntryManagementAPI.TransactionUUID to non-nullable JSON property 'transactionUUID'.");
 
             if (ledgerTransactionLogEntryManagementAPI.Name == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryManagementAPI.Name), "Property is required for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Cannot write null property LedgerTransactionLogEntryManagementAPI.Name to non-nullable JSON property 'name'.");
 
             if (ledgerTransactionLogEntryManagementAPI.StartDate == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryManagementAPI.StartDate), "Property is required for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Cannot write null property LedgerTransactionLogEntryManagementAPI.StartDate to non-nullable JSON property 'startDate'.");
 
             if (ledgerTransactionLogEntryManagementAPI.ExpiryDate == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryManagementAPI.ExpiryDate), "Property is required for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Cannot write null property LedgerTransactionLogEntryManagementAPI.ExpiryDate to non-nullable JSON property 'expiryDate'.");
 
             if (ledgerTransactionLogEntryManagementAPI.SubledgerId == null)
-                throw new ArgumentNullException(nameof(ledgerTransactionLogEntryManagementAPI.SubledgerId), "Property is required for class LedgerTransactionLogEntryManagementAPI.");
+                throw new JsonException("Cannot write null property LedgerTransactionLogEntryManagementAPI.SubledgerId to non-nullable JSON property 'subledgerId'.");
 
             writer.WriteString("transactionUUID", ledgerTransactionLogEntryManagementAPI.TransactionUUID);
 

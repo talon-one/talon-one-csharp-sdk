@@ -332,28 +332,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class MultipleAudiencesItem.", nameof(id));
+                throw new JsonException("Property is required for class MultipleAudiencesItem: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class MultipleAudiencesItem.", nameof(created));
+                throw new JsonException("Property is required for class MultipleAudiencesItem: created.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class MultipleAudiencesItem.", nameof(name));
+                throw new JsonException("Property is required for class MultipleAudiencesItem: name.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class MultipleAudiencesItem.", nameof(status));
+                throw new JsonException("Property is required for class MultipleAudiencesItem: status.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class MultipleAudiencesItem.");
+                throw new JsonException("Property is not nullable for class MultipleAudiencesItem: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class MultipleAudiencesItem.");
+                throw new JsonException("Property is not nullable for class MultipleAudiencesItem: created.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class MultipleAudiencesItem.");
+                throw new JsonException("Property is not nullable for class MultipleAudiencesItem: name.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class MultipleAudiencesItem.");
+                throw new JsonException("Property is not nullable for class MultipleAudiencesItem: status.");
 
             return new MultipleAudiencesItem(id.Value.Value, created.Value.Value, name.Value, status.Value.Value, subscribedApplicationsIds, integrationId);
         }
@@ -364,7 +364,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleAudiencesItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MultipleAudiencesItem multipleAudiencesItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -379,11 +378,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleAudiencesItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MultipleAudiencesItem multipleAudiencesItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (multipleAudiencesItem.Name == null)
-                throw new ArgumentNullException(nameof(multipleAudiencesItem.Name), "Property is required for class MultipleAudiencesItem.");
+                throw new JsonException("Cannot write null property MultipleAudiencesItem.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", multipleAudiencesItem.Id);
 

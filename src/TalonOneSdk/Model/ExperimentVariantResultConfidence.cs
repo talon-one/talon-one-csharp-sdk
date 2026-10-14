@@ -162,22 +162,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!avgSessionValue.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVariantResultConfidence.", nameof(avgSessionValue));
+                throw new JsonException("Property is required for class ExperimentVariantResultConfidence: avgSessionValue.");
 
             if (!avgDiscountedSessionValue.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVariantResultConfidence.", nameof(avgDiscountedSessionValue));
+                throw new JsonException("Property is required for class ExperimentVariantResultConfidence: avgDiscountedSessionValue.");
 
             if (!avgItemsPerSession.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentVariantResultConfidence.", nameof(avgItemsPerSession));
+                throw new JsonException("Property is required for class ExperimentVariantResultConfidence: avgItemsPerSession.");
 
             if (avgSessionValue.IsSet && avgSessionValue.Value == null)
-                throw new ArgumentNullException(nameof(avgSessionValue), "Property is not nullable for class ExperimentVariantResultConfidence.");
+                throw new JsonException("Property is not nullable for class ExperimentVariantResultConfidence: avgSessionValue.");
 
             if (avgDiscountedSessionValue.IsSet && avgDiscountedSessionValue.Value == null)
-                throw new ArgumentNullException(nameof(avgDiscountedSessionValue), "Property is not nullable for class ExperimentVariantResultConfidence.");
+                throw new JsonException("Property is not nullable for class ExperimentVariantResultConfidence: avgDiscountedSessionValue.");
 
             if (avgItemsPerSession.IsSet && avgItemsPerSession.Value == null)
-                throw new ArgumentNullException(nameof(avgItemsPerSession), "Property is not nullable for class ExperimentVariantResultConfidence.");
+                throw new JsonException("Property is not nullable for class ExperimentVariantResultConfidence: avgItemsPerSession.");
 
             return new ExperimentVariantResultConfidence(avgSessionValue.Value.Value, avgDiscountedSessionValue.Value.Value, avgItemsPerSession.Value.Value);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentVariantResultConfidence"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentVariantResultConfidence experimentVariantResultConfidence, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,7 +202,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentVariantResultConfidence"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentVariantResultConfidence experimentVariantResultConfidence, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("avgSessionValue", experimentVariantResultConfidence.AvgSessionValue);

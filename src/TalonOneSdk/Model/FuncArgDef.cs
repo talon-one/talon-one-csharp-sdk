@@ -282,10 +282,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class FuncArgDef.", nameof(type));
+                throw new JsonException("Property is required for class FuncArgDef: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FuncArgDef.");
+                throw new JsonException("Property is not nullable for class FuncArgDef: type.");
 
             return new FuncArgDef(type.Value.Value, description);
         }
@@ -296,7 +296,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="funcArgDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FuncArgDef funcArgDef, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -311,7 +310,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="funcArgDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FuncArgDef funcArgDef, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = FuncArgDef.TypeEnumToJsonValue(funcArgDef.Type);

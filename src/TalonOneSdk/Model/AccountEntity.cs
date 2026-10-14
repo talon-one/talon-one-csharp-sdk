@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class AccountEntity.", nameof(accountId));
+                throw new JsonException("Property is required for class AccountEntity: accountId.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class AccountEntity.");
+                throw new JsonException("Property is not nullable for class AccountEntity: accountId.");
 
             return new AccountEntity(accountId.Value.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountEntity accountEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,7 +160,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountEntity accountEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("accountId", accountEntity.AccountId);

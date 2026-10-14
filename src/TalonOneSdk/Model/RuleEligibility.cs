@@ -49,7 +49,7 @@ namespace TalonOneSdk.Model
         /// Indicates whether the customer was eligible for the rule in the current session, based on whether all of the rule&#39;s conditions were met.
         /// </summary>
         /// <value>Indicates whether the customer was eligible for the rule in the current session, based on whether all of the rule&#39;s conditions were met.</value>
-        /* <example>true</example> */
+        /* <example>false</example> */
         [JsonPropertyName("passed")]
         public bool Passed { get; set; }
 
@@ -64,6 +64,7 @@ namespace TalonOneSdk.Model
         /// The coupon code used to check a customer&#39;s eligibility for the rule in the current session, if applicable.
         /// </summary>
         /// <value>The coupon code used to check a customer&#39;s eligibility for the rule in the current session, if applicable.</value>
+        /* <example>XMAS-20-2021</example> */
         [JsonPropertyName("couponCode")]
         public string CouponCode { get { return this.CouponCodeOption.Value; } set { this.CouponCodeOption = new Option<string>(value); } }
 
@@ -174,10 +175,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!passed.IsSet)
-                throw new ArgumentException("Property is required for class RuleEligibility.", nameof(passed));
+                throw new JsonException("Property is required for class RuleEligibility: passed.");
 
             if (passed.IsSet && passed.Value == null)
-                throw new ArgumentNullException(nameof(passed), "Property is not nullable for class RuleEligibility.");
+                throw new JsonException("Property is not nullable for class RuleEligibility: passed.");
 
             return new RuleEligibility(passed.Value.Value, couponCode, details);
         }
@@ -188,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RuleEligibility ruleEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,7 +203,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RuleEligibility ruleEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteBoolean("passed", ruleEligibility.Passed);

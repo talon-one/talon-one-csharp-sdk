@@ -249,22 +249,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class Rule.", nameof(title));
+                throw new JsonException("Property is required for class Rule: title.");
 
             if (!condition.IsSet)
-                throw new ArgumentException("Property is required for class Rule.", nameof(condition));
+                throw new JsonException("Property is required for class Rule: condition.");
 
             if (!effects.IsSet)
-                throw new ArgumentException("Property is required for class Rule.", nameof(effects));
+                throw new JsonException("Property is required for class Rule: effects.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Rule.");
+                throw new JsonException("Property is not nullable for class Rule: title.");
 
             if (condition.IsSet && condition.Value == null)
-                throw new ArgumentNullException(nameof(condition), "Property is not nullable for class Rule.");
+                throw new JsonException("Property is not nullable for class Rule: condition.");
 
             if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class Rule.");
+                throw new JsonException("Property is not nullable for class Rule: effects.");
 
             return new Rule(title.Value, condition.Value, effects.Value, id, parentId, description, bindings);
         }
@@ -275,7 +275,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rule"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Rule rule, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -290,17 +289,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rule"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Rule rule, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rule.Title == null)
-                throw new ArgumentNullException(nameof(rule.Title), "Property is required for class Rule.");
+                throw new JsonException("Cannot write null property Rule.Title to non-nullable JSON property 'title'.");
 
             if (rule.Condition == null)
-                throw new ArgumentNullException(nameof(rule.Condition), "Property is required for class Rule.");
+                throw new JsonException("Cannot write null property Rule.Condition to non-nullable JSON property 'condition'.");
 
             if (rule.Effects == null)
-                throw new ArgumentNullException(nameof(rule.Effects), "Property is required for class Rule.");
+                throw new JsonException("Cannot write null property Rule.Effects to non-nullable JSON property 'effects'.");
 
             writer.WriteString("title", rule.Title);
 

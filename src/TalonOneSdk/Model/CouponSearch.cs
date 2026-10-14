@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class CouponSearch.", nameof(attributes));
+                throw new JsonException("Property is required for class CouponSearch: attributes.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CouponSearch.");
+                throw new JsonException("Property is not nullable for class CouponSearch: attributes.");
 
             return new CouponSearch(attributes.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponSearch couponSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponSearch couponSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             if (couponSearch.Attributes == null)
-                throw new ArgumentNullException(nameof(couponSearch.Attributes), "Property is required for class CouponSearch.");
+                throw new JsonException("Cannot write null property CouponSearch.Attributes to non-nullable JSON property 'attributes'.");
 
             writer.WritePropertyName("attributes");
             JsonSerializer.Serialize(writer, couponSearch.Attributes, jsonSerializerOptions);

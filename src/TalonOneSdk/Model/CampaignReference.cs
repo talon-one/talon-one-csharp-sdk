@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignReference.", nameof(id));
+                throw new JsonException("Property is required for class CampaignReference: id.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignReference.", nameof(applicationId));
+                throw new JsonException("Property is required for class CampaignReference: applicationId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignReference.");
+                throw new JsonException("Property is not nullable for class CampaignReference: id.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignReference.");
+                throw new JsonException("Property is not nullable for class CampaignReference: applicationId.");
 
             return new CampaignReference(id.Value.Value, applicationId.Value.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignReference campaignReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,7 +181,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignReference campaignReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", campaignReference.Id);

@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listCampaignStoreBudgetLimits200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListCampaignStoreBudgetLimits200Response listCampaignStoreBudgetLimits200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,7 +159,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listCampaignStoreBudgetLimits200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListCampaignStoreBudgetLimits200Response listCampaignStoreBudgetLimits200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (listCampaignStoreBudgetLimits200Response.DataOption.IsSet)

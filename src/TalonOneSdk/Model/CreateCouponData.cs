@@ -298,28 +298,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!typeOfChange.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponData.", nameof(typeOfChange));
+                throw new JsonException("Property is required for class CreateCouponData: TypeOfChange.");
 
             if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponData.", nameof(operation));
+                throw new JsonException("Property is required for class CreateCouponData: Operation.");
 
             if (!employeeName.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponData.", nameof(employeeName));
+                throw new JsonException("Property is required for class CreateCouponData: EmployeeName.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponData.", nameof(notificationType));
+                throw new JsonException("Property is required for class CreateCouponData: NotificationType.");
 
             if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CreateCouponData.");
+                throw new JsonException("Property is not nullable for class CreateCouponData: TypeOfChange.");
 
             if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class CreateCouponData.");
+                throw new JsonException("Property is not nullable for class CreateCouponData: Operation.");
 
             if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CreateCouponData.");
+                throw new JsonException("Property is not nullable for class CreateCouponData: EmployeeName.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CreateCouponData.");
+                throw new JsonException("Property is not nullable for class CreateCouponData: NotificationType.");
 
             return new CreateCouponData(typeOfChange.Value, operation.Value, employeeName.Value, notificationType.Value.Value, data, totalResultSize, batchID);
         }
@@ -330,7 +330,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createCouponData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCouponData createCouponData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -345,17 +344,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createCouponData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCouponData createCouponData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createCouponData.TypeOfChange == null)
-                throw new ArgumentNullException(nameof(createCouponData.TypeOfChange), "Property is required for class CreateCouponData.");
+                throw new JsonException("Cannot write null property CreateCouponData.TypeOfChange to non-nullable JSON property 'TypeOfChange'.");
 
             if (createCouponData.Operation == null)
-                throw new ArgumentNullException(nameof(createCouponData.Operation), "Property is required for class CreateCouponData.");
+                throw new JsonException("Cannot write null property CreateCouponData.Operation to non-nullable JSON property 'Operation'.");
 
             if (createCouponData.EmployeeName == null)
-                throw new ArgumentNullException(nameof(createCouponData.EmployeeName), "Property is required for class CreateCouponData.");
+                throw new JsonException("Cannot write null property CreateCouponData.EmployeeName to non-nullable JSON property 'EmployeeName'.");
 
             writer.WriteString("TypeOfChange", createCouponData.TypeOfChange);
 

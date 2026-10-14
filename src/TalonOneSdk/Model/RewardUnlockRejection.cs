@@ -146,16 +146,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class RewardUnlockRejection.", nameof(message));
+                throw new JsonException("Property is required for class RewardUnlockRejection: message.");
 
             if (!ruleFailureReasons.IsSet)
-                throw new ArgumentException("Property is required for class RewardUnlockRejection.", nameof(ruleFailureReasons));
+                throw new JsonException("Property is required for class RewardUnlockRejection: ruleFailureReasons.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class RewardUnlockRejection.");
+                throw new JsonException("Property is not nullable for class RewardUnlockRejection: message.");
 
             if (ruleFailureReasons.IsSet && ruleFailureReasons.Value == null)
-                throw new ArgumentNullException(nameof(ruleFailureReasons), "Property is not nullable for class RewardUnlockRejection.");
+                throw new JsonException("Property is not nullable for class RewardUnlockRejection: ruleFailureReasons.");
 
             return new RewardUnlockRejection(message.Value, ruleFailureReasons.Value);
         }
@@ -166,7 +166,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardUnlockRejection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RewardUnlockRejection rewardUnlockRejection, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -181,14 +180,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardUnlockRejection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RewardUnlockRejection rewardUnlockRejection, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rewardUnlockRejection.Message == null)
-                throw new ArgumentNullException(nameof(rewardUnlockRejection.Message), "Property is required for class RewardUnlockRejection.");
+                throw new JsonException("Cannot write null property RewardUnlockRejection.Message to non-nullable JSON property 'message'.");
 
             if (rewardUnlockRejection.RuleFailureReasons == null)
-                throw new ArgumentNullException(nameof(rewardUnlockRejection.RuleFailureReasons), "Property is required for class RewardUnlockRejection.");
+                throw new JsonException("Cannot write null property RewardUnlockRejection.RuleFailureReasons to non-nullable JSON property 'ruleFailureReasons'.");
 
             writer.WriteString("message", rewardUnlockRejection.Message);
 

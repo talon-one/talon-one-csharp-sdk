@@ -215,28 +215,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SlotDef.", nameof(name));
+                throw new JsonException("Property is required for class SlotDef: name.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SlotDef.", nameof(type));
+                throw new JsonException("Property is required for class SlotDef: type.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class SlotDef.", nameof(title));
+                throw new JsonException("Property is required for class SlotDef: title.");
 
             if (!writable.IsSet)
-                throw new ArgumentException("Property is required for class SlotDef.", nameof(writable));
+                throw new JsonException("Property is required for class SlotDef: writable.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SlotDef.");
+                throw new JsonException("Property is not nullable for class SlotDef: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class SlotDef.");
+                throw new JsonException("Property is not nullable for class SlotDef: type.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class SlotDef.");
+                throw new JsonException("Property is not nullable for class SlotDef: title.");
 
             if (writable.IsSet && writable.Value == null)
-                throw new ArgumentNullException(nameof(writable), "Property is not nullable for class SlotDef.");
+                throw new JsonException("Property is not nullable for class SlotDef: writable.");
 
             return new SlotDef(name.Value, type.Value, title.Value, writable.Value.Value, description, help);
         }
@@ -247,7 +247,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="slotDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SlotDef slotDef, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -262,17 +261,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="slotDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SlotDef slotDef, JsonSerializerOptions jsonSerializerOptions)
         {
             if (slotDef.Name == null)
-                throw new ArgumentNullException(nameof(slotDef.Name), "Property is required for class SlotDef.");
+                throw new JsonException("Cannot write null property SlotDef.Name to non-nullable JSON property 'name'.");
 
             if (slotDef.Type == null)
-                throw new ArgumentNullException(nameof(slotDef.Type), "Property is required for class SlotDef.");
+                throw new JsonException("Cannot write null property SlotDef.Type to non-nullable JSON property 'type'.");
 
             if (slotDef.Title == null)
-                throw new ArgumentNullException(nameof(slotDef.Title), "Property is required for class SlotDef.");
+                throw new JsonException("Cannot write null property SlotDef.Title to non-nullable JSON property 'title'.");
 
             writer.WriteString("name", slotDef.Name);
 

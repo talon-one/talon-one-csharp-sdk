@@ -243,25 +243,25 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class TemplateParameter.", nameof(name));
+                throw new JsonException("Property is required for class TemplateParameter: name.");
 
             if (!valueType.IsSet)
-                throw new ArgumentException("Property is required for class TemplateParameter.", nameof(valueType));
+                throw new JsonException("Property is required for class TemplateParameter: valueType.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class TemplateParameter.", nameof(description));
+                throw new JsonException("Property is required for class TemplateParameter: description.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class TemplateParameter.", nameof(value));
+                throw new JsonException("Property is required for class TemplateParameter: value.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class TemplateParameter.");
+                throw new JsonException("Property is not nullable for class TemplateParameter: name.");
 
             if (valueType.IsSet && valueType.Value == null)
-                throw new ArgumentNullException(nameof(valueType), "Property is not nullable for class TemplateParameter.");
+                throw new JsonException("Property is not nullable for class TemplateParameter: valueType.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class TemplateParameter.");
+                throw new JsonException("Property is not nullable for class TemplateParameter: description.");
 
             return new TemplateParameter(name.Value, valueType.Value, description.Value, value.Value, minValue, maxValue, attribute);
         }
@@ -272,7 +272,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="templateParameter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TemplateParameter templateParameter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -287,17 +286,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="templateParameter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TemplateParameter templateParameter, JsonSerializerOptions jsonSerializerOptions)
         {
             if (templateParameter.Name == null)
-                throw new ArgumentNullException(nameof(templateParameter.Name), "Property is required for class TemplateParameter.");
+                throw new JsonException("Cannot write null property TemplateParameter.Name to non-nullable JSON property 'name'.");
 
             if (templateParameter.ValueType == null)
-                throw new ArgumentNullException(nameof(templateParameter.ValueType), "Property is required for class TemplateParameter.");
+                throw new JsonException("Cannot write null property TemplateParameter.ValueType to non-nullable JSON property 'valueType'.");
 
             if (templateParameter.Description == null)
-                throw new ArgumentNullException(nameof(templateParameter.Description), "Property is required for class TemplateParameter.");
+                throw new JsonException("Cannot write null property TemplateParameter.Description to non-nullable JSON property 'description'.");
 
             writer.WriteString("name", templateParameter.Name);
 

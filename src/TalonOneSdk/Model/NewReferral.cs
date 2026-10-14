@@ -285,16 +285,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class NewReferral.", nameof(campaignId));
+                throw new JsonException("Property is required for class NewReferral: campaignId.");
 
             if (!advocateProfileIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class NewReferral.", nameof(advocateProfileIntegrationId));
+                throw new JsonException("Property is required for class NewReferral: advocateProfileIntegrationId.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class NewReferral.");
+                throw new JsonException("Property is not nullable for class NewReferral: campaignId.");
 
             if (advocateProfileIntegrationId.IsSet && advocateProfileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(advocateProfileIntegrationId), "Property is not nullable for class NewReferral.");
+                throw new JsonException("Property is not nullable for class NewReferral: advocateProfileIntegrationId.");
 
             return new NewReferral(campaignId.Value.Value, advocateProfileIntegrationId.Value, startDate, expiryDate, usageLimit, friendProfileIntegrationId, attributes);
         }
@@ -305,7 +305,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newReferral"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewReferral newReferral, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -320,11 +319,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newReferral"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewReferral newReferral, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newReferral.AdvocateProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(newReferral.AdvocateProfileIntegrationId), "Property is required for class NewReferral.");
+                throw new JsonException("Cannot write null property NewReferral.AdvocateProfileIntegrationId to non-nullable JSON property 'advocateProfileIntegrationId'.");
 
             writer.WriteNumber("campaignId", newReferral.CampaignId);
 

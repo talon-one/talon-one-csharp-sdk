@@ -478,34 +478,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class EffectEntity.", nameof(campaignId));
+                throw new JsonException("Property is required for class EffectEntity: campaignId.");
 
             if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class EffectEntity.", nameof(rulesetId));
+                throw new JsonException("Property is required for class EffectEntity: rulesetId.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class EffectEntity.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class EffectEntity: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class EffectEntity.", nameof(ruleName));
+                throw new JsonException("Property is required for class EffectEntity: ruleName.");
 
             if (!effectType.IsSet)
-                throw new ArgumentException("Property is required for class EffectEntity.", nameof(effectType));
+                throw new JsonException("Property is required for class EffectEntity: effectType.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectEntity.");
+                throw new JsonException("Property is not nullable for class EffectEntity: campaignId.");
 
             if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectEntity.");
+                throw new JsonException("Property is not nullable for class EffectEntity: rulesetId.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectEntity.");
+                throw new JsonException("Property is not nullable for class EffectEntity: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectEntity.");
+                throw new JsonException("Property is not nullable for class EffectEntity: ruleName.");
 
             if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectEntity.");
+                throw new JsonException("Property is not nullable for class EffectEntity: effectType.");
 
             return new EffectEntity(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, rewardIntegrationId);
         }
@@ -516,7 +516,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EffectEntity effectEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -531,14 +530,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EffectEntity effectEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             if (effectEntity.RuleName == null)
-                throw new ArgumentNullException(nameof(effectEntity.RuleName), "Property is required for class EffectEntity.");
+                throw new JsonException("Cannot write null property EffectEntity.RuleName to non-nullable JSON property 'ruleName'.");
 
             if (effectEntity.EffectType == null)
-                throw new ArgumentNullException(nameof(effectEntity.EffectType), "Property is required for class EffectEntity.");
+                throw new JsonException("Cannot write null property EffectEntity.EffectType to non-nullable JSON property 'effectType'.");
 
             writer.WriteNumber("campaignId", effectEntity.CampaignId);
 

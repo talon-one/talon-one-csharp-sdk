@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="effectType">An effect discriminator of type &#x60;rollbackCoupon&#x60;.</param>
-        /// <param name="props">The properties of the &#x60;rollbackCoupon&#x60; effect.</param>
+        /// <param name="props">props</param>
         /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
         /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
         /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
@@ -170,9 +170,8 @@ namespace TalonOneSdk.Model
         public string RuleName { get; set; }
 
         /// <summary>
-        /// The properties of the &#x60;rollbackCoupon&#x60; effect.
+        /// Gets or Sets Props
         /// </summary>
-        /// <value>The properties of the &#x60;rollbackCoupon&#x60; effect.</value>
         [JsonPropertyName("props")]
         public RollbackCouponEffectProps Props { get; set; }
 
@@ -551,40 +550,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class EffectRollbackCoupon.", nameof(campaignId));
+                throw new JsonException("Property is required for class EffectRollbackCoupon: campaignId.");
 
             if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class EffectRollbackCoupon.", nameof(rulesetId));
+                throw new JsonException("Property is required for class EffectRollbackCoupon: rulesetId.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class EffectRollbackCoupon.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class EffectRollbackCoupon: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class EffectRollbackCoupon.", nameof(ruleName));
+                throw new JsonException("Property is required for class EffectRollbackCoupon: ruleName.");
 
             if (!effectType.IsSet)
-                throw new ArgumentException("Property is required for class EffectRollbackCoupon.", nameof(effectType));
+                throw new JsonException("Property is required for class EffectRollbackCoupon: effectType.");
 
             if (!props.IsSet)
-                throw new ArgumentException("Property is required for class EffectRollbackCoupon.", nameof(props));
+                throw new JsonException("Property is required for class EffectRollbackCoupon: props.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectRollbackCoupon.");
+                throw new JsonException("Property is not nullable for class EffectRollbackCoupon: campaignId.");
 
             if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectRollbackCoupon.");
+                throw new JsonException("Property is not nullable for class EffectRollbackCoupon: rulesetId.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectRollbackCoupon.");
+                throw new JsonException("Property is not nullable for class EffectRollbackCoupon: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectRollbackCoupon.");
+                throw new JsonException("Property is not nullable for class EffectRollbackCoupon: ruleName.");
 
             if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectRollbackCoupon.");
+                throw new JsonException("Property is not nullable for class EffectRollbackCoupon: effectType.");
 
             if (props.IsSet && props.Value == null)
-                throw new ArgumentNullException(nameof(props), "Property is not nullable for class EffectRollbackCoupon.");
+                throw new JsonException("Property is not nullable for class EffectRollbackCoupon: props.");
 
             return new EffectRollbackCoupon(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, props.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, rewardIntegrationId);
         }
@@ -595,7 +594,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectRollbackCoupon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EffectRollbackCoupon effectRollbackCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -610,14 +608,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectRollbackCoupon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EffectRollbackCoupon effectRollbackCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
             if (effectRollbackCoupon.RuleName == null)
-                throw new ArgumentNullException(nameof(effectRollbackCoupon.RuleName), "Property is required for class EffectRollbackCoupon.");
+                throw new JsonException("Cannot write null property EffectRollbackCoupon.RuleName to non-nullable JSON property 'ruleName'.");
 
             if (effectRollbackCoupon.Props == null)
-                throw new ArgumentNullException(nameof(effectRollbackCoupon.Props), "Property is required for class EffectRollbackCoupon.");
+                throw new JsonException("Cannot write null property EffectRollbackCoupon.Props to non-nullable JSON property 'props'.");
 
             writer.WriteNumber("campaignId", effectRollbackCoupon.CampaignId);
 

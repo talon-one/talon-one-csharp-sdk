@@ -201,22 +201,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!eventType.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowWithConfig.", nameof(eventType));
+                throw new JsonException("Property is required for class IntegrationHubFlowWithConfig: EventType.");
 
             if (!integrationHubFlowUrl.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowWithConfig.", nameof(integrationHubFlowUrl));
+                throw new JsonException("Property is required for class IntegrationHubFlowWithConfig: IntegrationHubFlowUrl.");
 
             if (!config.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowWithConfig.", nameof(config));
+                throw new JsonException("Property is required for class IntegrationHubFlowWithConfig: Config.");
 
             if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubFlowWithConfig.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlowWithConfig: EventType.");
 
             if (integrationHubFlowUrl.IsSet && integrationHubFlowUrl.Value == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowUrl), "Property is not nullable for class IntegrationHubFlowWithConfig.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlowWithConfig: IntegrationHubFlowUrl.");
 
             if (config.IsSet && config.Value == null)
-                throw new ArgumentNullException(nameof(config), "Property is not nullable for class IntegrationHubFlowWithConfig.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlowWithConfig: Config.");
 
             return new IntegrationHubFlowWithConfig(eventType.Value.Value, integrationHubFlowUrl.Value, config.Value, applicationID, loyaltyProgramID);
         }
@@ -227,7 +227,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubFlowWithConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubFlowWithConfig integrationHubFlowWithConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -242,14 +241,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubFlowWithConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubFlowWithConfig integrationHubFlowWithConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubFlowWithConfig.IntegrationHubFlowUrl == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowWithConfig.IntegrationHubFlowUrl), "Property is required for class IntegrationHubFlowWithConfig.");
+                throw new JsonException("Cannot write null property IntegrationHubFlowWithConfig.IntegrationHubFlowUrl to non-nullable JSON property 'IntegrationHubFlowUrl'.");
 
             if (integrationHubFlowWithConfig.Config == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowWithConfig.Config), "Property is required for class IntegrationHubFlowWithConfig.");
+                throw new JsonException("Cannot write null property IntegrationHubFlowWithConfig.Config to non-nullable JSON property 'Config'.");
 
             var eventTypeRawValue = IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubFlowWithConfig.EventType);
             writer.WriteString("EventType", eventTypeRawValue);

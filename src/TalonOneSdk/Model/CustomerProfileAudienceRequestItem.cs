@@ -242,22 +242,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileAudienceRequestItem.", nameof(action));
+                throw new JsonException("Property is required for class CustomerProfileAudienceRequestItem: action.");
 
             if (!profileIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileAudienceRequestItem.", nameof(profileIntegrationId));
+                throw new JsonException("Property is required for class CustomerProfileAudienceRequestItem: profileIntegrationId.");
 
             if (!audienceId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileAudienceRequestItem.", nameof(audienceId));
+                throw new JsonException("Property is required for class CustomerProfileAudienceRequestItem: audienceId.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class CustomerProfileAudienceRequestItem.");
+                throw new JsonException("Property is not nullable for class CustomerProfileAudienceRequestItem: action.");
 
             if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class CustomerProfileAudienceRequestItem.");
+                throw new JsonException("Property is not nullable for class CustomerProfileAudienceRequestItem: profileIntegrationId.");
 
             if (audienceId.IsSet && audienceId.Value == null)
-                throw new ArgumentNullException(nameof(audienceId), "Property is not nullable for class CustomerProfileAudienceRequestItem.");
+                throw new JsonException("Property is not nullable for class CustomerProfileAudienceRequestItem: audienceId.");
 
             return new CustomerProfileAudienceRequestItem(action.Value.Value, profileIntegrationId.Value, audienceId.Value.Value);
         }
@@ -268,7 +268,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileAudienceRequestItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerProfileAudienceRequestItem customerProfileAudienceRequestItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -283,11 +282,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileAudienceRequestItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerProfileAudienceRequestItem customerProfileAudienceRequestItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerProfileAudienceRequestItem.ProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(customerProfileAudienceRequestItem.ProfileIntegrationId), "Property is required for class CustomerProfileAudienceRequestItem.");
+                throw new JsonException("Cannot write null property CustomerProfileAudienceRequestItem.ProfileIntegrationId to non-nullable JSON property 'profileIntegrationId'.");
 
             var actionRawValue = CustomerProfileAudienceRequestItem.ActionEnumToJsonValue(customerProfileAudienceRequestItem.Action);
             writer.WriteString("action", actionRawValue);

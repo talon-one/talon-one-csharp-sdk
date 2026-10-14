@@ -203,28 +203,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateCouponFailureDetailedSummary.", nameof(applicationID));
+                throw new JsonException("Property is required for class GenerateCouponFailureDetailedSummary: applicationID.");
 
             if (!sessionID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateCouponFailureDetailedSummary.", nameof(sessionID));
+                throw new JsonException("Property is required for class GenerateCouponFailureDetailedSummary: sessionID.");
 
             if (!eventID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateCouponFailureDetailedSummary.", nameof(eventID));
+                throw new JsonException("Property is required for class GenerateCouponFailureDetailedSummary: eventID.");
 
             if (!coupon.IsSet)
-                throw new ArgumentException("Property is required for class GenerateCouponFailureDetailedSummary.", nameof(coupon));
+                throw new JsonException("Property is required for class GenerateCouponFailureDetailedSummary: coupon.");
 
             if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
+                throw new JsonException("Property is not nullable for class GenerateCouponFailureDetailedSummary: applicationID.");
 
             if (sessionID.IsSet && sessionID.Value == null)
-                throw new ArgumentNullException(nameof(sessionID), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
+                throw new JsonException("Property is not nullable for class GenerateCouponFailureDetailedSummary: sessionID.");
 
             if (eventID.IsSet && eventID.Value == null)
-                throw new ArgumentNullException(nameof(eventID), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
+                throw new JsonException("Property is not nullable for class GenerateCouponFailureDetailedSummary: eventID.");
 
             if (coupon.IsSet && coupon.Value == null)
-                throw new ArgumentNullException(nameof(coupon), "Property is not nullable for class GenerateCouponFailureDetailedSummary.");
+                throw new JsonException("Property is not nullable for class GenerateCouponFailureDetailedSummary: coupon.");
 
             return new GenerateCouponFailureDetailedSummary(applicationID.Value.Value, sessionID.Value, eventID.Value.Value, coupon.Value, language);
         }
@@ -235,7 +235,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateCouponFailureDetailedSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GenerateCouponFailureDetailedSummary generateCouponFailureDetailedSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -250,14 +249,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateCouponFailureDetailedSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateCouponFailureDetailedSummary generateCouponFailureDetailedSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             if (generateCouponFailureDetailedSummary.SessionID == null)
-                throw new ArgumentNullException(nameof(generateCouponFailureDetailedSummary.SessionID), "Property is required for class GenerateCouponFailureDetailedSummary.");
+                throw new JsonException("Cannot write null property GenerateCouponFailureDetailedSummary.SessionID to non-nullable JSON property 'sessionID'.");
 
             if (generateCouponFailureDetailedSummary.Coupon == null)
-                throw new ArgumentNullException(nameof(generateCouponFailureDetailedSummary.Coupon), "Property is required for class GenerateCouponFailureDetailedSummary.");
+                throw new JsonException("Cannot write null property GenerateCouponFailureDetailedSummary.Coupon to non-nullable JSON property 'coupon'.");
 
             writer.WriteNumber("applicationID", generateCouponFailureDetailedSummary.ApplicationID);
 

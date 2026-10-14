@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="WebhookAuthenticationAllOfData" /> class.
         /// </summary>
         /// <param name="webhookAuthenticationDataBasic"></param>
-        public WebhookAuthenticationAllOfData(WebhookAuthenticationDataBasic webhookAuthenticationDataBasic)
+        internal WebhookAuthenticationAllOfData(WebhookAuthenticationDataBasic webhookAuthenticationDataBasic)
         {
             WebhookAuthenticationDataBasic = webhookAuthenticationDataBasic;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="WebhookAuthenticationAllOfData" /> class.
         /// </summary>
         /// <param name="webhookAuthenticationDataCustom"></param>
-        public WebhookAuthenticationAllOfData(WebhookAuthenticationDataCustom webhookAuthenticationDataCustom)
+        internal WebhookAuthenticationAllOfData(WebhookAuthenticationDataCustom webhookAuthenticationDataCustom)
         {
             WebhookAuthenticationDataCustom = webhookAuthenticationDataCustom;
             OnCreated();
@@ -173,7 +173,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthenticationAllOfData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookAuthenticationAllOfData webhookAuthenticationAllOfData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -188,7 +187,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthenticationAllOfData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookAuthenticationAllOfData webhookAuthenticationAllOfData, JsonSerializerOptions jsonSerializerOptions)
         {
 

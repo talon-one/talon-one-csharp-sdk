@@ -152,16 +152,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!ids.IsSet)
-                throw new ArgumentException("Property is required for class ExcludePriceObservationsRequest.", nameof(ids));
+                throw new JsonException("Property is required for class ExcludePriceObservationsRequest: ids.");
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class ExcludePriceObservationsRequest.", nameof(reason));
+                throw new JsonException("Property is required for class ExcludePriceObservationsRequest: reason.");
 
             if (ids.IsSet && ids.Value == null)
-                throw new ArgumentNullException(nameof(ids), "Property is not nullable for class ExcludePriceObservationsRequest.");
+                throw new JsonException("Property is not nullable for class ExcludePriceObservationsRequest: ids.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class ExcludePriceObservationsRequest.");
+                throw new JsonException("Property is not nullable for class ExcludePriceObservationsRequest: reason.");
 
             return new ExcludePriceObservationsRequest(ids.Value, reason.Value);
         }
@@ -172,7 +172,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="excludePriceObservationsRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExcludePriceObservationsRequest excludePriceObservationsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -187,14 +186,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="excludePriceObservationsRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExcludePriceObservationsRequest excludePriceObservationsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (excludePriceObservationsRequest.Ids == null)
-                throw new ArgumentNullException(nameof(excludePriceObservationsRequest.Ids), "Property is required for class ExcludePriceObservationsRequest.");
+                throw new JsonException("Cannot write null property ExcludePriceObservationsRequest.Ids to non-nullable JSON property 'ids'.");
 
             if (excludePriceObservationsRequest.Reason == null)
-                throw new ArgumentNullException(nameof(excludePriceObservationsRequest.Reason), "Property is required for class ExcludePriceObservationsRequest.");
+                throw new JsonException("Cannot write null property ExcludePriceObservationsRequest.Reason to non-nullable JSON property 'reason'.");
 
             writer.WritePropertyName("ids");
             JsonSerializer.Serialize(writer, excludePriceObservationsRequest.Ids, jsonSerializerOptions);

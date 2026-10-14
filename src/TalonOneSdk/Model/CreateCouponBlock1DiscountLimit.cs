@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CreateCouponBlock1DiscountLimit" /> class.
         /// </summary>
         /// <param name="decimal"></param>
-        internal CreateCouponBlock1DiscountLimit(decimal @decimal)
+        public CreateCouponBlock1DiscountLimit(decimal @decimal)
         {
             Decimal = @decimal;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CreateCouponBlock1DiscountLimit" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateCouponBlock1DiscountLimit(string @string)
+        public CreateCouponBlock1DiscountLimit(string @string)
         {
             String = @string;
             OnCreated();
@@ -175,7 +175,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createCouponBlock1DiscountLimit"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCouponBlock1DiscountLimit createCouponBlock1DiscountLimit, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createCouponBlock1DiscountLimit"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCouponBlock1DiscountLimit createCouponBlock1DiscountLimit, JsonSerializerOptions jsonSerializerOptions)
         {
 

@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class PriceHistoryResponse.", nameof(sku));
+                throw new JsonException("Property is required for class PriceHistoryResponse: sku.");
 
             if (!history.IsSet)
-                throw new ArgumentException("Property is required for class PriceHistoryResponse.", nameof(history));
+                throw new JsonException("Property is required for class PriceHistoryResponse: history.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class PriceHistoryResponse.");
+                throw new JsonException("Property is not nullable for class PriceHistoryResponse: sku.");
 
             if (history.IsSet && history.Value == null)
-                throw new ArgumentNullException(nameof(history), "Property is not nullable for class PriceHistoryResponse.");
+                throw new JsonException("Property is not nullable for class PriceHistoryResponse: history.");
 
             return new PriceHistoryResponse(sku.Value, history.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="priceHistoryResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PriceHistoryResponse priceHistoryResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,14 +179,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="priceHistoryResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PriceHistoryResponse priceHistoryResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (priceHistoryResponse.Sku == null)
-                throw new ArgumentNullException(nameof(priceHistoryResponse.Sku), "Property is required for class PriceHistoryResponse.");
+                throw new JsonException("Cannot write null property PriceHistoryResponse.Sku to non-nullable JSON property 'sku'.");
 
             if (priceHistoryResponse.History == null)
-                throw new ArgumentNullException(nameof(priceHistoryResponse.History), "Property is required for class PriceHistoryResponse.");
+                throw new JsonException("Cannot write null property PriceHistoryResponse.History to non-nullable JSON property 'history'.");
 
             writer.WriteString("sku", priceHistoryResponse.Sku);
 

@@ -421,34 +421,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!dimension.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsight.", nameof(dimension));
+                throw new JsonException("Property is required for class ExperimentSegmentInsight: dimension.");
 
             if (!bucket.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsight.", nameof(bucket));
+                throw new JsonException("Property is required for class ExperimentSegmentInsight: bucket.");
 
             if (!confidence.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsight.", nameof(confidence));
+                throw new JsonException("Property is required for class ExperimentSegmentInsight: confidence.");
 
             if (!winnerVariantId.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsight.", nameof(winnerVariantId));
+                throw new JsonException("Property is required for class ExperimentSegmentInsight: winnerVariantId.");
 
             if (!variants.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsight.", nameof(variants));
+                throw new JsonException("Property is required for class ExperimentSegmentInsight: variants.");
 
             if (dimension.IsSet && dimension.Value == null)
-                throw new ArgumentNullException(nameof(dimension), "Property is not nullable for class ExperimentSegmentInsight.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsight: dimension.");
 
             if (bucket.IsSet && bucket.Value == null)
-                throw new ArgumentNullException(nameof(bucket), "Property is not nullable for class ExperimentSegmentInsight.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsight: bucket.");
 
             if (confidence.IsSet && confidence.Value == null)
-                throw new ArgumentNullException(nameof(confidence), "Property is not nullable for class ExperimentSegmentInsight.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsight: confidence.");
 
             if (winnerVariantId.IsSet && winnerVariantId.Value == null)
-                throw new ArgumentNullException(nameof(winnerVariantId), "Property is not nullable for class ExperimentSegmentInsight.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsight: winnerVariantId.");
 
             if (variants.IsSet && variants.Value == null)
-                throw new ArgumentNullException(nameof(variants), "Property is not nullable for class ExperimentSegmentInsight.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsight: variants.");
 
             return new ExperimentSegmentInsight(dimension.Value.Value, bucket.Value.Value, confidence.Value.Value, winnerVariantId.Value.Value, variants.Value);
         }
@@ -459,7 +459,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentSegmentInsight"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentSegmentInsight experimentSegmentInsight, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -474,11 +473,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentSegmentInsight"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentSegmentInsight experimentSegmentInsight, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentSegmentInsight.Variants == null)
-                throw new ArgumentNullException(nameof(experimentSegmentInsight.Variants), "Property is required for class ExperimentSegmentInsight.");
+                throw new JsonException("Cannot write null property ExperimentSegmentInsight.Variants to non-nullable JSON property 'variants'.");
 
             var dimensionRawValue = ExperimentSegmentInsight.DimensionEnumToJsonValue(experimentSegmentInsight.Dimension);
             writer.WriteString("dimension", dimensionRawValue);

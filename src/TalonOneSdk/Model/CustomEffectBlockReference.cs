@@ -35,11 +35,11 @@ namespace TalonOneSdk.Model
         /// <param name="name">The name of the custom effect, as used in API requests.</param>
         /// <param name="title">The display name of the custom effect.</param>
         [JsonConstructor]
-        public CustomEffectBlockReference(long id, string name, string title)
+        public CustomEffectBlockReference(long id, Option<string> name = default, Option<string> title = default)
         {
             Id = id;
-            Name = name;
-            Title = title;
+            NameOption = name;
+            TitleOption = title;
             OnCreated();
         }
 
@@ -54,12 +54,26 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
+        /// Used to track the state of Name
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> NameOption { get; }
+
+        /// <summary>
         /// The name of the custom effect, as used in API requests.
         /// </summary>
         /// <value>The name of the custom effect, as used in API requests.</value>
         /* <example>sendEmail</example> */
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return this.NameOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of Title
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> TitleOption { get; }
 
         /// <summary>
         /// The display name of the custom effect.
@@ -67,7 +81,7 @@ namespace TalonOneSdk.Model
         /// <value>The display name of the custom effect.</value>
         /* <example>Send email</example> */
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return this.TitleOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -162,24 +176,12 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffectBlockReference.", nameof(id));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffectBlockReference.", nameof(name));
-
-            if (!title.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffectBlockReference.", nameof(title));
+                throw new JsonException("Property is required for class CustomEffectBlockReference: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomEffectBlockReference.");
+                throw new JsonException("Property is not nullable for class CustomEffectBlockReference: id.");
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomEffectBlockReference.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CustomEffectBlockReference.");
-
-            return new CustomEffectBlockReference(id.Value.Value, name.Value, title.Value);
+            return new CustomEffectBlockReference(id.Value.Value, name, title);
         }
 
         /// <summary>
@@ -188,7 +190,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customEffectBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomEffectBlockReference customEffectBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,20 +204,15 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customEffectBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomEffectBlockReference customEffectBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (customEffectBlockReference.Name == null)
-                throw new ArgumentNullException(nameof(customEffectBlockReference.Name), "Property is required for class CustomEffectBlockReference.");
-
-            if (customEffectBlockReference.Title == null)
-                throw new ArgumentNullException(nameof(customEffectBlockReference.Title), "Property is required for class CustomEffectBlockReference.");
-
             writer.WriteNumber("id", customEffectBlockReference.Id);
 
-            writer.WriteString("name", customEffectBlockReference.Name);
+            if (customEffectBlockReference.NameOption.IsSet)
+                writer.WriteString("name", customEffectBlockReference.Name);
 
-            writer.WriteString("title", customEffectBlockReference.Title);
+            if (customEffectBlockReference.TitleOption.IsSet)
+                writer.WriteString("title", customEffectBlockReference.Title);
         }
     }
 }

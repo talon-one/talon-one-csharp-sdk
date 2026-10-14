@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class LoginParams.", nameof(email));
+                throw new JsonException("Property is required for class LoginParams: email.");
 
             if (!password.IsSet)
-                throw new ArgumentException("Property is required for class LoginParams.", nameof(password));
+                throw new JsonException("Property is required for class LoginParams: password.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class LoginParams.");
+                throw new JsonException("Property is not nullable for class LoginParams: email.");
 
             if (password.IsSet && password.Value == null)
-                throw new ArgumentNullException(nameof(password), "Property is not nullable for class LoginParams.");
+                throw new JsonException("Property is not nullable for class LoginParams: password.");
 
             return new LoginParams(email.Value, password.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loginParams"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoginParams loginParams, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loginParams"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoginParams loginParams, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loginParams.Email == null)
-                throw new ArgumentNullException(nameof(loginParams.Email), "Property is required for class LoginParams.");
+                throw new JsonException("Cannot write null property LoginParams.Email to non-nullable JSON property 'email'.");
 
             if (loginParams.Password == null)
-                throw new ArgumentNullException(nameof(loginParams.Password), "Property is required for class LoginParams.");
+                throw new JsonException("Cannot write null property LoginParams.Password to non-nullable JSON property 'password'.");
 
             writer.WriteString("email", loginParams.Email);
 

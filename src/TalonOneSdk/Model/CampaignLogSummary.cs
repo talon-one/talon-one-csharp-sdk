@@ -284,34 +284,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLogSummary.", nameof(name));
+                throw new JsonException("Property is required for class CampaignLogSummary: name.");
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLogSummary.", nameof(email));
+                throw new JsonException("Property is required for class CampaignLogSummary: email.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLogSummary.", nameof(created));
+                throw new JsonException("Property is required for class CampaignLogSummary: created.");
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLogSummary.", nameof(action));
+                throw new JsonException("Property is required for class CampaignLogSummary: action.");
 
             if (!summary.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLogSummary.", nameof(summary));
+                throw new JsonException("Property is required for class CampaignLogSummary: summary.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignLogSummary.");
+                throw new JsonException("Property is not nullable for class CampaignLogSummary: name.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class CampaignLogSummary.");
+                throw new JsonException("Property is not nullable for class CampaignLogSummary: email.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignLogSummary.");
+                throw new JsonException("Property is not nullable for class CampaignLogSummary: created.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class CampaignLogSummary.");
+                throw new JsonException("Property is not nullable for class CampaignLogSummary: action.");
 
             if (summary.IsSet && summary.Value == null)
-                throw new ArgumentNullException(nameof(summary), "Property is not nullable for class CampaignLogSummary.");
+                throw new JsonException("Property is not nullable for class CampaignLogSummary: summary.");
 
             return new CampaignLogSummary(name.Value, email.Value, created.Value.Value, action.Value.Value, summary.Value);
         }
@@ -322,7 +322,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignLogSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignLogSummary campaignLogSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -337,17 +336,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignLogSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignLogSummary campaignLogSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignLogSummary.Name == null)
-                throw new ArgumentNullException(nameof(campaignLogSummary.Name), "Property is required for class CampaignLogSummary.");
+                throw new JsonException("Cannot write null property CampaignLogSummary.Name to non-nullable JSON property 'name'.");
 
             if (campaignLogSummary.Email == null)
-                throw new ArgumentNullException(nameof(campaignLogSummary.Email), "Property is required for class CampaignLogSummary.");
+                throw new JsonException("Cannot write null property CampaignLogSummary.Email to non-nullable JSON property 'email'.");
 
             if (campaignLogSummary.Summary == null)
-                throw new ArgumentNullException(nameof(campaignLogSummary.Summary), "Property is required for class CampaignLogSummary.");
+                throw new JsonException("Cannot write null property CampaignLogSummary.Summary to non-nullable JSON property 'summary'.");
 
             writer.WriteString("name", campaignLogSummary.Name);
 

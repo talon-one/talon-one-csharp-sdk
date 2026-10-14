@@ -218,6 +218,7 @@ docs/models/CatalogActionRemove.md
 docs/models/CatalogActionRemoveMany.md
 docs/models/CatalogItem.md
 docs/models/CatalogRule.md
+docs/models/CatalogRuleset.md
 docs/models/CatalogSyncRequest.md
 docs/models/CatalogsStrikethroughNotificationPolicy.md
 docs/models/Change.md
@@ -280,6 +281,7 @@ docs/models/CustomEffect.md
 docs/models/CustomEffectBlockReference.md
 docs/models/CustomEffectProps.md
 docs/models/CustomerAchievement.md
+docs/models/CustomerAchievementHistoryEntry.md
 docs/models/CustomerActivityReport.md
 docs/models/CustomerAnalytics.md
 docs/models/CustomerInventory.md
@@ -322,6 +324,7 @@ docs/models/EffectEntity.md
 docs/models/EffectError.md
 docs/models/EffectExtendLoyaltyPointsExpiryDate.md
 docs/models/EffectIncreaseAchievementProgress.md
+docs/models/EffectIncreaseAchievementProgressPerItem.md
 docs/models/EffectJoinLoyaltyProgram.md
 docs/models/EffectOffsetNegativeLoyaltyPoints.md
 docs/models/EffectRedeemReferral.md
@@ -335,7 +338,9 @@ docs/models/EffectRollbackCoupon.md
 docs/models/EffectRollbackDeductedLoyaltyPoints.md
 docs/models/EffectRollbackDiscount.md
 docs/models/EffectRollbackIncreasedAchievementProgress.md
+docs/models/EffectRollbackIncreasedAchievementProgressPerItem.md
 docs/models/EffectRollbackReferral.md
+docs/models/EffectRollbackTierBoost.md
 docs/models/EffectRollbackUseReward.md
 docs/models/EffectSet.md
 docs/models/EffectSetDiscount.md
@@ -372,6 +377,8 @@ docs/models/EventV3ReferralEntity.md
 docs/models/EventV3RequestEntity.md
 docs/models/ExcludePriceObservationsRequest.md
 docs/models/Experiment.md
+docs/models/ExperimentBlueprint.md
+docs/models/ExperimentBlueprintVariant.md
 docs/models/ExperimentCampaignCopy.md
 docs/models/ExperimentConfidenceTimeline.md
 docs/models/ExperimentConfidenceTimelineDataPoint.md
@@ -486,6 +493,7 @@ docs/models/IdentifiableEntity.md
 docs/models/Import.md
 docs/models/ImportEntity.md
 docs/models/IncreaseAchievementProgressEffectProps.md
+docs/models/IncreaseAchievementProgressPerItemEffectProps.md
 docs/models/InfluencingCampaignDetails.md
 docs/models/IntegrationCampaign.md
 docs/models/IntegrationCampaignBase.md
@@ -555,6 +563,7 @@ docs/models/ListCampaignStoreBudgetsStore.md
 docs/models/ListCatalogItems200Response.md
 docs/models/ListCheckAttributeBlock.md
 docs/models/ListExperiments200Response.md
+docs/models/ListGiveawaysPool200Response.md
 docs/models/ListStores200Response.md
 docs/models/ListWithCountCheckAttributeBlock.md
 docs/models/LocationCheckAttributeBlock.md
@@ -652,6 +661,7 @@ docs/models/NewEvent.md
 docs/models/NewEventType.md
 docs/models/NewEventV3Entity.md
 docs/models/NewExperiment.md
+docs/models/NewExperimentBlueprint.md
 docs/models/NewExperimentVariant.md
 docs/models/NewExperimentVariantArray.md
 docs/models/NewExternalInvitation.md
@@ -794,6 +804,7 @@ docs/models/RollbackCouponEffectProps.md
 docs/models/RollbackDeductedLoyaltyPointsEffectProps.md
 docs/models/RollbackDiscountEffectProps.md
 docs/models/RollbackIncreasedAchievementProgressEffectProps.md
+docs/models/RollbackIncreasedAchievementProgressPerItemEffectProps.md
 docs/models/RollbackReferralEffectProps.md
 docs/models/RollbackTierBoostEffectProps.md
 docs/models/RollbackUseRewardEffectProps.md
@@ -899,6 +910,7 @@ docs/models/UnlockRewardEffectProps.md
 docs/models/UpdateAccount.md
 docs/models/UpdateAchievement.md
 docs/models/UpdateAchievementProgressBlock.md
+docs/models/UpdateAchievementProgressBlock1Value.md
 docs/models/UpdateAchievementV2.md
 docs/models/UpdateApplication.md
 docs/models/UpdateApplicationAPIKey.md
@@ -923,6 +935,7 @@ docs/models/UpdateCustomEffect.md
 docs/models/UpdateCustomerProfileV2409Response.md
 docs/models/UpdateCustomerSessionV2409Response.md
 docs/models/UpdateExperiment.md
+docs/models/UpdateExperimentBlueprint.md
 docs/models/UpdateExperimentVariant.md
 docs/models/UpdateExperimentVariantArray.md
 docs/models/UpdateExperimentVariantName.md
@@ -1168,6 +1181,7 @@ src/TalonOneSdk.Test/Model/CatalogActionRemoveTests.cs
 src/TalonOneSdk.Test/Model/CatalogActionTests.cs
 src/TalonOneSdk.Test/Model/CatalogItemTests.cs
 src/TalonOneSdk.Test/Model/CatalogRuleTests.cs
+src/TalonOneSdk.Test/Model/CatalogRulesetTests.cs
 src/TalonOneSdk.Test/Model/CatalogSyncRequestTests.cs
 src/TalonOneSdk.Test/Model/CatalogTests.cs
 src/TalonOneSdk.Test/Model/CatalogsStrikethroughNotificationPolicyTests.cs
@@ -1230,6 +1244,7 @@ src/TalonOneSdk.Test/Model/CreateTemplateCampaignTests.cs
 src/TalonOneSdk.Test/Model/CustomEffectBlockReferenceTests.cs
 src/TalonOneSdk.Test/Model/CustomEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/CustomEffectTests.cs
+src/TalonOneSdk.Test/Model/CustomerAchievementHistoryEntryTests.cs
 src/TalonOneSdk.Test/Model/CustomerAchievementTests.cs
 src/TalonOneSdk.Test/Model/CustomerActivityReportTests.cs
 src/TalonOneSdk.Test/Model/CustomerAnalyticsTests.cs
@@ -1271,6 +1286,7 @@ src/TalonOneSdk.Test/Model/EffectDeductLoyaltyPointsTests.cs
 src/TalonOneSdk.Test/Model/EffectEntityTests.cs
 src/TalonOneSdk.Test/Model/EffectErrorTests.cs
 src/TalonOneSdk.Test/Model/EffectExtendLoyaltyPointsExpiryDateTests.cs
+src/TalonOneSdk.Test/Model/EffectIncreaseAchievementProgressPerItemTests.cs
 src/TalonOneSdk.Test/Model/EffectIncreaseAchievementProgressTests.cs
 src/TalonOneSdk.Test/Model/EffectJoinLoyaltyProgramTests.cs
 src/TalonOneSdk.Test/Model/EffectOffsetNegativeLoyaltyPointsTests.cs
@@ -1284,8 +1300,10 @@ src/TalonOneSdk.Test/Model/EffectRollbackAddedLoyaltyPointsTests.cs
 src/TalonOneSdk.Test/Model/EffectRollbackCouponTests.cs
 src/TalonOneSdk.Test/Model/EffectRollbackDeductedLoyaltyPointsTests.cs
 src/TalonOneSdk.Test/Model/EffectRollbackDiscountTests.cs
+src/TalonOneSdk.Test/Model/EffectRollbackIncreasedAchievementProgressPerItemTests.cs
 src/TalonOneSdk.Test/Model/EffectRollbackIncreasedAchievementProgressTests.cs
 src/TalonOneSdk.Test/Model/EffectRollbackReferralTests.cs
+src/TalonOneSdk.Test/Model/EffectRollbackTierBoostTests.cs
 src/TalonOneSdk.Test/Model/EffectRollbackUseRewardTests.cs
 src/TalonOneSdk.Test/Model/EffectSetDiscountPerAdditionalCostPerItemTests.cs
 src/TalonOneSdk.Test/Model/EffectSetDiscountPerAdditionalCostTests.cs
@@ -1322,6 +1340,8 @@ src/TalonOneSdk.Test/Model/EventV3ReferralEntityTests.cs
 src/TalonOneSdk.Test/Model/EventV3RequestEntityTests.cs
 src/TalonOneSdk.Test/Model/EventV3Tests.cs
 src/TalonOneSdk.Test/Model/ExcludePriceObservationsRequestTests.cs
+src/TalonOneSdk.Test/Model/ExperimentBlueprintTests.cs
+src/TalonOneSdk.Test/Model/ExperimentBlueprintVariantTests.cs
 src/TalonOneSdk.Test/Model/ExperimentCampaignCopyTests.cs
 src/TalonOneSdk.Test/Model/ExperimentConfidenceTimelineDataPointTests.cs
 src/TalonOneSdk.Test/Model/ExperimentConfidenceTimelineTests.cs
@@ -1437,6 +1457,7 @@ src/TalonOneSdk.Test/Model/IdentifiableEntityTests.cs
 src/TalonOneSdk.Test/Model/ImportEntityTests.cs
 src/TalonOneSdk.Test/Model/ImportTests.cs
 src/TalonOneSdk.Test/Model/IncreaseAchievementProgressEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/IncreaseAchievementProgressPerItemEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/InfluencingCampaignDetailsTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCampaignBaseTests.cs
 src/TalonOneSdk.Test/Model/IntegrationCampaignTests.cs
@@ -1506,6 +1527,7 @@ src/TalonOneSdk.Test/Model/ListCampaignStoreBudgetsTests.cs
 src/TalonOneSdk.Test/Model/ListCatalogItems200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/ListExperiments200ResponseTests.cs
+src/TalonOneSdk.Test/Model/ListGiveawaysPool200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListStores200ResponseTests.cs
 src/TalonOneSdk.Test/Model/ListWithCountCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/LocationCheckAttributeBlockTests.cs
@@ -1602,6 +1624,7 @@ src/TalonOneSdk.Test/Model/NewDigitalPassTests.cs
 src/TalonOneSdk.Test/Model/NewEventTests.cs
 src/TalonOneSdk.Test/Model/NewEventTypeTests.cs
 src/TalonOneSdk.Test/Model/NewEventV3EntityTests.cs
+src/TalonOneSdk.Test/Model/NewExperimentBlueprintTests.cs
 src/TalonOneSdk.Test/Model/NewExperimentTests.cs
 src/TalonOneSdk.Test/Model/NewExperimentVariantArrayTests.cs
 src/TalonOneSdk.Test/Model/NewExperimentVariantTests.cs
@@ -1745,6 +1768,7 @@ src/TalonOneSdk.Test/Model/RollbackCouponEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackDeductedLoyaltyPointsEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackDiscountEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackIncreasedAchievementProgressEffectPropsTests.cs
+src/TalonOneSdk.Test/Model/RollbackIncreasedAchievementProgressPerItemEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackReferralEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackTierBoostEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/RollbackUseRewardEffectPropsTests.cs
@@ -1848,6 +1872,7 @@ src/TalonOneSdk.Test/Model/TwoFAConfigTests.cs
 src/TalonOneSdk.Test/Model/UnaryCheckAttributeBlockTests.cs
 src/TalonOneSdk.Test/Model/UnlockRewardEffectPropsTests.cs
 src/TalonOneSdk.Test/Model/UpdateAccountTests.cs
+src/TalonOneSdk.Test/Model/UpdateAchievementProgressBlock1ValueTests.cs
 src/TalonOneSdk.Test/Model/UpdateAchievementProgressBlockTests.cs
 src/TalonOneSdk.Test/Model/UpdateAchievementTests.cs
 src/TalonOneSdk.Test/Model/UpdateAchievementV2Tests.cs
@@ -1873,6 +1898,7 @@ src/TalonOneSdk.Test/Model/UpdateCouponsDataTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomEffectTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomerProfileV2409ResponseTests.cs
 src/TalonOneSdk.Test/Model/UpdateCustomerSessionV2409ResponseTests.cs
+src/TalonOneSdk.Test/Model/UpdateExperimentBlueprintTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentVariantArrayTests.cs
 src/TalonOneSdk.Test/Model/UpdateExperimentVariantNameTests.cs
@@ -2140,6 +2166,7 @@ src/TalonOneSdk/Model/CatalogActionRemove.cs
 src/TalonOneSdk/Model/CatalogActionRemoveMany.cs
 src/TalonOneSdk/Model/CatalogItem.cs
 src/TalonOneSdk/Model/CatalogRule.cs
+src/TalonOneSdk/Model/CatalogRuleset.cs
 src/TalonOneSdk/Model/CatalogSyncRequest.cs
 src/TalonOneSdk/Model/CatalogsStrikethroughNotificationPolicy.cs
 src/TalonOneSdk/Model/Change.cs
@@ -2202,6 +2229,7 @@ src/TalonOneSdk/Model/CustomEffect.cs
 src/TalonOneSdk/Model/CustomEffectBlockReference.cs
 src/TalonOneSdk/Model/CustomEffectProps.cs
 src/TalonOneSdk/Model/CustomerAchievement.cs
+src/TalonOneSdk/Model/CustomerAchievementHistoryEntry.cs
 src/TalonOneSdk/Model/CustomerActivityReport.cs
 src/TalonOneSdk/Model/CustomerAnalytics.cs
 src/TalonOneSdk/Model/CustomerInventory.cs
@@ -2244,6 +2272,7 @@ src/TalonOneSdk/Model/EffectEntity.cs
 src/TalonOneSdk/Model/EffectError.cs
 src/TalonOneSdk/Model/EffectExtendLoyaltyPointsExpiryDate.cs
 src/TalonOneSdk/Model/EffectIncreaseAchievementProgress.cs
+src/TalonOneSdk/Model/EffectIncreaseAchievementProgressPerItem.cs
 src/TalonOneSdk/Model/EffectJoinLoyaltyProgram.cs
 src/TalonOneSdk/Model/EffectOffsetNegativeLoyaltyPoints.cs
 src/TalonOneSdk/Model/EffectRedeemReferral.cs
@@ -2257,7 +2286,9 @@ src/TalonOneSdk/Model/EffectRollbackCoupon.cs
 src/TalonOneSdk/Model/EffectRollbackDeductedLoyaltyPoints.cs
 src/TalonOneSdk/Model/EffectRollbackDiscount.cs
 src/TalonOneSdk/Model/EffectRollbackIncreasedAchievementProgress.cs
+src/TalonOneSdk/Model/EffectRollbackIncreasedAchievementProgressPerItem.cs
 src/TalonOneSdk/Model/EffectRollbackReferral.cs
+src/TalonOneSdk/Model/EffectRollbackTierBoost.cs
 src/TalonOneSdk/Model/EffectRollbackUseReward.cs
 src/TalonOneSdk/Model/EffectSet.cs
 src/TalonOneSdk/Model/EffectSetDiscount.cs
@@ -2294,6 +2325,8 @@ src/TalonOneSdk/Model/EventV3ReferralEntity.cs
 src/TalonOneSdk/Model/EventV3RequestEntity.cs
 src/TalonOneSdk/Model/ExcludePriceObservationsRequest.cs
 src/TalonOneSdk/Model/Experiment.cs
+src/TalonOneSdk/Model/ExperimentBlueprint.cs
+src/TalonOneSdk/Model/ExperimentBlueprintVariant.cs
 src/TalonOneSdk/Model/ExperimentCampaignCopy.cs
 src/TalonOneSdk/Model/ExperimentConfidenceTimeline.cs
 src/TalonOneSdk/Model/ExperimentConfidenceTimelineDataPoint.cs
@@ -2408,6 +2441,7 @@ src/TalonOneSdk/Model/IdentifiableEntity.cs
 src/TalonOneSdk/Model/Import.cs
 src/TalonOneSdk/Model/ImportEntity.cs
 src/TalonOneSdk/Model/IncreaseAchievementProgressEffectProps.cs
+src/TalonOneSdk/Model/IncreaseAchievementProgressPerItemEffectProps.cs
 src/TalonOneSdk/Model/InfluencingCampaignDetails.cs
 src/TalonOneSdk/Model/IntegrationCampaign.cs
 src/TalonOneSdk/Model/IntegrationCampaignBase.cs
@@ -2477,6 +2511,7 @@ src/TalonOneSdk/Model/ListCampaignStoreBudgetsStore.cs
 src/TalonOneSdk/Model/ListCatalogItems200Response.cs
 src/TalonOneSdk/Model/ListCheckAttributeBlock.cs
 src/TalonOneSdk/Model/ListExperiments200Response.cs
+src/TalonOneSdk/Model/ListGiveawaysPool200Response.cs
 src/TalonOneSdk/Model/ListStores200Response.cs
 src/TalonOneSdk/Model/ListWithCountCheckAttributeBlock.cs
 src/TalonOneSdk/Model/LocationCheckAttributeBlock.cs
@@ -2574,6 +2609,7 @@ src/TalonOneSdk/Model/NewEvent.cs
 src/TalonOneSdk/Model/NewEventType.cs
 src/TalonOneSdk/Model/NewEventV3Entity.cs
 src/TalonOneSdk/Model/NewExperiment.cs
+src/TalonOneSdk/Model/NewExperimentBlueprint.cs
 src/TalonOneSdk/Model/NewExperimentVariant.cs
 src/TalonOneSdk/Model/NewExperimentVariantArray.cs
 src/TalonOneSdk/Model/NewExternalInvitation.cs
@@ -2716,6 +2752,7 @@ src/TalonOneSdk/Model/RollbackCouponEffectProps.cs
 src/TalonOneSdk/Model/RollbackDeductedLoyaltyPointsEffectProps.cs
 src/TalonOneSdk/Model/RollbackDiscountEffectProps.cs
 src/TalonOneSdk/Model/RollbackIncreasedAchievementProgressEffectProps.cs
+src/TalonOneSdk/Model/RollbackIncreasedAchievementProgressPerItemEffectProps.cs
 src/TalonOneSdk/Model/RollbackReferralEffectProps.cs
 src/TalonOneSdk/Model/RollbackTierBoostEffectProps.cs
 src/TalonOneSdk/Model/RollbackUseRewardEffectProps.cs
@@ -2821,6 +2858,7 @@ src/TalonOneSdk/Model/UnlockRewardEffectProps.cs
 src/TalonOneSdk/Model/UpdateAccount.cs
 src/TalonOneSdk/Model/UpdateAchievement.cs
 src/TalonOneSdk/Model/UpdateAchievementProgressBlock.cs
+src/TalonOneSdk/Model/UpdateAchievementProgressBlock1Value.cs
 src/TalonOneSdk/Model/UpdateAchievementV2.cs
 src/TalonOneSdk/Model/UpdateApplication.cs
 src/TalonOneSdk/Model/UpdateApplicationAPIKey.cs
@@ -2845,6 +2883,7 @@ src/TalonOneSdk/Model/UpdateCustomEffect.cs
 src/TalonOneSdk/Model/UpdateCustomerProfileV2409Response.cs
 src/TalonOneSdk/Model/UpdateCustomerSessionV2409Response.cs
 src/TalonOneSdk/Model/UpdateExperiment.cs
+src/TalonOneSdk/Model/UpdateExperimentBlueprint.cs
 src/TalonOneSdk/Model/UpdateExperimentVariant.cs
 src/TalonOneSdk/Model/UpdateExperimentVariantArray.cs
 src/TalonOneSdk/Model/UpdateExperimentVariantName.cs

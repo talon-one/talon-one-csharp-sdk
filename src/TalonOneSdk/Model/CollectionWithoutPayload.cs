@@ -343,40 +343,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CollectionWithoutPayload.", nameof(id));
+                throw new JsonException("Property is required for class CollectionWithoutPayload: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CollectionWithoutPayload.", nameof(created));
+                throw new JsonException("Property is required for class CollectionWithoutPayload: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class CollectionWithoutPayload.", nameof(accountId));
+                throw new JsonException("Property is required for class CollectionWithoutPayload: accountId.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class CollectionWithoutPayload.", nameof(modified));
+                throw new JsonException("Property is required for class CollectionWithoutPayload: modified.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CollectionWithoutPayload.", nameof(name));
+                throw new JsonException("Property is required for class CollectionWithoutPayload: name.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class CollectionWithoutPayload.", nameof(createdBy));
+                throw new JsonException("Property is required for class CollectionWithoutPayload: createdBy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CollectionWithoutPayload.");
+                throw new JsonException("Property is not nullable for class CollectionWithoutPayload: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CollectionWithoutPayload.");
+                throw new JsonException("Property is not nullable for class CollectionWithoutPayload: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CollectionWithoutPayload.");
+                throw new JsonException("Property is not nullable for class CollectionWithoutPayload: accountId.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CollectionWithoutPayload.");
+                throw new JsonException("Property is not nullable for class CollectionWithoutPayload: modified.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CollectionWithoutPayload.");
+                throw new JsonException("Property is not nullable for class CollectionWithoutPayload: name.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CollectionWithoutPayload.");
+                throw new JsonException("Property is not nullable for class CollectionWithoutPayload: createdBy.");
 
             return new CollectionWithoutPayload(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, name.Value, createdBy.Value.Value, description, subscribedApplicationsIds, modifiedBy, applicationId, campaignId);
         }
@@ -387,7 +387,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="collectionWithoutPayload"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CollectionWithoutPayload collectionWithoutPayload, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -402,11 +401,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="collectionWithoutPayload"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CollectionWithoutPayload collectionWithoutPayload, JsonSerializerOptions jsonSerializerOptions)
         {
             if (collectionWithoutPayload.Name == null)
-                throw new ArgumentNullException(nameof(collectionWithoutPayload.Name), "Property is required for class CollectionWithoutPayload.");
+                throw new JsonException("Cannot write null property CollectionWithoutPayload.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", collectionWithoutPayload.Id);
 

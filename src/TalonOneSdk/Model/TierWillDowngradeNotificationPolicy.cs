@@ -195,16 +195,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeNotificationPolicy.", nameof(name));
+                throw new JsonException("Property is required for class TierWillDowngradeNotificationPolicy: name.");
 
             if (!triggers.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeNotificationPolicy.", nameof(triggers));
+                throw new JsonException("Property is required for class TierWillDowngradeNotificationPolicy: triggers.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class TierWillDowngradeNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeNotificationPolicy: name.");
 
             if (triggers.IsSet && triggers.Value == null)
-                throw new ArgumentNullException(nameof(triggers), "Property is not nullable for class TierWillDowngradeNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeNotificationPolicy: triggers.");
 
             return new TierWillDowngradeNotificationPolicy(name.Value, triggers.Value, batchingEnabled, batchSize);
         }
@@ -215,7 +215,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierWillDowngradeNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TierWillDowngradeNotificationPolicy tierWillDowngradeNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -230,14 +229,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierWillDowngradeNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TierWillDowngradeNotificationPolicy tierWillDowngradeNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (tierWillDowngradeNotificationPolicy.Name == null)
-                throw new ArgumentNullException(nameof(tierWillDowngradeNotificationPolicy.Name), "Property is required for class TierWillDowngradeNotificationPolicy.");
+                throw new JsonException("Cannot write null property TierWillDowngradeNotificationPolicy.Name to non-nullable JSON property 'name'.");
 
             if (tierWillDowngradeNotificationPolicy.Triggers == null)
-                throw new ArgumentNullException(nameof(tierWillDowngradeNotificationPolicy.Triggers), "Property is required for class TierWillDowngradeNotificationPolicy.");
+                throw new JsonException("Cannot write null property TierWillDowngradeNotificationPolicy.Triggers to non-nullable JSON property 'triggers'.");
 
             writer.WriteString("name", tierWillDowngradeNotificationPolicy.Name);
 

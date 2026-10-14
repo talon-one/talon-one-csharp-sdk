@@ -220,28 +220,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewExperimentVariant.", nameof(name));
+                throw new JsonException("Property is required for class NewExperimentVariant: name.");
 
             if (!weight.IsSet)
-                throw new ArgumentException("Property is required for class NewExperimentVariant.", nameof(weight));
+                throw new JsonException("Property is required for class NewExperimentVariant: weight.");
 
             if (!ruleset.IsSet)
-                throw new ArgumentException("Property is required for class NewExperimentVariant.", nameof(ruleset));
+                throw new JsonException("Property is required for class NewExperimentVariant: ruleset.");
 
             if (!isPrimary.IsSet)
-                throw new ArgumentException("Property is required for class NewExperimentVariant.", nameof(isPrimary));
+                throw new JsonException("Property is required for class NewExperimentVariant: isPrimary.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewExperimentVariant.");
+                throw new JsonException("Property is not nullable for class NewExperimentVariant: name.");
 
             if (weight.IsSet && weight.Value == null)
-                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class NewExperimentVariant.");
+                throw new JsonException("Property is not nullable for class NewExperimentVariant: weight.");
 
             if (ruleset.IsSet && ruleset.Value == null)
-                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class NewExperimentVariant.");
+                throw new JsonException("Property is not nullable for class NewExperimentVariant: ruleset.");
 
             if (isPrimary.IsSet && isPrimary.Value == null)
-                throw new ArgumentNullException(nameof(isPrimary), "Property is not nullable for class NewExperimentVariant.");
+                throw new JsonException("Property is not nullable for class NewExperimentVariant: isPrimary.");
 
             return new NewExperimentVariant(name.Value, weight.Value.Value, ruleset.Value, isPrimary.Value.Value, audienceId);
         }
@@ -252,7 +252,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newExperimentVariant"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewExperimentVariant newExperimentVariant, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -267,14 +266,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newExperimentVariant"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewExperimentVariant newExperimentVariant, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newExperimentVariant.Name == null)
-                throw new ArgumentNullException(nameof(newExperimentVariant.Name), "Property is required for class NewExperimentVariant.");
+                throw new JsonException("Cannot write null property NewExperimentVariant.Name to non-nullable JSON property 'name'.");
 
             if (newExperimentVariant.Ruleset == null)
-                throw new ArgumentNullException(nameof(newExperimentVariant.Ruleset), "Property is required for class NewExperimentVariant.");
+                throw new JsonException("Cannot write null property NewExperimentVariant.Ruleset to non-nullable JSON property 'ruleset'.");
 
             writer.WriteString("name", newExperimentVariant.Name);
 

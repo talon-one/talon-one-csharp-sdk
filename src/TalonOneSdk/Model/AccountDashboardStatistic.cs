@@ -214,10 +214,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaigns.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatistic.", nameof(campaigns));
+                throw new JsonException("Property is required for class AccountDashboardStatistic: campaigns.");
 
             if (campaigns.IsSet && campaigns.Value == null)
-                throw new ArgumentNullException(nameof(campaigns), "Property is not nullable for class AccountDashboardStatistic.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatistic: campaigns.");
 
             return new AccountDashboardStatistic(campaigns.Value, revenue, discounts, loyaltyPoints, referrals);
         }
@@ -228,7 +228,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountDashboardStatistic"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountDashboardStatistic accountDashboardStatistic, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -243,11 +242,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountDashboardStatistic"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountDashboardStatistic accountDashboardStatistic, JsonSerializerOptions jsonSerializerOptions)
         {
             if (accountDashboardStatistic.Campaigns == null)
-                throw new ArgumentNullException(nameof(accountDashboardStatistic.Campaigns), "Property is required for class AccountDashboardStatistic.");
+                throw new JsonException("Cannot write null property AccountDashboardStatistic.Campaigns to non-nullable JSON property 'campaigns'.");
 
             writer.WritePropertyName("campaigns");
             JsonSerializer.Serialize(writer, accountDashboardStatistic.Campaigns, jsonSerializerOptions);

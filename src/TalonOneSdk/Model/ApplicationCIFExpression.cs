@@ -233,22 +233,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCIFExpression.", nameof(id));
+                throw new JsonException("Property is required for class ApplicationCIFExpression: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCIFExpression.", nameof(created));
+                throw new JsonException("Property is required for class ApplicationCIFExpression: created.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCIFExpression.", nameof(applicationId));
+                throw new JsonException("Property is required for class ApplicationCIFExpression: applicationId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationCIFExpression.");
+                throw new JsonException("Property is not nullable for class ApplicationCIFExpression: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationCIFExpression.");
+                throw new JsonException("Property is not nullable for class ApplicationCIFExpression: created.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationCIFExpression.");
+                throw new JsonException("Property is not nullable for class ApplicationCIFExpression: applicationId.");
 
             return new ApplicationCIFExpression(id.Value.Value, created.Value.Value, applicationId.Value.Value, cartItemFilterId, createdBy, expression);
         }
@@ -259,7 +259,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCIFExpression"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationCIFExpression applicationCIFExpression, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -274,7 +273,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCIFExpression"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationCIFExpression applicationCIFExpression, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", applicationCIFExpression.Id);

@@ -325,58 +325,58 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(id));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: id.");
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: transactionUUID.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(created));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: created.");
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(programId));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: programId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(name));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: name.");
 
             if (!startDate.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(startDate));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: startDate.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(expiryDate));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: expiryDate.");
 
             if (!subledgerId.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(subledgerId));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: subledgerId.");
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class LedgerPointsEntryIntegrationAPI.", nameof(amount));
+                throw new JsonException("Property is required for class LedgerPointsEntryIntegrationAPI: amount.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: id.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: transactionUUID.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: created.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: programId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: name.");
 
             if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: startDate.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: expiryDate.");
 
             if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: subledgerId.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Property is not nullable for class LedgerPointsEntryIntegrationAPI: amount.");
 
             return new LedgerPointsEntryIntegrationAPI(id.Value.Value, transactionUUID.Value, created.Value.Value, programId.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, customerSessionId, validityDuration);
         }
@@ -387,7 +387,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ledgerPointsEntryIntegrationAPI"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LedgerPointsEntryIntegrationAPI ledgerPointsEntryIntegrationAPI, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -402,23 +401,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ledgerPointsEntryIntegrationAPI"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LedgerPointsEntryIntegrationAPI ledgerPointsEntryIntegrationAPI, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ledgerPointsEntryIntegrationAPI.TransactionUUID == null)
-                throw new ArgumentNullException(nameof(ledgerPointsEntryIntegrationAPI.TransactionUUID), "Property is required for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Cannot write null property LedgerPointsEntryIntegrationAPI.TransactionUUID to non-nullable JSON property 'transactionUUID'.");
 
             if (ledgerPointsEntryIntegrationAPI.Name == null)
-                throw new ArgumentNullException(nameof(ledgerPointsEntryIntegrationAPI.Name), "Property is required for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Cannot write null property LedgerPointsEntryIntegrationAPI.Name to non-nullable JSON property 'name'.");
 
             if (ledgerPointsEntryIntegrationAPI.StartDate == null)
-                throw new ArgumentNullException(nameof(ledgerPointsEntryIntegrationAPI.StartDate), "Property is required for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Cannot write null property LedgerPointsEntryIntegrationAPI.StartDate to non-nullable JSON property 'startDate'.");
 
             if (ledgerPointsEntryIntegrationAPI.ExpiryDate == null)
-                throw new ArgumentNullException(nameof(ledgerPointsEntryIntegrationAPI.ExpiryDate), "Property is required for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Cannot write null property LedgerPointsEntryIntegrationAPI.ExpiryDate to non-nullable JSON property 'expiryDate'.");
 
             if (ledgerPointsEntryIntegrationAPI.SubledgerId == null)
-                throw new ArgumentNullException(nameof(ledgerPointsEntryIntegrationAPI.SubledgerId), "Property is required for class LedgerPointsEntryIntegrationAPI.");
+                throw new JsonException("Cannot write null property LedgerPointsEntryIntegrationAPI.SubledgerId to non-nullable JSON property 'subledgerId'.");
 
             writer.WriteNumber("id", ledgerPointsEntryIntegrationAPI.Id);
 

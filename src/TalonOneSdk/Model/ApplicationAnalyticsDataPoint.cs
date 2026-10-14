@@ -285,16 +285,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!startTime.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAnalyticsDataPoint.", nameof(startTime));
+                throw new JsonException("Property is required for class ApplicationAnalyticsDataPoint: startTime.");
 
             if (!endTime.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAnalyticsDataPoint.", nameof(endTime));
+                throw new JsonException("Property is required for class ApplicationAnalyticsDataPoint: endTime.");
 
             if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class ApplicationAnalyticsDataPoint: startTime.");
 
             if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class ApplicationAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class ApplicationAnalyticsDataPoint: endTime.");
 
             return new ApplicationAnalyticsDataPoint(startTime.Value.Value, endTime.Value.Value, totalRevenue, sessionsCount, avgItemsPerSession, avgSessionValue, totalDiscounts, couponsCount);
         }
@@ -305,7 +305,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationAnalyticsDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationAnalyticsDataPoint applicationAnalyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -320,7 +319,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationAnalyticsDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationAnalyticsDataPoint applicationAnalyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteString("startTime", applicationAnalyticsDataPoint.StartTime.ToString(StartTimeFormat));

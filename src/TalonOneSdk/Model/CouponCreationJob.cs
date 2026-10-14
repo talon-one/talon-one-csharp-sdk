@@ -571,100 +571,100 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(id));
+                throw new JsonException("Property is required for class CouponCreationJob: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(created));
+                throw new JsonException("Property is required for class CouponCreationJob: created.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(campaignId));
+                throw new JsonException("Property is required for class CouponCreationJob: campaignId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(applicationId));
+                throw new JsonException("Property is required for class CouponCreationJob: applicationId.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(accountId));
+                throw new JsonException("Property is required for class CouponCreationJob: accountId.");
 
             if (!usageLimit.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(usageLimit));
+                throw new JsonException("Property is required for class CouponCreationJob: usageLimit.");
 
             if (!numberOfCoupons.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(numberOfCoupons));
+                throw new JsonException("Property is required for class CouponCreationJob: numberOfCoupons.");
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(attributes));
+                throw new JsonException("Property is required for class CouponCreationJob: attributes.");
 
             if (!batchId.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(batchId));
+                throw new JsonException("Property is required for class CouponCreationJob: batchId.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(status));
+                throw new JsonException("Property is required for class CouponCreationJob: status.");
 
             if (!createdAmount.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(createdAmount));
+                throw new JsonException("Property is required for class CouponCreationJob: createdAmount.");
 
             if (!failCount.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(failCount));
+                throw new JsonException("Property is required for class CouponCreationJob: failCount.");
 
             if (!errors.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(errors));
+                throw new JsonException("Property is required for class CouponCreationJob: errors.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(createdBy));
+                throw new JsonException("Property is required for class CouponCreationJob: createdBy.");
 
             if (!communicated.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(communicated));
+                throw new JsonException("Property is required for class CouponCreationJob: communicated.");
 
             if (!chunkExecutionCount.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreationJob.", nameof(chunkExecutionCount));
+                throw new JsonException("Property is required for class CouponCreationJob: chunkExecutionCount.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: created.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: campaignId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: applicationId.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: accountId.");
 
             if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: usageLimit.");
 
             if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: numberOfCoupons.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: attributes.");
 
             if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: batchId.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: status.");
 
             if (createdAmount.IsSet && createdAmount.Value == null)
-                throw new ArgumentNullException(nameof(createdAmount), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: createdAmount.");
 
             if (failCount.IsSet && failCount.Value == null)
-                throw new ArgumentNullException(nameof(failCount), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: failCount.");
 
             if (errors.IsSet && errors.Value == null)
-                throw new ArgumentNullException(nameof(errors), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: errors.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: createdBy.");
 
             if (communicated.IsSet && communicated.Value == null)
-                throw new ArgumentNullException(nameof(communicated), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: communicated.");
 
             if (chunkExecutionCount.IsSet && chunkExecutionCount.Value == null)
-                throw new ArgumentNullException(nameof(chunkExecutionCount), "Property is not nullable for class CouponCreationJob.");
+                throw new JsonException("Property is not nullable for class CouponCreationJob: chunkExecutionCount.");
 
             return new CouponCreationJob(id.Value.Value, created.Value.Value, campaignId.Value.Value, applicationId.Value.Value, accountId.Value.Value, usageLimit.Value.Value, numberOfCoupons.Value.Value, attributes.Value, batchId.Value, status.Value, createdAmount.Value.Value, failCount.Value.Value, errors.Value, createdBy.Value.Value, communicated.Value.Value, chunkExecutionCount.Value.Value, discountLimit, reservationLimit, startDate, expiryDate, couponSettings, isReservationMandatory, chunkSize);
         }
@@ -675,7 +675,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponCreationJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponCreationJob couponCreationJob, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -690,20 +689,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponCreationJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponCreationJob couponCreationJob, JsonSerializerOptions jsonSerializerOptions)
         {
             if (couponCreationJob.Attributes == null)
-                throw new ArgumentNullException(nameof(couponCreationJob.Attributes), "Property is required for class CouponCreationJob.");
+                throw new JsonException("Cannot write null property CouponCreationJob.Attributes to non-nullable JSON property 'attributes'.");
 
             if (couponCreationJob.BatchId == null)
-                throw new ArgumentNullException(nameof(couponCreationJob.BatchId), "Property is required for class CouponCreationJob.");
+                throw new JsonException("Cannot write null property CouponCreationJob.BatchId to non-nullable JSON property 'batchId'.");
 
             if (couponCreationJob.Status == null)
-                throw new ArgumentNullException(nameof(couponCreationJob.Status), "Property is required for class CouponCreationJob.");
+                throw new JsonException("Cannot write null property CouponCreationJob.Status to non-nullable JSON property 'status'.");
 
             if (couponCreationJob.Errors == null)
-                throw new ArgumentNullException(nameof(couponCreationJob.Errors), "Property is required for class CouponCreationJob.");
+                throw new JsonException("Cannot write null property CouponCreationJob.Errors to non-nullable JSON property 'errors'.");
 
             writer.WriteNumber("id", couponCreationJob.Id);
 

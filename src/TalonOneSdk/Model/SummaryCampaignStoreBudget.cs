@@ -546,22 +546,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class SummaryCampaignStoreBudget.", nameof(action));
+                throw new JsonException("Property is required for class SummaryCampaignStoreBudget: action.");
 
             if (!storeCount.IsSet)
-                throw new ArgumentException("Property is required for class SummaryCampaignStoreBudget.", nameof(storeCount));
+                throw new JsonException("Property is required for class SummaryCampaignStoreBudget: storeCount.");
 
             if (!imported.IsSet)
-                throw new ArgumentException("Property is required for class SummaryCampaignStoreBudget.", nameof(imported));
+                throw new JsonException("Property is required for class SummaryCampaignStoreBudget: imported.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class SummaryCampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class SummaryCampaignStoreBudget: action.");
 
             if (storeCount.IsSet && storeCount.Value == null)
-                throw new ArgumentNullException(nameof(storeCount), "Property is not nullable for class SummaryCampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class SummaryCampaignStoreBudget: storeCount.");
 
             if (imported.IsSet && imported.Value == null)
-                throw new ArgumentNullException(nameof(imported), "Property is not nullable for class SummaryCampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class SummaryCampaignStoreBudget: imported.");
 
             return new SummaryCampaignStoreBudget(action.Value.Value, storeCount.Value.Value, imported.Value.Value, period);
         }
@@ -572,7 +572,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="summaryCampaignStoreBudget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SummaryCampaignStoreBudget summaryCampaignStoreBudget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -587,7 +586,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="summaryCampaignStoreBudget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SummaryCampaignStoreBudget summaryCampaignStoreBudget, JsonSerializerOptions jsonSerializerOptions)
         {
             var actionRawValue = SummaryCampaignStoreBudget.ActionEnumToJsonValue(summaryCampaignStoreBudget.Action);

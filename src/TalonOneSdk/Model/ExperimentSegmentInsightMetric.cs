@@ -234,16 +234,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!metric.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsightMetric.", nameof(metric));
+                throw new JsonException("Property is required for class ExperimentSegmentInsightMetric: metric.");
 
             if (!segments.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsightMetric.", nameof(segments));
+                throw new JsonException("Property is required for class ExperimentSegmentInsightMetric: segments.");
 
             if (metric.IsSet && metric.Value == null)
-                throw new ArgumentNullException(nameof(metric), "Property is not nullable for class ExperimentSegmentInsightMetric.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsightMetric: metric.");
 
             if (segments.IsSet && segments.Value == null)
-                throw new ArgumentNullException(nameof(segments), "Property is not nullable for class ExperimentSegmentInsightMetric.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsightMetric: segments.");
 
             return new ExperimentSegmentInsightMetric(metric.Value.Value, segments.Value);
         }
@@ -254,7 +254,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentSegmentInsightMetric"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentSegmentInsightMetric experimentSegmentInsightMetric, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -269,11 +268,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentSegmentInsightMetric"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentSegmentInsightMetric experimentSegmentInsightMetric, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentSegmentInsightMetric.Segments == null)
-                throw new ArgumentNullException(nameof(experimentSegmentInsightMetric.Segments), "Property is required for class ExperimentSegmentInsightMetric.");
+                throw new JsonException("Cannot write null property ExperimentSegmentInsightMetric.Segments to non-nullable JSON property 'segments'.");
 
             var metricRawValue = ExperimentSegmentInsightMetric.MetricEnumToJsonValue(experimentSegmentInsightMetric.Metric);
             writer.WriteString("metric", metricRawValue);

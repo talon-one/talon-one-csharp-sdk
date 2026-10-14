@@ -242,10 +242,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!requestStatus.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSupportRequest.", nameof(requestStatus));
+                throw new JsonException("Property is required for class UpdateSupportRequest: requestStatus.");
 
             if (requestStatus.IsSet && requestStatus.Value == null)
-                throw new ArgumentNullException(nameof(requestStatus), "Property is not nullable for class UpdateSupportRequest.");
+                throw new JsonException("Property is not nullable for class UpdateSupportRequest: requestStatus.");
 
             return new UpdateSupportRequest(requestStatus.Value.Value, processingNote);
         }
@@ -256,7 +256,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateSupportRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateSupportRequest updateSupportRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -271,7 +270,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateSupportRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateSupportRequest updateSupportRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             var requestStatusRawValue = UpdateSupportRequest.RequestStatusEnumToJsonValue(updateSupportRequest.RequestStatus);

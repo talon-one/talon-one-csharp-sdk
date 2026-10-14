@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimServiceProviderConfigResponseChangePassword"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ScimServiceProviderConfigResponseChangePassword scimServiceProviderConfigResponseChangePassword, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,7 +160,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimServiceProviderConfigResponseChangePassword"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimServiceProviderConfigResponseChangePassword scimServiceProviderConfigResponseChangePassword, JsonSerializerOptions jsonSerializerOptions)
         {
             if (scimServiceProviderConfigResponseChangePassword.SupportedOption.IsSet)

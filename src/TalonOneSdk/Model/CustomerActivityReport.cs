@@ -324,76 +324,76 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(integrationId));
+                throw new JsonException("Property is required for class CustomerActivityReport: integrationId.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(created));
+                throw new JsonException("Property is required for class CustomerActivityReport: created.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(name));
+                throw new JsonException("Property is required for class CustomerActivityReport: name.");
 
             if (!customerId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(customerId));
+                throw new JsonException("Property is required for class CustomerActivityReport: customerId.");
 
             if (!couponRedemptions.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(couponRedemptions));
+                throw new JsonException("Property is required for class CustomerActivityReport: couponRedemptions.");
 
             if (!couponUseAttempts.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(couponUseAttempts));
+                throw new JsonException("Property is required for class CustomerActivityReport: couponUseAttempts.");
 
             if (!couponFailedAttempts.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(couponFailedAttempts));
+                throw new JsonException("Property is required for class CustomerActivityReport: couponFailedAttempts.");
 
             if (!accruedDiscounts.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(accruedDiscounts));
+                throw new JsonException("Property is required for class CustomerActivityReport: accruedDiscounts.");
 
             if (!accruedRevenue.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(accruedRevenue));
+                throw new JsonException("Property is required for class CustomerActivityReport: accruedRevenue.");
 
             if (!totalOrders.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(totalOrders));
+                throw new JsonException("Property is required for class CustomerActivityReport: totalOrders.");
 
             if (!totalOrdersNoCoupon.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(totalOrdersNoCoupon));
+                throw new JsonException("Property is required for class CustomerActivityReport: totalOrdersNoCoupon.");
 
             if (!campaignName.IsSet)
-                throw new ArgumentException("Property is required for class CustomerActivityReport.", nameof(campaignName));
+                throw new JsonException("Property is required for class CustomerActivityReport: campaignName.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: integrationId.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: created.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: name.");
 
             if (customerId.IsSet && customerId.Value == null)
-                throw new ArgumentNullException(nameof(customerId), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: customerId.");
 
             if (couponRedemptions.IsSet && couponRedemptions.Value == null)
-                throw new ArgumentNullException(nameof(couponRedemptions), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: couponRedemptions.");
 
             if (couponUseAttempts.IsSet && couponUseAttempts.Value == null)
-                throw new ArgumentNullException(nameof(couponUseAttempts), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: couponUseAttempts.");
 
             if (couponFailedAttempts.IsSet && couponFailedAttempts.Value == null)
-                throw new ArgumentNullException(nameof(couponFailedAttempts), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: couponFailedAttempts.");
 
             if (accruedDiscounts.IsSet && accruedDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(accruedDiscounts), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: accruedDiscounts.");
 
             if (accruedRevenue.IsSet && accruedRevenue.Value == null)
-                throw new ArgumentNullException(nameof(accruedRevenue), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: accruedRevenue.");
 
             if (totalOrders.IsSet && totalOrders.Value == null)
-                throw new ArgumentNullException(nameof(totalOrders), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: totalOrders.");
 
             if (totalOrdersNoCoupon.IsSet && totalOrdersNoCoupon.Value == null)
-                throw new ArgumentNullException(nameof(totalOrdersNoCoupon), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: totalOrdersNoCoupon.");
 
             if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class CustomerActivityReport.");
+                throw new JsonException("Property is not nullable for class CustomerActivityReport: campaignName.");
 
             return new CustomerActivityReport(integrationId.Value, created.Value.Value, name.Value, customerId.Value.Value, couponRedemptions.Value.Value, couponUseAttempts.Value.Value, couponFailedAttempts.Value.Value, accruedDiscounts.Value.Value, accruedRevenue.Value.Value, totalOrders.Value.Value, totalOrdersNoCoupon.Value.Value, campaignName.Value, lastActivity);
         }
@@ -404,7 +404,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerActivityReport"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerActivityReport customerActivityReport, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -419,17 +418,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerActivityReport"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerActivityReport customerActivityReport, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerActivityReport.IntegrationId == null)
-                throw new ArgumentNullException(nameof(customerActivityReport.IntegrationId), "Property is required for class CustomerActivityReport.");
+                throw new JsonException("Cannot write null property CustomerActivityReport.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             if (customerActivityReport.Name == null)
-                throw new ArgumentNullException(nameof(customerActivityReport.Name), "Property is required for class CustomerActivityReport.");
+                throw new JsonException("Cannot write null property CustomerActivityReport.Name to non-nullable JSON property 'name'.");
 
             if (customerActivityReport.CampaignName == null)
-                throw new ArgumentNullException(nameof(customerActivityReport.CampaignName), "Property is required for class CustomerActivityReport.");
+                throw new JsonException("Cannot write null property CustomerActivityReport.CampaignName to non-nullable JSON property 'campaignName'.");
 
             writer.WriteString("integrationId", customerActivityReport.IntegrationId);
 

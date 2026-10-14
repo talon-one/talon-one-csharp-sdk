@@ -324,16 +324,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class NewCampaignStoreBudget.", nameof(action));
+                throw new JsonException("Property is required for class NewCampaignStoreBudget: action.");
 
             if (!storeLimits.IsSet)
-                throw new ArgumentException("Property is required for class NewCampaignStoreBudget.", nameof(storeLimits));
+                throw new JsonException("Property is required for class NewCampaignStoreBudget: storeLimits.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class NewCampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class NewCampaignStoreBudget: action.");
 
             if (storeLimits.IsSet && storeLimits.Value == null)
-                throw new ArgumentNullException(nameof(storeLimits), "Property is not nullable for class NewCampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class NewCampaignStoreBudget: storeLimits.");
 
             return new NewCampaignStoreBudget(action.Value.Value, storeLimits.Value, period);
         }
@@ -344,7 +344,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCampaignStoreBudget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewCampaignStoreBudget newCampaignStoreBudget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -359,11 +358,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCampaignStoreBudget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCampaignStoreBudget newCampaignStoreBudget, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newCampaignStoreBudget.StoreLimits == null)
-                throw new ArgumentNullException(nameof(newCampaignStoreBudget.StoreLimits), "Property is required for class NewCampaignStoreBudget.");
+                throw new JsonException("Cannot write null property NewCampaignStoreBudget.StoreLimits to non-nullable JSON property 'storeLimits'.");
 
             var actionRawValue = NewCampaignStoreBudget.ActionEnumToJsonValue(newCampaignStoreBudget.Action);
             writer.WriteString("action", actionRawValue);

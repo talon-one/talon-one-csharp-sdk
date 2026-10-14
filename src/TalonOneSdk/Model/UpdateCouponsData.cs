@@ -269,46 +269,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!batchID.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCouponsData.", nameof(batchID));
+                throw new JsonException("Property is required for class UpdateCouponsData: BatchID.");
 
             if (!applicationID.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCouponsData.", nameof(applicationID));
+                throw new JsonException("Property is required for class UpdateCouponsData: ApplicationID.");
 
             if (!campaignID.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCouponsData.", nameof(campaignID));
+                throw new JsonException("Property is required for class UpdateCouponsData: CampaignID.");
 
             if (!typeOfChange.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCouponsData.", nameof(typeOfChange));
+                throw new JsonException("Property is required for class UpdateCouponsData: TypeOfChange.");
 
             if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCouponsData.", nameof(operation));
+                throw new JsonException("Property is required for class UpdateCouponsData: Operation.");
 
             if (!employeeName.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCouponsData.", nameof(employeeName));
+                throw new JsonException("Property is required for class UpdateCouponsData: EmployeeName.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCouponsData.", nameof(notificationType));
+                throw new JsonException("Property is required for class UpdateCouponsData: NotificationType.");
 
             if (batchID.IsSet && batchID.Value == null)
-                throw new ArgumentNullException(nameof(batchID), "Property is not nullable for class UpdateCouponsData.");
+                throw new JsonException("Property is not nullable for class UpdateCouponsData: BatchID.");
 
             if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class UpdateCouponsData.");
+                throw new JsonException("Property is not nullable for class UpdateCouponsData: ApplicationID.");
 
             if (campaignID.IsSet && campaignID.Value == null)
-                throw new ArgumentNullException(nameof(campaignID), "Property is not nullable for class UpdateCouponsData.");
+                throw new JsonException("Property is not nullable for class UpdateCouponsData: CampaignID.");
 
             if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class UpdateCouponsData.");
+                throw new JsonException("Property is not nullable for class UpdateCouponsData: TypeOfChange.");
 
             if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class UpdateCouponsData.");
+                throw new JsonException("Property is not nullable for class UpdateCouponsData: Operation.");
 
             if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class UpdateCouponsData.");
+                throw new JsonException("Property is not nullable for class UpdateCouponsData: EmployeeName.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class UpdateCouponsData.");
+                throw new JsonException("Property is not nullable for class UpdateCouponsData: NotificationType.");
 
             return new UpdateCouponsData(batchID.Value, applicationID.Value.Value, campaignID.Value.Value, typeOfChange.Value, operation.Value, employeeName.Value, notificationType.Value.Value);
         }
@@ -319,7 +319,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCouponsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateCouponsData updateCouponsData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -334,20 +333,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCouponsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCouponsData updateCouponsData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateCouponsData.BatchID == null)
-                throw new ArgumentNullException(nameof(updateCouponsData.BatchID), "Property is required for class UpdateCouponsData.");
+                throw new JsonException("Cannot write null property UpdateCouponsData.BatchID to non-nullable JSON property 'BatchID'.");
 
             if (updateCouponsData.TypeOfChange == null)
-                throw new ArgumentNullException(nameof(updateCouponsData.TypeOfChange), "Property is required for class UpdateCouponsData.");
+                throw new JsonException("Cannot write null property UpdateCouponsData.TypeOfChange to non-nullable JSON property 'TypeOfChange'.");
 
             if (updateCouponsData.Operation == null)
-                throw new ArgumentNullException(nameof(updateCouponsData.Operation), "Property is required for class UpdateCouponsData.");
+                throw new JsonException("Cannot write null property UpdateCouponsData.Operation to non-nullable JSON property 'Operation'.");
 
             if (updateCouponsData.EmployeeName == null)
-                throw new ArgumentNullException(nameof(updateCouponsData.EmployeeName), "Property is required for class UpdateCouponsData.");
+                throw new JsonException("Cannot write null property UpdateCouponsData.EmployeeName to non-nullable JSON property 'EmployeeName'.");
 
             writer.WriteString("BatchID", updateCouponsData.BatchID);
 

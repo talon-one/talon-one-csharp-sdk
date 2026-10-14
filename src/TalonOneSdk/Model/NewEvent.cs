@@ -230,22 +230,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NewEvent.", nameof(type));
+                throw new JsonException("Property is required for class NewEvent: type.");
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class NewEvent.", nameof(attributes));
+                throw new JsonException("Property is required for class NewEvent: attributes.");
 
             if (!sessionId.IsSet)
-                throw new ArgumentException("Property is required for class NewEvent.", nameof(sessionId));
+                throw new JsonException("Property is required for class NewEvent: sessionId.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewEvent.");
+                throw new JsonException("Property is not nullable for class NewEvent: type.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class NewEvent.");
+                throw new JsonException("Property is not nullable for class NewEvent: attributes.");
 
             if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class NewEvent.");
+                throw new JsonException("Property is not nullable for class NewEvent: sessionId.");
 
             return new NewEvent(type.Value, attributes.Value, sessionId.Value, profileId, storeIntegrationId);
         }
@@ -256,7 +256,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewEvent newEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -271,17 +270,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewEvent newEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newEvent.Type == null)
-                throw new ArgumentNullException(nameof(newEvent.Type), "Property is required for class NewEvent.");
+                throw new JsonException("Cannot write null property NewEvent.Type to non-nullable JSON property 'type'.");
 
             if (newEvent.Attributes == null)
-                throw new ArgumentNullException(nameof(newEvent.Attributes), "Property is required for class NewEvent.");
+                throw new JsonException("Cannot write null property NewEvent.Attributes to non-nullable JSON property 'attributes'.");
 
             if (newEvent.SessionId == null)
-                throw new ArgumentNullException(nameof(newEvent.SessionId), "Property is required for class NewEvent.");
+                throw new JsonException("Cannot write null property NewEvent.SessionId to non-nullable JSON property 'sessionId'.");
 
             writer.WriteString("type", newEvent.Type);
 

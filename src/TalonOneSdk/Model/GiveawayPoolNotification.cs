@@ -219,22 +219,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotification.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class GiveawayPoolNotification: TotalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotification.", nameof(data));
+                throw new JsonException("Property is required for class GiveawayPoolNotification: Data.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotification.", nameof(notificationType));
+                throw new JsonException("Property is required for class GiveawayPoolNotification: NotificationType.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class GiveawayPoolNotification.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotification: TotalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GiveawayPoolNotification.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotification: Data.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class GiveawayPoolNotification.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotification: NotificationType.");
 
             return new GiveawayPoolNotification(totalResultSize.Value.Value, data.Value, notificationType.Value.Value);
         }
@@ -245,7 +245,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveawayPoolNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GiveawayPoolNotification giveawayPoolNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,11 +259,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveawayPoolNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GiveawayPoolNotification giveawayPoolNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (giveawayPoolNotification.Data == null)
-                throw new ArgumentNullException(nameof(giveawayPoolNotification.Data), "Property is required for class GiveawayPoolNotification.");
+                throw new JsonException("Cannot write null property GiveawayPoolNotification.Data to non-nullable JSON property 'Data'.");
 
             writer.WriteNumber("TotalResultSize", giveawayPoolNotification.TotalResultSize);
 

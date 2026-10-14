@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="AwardLoyaltyPointsBlock1Value" /> class.
         /// </summary>
         /// <param name="decimal"></param>
-        internal AwardLoyaltyPointsBlock1Value(decimal @decimal)
+        public AwardLoyaltyPointsBlock1Value(decimal @decimal)
         {
             Decimal = @decimal;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="AwardLoyaltyPointsBlock1Value" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal AwardLoyaltyPointsBlock1Value(string @string)
+        public AwardLoyaltyPointsBlock1Value(string @string)
         {
             String = @string;
             OnCreated();
@@ -175,7 +175,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardLoyaltyPointsBlock1Value"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardLoyaltyPointsBlock1Value awardLoyaltyPointsBlock1Value, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardLoyaltyPointsBlock1Value"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardLoyaltyPointsBlock1Value awardLoyaltyPointsBlock1Value, JsonSerializerOptions jsonSerializerOptions)
         {
 

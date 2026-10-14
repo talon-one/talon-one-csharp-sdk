@@ -217,22 +217,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountAdditionalCostTarget.", nameof(type));
+                throw new JsonException("Property is required for class AwardDiscountAdditionalCostTarget: type.");
 
             if (!additionalCost.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountAdditionalCostTarget.", nameof(additionalCost));
+                throw new JsonException("Property is required for class AwardDiscountAdditionalCostTarget: additionalCost.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountAdditionalCostTarget.", nameof(target));
+                throw new JsonException("Property is required for class AwardDiscountAdditionalCostTarget: target.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountAdditionalCostTarget.");
+                throw new JsonException("Property is not nullable for class AwardDiscountAdditionalCostTarget: type.");
 
             if (additionalCost.IsSet && additionalCost.Value == null)
-                throw new ArgumentNullException(nameof(additionalCost), "Property is not nullable for class AwardDiscountAdditionalCostTarget.");
+                throw new JsonException("Property is not nullable for class AwardDiscountAdditionalCostTarget: additionalCost.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class AwardDiscountAdditionalCostTarget.");
+                throw new JsonException("Property is not nullable for class AwardDiscountAdditionalCostTarget: target.");
 
             return new AwardDiscountAdditionalCostTarget(type.Value.Value, additionalCost.Value, target.Value);
         }
@@ -243,7 +243,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountAdditionalCostTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardDiscountAdditionalCostTarget awardDiscountAdditionalCostTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -258,14 +257,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountAdditionalCostTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardDiscountAdditionalCostTarget awardDiscountAdditionalCostTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardDiscountAdditionalCostTarget.AdditionalCost == null)
-                throw new ArgumentNullException(nameof(awardDiscountAdditionalCostTarget.AdditionalCost), "Property is required for class AwardDiscountAdditionalCostTarget.");
+                throw new JsonException("Cannot write null property AwardDiscountAdditionalCostTarget.AdditionalCost to non-nullable JSON property 'additionalCost'.");
 
             if (awardDiscountAdditionalCostTarget.Target == null)
-                throw new ArgumentNullException(nameof(awardDiscountAdditionalCostTarget.Target), "Property is required for class AwardDiscountAdditionalCostTarget.");
+                throw new JsonException("Cannot write null property AwardDiscountAdditionalCostTarget.Target to non-nullable JSON property 'target'.");
 
             var typeRawValue = AwardDiscountAdditionalCostTarget.TypeEnumToJsonValue(awardDiscountAdditionalCostTarget.Type);
             writer.WriteString("type", typeRawValue);

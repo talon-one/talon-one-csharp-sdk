@@ -144,16 +144,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class CreateReferralsForMultipleAdvocates201Response.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class CreateReferralsForMultipleAdvocates201Response: totalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class CreateReferralsForMultipleAdvocates201Response.", nameof(data));
+                throw new JsonException("Property is required for class CreateReferralsForMultipleAdvocates201Response: data.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CreateReferralsForMultipleAdvocates201Response.");
+                throw new JsonException("Property is not nullable for class CreateReferralsForMultipleAdvocates201Response: totalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class CreateReferralsForMultipleAdvocates201Response.");
+                throw new JsonException("Property is not nullable for class CreateReferralsForMultipleAdvocates201Response: data.");
 
             return new CreateReferralsForMultipleAdvocates201Response(totalResultSize.Value.Value, data.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createReferralsForMultipleAdvocates201Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateReferralsForMultipleAdvocates201Response createReferralsForMultipleAdvocates201Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createReferralsForMultipleAdvocates201Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateReferralsForMultipleAdvocates201Response createReferralsForMultipleAdvocates201Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createReferralsForMultipleAdvocates201Response.Data == null)
-                throw new ArgumentNullException(nameof(createReferralsForMultipleAdvocates201Response.Data), "Property is required for class CreateReferralsForMultipleAdvocates201Response.");
+                throw new JsonException("Cannot write null property CreateReferralsForMultipleAdvocates201Response.Data to non-nullable JSON property 'data'.");
 
             writer.WriteNumber("totalResultSize", createReferralsForMultipleAdvocates201Response.TotalResultSize);
 

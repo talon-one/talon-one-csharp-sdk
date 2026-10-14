@@ -202,22 +202,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEditedNotificationItem.", nameof(varEvent));
+                throw new JsonException("Property is required for class CampaignEditedNotificationItem: Event.");
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEditedNotificationItem.", nameof(campaign));
+                throw new JsonException("Property is required for class CampaignEditedNotificationItem: campaign.");
 
             if (!oldCampaign.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEditedNotificationItem.", nameof(oldCampaign));
+                throw new JsonException("Property is required for class CampaignEditedNotificationItem: oldCampaign.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignEditedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignEditedNotificationItem: Event.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignEditedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignEditedNotificationItem: campaign.");
 
             if (oldCampaign.IsSet && oldCampaign.Value == null)
-                throw new ArgumentNullException(nameof(oldCampaign), "Property is not nullable for class CampaignEditedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignEditedNotificationItem: oldCampaign.");
 
             return new CampaignEditedNotificationItem(varEvent.Value, campaign.Value, oldCampaign.Value, ruleset, placeholders);
         }
@@ -228,7 +228,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEditedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEditedNotificationItem campaignEditedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -243,17 +242,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEditedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEditedNotificationItem campaignEditedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignEditedNotificationItem.Event == null)
-                throw new ArgumentNullException(nameof(campaignEditedNotificationItem.Event), "Property is required for class CampaignEditedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignEditedNotificationItem.Event to non-nullable JSON property 'Event'.");
 
             if (campaignEditedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignEditedNotificationItem.Campaign), "Property is required for class CampaignEditedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignEditedNotificationItem.Campaign to non-nullable JSON property 'campaign'.");
 
             if (campaignEditedNotificationItem.OldCampaign == null)
-                throw new ArgumentNullException(nameof(campaignEditedNotificationItem.OldCampaign), "Property is required for class CampaignEditedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignEditedNotificationItem.OldCampaign to non-nullable JSON property 'oldCampaign'.");
 
             writer.WriteString("Event", campaignEditedNotificationItem.Event);
 

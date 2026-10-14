@@ -152,16 +152,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CouponEntity.", nameof(id));
+                throw new JsonException("Property is required for class CouponEntity: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CouponEntity.", nameof(created));
+                throw new JsonException("Property is required for class CouponEntity: created.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CouponEntity.");
+                throw new JsonException("Property is not nullable for class CouponEntity: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CouponEntity.");
+                throw new JsonException("Property is not nullable for class CouponEntity: created.");
 
             return new CouponEntity(id.Value.Value, created.Value.Value);
         }
@@ -172,7 +172,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponEntity couponEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -187,7 +186,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponEntity couponEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", couponEntity.Id);

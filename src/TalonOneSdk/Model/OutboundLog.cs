@@ -354,28 +354,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!uuid.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLog.", nameof(uuid));
+                throw new JsonException("Property is required for class OutboundLog: uuid.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLog.", nameof(notificationType));
+                throw new JsonException("Property is required for class OutboundLog: notificationType.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLog.", nameof(createdAt));
+                throw new JsonException("Property is required for class OutboundLog: createdAt.");
 
             if (!processingTimeMs.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLog.", nameof(processingTimeMs));
+                throw new JsonException("Property is required for class OutboundLog: processingTimeMs.");
 
             if (uuid.IsSet && uuid.Value == null)
-                throw new ArgumentNullException(nameof(uuid), "Property is not nullable for class OutboundLog.");
+                throw new JsonException("Property is not nullable for class OutboundLog: uuid.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class OutboundLog.");
+                throw new JsonException("Property is not nullable for class OutboundLog: notificationType.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class OutboundLog.");
+                throw new JsonException("Property is not nullable for class OutboundLog: createdAt.");
 
             if (processingTimeMs.IsSet && processingTimeMs.Value == null)
-                throw new ArgumentNullException(nameof(processingTimeMs), "Property is not nullable for class OutboundLog.");
+                throw new JsonException("Property is not nullable for class OutboundLog: processingTimeMs.");
 
             return new OutboundLog(uuid.Value.Value, notificationType.Value, createdAt.Value.Value, processingTimeMs.Value.Value, notificationId, notificationName, webhookId, webhookName, applicationId, loyaltyProgramId, request, response);
         }
@@ -386,7 +386,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundLog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutboundLog outboundLog, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -401,11 +400,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundLog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutboundLog outboundLog, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outboundLog.NotificationType == null)
-                throw new ArgumentNullException(nameof(outboundLog.NotificationType), "Property is required for class OutboundLog.");
+                throw new JsonException("Cannot write null property OutboundLog.NotificationType to non-nullable JSON property 'notificationType'.");
 
             writer.WriteString("uuid", outboundLog.Uuid);
 

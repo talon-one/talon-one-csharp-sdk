@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreatedEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class CouponCreatedEffectProps: value.");
 
             if (!profileId.IsSet)
-                throw new ArgumentException("Property is required for class CouponCreatedEffectProps.", nameof(profileId));
+                throw new JsonException("Property is required for class CouponCreatedEffectProps: profileId.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class CouponCreatedEffectProps.");
+                throw new JsonException("Property is not nullable for class CouponCreatedEffectProps: value.");
 
             if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class CouponCreatedEffectProps.");
+                throw new JsonException("Property is not nullable for class CouponCreatedEffectProps: profileId.");
 
             return new CouponCreatedEffectProps(value.Value, profileId.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponCreatedEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponCreatedEffectProps couponCreatedEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,14 +179,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponCreatedEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponCreatedEffectProps couponCreatedEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (couponCreatedEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(couponCreatedEffectProps.Value), "Property is required for class CouponCreatedEffectProps.");
+                throw new JsonException("Cannot write null property CouponCreatedEffectProps.Value to non-nullable JSON property 'value'.");
 
             if (couponCreatedEffectProps.ProfileId == null)
-                throw new ArgumentNullException(nameof(couponCreatedEffectProps.ProfileId), "Property is required for class CouponCreatedEffectProps.");
+                throw new JsonException("Cannot write null property CouponCreatedEffectProps.ProfileId to non-nullable JSON property 'profileId'.");
 
             writer.WriteString("value", couponCreatedEffectProps.Value);
 

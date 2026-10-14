@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!item.IsSet)
-                throw new ArgumentException("Property is required for class CollectionItem.", nameof(item));
+                throw new JsonException("Property is required for class CollectionItem: item.");
 
             if (item.IsSet && item.Value == null)
-                throw new ArgumentNullException(nameof(item), "Property is not nullable for class CollectionItem.");
+                throw new JsonException("Property is not nullable for class CollectionItem: item.");
 
             return new CollectionItem(item.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="collectionItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CollectionItem collectionItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,11 +158,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="collectionItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CollectionItem collectionItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (collectionItem.Item == null)
-                throw new ArgumentNullException(nameof(collectionItem.Item), "Property is required for class CollectionItem.");
+                throw new JsonException("Cannot write null property CollectionItem.Item to non-nullable JSON property 'item'.");
 
             writer.WriteString("item", collectionItem.Item);
         }

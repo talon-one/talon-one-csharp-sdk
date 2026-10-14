@@ -190,22 +190,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class RewardPointsRequired.", nameof(amount));
+                throw new JsonException("Property is required for class RewardPointsRequired: amount.");
 
             if (!loyaltyProgramId.IsSet)
-                throw new ArgumentException("Property is required for class RewardPointsRequired.", nameof(loyaltyProgramId));
+                throw new JsonException("Property is required for class RewardPointsRequired: loyaltyProgramId.");
 
             if (!subledgerId.IsSet)
-                throw new ArgumentException("Property is required for class RewardPointsRequired.", nameof(subledgerId));
+                throw new JsonException("Property is required for class RewardPointsRequired: subledgerId.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class RewardPointsRequired.");
+                throw new JsonException("Property is not nullable for class RewardPointsRequired: amount.");
 
             if (loyaltyProgramId.IsSet && loyaltyProgramId.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramId), "Property is not nullable for class RewardPointsRequired.");
+                throw new JsonException("Property is not nullable for class RewardPointsRequired: loyaltyProgramId.");
 
             if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class RewardPointsRequired.");
+                throw new JsonException("Property is not nullable for class RewardPointsRequired: subledgerId.");
 
             return new RewardPointsRequired(amount.Value.Value, loyaltyProgramId.Value.Value, subledgerId.Value, id);
         }
@@ -216,7 +216,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardPointsRequired"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RewardPointsRequired rewardPointsRequired, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -231,11 +230,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardPointsRequired"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RewardPointsRequired rewardPointsRequired, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rewardPointsRequired.SubledgerId == null)
-                throw new ArgumentNullException(nameof(rewardPointsRequired.SubledgerId), "Property is required for class RewardPointsRequired.");
+                throw new JsonException("Cannot write null property RewardPointsRequired.SubledgerId to non-nullable JSON property 'subledgerId'.");
 
             writer.WriteNumber("amount", rewardPointsRequired.Amount);
 

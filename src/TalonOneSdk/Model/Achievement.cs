@@ -756,52 +756,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Achievement.", nameof(id));
+                throw new JsonException("Property is required for class Achievement: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Achievement.", nameof(created));
+                throw new JsonException("Property is required for class Achievement: created.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Achievement.", nameof(name));
+                throw new JsonException("Property is required for class Achievement: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class Achievement.", nameof(title));
+                throw new JsonException("Property is required for class Achievement: title.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class Achievement.", nameof(description));
+                throw new JsonException("Property is required for class Achievement: description.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class Achievement.", nameof(target));
+                throw new JsonException("Property is required for class Achievement: target.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class Achievement.", nameof(campaignId));
+                throw new JsonException("Property is required for class Achievement: campaignId.");
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class Achievement.", nameof(userId));
+                throw new JsonException("Property is required for class Achievement: userId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Achievement.");
+                throw new JsonException("Property is not nullable for class Achievement: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Achievement.");
+                throw new JsonException("Property is not nullable for class Achievement: created.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Achievement.");
+                throw new JsonException("Property is not nullable for class Achievement: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Achievement.");
+                throw new JsonException("Property is not nullable for class Achievement: title.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Achievement.");
+                throw new JsonException("Property is not nullable for class Achievement: description.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class Achievement.");
+                throw new JsonException("Property is not nullable for class Achievement: target.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class Achievement.");
+                throw new JsonException("Property is not nullable for class Achievement: campaignId.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Achievement.");
+                throw new JsonException("Property is not nullable for class Achievement: userId.");
 
             return new Achievement(id.Value.Value, created.Value.Value, name.Value, title.Value, description.Value, target.Value.Value, campaignId.Value.Value, userId.Value.Value, period, periodEndOverride, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, createdBy, hasProgress, status);
         }
@@ -812,7 +812,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievement"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Achievement achievement, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -827,17 +826,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievement"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Achievement achievement, JsonSerializerOptions jsonSerializerOptions)
         {
             if (achievement.Name == null)
-                throw new ArgumentNullException(nameof(achievement.Name), "Property is required for class Achievement.");
+                throw new JsonException("Cannot write null property Achievement.Name to non-nullable JSON property 'name'.");
 
             if (achievement.Title == null)
-                throw new ArgumentNullException(nameof(achievement.Title), "Property is required for class Achievement.");
+                throw new JsonException("Cannot write null property Achievement.Title to non-nullable JSON property 'title'.");
 
             if (achievement.Description == null)
-                throw new ArgumentNullException(nameof(achievement.Description), "Property is required for class Achievement.");
+                throw new JsonException("Cannot write null property Achievement.Description to non-nullable JSON property 'description'.");
 
             writer.WriteNumber("id", achievement.Id);
 

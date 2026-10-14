@@ -473,40 +473,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!startTime.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignAnalytics.", nameof(startTime));
+                throw new JsonException("Property is required for class ApplicationCampaignAnalytics: startTime.");
 
             if (!endTime.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignAnalytics.", nameof(endTime));
+                throw new JsonException("Property is required for class ApplicationCampaignAnalytics: endTime.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignAnalytics.", nameof(campaignId));
+                throw new JsonException("Property is required for class ApplicationCampaignAnalytics: campaignId.");
 
             if (!campaignName.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignAnalytics.", nameof(campaignName));
+                throw new JsonException("Property is required for class ApplicationCampaignAnalytics: campaignName.");
 
             if (!campaignTags.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignAnalytics.", nameof(campaignTags));
+                throw new JsonException("Property is required for class ApplicationCampaignAnalytics: campaignTags.");
 
             if (!campaignState.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignAnalytics.", nameof(campaignState));
+                throw new JsonException("Property is required for class ApplicationCampaignAnalytics: campaignState.");
 
             if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class ApplicationCampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignAnalytics: startTime.");
 
             if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class ApplicationCampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignAnalytics: endTime.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ApplicationCampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignAnalytics: campaignId.");
 
             if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class ApplicationCampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignAnalytics: campaignName.");
 
             if (campaignTags.IsSet && campaignTags.Value == null)
-                throw new ArgumentNullException(nameof(campaignTags), "Property is not nullable for class ApplicationCampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignAnalytics: campaignTags.");
 
             if (campaignState.IsSet && campaignState.Value == null)
-                throw new ArgumentNullException(nameof(campaignState), "Property is not nullable for class ApplicationCampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignAnalytics: campaignState.");
 
             return new ApplicationCampaignAnalytics(startTime.Value.Value, endTime.Value.Value, campaignId.Value.Value, campaignName.Value, campaignTags.Value, campaignState.Value.Value, totalRevenue, sessionsCount, avgItemsPerSession, avgSessionValue, totalDiscounts, couponsCount);
         }
@@ -517,7 +517,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCampaignAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationCampaignAnalytics applicationCampaignAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -532,14 +531,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCampaignAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationCampaignAnalytics applicationCampaignAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             if (applicationCampaignAnalytics.CampaignName == null)
-                throw new ArgumentNullException(nameof(applicationCampaignAnalytics.CampaignName), "Property is required for class ApplicationCampaignAnalytics.");
+                throw new JsonException("Cannot write null property ApplicationCampaignAnalytics.CampaignName to non-nullable JSON property 'campaignName'.");
 
             if (applicationCampaignAnalytics.CampaignTags == null)
-                throw new ArgumentNullException(nameof(applicationCampaignAnalytics.CampaignTags), "Property is required for class ApplicationCampaignAnalytics.");
+                throw new JsonException("Cannot write null property ApplicationCampaignAnalytics.CampaignTags to non-nullable JSON property 'campaignTags'.");
 
             writer.WriteString("startTime", applicationCampaignAnalytics.StartTime.ToString(StartTimeFormat));
 

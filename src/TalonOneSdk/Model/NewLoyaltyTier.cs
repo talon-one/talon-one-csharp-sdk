@@ -159,16 +159,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyTier.", nameof(name));
+                throw new JsonException("Property is required for class NewLoyaltyTier: name.");
 
             if (!minPoints.IsSet)
-                throw new ArgumentException("Property is required for class NewLoyaltyTier.", nameof(minPoints));
+                throw new JsonException("Property is required for class NewLoyaltyTier: minPoints.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewLoyaltyTier.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyTier: name.");
 
             if (minPoints.IsSet && minPoints.Value == null)
-                throw new ArgumentNullException(nameof(minPoints), "Property is not nullable for class NewLoyaltyTier.");
+                throw new JsonException("Property is not nullable for class NewLoyaltyTier: minPoints.");
 
             return new NewLoyaltyTier(name.Value, minPoints.Value.Value);
         }
@@ -179,7 +179,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newLoyaltyTier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewLoyaltyTier newLoyaltyTier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -194,11 +193,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newLoyaltyTier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewLoyaltyTier newLoyaltyTier, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newLoyaltyTier.Name == null)
-                throw new ArgumentNullException(nameof(newLoyaltyTier.Name), "Property is required for class NewLoyaltyTier.");
+                throw new JsonException("Cannot write null property NewLoyaltyTier.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", newLoyaltyTier.Name);
 

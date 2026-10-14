@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!logID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateAuditLogSummary.", nameof(logID));
+                throw new JsonException("Property is required for class GenerateAuditLogSummary: logID.");
 
             if (logID.IsSet && logID.Value == null)
-                throw new ArgumentNullException(nameof(logID), "Property is not nullable for class GenerateAuditLogSummary.");
+                throw new JsonException("Property is not nullable for class GenerateAuditLogSummary: logID.");
 
             return new GenerateAuditLogSummary(logID.Value.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateAuditLogSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GenerateAuditLogSummary generateAuditLogSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,7 +159,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateAuditLogSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateAuditLogSummary generateAuditLogSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("logID", generateAuditLogSummary.LogID);

@@ -510,64 +510,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(eventId));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: EventId.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(id));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: Id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(created));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: Created.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(campaignId));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: CampaignId.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(value));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: Value.");
 
             if (!usageLimit.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(usageLimit));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: UsageLimit.");
 
             if (!usageCounter.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(usageCounter));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: UsageCounter.");
 
             if (!publishedAt.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(publishedAt));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: PublishedAt.");
 
             if (!sourceOfEvent.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(sourceOfEvent));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: SourceOfEvent.");
 
             if (!employeeName.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.", nameof(employeeName));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotifications: EmployeeName.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: EventId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: Id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: Created.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: CampaignId.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: Value.");
 
             if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: UsageLimit.");
 
             if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: UsageCounter.");
 
             if (publishedAt.IsSet && publishedAt.Value == null)
-                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: PublishedAt.");
 
             if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
-                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: SourceOfEvent.");
 
             if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotifications: EmployeeName.");
 
             return new IntegrationHubEventPayloadCouponBasedNotifications(eventId.Value.Value, id.Value.Value, created.Value.Value, campaignId.Value.Value, value.Value, usageLimit.Value.Value, usageCounter.Value.Value, publishedAt.Value.Value, sourceOfEvent.Value, employeeName.Value, discountLimit, reservationLimit, startDate, expiryDate, discountCounter, discountRemainder, referralId, recipientIntegrationId, importId, batchId, attributes, limits);
         }
@@ -578,7 +578,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadCouponBasedNotifications"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventPayloadCouponBasedNotifications integrationHubEventPayloadCouponBasedNotifications, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -593,17 +592,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadCouponBasedNotifications"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventPayloadCouponBasedNotifications integrationHubEventPayloadCouponBasedNotifications, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubEventPayloadCouponBasedNotifications.Value == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.Value), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadCouponBasedNotifications.Value to non-nullable JSON property 'Value'.");
 
             if (integrationHubEventPayloadCouponBasedNotifications.SourceOfEvent == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.SourceOfEvent), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadCouponBasedNotifications.SourceOfEvent to non-nullable JSON property 'SourceOfEvent'.");
 
             if (integrationHubEventPayloadCouponBasedNotifications.EmployeeName == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotifications.EmployeeName), "Property is required for class IntegrationHubEventPayloadCouponBasedNotifications.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadCouponBasedNotifications.EmployeeName to non-nullable JSON property 'EmployeeName'.");
 
             writer.WriteNumber("EventId", integrationHubEventPayloadCouponBasedNotifications.EventId);
 

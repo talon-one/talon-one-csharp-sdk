@@ -37,10 +37,10 @@ namespace TalonOneSdk.Model
         /// <param name="requestNote">Notes attached to the support request.</param>
         /// <param name="campaignId">Identifier of the campaign where the coupon or gift card is created.</param>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.</param>
-        /// <param name="subledgerId">Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.</param>
+        /// <param name="subledgerId">ID of the subledger the points are added to or deducted from. Must be combined with &#x60;loyaltyProgramId&#x60;. The subledger must already exist in the given loyalty program.</param>
         /// <param name="requestValue">Requested monetary balance of the gift card or the number of loyalty points to be added or deducted.</param>
         [JsonConstructor]
-        public SupportRequestInput(long applicationId, string customerProfileId, RequestTypeEnum requestType, string requestNote, Option<long?> campaignId = default, Option<long?> loyaltyProgramId = default, Option<long?> subledgerId = default, Option<float?> requestValue = default)
+        public SupportRequestInput(long applicationId, string customerProfileId, RequestTypeEnum requestType, string requestNote, Option<long?> campaignId = default, Option<long?> loyaltyProgramId = default, Option<string> subledgerId = default, Option<float?> requestValue = default)
         {
             ApplicationId = applicationId;
             CustomerProfileId = customerProfileId;
@@ -217,15 +217,15 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> SubledgerIdOption { get; private set; }
+        public Option<string> SubledgerIdOption { get; private set; }
 
         /// <summary>
-        /// Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.
+        /// ID of the subledger the points are added to or deducted from. Must be combined with &#x60;loyaltyProgramId&#x60;. The subledger must already exist in the given loyalty program.
         /// </summary>
-        /// <value>Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.</value>
-        /* <example>123</example> */
+        /// <value>ID of the subledger the points are added to or deducted from. Must be combined with &#x60;loyaltyProgramId&#x60;. The subledger must already exist in the given loyalty program.</value>
+        /* <example>sub-123</example> */
         [JsonPropertyName("subledgerId")]
-        public long? SubledgerId { get { return this.SubledgerIdOption.Value; } set { this.SubledgerIdOption = new Option<long?>(value); } }
+        public string SubledgerId { get { return this.SubledgerIdOption.Value; } set { this.SubledgerIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of RequestValue
@@ -317,7 +317,7 @@ namespace TalonOneSdk.Model
             Option<string> requestNote = default;
             Option<long?> campaignId = default;
             Option<long?> loyaltyProgramId = default;
-            Option<long?> subledgerId = default;
+            Option<string> subledgerId = default;
             Option<float?> requestValue = default;
 
             while (utf8JsonReader.Read())
@@ -361,7 +361,7 @@ namespace TalonOneSdk.Model
                             loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "subledgerId":
-                            subledgerId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            subledgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "requestValue":
                             requestValue = new Option<float?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (float?)null : (float)utf8JsonReader.GetDouble());
@@ -373,28 +373,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequestInput.", nameof(applicationId));
+                throw new JsonException("Property is required for class SupportRequestInput: applicationId.");
 
             if (!customerProfileId.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequestInput.", nameof(customerProfileId));
+                throw new JsonException("Property is required for class SupportRequestInput: customerProfileId.");
 
             if (!requestType.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequestInput.", nameof(requestType));
+                throw new JsonException("Property is required for class SupportRequestInput: requestType.");
 
             if (!requestNote.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequestInput.", nameof(requestNote));
+                throw new JsonException("Property is required for class SupportRequestInput: requestNote.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class SupportRequestInput.");
+                throw new JsonException("Property is not nullable for class SupportRequestInput: applicationId.");
 
             if (customerProfileId.IsSet && customerProfileId.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileId), "Property is not nullable for class SupportRequestInput.");
+                throw new JsonException("Property is not nullable for class SupportRequestInput: customerProfileId.");
 
             if (requestType.IsSet && requestType.Value == null)
-                throw new ArgumentNullException(nameof(requestType), "Property is not nullable for class SupportRequestInput.");
+                throw new JsonException("Property is not nullable for class SupportRequestInput: requestType.");
 
             if (requestNote.IsSet && requestNote.Value == null)
-                throw new ArgumentNullException(nameof(requestNote), "Property is not nullable for class SupportRequestInput.");
+                throw new JsonException("Property is not nullable for class SupportRequestInput: requestNote.");
 
             return new SupportRequestInput(applicationId.Value.Value, customerProfileId.Value, requestType.Value.Value, requestNote.Value, campaignId, loyaltyProgramId, subledgerId, requestValue);
         }
@@ -405,7 +405,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="supportRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SupportRequestInput supportRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -420,14 +419,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="supportRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SupportRequestInput supportRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             if (supportRequestInput.CustomerProfileId == null)
-                throw new ArgumentNullException(nameof(supportRequestInput.CustomerProfileId), "Property is required for class SupportRequestInput.");
+                throw new JsonException("Cannot write null property SupportRequestInput.CustomerProfileId to non-nullable JSON property 'customerProfileId'.");
 
             if (supportRequestInput.RequestNote == null)
-                throw new ArgumentNullException(nameof(supportRequestInput.RequestNote), "Property is required for class SupportRequestInput.");
+                throw new JsonException("Cannot write null property SupportRequestInput.RequestNote to non-nullable JSON property 'requestNote'.");
 
             writer.WriteNumber("applicationId", supportRequestInput.ApplicationId);
 
@@ -444,7 +442,7 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("loyaltyProgramId", supportRequestInput.LoyaltyProgramIdOption.Value.Value);
 
             if (supportRequestInput.SubledgerIdOption.IsSet)
-                writer.WriteNumber("subledgerId", supportRequestInput.SubledgerIdOption.Value.Value);
+                writer.WriteString("subledgerId", supportRequestInput.SubledgerId);
 
             if (supportRequestInput.RequestValueOption.IsSet)
                 writer.WriteNumber("requestValue", supportRequestInput.RequestValueOption.Value.Value);

@@ -379,52 +379,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(id));
+                throw new JsonException("Property is required for class OutgoingIntegrationTemplate: id.");
 
             if (!integrationType.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(integrationType));
+                throw new JsonException("Property is required for class OutgoingIntegrationTemplate: integrationType.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(title));
+                throw new JsonException("Property is required for class OutgoingIntegrationTemplate: title.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(description));
+                throw new JsonException("Property is required for class OutgoingIntegrationTemplate: description.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(payload));
+                throw new JsonException("Property is required for class OutgoingIntegrationTemplate: payload.");
 
             if (!method.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(method));
+                throw new JsonException("Property is required for class OutgoingIntegrationTemplate: method.");
 
             if (!relativeUrl.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(relativeUrl));
+                throw new JsonException("Property is required for class OutgoingIntegrationTemplate: relativeUrl.");
 
             if (!headers.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationTemplate.", nameof(headers));
+                throw new JsonException("Property is required for class OutgoingIntegrationTemplate: headers.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationTemplate: id.");
 
             if (integrationType.IsSet && integrationType.Value == null)
-                throw new ArgumentNullException(nameof(integrationType), "Property is not nullable for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationTemplate: integrationType.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationTemplate: title.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationTemplate: description.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationTemplate: payload.");
 
             if (method.IsSet && method.Value == null)
-                throw new ArgumentNullException(nameof(method), "Property is not nullable for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationTemplate: method.");
 
             if (relativeUrl.IsSet && relativeUrl.Value == null)
-                throw new ArgumentNullException(nameof(relativeUrl), "Property is not nullable for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationTemplate: relativeUrl.");
 
             if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationTemplate: headers.");
 
             return new OutgoingIntegrationTemplate(id.Value.Value, integrationType.Value.Value, title.Value, description.Value, payload.Value, method.Value.Value, relativeUrl.Value, headers.Value);
         }
@@ -435,7 +435,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutgoingIntegrationTemplate outgoingIntegrationTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -450,23 +449,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationTemplate outgoingIntegrationTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outgoingIntegrationTemplate.Title == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationTemplate.Title), "Property is required for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationTemplate.Title to non-nullable JSON property 'title'.");
 
             if (outgoingIntegrationTemplate.Description == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationTemplate.Description), "Property is required for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationTemplate.Description to non-nullable JSON property 'description'.");
 
             if (outgoingIntegrationTemplate.Payload == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationTemplate.Payload), "Property is required for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationTemplate.Payload to non-nullable JSON property 'payload'.");
 
             if (outgoingIntegrationTemplate.RelativeUrl == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationTemplate.RelativeUrl), "Property is required for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationTemplate.RelativeUrl to non-nullable JSON property 'relativeUrl'.");
 
             if (outgoingIntegrationTemplate.Headers == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationTemplate.Headers), "Property is required for class OutgoingIntegrationTemplate.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationTemplate.Headers to non-nullable JSON property 'headers'.");
 
             writer.WriteNumber("id", outgoingIntegrationTemplate.Id);
 

@@ -281,46 +281,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPKey.", nameof(name));
+                throw new JsonException("Property is required for class NewMCPKey: name.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPKey.", nameof(expiryDate));
+                throw new JsonException("Property is required for class NewMCPKey: expiryDate.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPKey.", nameof(id));
+                throw new JsonException("Property is required for class NewMCPKey: id.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPKey.", nameof(createdBy));
+                throw new JsonException("Property is required for class NewMCPKey: createdBy.");
 
             if (!accountID.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPKey.", nameof(accountID));
+                throw new JsonException("Property is required for class NewMCPKey: accountID.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPKey.", nameof(created));
+                throw new JsonException("Property is required for class NewMCPKey: created.");
 
             if (!key.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPKey.", nameof(key));
+                throw new JsonException("Property is required for class NewMCPKey: key.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewMCPKey.");
+                throw new JsonException("Property is not nullable for class NewMCPKey: name.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class NewMCPKey.");
+                throw new JsonException("Property is not nullable for class NewMCPKey: expiryDate.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class NewMCPKey.");
+                throw new JsonException("Property is not nullable for class NewMCPKey: id.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class NewMCPKey.");
+                throw new JsonException("Property is not nullable for class NewMCPKey: createdBy.");
 
             if (accountID.IsSet && accountID.Value == null)
-                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class NewMCPKey.");
+                throw new JsonException("Property is not nullable for class NewMCPKey: accountID.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class NewMCPKey.");
+                throw new JsonException("Property is not nullable for class NewMCPKey: created.");
 
             if (key.IsSet && key.Value == null)
-                throw new ArgumentNullException(nameof(key), "Property is not nullable for class NewMCPKey.");
+                throw new JsonException("Property is not nullable for class NewMCPKey: key.");
 
             return new NewMCPKey(name.Value, expiryDate.Value.Value, id.Value.Value, createdBy.Value.Value, accountID.Value.Value, created.Value.Value, key.Value, disabled, lastUsed);
         }
@@ -331,7 +331,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newMCPKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewMCPKey newMCPKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -346,14 +345,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newMCPKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewMCPKey newMCPKey, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newMCPKey.Name == null)
-                throw new ArgumentNullException(nameof(newMCPKey.Name), "Property is required for class NewMCPKey.");
+                throw new JsonException("Cannot write null property NewMCPKey.Name to non-nullable JSON property 'name'.");
 
             if (newMCPKey.Key == null)
-                throw new ArgumentNullException(nameof(newMCPKey.Key), "Property is required for class NewMCPKey.");
+                throw new JsonException("Cannot write null property NewMCPKey.Key to non-nullable JSON property 'key'.");
 
             writer.WriteString("name", newMCPKey.Name);
 

@@ -545,22 +545,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!profileId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(profileId));
+                throw new JsonException("Property is required for class IntegrationEventV3Request: profileId.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(type));
+                throw new JsonException("Property is required for class IntegrationEventV3Request: type.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEventV3Request.", nameof(integrationId));
+                throw new JsonException("Property is required for class IntegrationEventV3Request: integrationId.");
 
             if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class IntegrationEventV3Request.");
+                throw new JsonException("Property is not nullable for class IntegrationEventV3Request: profileId.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class IntegrationEventV3Request.");
+                throw new JsonException("Property is not nullable for class IntegrationEventV3Request: type.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEventV3Request.");
+                throw new JsonException("Property is not nullable for class IntegrationEventV3Request: integrationId.");
 
             return new IntegrationEventV3Request(profileId.Value, type.Value, integrationId.Value, storeIntegrationId, evaluableCampaignIds, attributes, connectedSessionId, referralCode, loyaltyCards, rewardIntegrationIds, responseContent);
         }
@@ -571,7 +571,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEventV3Request"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationEventV3Request integrationEventV3Request, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -586,17 +585,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEventV3Request"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationEventV3Request integrationEventV3Request, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationEventV3Request.ProfileId == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.ProfileId), "Property is required for class IntegrationEventV3Request.");
+                throw new JsonException("Cannot write null property IntegrationEventV3Request.ProfileId to non-nullable JSON property 'profileId'.");
 
             if (integrationEventV3Request.Type == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.Type), "Property is required for class IntegrationEventV3Request.");
+                throw new JsonException("Cannot write null property IntegrationEventV3Request.Type to non-nullable JSON property 'type'.");
 
             if (integrationEventV3Request.IntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationEventV3Request.IntegrationId), "Property is required for class IntegrationEventV3Request.");
+                throw new JsonException("Cannot write null property IntegrationEventV3Request.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("profileId", integrationEventV3Request.ProfileId);
 

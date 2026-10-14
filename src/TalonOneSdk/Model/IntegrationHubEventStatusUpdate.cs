@@ -220,16 +220,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventStatusUpdate.", nameof(eventId));
+                throw new JsonException("Property is required for class IntegrationHubEventStatusUpdate: EventId.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventStatusUpdate.", nameof(status));
+                throw new JsonException("Property is required for class IntegrationHubEventStatusUpdate: Status.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class IntegrationHubEventStatusUpdate.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventStatusUpdate: EventId.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class IntegrationHubEventStatusUpdate.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventStatusUpdate: Status.");
 
             return new IntegrationHubEventStatusUpdate(eventId.Value.Value, status.Value.Value);
         }
@@ -240,7 +240,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventStatusUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventStatusUpdate integrationHubEventStatusUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -255,7 +254,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventStatusUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventStatusUpdate integrationHubEventStatusUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("EventId", integrationHubEventStatusUpdate.EventId);

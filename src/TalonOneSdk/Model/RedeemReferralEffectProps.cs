@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RedeemReferralEffectProps.", nameof(id));
+                throw new JsonException("Property is required for class RedeemReferralEffectProps: id.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RedeemReferralEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class RedeemReferralEffectProps: value.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RedeemReferralEffectProps.");
+                throw new JsonException("Property is not nullable for class RedeemReferralEffectProps: id.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RedeemReferralEffectProps.");
+                throw new JsonException("Property is not nullable for class RedeemReferralEffectProps: value.");
 
             return new RedeemReferralEffectProps(id.Value.Value, value.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="redeemReferralEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RedeemReferralEffectProps redeemReferralEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,11 +179,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="redeemReferralEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RedeemReferralEffectProps redeemReferralEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (redeemReferralEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(redeemReferralEffectProps.Value), "Property is required for class RedeemReferralEffectProps.");
+                throw new JsonException("Cannot write null property RedeemReferralEffectProps.Value to non-nullable JSON property 'value'.");
 
             writer.WriteNumber("id", redeemReferralEffectProps.Id);
 

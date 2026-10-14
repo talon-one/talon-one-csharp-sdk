@@ -220,22 +220,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthenticationBaseBasic.", nameof(name));
+                throw new JsonException("Property is required for class WebhookAuthenticationBaseBasic: name.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthenticationBaseBasic.", nameof(type));
+                throw new JsonException("Property is required for class WebhookAuthenticationBaseBasic: type.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthenticationBaseBasic.", nameof(data));
+                throw new JsonException("Property is required for class WebhookAuthenticationBaseBasic: data.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class WebhookAuthenticationBaseBasic.");
+                throw new JsonException("Property is not nullable for class WebhookAuthenticationBaseBasic: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class WebhookAuthenticationBaseBasic.");
+                throw new JsonException("Property is not nullable for class WebhookAuthenticationBaseBasic: type.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class WebhookAuthenticationBaseBasic.");
+                throw new JsonException("Property is not nullable for class WebhookAuthenticationBaseBasic: data.");
 
             return new WebhookAuthenticationBaseBasic(name.Value, type.Value.Value, data.Value);
         }
@@ -246,7 +246,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthenticationBaseBasic"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookAuthenticationBaseBasic webhookAuthenticationBaseBasic, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -261,14 +260,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthenticationBaseBasic"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookAuthenticationBaseBasic webhookAuthenticationBaseBasic, JsonSerializerOptions jsonSerializerOptions)
         {
             if (webhookAuthenticationBaseBasic.Name == null)
-                throw new ArgumentNullException(nameof(webhookAuthenticationBaseBasic.Name), "Property is required for class WebhookAuthenticationBaseBasic.");
+                throw new JsonException("Cannot write null property WebhookAuthenticationBaseBasic.Name to non-nullable JSON property 'name'.");
 
             if (webhookAuthenticationBaseBasic.Data == null)
-                throw new ArgumentNullException(nameof(webhookAuthenticationBaseBasic.Data), "Property is required for class WebhookAuthenticationBaseBasic.");
+                throw new JsonException("Cannot write null property WebhookAuthenticationBaseBasic.Data to non-nullable JSON property 'data'.");
 
             writer.WriteString("name", webhookAuthenticationBaseBasic.Name);
 

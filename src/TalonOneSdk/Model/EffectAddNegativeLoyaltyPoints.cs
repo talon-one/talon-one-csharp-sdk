@@ -537,34 +537,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddNegativeLoyaltyPoints.", nameof(campaignId));
+                throw new JsonException("Property is required for class EffectAddNegativeLoyaltyPoints: campaignId.");
 
             if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddNegativeLoyaltyPoints.", nameof(rulesetId));
+                throw new JsonException("Property is required for class EffectAddNegativeLoyaltyPoints: rulesetId.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddNegativeLoyaltyPoints.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class EffectAddNegativeLoyaltyPoints: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddNegativeLoyaltyPoints.", nameof(ruleName));
+                throw new JsonException("Property is required for class EffectAddNegativeLoyaltyPoints: ruleName.");
 
             if (!effectType.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddNegativeLoyaltyPoints.", nameof(effectType));
+                throw new JsonException("Property is required for class EffectAddNegativeLoyaltyPoints: effectType.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectAddNegativeLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddNegativeLoyaltyPoints: campaignId.");
 
             if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectAddNegativeLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddNegativeLoyaltyPoints: rulesetId.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectAddNegativeLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddNegativeLoyaltyPoints: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectAddNegativeLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddNegativeLoyaltyPoints: ruleName.");
 
             if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectAddNegativeLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddNegativeLoyaltyPoints: effectType.");
 
             return new EffectAddNegativeLoyaltyPoints(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, rewardIntegrationId);
         }
@@ -575,7 +575,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectAddNegativeLoyaltyPoints"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EffectAddNegativeLoyaltyPoints effectAddNegativeLoyaltyPoints, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -590,11 +589,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectAddNegativeLoyaltyPoints"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EffectAddNegativeLoyaltyPoints effectAddNegativeLoyaltyPoints, JsonSerializerOptions jsonSerializerOptions)
         {
             if (effectAddNegativeLoyaltyPoints.RuleName == null)
-                throw new ArgumentNullException(nameof(effectAddNegativeLoyaltyPoints.RuleName), "Property is required for class EffectAddNegativeLoyaltyPoints.");
+                throw new JsonException("Cannot write null property EffectAddNegativeLoyaltyPoints.RuleName to non-nullable JSON property 'ruleName'.");
 
             writer.WriteNumber("campaignId", effectAddNegativeLoyaltyPoints.CampaignId);
 

@@ -187,16 +187,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SetDiscountEffectProps.", nameof(name));
+                throw new JsonException("Property is required for class SetDiscountEffectProps: name.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class SetDiscountEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class SetDiscountEffectProps: value.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SetDiscountEffectProps.");
+                throw new JsonException("Property is not nullable for class SetDiscountEffectProps: name.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class SetDiscountEffectProps.");
+                throw new JsonException("Property is not nullable for class SetDiscountEffectProps: value.");
 
             return new SetDiscountEffectProps(name.Value, value.Value.Value, scope, desiredValue);
         }
@@ -207,7 +207,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="setDiscountEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SetDiscountEffectProps setDiscountEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -222,11 +221,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="setDiscountEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SetDiscountEffectProps setDiscountEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (setDiscountEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(setDiscountEffectProps.Name), "Property is required for class SetDiscountEffectProps.");
+                throw new JsonException("Cannot write null property SetDiscountEffectProps.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", setDiscountEffectProps.Name);
 

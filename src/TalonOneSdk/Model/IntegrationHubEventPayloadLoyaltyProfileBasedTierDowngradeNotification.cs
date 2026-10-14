@@ -321,52 +321,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(eventId));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: EventId.");
 
             if (!profileIntegrationID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(profileIntegrationID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: ProfileIntegrationID.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: LoyaltyProgramID.");
 
             if (!loyaltyProgramName.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(loyaltyProgramName));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: LoyaltyProgramName.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(subledgerID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: SubledgerID.");
 
             if (!sourceOfEvent.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(sourceOfEvent));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: SourceOfEvent.");
 
             if (!currentPoints.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(currentPoints));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: CurrentPoints.");
 
             if (!publishedAt.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.", nameof(publishedAt));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: PublishedAt.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: EventId.");
 
             if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: ProfileIntegrationID.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: LoyaltyProgramID.");
 
             if (loyaltyProgramName.IsSet && loyaltyProgramName.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramName), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: LoyaltyProgramName.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: SubledgerID.");
 
             if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
-                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: SourceOfEvent.");
 
             if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: CurrentPoints.");
 
             if (publishedAt.IsSet && publishedAt.Value == null)
-                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification: PublishedAt.");
 
             return new IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification(eventId.Value.Value, profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentPoints.Value.Value, publishedAt.Value.Value, currentTier, oldTier, tierExpirationDate, timestampOfTierChange);
         }
@@ -377,7 +377,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -392,20 +391,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.ProfileIntegrationID == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.ProfileIntegrationID), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.ProfileIntegrationID to non-nullable JSON property 'ProfileIntegrationID'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.LoyaltyProgramName == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.LoyaltyProgramName), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.LoyaltyProgramName to non-nullable JSON property 'LoyaltyProgramName'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SubledgerID == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SubledgerID), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SourceOfEvent == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SourceOfEvent), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.SourceOfEvent to non-nullable JSON property 'SourceOfEvent'.");
 
             writer.WriteNumber("EventId", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.EventId);
 

@@ -192,34 +192,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!couponId.IsSet)
-                throw new ArgumentException("Property is required for class RedeemableCoupon.", nameof(couponId));
+                throw new JsonException("Property is required for class RedeemableCoupon: couponId.");
 
             if (!couponCode.IsSet)
-                throw new ArgumentException("Property is required for class RedeemableCoupon.", nameof(couponCode));
+                throw new JsonException("Property is required for class RedeemableCoupon: couponCode.");
 
             if (!usageCounter.IsSet)
-                throw new ArgumentException("Property is required for class RedeemableCoupon.", nameof(usageCounter));
+                throw new JsonException("Property is required for class RedeemableCoupon: usageCounter.");
 
             if (!usageLimit.IsSet)
-                throw new ArgumentException("Property is required for class RedeemableCoupon.", nameof(usageLimit));
+                throw new JsonException("Property is required for class RedeemableCoupon: usageLimit.");
 
             if (!campaignName.IsSet)
-                throw new ArgumentException("Property is required for class RedeemableCoupon.", nameof(campaignName));
+                throw new JsonException("Property is required for class RedeemableCoupon: campaignName.");
 
             if (couponId.IsSet && couponId.Value == null)
-                throw new ArgumentNullException(nameof(couponId), "Property is not nullable for class RedeemableCoupon.");
+                throw new JsonException("Property is not nullable for class RedeemableCoupon: couponId.");
 
             if (couponCode.IsSet && couponCode.Value == null)
-                throw new ArgumentNullException(nameof(couponCode), "Property is not nullable for class RedeemableCoupon.");
+                throw new JsonException("Property is not nullable for class RedeemableCoupon: couponCode.");
 
             if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class RedeemableCoupon.");
+                throw new JsonException("Property is not nullable for class RedeemableCoupon: usageCounter.");
 
             if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class RedeemableCoupon.");
+                throw new JsonException("Property is not nullable for class RedeemableCoupon: usageLimit.");
 
             if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class RedeemableCoupon.");
+                throw new JsonException("Property is not nullable for class RedeemableCoupon: campaignName.");
 
             return new RedeemableCoupon(couponId.Value.Value, couponCode.Value, usageCounter.Value.Value, usageLimit.Value.Value, campaignName.Value);
         }
@@ -230,7 +230,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="redeemableCoupon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RedeemableCoupon redeemableCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -245,14 +244,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="redeemableCoupon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RedeemableCoupon redeemableCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
             if (redeemableCoupon.CouponCode == null)
-                throw new ArgumentNullException(nameof(redeemableCoupon.CouponCode), "Property is required for class RedeemableCoupon.");
+                throw new JsonException("Cannot write null property RedeemableCoupon.CouponCode to non-nullable JSON property 'couponCode'.");
 
             if (redeemableCoupon.CampaignName == null)
-                throw new ArgumentNullException(nameof(redeemableCoupon.CampaignName), "Property is required for class RedeemableCoupon.");
+                throw new JsonException("Cannot write null property RedeemableCoupon.CampaignName to non-nullable JSON property 'campaignName'.");
 
             writer.WriteNumber("couponId", redeemableCoupon.CouponId);
 

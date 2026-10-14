@@ -175,28 +175,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationConfiguration.", nameof(id));
+                throw new JsonException("Property is required for class OutgoingIntegrationConfiguration: id.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationConfiguration.", nameof(accountId));
+                throw new JsonException("Property is required for class OutgoingIntegrationConfiguration: accountId.");
 
             if (!typeId.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationConfiguration.", nameof(typeId));
+                throw new JsonException("Property is required for class OutgoingIntegrationConfiguration: typeId.");
 
             if (!policy.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationConfiguration.", nameof(policy));
+                throw new JsonException("Property is required for class OutgoingIntegrationConfiguration: policy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class OutgoingIntegrationConfiguration.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationConfiguration: id.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class OutgoingIntegrationConfiguration.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationConfiguration: accountId.");
 
             if (typeId.IsSet && typeId.Value == null)
-                throw new ArgumentNullException(nameof(typeId), "Property is not nullable for class OutgoingIntegrationConfiguration.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationConfiguration: typeId.");
 
             if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class OutgoingIntegrationConfiguration.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationConfiguration: policy.");
 
             return new OutgoingIntegrationConfiguration(id.Value.Value, accountId.Value.Value, typeId.Value.Value, policy.Value);
         }
@@ -207,7 +207,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationConfiguration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutgoingIntegrationConfiguration outgoingIntegrationConfiguration, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -222,11 +221,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationConfiguration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationConfiguration outgoingIntegrationConfiguration, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outgoingIntegrationConfiguration.Policy == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationConfiguration.Policy), "Property is required for class OutgoingIntegrationConfiguration.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationConfiguration.Policy to non-nullable JSON property 'policy'.");
 
             writer.WriteNumber("id", outgoingIntegrationConfiguration.Id);
 

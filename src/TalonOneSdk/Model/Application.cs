@@ -852,52 +852,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Application.", nameof(id));
+                throw new JsonException("Property is required for class Application: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Application.", nameof(created));
+                throw new JsonException("Property is required for class Application: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class Application.", nameof(modified));
+                throw new JsonException("Property is required for class Application: modified.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Application.", nameof(accountId));
+                throw new JsonException("Property is required for class Application: accountId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Application.", nameof(name));
+                throw new JsonException("Property is required for class Application: name.");
 
             if (!timezone.IsSet)
-                throw new ArgumentException("Property is required for class Application.", nameof(timezone));
+                throw new JsonException("Property is required for class Application: timezone.");
 
             if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Application.", nameof(currency));
+                throw new JsonException("Property is required for class Application: currency.");
 
             if (!loyaltyPrograms.IsSet)
-                throw new ArgumentException("Property is required for class Application.", nameof(loyaltyPrograms));
+                throw new JsonException("Property is required for class Application: loyaltyPrograms.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Application.");
+                throw new JsonException("Property is not nullable for class Application: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Application.");
+                throw new JsonException("Property is not nullable for class Application: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Application.");
+                throw new JsonException("Property is not nullable for class Application: modified.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Application.");
+                throw new JsonException("Property is not nullable for class Application: accountId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Application.");
+                throw new JsonException("Property is not nullable for class Application: name.");
 
             if (timezone.IsSet && timezone.Value == null)
-                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class Application.");
+                throw new JsonException("Property is not nullable for class Application: timezone.");
 
             if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class Application.");
+                throw new JsonException("Property is not nullable for class Application: currency.");
 
             if (loyaltyPrograms.IsSet && loyaltyPrograms.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyPrograms), "Property is not nullable for class Application.");
+                throw new JsonException("Property is not nullable for class Application: loyaltyPrograms.");
 
             return new Application(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name.Value, timezone.Value, currency.Value, loyaltyPrograms.Value, description, caseSensitivity, attributes, limits, defaultDiscountScope, enableCascadingDiscounts, enableFlattenedCartItems, attributesSettings, sandbox, enablePartialDiscounts, defaultDiscountAdditionalCostPerItemScope, defaultEvaluationGroupId, defaultCartItemFilterId, enableCampaignStateManagement, bestPriorPriceSettings);
         }
@@ -908,7 +908,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="application"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Application application, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -923,20 +922,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="application"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Application application, JsonSerializerOptions jsonSerializerOptions)
         {
             if (application.Name == null)
-                throw new ArgumentNullException(nameof(application.Name), "Property is required for class Application.");
+                throw new JsonException("Cannot write null property Application.Name to non-nullable JSON property 'name'.");
 
             if (application.Timezone == null)
-                throw new ArgumentNullException(nameof(application.Timezone), "Property is required for class Application.");
+                throw new JsonException("Cannot write null property Application.Timezone to non-nullable JSON property 'timezone'.");
 
             if (application.Currency == null)
-                throw new ArgumentNullException(nameof(application.Currency), "Property is required for class Application.");
+                throw new JsonException("Cannot write null property Application.Currency to non-nullable JSON property 'currency'.");
 
             if (application.LoyaltyPrograms == null)
-                throw new ArgumentNullException(nameof(application.LoyaltyPrograms), "Property is required for class Application.");
+                throw new JsonException("Cannot write null property Application.LoyaltyPrograms to non-nullable JSON property 'loyaltyPrograms'.");
 
             writer.WriteNumber("id", application.Id);
 

@@ -196,22 +196,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!session.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationState.", nameof(session));
+                throw new JsonException("Property is required for class IntegrationState: session.");
 
             if (!profile.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationState.", nameof(profile));
+                throw new JsonException("Property is required for class IntegrationState: profile.");
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationState.", nameof(varEvent));
+                throw new JsonException("Property is required for class IntegrationState: event.");
 
             if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class IntegrationState.");
+                throw new JsonException("Property is not nullable for class IntegrationState: session.");
 
             if (profile.IsSet && profile.Value == null)
-                throw new ArgumentNullException(nameof(profile), "Property is not nullable for class IntegrationState.");
+                throw new JsonException("Property is not nullable for class IntegrationState: profile.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class IntegrationState.");
+                throw new JsonException("Property is not nullable for class IntegrationState: event.");
 
             return new IntegrationState(session.Value, profile.Value, varEvent.Value, loyalty, coupon);
         }
@@ -222,7 +222,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationState"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationState integrationState, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,17 +236,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationState"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationState integrationState, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationState.Session == null)
-                throw new ArgumentNullException(nameof(integrationState.Session), "Property is required for class IntegrationState.");
+                throw new JsonException("Cannot write null property IntegrationState.Session to non-nullable JSON property 'session'.");
 
             if (integrationState.Profile == null)
-                throw new ArgumentNullException(nameof(integrationState.Profile), "Property is required for class IntegrationState.");
+                throw new JsonException("Cannot write null property IntegrationState.Profile to non-nullable JSON property 'profile'.");
 
             if (integrationState.Event == null)
-                throw new ArgumentNullException(nameof(integrationState.Event), "Property is required for class IntegrationState.");
+                throw new JsonException("Cannot write null property IntegrationState.Event to non-nullable JSON property 'event'.");
 
             writer.WritePropertyName("session");
             JsonSerializer.Serialize(writer, integrationState.Session, jsonSerializerOptions);

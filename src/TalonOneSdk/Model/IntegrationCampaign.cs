@@ -585,46 +585,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(applicationId));
+                throw new JsonException("Property is required for class IntegrationCampaign: applicationId.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(id));
+                throw new JsonException("Property is required for class IntegrationCampaign: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(name));
+                throw new JsonException("Property is required for class IntegrationCampaign: name.");
 
             if (!tags.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(tags));
+                throw new JsonException("Property is required for class IntegrationCampaign: tags.");
 
             if (!features.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(features));
+                throw new JsonException("Property is required for class IntegrationCampaign: features.");
 
             if (!rules.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(rules));
+                throw new JsonException("Property is required for class IntegrationCampaign: rules.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaign.", nameof(state));
+                throw new JsonException("Property is required for class IntegrationCampaign: state.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class IntegrationCampaign.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaign: applicationId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationCampaign.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaign: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class IntegrationCampaign.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaign: name.");
 
             if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class IntegrationCampaign.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaign: tags.");
 
             if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class IntegrationCampaign.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaign: features.");
 
             if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class IntegrationCampaign.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaign: rules.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class IntegrationCampaign.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaign: state.");
 
             return new IntegrationCampaign(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, rules.Value, description, startTime, endTime, attributes, state.Value.Value, linkedStoreIds, linkedAudienceIds);
         }
@@ -635,7 +635,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationCampaign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationCampaign integrationCampaign, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -650,20 +649,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationCampaign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationCampaign integrationCampaign, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationCampaign.Name == null)
-                throw new ArgumentNullException(nameof(integrationCampaign.Name), "Property is required for class IntegrationCampaign.");
+                throw new JsonException("Cannot write null property IntegrationCampaign.Name to non-nullable JSON property 'name'.");
 
             if (integrationCampaign.Tags == null)
-                throw new ArgumentNullException(nameof(integrationCampaign.Tags), "Property is required for class IntegrationCampaign.");
+                throw new JsonException("Cannot write null property IntegrationCampaign.Tags to non-nullable JSON property 'tags'.");
 
             if (integrationCampaign.Features == null)
-                throw new ArgumentNullException(nameof(integrationCampaign.Features), "Property is required for class IntegrationCampaign.");
+                throw new JsonException("Cannot write null property IntegrationCampaign.Features to non-nullable JSON property 'features'.");
 
             if (integrationCampaign.Rules == null)
-                throw new ArgumentNullException(nameof(integrationCampaign.Rules), "Property is required for class IntegrationCampaign.");
+                throw new JsonException("Cannot write null property IntegrationCampaign.Rules to non-nullable JSON property 'rules'.");
 
             writer.WriteNumber("applicationId", integrationCampaign.ApplicationId);
 

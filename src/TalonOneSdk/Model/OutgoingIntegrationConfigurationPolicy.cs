@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="OutgoingIntegrationConfigurationPolicy" /> class.
         /// </summary>
         /// <param name="outgoingIntegrationBrazePolicy"></param>
-        public OutgoingIntegrationConfigurationPolicy(OutgoingIntegrationBrazePolicy outgoingIntegrationBrazePolicy)
+        internal OutgoingIntegrationConfigurationPolicy(OutgoingIntegrationBrazePolicy outgoingIntegrationBrazePolicy)
         {
             OutgoingIntegrationBrazePolicy = outgoingIntegrationBrazePolicy;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="OutgoingIntegrationConfigurationPolicy" /> class.
         /// </summary>
         /// <param name="outgoingIntegrationCleverTapPolicy"></param>
-        public OutgoingIntegrationConfigurationPolicy(OutgoingIntegrationCleverTapPolicy outgoingIntegrationCleverTapPolicy)
+        internal OutgoingIntegrationConfigurationPolicy(OutgoingIntegrationCleverTapPolicy outgoingIntegrationCleverTapPolicy)
         {
             OutgoingIntegrationCleverTapPolicy = outgoingIntegrationCleverTapPolicy;
             OnCreated();
@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="OutgoingIntegrationConfigurationPolicy" /> class.
         /// </summary>
         /// <param name="outgoingIntegrationMoEngagePolicy"></param>
-        public OutgoingIntegrationConfigurationPolicy(OutgoingIntegrationMoEngagePolicy outgoingIntegrationMoEngagePolicy)
+        internal OutgoingIntegrationConfigurationPolicy(OutgoingIntegrationMoEngagePolicy outgoingIntegrationMoEngagePolicy)
         {
             OutgoingIntegrationMoEngagePolicy = outgoingIntegrationMoEngagePolicy;
             OnCreated();
@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="OutgoingIntegrationConfigurationPolicy" /> class.
         /// </summary>
         /// <param name="outgoingIntegrationIterablePolicy"></param>
-        public OutgoingIntegrationConfigurationPolicy(OutgoingIntegrationIterablePolicy outgoingIntegrationIterablePolicy)
+        internal OutgoingIntegrationConfigurationPolicy(OutgoingIntegrationIterablePolicy outgoingIntegrationIterablePolicy)
         {
             OutgoingIntegrationIterablePolicy = outgoingIntegrationIterablePolicy;
             OnCreated();
@@ -217,7 +217,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationConfigurationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutgoingIntegrationConfigurationPolicy outgoingIntegrationConfigurationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -232,7 +231,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationConfigurationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationConfigurationPolicy outgoingIntegrationConfigurationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
 

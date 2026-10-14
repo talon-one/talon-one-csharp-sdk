@@ -159,22 +159,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateCampaignSummary.", nameof(campaignID));
+                throw new JsonException("Property is required for class GenerateCampaignSummary: campaignID.");
 
             if (!rulesetID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateCampaignSummary.", nameof(rulesetID));
+                throw new JsonException("Property is required for class GenerateCampaignSummary: rulesetID.");
 
             if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class GenerateCampaignSummary.", nameof(currency));
+                throw new JsonException("Property is required for class GenerateCampaignSummary: currency.");
 
             if (campaignID.IsSet && campaignID.Value == null)
-                throw new ArgumentNullException(nameof(campaignID), "Property is not nullable for class GenerateCampaignSummary.");
+                throw new JsonException("Property is not nullable for class GenerateCampaignSummary: campaignID.");
 
             if (rulesetID.IsSet && rulesetID.Value == null)
-                throw new ArgumentNullException(nameof(rulesetID), "Property is not nullable for class GenerateCampaignSummary.");
+                throw new JsonException("Property is not nullable for class GenerateCampaignSummary: rulesetID.");
 
             if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class GenerateCampaignSummary.");
+                throw new JsonException("Property is not nullable for class GenerateCampaignSummary: currency.");
 
             return new GenerateCampaignSummary(campaignID.Value.Value, rulesetID.Value.Value, currency.Value);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateCampaignSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GenerateCampaignSummary generateCampaignSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,11 +199,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateCampaignSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateCampaignSummary generateCampaignSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             if (generateCampaignSummary.Currency == null)
-                throw new ArgumentNullException(nameof(generateCampaignSummary.Currency), "Property is required for class GenerateCampaignSummary.");
+                throw new JsonException("Cannot write null property GenerateCampaignSummary.Currency to non-nullable JSON property 'currency'.");
 
             writer.WriteNumber("campaignID", generateCampaignSummary.CampaignID);
 

@@ -324,10 +324,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!varReturn.IsSet)
-                throw new ArgumentException("Property is required for class ReturnIntegrationRequest.", nameof(varReturn));
+                throw new JsonException("Property is required for class ReturnIntegrationRequest: return.");
 
             if (varReturn.IsSet && varReturn.Value == null)
-                throw new ArgumentNullException(nameof(varReturn), "Property is not nullable for class ReturnIntegrationRequest.");
+                throw new JsonException("Property is not nullable for class ReturnIntegrationRequest: return.");
 
             return new ReturnIntegrationRequest(varReturn.Value, responseContent);
         }
@@ -338,7 +338,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ReturnIntegrationRequest returnIntegrationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -353,11 +352,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="returnIntegrationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReturnIntegrationRequest returnIntegrationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (returnIntegrationRequest.Return == null)
-                throw new ArgumentNullException(nameof(returnIntegrationRequest.Return), "Property is required for class ReturnIntegrationRequest.");
+                throw new JsonException("Cannot write null property ReturnIntegrationRequest.Return to non-nullable JSON property 'return'.");
 
             writer.WritePropertyName("return");
             JsonSerializer.Serialize(writer, returnIntegrationRequest.Return, jsonSerializerOptions);

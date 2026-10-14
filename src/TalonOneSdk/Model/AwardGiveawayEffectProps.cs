@@ -198,34 +198,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!poolId.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayEffectProps.", nameof(poolId));
+                throw new JsonException("Property is required for class AwardGiveawayEffectProps: poolId.");
 
             if (!poolName.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayEffectProps.", nameof(poolName));
+                throw new JsonException("Property is required for class AwardGiveawayEffectProps: poolName.");
 
             if (!recipientIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayEffectProps.", nameof(recipientIntegrationId));
+                throw new JsonException("Property is required for class AwardGiveawayEffectProps: recipientIntegrationId.");
 
             if (!giveawayId.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayEffectProps.", nameof(giveawayId));
+                throw new JsonException("Property is required for class AwardGiveawayEffectProps: giveawayId.");
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayEffectProps.", nameof(code));
+                throw new JsonException("Property is required for class AwardGiveawayEffectProps: code.");
 
             if (poolId.IsSet && poolId.Value == null)
-                throw new ArgumentNullException(nameof(poolId), "Property is not nullable for class AwardGiveawayEffectProps.");
+                throw new JsonException("Property is not nullable for class AwardGiveawayEffectProps: poolId.");
 
             if (poolName.IsSet && poolName.Value == null)
-                throw new ArgumentNullException(nameof(poolName), "Property is not nullable for class AwardGiveawayEffectProps.");
+                throw new JsonException("Property is not nullable for class AwardGiveawayEffectProps: poolName.");
 
             if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class AwardGiveawayEffectProps.");
+                throw new JsonException("Property is not nullable for class AwardGiveawayEffectProps: recipientIntegrationId.");
 
             if (giveawayId.IsSet && giveawayId.Value == null)
-                throw new ArgumentNullException(nameof(giveawayId), "Property is not nullable for class AwardGiveawayEffectProps.");
+                throw new JsonException("Property is not nullable for class AwardGiveawayEffectProps: giveawayId.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class AwardGiveawayEffectProps.");
+                throw new JsonException("Property is not nullable for class AwardGiveawayEffectProps: code.");
 
             return new AwardGiveawayEffectProps(poolId.Value.Value, poolName.Value, recipientIntegrationId.Value, giveawayId.Value.Value, code.Value);
         }
@@ -236,7 +236,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardGiveawayEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardGiveawayEffectProps awardGiveawayEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -251,17 +250,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardGiveawayEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardGiveawayEffectProps awardGiveawayEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardGiveawayEffectProps.PoolName == null)
-                throw new ArgumentNullException(nameof(awardGiveawayEffectProps.PoolName), "Property is required for class AwardGiveawayEffectProps.");
+                throw new JsonException("Cannot write null property AwardGiveawayEffectProps.PoolName to non-nullable JSON property 'poolName'.");
 
             if (awardGiveawayEffectProps.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(awardGiveawayEffectProps.RecipientIntegrationId), "Property is required for class AwardGiveawayEffectProps.");
+                throw new JsonException("Cannot write null property AwardGiveawayEffectProps.RecipientIntegrationId to non-nullable JSON property 'recipientIntegrationId'.");
 
             if (awardGiveawayEffectProps.Code == null)
-                throw new ArgumentNullException(nameof(awardGiveawayEffectProps.Code), "Property is required for class AwardGiveawayEffectProps.");
+                throw new JsonException("Cannot write null property AwardGiveawayEffectProps.Code to non-nullable JSON property 'code'.");
 
             writer.WriteNumber("poolId", awardGiveawayEffectProps.PoolId);
 

@@ -559,10 +559,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!numberOfCoupons.IsSet)
-                throw new ArgumentException("Property is required for class NewCoupons.", nameof(numberOfCoupons));
+                throw new JsonException("Property is required for class NewCoupons: numberOfCoupons.");
 
             if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class NewCoupons.");
+                throw new JsonException("Property is not nullable for class NewCoupons: numberOfCoupons.");
 
             return new NewCoupons(numberOfCoupons.Value.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, batchId, uniquePrefix, attributes, recipientIntegrationId, validCharacters, couponPattern, isReservationMandatory, implicitlyReserved, supportRequestId, supportRequestNote);
         }
@@ -573,7 +573,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCoupons"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewCoupons newCoupons, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -588,7 +587,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCoupons"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCoupons newCoupons, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("numberOfCoupons", newCoupons.NumberOfCoupons);

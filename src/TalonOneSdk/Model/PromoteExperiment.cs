@@ -179,22 +179,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!targetApplicationId.IsSet)
-                throw new ArgumentException("Property is required for class PromoteExperiment.", nameof(targetApplicationId));
+                throw new JsonException("Property is required for class PromoteExperiment: targetApplicationId.");
 
             if (!variantId.IsSet)
-                throw new ArgumentException("Property is required for class PromoteExperiment.", nameof(variantId));
+                throw new JsonException("Property is required for class PromoteExperiment: variantId.");
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class PromoteExperiment.", nameof(campaign));
+                throw new JsonException("Property is required for class PromoteExperiment: campaign.");
 
             if (targetApplicationId.IsSet && targetApplicationId.Value == null)
-                throw new ArgumentNullException(nameof(targetApplicationId), "Property is not nullable for class PromoteExperiment.");
+                throw new JsonException("Property is not nullable for class PromoteExperiment: targetApplicationId.");
 
             if (variantId.IsSet && variantId.Value == null)
-                throw new ArgumentNullException(nameof(variantId), "Property is not nullable for class PromoteExperiment.");
+                throw new JsonException("Property is not nullable for class PromoteExperiment: variantId.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class PromoteExperiment.");
+                throw new JsonException("Property is not nullable for class PromoteExperiment: campaign.");
 
             return new PromoteExperiment(targetApplicationId.Value.Value, variantId.Value.Value, campaign.Value, disableExperiment);
         }
@@ -205,7 +205,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="promoteExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PromoteExperiment promoteExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -220,11 +219,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="promoteExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PromoteExperiment promoteExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (promoteExperiment.Campaign == null)
-                throw new ArgumentNullException(nameof(promoteExperiment.Campaign), "Property is required for class PromoteExperiment.");
+                throw new JsonException("Cannot write null property PromoteExperiment.Campaign to non-nullable JSON property 'campaign'.");
 
             writer.WriteNumber("targetApplicationId", promoteExperiment.TargetApplicationId);
 

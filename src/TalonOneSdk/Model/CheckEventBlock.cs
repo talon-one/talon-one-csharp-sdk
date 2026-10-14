@@ -230,16 +230,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckEventBlock.", nameof(type));
+                throw new JsonException("Property is required for class CheckEventBlock: type.");
 
             if (!eventType.IsSet)
-                throw new ArgumentException("Property is required for class CheckEventBlock.", nameof(eventType));
+                throw new JsonException("Property is required for class CheckEventBlock: eventType.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckEventBlock.");
+                throw new JsonException("Property is not nullable for class CheckEventBlock: type.");
 
             if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class CheckEventBlock.");
+                throw new JsonException("Property is not nullable for class CheckEventBlock: eventType.");
 
             return new CheckEventBlock(type.Value, eventType.Value, id, tags, matchers, onFailure);
         }
@@ -250,7 +250,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkEventBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckEventBlock checkEventBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -265,14 +264,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkEventBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckEventBlock checkEventBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (checkEventBlock.Type == null)
-                throw new ArgumentNullException(nameof(checkEventBlock.Type), "Property is required for class CheckEventBlock.");
+                throw new JsonException("Cannot write null property CheckEventBlock.Type to non-nullable JSON property 'type'.");
 
             if (checkEventBlock.EventType == null)
-                throw new ArgumentNullException(nameof(checkEventBlock.EventType), "Property is required for class CheckEventBlock.");
+                throw new JsonException("Cannot write null property CheckEventBlock.EventType to non-nullable JSON property 'eventType'.");
 
             writer.WriteString("type", checkEventBlock.Type);
 

@@ -159,22 +159,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!live.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatisticCampaigns.", nameof(live));
+                throw new JsonException("Property is required for class AccountDashboardStatisticCampaigns: live.");
 
             if (!endingSoon.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatisticCampaigns.", nameof(endingSoon));
+                throw new JsonException("Property is required for class AccountDashboardStatisticCampaigns: endingSoon.");
 
             if (!lowOnBudget.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatisticCampaigns.", nameof(lowOnBudget));
+                throw new JsonException("Property is required for class AccountDashboardStatisticCampaigns: lowOnBudget.");
 
             if (live.IsSet && live.Value == null)
-                throw new ArgumentNullException(nameof(live), "Property is not nullable for class AccountDashboardStatisticCampaigns.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatisticCampaigns: live.");
 
             if (endingSoon.IsSet && endingSoon.Value == null)
-                throw new ArgumentNullException(nameof(endingSoon), "Property is not nullable for class AccountDashboardStatisticCampaigns.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatisticCampaigns: endingSoon.");
 
             if (lowOnBudget.IsSet && lowOnBudget.Value == null)
-                throw new ArgumentNullException(nameof(lowOnBudget), "Property is not nullable for class AccountDashboardStatisticCampaigns.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatisticCampaigns: lowOnBudget.");
 
             return new AccountDashboardStatisticCampaigns(live.Value.Value, endingSoon.Value.Value, lowOnBudget.Value.Value);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountDashboardStatisticCampaigns"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountDashboardStatisticCampaigns accountDashboardStatisticCampaigns, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,7 +199,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountDashboardStatisticCampaigns"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountDashboardStatisticCampaigns accountDashboardStatisticCampaigns, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("live", accountDashboardStatisticCampaigns.Live);

@@ -162,22 +162,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class PlaceholderDetails.", nameof(name));
+                throw new JsonException("Property is required for class PlaceholderDetails: name.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PlaceholderDetails.", nameof(type));
+                throw new JsonException("Property is required for class PlaceholderDetails: type.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class PlaceholderDetails.", nameof(value));
+                throw new JsonException("Property is required for class PlaceholderDetails: value.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class PlaceholderDetails.");
+                throw new JsonException("Property is not nullable for class PlaceholderDetails: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class PlaceholderDetails.");
+                throw new JsonException("Property is not nullable for class PlaceholderDetails: type.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class PlaceholderDetails.");
+                throw new JsonException("Property is not nullable for class PlaceholderDetails: value.");
 
             return new PlaceholderDetails(name.Value, type.Value, value.Value);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="placeholderDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PlaceholderDetails placeholderDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,17 +202,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="placeholderDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PlaceholderDetails placeholderDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             if (placeholderDetails.Name == null)
-                throw new ArgumentNullException(nameof(placeholderDetails.Name), "Property is required for class PlaceholderDetails.");
+                throw new JsonException("Cannot write null property PlaceholderDetails.Name to non-nullable JSON property 'name'.");
 
             if (placeholderDetails.Type == null)
-                throw new ArgumentNullException(nameof(placeholderDetails.Type), "Property is required for class PlaceholderDetails.");
+                throw new JsonException("Cannot write null property PlaceholderDetails.Type to non-nullable JSON property 'type'.");
 
             if (placeholderDetails.Value == null)
-                throw new ArgumentNullException(nameof(placeholderDetails.Value), "Property is required for class PlaceholderDetails.");
+                throw new JsonException("Cannot write null property PlaceholderDetails.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("name", placeholderDetails.Name);
 

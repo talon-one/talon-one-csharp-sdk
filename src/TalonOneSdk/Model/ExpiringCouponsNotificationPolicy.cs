@@ -195,16 +195,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsNotificationPolicy.", nameof(name));
+                throw new JsonException("Property is required for class ExpiringCouponsNotificationPolicy: name.");
 
             if (!triggers.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsNotificationPolicy.", nameof(triggers));
+                throw new JsonException("Property is required for class ExpiringCouponsNotificationPolicy: triggers.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ExpiringCouponsNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsNotificationPolicy: name.");
 
             if (triggers.IsSet && triggers.Value == null)
-                throw new ArgumentNullException(nameof(triggers), "Property is not nullable for class ExpiringCouponsNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsNotificationPolicy: triggers.");
 
             return new ExpiringCouponsNotificationPolicy(name.Value, triggers.Value, batchingEnabled, batchSize);
         }
@@ -215,7 +215,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCouponsNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExpiringCouponsNotificationPolicy expiringCouponsNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -230,14 +229,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCouponsNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExpiringCouponsNotificationPolicy expiringCouponsNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (expiringCouponsNotificationPolicy.Name == null)
-                throw new ArgumentNullException(nameof(expiringCouponsNotificationPolicy.Name), "Property is required for class ExpiringCouponsNotificationPolicy.");
+                throw new JsonException("Cannot write null property ExpiringCouponsNotificationPolicy.Name to non-nullable JSON property 'name'.");
 
             if (expiringCouponsNotificationPolicy.Triggers == null)
-                throw new ArgumentNullException(nameof(expiringCouponsNotificationPolicy.Triggers), "Property is required for class ExpiringCouponsNotificationPolicy.");
+                throw new JsonException("Cannot write null property ExpiringCouponsNotificationPolicy.Triggers to non-nullable JSON property 'triggers'.");
 
             writer.WriteString("name", expiringCouponsNotificationPolicy.Name);
 

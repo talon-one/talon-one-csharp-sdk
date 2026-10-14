@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!redirectUrl.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthCompleteResult.", nameof(redirectUrl));
+                throw new JsonException("Property is required for class MCPOAuthCompleteResult: redirectUrl.");
 
             if (redirectUrl.IsSet && redirectUrl.Value == null)
-                throw new ArgumentNullException(nameof(redirectUrl), "Property is not nullable for class MCPOAuthCompleteResult.");
+                throw new JsonException("Property is not nullable for class MCPOAuthCompleteResult: redirectUrl.");
 
             return new MCPOAuthCompleteResult(redirectUrl.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthCompleteResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPOAuthCompleteResult mCPOAuthCompleteResult, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthCompleteResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPOAuthCompleteResult mCPOAuthCompleteResult, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mCPOAuthCompleteResult.RedirectUrl == null)
-                throw new ArgumentNullException(nameof(mCPOAuthCompleteResult.RedirectUrl), "Property is required for class MCPOAuthCompleteResult.");
+                throw new JsonException("Cannot write null property MCPOAuthCompleteResult.RedirectUrl to non-nullable JSON property 'redirectUrl'.");
 
             writer.WriteString("redirectUrl", mCPOAuthCompleteResult.RedirectUrl);
         }

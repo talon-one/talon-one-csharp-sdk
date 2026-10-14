@@ -203,28 +203,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSet.", nameof(applicationId));
+                throw new JsonException("Property is required for class CampaignSet: applicationId.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSet.", nameof(id));
+                throw new JsonException("Property is required for class CampaignSet: id.");
 
             if (!varVersion.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSet.", nameof(varVersion));
+                throw new JsonException("Property is required for class CampaignSet: version.");
 
             if (!set.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSet.", nameof(set));
+                throw new JsonException("Property is required for class CampaignSet: set.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignSet.");
+                throw new JsonException("Property is not nullable for class CampaignSet: applicationId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignSet.");
+                throw new JsonException("Property is not nullable for class CampaignSet: id.");
 
             if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class CampaignSet.");
+                throw new JsonException("Property is not nullable for class CampaignSet: version.");
 
             if (set.IsSet && set.Value == null)
-                throw new ArgumentNullException(nameof(set), "Property is not nullable for class CampaignSet.");
+                throw new JsonException("Property is not nullable for class CampaignSet: set.");
 
             return new CampaignSet(applicationId.Value.Value, id.Value.Value, varVersion.Value.Value, set.Value, updatedBy);
         }
@@ -235,7 +235,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignSet"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignSet campaignSet, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -250,11 +249,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignSet"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignSet campaignSet, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignSet.Set == null)
-                throw new ArgumentNullException(nameof(campaignSet.Set), "Property is required for class CampaignSet.");
+                throw new JsonException("Cannot write null property CampaignSet.Set to non-nullable JSON property 'set'.");
 
             writer.WriteNumber("applicationId", campaignSet.ApplicationId);
 

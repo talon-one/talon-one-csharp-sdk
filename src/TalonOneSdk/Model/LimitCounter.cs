@@ -403,46 +403,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class LimitCounter.", nameof(campaignId));
+                throw new JsonException("Property is required for class LimitCounter: campaignId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class LimitCounter.", nameof(applicationId));
+                throw new JsonException("Property is required for class LimitCounter: applicationId.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class LimitCounter.", nameof(accountId));
+                throw new JsonException("Property is required for class LimitCounter: accountId.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LimitCounter.", nameof(id));
+                throw new JsonException("Property is required for class LimitCounter: id.");
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class LimitCounter.", nameof(action));
+                throw new JsonException("Property is required for class LimitCounter: action.");
 
             if (!limit.IsSet)
-                throw new ArgumentException("Property is required for class LimitCounter.", nameof(limit));
+                throw new JsonException("Property is required for class LimitCounter: limit.");
 
             if (!counter.IsSet)
-                throw new ArgumentException("Property is required for class LimitCounter.", nameof(counter));
+                throw new JsonException("Property is required for class LimitCounter: counter.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class LimitCounter.");
+                throw new JsonException("Property is not nullable for class LimitCounter: campaignId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class LimitCounter.");
+                throw new JsonException("Property is not nullable for class LimitCounter: applicationId.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class LimitCounter.");
+                throw new JsonException("Property is not nullable for class LimitCounter: accountId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LimitCounter.");
+                throw new JsonException("Property is not nullable for class LimitCounter: id.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class LimitCounter.");
+                throw new JsonException("Property is not nullable for class LimitCounter: action.");
 
             if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class LimitCounter.");
+                throw new JsonException("Property is not nullable for class LimitCounter: limit.");
 
             if (counter.IsSet && counter.Value == null)
-                throw new ArgumentNullException(nameof(counter), "Property is not nullable for class LimitCounter.");
+                throw new JsonException("Property is not nullable for class LimitCounter: counter.");
 
             return new LimitCounter(campaignId.Value.Value, applicationId.Value.Value, accountId.Value.Value, id.Value.Value, action.Value, limit.Value.Value, counter.Value.Value, profileId, profileIntegrationId, couponId, couponValue, referralId, referralValue, identifier, period);
         }
@@ -453,7 +453,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="limitCounter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LimitCounter limitCounter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -468,11 +467,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="limitCounter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LimitCounter limitCounter, JsonSerializerOptions jsonSerializerOptions)
         {
             if (limitCounter.Action == null)
-                throw new ArgumentNullException(nameof(limitCounter.Action), "Property is required for class LimitCounter.");
+                throw new JsonException("Cannot write null property LimitCounter.Action to non-nullable JSON property 'action'.");
 
             writer.WriteNumber("campaignId", limitCounter.CampaignId);
 

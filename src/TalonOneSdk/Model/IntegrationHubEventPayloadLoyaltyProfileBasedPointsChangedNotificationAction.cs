@@ -37,8 +37,11 @@ namespace TalonOneSdk.Model
         /// <param name="reason">reason</param>
         /// <param name="startDate">startDate</param>
         /// <param name="expiryDate">expiryDate</param>
+        /// <param name="created">The timestamp when the loyalty transaction occurred.</param>
+        /// <param name="awaitsActivation">Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(float amount, OperationEnum operation, Guid transactionUUID, Option<string> reason = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default)
+        public IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(float amount, OperationEnum operation, Guid transactionUUID, Option<string> reason = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<DateTime?> created = default, Option<bool?> awaitsActivation = default, Option<string> validityDuration = default)
         {
             Amount = amount;
             Operation = operation;
@@ -46,6 +49,9 @@ namespace TalonOneSdk.Model
             ReasonOption = reason;
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
+            CreatedOption = created;
+            AwaitsActivationOption = awaitsActivation;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -176,6 +182,51 @@ namespace TalonOneSdk.Model
         public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Used to track the state of Created
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> CreatedOption { get; private set; }
+
+        /// <summary>
+        /// The timestamp when the loyalty transaction occurred.
+        /// </summary>
+        /// <value>The timestamp when the loyalty transaction occurred.</value>
+        /* <example>2023-01-24T14:15:22Z</example> */
+        [JsonPropertyName("Created")]
+        public DateTime? Created { get { return this.CreatedOption.Value; } set { this.CreatedOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of AwaitsActivation
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> AwaitsActivationOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+        /// </summary>
+        /// <value>Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("AwaitsActivation")]
+        public bool? AwaitsActivation { get { return this.AwaitsActivationOption.Value; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("ValidityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -189,6 +240,9 @@ namespace TalonOneSdk.Model
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
+            sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  AwaitsActivation: ").Append(AwaitsActivation).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -230,6 +284,11 @@ namespace TalonOneSdk.Model
         public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize Created
+        /// </summary>
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -252,6 +311,9 @@ namespace TalonOneSdk.Model
             Option<string> reason = default;
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
+            Option<DateTime?> created = default;
+            Option<bool?> awaitsActivation = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -293,6 +355,15 @@ namespace TalonOneSdk.Model
                         case "ExpiryDate":
                             expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "Created":
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "AwaitsActivation":
+                            awaitsActivation = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "ValidityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -300,24 +371,24 @@ namespace TalonOneSdk.Model
             }
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.", nameof(amount));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction: Amount.");
 
             if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.", nameof(operation));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction: Operation.");
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction: TransactionUUID.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction: Amount.");
 
             if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction: Operation.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction: TransactionUUID.");
 
-            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(amount.Value.Value, operation.Value.Value, transactionUUID.Value.Value, reason, startDate, expiryDate);
+            return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction(amount.Value.Value, operation.Value.Value, transactionUUID.Value.Value, reason, startDate, expiryDate, created, awaitsActivation, validityDuration);
         }
 
         /// <summary>
@@ -326,7 +397,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -341,7 +411,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("Amount", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.Amount);
@@ -358,6 +427,15 @@ namespace TalonOneSdk.Model
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ExpiryDateOption.IsSet)
                 writer.WriteString("ExpiryDate", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+
+            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.CreatedOption.IsSet)
+                writer.WriteString("Created", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.CreatedOption.Value.Value.ToString(CreatedFormat));
+
+            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.AwaitsActivationOption.IsSet)
+                writer.WriteBoolean("AwaitsActivation", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.AwaitsActivationOption.Value.Value);
+
+            if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ValidityDurationOption.IsSet)
+                writer.WriteString("ValidityDuration", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ValidityDuration);
         }
     }
 }

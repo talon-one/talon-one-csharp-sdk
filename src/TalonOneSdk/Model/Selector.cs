@@ -236,28 +236,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Selector.", nameof(name));
+                throw new JsonException("Property is required for class Selector: name.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Selector.", nameof(type));
+                throw new JsonException("Property is required for class Selector: type.");
 
             if (!source.IsSet)
-                throw new ArgumentException("Property is required for class Selector.", nameof(source));
+                throw new JsonException("Property is required for class Selector: source.");
 
             if (!steps.IsSet)
-                throw new ArgumentException("Property is required for class Selector.", nameof(steps));
+                throw new JsonException("Property is required for class Selector: steps.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Selector.");
+                throw new JsonException("Property is not nullable for class Selector: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Selector.");
+                throw new JsonException("Property is not nullable for class Selector: type.");
 
             if (source.IsSet && source.Value == null)
-                throw new ArgumentNullException(nameof(source), "Property is not nullable for class Selector.");
+                throw new JsonException("Property is not nullable for class Selector: source.");
 
             if (steps.IsSet && steps.Value == null)
-                throw new ArgumentNullException(nameof(steps), "Property is not nullable for class Selector.");
+                throw new JsonException("Property is not nullable for class Selector: steps.");
 
             return new Selector(name.Value, type.Value.Value, source.Value, steps.Value);
         }
@@ -268,7 +268,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="selector"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Selector selector, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -283,17 +282,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="selector"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Selector selector, JsonSerializerOptions jsonSerializerOptions)
         {
             if (selector.Name == null)
-                throw new ArgumentNullException(nameof(selector.Name), "Property is required for class Selector.");
+                throw new JsonException("Cannot write null property Selector.Name to non-nullable JSON property 'name'.");
 
             if (selector.Source == null)
-                throw new ArgumentNullException(nameof(selector.Source), "Property is required for class Selector.");
+                throw new JsonException("Cannot write null property Selector.Source to non-nullable JSON property 'source'.");
 
             if (selector.Steps == null)
-                throw new ArgumentNullException(nameof(selector.Steps), "Property is required for class Selector.");
+                throw new JsonException("Cannot write null property Selector.Steps to non-nullable JSON property 'steps'.");
 
             writer.WriteString("name", selector.Name);
 

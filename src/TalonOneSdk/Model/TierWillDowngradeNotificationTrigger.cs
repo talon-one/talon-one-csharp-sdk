@@ -219,16 +219,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeNotificationTrigger.", nameof(amount));
+                throw new JsonException("Property is required for class TierWillDowngradeNotificationTrigger: amount.");
 
             if (!period.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeNotificationTrigger.", nameof(period));
+                throw new JsonException("Property is required for class TierWillDowngradeNotificationTrigger: period.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class TierWillDowngradeNotificationTrigger.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeNotificationTrigger: amount.");
 
             if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class TierWillDowngradeNotificationTrigger.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeNotificationTrigger: period.");
 
             return new TierWillDowngradeNotificationTrigger(amount.Value.Value, period.Value.Value);
         }
@@ -239,7 +239,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierWillDowngradeNotificationTrigger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TierWillDowngradeNotificationTrigger tierWillDowngradeNotificationTrigger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,7 +253,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierWillDowngradeNotificationTrigger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TierWillDowngradeNotificationTrigger tierWillDowngradeNotificationTrigger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("amount", tierWillDowngradeNotificationTrigger.Amount);

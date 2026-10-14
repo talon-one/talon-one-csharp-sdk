@@ -221,16 +221,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!expression.IsSet)
-                throw new ArgumentException("Property is required for class SortSelectorStepField.", nameof(expression));
+                throw new JsonException("Property is required for class SortSelectorStepField: expression.");
 
             if (!direction.IsSet)
-                throw new ArgumentException("Property is required for class SortSelectorStepField.", nameof(direction));
+                throw new JsonException("Property is required for class SortSelectorStepField: direction.");
 
             if (expression.IsSet && expression.Value == null)
-                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class SortSelectorStepField.");
+                throw new JsonException("Property is not nullable for class SortSelectorStepField: expression.");
 
             if (direction.IsSet && direction.Value == null)
-                throw new ArgumentNullException(nameof(direction), "Property is not nullable for class SortSelectorStepField.");
+                throw new JsonException("Property is not nullable for class SortSelectorStepField: direction.");
 
             return new SortSelectorStepField(expression.Value, direction.Value.Value);
         }
@@ -241,7 +241,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="sortSelectorStepField"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SortSelectorStepField sortSelectorStepField, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -256,11 +255,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="sortSelectorStepField"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SortSelectorStepField sortSelectorStepField, JsonSerializerOptions jsonSerializerOptions)
         {
             if (sortSelectorStepField.Expression == null)
-                throw new ArgumentNullException(nameof(sortSelectorStepField.Expression), "Property is required for class SortSelectorStepField.");
+                throw new JsonException("Cannot write null property SortSelectorStepField.Expression to non-nullable JSON property 'expression'.");
 
             writer.WriteString("expression", sortSelectorStepField.Expression);
 

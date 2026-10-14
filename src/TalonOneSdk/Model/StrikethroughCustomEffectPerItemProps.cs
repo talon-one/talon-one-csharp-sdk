@@ -161,22 +161,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!effectId.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughCustomEffectPerItemProps.", nameof(effectId));
+                throw new JsonException("Property is required for class StrikethroughCustomEffectPerItemProps: effectId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughCustomEffectPerItemProps.", nameof(name));
+                throw new JsonException("Property is required for class StrikethroughCustomEffectPerItemProps: name.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughCustomEffectPerItemProps.", nameof(payload));
+                throw new JsonException("Property is required for class StrikethroughCustomEffectPerItemProps: payload.");
 
             if (effectId.IsSet && effectId.Value == null)
-                throw new ArgumentNullException(nameof(effectId), "Property is not nullable for class StrikethroughCustomEffectPerItemProps.");
+                throw new JsonException("Property is not nullable for class StrikethroughCustomEffectPerItemProps: effectId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class StrikethroughCustomEffectPerItemProps.");
+                throw new JsonException("Property is not nullable for class StrikethroughCustomEffectPerItemProps: name.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class StrikethroughCustomEffectPerItemProps.");
+                throw new JsonException("Property is not nullable for class StrikethroughCustomEffectPerItemProps: payload.");
 
             return new StrikethroughCustomEffectPerItemProps(effectId.Value.Value, name.Value, payload.Value);
         }
@@ -187,7 +187,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughCustomEffectPerItemProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StrikethroughCustomEffectPerItemProps strikethroughCustomEffectPerItemProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -202,14 +201,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughCustomEffectPerItemProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StrikethroughCustomEffectPerItemProps strikethroughCustomEffectPerItemProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (strikethroughCustomEffectPerItemProps.Name == null)
-                throw new ArgumentNullException(nameof(strikethroughCustomEffectPerItemProps.Name), "Property is required for class StrikethroughCustomEffectPerItemProps.");
+                throw new JsonException("Cannot write null property StrikethroughCustomEffectPerItemProps.Name to non-nullable JSON property 'name'.");
 
             if (strikethroughCustomEffectPerItemProps.Payload == null)
-                throw new ArgumentNullException(nameof(strikethroughCustomEffectPerItemProps.Payload), "Property is required for class StrikethroughCustomEffectPerItemProps.");
+                throw new JsonException("Cannot write null property StrikethroughCustomEffectPerItemProps.Payload to non-nullable JSON property 'payload'.");
 
             writer.WriteNumber("effectId", strikethroughCustomEffectPerItemProps.EffectId);
 

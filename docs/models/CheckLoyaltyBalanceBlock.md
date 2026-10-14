@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Type** | **string** | Identifies the block variant and determines which additional properties are present in it. | 
 **Operator** | **string** | An indicator of how the block compares the balance to the value. | 
 **Program** | [**CheckLoyaltyBalanceBlock1Program**](CheckLoyaltyBalanceBlock1Program.md) |  | 
-**Subledger** | **string** | The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger. | 
-**Balance** | **string** | The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session. | 
+**Subledger** | **string** | The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger. A subledger can only be used when the loyalty program has subledgers enabled. | 
+**Balance** | **string** | The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points. It cannot be used with a subledger.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session. | 
 **Value** | **decimal** | The numeric value to compare the balance against. | 
 **Id** | **string** | Unique identifier for this block. | [optional] [readonly] 
 **Tags** | **List&lt;string&gt;** | Semantic labels attached to this block. | [optional] [readonly] 

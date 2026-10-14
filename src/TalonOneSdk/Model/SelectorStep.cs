@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorStep" /> class.
         /// </summary>
         /// <param name="filterSelectorStep"></param>
-        public SelectorStep(FilterSelectorStep filterSelectorStep)
+        internal SelectorStep(FilterSelectorStep filterSelectorStep)
         {
             FilterSelectorStep = filterSelectorStep;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorStep" /> class.
         /// </summary>
         /// <param name="sortSelectorStep"></param>
-        public SelectorStep(SortSelectorStep sortSelectorStep)
+        internal SelectorStep(SortSelectorStep sortSelectorStep)
         {
             SortSelectorStep = sortSelectorStep;
             OnCreated();
@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorStep" /> class.
         /// </summary>
         /// <param name="selectSelectorStep"></param>
-        public SelectorStep(SelectSelectorStep selectSelectorStep)
+        internal SelectorStep(SelectSelectorStep selectSelectorStep)
         {
             SelectSelectorStep = selectSelectorStep;
             OnCreated();
@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorStep" /> class.
         /// </summary>
         /// <param name="mapSelectorStep"></param>
-        public SelectorStep(MapSelectorStep mapSelectorStep)
+        internal SelectorStep(MapSelectorStep mapSelectorStep)
         {
             MapSelectorStep = mapSelectorStep;
             OnCreated();
@@ -72,7 +72,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorStep" /> class.
         /// </summary>
         /// <param name="reduceSelectorStep"></param>
-        public SelectorStep(ReduceSelectorStep reduceSelectorStep)
+        internal SelectorStep(ReduceSelectorStep reduceSelectorStep)
         {
             ReduceSelectorStep = reduceSelectorStep;
             OnCreated();
@@ -82,7 +82,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorStep" /> class.
         /// </summary>
         /// <param name="reverseSelectorStep"></param>
-        public SelectorStep(ReverseSelectorStep reverseSelectorStep)
+        internal SelectorStep(ReverseSelectorStep reverseSelectorStep)
         {
             ReverseSelectorStep = reverseSelectorStep;
             OnCreated();
@@ -92,7 +92,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="SelectorStep" /> class.
         /// </summary>
         /// <param name="filterAndMapValuesSelectorStep"></param>
-        public SelectorStep(FilterAndMapValuesSelectorStep filterAndMapValuesSelectorStep)
+        internal SelectorStep(FilterAndMapValuesSelectorStep filterAndMapValuesSelectorStep)
         {
             FilterAndMapValuesSelectorStep = filterAndMapValuesSelectorStep;
             OnCreated();
@@ -451,7 +451,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="selectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SelectorStep selectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -508,7 +507,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="selectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SelectorStep selectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
 

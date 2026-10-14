@@ -345,28 +345,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Giveaway.", nameof(id));
+                throw new JsonException("Property is required for class Giveaway: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Giveaway.", nameof(created));
+                throw new JsonException("Property is required for class Giveaway: created.");
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class Giveaway.", nameof(code));
+                throw new JsonException("Property is required for class Giveaway: code.");
 
             if (!poolId.IsSet)
-                throw new ArgumentException("Property is required for class Giveaway.", nameof(poolId));
+                throw new JsonException("Property is required for class Giveaway: poolId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Giveaway.");
+                throw new JsonException("Property is not nullable for class Giveaway: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Giveaway.");
+                throw new JsonException("Property is not nullable for class Giveaway: created.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class Giveaway.");
+                throw new JsonException("Property is not nullable for class Giveaway: code.");
 
             if (poolId.IsSet && poolId.Value == null)
-                throw new ArgumentNullException(nameof(poolId), "Property is not nullable for class Giveaway.");
+                throw new JsonException("Property is not nullable for class Giveaway: poolId.");
 
             return new Giveaway(id.Value.Value, created.Value.Value, code.Value, poolId.Value.Value, startDate, endDate, attributes, used, importId, profileIntegrationId, profileId);
         }
@@ -377,7 +377,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveaway"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Giveaway giveaway, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -392,11 +391,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveaway"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Giveaway giveaway, JsonSerializerOptions jsonSerializerOptions)
         {
             if (giveaway.Code == null)
-                throw new ArgumentNullException(nameof(giveaway.Code), "Property is required for class Giveaway.");
+                throw new JsonException("Cannot write null property Giveaway.Code to non-nullable JSON property 'code'.");
 
             writer.WriteNumber("id", giveaway.Id);
 

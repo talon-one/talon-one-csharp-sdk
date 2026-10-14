@@ -225,22 +225,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RewardCatalogItem.", nameof(id));
+                throw new JsonException("Property is required for class RewardCatalogItem: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class RewardCatalogItem.", nameof(name));
+                throw new JsonException("Property is required for class RewardCatalogItem: name.");
 
             if (!rule.IsSet)
-                throw new ArgumentException("Property is required for class RewardCatalogItem.", nameof(rule));
+                throw new JsonException("Property is required for class RewardCatalogItem: rule.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RewardCatalogItem.");
+                throw new JsonException("Property is not nullable for class RewardCatalogItem: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RewardCatalogItem.");
+                throw new JsonException("Property is not nullable for class RewardCatalogItem: name.");
 
             if (rule.IsSet && rule.Value == null)
-                throw new ArgumentNullException(nameof(rule), "Property is not nullable for class RewardCatalogItem.");
+                throw new JsonException("Property is not nullable for class RewardCatalogItem: rule.");
 
             return new RewardCatalogItem(id.Value.Value, name.Value, rule.Value, description, pointsRequired, eligibility);
         }
@@ -251,7 +251,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardCatalogItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RewardCatalogItem rewardCatalogItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -266,14 +265,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardCatalogItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RewardCatalogItem rewardCatalogItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rewardCatalogItem.Name == null)
-                throw new ArgumentNullException(nameof(rewardCatalogItem.Name), "Property is required for class RewardCatalogItem.");
+                throw new JsonException("Cannot write null property RewardCatalogItem.Name to non-nullable JSON property 'name'.");
 
             if (rewardCatalogItem.Rule == null)
-                throw new ArgumentNullException(nameof(rewardCatalogItem.Rule), "Property is required for class RewardCatalogItem.");
+                throw new JsonException("Cannot write null property RewardCatalogItem.Rule to non-nullable JSON property 'rule'.");
 
             writer.WriteNumber("id", rewardCatalogItem.Id);
 

@@ -563,52 +563,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(type));
+                throw new JsonException("Property is required for class CampaignSetBranchNode: type.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(name));
+                throw new JsonException("Property is required for class CampaignSetBranchNode: name.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(varOperator));
+                throw new JsonException("Property is required for class CampaignSetBranchNode: operator.");
 
             if (!elements.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(elements));
+                throw new JsonException("Property is required for class CampaignSetBranchNode: elements.");
 
             if (!groupId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(groupId));
+                throw new JsonException("Property is required for class CampaignSetBranchNode: groupId.");
 
             if (!locked.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(locked));
+                throw new JsonException("Property is required for class CampaignSetBranchNode: locked.");
 
             if (!evaluationMode.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(evaluationMode));
+                throw new JsonException("Property is required for class CampaignSetBranchNode: evaluationMode.");
 
             if (!evaluationScope.IsSet)
-                throw new ArgumentException("Property is required for class CampaignSetBranchNode.", nameof(evaluationScope));
+                throw new JsonException("Property is required for class CampaignSetBranchNode: evaluationScope.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CampaignSetBranchNode.");
+                throw new JsonException("Property is not nullable for class CampaignSetBranchNode: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignSetBranchNode.");
+                throw new JsonException("Property is not nullable for class CampaignSetBranchNode: name.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CampaignSetBranchNode.");
+                throw new JsonException("Property is not nullable for class CampaignSetBranchNode: operator.");
 
             if (elements.IsSet && elements.Value == null)
-                throw new ArgumentNullException(nameof(elements), "Property is not nullable for class CampaignSetBranchNode.");
+                throw new JsonException("Property is not nullable for class CampaignSetBranchNode: elements.");
 
             if (groupId.IsSet && groupId.Value == null)
-                throw new ArgumentNullException(nameof(groupId), "Property is not nullable for class CampaignSetBranchNode.");
+                throw new JsonException("Property is not nullable for class CampaignSetBranchNode: groupId.");
 
             if (locked.IsSet && locked.Value == null)
-                throw new ArgumentNullException(nameof(locked), "Property is not nullable for class CampaignSetBranchNode.");
+                throw new JsonException("Property is not nullable for class CampaignSetBranchNode: locked.");
 
             if (evaluationMode.IsSet && evaluationMode.Value == null)
-                throw new ArgumentNullException(nameof(evaluationMode), "Property is not nullable for class CampaignSetBranchNode.");
+                throw new JsonException("Property is not nullable for class CampaignSetBranchNode: evaluationMode.");
 
             if (evaluationScope.IsSet && evaluationScope.Value == null)
-                throw new ArgumentNullException(nameof(evaluationScope), "Property is not nullable for class CampaignSetBranchNode.");
+                throw new JsonException("Property is not nullable for class CampaignSetBranchNode: evaluationScope.");
 
             return new CampaignSetBranchNode(type.Value.Value, name.Value, varOperator.Value.Value, elements.Value, groupId.Value.Value, locked.Value.Value, evaluationMode.Value.Value, evaluationScope.Value.Value, description);
         }
@@ -619,7 +619,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignSetBranchNode"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignSetBranchNode campaignSetBranchNode, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -634,14 +633,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignSetBranchNode"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignSetBranchNode campaignSetBranchNode, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignSetBranchNode.Name == null)
-                throw new ArgumentNullException(nameof(campaignSetBranchNode.Name), "Property is required for class CampaignSetBranchNode.");
+                throw new JsonException("Cannot write null property CampaignSetBranchNode.Name to non-nullable JSON property 'name'.");
 
             if (campaignSetBranchNode.Elements == null)
-                throw new ArgumentNullException(nameof(campaignSetBranchNode.Elements), "Property is required for class CampaignSetBranchNode.");
+                throw new JsonException("Cannot write null property CampaignSetBranchNode.Elements to non-nullable JSON property 'elements'.");
 
             var typeRawValue = CampaignSetBranchNode.TypeEnumToJsonValue(campaignSetBranchNode.Type);
             writer.WriteString("type", typeRawValue);

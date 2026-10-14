@@ -219,22 +219,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsNotification.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class ExpiringCardPointsNotification: TotalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsNotification.", nameof(data));
+                throw new JsonException("Property is required for class ExpiringCardPointsNotification: Data.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsNotification.", nameof(notificationType));
+                throw new JsonException("Property is required for class ExpiringCardPointsNotification: NotificationType.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class ExpiringCardPointsNotification.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsNotification: TotalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ExpiringCardPointsNotification.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsNotification: Data.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class ExpiringCardPointsNotification.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsNotification: NotificationType.");
 
             return new ExpiringCardPointsNotification(totalResultSize.Value.Value, data.Value, notificationType.Value.Value);
         }
@@ -245,7 +245,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCardPointsNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExpiringCardPointsNotification expiringCardPointsNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,11 +259,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCardPointsNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExpiringCardPointsNotification expiringCardPointsNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (expiringCardPointsNotification.Data == null)
-                throw new ArgumentNullException(nameof(expiringCardPointsNotification.Data), "Property is required for class ExpiringCardPointsNotification.");
+                throw new JsonException("Cannot write null property ExpiringCardPointsNotification.Data to non-nullable JSON property 'Data'.");
 
             writer.WriteNumber("TotalResultSize", expiringCardPointsNotification.TotalResultSize);
 

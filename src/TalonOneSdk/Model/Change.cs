@@ -270,28 +270,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Change.", nameof(id));
+                throw new JsonException("Property is required for class Change: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Change.", nameof(created));
+                throw new JsonException("Property is required for class Change: created.");
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class Change.", nameof(userId));
+                throw new JsonException("Property is required for class Change: userId.");
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class Change.", nameof(entity));
+                throw new JsonException("Property is required for class Change: entity.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Change.");
+                throw new JsonException("Property is not nullable for class Change: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Change.");
+                throw new JsonException("Property is not nullable for class Change: created.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Change.");
+                throw new JsonException("Property is not nullable for class Change: userId.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Change.");
+                throw new JsonException("Property is not nullable for class Change: entity.");
 
             return new Change(id.Value.Value, created.Value.Value, userId.Value.Value, entity.Value, applicationId, old, varNew, managementKeyId);
         }
@@ -302,7 +302,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="change"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Change change, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -317,11 +316,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="change"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Change change, JsonSerializerOptions jsonSerializerOptions)
         {
             if (change.Entity == null)
-                throw new ArgumentNullException(nameof(change.Entity), "Property is required for class Change.");
+                throw new JsonException("Cannot write null property Change.Entity to non-nullable JSON property 'entity'.");
 
             writer.WriteNumber("id", change.Id);
 

@@ -201,34 +201,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!startTime.IsSet)
-                throw new ArgumentException("Property is required for class ProductUnitAnalyticsDataPoint.", nameof(startTime));
+                throw new JsonException("Property is required for class ProductUnitAnalyticsDataPoint: startTime.");
 
             if (!endTime.IsSet)
-                throw new ArgumentException("Property is required for class ProductUnitAnalyticsDataPoint.", nameof(endTime));
+                throw new JsonException("Property is required for class ProductUnitAnalyticsDataPoint: endTime.");
 
             if (!unitsSold.IsSet)
-                throw new ArgumentException("Property is required for class ProductUnitAnalyticsDataPoint.", nameof(unitsSold));
+                throw new JsonException("Property is required for class ProductUnitAnalyticsDataPoint: unitsSold.");
 
             if (!productId.IsSet)
-                throw new ArgumentException("Property is required for class ProductUnitAnalyticsDataPoint.", nameof(productId));
+                throw new JsonException("Property is required for class ProductUnitAnalyticsDataPoint: productId.");
 
             if (!productName.IsSet)
-                throw new ArgumentException("Property is required for class ProductUnitAnalyticsDataPoint.", nameof(productName));
+                throw new JsonException("Property is required for class ProductUnitAnalyticsDataPoint: productName.");
 
             if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class ProductUnitAnalyticsDataPoint: startTime.");
 
             if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class ProductUnitAnalyticsDataPoint: endTime.");
 
             if (unitsSold.IsSet && unitsSold.Value == null)
-                throw new ArgumentNullException(nameof(unitsSold), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class ProductUnitAnalyticsDataPoint: unitsSold.");
 
             if (productId.IsSet && productId.Value == null)
-                throw new ArgumentNullException(nameof(productId), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class ProductUnitAnalyticsDataPoint: productId.");
 
             if (productName.IsSet && productName.Value == null)
-                throw new ArgumentNullException(nameof(productName), "Property is not nullable for class ProductUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class ProductUnitAnalyticsDataPoint: productName.");
 
             return new ProductUnitAnalyticsDataPoint(startTime.Value.Value, endTime.Value.Value, unitsSold.Value, productId.Value.Value, productName.Value);
         }
@@ -239,7 +239,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="productUnitAnalyticsDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProductUnitAnalyticsDataPoint productUnitAnalyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,14 +253,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="productUnitAnalyticsDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProductUnitAnalyticsDataPoint productUnitAnalyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             if (productUnitAnalyticsDataPoint.UnitsSold == null)
-                throw new ArgumentNullException(nameof(productUnitAnalyticsDataPoint.UnitsSold), "Property is required for class ProductUnitAnalyticsDataPoint.");
+                throw new JsonException("Cannot write null property ProductUnitAnalyticsDataPoint.UnitsSold to non-nullable JSON property 'unitsSold'.");
 
             if (productUnitAnalyticsDataPoint.ProductName == null)
-                throw new ArgumentNullException(nameof(productUnitAnalyticsDataPoint.ProductName), "Property is required for class ProductUnitAnalyticsDataPoint.");
+                throw new JsonException("Cannot write null property ProductUnitAnalyticsDataPoint.ProductName to non-nullable JSON property 'productName'.");
 
             writer.WriteString("startTime", productUnitAnalyticsDataPoint.StartTime.ToString(StartTimeFormat));
 

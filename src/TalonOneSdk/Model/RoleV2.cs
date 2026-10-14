@@ -296,28 +296,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RoleV2.", nameof(id));
+                throw new JsonException("Property is required for class RoleV2: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class RoleV2.", nameof(created));
+                throw new JsonException("Property is required for class RoleV2: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class RoleV2.", nameof(modified));
+                throw new JsonException("Property is required for class RoleV2: modified.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class RoleV2.", nameof(accountId));
+                throw new JsonException("Property is required for class RoleV2: accountId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RoleV2.");
+                throw new JsonException("Property is not nullable for class RoleV2: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class RoleV2.");
+                throw new JsonException("Property is not nullable for class RoleV2: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class RoleV2.");
+                throw new JsonException("Property is not nullable for class RoleV2: modified.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class RoleV2.");
+                throw new JsonException("Property is not nullable for class RoleV2: accountId.");
 
             return new RoleV2(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name, description, permissions, members, isReadonly);
         }
@@ -328,7 +328,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RoleV2 roleV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -343,7 +342,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleV2 roleV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", roleV2.Id);

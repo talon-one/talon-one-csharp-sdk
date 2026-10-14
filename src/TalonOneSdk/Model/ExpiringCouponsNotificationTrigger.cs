@@ -225,16 +225,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsNotificationTrigger.", nameof(amount));
+                throw new JsonException("Property is required for class ExpiringCouponsNotificationTrigger: amount.");
 
             if (!period.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsNotificationTrigger.", nameof(period));
+                throw new JsonException("Property is required for class ExpiringCouponsNotificationTrigger: period.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class ExpiringCouponsNotificationTrigger.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsNotificationTrigger: amount.");
 
             if (period.IsSet && period.Value == null)
-                throw new ArgumentNullException(nameof(period), "Property is not nullable for class ExpiringCouponsNotificationTrigger.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsNotificationTrigger: period.");
 
             return new ExpiringCouponsNotificationTrigger(amount.Value.Value, period.Value.Value);
         }
@@ -245,7 +245,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCouponsNotificationTrigger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExpiringCouponsNotificationTrigger expiringCouponsNotificationTrigger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,7 +259,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCouponsNotificationTrigger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExpiringCouponsNotificationTrigger expiringCouponsNotificationTrigger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("amount", expiringCouponsNotificationTrigger.Amount);

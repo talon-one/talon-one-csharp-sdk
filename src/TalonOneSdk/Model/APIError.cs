@@ -165,16 +165,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class APIError.", nameof(title));
+                throw new JsonException("Property is required for class APIError: title.");
 
             if (!source.IsSet)
-                throw new ArgumentException("Property is required for class APIError.", nameof(source));
+                throw new JsonException("Property is required for class APIError: source.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class APIError.");
+                throw new JsonException("Property is not nullable for class APIError: title.");
 
             if (source.IsSet && source.Value == null)
-                throw new ArgumentNullException(nameof(source), "Property is not nullable for class APIError.");
+                throw new JsonException("Property is not nullable for class APIError: source.");
 
             return new APIError(title.Value, source.Value, details);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="aPIError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, APIError aPIError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,14 +199,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="aPIError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, APIError aPIError, JsonSerializerOptions jsonSerializerOptions)
         {
             if (aPIError.Title == null)
-                throw new ArgumentNullException(nameof(aPIError.Title), "Property is required for class APIError.");
+                throw new JsonException("Cannot write null property APIError.Title to non-nullable JSON property 'title'.");
 
             if (aPIError.Source == null)
-                throw new ArgumentNullException(nameof(aPIError.Source), "Property is required for class APIError.");
+                throw new JsonException("Cannot write null property APIError.Source to non-nullable JSON property 'source'.");
 
             writer.WriteString("title", aPIError.Title);
 

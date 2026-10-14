@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!roleID.IsSet)
-                throw new ArgumentException("Property is required for class RoleMembership.", nameof(roleID));
+                throw new JsonException("Property is required for class RoleMembership: RoleID.");
 
             if (!userID.IsSet)
-                throw new ArgumentException("Property is required for class RoleMembership.", nameof(userID));
+                throw new JsonException("Property is required for class RoleMembership: UserID.");
 
             if (roleID.IsSet && roleID.Value == null)
-                throw new ArgumentNullException(nameof(roleID), "Property is not nullable for class RoleMembership.");
+                throw new JsonException("Property is not nullable for class RoleMembership: RoleID.");
 
             if (userID.IsSet && userID.Value == null)
-                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class RoleMembership.");
+                throw new JsonException("Property is not nullable for class RoleMembership: UserID.");
 
             return new RoleMembership(roleID.Value.Value, userID.Value.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleMembership"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RoleMembership roleMembership, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,7 +179,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleMembership"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleMembership roleMembership, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("RoleID", roleMembership.RoleID);

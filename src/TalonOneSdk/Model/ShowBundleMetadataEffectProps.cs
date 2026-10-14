@@ -159,22 +159,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class ShowBundleMetadataEffectProps.", nameof(description));
+                throw new JsonException("Property is required for class ShowBundleMetadataEffectProps: description.");
 
             if (!bundleAttributes.IsSet)
-                throw new ArgumentException("Property is required for class ShowBundleMetadataEffectProps.", nameof(bundleAttributes));
+                throw new JsonException("Property is required for class ShowBundleMetadataEffectProps: bundleAttributes.");
 
             if (!itemsIndices.IsSet)
-                throw new ArgumentException("Property is required for class ShowBundleMetadataEffectProps.", nameof(itemsIndices));
+                throw new JsonException("Property is required for class ShowBundleMetadataEffectProps: itemsIndices.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class ShowBundleMetadataEffectProps.");
+                throw new JsonException("Property is not nullable for class ShowBundleMetadataEffectProps: description.");
 
             if (bundleAttributes.IsSet && bundleAttributes.Value == null)
-                throw new ArgumentNullException(nameof(bundleAttributes), "Property is not nullable for class ShowBundleMetadataEffectProps.");
+                throw new JsonException("Property is not nullable for class ShowBundleMetadataEffectProps: bundleAttributes.");
 
             if (itemsIndices.IsSet && itemsIndices.Value == null)
-                throw new ArgumentNullException(nameof(itemsIndices), "Property is not nullable for class ShowBundleMetadataEffectProps.");
+                throw new JsonException("Property is not nullable for class ShowBundleMetadataEffectProps: itemsIndices.");
 
             return new ShowBundleMetadataEffectProps(description.Value, bundleAttributes.Value, itemsIndices.Value);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="showBundleMetadataEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ShowBundleMetadataEffectProps showBundleMetadataEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,17 +199,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="showBundleMetadataEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ShowBundleMetadataEffectProps showBundleMetadataEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (showBundleMetadataEffectProps.Description == null)
-                throw new ArgumentNullException(nameof(showBundleMetadataEffectProps.Description), "Property is required for class ShowBundleMetadataEffectProps.");
+                throw new JsonException("Cannot write null property ShowBundleMetadataEffectProps.Description to non-nullable JSON property 'description'.");
 
             if (showBundleMetadataEffectProps.BundleAttributes == null)
-                throw new ArgumentNullException(nameof(showBundleMetadataEffectProps.BundleAttributes), "Property is required for class ShowBundleMetadataEffectProps.");
+                throw new JsonException("Cannot write null property ShowBundleMetadataEffectProps.BundleAttributes to non-nullable JSON property 'bundleAttributes'.");
 
             if (showBundleMetadataEffectProps.ItemsIndices == null)
-                throw new ArgumentNullException(nameof(showBundleMetadataEffectProps.ItemsIndices), "Property is required for class ShowBundleMetadataEffectProps.");
+                throw new JsonException("Cannot write null property ShowBundleMetadataEffectProps.ItemsIndices to non-nullable JSON property 'itemsIndices'.");
 
             writer.WriteString("description", showBundleMetadataEffectProps.Description);
 

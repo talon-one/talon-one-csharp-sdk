@@ -580,16 +580,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class CartItem.", nameof(sku));
+                throw new JsonException("Property is required for class CartItem: sku.");
 
             if (!quantity.IsSet)
-                throw new ArgumentException("Property is required for class CartItem.", nameof(quantity));
+                throw new JsonException("Property is required for class CartItem: quantity.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class CartItem.");
+                throw new JsonException("Property is not nullable for class CartItem: sku.");
 
             if (quantity.IsSet && quantity.Value == null)
-                throw new ArgumentNullException(nameof(quantity), "Property is not nullable for class CartItem.");
+                throw new JsonException("Property is not nullable for class CartItem: quantity.");
 
             return new CartItem(sku.Value, quantity.Value.Value, name, returnedQuantity, remainingQuantity, price, category, product, weight, height, width, length, position, attributes, additionalCosts, catalogItemID, selectedPriceType, adjustmentReferenceId, adjustmentEffectiveFrom, adjustmentEffectiveUntil, prices);
         }
@@ -600,7 +600,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cartItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CartItem cartItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -615,11 +614,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cartItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CartItem cartItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (cartItem.Sku == null)
-                throw new ArgumentNullException(nameof(cartItem.Sku), "Property is required for class CartItem.");
+                throw new JsonException("Cannot write null property CartItem.Sku to non-nullable JSON property 'sku'.");
 
             writer.WriteString("sku", cartItem.Sku);
 

@@ -172,10 +172,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!resources.IsSet)
-                throw new ArgumentException("Property is required for class ScimSchemasListResponse.", nameof(resources));
+                throw new JsonException("Property is required for class ScimSchemasListResponse: Resources.");
 
             if (resources.IsSet && resources.Value == null)
-                throw new ArgumentNullException(nameof(resources), "Property is not nullable for class ScimSchemasListResponse.");
+                throw new JsonException("Property is not nullable for class ScimSchemasListResponse: Resources.");
 
             return new ScimSchemasListResponse(resources.Value, schemas, totalResults);
         }
@@ -186,7 +186,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimSchemasListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ScimSchemasListResponse scimSchemasListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -201,11 +200,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimSchemasListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimSchemasListResponse scimSchemasListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (scimSchemasListResponse.Resources == null)
-                throw new ArgumentNullException(nameof(scimSchemasListResponse.Resources), "Property is required for class ScimSchemasListResponse.");
+                throw new JsonException("Cannot write null property ScimSchemasListResponse.Resources to non-nullable JSON property 'Resources'.");
 
             writer.WritePropertyName("Resources");
             JsonSerializer.Serialize(writer, scimSchemasListResponse.Resources, jsonSerializerOptions);

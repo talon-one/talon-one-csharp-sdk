@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!filters.IsSet)
-                throw new ArgumentException("Property is required for class NewCouponDeletionJob.", nameof(filters));
+                throw new JsonException("Property is required for class NewCouponDeletionJob: filters.");
 
             if (filters.IsSet && filters.Value == null)
-                throw new ArgumentNullException(nameof(filters), "Property is not nullable for class NewCouponDeletionJob.");
+                throw new JsonException("Property is not nullable for class NewCouponDeletionJob: filters.");
 
             return new NewCouponDeletionJob(filters.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCouponDeletionJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewCouponDeletionJob newCouponDeletionJob, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,11 +158,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCouponDeletionJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCouponDeletionJob newCouponDeletionJob, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newCouponDeletionJob.Filters == null)
-                throw new ArgumentNullException(nameof(newCouponDeletionJob.Filters), "Property is required for class NewCouponDeletionJob.");
+                throw new JsonException("Cannot write null property NewCouponDeletionJob.Filters to non-nullable JSON property 'filters'.");
 
             writer.WritePropertyName("filters");
             JsonSerializer.Serialize(writer, newCouponDeletionJob.Filters, jsonSerializerOptions);

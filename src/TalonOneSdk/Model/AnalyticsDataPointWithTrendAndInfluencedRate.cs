@@ -159,22 +159,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsDataPointWithTrendAndInfluencedRate.", nameof(value));
+                throw new JsonException("Property is required for class AnalyticsDataPointWithTrendAndInfluencedRate: value.");
 
             if (!influencedRate.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsDataPointWithTrendAndInfluencedRate.", nameof(influencedRate));
+                throw new JsonException("Property is required for class AnalyticsDataPointWithTrendAndInfluencedRate: influencedRate.");
 
             if (!trend.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsDataPointWithTrendAndInfluencedRate.", nameof(trend));
+                throw new JsonException("Property is required for class AnalyticsDataPointWithTrendAndInfluencedRate: trend.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate.");
+                throw new JsonException("Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate: value.");
 
             if (influencedRate.IsSet && influencedRate.Value == null)
-                throw new ArgumentNullException(nameof(influencedRate), "Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate.");
+                throw new JsonException("Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate: influencedRate.");
 
             if (trend.IsSet && trend.Value == null)
-                throw new ArgumentNullException(nameof(trend), "Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate.");
+                throw new JsonException("Property is not nullable for class AnalyticsDataPointWithTrendAndInfluencedRate: trend.");
 
             return new AnalyticsDataPointWithTrendAndInfluencedRate(value.Value.Value, influencedRate.Value.Value, trend.Value.Value);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsDataPointWithTrendAndInfluencedRate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AnalyticsDataPointWithTrendAndInfluencedRate analyticsDataPointWithTrendAndInfluencedRate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,7 +199,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsDataPointWithTrendAndInfluencedRate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AnalyticsDataPointWithTrendAndInfluencedRate analyticsDataPointWithTrendAndInfluencedRate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("value", analyticsDataPointWithTrendAndInfluencedRate.Value);

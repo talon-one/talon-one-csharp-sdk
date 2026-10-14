@@ -299,16 +299,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!uuid.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLogBase.", nameof(uuid));
+                throw new JsonException("Property is required for class OutboundLogBase: uuid.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLogBase.", nameof(notificationType));
+                throw new JsonException("Property is required for class OutboundLogBase: notificationType.");
 
             if (uuid.IsSet && uuid.Value == null)
-                throw new ArgumentNullException(nameof(uuid), "Property is not nullable for class OutboundLogBase.");
+                throw new JsonException("Property is not nullable for class OutboundLogBase: uuid.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class OutboundLogBase.");
+                throw new JsonException("Property is not nullable for class OutboundLogBase: notificationType.");
 
             return new OutboundLogBase(uuid.Value.Value, notificationType.Value, notificationId, notificationName, webhookId, webhookName, applicationId, loyaltyProgramId, request);
         }
@@ -319,7 +319,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundLogBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutboundLogBase outboundLogBase, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -334,11 +333,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundLogBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutboundLogBase outboundLogBase, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outboundLogBase.NotificationType == null)
-                throw new ArgumentNullException(nameof(outboundLogBase.NotificationType), "Property is required for class OutboundLogBase.");
+                throw new JsonException("Cannot write null property OutboundLogBase.NotificationType to non-nullable JSON property 'notificationType'.");
 
             writer.WriteString("uuid", outboundLogBase.Uuid);
 

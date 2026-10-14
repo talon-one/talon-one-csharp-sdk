@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!itemFilter.IsSet)
-                throw new ArgumentException("Property is required for class GenerateItemFilterDescription.", nameof(itemFilter));
+                throw new JsonException("Property is required for class GenerateItemFilterDescription: itemFilter.");
 
             if (itemFilter.IsSet && itemFilter.Value == null)
-                throw new ArgumentNullException(nameof(itemFilter), "Property is not nullable for class GenerateItemFilterDescription.");
+                throw new JsonException("Property is not nullable for class GenerateItemFilterDescription: itemFilter.");
 
             return new GenerateItemFilterDescription(itemFilter.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateItemFilterDescription"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GenerateItemFilterDescription generateItemFilterDescription, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateItemFilterDescription"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateItemFilterDescription generateItemFilterDescription, JsonSerializerOptions jsonSerializerOptions)
         {
             if (generateItemFilterDescription.ItemFilter == null)
-                throw new ArgumentNullException(nameof(generateItemFilterDescription.ItemFilter), "Property is required for class GenerateItemFilterDescription.");
+                throw new JsonException("Cannot write null property GenerateItemFilterDescription.ItemFilter to non-nullable JSON property 'itemFilter'.");
 
             writer.WritePropertyName("itemFilter");
             JsonSerializer.Serialize(writer, generateItemFilterDescription.ItemFilter, jsonSerializerOptions);

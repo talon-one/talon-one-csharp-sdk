@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="LocationCheckAttributeBlockValues" /> class.
         /// </summary>
         /// <param name="list"></param>
-        internal LocationCheckAttributeBlockValues(List<LocationCheckAttributeBlockValuesOneOfInner> list)
+        public LocationCheckAttributeBlockValues(List<LocationCheckAttributeBlockValuesOneOfInner> list)
         {
             List = list;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="LocationCheckAttributeBlockValues" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal LocationCheckAttributeBlockValues(string @string)
+        public LocationCheckAttributeBlockValues(string @string)
         {
             String = @string;
             OnCreated();
@@ -175,7 +175,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="locationCheckAttributeBlockValues"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LocationCheckAttributeBlockValues locationCheckAttributeBlockValues, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="locationCheckAttributeBlockValues"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LocationCheckAttributeBlockValues locationCheckAttributeBlockValues, JsonSerializerOptions jsonSerializerOptions)
         {
 

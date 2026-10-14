@@ -181,16 +181,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateStore.", nameof(name));
+                throw new JsonException("Property is required for class UpdateStore: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class UpdateStore.", nameof(description));
+                throw new JsonException("Property is required for class UpdateStore: description.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateStore.");
+                throw new JsonException("Property is not nullable for class UpdateStore: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateStore.");
+                throw new JsonException("Property is not nullable for class UpdateStore: description.");
 
             return new UpdateStore(name.Value, description.Value, attributes);
         }
@@ -201,7 +201,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateStore"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateStore updateStore, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -216,14 +215,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateStore"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateStore updateStore, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateStore.Name == null)
-                throw new ArgumentNullException(nameof(updateStore.Name), "Property is required for class UpdateStore.");
+                throw new JsonException("Cannot write null property UpdateStore.Name to non-nullable JSON property 'name'.");
 
             if (updateStore.Description == null)
-                throw new ArgumentNullException(nameof(updateStore.Description), "Property is required for class UpdateStore.");
+                throw new JsonException("Cannot write null property UpdateStore.Description to non-nullable JSON property 'description'.");
 
             writer.WriteString("name", updateStore.Name);
 

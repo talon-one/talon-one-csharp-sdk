@@ -306,10 +306,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class AchievementAdditionalPropertiesV2.", nameof(userId));
+                throw new JsonException("Property is required for class AchievementAdditionalPropertiesV2: userId.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class AchievementAdditionalPropertiesV2.");
+                throw new JsonException("Property is not nullable for class AchievementAdditionalPropertiesV2: userId.");
 
             return new AchievementAdditionalPropertiesV2(userId.Value.Value, createdBy, periodEndOverride, hasProgress, status);
         }
@@ -320,7 +320,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementAdditionalPropertiesV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AchievementAdditionalPropertiesV2 achievementAdditionalPropertiesV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -335,7 +334,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementAdditionalPropertiesV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementAdditionalPropertiesV2 achievementAdditionalPropertiesV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("userId", achievementAdditionalPropertiesV2.UserId);

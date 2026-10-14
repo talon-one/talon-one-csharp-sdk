@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="totalResultSize">totalResultSize</param>
         /// <param name="data">data</param>
         [JsonConstructor]
-        public GetCustomerAchievementHistory200Response(long totalResultSize, List<AchievementProgress> data)
+        public GetCustomerAchievementHistory200Response(long totalResultSize, List<CustomerAchievementHistoryEntry> data)
         {
             TotalResultSize = totalResultSize;
             Data = data;
@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<AchievementProgress> Data { get; set; }
+        public List<CustomerAchievementHistoryEntry> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -114,7 +114,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<long?> totalResultSize = default;
-            Option<List<AchievementProgress>> data = default;
+            Option<List<CustomerAchievementHistoryEntry>> data = default;
 
             while (utf8JsonReader.Read())
             {
@@ -135,7 +135,7 @@ namespace TalonOneSdk.Model
                             totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "data":
-                            data = new Option<List<AchievementProgress>>(JsonSerializer.Deserialize<List<AchievementProgress>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<CustomerAchievementHistoryEntry>>(JsonSerializer.Deserialize<List<CustomerAchievementHistoryEntry>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -144,16 +144,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class GetCustomerAchievementHistory200Response.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class GetCustomerAchievementHistory200Response: totalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GetCustomerAchievementHistory200Response.", nameof(data));
+                throw new JsonException("Property is required for class GetCustomerAchievementHistory200Response: data.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class GetCustomerAchievementHistory200Response.");
+                throw new JsonException("Property is not nullable for class GetCustomerAchievementHistory200Response: totalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetCustomerAchievementHistory200Response.");
+                throw new JsonException("Property is not nullable for class GetCustomerAchievementHistory200Response: data.");
 
             return new GetCustomerAchievementHistory200Response(totalResultSize.Value.Value, data.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCustomerAchievementHistory200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetCustomerAchievementHistory200Response getCustomerAchievementHistory200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCustomerAchievementHistory200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetCustomerAchievementHistory200Response getCustomerAchievementHistory200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getCustomerAchievementHistory200Response.Data == null)
-                throw new ArgumentNullException(nameof(getCustomerAchievementHistory200Response.Data), "Property is required for class GetCustomerAchievementHistory200Response.");
+                throw new JsonException("Cannot write null property GetCustomerAchievementHistory200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WriteNumber("totalResultSize", getCustomerAchievementHistory200Response.TotalResultSize);
 

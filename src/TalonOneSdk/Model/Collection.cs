@@ -365,40 +365,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Collection.", nameof(id));
+                throw new JsonException("Property is required for class Collection: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Collection.", nameof(created));
+                throw new JsonException("Property is required for class Collection: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Collection.", nameof(accountId));
+                throw new JsonException("Property is required for class Collection: accountId.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class Collection.", nameof(modified));
+                throw new JsonException("Property is required for class Collection: modified.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Collection.", nameof(name));
+                throw new JsonException("Property is required for class Collection: name.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class Collection.", nameof(createdBy));
+                throw new JsonException("Property is required for class Collection: createdBy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Collection.");
+                throw new JsonException("Property is not nullable for class Collection: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Collection.");
+                throw new JsonException("Property is not nullable for class Collection: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Collection.");
+                throw new JsonException("Property is not nullable for class Collection: accountId.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Collection.");
+                throw new JsonException("Property is not nullable for class Collection: modified.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Collection.");
+                throw new JsonException("Property is not nullable for class Collection: name.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Collection.");
+                throw new JsonException("Property is not nullable for class Collection: createdBy.");
 
             return new Collection(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, name.Value, createdBy.Value.Value, description, subscribedApplicationsIds, modifiedBy, applicationId, campaignId, payload);
         }
@@ -409,7 +409,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="collection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Collection collection, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -424,11 +423,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="collection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Collection collection, JsonSerializerOptions jsonSerializerOptions)
         {
             if (collection.Name == null)
-                throw new ArgumentNullException(nameof(collection.Name), "Property is required for class Collection.");
+                throw new JsonException("Cannot write null property Collection.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", collection.Id);
 

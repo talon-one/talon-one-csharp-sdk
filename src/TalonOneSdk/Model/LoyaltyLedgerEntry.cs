@@ -47,8 +47,9 @@ namespace TalonOneSdk.Model
         /// <param name="archived">Indicates if the entry belongs to the archived session.</param>
         /// <param name="flags">A map of flags providing additional details about the entry.</param>
         /// <param name="validityDuration">The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set. </param>
+        /// <param name="awaitsActivation">Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</param>
         [JsonConstructor]
-        public LoyaltyLedgerEntry(DateTime created, long programID, string type, decimal amount, string name, string subLedgerID, Option<string> customerProfileID = default, Option<long?> cardID = default, Option<string> customerSessionID = default, Option<long?> eventID = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<long?> userID = default, Option<bool?> archived = default, Option<LoyaltyLedgerEntryFlags> flags = default, Option<string> validityDuration = default)
+        public LoyaltyLedgerEntry(DateTime created, long programID, string type, decimal amount, string name, string subLedgerID, Option<string> customerProfileID = default, Option<long?> cardID = default, Option<string> customerSessionID = default, Option<long?> eventID = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<long?> userID = default, Option<bool?> archived = default, Option<LoyaltyLedgerEntryFlags> flags = default, Option<string> validityDuration = default, Option<bool?> awaitsActivation = default)
         {
             Created = created;
             ProgramID = programID;
@@ -66,6 +67,7 @@ namespace TalonOneSdk.Model
             ArchivedOption = archived;
             FlagsOption = flags;
             ValidityDurationOption = validityDuration;
+            AwaitsActivationOption = awaitsActivation;
             OnCreated();
         }
 
@@ -260,6 +262,21 @@ namespace TalonOneSdk.Model
         public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of AwaitsActivation
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> AwaitsActivationOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+        /// </summary>
+        /// <value>Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("awaitsActivation")]
+        public bool? AwaitsActivation { get { return this.AwaitsActivationOption.Value; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -283,6 +300,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Archived: ").Append(Archived).Append("\n");
             sb.Append("  Flags: ").Append(Flags).Append("\n");
             sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
+            sb.Append("  AwaitsActivation: ").Append(AwaitsActivation).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -361,6 +379,7 @@ namespace TalonOneSdk.Model
             Option<bool?> archived = default;
             Option<LoyaltyLedgerEntryFlags> flags = default;
             Option<string> validityDuration = default;
+            Option<bool?> awaitsActivation = default;
 
             while (utf8JsonReader.Read())
             {
@@ -425,6 +444,9 @@ namespace TalonOneSdk.Model
                         case "validityDuration":
                             validityDuration = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "awaitsActivation":
+                            awaitsActivation = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         default:
                             break;
                     }
@@ -432,42 +454,42 @@ namespace TalonOneSdk.Model
             }
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedgerEntry.", nameof(created));
+                throw new JsonException("Property is required for class LoyaltyLedgerEntry: created.");
 
             if (!programID.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedgerEntry.", nameof(programID));
+                throw new JsonException("Property is required for class LoyaltyLedgerEntry: programID.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedgerEntry.", nameof(type));
+                throw new JsonException("Property is required for class LoyaltyLedgerEntry: type.");
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedgerEntry.", nameof(amount));
+                throw new JsonException("Property is required for class LoyaltyLedgerEntry: amount.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedgerEntry.", nameof(name));
+                throw new JsonException("Property is required for class LoyaltyLedgerEntry: name.");
 
             if (!subLedgerID.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedgerEntry.", nameof(subLedgerID));
+                throw new JsonException("Property is required for class LoyaltyLedgerEntry: subLedgerID.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyLedgerEntry.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedgerEntry: created.");
 
             if (programID.IsSet && programID.Value == null)
-                throw new ArgumentNullException(nameof(programID), "Property is not nullable for class LoyaltyLedgerEntry.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedgerEntry: programID.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LoyaltyLedgerEntry.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedgerEntry: type.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class LoyaltyLedgerEntry.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedgerEntry: amount.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyLedgerEntry.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedgerEntry: name.");
 
             if (subLedgerID.IsSet && subLedgerID.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerID), "Property is not nullable for class LoyaltyLedgerEntry.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedgerEntry: subLedgerID.");
 
-            return new LoyaltyLedgerEntry(created.Value.Value, programID.Value.Value, type.Value, amount.Value.Value, name.Value, subLedgerID.Value, customerProfileID, cardID, customerSessionID, eventID, startDate, expiryDate, userID, archived, flags, validityDuration);
+            return new LoyaltyLedgerEntry(created.Value.Value, programID.Value.Value, type.Value, amount.Value.Value, name.Value, subLedgerID.Value, customerProfileID, cardID, customerSessionID, eventID, startDate, expiryDate, userID, archived, flags, validityDuration, awaitsActivation);
         }
 
         /// <summary>
@@ -476,7 +498,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyLedgerEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyLedgerEntry loyaltyLedgerEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -491,17 +512,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyLedgerEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyLedgerEntry loyaltyLedgerEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyLedgerEntry.Type == null)
-                throw new ArgumentNullException(nameof(loyaltyLedgerEntry.Type), "Property is required for class LoyaltyLedgerEntry.");
+                throw new JsonException("Cannot write null property LoyaltyLedgerEntry.Type to non-nullable JSON property 'type'.");
 
             if (loyaltyLedgerEntry.Name == null)
-                throw new ArgumentNullException(nameof(loyaltyLedgerEntry.Name), "Property is required for class LoyaltyLedgerEntry.");
+                throw new JsonException("Cannot write null property LoyaltyLedgerEntry.Name to non-nullable JSON property 'name'.");
 
             if (loyaltyLedgerEntry.SubLedgerID == null)
-                throw new ArgumentNullException(nameof(loyaltyLedgerEntry.SubLedgerID), "Property is required for class LoyaltyLedgerEntry.");
+                throw new JsonException("Cannot write null property LoyaltyLedgerEntry.SubLedgerID to non-nullable JSON property 'subLedgerID'.");
 
             writer.WriteString("created", loyaltyLedgerEntry.Created.ToString(CreatedFormat));
 
@@ -546,6 +566,9 @@ namespace TalonOneSdk.Model
             }
             if (loyaltyLedgerEntry.ValidityDurationOption.IsSet)
                 writer.WriteString("validityDuration", loyaltyLedgerEntry.ValidityDuration);
+
+            if (loyaltyLedgerEntry.AwaitsActivationOption.IsSet)
+                writer.WriteBoolean("awaitsActivation", loyaltyLedgerEntry.AwaitsActivationOption.Value.Value);
         }
     }
 }

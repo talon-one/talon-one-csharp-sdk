@@ -260,40 +260,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughChangedItem.", nameof(id));
+                throw new JsonException("Property is required for class StrikethroughChangedItem: id.");
 
             if (!catalogId.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughChangedItem.", nameof(catalogId));
+                throw new JsonException("Property is required for class StrikethroughChangedItem: catalogId.");
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughChangedItem.", nameof(sku));
+                throw new JsonException("Property is required for class StrikethroughChangedItem: sku.");
 
             if (!varVersion.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughChangedItem.", nameof(varVersion));
+                throw new JsonException("Property is required for class StrikethroughChangedItem: version.");
 
             if (!price.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughChangedItem.", nameof(price));
+                throw new JsonException("Property is required for class StrikethroughChangedItem: price.");
 
             if (!evaluatedAt.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughChangedItem.", nameof(evaluatedAt));
+                throw new JsonException("Property is required for class StrikethroughChangedItem: evaluatedAt.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class StrikethroughChangedItem.");
+                throw new JsonException("Property is not nullable for class StrikethroughChangedItem: id.");
 
             if (catalogId.IsSet && catalogId.Value == null)
-                throw new ArgumentNullException(nameof(catalogId), "Property is not nullable for class StrikethroughChangedItem.");
+                throw new JsonException("Property is not nullable for class StrikethroughChangedItem: catalogId.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class StrikethroughChangedItem.");
+                throw new JsonException("Property is not nullable for class StrikethroughChangedItem: sku.");
 
             if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class StrikethroughChangedItem.");
+                throw new JsonException("Property is not nullable for class StrikethroughChangedItem: version.");
 
             if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class StrikethroughChangedItem.");
+                throw new JsonException("Property is not nullable for class StrikethroughChangedItem: price.");
 
             if (evaluatedAt.IsSet && evaluatedAt.Value == null)
-                throw new ArgumentNullException(nameof(evaluatedAt), "Property is not nullable for class StrikethroughChangedItem.");
+                throw new JsonException("Property is not nullable for class StrikethroughChangedItem: evaluatedAt.");
 
             return new StrikethroughChangedItem(id.Value.Value, catalogId.Value.Value, sku.Value, varVersion.Value.Value, price.Value.Value, evaluatedAt.Value.Value, prices, effects);
         }
@@ -304,7 +304,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughChangedItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StrikethroughChangedItem strikethroughChangedItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -319,11 +318,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughChangedItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StrikethroughChangedItem strikethroughChangedItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (strikethroughChangedItem.Sku == null)
-                throw new ArgumentNullException(nameof(strikethroughChangedItem.Sku), "Property is required for class StrikethroughChangedItem.");
+                throw new JsonException("Cannot write null property StrikethroughChangedItem.Sku to non-nullable JSON property 'sku'.");
 
             writer.WriteNumber("id", strikethroughChangedItem.Id);
 

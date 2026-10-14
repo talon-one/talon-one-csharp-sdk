@@ -150,16 +150,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!total.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatisticLoyaltyPoints.", nameof(total));
+                throw new JsonException("Property is required for class AccountDashboardStatisticLoyaltyPoints: total.");
 
             if (!datetime.IsSet)
-                throw new ArgumentException("Property is required for class AccountDashboardStatisticLoyaltyPoints.", nameof(datetime));
+                throw new JsonException("Property is required for class AccountDashboardStatisticLoyaltyPoints: datetime.");
 
             if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class AccountDashboardStatisticLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatisticLoyaltyPoints: total.");
 
             if (datetime.IsSet && datetime.Value == null)
-                throw new ArgumentNullException(nameof(datetime), "Property is not nullable for class AccountDashboardStatisticLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class AccountDashboardStatisticLoyaltyPoints: datetime.");
 
             return new AccountDashboardStatisticLoyaltyPoints(total.Value.Value, datetime.Value.Value);
         }
@@ -170,7 +170,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountDashboardStatisticLoyaltyPoints"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountDashboardStatisticLoyaltyPoints accountDashboardStatisticLoyaltyPoints, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -185,7 +184,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountDashboardStatisticLoyaltyPoints"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountDashboardStatisticLoyaltyPoints accountDashboardStatisticLoyaltyPoints, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("total", accountDashboardStatisticLoyaltyPoints.Total);

@@ -496,46 +496,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RiskNotification.", nameof(id));
+                throw new JsonException("Property is required for class RiskNotification: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class RiskNotification.", nameof(created));
+                throw new JsonException("Property is required for class RiskNotification: created.");
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class RiskNotification.", nameof(entity));
+                throw new JsonException("Property is required for class RiskNotification: entity.");
 
             if (!activity.IsSet)
-                throw new ArgumentException("Property is required for class RiskNotification.", nameof(activity));
+                throw new JsonException("Property is required for class RiskNotification: activity.");
 
             if (!timeFrame.IsSet)
-                throw new ArgumentException("Property is required for class RiskNotification.", nameof(timeFrame));
+                throw new JsonException("Property is required for class RiskNotification: timeFrame.");
 
             if (!active.IsSet)
-                throw new ArgumentException("Property is required for class RiskNotification.", nameof(active));
+                throw new JsonException("Property is required for class RiskNotification: active.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class RiskNotification.", nameof(modified));
+                throw new JsonException("Property is required for class RiskNotification: modified.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RiskNotification.");
+                throw new JsonException("Property is not nullable for class RiskNotification: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class RiskNotification.");
+                throw new JsonException("Property is not nullable for class RiskNotification: created.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class RiskNotification.");
+                throw new JsonException("Property is not nullable for class RiskNotification: entity.");
 
             if (activity.IsSet && activity.Value == null)
-                throw new ArgumentNullException(nameof(activity), "Property is not nullable for class RiskNotification.");
+                throw new JsonException("Property is not nullable for class RiskNotification: activity.");
 
             if (timeFrame.IsSet && timeFrame.Value == null)
-                throw new ArgumentNullException(nameof(timeFrame), "Property is not nullable for class RiskNotification.");
+                throw new JsonException("Property is not nullable for class RiskNotification: timeFrame.");
 
             if (active.IsSet && active.Value == null)
-                throw new ArgumentNullException(nameof(active), "Property is not nullable for class RiskNotification.");
+                throw new JsonException("Property is not nullable for class RiskNotification: active.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class RiskNotification.");
+                throw new JsonException("Property is not nullable for class RiskNotification: modified.");
 
             return new RiskNotification(id.Value.Value, created.Value.Value, entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, active.Value.Value, modified.Value.Value);
         }
@@ -546,7 +546,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="riskNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RiskNotification riskNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -561,7 +560,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="riskNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RiskNotification riskNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", riskNotification.Id);

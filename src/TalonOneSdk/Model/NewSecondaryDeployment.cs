@@ -148,10 +148,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewSecondaryDeployment.", nameof(name));
+                throw new JsonException("Property is required for class NewSecondaryDeployment: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewSecondaryDeployment.");
+                throw new JsonException("Property is not nullable for class NewSecondaryDeployment: name.");
 
             return new NewSecondaryDeployment(name.Value);
         }
@@ -162,7 +162,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newSecondaryDeployment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewSecondaryDeployment newSecondaryDeployment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -177,11 +176,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newSecondaryDeployment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewSecondaryDeployment newSecondaryDeployment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newSecondaryDeployment.Name == null)
-                throw new ArgumentNullException(nameof(newSecondaryDeployment.Name), "Property is required for class NewSecondaryDeployment.");
+                throw new JsonException("Cannot write null property NewSecondaryDeployment.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", newSecondaryDeployment.Name);
         }

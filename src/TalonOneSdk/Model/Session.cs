@@ -167,22 +167,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class Session.", nameof(userId));
+                throw new JsonException("Property is required for class Session: userId.");
 
             if (!token.IsSet)
-                throw new ArgumentException("Property is required for class Session.", nameof(token));
+                throw new JsonException("Property is required for class Session: token.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Session.", nameof(created));
+                throw new JsonException("Property is required for class Session: created.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Session.");
+                throw new JsonException("Property is not nullable for class Session: userId.");
 
             if (token.IsSet && token.Value == null)
-                throw new ArgumentNullException(nameof(token), "Property is not nullable for class Session.");
+                throw new JsonException("Property is not nullable for class Session: token.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Session.");
+                throw new JsonException("Property is not nullable for class Session: created.");
 
             return new Session(userId.Value.Value, token.Value, created.Value.Value);
         }
@@ -193,7 +193,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="session"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Session session, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -208,11 +207,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="session"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Session session, JsonSerializerOptions jsonSerializerOptions)
         {
             if (session.Token == null)
-                throw new ArgumentNullException(nameof(session.Token), "Property is required for class Session.");
+                throw new JsonException("Cannot write null property Session.Token to non-nullable JSON property 'token'.");
 
             writer.WriteNumber("userId", session.UserId);
 

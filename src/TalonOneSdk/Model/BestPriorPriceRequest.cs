@@ -290,28 +290,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!skus.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(skus));
+                throw new JsonException("Property is required for class BestPriorPriceRequest: skus.");
 
             if (!timeframeEndDate.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(timeframeEndDate));
+                throw new JsonException("Property is required for class BestPriorPriceRequest: timeframeEndDate.");
 
             if (!timeframe.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(timeframe));
+                throw new JsonException("Property is required for class BestPriorPriceRequest: timeframe.");
 
             if (!timeframeEndDateType.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPriceRequest.", nameof(timeframeEndDateType));
+                throw new JsonException("Property is required for class BestPriorPriceRequest: timeframeEndDateType.");
 
             if (skus.IsSet && skus.Value == null)
-                throw new ArgumentNullException(nameof(skus), "Property is not nullable for class BestPriorPriceRequest.");
+                throw new JsonException("Property is not nullable for class BestPriorPriceRequest: skus.");
 
             if (timeframeEndDate.IsSet && timeframeEndDate.Value == null)
-                throw new ArgumentNullException(nameof(timeframeEndDate), "Property is not nullable for class BestPriorPriceRequest.");
+                throw new JsonException("Property is not nullable for class BestPriorPriceRequest: timeframeEndDate.");
 
             if (timeframe.IsSet && timeframe.Value == null)
-                throw new ArgumentNullException(nameof(timeframe), "Property is not nullable for class BestPriorPriceRequest.");
+                throw new JsonException("Property is not nullable for class BestPriorPriceRequest: timeframe.");
 
             if (timeframeEndDateType.IsSet && timeframeEndDateType.Value == null)
-                throw new ArgumentNullException(nameof(timeframeEndDateType), "Property is not nullable for class BestPriorPriceRequest.");
+                throw new JsonException("Property is not nullable for class BestPriorPriceRequest: timeframeEndDateType.");
 
             return new BestPriorPriceRequest(skus.Value, timeframeEndDate.Value.Value, timeframe.Value, timeframeEndDateType.Value.Value, target);
         }
@@ -322,7 +322,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bestPriorPriceRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BestPriorPriceRequest bestPriorPriceRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -337,14 +336,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bestPriorPriceRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BestPriorPriceRequest bestPriorPriceRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (bestPriorPriceRequest.Skus == null)
-                throw new ArgumentNullException(nameof(bestPriorPriceRequest.Skus), "Property is required for class BestPriorPriceRequest.");
+                throw new JsonException("Cannot write null property BestPriorPriceRequest.Skus to non-nullable JSON property 'skus'.");
 
             if (bestPriorPriceRequest.Timeframe == null)
-                throw new ArgumentNullException(nameof(bestPriorPriceRequest.Timeframe), "Property is required for class BestPriorPriceRequest.");
+                throw new JsonException("Cannot write null property BestPriorPriceRequest.Timeframe to non-nullable JSON property 'timeframe'.");
 
             writer.WritePropertyName("skus");
             JsonSerializer.Serialize(writer, bestPriorPriceRequest.Skus, jsonSerializerOptions);

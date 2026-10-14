@@ -414,46 +414,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class InventoryReferral.", nameof(id));
+                throw new JsonException("Property is required for class InventoryReferral: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class InventoryReferral.", nameof(created));
+                throw new JsonException("Property is required for class InventoryReferral: created.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class InventoryReferral.", nameof(campaignId));
+                throw new JsonException("Property is required for class InventoryReferral: campaignId.");
 
             if (!advocateProfileIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class InventoryReferral.", nameof(advocateProfileIntegrationId));
+                throw new JsonException("Property is required for class InventoryReferral: advocateProfileIntegrationId.");
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class InventoryReferral.", nameof(code));
+                throw new JsonException("Property is required for class InventoryReferral: code.");
 
             if (!usageCounter.IsSet)
-                throw new ArgumentException("Property is required for class InventoryReferral.", nameof(usageCounter));
+                throw new JsonException("Property is required for class InventoryReferral: usageCounter.");
 
             if (!referredCustomers.IsSet)
-                throw new ArgumentException("Property is required for class InventoryReferral.", nameof(referredCustomers));
+                throw new JsonException("Property is required for class InventoryReferral: referredCustomers.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class InventoryReferral.");
+                throw new JsonException("Property is not nullable for class InventoryReferral: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class InventoryReferral.");
+                throw new JsonException("Property is not nullable for class InventoryReferral: created.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class InventoryReferral.");
+                throw new JsonException("Property is not nullable for class InventoryReferral: campaignId.");
 
             if (advocateProfileIntegrationId.IsSet && advocateProfileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(advocateProfileIntegrationId), "Property is not nullable for class InventoryReferral.");
+                throw new JsonException("Property is not nullable for class InventoryReferral: advocateProfileIntegrationId.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class InventoryReferral.");
+                throw new JsonException("Property is not nullable for class InventoryReferral: code.");
 
             if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class InventoryReferral.");
+                throw new JsonException("Property is not nullable for class InventoryReferral: usageCounter.");
 
             if (referredCustomers.IsSet && referredCustomers.Value == null)
-                throw new ArgumentNullException(nameof(referredCustomers), "Property is not nullable for class InventoryReferral.");
+                throw new JsonException("Property is not nullable for class InventoryReferral: referredCustomers.");
 
             return new InventoryReferral(id.Value.Value, created.Value.Value, campaignId.Value.Value, advocateProfileIntegrationId.Value, code.Value, usageCounter.Value.Value, referredCustomers.Value, startDate, expiryDate, usageLimit, friendProfileIntegrationId, attributes, importId, batchId);
         }
@@ -464,7 +464,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="inventoryReferral"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, InventoryReferral inventoryReferral, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -479,17 +478,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="inventoryReferral"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InventoryReferral inventoryReferral, JsonSerializerOptions jsonSerializerOptions)
         {
             if (inventoryReferral.AdvocateProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(inventoryReferral.AdvocateProfileIntegrationId), "Property is required for class InventoryReferral.");
+                throw new JsonException("Cannot write null property InventoryReferral.AdvocateProfileIntegrationId to non-nullable JSON property 'advocateProfileIntegrationId'.");
 
             if (inventoryReferral.Code == null)
-                throw new ArgumentNullException(nameof(inventoryReferral.Code), "Property is required for class InventoryReferral.");
+                throw new JsonException("Cannot write null property InventoryReferral.Code to non-nullable JSON property 'code'.");
 
             if (inventoryReferral.ReferredCustomers == null)
-                throw new ArgumentNullException(nameof(inventoryReferral.ReferredCustomers), "Property is required for class InventoryReferral.");
+                throw new JsonException("Cannot write null property InventoryReferral.ReferredCustomers to non-nullable JSON property 'referredCustomers'.");
 
             writer.WriteNumber("id", inventoryReferral.Id);
 

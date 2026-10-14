@@ -372,22 +372,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class CouponRejectionReason.", nameof(campaignId));
+                throw new JsonException("Property is required for class CouponRejectionReason: campaignId.");
 
             if (!couponId.IsSet)
-                throw new ArgumentException("Property is required for class CouponRejectionReason.", nameof(couponId));
+                throw new JsonException("Property is required for class CouponRejectionReason: couponId.");
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class CouponRejectionReason.", nameof(reason));
+                throw new JsonException("Property is required for class CouponRejectionReason: reason.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CouponRejectionReason.");
+                throw new JsonException("Property is not nullable for class CouponRejectionReason: campaignId.");
 
             if (couponId.IsSet && couponId.Value == null)
-                throw new ArgumentNullException(nameof(couponId), "Property is not nullable for class CouponRejectionReason.");
+                throw new JsonException("Property is not nullable for class CouponRejectionReason: couponId.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class CouponRejectionReason.");
+                throw new JsonException("Property is not nullable for class CouponRejectionReason: reason.");
 
             return new CouponRejectionReason(campaignId.Value.Value, couponId.Value.Value, reason.Value.Value);
         }
@@ -398,7 +398,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponRejectionReason"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponRejectionReason couponRejectionReason, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -413,7 +412,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponRejectionReason"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponRejectionReason couponRejectionReason, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("campaignId", couponRejectionReason.CampaignId);

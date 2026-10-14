@@ -220,22 +220,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedMessage.", nameof(notificationType));
+                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedMessage: NotificationType.");
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedMessage.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedMessage: TotalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedMessage.", nameof(data));
+                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedMessage: Data.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CampaignEvaluationTreeChangedMessage.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedMessage: NotificationType.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CampaignEvaluationTreeChangedMessage.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedMessage: TotalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class CampaignEvaluationTreeChangedMessage.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedMessage: Data.");
 
             return new CampaignEvaluationTreeChangedMessage(notificationType.Value.Value, totalResultSize.Value.Value, data.Value);
         }
@@ -246,7 +246,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEvaluationTreeChangedMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEvaluationTreeChangedMessage campaignEvaluationTreeChangedMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -261,11 +260,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEvaluationTreeChangedMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEvaluationTreeChangedMessage campaignEvaluationTreeChangedMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignEvaluationTreeChangedMessage.Data == null)
-                throw new ArgumentNullException(nameof(campaignEvaluationTreeChangedMessage.Data), "Property is required for class CampaignEvaluationTreeChangedMessage.");
+                throw new JsonException("Cannot write null property CampaignEvaluationTreeChangedMessage.Data to non-nullable JSON property 'Data'.");
 
             var notificationTypeRawValue = CampaignEvaluationTreeChangedMessage.NotificationTypeEnumToJsonValue(campaignEvaluationTreeChangedMessage.NotificationType);
             writer.WriteString("NotificationType", notificationTypeRawValue);

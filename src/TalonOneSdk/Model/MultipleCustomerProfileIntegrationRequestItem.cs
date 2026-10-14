@@ -160,10 +160,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class MultipleCustomerProfileIntegrationRequestItem.", nameof(integrationId));
+                throw new JsonException("Property is required for class MultipleCustomerProfileIntegrationRequestItem: integrationId.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class MultipleCustomerProfileIntegrationRequestItem.");
+                throw new JsonException("Property is not nullable for class MultipleCustomerProfileIntegrationRequestItem: integrationId.");
 
             return new MultipleCustomerProfileIntegrationRequestItem(integrationId.Value, attributes);
         }
@@ -174,7 +174,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleCustomerProfileIntegrationRequestItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MultipleCustomerProfileIntegrationRequestItem multipleCustomerProfileIntegrationRequestItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -189,11 +188,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleCustomerProfileIntegrationRequestItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MultipleCustomerProfileIntegrationRequestItem multipleCustomerProfileIntegrationRequestItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (multipleCustomerProfileIntegrationRequestItem.IntegrationId == null)
-                throw new ArgumentNullException(nameof(multipleCustomerProfileIntegrationRequestItem.IntegrationId), "Property is required for class MultipleCustomerProfileIntegrationRequestItem.");
+                throw new JsonException("Cannot write null property MultipleCustomerProfileIntegrationRequestItem.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("integrationId", multipleCustomerProfileIntegrationRequestItem.IntegrationId);
 

@@ -204,10 +204,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewInternalAudience.", nameof(name));
+                throw new JsonException("Property is required for class NewInternalAudience: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewInternalAudience.");
+                throw new JsonException("Property is not nullable for class NewInternalAudience: name.");
 
             return new NewInternalAudience(name.Value, sandbox, description, subscribedApplicationsIds);
         }
@@ -218,7 +218,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newInternalAudience"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewInternalAudience newInternalAudience, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -233,11 +232,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newInternalAudience"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewInternalAudience newInternalAudience, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newInternalAudience.Name == null)
-                throw new ArgumentNullException(nameof(newInternalAudience.Name), "Property is required for class NewInternalAudience.");
+                throw new JsonException("Cannot write null property NewInternalAudience.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", newInternalAudience.Name);
 

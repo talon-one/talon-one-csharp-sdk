@@ -325,34 +325,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!currentBalance.IsSet)
-                throw new ArgumentException("Property is required for class LedgerInfo.", nameof(currentBalance));
+                throw new JsonException("Property is required for class LedgerInfo: currentBalance.");
 
             if (!pendingBalance.IsSet)
-                throw new ArgumentException("Property is required for class LedgerInfo.", nameof(pendingBalance));
+                throw new JsonException("Property is required for class LedgerInfo: pendingBalance.");
 
             if (!expiredBalance.IsSet)
-                throw new ArgumentException("Property is required for class LedgerInfo.", nameof(expiredBalance));
+                throw new JsonException("Property is required for class LedgerInfo: expiredBalance.");
 
             if (!spentBalance.IsSet)
-                throw new ArgumentException("Property is required for class LedgerInfo.", nameof(spentBalance));
+                throw new JsonException("Property is required for class LedgerInfo: spentBalance.");
 
             if (!tentativeCurrentBalance.IsSet)
-                throw new ArgumentException("Property is required for class LedgerInfo.", nameof(tentativeCurrentBalance));
+                throw new JsonException("Property is required for class LedgerInfo: tentativeCurrentBalance.");
 
             if (currentBalance.IsSet && currentBalance.Value == null)
-                throw new ArgumentNullException(nameof(currentBalance), "Property is not nullable for class LedgerInfo.");
+                throw new JsonException("Property is not nullable for class LedgerInfo: currentBalance.");
 
             if (pendingBalance.IsSet && pendingBalance.Value == null)
-                throw new ArgumentNullException(nameof(pendingBalance), "Property is not nullable for class LedgerInfo.");
+                throw new JsonException("Property is not nullable for class LedgerInfo: pendingBalance.");
 
             if (expiredBalance.IsSet && expiredBalance.Value == null)
-                throw new ArgumentNullException(nameof(expiredBalance), "Property is not nullable for class LedgerInfo.");
+                throw new JsonException("Property is not nullable for class LedgerInfo: expiredBalance.");
 
             if (spentBalance.IsSet && spentBalance.Value == null)
-                throw new ArgumentNullException(nameof(spentBalance), "Property is not nullable for class LedgerInfo.");
+                throw new JsonException("Property is not nullable for class LedgerInfo: spentBalance.");
 
             if (tentativeCurrentBalance.IsSet && tentativeCurrentBalance.Value == null)
-                throw new ArgumentNullException(nameof(tentativeCurrentBalance), "Property is not nullable for class LedgerInfo.");
+                throw new JsonException("Property is not nullable for class LedgerInfo: tentativeCurrentBalance.");
 
             return new LedgerInfo(currentBalance.Value.Value, pendingBalance.Value.Value, expiredBalance.Value.Value, spentBalance.Value.Value, tentativeCurrentBalance.Value.Value, negativeBalance, tentativePendingBalance, tentativeNegativeBalance, currentTier, pointsToNextTier, nextTierName);
         }
@@ -363,7 +363,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ledgerInfo"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LedgerInfo ledgerInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -378,7 +377,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ledgerInfo"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LedgerInfo ledgerInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("currentBalance", ledgerInfo.CurrentBalance);

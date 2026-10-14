@@ -424,46 +424,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationGroup.", nameof(applicationId));
+                throw new JsonException("Property is required for class CampaignEvaluationGroup: applicationId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationGroup.", nameof(name));
+                throw new JsonException("Property is required for class CampaignEvaluationGroup: name.");
 
             if (!parentId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationGroup.", nameof(parentId));
+                throw new JsonException("Property is required for class CampaignEvaluationGroup: parentId.");
 
             if (!evaluationMode.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationGroup.", nameof(evaluationMode));
+                throw new JsonException("Property is required for class CampaignEvaluationGroup: evaluationMode.");
 
             if (!evaluationScope.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationGroup.", nameof(evaluationScope));
+                throw new JsonException("Property is required for class CampaignEvaluationGroup: evaluationScope.");
 
             if (!locked.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationGroup.", nameof(locked));
+                throw new JsonException("Property is required for class CampaignEvaluationGroup: locked.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationGroup.", nameof(id));
+                throw new JsonException("Property is required for class CampaignEvaluationGroup: id.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationGroup: applicationId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationGroup: name.");
 
             if (parentId.IsSet && parentId.Value == null)
-                throw new ArgumentNullException(nameof(parentId), "Property is not nullable for class CampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationGroup: parentId.");
 
             if (evaluationMode.IsSet && evaluationMode.Value == null)
-                throw new ArgumentNullException(nameof(evaluationMode), "Property is not nullable for class CampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationGroup: evaluationMode.");
 
             if (evaluationScope.IsSet && evaluationScope.Value == null)
-                throw new ArgumentNullException(nameof(evaluationScope), "Property is not nullable for class CampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationGroup: evaluationScope.");
 
             if (locked.IsSet && locked.Value == null)
-                throw new ArgumentNullException(nameof(locked), "Property is not nullable for class CampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationGroup: locked.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationGroup: id.");
 
             return new CampaignEvaluationGroup(applicationId.Value.Value, name.Value, parentId.Value.Value, evaluationMode.Value.Value, evaluationScope.Value.Value, locked.Value.Value, id.Value.Value, description);
         }
@@ -474,7 +474,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEvaluationGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEvaluationGroup campaignEvaluationGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -489,11 +488,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEvaluationGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEvaluationGroup campaignEvaluationGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignEvaluationGroup.Name == null)
-                throw new ArgumentNullException(nameof(campaignEvaluationGroup.Name), "Property is required for class CampaignEvaluationGroup.");
+                throw new JsonException("Cannot write null property CampaignEvaluationGroup.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("applicationId", campaignEvaluationGroup.ApplicationId);
 

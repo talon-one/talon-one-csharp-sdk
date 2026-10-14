@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationEntity.", nameof(applicationId));
+                throw new JsonException("Property is required for class ApplicationEntity: applicationId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationEntity.");
+                throw new JsonException("Property is not nullable for class ApplicationEntity: applicationId.");
 
             return new ApplicationEntity(applicationId.Value.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationEntity applicationEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,7 +160,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationEntity applicationEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("applicationId", applicationEntity.ApplicationId);

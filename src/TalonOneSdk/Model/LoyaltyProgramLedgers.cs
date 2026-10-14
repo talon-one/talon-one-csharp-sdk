@@ -224,28 +224,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramLedgers.", nameof(id));
+                throw new JsonException("Property is required for class LoyaltyProgramLedgers: id.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramLedgers.", nameof(title));
+                throw new JsonException("Property is required for class LoyaltyProgramLedgers: title.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramLedgers.", nameof(name));
+                throw new JsonException("Property is required for class LoyaltyProgramLedgers: name.");
 
             if (!ledger.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyProgramLedgers.", nameof(ledger));
+                throw new JsonException("Property is required for class LoyaltyProgramLedgers: ledger.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyProgramLedgers.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramLedgers: id.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class LoyaltyProgramLedgers.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramLedgers: title.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyProgramLedgers.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramLedgers: name.");
 
             if (ledger.IsSet && ledger.Value == null)
-                throw new ArgumentNullException(nameof(ledger), "Property is not nullable for class LoyaltyProgramLedgers.");
+                throw new JsonException("Property is not nullable for class LoyaltyProgramLedgers: ledger.");
 
             return new LoyaltyProgramLedgers(id.Value.Value, title.Value, name.Value, ledger.Value, joinDate, subLedgers);
         }
@@ -256,7 +256,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyProgramLedgers"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyProgramLedgers loyaltyProgramLedgers, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -271,17 +270,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyProgramLedgers"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyProgramLedgers loyaltyProgramLedgers, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyProgramLedgers.Title == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramLedgers.Title), "Property is required for class LoyaltyProgramLedgers.");
+                throw new JsonException("Cannot write null property LoyaltyProgramLedgers.Title to non-nullable JSON property 'title'.");
 
             if (loyaltyProgramLedgers.Name == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramLedgers.Name), "Property is required for class LoyaltyProgramLedgers.");
+                throw new JsonException("Cannot write null property LoyaltyProgramLedgers.Name to non-nullable JSON property 'name'.");
 
             if (loyaltyProgramLedgers.Ledger == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramLedgers.Ledger), "Property is required for class LoyaltyProgramLedgers.");
+                throw new JsonException("Cannot write null property LoyaltyProgramLedgers.Ledger to non-nullable JSON property 'ledger'.");
 
             writer.WriteNumber("id", loyaltyProgramLedgers.Id);
 

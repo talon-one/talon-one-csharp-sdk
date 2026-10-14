@@ -332,22 +332,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class GroupBlock.", nameof(type));
+                throw new JsonException("Property is required for class GroupBlock: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class GroupBlock.", nameof(varOperator));
+                throw new JsonException("Property is required for class GroupBlock: operator.");
 
             if (!blocks.IsSet)
-                throw new ArgumentException("Property is required for class GroupBlock.", nameof(blocks));
+                throw new JsonException("Property is required for class GroupBlock: blocks.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class GroupBlock.");
+                throw new JsonException("Property is not nullable for class GroupBlock: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class GroupBlock.");
+                throw new JsonException("Property is not nullable for class GroupBlock: operator.");
 
             if (blocks.IsSet && blocks.Value == null)
-                throw new ArgumentNullException(nameof(blocks), "Property is not nullable for class GroupBlock.");
+                throw new JsonException("Property is not nullable for class GroupBlock: blocks.");
 
             return new GroupBlock(type.Value, varOperator.Value.Value, blocks.Value, id, tags, onFailure, onError);
         }
@@ -358,7 +358,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="groupBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GroupBlock groupBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -373,14 +372,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="groupBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GroupBlock groupBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (groupBlock.Type == null)
-                throw new ArgumentNullException(nameof(groupBlock.Type), "Property is required for class GroupBlock.");
+                throw new JsonException("Cannot write null property GroupBlock.Type to non-nullable JSON property 'type'.");
 
             if (groupBlock.Blocks == null)
-                throw new ArgumentNullException(nameof(groupBlock.Blocks), "Property is required for class GroupBlock.");
+                throw new JsonException("Cannot write null property GroupBlock.Blocks to non-nullable JSON property 'blocks'.");
 
             writer.WriteString("type", groupBlock.Type);
 

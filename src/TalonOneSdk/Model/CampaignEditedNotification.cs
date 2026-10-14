@@ -227,16 +227,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEditedNotification.", nameof(notificationType));
+                throw new JsonException("Property is required for class CampaignEditedNotification: NotificationType.");
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEditedNotification.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class CampaignEditedNotification: TotalResultSize.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CampaignEditedNotification.");
+                throw new JsonException("Property is not nullable for class CampaignEditedNotification: NotificationType.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CampaignEditedNotification.");
+                throw new JsonException("Property is not nullable for class CampaignEditedNotification: TotalResultSize.");
 
             return new CampaignEditedNotification(notificationType.Value.Value, totalResultSize.Value.Value, data);
         }
@@ -247,7 +247,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEditedNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEditedNotification campaignEditedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -262,7 +261,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEditedNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEditedNotification campaignEditedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             var notificationTypeRawValue = CampaignEditedNotification.NotificationTypeEnumToJsonValue(campaignEditedNotification.NotificationType);

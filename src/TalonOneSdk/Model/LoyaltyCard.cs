@@ -506,40 +506,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCard.", nameof(id));
+                throw new JsonException("Property is required for class LoyaltyCard: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCard.", nameof(created));
+                throw new JsonException("Property is required for class LoyaltyCard: created.");
 
             if (!programID.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCard.", nameof(programID));
+                throw new JsonException("Property is required for class LoyaltyCard: programID.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCard.", nameof(status));
+                throw new JsonException("Property is required for class LoyaltyCard: status.");
 
             if (!identifier.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCard.", nameof(identifier));
+                throw new JsonException("Property is required for class LoyaltyCard: identifier.");
 
             if (!usersPerCardLimit.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCard.", nameof(usersPerCardLimit));
+                throw new JsonException("Property is required for class LoyaltyCard: usersPerCardLimit.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyCard.");
+                throw new JsonException("Property is not nullable for class LoyaltyCard: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyCard.");
+                throw new JsonException("Property is not nullable for class LoyaltyCard: created.");
 
             if (programID.IsSet && programID.Value == null)
-                throw new ArgumentNullException(nameof(programID), "Property is not nullable for class LoyaltyCard.");
+                throw new JsonException("Property is not nullable for class LoyaltyCard: programID.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class LoyaltyCard.");
+                throw new JsonException("Property is not nullable for class LoyaltyCard: status.");
 
             if (identifier.IsSet && identifier.Value == null)
-                throw new ArgumentNullException(nameof(identifier), "Property is not nullable for class LoyaltyCard.");
+                throw new JsonException("Property is not nullable for class LoyaltyCard: identifier.");
 
             if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
-                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class LoyaltyCard.");
+                throw new JsonException("Property is not nullable for class LoyaltyCard: usersPerCardLimit.");
 
             return new LoyaltyCard(id.Value.Value, created.Value.Value, programID.Value.Value, status.Value, identifier.Value, usersPerCardLimit.Value.Value, programName, programTitle, blockReason, profiles, ledger, subledgers, modified, oldCardIdentifier, newCardIdentifier, batchId);
         }
@@ -550,7 +550,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyCard"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyCard loyaltyCard, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -565,14 +564,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyCard"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyCard loyaltyCard, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyCard.Status == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.Status), "Property is required for class LoyaltyCard.");
+                throw new JsonException("Cannot write null property LoyaltyCard.Status to non-nullable JSON property 'status'.");
 
             if (loyaltyCard.Identifier == null)
-                throw new ArgumentNullException(nameof(loyaltyCard.Identifier), "Property is required for class LoyaltyCard.");
+                throw new JsonException("Cannot write null property LoyaltyCard.Identifier to non-nullable JSON property 'identifier'.");
 
             writer.WriteNumber("id", loyaltyCard.Id);
 

@@ -515,70 +515,70 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(id));
+                throw new JsonException("Property is required for class Account: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(created));
+                throw new JsonException("Property is required for class Account: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(modified));
+                throw new JsonException("Property is required for class Account: modified.");
 
             if (!companyName.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(companyName));
+                throw new JsonException("Property is required for class Account: companyName.");
 
             if (!domainName.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(domainName));
+                throw new JsonException("Property is required for class Account: domainName.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(state));
+                throw new JsonException("Property is required for class Account: state.");
 
             if (!billingEmail.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(billingEmail));
+                throw new JsonException("Property is required for class Account: billingEmail.");
 
             if (!applicationCount.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(applicationCount));
+                throw new JsonException("Property is required for class Account: applicationCount.");
 
             if (!userCount.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(userCount));
+                throw new JsonException("Property is required for class Account: userCount.");
 
             if (!campaignsActiveCount.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(campaignsActiveCount));
+                throw new JsonException("Property is required for class Account: campaignsActiveCount.");
 
             if (!campaignsInactiveCount.IsSet)
-                throw new ArgumentException("Property is required for class Account.", nameof(campaignsInactiveCount));
+                throw new JsonException("Property is required for class Account: campaignsInactiveCount.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: modified.");
 
             if (companyName.IsSet && companyName.Value == null)
-                throw new ArgumentNullException(nameof(companyName), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: companyName.");
 
             if (domainName.IsSet && domainName.Value == null)
-                throw new ArgumentNullException(nameof(domainName), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: domainName.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: state.");
 
             if (billingEmail.IsSet && billingEmail.Value == null)
-                throw new ArgumentNullException(nameof(billingEmail), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: billingEmail.");
 
             if (applicationCount.IsSet && applicationCount.Value == null)
-                throw new ArgumentNullException(nameof(applicationCount), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: applicationCount.");
 
             if (userCount.IsSet && userCount.Value == null)
-                throw new ArgumentNullException(nameof(userCount), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: userCount.");
 
             if (campaignsActiveCount.IsSet && campaignsActiveCount.Value == null)
-                throw new ArgumentNullException(nameof(campaignsActiveCount), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: campaignsActiveCount.");
 
             if (campaignsInactiveCount.IsSet && campaignsInactiveCount.Value == null)
-                throw new ArgumentNullException(nameof(campaignsInactiveCount), "Property is not nullable for class Account.");
+                throw new JsonException("Property is not nullable for class Account: campaignsInactiveCount.");
 
             return new Account(id.Value.Value, created.Value.Value, modified.Value.Value, companyName.Value, domainName.Value, state.Value.Value, billingEmail.Value, applicationCount.Value.Value, userCount.Value.Value, campaignsActiveCount.Value.Value, campaignsInactiveCount.Value.Value, planName, planExpires, applicationLimit, userLimit, campaignLimit, apiLimit, attributes);
         }
@@ -589,7 +589,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="account"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Account account, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -604,17 +603,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="account"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Account account, JsonSerializerOptions jsonSerializerOptions)
         {
             if (account.CompanyName == null)
-                throw new ArgumentNullException(nameof(account.CompanyName), "Property is required for class Account.");
+                throw new JsonException("Cannot write null property Account.CompanyName to non-nullable JSON property 'companyName'.");
 
             if (account.DomainName == null)
-                throw new ArgumentNullException(nameof(account.DomainName), "Property is required for class Account.");
+                throw new JsonException("Cannot write null property Account.DomainName to non-nullable JSON property 'domainName'.");
 
             if (account.BillingEmail == null)
-                throw new ArgumentNullException(nameof(account.BillingEmail), "Property is required for class Account.");
+                throw new JsonException("Cannot write null property Account.BillingEmail to non-nullable JSON property 'billingEmail'.");
 
             writer.WriteNumber("id", account.Id);
 

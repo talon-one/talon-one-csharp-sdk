@@ -218,10 +218,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class NewInvitation.", nameof(email));
+                throw new JsonException("Property is required for class NewInvitation: email.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class NewInvitation.");
+                throw new JsonException("Property is not nullable for class NewInvitation: email.");
 
             return new NewInvitation(email.Value, name, isAdmin, roles, acl);
         }
@@ -232,7 +232,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newInvitation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewInvitation newInvitation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -247,11 +246,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newInvitation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewInvitation newInvitation, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newInvitation.Email == null)
-                throw new ArgumentNullException(nameof(newInvitation.Email), "Property is required for class NewInvitation.");
+                throw new JsonException("Cannot write null property NewInvitation.Email to non-nullable JSON property 'email'.");
 
             writer.WriteString("email", newInvitation.Email);
 

@@ -261,16 +261,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class BulkOperationOnCampaigns.", nameof(operation));
+                throw new JsonException("Property is required for class BulkOperationOnCampaigns: operation.");
 
             if (!campaignIds.IsSet)
-                throw new ArgumentException("Property is required for class BulkOperationOnCampaigns.", nameof(campaignIds));
+                throw new JsonException("Property is required for class BulkOperationOnCampaigns: campaignIds.");
 
             if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class BulkOperationOnCampaigns.");
+                throw new JsonException("Property is not nullable for class BulkOperationOnCampaigns: operation.");
 
             if (campaignIds.IsSet && campaignIds.Value == null)
-                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class BulkOperationOnCampaigns.");
+                throw new JsonException("Property is not nullable for class BulkOperationOnCampaigns: campaignIds.");
 
             return new BulkOperationOnCampaigns(operation.Value.Value, campaignIds.Value, activateAt);
         }
@@ -281,7 +281,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bulkOperationOnCampaigns"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BulkOperationOnCampaigns bulkOperationOnCampaigns, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -296,11 +295,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bulkOperationOnCampaigns"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BulkOperationOnCampaigns bulkOperationOnCampaigns, JsonSerializerOptions jsonSerializerOptions)
         {
             if (bulkOperationOnCampaigns.CampaignIds == null)
-                throw new ArgumentNullException(nameof(bulkOperationOnCampaigns.CampaignIds), "Property is required for class BulkOperationOnCampaigns.");
+                throw new JsonException("Cannot write null property BulkOperationOnCampaigns.CampaignIds to non-nullable JSON property 'campaignIds'.");
 
             var operationRawValue = BulkOperationOnCampaigns.OperationEnumToJsonValue(bulkOperationOnCampaigns.Operation);
             writer.WriteString("operation", operationRawValue);

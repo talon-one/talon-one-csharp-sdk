@@ -977,70 +977,70 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(id));
+                throw new JsonException("Property is required for class CampaignTemplate: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(created));
+                throw new JsonException("Property is required for class CampaignTemplate: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(accountId));
+                throw new JsonException("Property is required for class CampaignTemplate: accountId.");
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(userId));
+                throw new JsonException("Property is required for class CampaignTemplate: userId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(name));
+                throw new JsonException("Property is required for class CampaignTemplate: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(description));
+                throw new JsonException("Property is required for class CampaignTemplate: description.");
 
             if (!instructions.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(instructions));
+                throw new JsonException("Property is required for class CampaignTemplate: instructions.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(state));
+                throw new JsonException("Property is required for class CampaignTemplate: state.");
 
             if (!reevaluateOnReturn.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(reevaluateOnReturn));
+                throw new JsonException("Property is required for class CampaignTemplate: reevaluateOnReturn.");
 
             if (!applicationsIds.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(applicationsIds));
+                throw new JsonException("Property is required for class CampaignTemplate: applicationsIds.");
 
             if (!validApplicationIds.IsSet)
-                throw new ArgumentException("Property is required for class CampaignTemplate.", nameof(validApplicationIds));
+                throw new JsonException("Property is required for class CampaignTemplate: validApplicationIds.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: accountId.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: userId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: description.");
 
             if (instructions.IsSet && instructions.Value == null)
-                throw new ArgumentNullException(nameof(instructions), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: instructions.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: state.");
 
             if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
-                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: reevaluateOnReturn.");
 
             if (applicationsIds.IsSet && applicationsIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationsIds), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: applicationsIds.");
 
             if (validApplicationIds.IsSet && validApplicationIds.Value == null)
-                throw new ArgumentNullException(nameof(validApplicationIds), "Property is not nullable for class CampaignTemplate.");
+                throw new JsonException("Property is not nullable for class CampaignTemplate: validApplicationIds.");
 
             return new CampaignTemplate(id.Value.Value, created.Value.Value, accountId.Value.Value, userId.Value.Value, name.Value, description.Value, instructions.Value, state.Value.Value, reevaluateOnReturn.Value.Value, applicationsIds.Value, validApplicationIds.Value, campaignAttributes, couponAttributes, activeRulesetId, tags, features, couponSettings, couponReservationSettings, referralSettings, limits, templateParams, campaignCollections, defaultCampaignGroupId, campaignType, campaignsCount, updated, updatedBy, isUserFavorite);
         }
@@ -1051,7 +1051,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignTemplate campaignTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -1066,23 +1065,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignTemplate campaignTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignTemplate.Name == null)
-                throw new ArgumentNullException(nameof(campaignTemplate.Name), "Property is required for class CampaignTemplate.");
+                throw new JsonException("Cannot write null property CampaignTemplate.Name to non-nullable JSON property 'name'.");
 
             if (campaignTemplate.Description == null)
-                throw new ArgumentNullException(nameof(campaignTemplate.Description), "Property is required for class CampaignTemplate.");
+                throw new JsonException("Cannot write null property CampaignTemplate.Description to non-nullable JSON property 'description'.");
 
             if (campaignTemplate.Instructions == null)
-                throw new ArgumentNullException(nameof(campaignTemplate.Instructions), "Property is required for class CampaignTemplate.");
+                throw new JsonException("Cannot write null property CampaignTemplate.Instructions to non-nullable JSON property 'instructions'.");
 
             if (campaignTemplate.ApplicationsIds == null)
-                throw new ArgumentNullException(nameof(campaignTemplate.ApplicationsIds), "Property is required for class CampaignTemplate.");
+                throw new JsonException("Cannot write null property CampaignTemplate.ApplicationsIds to non-nullable JSON property 'applicationsIds'.");
 
             if (campaignTemplate.ValidApplicationIds == null)
-                throw new ArgumentNullException(nameof(campaignTemplate.ValidApplicationIds), "Property is required for class CampaignTemplate.");
+                throw new JsonException("Cannot write null property CampaignTemplate.ValidApplicationIds to non-nullable JSON property 'validApplicationIds'.");
 
             writer.WriteNumber("id", campaignTemplate.Id);
 

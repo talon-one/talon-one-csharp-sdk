@@ -150,16 +150,16 @@ Content-Type: application/json
             }
 
             if (!statusCode.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLogResponse.", nameof(statusCode));
+                throw new JsonException("Property is required for class OutboundLogResponse: statusCode.");
 
             if (!rawBody.IsSet)
-                throw new ArgumentException("Property is required for class OutboundLogResponse.", nameof(rawBody));
+                throw new JsonException("Property is required for class OutboundLogResponse: rawBody.");
 
             if (statusCode.IsSet && statusCode.Value == null)
-                throw new ArgumentNullException(nameof(statusCode), "Property is not nullable for class OutboundLogResponse.");
+                throw new JsonException("Property is not nullable for class OutboundLogResponse: statusCode.");
 
             if (rawBody.IsSet && rawBody.Value == null)
-                throw new ArgumentNullException(nameof(rawBody), "Property is not nullable for class OutboundLogResponse.");
+                throw new JsonException("Property is not nullable for class OutboundLogResponse: rawBody.");
 
             return new OutboundLogResponse(statusCode.Value.Value, rawBody.Value);
         }
@@ -170,7 +170,6 @@ Content-Type: application/json
         /// <param name="writer"></param>
         /// <param name="outboundLogResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutboundLogResponse outboundLogResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -185,11 +184,10 @@ Content-Type: application/json
         /// <param name="writer"></param>
         /// <param name="outboundLogResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutboundLogResponse outboundLogResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outboundLogResponse.RawBody == null)
-                throw new ArgumentNullException(nameof(outboundLogResponse.RawBody), "Property is required for class OutboundLogResponse.");
+                throw new JsonException("Cannot write null property OutboundLogResponse.RawBody to non-nullable JSON property 'rawBody'.");
 
             writer.WriteNumber("statusCode", outboundLogResponse.StatusCode);
 

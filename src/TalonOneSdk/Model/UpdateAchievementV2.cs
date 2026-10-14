@@ -518,34 +518,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAchievementV2.", nameof(name));
+                throw new JsonException("Property is required for class UpdateAchievementV2: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAchievementV2.", nameof(title));
+                throw new JsonException("Property is required for class UpdateAchievementV2: title.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAchievementV2.", nameof(description));
+                throw new JsonException("Property is required for class UpdateAchievementV2: description.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAchievementV2.", nameof(target));
+                throw new JsonException("Property is required for class UpdateAchievementV2: target.");
 
             if (!subscribedApplications.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAchievementV2.", nameof(subscribedApplications));
+                throw new JsonException("Property is required for class UpdateAchievementV2: subscribedApplications.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateAchievementV2.");
+                throw new JsonException("Property is not nullable for class UpdateAchievementV2: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class UpdateAchievementV2.");
+                throw new JsonException("Property is not nullable for class UpdateAchievementV2: title.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class UpdateAchievementV2.");
+                throw new JsonException("Property is not nullable for class UpdateAchievementV2: description.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class UpdateAchievementV2.");
+                throw new JsonException("Property is not nullable for class UpdateAchievementV2: target.");
 
             if (subscribedApplications.IsSet && subscribedApplications.Value == null)
-                throw new ArgumentNullException(nameof(subscribedApplications), "Property is not nullable for class UpdateAchievementV2.");
+                throw new JsonException("Property is not nullable for class UpdateAchievementV2: subscribedApplications.");
 
             return new UpdateAchievementV2(name.Value, title.Value, description.Value, target.Value.Value, subscribedApplications.Value, period, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion);
         }
@@ -556,7 +556,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAchievementV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateAchievementV2 updateAchievementV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -571,20 +570,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAchievementV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAchievementV2 updateAchievementV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateAchievementV2.Name == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.Name), "Property is required for class UpdateAchievementV2.");
+                throw new JsonException("Cannot write null property UpdateAchievementV2.Name to non-nullable JSON property 'name'.");
 
             if (updateAchievementV2.Title == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.Title), "Property is required for class UpdateAchievementV2.");
+                throw new JsonException("Cannot write null property UpdateAchievementV2.Title to non-nullable JSON property 'title'.");
 
             if (updateAchievementV2.Description == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.Description), "Property is required for class UpdateAchievementV2.");
+                throw new JsonException("Cannot write null property UpdateAchievementV2.Description to non-nullable JSON property 'description'.");
 
             if (updateAchievementV2.SubscribedApplications == null)
-                throw new ArgumentNullException(nameof(updateAchievementV2.SubscribedApplications), "Property is required for class UpdateAchievementV2.");
+                throw new JsonException("Cannot write null property UpdateAchievementV2.SubscribedApplications to non-nullable JSON property 'subscribedApplications'.");
 
             writer.WriteString("name", updateAchievementV2.Name);
 

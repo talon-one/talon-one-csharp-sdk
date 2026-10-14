@@ -211,16 +211,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class RuleMetadataEligibility.", nameof(title));
+                throw new JsonException("Property is required for class RuleMetadataEligibility: title.");
 
             if (!eligibility.IsSet)
-                throw new ArgumentException("Property is required for class RuleMetadataEligibility.", nameof(eligibility));
+                throw new JsonException("Property is required for class RuleMetadataEligibility: eligibility.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class RuleMetadataEligibility.");
+                throw new JsonException("Property is not nullable for class RuleMetadataEligibility: title.");
 
             if (eligibility.IsSet && eligibility.Value == null)
-                throw new ArgumentNullException(nameof(eligibility), "Property is not nullable for class RuleMetadataEligibility.");
+                throw new JsonException("Property is not nullable for class RuleMetadataEligibility: eligibility.");
 
             return new RuleMetadataEligibility(title.Value, eligibility.Value, displayName, displayDescription, relatedData);
         }
@@ -231,7 +231,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleMetadataEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RuleMetadataEligibility ruleMetadataEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -246,14 +245,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleMetadataEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RuleMetadataEligibility ruleMetadataEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ruleMetadataEligibility.Title == null)
-                throw new ArgumentNullException(nameof(ruleMetadataEligibility.Title), "Property is required for class RuleMetadataEligibility.");
+                throw new JsonException("Cannot write null property RuleMetadataEligibility.Title to non-nullable JSON property 'title'.");
 
             if (ruleMetadataEligibility.Eligibility == null)
-                throw new ArgumentNullException(nameof(ruleMetadataEligibility.Eligibility), "Property is required for class RuleMetadataEligibility.");
+                throw new JsonException("Cannot write null property RuleMetadataEligibility.Eligibility to non-nullable JSON property 'eligibility'.");
 
             writer.WriteString("title", ruleMetadataEligibility.Title);
 

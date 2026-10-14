@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationIDs.IsSet)
-                throw new ArgumentException("Property is required for class CouponReservations.", nameof(integrationIDs));
+                throw new JsonException("Property is required for class CouponReservations: integrationIDs.");
 
             if (integrationIDs.IsSet && integrationIDs.Value == null)
-                throw new ArgumentNullException(nameof(integrationIDs), "Property is not nullable for class CouponReservations.");
+                throw new JsonException("Property is not nullable for class CouponReservations: integrationIDs.");
 
             return new CouponReservations(integrationIDs.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponReservations"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponReservations couponReservations, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponReservations"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponReservations couponReservations, JsonSerializerOptions jsonSerializerOptions)
         {
             if (couponReservations.IntegrationIDs == null)
-                throw new ArgumentNullException(nameof(couponReservations.IntegrationIDs), "Property is required for class CouponReservations.");
+                throw new JsonException("Cannot write null property CouponReservations.IntegrationIDs to non-nullable JSON property 'integrationIDs'.");
 
             writer.WritePropertyName("integrationIDs");
             JsonSerializer.Serialize(writer, couponReservations.IntegrationIDs, jsonSerializerOptions);

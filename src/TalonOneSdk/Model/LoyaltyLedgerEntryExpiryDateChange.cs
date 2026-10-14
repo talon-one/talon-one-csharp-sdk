@@ -176,16 +176,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedgerEntryExpiryDateChange.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class LoyaltyLedgerEntryExpiryDateChange: transactionUUID.");
 
             if (!newExpiryDate.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedgerEntryExpiryDateChange.", nameof(newExpiryDate));
+                throw new JsonException("Property is required for class LoyaltyLedgerEntryExpiryDateChange: newExpiryDate.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class LoyaltyLedgerEntryExpiryDateChange.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedgerEntryExpiryDateChange: transactionUUID.");
 
             if (newExpiryDate.IsSet && newExpiryDate.Value == null)
-                throw new ArgumentNullException(nameof(newExpiryDate), "Property is not nullable for class LoyaltyLedgerEntryExpiryDateChange.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedgerEntryExpiryDateChange: newExpiryDate.");
 
             return new LoyaltyLedgerEntryExpiryDateChange(transactionUUID.Value.Value, newExpiryDate.Value.Value, previousExpiryDate);
         }
@@ -196,7 +196,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyLedgerEntryExpiryDateChange"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyLedgerEntryExpiryDateChange loyaltyLedgerEntryExpiryDateChange, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -211,7 +210,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyLedgerEntryExpiryDateChange"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyLedgerEntryExpiryDateChange loyaltyLedgerEntryExpiryDateChange, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteString("transactionUUID", loyaltyLedgerEntryExpiryDateChange.TransactionUUID);

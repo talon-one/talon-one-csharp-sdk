@@ -252,34 +252,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!accessToken.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthToken.", nameof(accessToken));
+                throw new JsonException("Property is required for class MCPOAuthToken: access_token.");
 
             if (!tokenType.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthToken.", nameof(tokenType));
+                throw new JsonException("Property is required for class MCPOAuthToken: token_type.");
 
             if (!expiresIn.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthToken.", nameof(expiresIn));
+                throw new JsonException("Property is required for class MCPOAuthToken: expires_in.");
 
             if (!refreshToken.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthToken.", nameof(refreshToken));
+                throw new JsonException("Property is required for class MCPOAuthToken: refresh_token.");
 
             if (!refreshTokenExpiresIn.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthToken.", nameof(refreshTokenExpiresIn));
+                throw new JsonException("Property is required for class MCPOAuthToken: refresh_token_expires_in.");
 
             if (accessToken.IsSet && accessToken.Value == null)
-                throw new ArgumentNullException(nameof(accessToken), "Property is not nullable for class MCPOAuthToken.");
+                throw new JsonException("Property is not nullable for class MCPOAuthToken: access_token.");
 
             if (tokenType.IsSet && tokenType.Value == null)
-                throw new ArgumentNullException(nameof(tokenType), "Property is not nullable for class MCPOAuthToken.");
+                throw new JsonException("Property is not nullable for class MCPOAuthToken: token_type.");
 
             if (expiresIn.IsSet && expiresIn.Value == null)
-                throw new ArgumentNullException(nameof(expiresIn), "Property is not nullable for class MCPOAuthToken.");
+                throw new JsonException("Property is not nullable for class MCPOAuthToken: expires_in.");
 
             if (refreshToken.IsSet && refreshToken.Value == null)
-                throw new ArgumentNullException(nameof(refreshToken), "Property is not nullable for class MCPOAuthToken.");
+                throw new JsonException("Property is not nullable for class MCPOAuthToken: refresh_token.");
 
             if (refreshTokenExpiresIn.IsSet && refreshTokenExpiresIn.Value == null)
-                throw new ArgumentNullException(nameof(refreshTokenExpiresIn), "Property is not nullable for class MCPOAuthToken.");
+                throw new JsonException("Property is not nullable for class MCPOAuthToken: refresh_token_expires_in.");
 
             return new MCPOAuthToken(accessToken.Value, tokenType.Value.Value, expiresIn.Value.Value, refreshToken.Value, refreshTokenExpiresIn.Value.Value);
         }
@@ -290,7 +290,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthToken"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPOAuthToken mCPOAuthToken, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -305,14 +304,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthToken"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPOAuthToken mCPOAuthToken, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mCPOAuthToken.AccessToken == null)
-                throw new ArgumentNullException(nameof(mCPOAuthToken.AccessToken), "Property is required for class MCPOAuthToken.");
+                throw new JsonException("Cannot write null property MCPOAuthToken.AccessToken to non-nullable JSON property 'access_token'.");
 
             if (mCPOAuthToken.RefreshToken == null)
-                throw new ArgumentNullException(nameof(mCPOAuthToken.RefreshToken), "Property is required for class MCPOAuthToken.");
+                throw new JsonException("Cannot write null property MCPOAuthToken.RefreshToken to non-nullable JSON property 'refresh_token'.");
 
             writer.WriteString("access_token", mCPOAuthToken.AccessToken);
 

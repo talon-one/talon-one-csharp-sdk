@@ -99,15 +99,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'OnFailure'
-        /// </summary>
-        [Fact]
-        public void OnFailureTest()
-        {
-            // TODO unit test for the property 'OnFailure'
-        }
-
-        /// <summary>
         /// Test the property 'OnError'
         /// </summary>
         [Fact]

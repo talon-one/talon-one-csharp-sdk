@@ -632,34 +632,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Experiment.", nameof(id));
+                throw new JsonException("Property is required for class Experiment: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Experiment.", nameof(created));
+                throw new JsonException("Property is required for class Experiment: created.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class Experiment.", nameof(applicationId));
+                throw new JsonException("Property is required for class Experiment: applicationId.");
 
             if (!goalType.IsSet)
-                throw new ArgumentException("Property is required for class Experiment.", nameof(goalType));
+                throw new JsonException("Property is required for class Experiment: goalType.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class Experiment.", nameof(state));
+                throw new JsonException("Property is required for class Experiment: state.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Experiment.");
+                throw new JsonException("Property is not nullable for class Experiment: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Experiment.");
+                throw new JsonException("Property is not nullable for class Experiment: created.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Experiment.");
+                throw new JsonException("Property is not nullable for class Experiment: applicationId.");
 
             if (goalType.IsSet && goalType.Value == null)
-                throw new ArgumentNullException(nameof(goalType), "Property is not nullable for class Experiment.");
+                throw new JsonException("Property is not nullable for class Experiment: goalType.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class Experiment.");
+                throw new JsonException("Property is not nullable for class Experiment: state.");
 
             return new Experiment(id.Value.Value, created.Value.Value, applicationId.Value.Value, goalType.Value.Value, assignmentType, isVariantAssignmentExternal, campaign, activated, state.Value.Value, variants, goalDescription, deletedat);
         }
@@ -670,7 +670,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Experiment experiment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -685,7 +684,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Experiment experiment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", experiment.Id);

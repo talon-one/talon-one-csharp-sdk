@@ -257,40 +257,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class History.", nameof(id));
+                throw new JsonException("Property is required for class History: id.");
 
             if (!observedAt.IsSet)
-                throw new ArgumentException("Property is required for class History.", nameof(observedAt));
+                throw new JsonException("Property is required for class History: observedAt.");
 
             if (!contextIds.IsSet)
-                throw new ArgumentException("Property is required for class History.", nameof(contextIds));
+                throw new JsonException("Property is required for class History: contextIds.");
 
             if (!price.IsSet)
-                throw new ArgumentException("Property is required for class History.", nameof(price));
+                throw new JsonException("Property is required for class History: price.");
 
             if (!metadata.IsSet)
-                throw new ArgumentException("Property is required for class History.", nameof(metadata));
+                throw new JsonException("Property is required for class History: metadata.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class History.", nameof(target));
+                throw new JsonException("Property is required for class History: target.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class History.");
+                throw new JsonException("Property is not nullable for class History: id.");
 
             if (observedAt.IsSet && observedAt.Value == null)
-                throw new ArgumentNullException(nameof(observedAt), "Property is not nullable for class History.");
+                throw new JsonException("Property is not nullable for class History: observedAt.");
 
             if (contextIds.IsSet && contextIds.Value == null)
-                throw new ArgumentNullException(nameof(contextIds), "Property is not nullable for class History.");
+                throw new JsonException("Property is not nullable for class History: contextIds.");
 
             if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class History.");
+                throw new JsonException("Property is not nullable for class History: price.");
 
             if (metadata.IsSet && metadata.Value == null)
-                throw new ArgumentNullException(nameof(metadata), "Property is not nullable for class History.");
+                throw new JsonException("Property is not nullable for class History: metadata.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class History.");
+                throw new JsonException("Property is not nullable for class History: target.");
 
             return new History(id.Value.Value, observedAt.Value.Value, contextIds.Value, price.Value.Value, metadata.Value, target.Value, excludedAt, exclusionReason);
         }
@@ -301,7 +301,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="history"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, History history, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -316,17 +315,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="history"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, History history, JsonSerializerOptions jsonSerializerOptions)
         {
             if (history.ContextIds == null)
-                throw new ArgumentNullException(nameof(history.ContextIds), "Property is required for class History.");
+                throw new JsonException("Cannot write null property History.ContextIds to non-nullable JSON property 'contextIds'.");
 
             if (history.Metadata == null)
-                throw new ArgumentNullException(nameof(history.Metadata), "Property is required for class History.");
+                throw new JsonException("Cannot write null property History.Metadata to non-nullable JSON property 'metadata'.");
 
             if (history.Target == null)
-                throw new ArgumentNullException(nameof(history.Target), "Property is required for class History.");
+                throw new JsonException("Cannot write null property History.Target to non-nullable JSON property 'target'.");
 
             writer.WriteNumber("id", history.Id);
 

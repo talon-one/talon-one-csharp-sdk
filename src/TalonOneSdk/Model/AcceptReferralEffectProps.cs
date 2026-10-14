@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AcceptReferralEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class AcceptReferralEffectProps: value.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AcceptReferralEffectProps.");
+                throw new JsonException("Property is not nullable for class AcceptReferralEffectProps: value.");
 
             return new AcceptReferralEffectProps(value.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="acceptReferralEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AcceptReferralEffectProps acceptReferralEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="acceptReferralEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AcceptReferralEffectProps acceptReferralEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (acceptReferralEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(acceptReferralEffectProps.Value), "Property is required for class AcceptReferralEffectProps.");
+                throw new JsonException("Cannot write null property AcceptReferralEffectProps.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("value", acceptReferralEffectProps.Value);
         }

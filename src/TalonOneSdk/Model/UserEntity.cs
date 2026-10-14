@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class UserEntity.", nameof(userId));
+                throw new JsonException("Property is required for class UserEntity: userId.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class UserEntity.");
+                throw new JsonException("Property is not nullable for class UserEntity: userId.");
 
             return new UserEntity(userId.Value.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="userEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UserEntity userEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,7 +160,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="userEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UserEntity userEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("userId", userEntity.UserId);

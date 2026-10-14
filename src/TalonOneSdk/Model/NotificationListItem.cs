@@ -177,28 +177,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!notificationId.IsSet)
-                throw new ArgumentException("Property is required for class NotificationListItem.", nameof(notificationId));
+                throw new JsonException("Property is required for class NotificationListItem: notificationId.");
 
             if (!notificationName.IsSet)
-                throw new ArgumentException("Property is required for class NotificationListItem.", nameof(notificationName));
+                throw new JsonException("Property is required for class NotificationListItem: notificationName.");
 
             if (!entityId.IsSet)
-                throw new ArgumentException("Property is required for class NotificationListItem.", nameof(entityId));
+                throw new JsonException("Property is required for class NotificationListItem: entityId.");
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class NotificationListItem.", nameof(enabled));
+                throw new JsonException("Property is required for class NotificationListItem: enabled.");
 
             if (notificationId.IsSet && notificationId.Value == null)
-                throw new ArgumentNullException(nameof(notificationId), "Property is not nullable for class NotificationListItem.");
+                throw new JsonException("Property is not nullable for class NotificationListItem: notificationId.");
 
             if (notificationName.IsSet && notificationName.Value == null)
-                throw new ArgumentNullException(nameof(notificationName), "Property is not nullable for class NotificationListItem.");
+                throw new JsonException("Property is not nullable for class NotificationListItem: notificationName.");
 
             if (entityId.IsSet && entityId.Value == null)
-                throw new ArgumentNullException(nameof(entityId), "Property is not nullable for class NotificationListItem.");
+                throw new JsonException("Property is not nullable for class NotificationListItem: entityId.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NotificationListItem.");
+                throw new JsonException("Property is not nullable for class NotificationListItem: enabled.");
 
             return new NotificationListItem(notificationId.Value.Value, notificationName.Value, entityId.Value.Value, enabled.Value.Value);
         }
@@ -209,7 +209,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="notificationListItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NotificationListItem notificationListItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -224,11 +223,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="notificationListItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NotificationListItem notificationListItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (notificationListItem.NotificationName == null)
-                throw new ArgumentNullException(nameof(notificationListItem.NotificationName), "Property is required for class NotificationListItem.");
+                throw new JsonException("Cannot write null property NotificationListItem.NotificationName to non-nullable JSON property 'notificationName'.");
 
             writer.WriteNumber("notificationId", notificationListItem.NotificationId);
 

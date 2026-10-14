@@ -150,10 +150,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListAchievementsV2200Response.", nameof(data));
+                throw new JsonException("Property is required for class ListAchievementsV2200Response: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListAchievementsV2200Response.");
+                throw new JsonException("Property is not nullable for class ListAchievementsV2200Response: data.");
 
             return new ListAchievementsV2200Response(data.Value, hasMore);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listAchievementsV2200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListAchievementsV2200Response listAchievementsV2200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listAchievementsV2200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListAchievementsV2200Response listAchievementsV2200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (listAchievementsV2200Response.Data == null)
-                throw new ArgumentNullException(nameof(listAchievementsV2200Response.Data), "Property is required for class ListAchievementsV2200Response.");
+                throw new JsonException("Cannot write null property ListAchievementsV2200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, listAchievementsV2200Response.Data, jsonSerializerOptions);

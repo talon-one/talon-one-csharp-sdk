@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CreateReferralBlock1CampaignId" /> class.
         /// </summary>
         /// <param name="decimal"></param>
-        internal CreateReferralBlock1CampaignId(decimal @decimal)
+        public CreateReferralBlock1CampaignId(decimal @decimal)
         {
             Decimal = @decimal;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CreateReferralBlock1CampaignId" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateReferralBlock1CampaignId(string @string)
+        public CreateReferralBlock1CampaignId(string @string)
         {
             String = @string;
             OnCreated();
@@ -175,7 +175,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createReferralBlock1CampaignId"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateReferralBlock1CampaignId createReferralBlock1CampaignId, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createReferralBlock1CampaignId"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateReferralBlock1CampaignId createReferralBlock1CampaignId, JsonSerializerOptions jsonSerializerOptions)
         {
 

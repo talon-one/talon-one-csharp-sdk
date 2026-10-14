@@ -176,10 +176,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!projectedActivePoints.IsSet)
-                throw new ArgumentException("Property is required for class ProjectedTier.", nameof(projectedActivePoints));
+                throw new JsonException("Property is required for class ProjectedTier: projectedActivePoints.");
 
             if (projectedActivePoints.IsSet && projectedActivePoints.Value == null)
-                throw new ArgumentNullException(nameof(projectedActivePoints), "Property is not nullable for class ProjectedTier.");
+                throw new JsonException("Property is not nullable for class ProjectedTier: projectedActivePoints.");
 
             return new ProjectedTier(projectedActivePoints.Value.Value, stayInTierPoints, projectedTierName);
         }
@@ -190,7 +190,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="projectedTier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectedTier projectedTier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -205,7 +204,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="projectedTier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectedTier projectedTier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("projectedActivePoints", projectedTier.ProjectedActivePoints);

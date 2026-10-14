@@ -355,10 +355,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!promotionRules.IsSet)
-                throw new ArgumentException("Property is required for class RulesetV2.", nameof(promotionRules));
+                throw new JsonException("Property is required for class RulesetV2: promotionRules.");
 
             if (promotionRules.IsSet && promotionRules.Value == null)
-                throw new ArgumentNullException(nameof(promotionRules), "Property is not nullable for class RulesetV2.");
+                throw new JsonException("Property is not nullable for class RulesetV2: promotionRules.");
 
             return new RulesetV2(promotionRules.Value, id, created, userId, campaignId, templateId, activatedAt, strikethroughRules, selectors, bundles, parameters);
         }
@@ -369,7 +369,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rulesetV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RulesetV2 rulesetV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -384,11 +383,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rulesetV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RulesetV2 rulesetV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rulesetV2.PromotionRules == null)
-                throw new ArgumentNullException(nameof(rulesetV2.PromotionRules), "Property is required for class RulesetV2.");
+                throw new JsonException("Cannot write null property RulesetV2.PromotionRules to non-nullable JSON property 'promotionRules'.");
 
             writer.WritePropertyName("promotionRules");
             JsonSerializer.Serialize(writer, rulesetV2.PromotionRules, jsonSerializerOptions);

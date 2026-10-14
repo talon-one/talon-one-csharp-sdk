@@ -185,28 +185,28 @@ Content-Type: application/json
             }
 
             if (!statusCode.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessageResponse.", nameof(statusCode));
+                throw new JsonException("Property is required for class OutboundMessageResponse: statusCode.");
 
             if (!rawBody.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessageResponse.", nameof(rawBody));
+                throw new JsonException("Property is required for class OutboundMessageResponse: rawBody.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessageResponse.", nameof(createdAt));
+                throw new JsonException("Property is required for class OutboundMessageResponse: createdAt.");
 
             if (!processingTimeMs.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessageResponse.", nameof(processingTimeMs));
+                throw new JsonException("Property is required for class OutboundMessageResponse: processingTimeMs.");
 
             if (statusCode.IsSet && statusCode.Value == null)
-                throw new ArgumentNullException(nameof(statusCode), "Property is not nullable for class OutboundMessageResponse.");
+                throw new JsonException("Property is not nullable for class OutboundMessageResponse: statusCode.");
 
             if (rawBody.IsSet && rawBody.Value == null)
-                throw new ArgumentNullException(nameof(rawBody), "Property is not nullable for class OutboundMessageResponse.");
+                throw new JsonException("Property is not nullable for class OutboundMessageResponse: rawBody.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class OutboundMessageResponse.");
+                throw new JsonException("Property is not nullable for class OutboundMessageResponse: createdAt.");
 
             if (processingTimeMs.IsSet && processingTimeMs.Value == null)
-                throw new ArgumentNullException(nameof(processingTimeMs), "Property is not nullable for class OutboundMessageResponse.");
+                throw new JsonException("Property is not nullable for class OutboundMessageResponse: processingTimeMs.");
 
             return new OutboundMessageResponse(statusCode.Value.Value, rawBody.Value, createdAt.Value.Value, processingTimeMs.Value.Value);
         }
@@ -217,7 +217,6 @@ Content-Type: application/json
         /// <param name="writer"></param>
         /// <param name="outboundMessageResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutboundMessageResponse outboundMessageResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -232,11 +231,10 @@ Content-Type: application/json
         /// <param name="writer"></param>
         /// <param name="outboundMessageResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutboundMessageResponse outboundMessageResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outboundMessageResponse.RawBody == null)
-                throw new ArgumentNullException(nameof(outboundMessageResponse.RawBody), "Property is required for class OutboundMessageResponse.");
+                throw new JsonException("Cannot write null property OutboundMessageResponse.RawBody to non-nullable JSON property 'rawBody'.");
 
             writer.WriteNumber("statusCode", outboundMessageResponse.StatusCode);
 

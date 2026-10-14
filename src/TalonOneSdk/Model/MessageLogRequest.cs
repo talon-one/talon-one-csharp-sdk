@@ -152,16 +152,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class MessageLogRequest.", nameof(createdAt));
+                throw new JsonException("Property is required for class MessageLogRequest: createdAt.");
 
             if (!request.IsSet)
-                throw new ArgumentException("Property is required for class MessageLogRequest.", nameof(request));
+                throw new JsonException("Property is required for class MessageLogRequest: request.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class MessageLogRequest.");
+                throw new JsonException("Property is not nullable for class MessageLogRequest: createdAt.");
 
             if (request.IsSet && request.Value == null)
-                throw new ArgumentNullException(nameof(request), "Property is not nullable for class MessageLogRequest.");
+                throw new JsonException("Property is not nullable for class MessageLogRequest: request.");
 
             return new MessageLogRequest(createdAt.Value.Value, request.Value);
         }
@@ -172,7 +172,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="messageLogRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageLogRequest messageLogRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -187,11 +186,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="messageLogRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageLogRequest messageLogRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageLogRequest.Request == null)
-                throw new ArgumentNullException(nameof(messageLogRequest.Request), "Property is required for class MessageLogRequest.");
+                throw new JsonException("Cannot write null property MessageLogRequest.Request to non-nullable JSON property 'request'.");
 
             writer.WriteString("createdAt", messageLogRequest.CreatedAt.ToString(CreatedAtFormat));
 

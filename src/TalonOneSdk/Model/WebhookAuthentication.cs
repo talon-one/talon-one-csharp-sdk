@@ -327,58 +327,58 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(id));
+                throw new JsonException("Property is required for class WebhookAuthentication: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(created));
+                throw new JsonException("Property is required for class WebhookAuthentication: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(modified));
+                throw new JsonException("Property is required for class WebhookAuthentication: modified.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(createdBy));
+                throw new JsonException("Property is required for class WebhookAuthentication: createdBy.");
 
             if (!modifiedBy.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(modifiedBy));
+                throw new JsonException("Property is required for class WebhookAuthentication: modifiedBy.");
 
             if (!webhooks.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(webhooks));
+                throw new JsonException("Property is required for class WebhookAuthentication: webhooks.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(name));
+                throw new JsonException("Property is required for class WebhookAuthentication: name.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(type));
+                throw new JsonException("Property is required for class WebhookAuthentication: type.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthentication.", nameof(data));
+                throw new JsonException("Property is required for class WebhookAuthentication: data.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: modified.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: createdBy.");
 
             if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new ArgumentNullException(nameof(modifiedBy), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: modifiedBy.");
 
             if (webhooks.IsSet && webhooks.Value == null)
-                throw new ArgumentNullException(nameof(webhooks), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: webhooks.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: type.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class WebhookAuthentication.");
+                throw new JsonException("Property is not nullable for class WebhookAuthentication: data.");
 
             return new WebhookAuthentication(id.Value.Value, created.Value.Value, modified.Value.Value, createdBy.Value, modifiedBy.Value, webhooks.Value, name.Value, type.Value.Value, data.Value);
         }
@@ -389,7 +389,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthentication"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookAuthentication webhookAuthentication, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -404,23 +403,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthentication"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookAuthentication webhookAuthentication, JsonSerializerOptions jsonSerializerOptions)
         {
             if (webhookAuthentication.CreatedBy == null)
-                throw new ArgumentNullException(nameof(webhookAuthentication.CreatedBy), "Property is required for class WebhookAuthentication.");
+                throw new JsonException("Cannot write null property WebhookAuthentication.CreatedBy to non-nullable JSON property 'createdBy'.");
 
             if (webhookAuthentication.ModifiedBy == null)
-                throw new ArgumentNullException(nameof(webhookAuthentication.ModifiedBy), "Property is required for class WebhookAuthentication.");
+                throw new JsonException("Cannot write null property WebhookAuthentication.ModifiedBy to non-nullable JSON property 'modifiedBy'.");
 
             if (webhookAuthentication.Webhooks == null)
-                throw new ArgumentNullException(nameof(webhookAuthentication.Webhooks), "Property is required for class WebhookAuthentication.");
+                throw new JsonException("Cannot write null property WebhookAuthentication.Webhooks to non-nullable JSON property 'webhooks'.");
 
             if (webhookAuthentication.Name == null)
-                throw new ArgumentNullException(nameof(webhookAuthentication.Name), "Property is required for class WebhookAuthentication.");
+                throw new JsonException("Cannot write null property WebhookAuthentication.Name to non-nullable JSON property 'name'.");
 
             if (webhookAuthentication.Data == null)
-                throw new ArgumentNullException(nameof(webhookAuthentication.Data), "Property is required for class WebhookAuthentication.");
+                throw new JsonException("Cannot write null property WebhookAuthentication.Data to non-nullable JSON property 'data'.");
 
             writer.WriteNumber("id", webhookAuthentication.Id);
 

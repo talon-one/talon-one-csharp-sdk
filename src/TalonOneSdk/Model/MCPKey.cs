@@ -266,40 +266,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class MCPKey.", nameof(name));
+                throw new JsonException("Property is required for class MCPKey: name.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class MCPKey.", nameof(expiryDate));
+                throw new JsonException("Property is required for class MCPKey: expiryDate.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class MCPKey.", nameof(id));
+                throw new JsonException("Property is required for class MCPKey: id.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class MCPKey.", nameof(createdBy));
+                throw new JsonException("Property is required for class MCPKey: createdBy.");
 
             if (!accountID.IsSet)
-                throw new ArgumentException("Property is required for class MCPKey.", nameof(accountID));
+                throw new JsonException("Property is required for class MCPKey: accountID.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class MCPKey.", nameof(created));
+                throw new JsonException("Property is required for class MCPKey: created.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class MCPKey.");
+                throw new JsonException("Property is not nullable for class MCPKey: name.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class MCPKey.");
+                throw new JsonException("Property is not nullable for class MCPKey: expiryDate.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class MCPKey.");
+                throw new JsonException("Property is not nullable for class MCPKey: id.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class MCPKey.");
+                throw new JsonException("Property is not nullable for class MCPKey: createdBy.");
 
             if (accountID.IsSet && accountID.Value == null)
-                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class MCPKey.");
+                throw new JsonException("Property is not nullable for class MCPKey: accountID.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class MCPKey.");
+                throw new JsonException("Property is not nullable for class MCPKey: created.");
 
             return new MCPKey(name.Value, expiryDate.Value.Value, id.Value.Value, createdBy.Value.Value, accountID.Value.Value, created.Value.Value, disabled, lastUsed);
         }
@@ -310,7 +310,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPKey mCPKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -325,11 +324,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPKey mCPKey, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mCPKey.Name == null)
-                throw new ArgumentNullException(nameof(mCPKey.Name), "Property is required for class MCPKey.");
+                throw new JsonException("Cannot write null property MCPKey.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", mCPKey.Name);
 

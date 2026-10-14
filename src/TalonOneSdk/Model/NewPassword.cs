@@ -152,16 +152,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!password.IsSet)
-                throw new ArgumentException("Property is required for class NewPassword.", nameof(password));
+                throw new JsonException("Property is required for class NewPassword: password.");
 
             if (!resetToken.IsSet)
-                throw new ArgumentException("Property is required for class NewPassword.", nameof(resetToken));
+                throw new JsonException("Property is required for class NewPassword: resetToken.");
 
             if (password.IsSet && password.Value == null)
-                throw new ArgumentNullException(nameof(password), "Property is not nullable for class NewPassword.");
+                throw new JsonException("Property is not nullable for class NewPassword: password.");
 
             if (resetToken.IsSet && resetToken.Value == null)
-                throw new ArgumentNullException(nameof(resetToken), "Property is not nullable for class NewPassword.");
+                throw new JsonException("Property is not nullable for class NewPassword: resetToken.");
 
             return new NewPassword(password.Value, resetToken.Value);
         }
@@ -172,7 +172,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newPassword"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewPassword newPassword, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -187,14 +186,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newPassword"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewPassword newPassword, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newPassword.Password == null)
-                throw new ArgumentNullException(nameof(newPassword.Password), "Property is required for class NewPassword.");
+                throw new JsonException("Cannot write null property NewPassword.Password to non-nullable JSON property 'password'.");
 
             if (newPassword.ResetToken == null)
-                throw new ArgumentNullException(nameof(newPassword.ResetToken), "Property is required for class NewPassword.");
+                throw new JsonException("Cannot write null property NewPassword.ResetToken to non-nullable JSON property 'resetToken'.");
 
             writer.WriteString("password", newPassword.Password);
 

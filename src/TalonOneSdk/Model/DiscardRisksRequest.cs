@@ -243,16 +243,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!riskIds.IsSet)
-                throw new ArgumentException("Property is required for class DiscardRisksRequest.", nameof(riskIds));
+                throw new JsonException("Property is required for class DiscardRisksRequest: riskIds.");
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class DiscardRisksRequest.", nameof(reason));
+                throw new JsonException("Property is required for class DiscardRisksRequest: reason.");
 
             if (riskIds.IsSet && riskIds.Value == null)
-                throw new ArgumentNullException(nameof(riskIds), "Property is not nullable for class DiscardRisksRequest.");
+                throw new JsonException("Property is not nullable for class DiscardRisksRequest: riskIds.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class DiscardRisksRequest.");
+                throw new JsonException("Property is not nullable for class DiscardRisksRequest: reason.");
 
             return new DiscardRisksRequest(riskIds.Value, reason.Value.Value, comment);
         }
@@ -263,7 +263,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="discardRisksRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DiscardRisksRequest discardRisksRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -278,11 +277,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="discardRisksRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DiscardRisksRequest discardRisksRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (discardRisksRequest.RiskIds == null)
-                throw new ArgumentNullException(nameof(discardRisksRequest.RiskIds), "Property is required for class DiscardRisksRequest.");
+                throw new JsonException("Cannot write null property DiscardRisksRequest.RiskIds to non-nullable JSON property 'riskIds'.");
 
             writer.WritePropertyName("riskIds");
             JsonSerializer.Serialize(writer, discardRisksRequest.RiskIds, jsonSerializerOptions);

@@ -228,10 +228,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!targetType.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorTarget.", nameof(targetType));
+                throw new JsonException("Property is required for class BestPriorTarget: targetType.");
 
             if (targetType.IsSet && targetType.Value == null)
-                throw new ArgumentNullException(nameof(targetType), "Property is not nullable for class BestPriorTarget.");
+                throw new JsonException("Property is not nullable for class BestPriorTarget: targetType.");
 
             return new BestPriorTarget(targetType.Value.Value, audienceID);
         }
@@ -242,7 +242,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bestPriorTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BestPriorTarget bestPriorTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,7 +256,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bestPriorTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BestPriorTarget bestPriorTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             var targetTypeRawValue = BestPriorTarget.TargetTypeEnumToJsonValue(bestPriorTarget.TargetType);

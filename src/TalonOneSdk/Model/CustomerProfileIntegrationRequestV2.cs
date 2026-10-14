@@ -419,7 +419,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileIntegrationRequestV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -434,7 +433,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileIntegrationRequestV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerProfileIntegrationRequestV2 customerProfileIntegrationRequestV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerProfileIntegrationRequestV2.AttributesOption.IsSet)

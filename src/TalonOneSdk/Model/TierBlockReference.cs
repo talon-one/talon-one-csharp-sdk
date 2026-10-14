@@ -182,22 +182,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class TierBlockReference.", nameof(id));
+                throw new JsonException("Property is required for class TierBlockReference: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class TierBlockReference.", nameof(name));
+                throw new JsonException("Property is required for class TierBlockReference: name.");
 
             if (!minPoints.IsSet)
-                throw new ArgumentException("Property is required for class TierBlockReference.", nameof(minPoints));
+                throw new JsonException("Property is required for class TierBlockReference: minPoints.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class TierBlockReference.");
+                throw new JsonException("Property is not nullable for class TierBlockReference: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class TierBlockReference.");
+                throw new JsonException("Property is not nullable for class TierBlockReference: name.");
 
             if (minPoints.IsSet && minPoints.Value == null)
-                throw new ArgumentNullException(nameof(minPoints), "Property is not nullable for class TierBlockReference.");
+                throw new JsonException("Property is not nullable for class TierBlockReference: minPoints.");
 
             return new TierBlockReference(id.Value.Value, name.Value, minPoints.Value.Value, upperLimit);
         }
@@ -208,7 +208,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TierBlockReference tierBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -223,11 +222,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TierBlockReference tierBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             if (tierBlockReference.Name == null)
-                throw new ArgumentNullException(nameof(tierBlockReference.Name), "Property is required for class TierBlockReference.");
+                throw new JsonException("Cannot write null property TierBlockReference.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", tierBlockReference.Id);
 

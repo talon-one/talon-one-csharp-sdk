@@ -46,7 +46,7 @@ namespace TalonOneSdk.Model
         /// <param name="effectIndex">The index of the effect that failed.</param>
         /// <param name="details">More details about the failure.</param>
         /// <param name="evaluationGroupID">The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
-        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-</param>
+        /// <param name="evaluationGroupMode">The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</param>
         [JsonConstructor]
         public RuleFailureReason(long campaignID, string campaignName, long rulesetID, long ruleIndex, string ruleName, Option<long?> couponID = default, Option<string> couponValue = default, Option<long?> referralID = default, Option<string> referralValue = default, Option<long?> rewardId = default, Option<string> rewardIntegrationId = default, Option<long?> conditionIndex = default, Option<long?> effectIndex = default, Option<string> details = default, Option<long?> evaluationGroupID = default, Option<string> evaluationGroupMode = default)
         {
@@ -258,9 +258,9 @@ namespace TalonOneSdk.Model
         public Option<string> EvaluationGroupModeOption { get; private set; }
 
         /// <summary>
-        /// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-
+        /// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
         /// </summary>
-        /// <value>The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-</value>
+        /// <value>The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).</value>
         /* <example>stackable</example> */
         [JsonPropertyName("evaluationGroupMode")]
         public string EvaluationGroupMode { get { return this.EvaluationGroupModeOption.Value; } set { this.EvaluationGroupModeOption = new Option<string>(value); } }
@@ -423,34 +423,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignID.IsSet)
-                throw new ArgumentException("Property is required for class RuleFailureReason.", nameof(campaignID));
+                throw new JsonException("Property is required for class RuleFailureReason: campaignID.");
 
             if (!campaignName.IsSet)
-                throw new ArgumentException("Property is required for class RuleFailureReason.", nameof(campaignName));
+                throw new JsonException("Property is required for class RuleFailureReason: campaignName.");
 
             if (!rulesetID.IsSet)
-                throw new ArgumentException("Property is required for class RuleFailureReason.", nameof(rulesetID));
+                throw new JsonException("Property is required for class RuleFailureReason: rulesetID.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class RuleFailureReason.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class RuleFailureReason: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class RuleFailureReason.", nameof(ruleName));
+                throw new JsonException("Property is required for class RuleFailureReason: ruleName.");
 
             if (campaignID.IsSet && campaignID.Value == null)
-                throw new ArgumentNullException(nameof(campaignID), "Property is not nullable for class RuleFailureReason.");
+                throw new JsonException("Property is not nullable for class RuleFailureReason: campaignID.");
 
             if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class RuleFailureReason.");
+                throw new JsonException("Property is not nullable for class RuleFailureReason: campaignName.");
 
             if (rulesetID.IsSet && rulesetID.Value == null)
-                throw new ArgumentNullException(nameof(rulesetID), "Property is not nullable for class RuleFailureReason.");
+                throw new JsonException("Property is not nullable for class RuleFailureReason: rulesetID.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class RuleFailureReason.");
+                throw new JsonException("Property is not nullable for class RuleFailureReason: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class RuleFailureReason.");
+                throw new JsonException("Property is not nullable for class RuleFailureReason: ruleName.");
 
             return new RuleFailureReason(campaignID.Value.Value, campaignName.Value, rulesetID.Value.Value, ruleIndex.Value.Value, ruleName.Value, couponID, couponValue, referralID, referralValue, rewardId, rewardIntegrationId, conditionIndex, effectIndex, details, evaluationGroupID, evaluationGroupMode);
         }
@@ -461,7 +461,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleFailureReason"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RuleFailureReason ruleFailureReason, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -476,14 +475,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleFailureReason"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RuleFailureReason ruleFailureReason, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ruleFailureReason.CampaignName == null)
-                throw new ArgumentNullException(nameof(ruleFailureReason.CampaignName), "Property is required for class RuleFailureReason.");
+                throw new JsonException("Cannot write null property RuleFailureReason.CampaignName to non-nullable JSON property 'campaignName'.");
 
             if (ruleFailureReason.RuleName == null)
-                throw new ArgumentNullException(nameof(ruleFailureReason.RuleName), "Property is required for class RuleFailureReason.");
+                throw new JsonException("Cannot write null property RuleFailureReason.RuleName to non-nullable JSON property 'ruleName'.");
 
             writer.WriteNumber("campaignID", ruleFailureReason.CampaignID);
 

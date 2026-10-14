@@ -188,10 +188,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyProgramTier.", nameof(id));
+                throw new JsonException("Property is required for class UpdateLoyaltyProgramTier: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UpdateLoyaltyProgramTier.");
+                throw new JsonException("Property is not nullable for class UpdateLoyaltyProgramTier: id.");
 
             return new UpdateLoyaltyProgramTier(id.Value.Value, name, minPoints);
         }
@@ -202,7 +202,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateLoyaltyProgramTier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateLoyaltyProgramTier updateLoyaltyProgramTier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -217,7 +216,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateLoyaltyProgramTier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateLoyaltyProgramTier updateLoyaltyProgramTier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", updateLoyaltyProgramTier.Id);
