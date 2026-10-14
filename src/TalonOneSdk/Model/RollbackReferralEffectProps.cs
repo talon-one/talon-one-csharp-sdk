@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RollbackReferralEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class RollbackReferralEffectProps: value.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackReferralEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackReferralEffectProps: value.");
 
             return new RollbackReferralEffectProps(value.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackReferralEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RollbackReferralEffectProps rollbackReferralEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackReferralEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RollbackReferralEffectProps rollbackReferralEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rollbackReferralEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(rollbackReferralEffectProps.Value), "Property is required for class RollbackReferralEffectProps.");
+                throw new JsonException("Cannot write null property RollbackReferralEffectProps.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("value", rollbackReferralEffectProps.Value);
         }

@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class RoleV2PermissionSet.", nameof(name));
+                throw new JsonException("Property is required for class RoleV2PermissionSet: name.");
 
             if (!logicalOperations.IsSet)
-                throw new ArgumentException("Property is required for class RoleV2PermissionSet.", nameof(logicalOperations));
+                throw new JsonException("Property is required for class RoleV2PermissionSet: logicalOperations.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RoleV2PermissionSet.");
+                throw new JsonException("Property is not nullable for class RoleV2PermissionSet: name.");
 
             if (logicalOperations.IsSet && logicalOperations.Value == null)
-                throw new ArgumentNullException(nameof(logicalOperations), "Property is not nullable for class RoleV2PermissionSet.");
+                throw new JsonException("Property is not nullable for class RoleV2PermissionSet: logicalOperations.");
 
             return new RoleV2PermissionSet(name.Value, logicalOperations.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleV2PermissionSet"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RoleV2PermissionSet roleV2PermissionSet, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="roleV2PermissionSet"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RoleV2PermissionSet roleV2PermissionSet, JsonSerializerOptions jsonSerializerOptions)
         {
             if (roleV2PermissionSet.Name == null)
-                throw new ArgumentNullException(nameof(roleV2PermissionSet.Name), "Property is required for class RoleV2PermissionSet.");
+                throw new JsonException("Cannot write null property RoleV2PermissionSet.Name to non-nullable JSON property 'name'.");
 
             if (roleV2PermissionSet.LogicalOperations == null)
-                throw new ArgumentNullException(nameof(roleV2PermissionSet.LogicalOperations), "Property is required for class RoleV2PermissionSet.");
+                throw new JsonException("Cannot write null property RoleV2PermissionSet.LogicalOperations to non-nullable JSON property 'logicalOperations'.");
 
             writer.WriteString("name", roleV2PermissionSet.Name);
 

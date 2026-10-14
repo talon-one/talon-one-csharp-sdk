@@ -220,28 +220,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UpdateExperimentVariant.", nameof(id));
+                throw new JsonException("Property is required for class UpdateExperimentVariant: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateExperimentVariant.", nameof(name));
+                throw new JsonException("Property is required for class UpdateExperimentVariant: name.");
 
             if (!ruleset.IsSet)
-                throw new ArgumentException("Property is required for class UpdateExperimentVariant.", nameof(ruleset));
+                throw new JsonException("Property is required for class UpdateExperimentVariant: ruleset.");
 
             if (!weight.IsSet)
-                throw new ArgumentException("Property is required for class UpdateExperimentVariant.", nameof(weight));
+                throw new JsonException("Property is required for class UpdateExperimentVariant: weight.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UpdateExperimentVariant.");
+                throw new JsonException("Property is not nullable for class UpdateExperimentVariant: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateExperimentVariant.");
+                throw new JsonException("Property is not nullable for class UpdateExperimentVariant: name.");
 
             if (ruleset.IsSet && ruleset.Value == null)
-                throw new ArgumentNullException(nameof(ruleset), "Property is not nullable for class UpdateExperimentVariant.");
+                throw new JsonException("Property is not nullable for class UpdateExperimentVariant: ruleset.");
 
             if (weight.IsSet && weight.Value == null)
-                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class UpdateExperimentVariant.");
+                throw new JsonException("Property is not nullable for class UpdateExperimentVariant: weight.");
 
             return new UpdateExperimentVariant(id.Value.Value, name.Value, ruleset.Value, weight.Value.Value, audienceId);
         }
@@ -252,7 +252,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateExperimentVariant"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateExperimentVariant updateExperimentVariant, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -267,14 +266,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateExperimentVariant"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateExperimentVariant updateExperimentVariant, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateExperimentVariant.Name == null)
-                throw new ArgumentNullException(nameof(updateExperimentVariant.Name), "Property is required for class UpdateExperimentVariant.");
+                throw new JsonException("Cannot write null property UpdateExperimentVariant.Name to non-nullable JSON property 'name'.");
 
             if (updateExperimentVariant.Ruleset == null)
-                throw new ArgumentNullException(nameof(updateExperimentVariant.Ruleset), "Property is required for class UpdateExperimentVariant.");
+                throw new JsonException("Cannot write null property UpdateExperimentVariant.Ruleset to non-nullable JSON property 'ruleset'.");
 
             writer.WriteNumber("id", updateExperimentVariant.Id);
 

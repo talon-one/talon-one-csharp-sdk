@@ -370,22 +370,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class ReferralRejectionReason.", nameof(campaignId));
+                throw new JsonException("Property is required for class ReferralRejectionReason: campaignId.");
 
             if (!referralId.IsSet)
-                throw new ArgumentException("Property is required for class ReferralRejectionReason.", nameof(referralId));
+                throw new JsonException("Property is required for class ReferralRejectionReason: referralId.");
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class ReferralRejectionReason.", nameof(reason));
+                throw new JsonException("Property is required for class ReferralRejectionReason: reason.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ReferralRejectionReason.");
+                throw new JsonException("Property is not nullable for class ReferralRejectionReason: campaignId.");
 
             if (referralId.IsSet && referralId.Value == null)
-                throw new ArgumentNullException(nameof(referralId), "Property is not nullable for class ReferralRejectionReason.");
+                throw new JsonException("Property is not nullable for class ReferralRejectionReason: referralId.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class ReferralRejectionReason.");
+                throw new JsonException("Property is not nullable for class ReferralRejectionReason: reason.");
 
             return new ReferralRejectionReason(campaignId.Value.Value, referralId.Value.Value, reason.Value.Value);
         }
@@ -396,7 +396,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="referralRejectionReason"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ReferralRejectionReason referralRejectionReason, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -411,7 +410,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="referralRejectionReason"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReferralRejectionReason referralRejectionReason, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("campaignId", referralRejectionReason.CampaignId);

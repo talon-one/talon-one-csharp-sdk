@@ -302,40 +302,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class GiveawaysPool.", nameof(id));
+                throw new JsonException("Property is required for class GiveawaysPool: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class GiveawaysPool.", nameof(created));
+                throw new JsonException("Property is required for class GiveawaysPool: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class GiveawaysPool.", nameof(accountId));
+                throw new JsonException("Property is required for class GiveawaysPool: accountId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class GiveawaysPool.", nameof(name));
+                throw new JsonException("Property is required for class GiveawaysPool: name.");
 
             if (!sandbox.IsSet)
-                throw new ArgumentException("Property is required for class GiveawaysPool.", nameof(sandbox));
+                throw new JsonException("Property is required for class GiveawaysPool: sandbox.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class GiveawaysPool.", nameof(createdBy));
+                throw new JsonException("Property is required for class GiveawaysPool: createdBy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class GiveawaysPool.");
+                throw new JsonException("Property is not nullable for class GiveawaysPool: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class GiveawaysPool.");
+                throw new JsonException("Property is not nullable for class GiveawaysPool: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class GiveawaysPool.");
+                throw new JsonException("Property is not nullable for class GiveawaysPool: accountId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class GiveawaysPool.");
+                throw new JsonException("Property is not nullable for class GiveawaysPool: name.");
 
             if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class GiveawaysPool.");
+                throw new JsonException("Property is not nullable for class GiveawaysPool: sandbox.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class GiveawaysPool.");
+                throw new JsonException("Property is not nullable for class GiveawaysPool: createdBy.");
 
             return new GiveawaysPool(id.Value.Value, created.Value.Value, accountId.Value.Value, name.Value, sandbox.Value.Value, createdBy.Value.Value, description, subscribedApplicationsIds, modified, modifiedBy);
         }
@@ -346,7 +346,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveawaysPool"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GiveawaysPool giveawaysPool, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -361,11 +360,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveawaysPool"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GiveawaysPool giveawaysPool, JsonSerializerOptions jsonSerializerOptions)
         {
             if (giveawaysPool.Name == null)
-                throw new ArgumentNullException(nameof(giveawaysPool.Name), "Property is required for class GiveawaysPool.");
+                throw new JsonException("Cannot write null property GiveawaysPool.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", giveawaysPool.Id);
 

@@ -267,16 +267,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!summary.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationApiHealth.", nameof(summary));
+                throw new JsonException("Property is required for class ApplicationApiHealth: summary.");
 
             if (!lastUsed.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationApiHealth.", nameof(lastUsed));
+                throw new JsonException("Property is required for class ApplicationApiHealth: lastUsed.");
 
             if (summary.IsSet && summary.Value == null)
-                throw new ArgumentNullException(nameof(summary), "Property is not nullable for class ApplicationApiHealth.");
+                throw new JsonException("Property is not nullable for class ApplicationApiHealth: summary.");
 
             if (lastUsed.IsSet && lastUsed.Value == null)
-                throw new ArgumentNullException(nameof(lastUsed), "Property is not nullable for class ApplicationApiHealth.");
+                throw new JsonException("Property is not nullable for class ApplicationApiHealth: lastUsed.");
 
             return new ApplicationApiHealth(summary.Value.Value, lastUsed.Value.Value);
         }
@@ -287,7 +287,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationApiHealth"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationApiHealth applicationApiHealth, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -302,7 +301,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationApiHealth"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationApiHealth applicationApiHealth, JsonSerializerOptions jsonSerializerOptions)
         {
             var summaryRawValue = ApplicationApiHealth.SummaryEnumToJsonValue(applicationApiHealth.Summary);

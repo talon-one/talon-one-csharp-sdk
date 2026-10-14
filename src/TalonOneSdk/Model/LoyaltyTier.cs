@@ -253,34 +253,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyTier.", nameof(id));
+                throw new JsonException("Property is required for class LoyaltyTier: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyTier.", nameof(created));
+                throw new JsonException("Property is required for class LoyaltyTier: created.");
 
             if (!programID.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyTier.", nameof(programID));
+                throw new JsonException("Property is required for class LoyaltyTier: programID.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyTier.", nameof(name));
+                throw new JsonException("Property is required for class LoyaltyTier: name.");
 
             if (!minPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyTier.", nameof(minPoints));
+                throw new JsonException("Property is required for class LoyaltyTier: minPoints.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class LoyaltyTier.");
+                throw new JsonException("Property is not nullable for class LoyaltyTier: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class LoyaltyTier.");
+                throw new JsonException("Property is not nullable for class LoyaltyTier: created.");
 
             if (programID.IsSet && programID.Value == null)
-                throw new ArgumentNullException(nameof(programID), "Property is not nullable for class LoyaltyTier.");
+                throw new JsonException("Property is not nullable for class LoyaltyTier: programID.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LoyaltyTier.");
+                throw new JsonException("Property is not nullable for class LoyaltyTier: name.");
 
             if (minPoints.IsSet && minPoints.Value == null)
-                throw new ArgumentNullException(nameof(minPoints), "Property is not nullable for class LoyaltyTier.");
+                throw new JsonException("Property is not nullable for class LoyaltyTier: minPoints.");
 
             return new LoyaltyTier(id.Value.Value, created.Value.Value, programID.Value.Value, name.Value, minPoints.Value.Value, programName, programTitle);
         }
@@ -291,7 +291,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyTier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyTier loyaltyTier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -306,11 +305,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyTier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyTier loyaltyTier, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyTier.Name == null)
-                throw new ArgumentNullException(nameof(loyaltyTier.Name), "Property is required for class LoyaltyTier.");
+                throw new JsonException("Cannot write null property LoyaltyTier.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", loyaltyTier.Id);
 

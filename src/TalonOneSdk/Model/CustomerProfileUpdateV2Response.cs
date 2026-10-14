@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!customerProfile.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileUpdateV2Response.", nameof(customerProfile));
+                throw new JsonException("Property is required for class CustomerProfileUpdateV2Response: customerProfile.");
 
             if (customerProfile.IsSet && customerProfile.Value == null)
-                throw new ArgumentNullException(nameof(customerProfile), "Property is not nullable for class CustomerProfileUpdateV2Response.");
+                throw new JsonException("Property is not nullable for class CustomerProfileUpdateV2Response: customerProfile.");
 
             return new CustomerProfileUpdateV2Response(customerProfile.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileUpdateV2Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerProfileUpdateV2Response customerProfileUpdateV2Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,11 +158,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileUpdateV2Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerProfileUpdateV2Response customerProfileUpdateV2Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerProfileUpdateV2Response.CustomerProfile == null)
-                throw new ArgumentNullException(nameof(customerProfileUpdateV2Response.CustomerProfile), "Property is required for class CustomerProfileUpdateV2Response.");
+                throw new JsonException("Cannot write null property CustomerProfileUpdateV2Response.CustomerProfile to non-nullable JSON property 'customerProfile'.");
 
             writer.WritePropertyName("customerProfile");
             JsonSerializer.Serialize(writer, customerProfileUpdateV2Response.CustomerProfile, jsonSerializerOptions);

@@ -138,10 +138,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class NewEventV3Entity.", nameof(integrationId));
+                throw new JsonException("Property is required for class NewEventV3Entity: integrationId.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class NewEventV3Entity.");
+                throw new JsonException("Property is not nullable for class NewEventV3Entity: integrationId.");
 
             return new NewEventV3Entity(integrationId.Value);
         }
@@ -152,7 +152,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newEventV3Entity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewEventV3Entity newEventV3Entity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newEventV3Entity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewEventV3Entity newEventV3Entity, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newEventV3Entity.IntegrationId == null)
-                throw new ArgumentNullException(nameof(newEventV3Entity.IntegrationId), "Property is required for class NewEventV3Entity.");
+                throw new JsonException("Cannot write null property NewEventV3Entity.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("integrationId", newEventV3Entity.IntegrationId);
         }

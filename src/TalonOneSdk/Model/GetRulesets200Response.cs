@@ -144,16 +144,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class GetRulesets200Response.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class GetRulesets200Response: totalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GetRulesets200Response.", nameof(data));
+                throw new JsonException("Property is required for class GetRulesets200Response: data.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class GetRulesets200Response.");
+                throw new JsonException("Property is not nullable for class GetRulesets200Response: totalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetRulesets200Response.");
+                throw new JsonException("Property is not nullable for class GetRulesets200Response: data.");
 
             return new GetRulesets200Response(totalResultSize.Value.Value, data.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getRulesets200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetRulesets200Response getRulesets200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getRulesets200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetRulesets200Response getRulesets200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getRulesets200Response.Data == null)
-                throw new ArgumentNullException(nameof(getRulesets200Response.Data), "Property is required for class GetRulesets200Response.");
+                throw new JsonException("Cannot write null property GetRulesets200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WriteNumber("totalResultSize", getRulesets200Response.TotalResultSize);
 

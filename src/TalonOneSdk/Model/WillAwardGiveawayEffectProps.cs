@@ -168,22 +168,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!poolId.IsSet)
-                throw new ArgumentException("Property is required for class WillAwardGiveawayEffectProps.", nameof(poolId));
+                throw new JsonException("Property is required for class WillAwardGiveawayEffectProps: poolId.");
 
             if (!poolName.IsSet)
-                throw new ArgumentException("Property is required for class WillAwardGiveawayEffectProps.", nameof(poolName));
+                throw new JsonException("Property is required for class WillAwardGiveawayEffectProps: poolName.");
 
             if (!recipientIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class WillAwardGiveawayEffectProps.", nameof(recipientIntegrationId));
+                throw new JsonException("Property is required for class WillAwardGiveawayEffectProps: recipientIntegrationId.");
 
             if (poolId.IsSet && poolId.Value == null)
-                throw new ArgumentNullException(nameof(poolId), "Property is not nullable for class WillAwardGiveawayEffectProps.");
+                throw new JsonException("Property is not nullable for class WillAwardGiveawayEffectProps: poolId.");
 
             if (poolName.IsSet && poolName.Value == null)
-                throw new ArgumentNullException(nameof(poolName), "Property is not nullable for class WillAwardGiveawayEffectProps.");
+                throw new JsonException("Property is not nullable for class WillAwardGiveawayEffectProps: poolName.");
 
             if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class WillAwardGiveawayEffectProps.");
+                throw new JsonException("Property is not nullable for class WillAwardGiveawayEffectProps: recipientIntegrationId.");
 
             return new WillAwardGiveawayEffectProps(poolId.Value.Value, poolName.Value, recipientIntegrationId.Value);
         }
@@ -194,7 +194,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="willAwardGiveawayEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WillAwardGiveawayEffectProps willAwardGiveawayEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -209,14 +208,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="willAwardGiveawayEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WillAwardGiveawayEffectProps willAwardGiveawayEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (willAwardGiveawayEffectProps.PoolName == null)
-                throw new ArgumentNullException(nameof(willAwardGiveawayEffectProps.PoolName), "Property is required for class WillAwardGiveawayEffectProps.");
+                throw new JsonException("Cannot write null property WillAwardGiveawayEffectProps.PoolName to non-nullable JSON property 'poolName'.");
 
             if (willAwardGiveawayEffectProps.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(willAwardGiveawayEffectProps.RecipientIntegrationId), "Property is required for class WillAwardGiveawayEffectProps.");
+                throw new JsonException("Cannot write null property WillAwardGiveawayEffectProps.RecipientIntegrationId to non-nullable JSON property 'recipientIntegrationId'.");
 
             writer.WriteNumber("poolId", willAwardGiveawayEffectProps.PoolId);
 

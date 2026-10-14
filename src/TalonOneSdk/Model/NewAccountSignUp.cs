@@ -166,22 +166,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class NewAccountSignUp.", nameof(email));
+                throw new JsonException("Property is required for class NewAccountSignUp: email.");
 
             if (!password.IsSet)
-                throw new ArgumentException("Property is required for class NewAccountSignUp.", nameof(password));
+                throw new JsonException("Property is required for class NewAccountSignUp: password.");
 
             if (!companyName.IsSet)
-                throw new ArgumentException("Property is required for class NewAccountSignUp.", nameof(companyName));
+                throw new JsonException("Property is required for class NewAccountSignUp: companyName.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class NewAccountSignUp.");
+                throw new JsonException("Property is not nullable for class NewAccountSignUp: email.");
 
             if (password.IsSet && password.Value == null)
-                throw new ArgumentNullException(nameof(password), "Property is not nullable for class NewAccountSignUp.");
+                throw new JsonException("Property is not nullable for class NewAccountSignUp: password.");
 
             if (companyName.IsSet && companyName.Value == null)
-                throw new ArgumentNullException(nameof(companyName), "Property is not nullable for class NewAccountSignUp.");
+                throw new JsonException("Property is not nullable for class NewAccountSignUp: companyName.");
 
             return new NewAccountSignUp(email.Value, password.Value, companyName.Value);
         }
@@ -192,7 +192,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newAccountSignUp"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewAccountSignUp newAccountSignUp, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -207,17 +206,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newAccountSignUp"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewAccountSignUp newAccountSignUp, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newAccountSignUp.Email == null)
-                throw new ArgumentNullException(nameof(newAccountSignUp.Email), "Property is required for class NewAccountSignUp.");
+                throw new JsonException("Cannot write null property NewAccountSignUp.Email to non-nullable JSON property 'email'.");
 
             if (newAccountSignUp.Password == null)
-                throw new ArgumentNullException(nameof(newAccountSignUp.Password), "Property is required for class NewAccountSignUp.");
+                throw new JsonException("Cannot write null property NewAccountSignUp.Password to non-nullable JSON property 'password'.");
 
             if (newAccountSignUp.CompanyName == null)
-                throw new ArgumentNullException(nameof(newAccountSignUp.CompanyName), "Property is required for class NewAccountSignUp.");
+                throw new JsonException("Cannot write null property NewAccountSignUp.CompanyName to non-nullable JSON property 'companyName'.");
 
             writer.WriteString("email", newAccountSignUp.Email);
 

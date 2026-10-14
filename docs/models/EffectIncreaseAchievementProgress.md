@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RuleIndex** | **long** | The position of the rule that triggered this effect within the ruleset. | 
 **RuleName** | **string** | The name of the rule that triggered this effect. | 
 **EffectType** | **string** | An effect discriminator of type &#x60;increaseAchievementProgress&#x60;. | 
-**Props** | [**IncreaseAchievementProgressEffectProps**](IncreaseAchievementProgressEffectProps.md) | The properties of the &#x60;increaseAchievementProgress&#x60; effect. | 
+**Props** | [**IncreaseAchievementProgressEffectProps**](IncreaseAchievementProgressEffectProps.md) |  | 
 **ExperimentId** | **long** | The ID of the experiment that campaign belongs to. | [optional] 
 **TriggeredByCoupon** | **long** | The ID of the coupon that was being evaluated when this effect was triggered. | [optional] 
 **TriggeredForCatalogItem** | **long** | The ID of the catalog item that was being evaluated when this effect was triggered. | [optional] 

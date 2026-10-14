@@ -47,8 +47,11 @@ namespace TalonOneSdk.Model
         /// <param name="transactionUUID">The identifier of the transaction in the loyalty ledger.</param>
         /// <param name="expiryDate">The expiration date for loyalty points.</param>
         /// <param name="startDate">The start date for loyalty points.</param>
+        /// <param name="created">The timestamp when the loyalty transaction occurred.</param>
+        /// <param name="awaitsActivation">Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public CardAddedDeductedPointsNotification(string cardIdentifier, string employeeName, long loyaltyProgramID, NotificationTypeEnum notificationType, List<string> profileIntegrationIDs, string sessionIntegrationID, string subledgerID, TypeOfChangeEnum typeOfChange, long userID, long usersPerCardLimit, decimal amount, OperationEnum operation, string reason, Guid transactionUUID, Option<DateTime?> expiryDate = default, Option<DateTime?> startDate = default)
+        public CardAddedDeductedPointsNotification(string cardIdentifier, string employeeName, long loyaltyProgramID, NotificationTypeEnum notificationType, List<string> profileIntegrationIDs, string sessionIntegrationID, string subledgerID, TypeOfChangeEnum typeOfChange, long userID, long usersPerCardLimit, decimal amount, OperationEnum operation, string reason, Guid transactionUUID, Option<DateTime?> expiryDate = default, Option<DateTime?> startDate = default, Option<DateTime?> created = default, Option<bool?> awaitsActivation = default, Option<string> validityDuration = default)
         {
             CardIdentifier = cardIdentifier;
             EmployeeName = employeeName;
@@ -66,6 +69,9 @@ namespace TalonOneSdk.Model
             TransactionUUID = transactionUUID;
             ExpiryDateOption = expiryDate;
             StartDateOption = startDate;
+            CreatedOption = created;
+            AwaitsActivationOption = awaitsActivation;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -425,6 +431,51 @@ namespace TalonOneSdk.Model
         public DateTime? StartDate { get { return this.StartDateOption.Value; } set { this.StartDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Used to track the state of Created
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> CreatedOption { get; private set; }
+
+        /// <summary>
+        /// The timestamp when the loyalty transaction occurred.
+        /// </summary>
+        /// <value>The timestamp when the loyalty transaction occurred.</value>
+        /* <example>2023-01-24T14:15:22Z</example> */
+        [JsonPropertyName("Created")]
+        public DateTime? Created { get { return this.CreatedOption.Value; } set { this.CreatedOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of AwaitsActivation
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> AwaitsActivationOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+        /// </summary>
+        /// <value>Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("AwaitsActivation")]
+        public bool? AwaitsActivation { get { return this.AwaitsActivationOption.Value; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("ValidityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -448,6 +499,9 @@ namespace TalonOneSdk.Model
             sb.Append("  TransactionUUID: ").Append(TransactionUUID).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
+            sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  AwaitsActivation: ").Append(AwaitsActivation).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -495,6 +549,11 @@ namespace TalonOneSdk.Model
         public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize Created
+        /// </summary>
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="CardAddedDeductedPointsNotification" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -527,6 +586,9 @@ namespace TalonOneSdk.Model
             Option<Guid?> transactionUUID = default;
             Option<DateTime?> expiryDate = default;
             Option<DateTime?> startDate = default;
+            Option<DateTime?> created = default;
+            Option<bool?> awaitsActivation = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -612,6 +674,15 @@ namespace TalonOneSdk.Model
                         case "StartDate":
                             startDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "Created":
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "AwaitsActivation":
+                            awaitsActivation = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "ValidityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -619,90 +690,90 @@ namespace TalonOneSdk.Model
             }
 
             if (!cardIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(cardIdentifier));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: CardIdentifier.");
 
             if (!employeeName.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(employeeName));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: EmployeeName.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: LoyaltyProgramID.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(notificationType));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: NotificationType.");
 
             if (!profileIntegrationIDs.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(profileIntegrationIDs));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: ProfileIntegrationIDs.");
 
             if (!sessionIntegrationID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(sessionIntegrationID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: SessionIntegrationID.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(subledgerID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: SubledgerID.");
 
             if (!typeOfChange.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(typeOfChange));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: TypeOfChange.");
 
             if (!userID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(userID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: UserID.");
 
             if (!usersPerCardLimit.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(usersPerCardLimit));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: UsersPerCardLimit.");
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(amount));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: Amount.");
 
             if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(operation));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: Operation.");
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(reason));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: Reason.");
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsNotification.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsNotification: TransactionUUID.");
 
             if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: CardIdentifier.");
 
             if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: EmployeeName.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: LoyaltyProgramID.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: NotificationType.");
 
             if (profileIntegrationIDs.IsSet && profileIntegrationIDs.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationIDs), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: ProfileIntegrationIDs.");
 
             if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: SessionIntegrationID.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: SubledgerID.");
 
             if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: TypeOfChange.");
 
             if (userID.IsSet && userID.Value == null)
-                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: UserID.");
 
             if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
-                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: UsersPerCardLimit.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: Amount.");
 
             if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: Operation.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: Reason.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsNotification: TransactionUUID.");
 
-            return new CardAddedDeductedPointsNotification(cardIdentifier.Value, employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationIDs.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, usersPerCardLimit.Value.Value, amount.Value.Value, operation.Value.Value, reason.Value, transactionUUID.Value.Value, expiryDate, startDate);
+            return new CardAddedDeductedPointsNotification(cardIdentifier.Value, employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationIDs.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, usersPerCardLimit.Value.Value, amount.Value.Value, operation.Value.Value, reason.Value, transactionUUID.Value.Value, expiryDate, startDate, created, awaitsActivation, validityDuration);
         }
 
         /// <summary>
@@ -711,7 +782,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardAddedDeductedPointsNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CardAddedDeductedPointsNotification cardAddedDeductedPointsNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -726,26 +796,25 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardAddedDeductedPointsNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CardAddedDeductedPointsNotification cardAddedDeductedPointsNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (cardAddedDeductedPointsNotification.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.CardIdentifier), "Property is required for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsNotification.CardIdentifier to non-nullable JSON property 'CardIdentifier'.");
 
             if (cardAddedDeductedPointsNotification.EmployeeName == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.EmployeeName), "Property is required for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsNotification.EmployeeName to non-nullable JSON property 'EmployeeName'.");
 
             if (cardAddedDeductedPointsNotification.ProfileIntegrationIDs == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.ProfileIntegrationIDs), "Property is required for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsNotification.ProfileIntegrationIDs to non-nullable JSON property 'ProfileIntegrationIDs'.");
 
             if (cardAddedDeductedPointsNotification.SessionIntegrationID == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.SessionIntegrationID), "Property is required for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsNotification.SessionIntegrationID to non-nullable JSON property 'SessionIntegrationID'.");
 
             if (cardAddedDeductedPointsNotification.SubledgerID == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.SubledgerID), "Property is required for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsNotification.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             if (cardAddedDeductedPointsNotification.Reason == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsNotification.Reason), "Property is required for class CardAddedDeductedPointsNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsNotification.Reason to non-nullable JSON property 'Reason'.");
 
             writer.WriteString("CardIdentifier", cardAddedDeductedPointsNotification.CardIdentifier);
 
@@ -780,6 +849,15 @@ namespace TalonOneSdk.Model
 
             if (cardAddedDeductedPointsNotification.StartDateOption.IsSet)
                 writer.WriteString("StartDate", cardAddedDeductedPointsNotification.StartDateOption.Value.Value.ToString(StartDateFormat));
+
+            if (cardAddedDeductedPointsNotification.CreatedOption.IsSet)
+                writer.WriteString("Created", cardAddedDeductedPointsNotification.CreatedOption.Value.Value.ToString(CreatedFormat));
+
+            if (cardAddedDeductedPointsNotification.AwaitsActivationOption.IsSet)
+                writer.WriteBoolean("AwaitsActivation", cardAddedDeductedPointsNotification.AwaitsActivationOption.Value.Value);
+
+            if (cardAddedDeductedPointsNotification.ValidityDurationOption.IsSet)
+                writer.WriteString("ValidityDuration", cardAddedDeductedPointsNotification.ValidityDuration);
         }
     }
 }

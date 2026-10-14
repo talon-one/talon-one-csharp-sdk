@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class MultipleAudiences.", nameof(accountId));
+                throw new JsonException("Property is required for class MultipleAudiences: accountId.");
 
             if (!audiences.IsSet)
-                throw new ArgumentException("Property is required for class MultipleAudiences.", nameof(audiences));
+                throw new JsonException("Property is required for class MultipleAudiences: audiences.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class MultipleAudiences.");
+                throw new JsonException("Property is not nullable for class MultipleAudiences: accountId.");
 
             if (audiences.IsSet && audiences.Value == null)
-                throw new ArgumentNullException(nameof(audiences), "Property is not nullable for class MultipleAudiences.");
+                throw new JsonException("Property is not nullable for class MultipleAudiences: audiences.");
 
             return new MultipleAudiences(accountId.Value.Value, audiences.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleAudiences"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MultipleAudiences multipleAudiences, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,11 +179,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleAudiences"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MultipleAudiences multipleAudiences, JsonSerializerOptions jsonSerializerOptions)
         {
             if (multipleAudiences.Audiences == null)
-                throw new ArgumentNullException(nameof(multipleAudiences.Audiences), "Property is required for class MultipleAudiences.");
+                throw new JsonException("Cannot write null property MultipleAudiences.Audiences to non-nullable JSON property 'audiences'.");
 
             writer.WriteNumber("accountId", multipleAudiences.AccountId);
 

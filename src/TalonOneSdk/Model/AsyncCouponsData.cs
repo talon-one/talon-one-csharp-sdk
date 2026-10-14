@@ -248,34 +248,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!batchID.IsSet)
-                throw new ArgumentException("Property is required for class AsyncCouponsData.", nameof(batchID));
+                throw new JsonException("Property is required for class AsyncCouponsData: BatchID.");
 
             if (!typeOfChange.IsSet)
-                throw new ArgumentException("Property is required for class AsyncCouponsData.", nameof(typeOfChange));
+                throw new JsonException("Property is required for class AsyncCouponsData: TypeOfChange.");
 
             if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class AsyncCouponsData.", nameof(operation));
+                throw new JsonException("Property is required for class AsyncCouponsData: Operation.");
 
             if (!employeeName.IsSet)
-                throw new ArgumentException("Property is required for class AsyncCouponsData.", nameof(employeeName));
+                throw new JsonException("Property is required for class AsyncCouponsData: EmployeeName.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class AsyncCouponsData.", nameof(notificationType));
+                throw new JsonException("Property is required for class AsyncCouponsData: NotificationType.");
 
             if (batchID.IsSet && batchID.Value == null)
-                throw new ArgumentNullException(nameof(batchID), "Property is not nullable for class AsyncCouponsData.");
+                throw new JsonException("Property is not nullable for class AsyncCouponsData: BatchID.");
 
             if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class AsyncCouponsData.");
+                throw new JsonException("Property is not nullable for class AsyncCouponsData: TypeOfChange.");
 
             if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class AsyncCouponsData.");
+                throw new JsonException("Property is not nullable for class AsyncCouponsData: Operation.");
 
             if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class AsyncCouponsData.");
+                throw new JsonException("Property is not nullable for class AsyncCouponsData: EmployeeName.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class AsyncCouponsData.");
+                throw new JsonException("Property is not nullable for class AsyncCouponsData: NotificationType.");
 
             return new AsyncCouponsData(batchID.Value, typeOfChange.Value, operation.Value, employeeName.Value, notificationType.Value.Value);
         }
@@ -286,7 +286,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="asyncCouponsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AsyncCouponsData asyncCouponsData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -301,20 +300,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="asyncCouponsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AsyncCouponsData asyncCouponsData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (asyncCouponsData.BatchID == null)
-                throw new ArgumentNullException(nameof(asyncCouponsData.BatchID), "Property is required for class AsyncCouponsData.");
+                throw new JsonException("Cannot write null property AsyncCouponsData.BatchID to non-nullable JSON property 'BatchID'.");
 
             if (asyncCouponsData.TypeOfChange == null)
-                throw new ArgumentNullException(nameof(asyncCouponsData.TypeOfChange), "Property is required for class AsyncCouponsData.");
+                throw new JsonException("Cannot write null property AsyncCouponsData.TypeOfChange to non-nullable JSON property 'TypeOfChange'.");
 
             if (asyncCouponsData.Operation == null)
-                throw new ArgumentNullException(nameof(asyncCouponsData.Operation), "Property is required for class AsyncCouponsData.");
+                throw new JsonException("Cannot write null property AsyncCouponsData.Operation to non-nullable JSON property 'Operation'.");
 
             if (asyncCouponsData.EmployeeName == null)
-                throw new ArgumentNullException(nameof(asyncCouponsData.EmployeeName), "Property is required for class AsyncCouponsData.");
+                throw new JsonException("Cannot write null property AsyncCouponsData.EmployeeName to non-nullable JSON property 'EmployeeName'.");
 
             writer.WriteString("BatchID", asyncCouponsData.BatchID);
 

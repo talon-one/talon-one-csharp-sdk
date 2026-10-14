@@ -316,10 +316,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!grantType.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthTokenRequest.", nameof(grantType));
+                throw new JsonException("Property is required for class MCPOAuthTokenRequest: grant_type.");
 
             if (grantType.IsSet && grantType.Value == null)
-                throw new ArgumentNullException(nameof(grantType), "Property is not nullable for class MCPOAuthTokenRequest.");
+                throw new JsonException("Property is not nullable for class MCPOAuthTokenRequest: grant_type.");
 
             return new MCPOAuthTokenRequest(grantType.Value.Value, code, clientId, redirectUri, codeVerifier, refreshToken);
         }
@@ -330,7 +330,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthTokenRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPOAuthTokenRequest mCPOAuthTokenRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -345,7 +344,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthTokenRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPOAuthTokenRequest mCPOAuthTokenRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             var grantTypeRawValue = MCPOAuthTokenRequest.GrantTypeEnumToJsonValue(mCPOAuthTokenRequest.GrantType);

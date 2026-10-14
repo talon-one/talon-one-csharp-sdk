@@ -230,16 +230,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RejectReferralEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class RejectReferralEffectProps: value.");
 
             if (!rejectionReason.IsSet)
-                throw new ArgumentException("Property is required for class RejectReferralEffectProps.", nameof(rejectionReason));
+                throw new JsonException("Property is required for class RejectReferralEffectProps: rejectionReason.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RejectReferralEffectProps.");
+                throw new JsonException("Property is not nullable for class RejectReferralEffectProps: value.");
 
             if (rejectionReason.IsSet && rejectionReason.Value == null)
-                throw new ArgumentNullException(nameof(rejectionReason), "Property is not nullable for class RejectReferralEffectProps.");
+                throw new JsonException("Property is not nullable for class RejectReferralEffectProps: rejectionReason.");
 
             return new RejectReferralEffectProps(value.Value, rejectionReason.Value, conditionIndex, effectIndex, details, campaignExclusionReason);
         }
@@ -250,7 +250,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rejectReferralEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RejectReferralEffectProps rejectReferralEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -265,14 +264,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rejectReferralEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RejectReferralEffectProps rejectReferralEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rejectReferralEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(rejectReferralEffectProps.Value), "Property is required for class RejectReferralEffectProps.");
+                throw new JsonException("Cannot write null property RejectReferralEffectProps.Value to non-nullable JSON property 'value'.");
 
             if (rejectReferralEffectProps.RejectionReason == null)
-                throw new ArgumentNullException(nameof(rejectReferralEffectProps.RejectionReason), "Property is required for class RejectReferralEffectProps.");
+                throw new JsonException("Cannot write null property RejectReferralEffectProps.RejectionReason to non-nullable JSON property 'rejectionReason'.");
 
             writer.WriteString("value", rejectReferralEffectProps.Value);
 

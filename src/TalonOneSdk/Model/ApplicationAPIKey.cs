@@ -544,46 +544,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAPIKey.", nameof(title));
+                throw new JsonException("Property is required for class ApplicationAPIKey: title.");
 
             if (!expires.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAPIKey.", nameof(expires));
+                throw new JsonException("Property is required for class ApplicationAPIKey: expires.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAPIKey.", nameof(id));
+                throw new JsonException("Property is required for class ApplicationAPIKey: id.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAPIKey.", nameof(createdBy));
+                throw new JsonException("Property is required for class ApplicationAPIKey: createdBy.");
 
             if (!accountID.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAPIKey.", nameof(accountID));
+                throw new JsonException("Property is required for class ApplicationAPIKey: accountID.");
 
             if (!applicationID.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAPIKey.", nameof(applicationID));
+                throw new JsonException("Property is required for class ApplicationAPIKey: applicationID.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationAPIKey.", nameof(created));
+                throw new JsonException("Property is required for class ApplicationAPIKey: created.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class ApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class ApplicationAPIKey: title.");
 
             if (expires.IsSet && expires.Value == null)
-                throw new ArgumentNullException(nameof(expires), "Property is not nullable for class ApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class ApplicationAPIKey: expires.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class ApplicationAPIKey: id.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class ApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class ApplicationAPIKey: createdBy.");
 
             if (accountID.IsSet && accountID.Value == null)
-                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class ApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class ApplicationAPIKey: accountID.");
 
             if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class ApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class ApplicationAPIKey: applicationID.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class ApplicationAPIKey: created.");
 
             return new ApplicationAPIKey(title.Value, expires.Value.Value, id.Value.Value, createdBy.Value.Value, accountID.Value.Value, applicationID.Value.Value, created.Value.Value, platform, type, timeOffset);
         }
@@ -594,7 +594,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationAPIKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationAPIKey applicationAPIKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -609,11 +608,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationAPIKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationAPIKey applicationAPIKey, JsonSerializerOptions jsonSerializerOptions)
         {
             if (applicationAPIKey.Title == null)
-                throw new ArgumentNullException(nameof(applicationAPIKey.Title), "Property is required for class ApplicationAPIKey.");
+                throw new JsonException("Cannot write null property ApplicationAPIKey.Title to non-nullable JSON property 'title'.");
 
             writer.WriteString("title", applicationAPIKey.Title);
 

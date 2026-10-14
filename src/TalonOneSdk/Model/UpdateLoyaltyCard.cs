@@ -154,10 +154,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyCard.", nameof(status));
+                throw new JsonException("Property is required for class UpdateLoyaltyCard: status.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class UpdateLoyaltyCard.");
+                throw new JsonException("Property is not nullable for class UpdateLoyaltyCard: status.");
 
             return new UpdateLoyaltyCard(status.Value, blockReason);
         }
@@ -168,7 +168,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateLoyaltyCard"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateLoyaltyCard updateLoyaltyCard, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -183,11 +182,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateLoyaltyCard"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateLoyaltyCard updateLoyaltyCard, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateLoyaltyCard.Status == null)
-                throw new ArgumentNullException(nameof(updateLoyaltyCard.Status), "Property is required for class UpdateLoyaltyCard.");
+                throw new JsonException("Cannot write null property UpdateLoyaltyCard.Status to non-nullable JSON property 'status'.");
 
             writer.WriteString("status", updateLoyaltyCard.Status);
 

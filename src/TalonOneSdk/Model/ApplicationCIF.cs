@@ -296,28 +296,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCIF.", nameof(id));
+                throw new JsonException("Property is required for class ApplicationCIF: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCIF.", nameof(created));
+                throw new JsonException("Property is required for class ApplicationCIF: created.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCIF.", nameof(name));
+                throw new JsonException("Property is required for class ApplicationCIF: name.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCIF.", nameof(applicationId));
+                throw new JsonException("Property is required for class ApplicationCIF: applicationId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ApplicationCIF.");
+                throw new JsonException("Property is not nullable for class ApplicationCIF: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationCIF.");
+                throw new JsonException("Property is not nullable for class ApplicationCIF: created.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ApplicationCIF.");
+                throw new JsonException("Property is not nullable for class ApplicationCIF: name.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationCIF.");
+                throw new JsonException("Property is not nullable for class ApplicationCIF: applicationId.");
 
             return new ApplicationCIF(id.Value.Value, created.Value.Value, name.Value, applicationId.Value.Value, description, activeExpressionId, modifiedBy, createdBy, modified);
         }
@@ -328,7 +328,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCIF"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationCIF applicationCIF, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -343,11 +342,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCIF"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationCIF applicationCIF, JsonSerializerOptions jsonSerializerOptions)
         {
             if (applicationCIF.Name == null)
-                throw new ArgumentNullException(nameof(applicationCIF.Name), "Property is required for class ApplicationCIF.");
+                throw new JsonException("Cannot write null property ApplicationCIF.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", applicationCIF.Id);
 

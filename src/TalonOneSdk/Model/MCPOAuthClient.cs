@@ -182,28 +182,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!clientId.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthClient.", nameof(clientId));
+                throw new JsonException("Property is required for class MCPOAuthClient: client_id.");
 
             if (!clientName.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthClient.", nameof(clientName));
+                throw new JsonException("Property is required for class MCPOAuthClient: client_name.");
 
             if (!redirectUris.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthClient.", nameof(redirectUris));
+                throw new JsonException("Property is required for class MCPOAuthClient: redirect_uris.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthClient.", nameof(createdAt));
+                throw new JsonException("Property is required for class MCPOAuthClient: created_at.");
 
             if (clientId.IsSet && clientId.Value == null)
-                throw new ArgumentNullException(nameof(clientId), "Property is not nullable for class MCPOAuthClient.");
+                throw new JsonException("Property is not nullable for class MCPOAuthClient: client_id.");
 
             if (clientName.IsSet && clientName.Value == null)
-                throw new ArgumentNullException(nameof(clientName), "Property is not nullable for class MCPOAuthClient.");
+                throw new JsonException("Property is not nullable for class MCPOAuthClient: client_name.");
 
             if (redirectUris.IsSet && redirectUris.Value == null)
-                throw new ArgumentNullException(nameof(redirectUris), "Property is not nullable for class MCPOAuthClient.");
+                throw new JsonException("Property is not nullable for class MCPOAuthClient: redirect_uris.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class MCPOAuthClient.");
+                throw new JsonException("Property is not nullable for class MCPOAuthClient: created_at.");
 
             return new MCPOAuthClient(clientId.Value, clientName.Value, redirectUris.Value, createdAt.Value.Value);
         }
@@ -214,7 +214,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthClient"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPOAuthClient mCPOAuthClient, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -229,17 +228,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthClient"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPOAuthClient mCPOAuthClient, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mCPOAuthClient.ClientId == null)
-                throw new ArgumentNullException(nameof(mCPOAuthClient.ClientId), "Property is required for class MCPOAuthClient.");
+                throw new JsonException("Cannot write null property MCPOAuthClient.ClientId to non-nullable JSON property 'client_id'.");
 
             if (mCPOAuthClient.ClientName == null)
-                throw new ArgumentNullException(nameof(mCPOAuthClient.ClientName), "Property is required for class MCPOAuthClient.");
+                throw new JsonException("Cannot write null property MCPOAuthClient.ClientName to non-nullable JSON property 'client_name'.");
 
             if (mCPOAuthClient.RedirectUris == null)
-                throw new ArgumentNullException(nameof(mCPOAuthClient.RedirectUris), "Property is required for class MCPOAuthClient.");
+                throw new JsonException("Cannot write null property MCPOAuthClient.RedirectUris to non-nullable JSON property 'redirect_uris'.");
 
             writer.WriteString("client_id", mCPOAuthClient.ClientId);
 

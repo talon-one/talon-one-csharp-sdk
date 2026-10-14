@@ -152,10 +152,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!geometry.IsSet)
-                throw new ArgumentException("Property is required for class LocationCheckAttributeBlockValuesOneOfInner.", nameof(geometry));
+                throw new JsonException("Property is required for class LocationCheckAttributeBlockValuesOneOfInner: geometry.");
 
             if (geometry.IsSet && geometry.Value == null)
-                throw new ArgumentNullException(nameof(geometry), "Property is not nullable for class LocationCheckAttributeBlockValuesOneOfInner.");
+                throw new JsonException("Property is not nullable for class LocationCheckAttributeBlockValuesOneOfInner: geometry.");
 
             return new LocationCheckAttributeBlockValuesOneOfInner(geometry.Value, name);
         }
@@ -166,7 +166,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="locationCheckAttributeBlockValuesOneOfInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LocationCheckAttributeBlockValuesOneOfInner locationCheckAttributeBlockValuesOneOfInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -181,11 +180,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="locationCheckAttributeBlockValuesOneOfInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LocationCheckAttributeBlockValuesOneOfInner locationCheckAttributeBlockValuesOneOfInner, JsonSerializerOptions jsonSerializerOptions)
         {
             if (locationCheckAttributeBlockValuesOneOfInner.Geometry == null)
-                throw new ArgumentNullException(nameof(locationCheckAttributeBlockValuesOneOfInner.Geometry), "Property is required for class LocationCheckAttributeBlockValuesOneOfInner.");
+                throw new JsonException("Cannot write null property LocationCheckAttributeBlockValuesOneOfInner.Geometry to non-nullable JSON property 'geometry'.");
 
             writer.WritePropertyName("geometry");
             JsonSerializer.Serialize(writer, locationCheckAttributeBlockValuesOneOfInner.Geometry, jsonSerializerOptions);

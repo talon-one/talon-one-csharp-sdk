@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!path.IsSet)
-                throw new ArgumentException("Property is required for class Endpoint.", nameof(path));
+                throw new JsonException("Property is required for class Endpoint: path.");
 
             if (path.IsSet && path.Value == null)
-                throw new ArgumentNullException(nameof(path), "Property is not nullable for class Endpoint.");
+                throw new JsonException("Property is not nullable for class Endpoint: path.");
 
             return new Endpoint(path.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="endpoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Endpoint endpoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="endpoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Endpoint endpoint, JsonSerializerOptions jsonSerializerOptions)
         {
             if (endpoint.Path == null)
-                throw new ArgumentNullException(nameof(endpoint.Path), "Property is required for class Endpoint.");
+                throw new JsonException("Cannot write null property Endpoint.Path to non-nullable JSON property 'path'.");
 
             writer.WriteString("path", endpoint.Path);
         }

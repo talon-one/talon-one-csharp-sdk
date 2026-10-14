@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationIds.IsSet)
-                throw new ArgumentException("Property is required for class MultiApplicationEntity.", nameof(applicationIds));
+                throw new JsonException("Property is required for class MultiApplicationEntity: applicationIds.");
 
             if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class MultiApplicationEntity.");
+                throw new JsonException("Property is not nullable for class MultiApplicationEntity: applicationIds.");
 
             return new MultiApplicationEntity(applicationIds.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multiApplicationEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MultiApplicationEntity multiApplicationEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multiApplicationEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MultiApplicationEntity multiApplicationEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             if (multiApplicationEntity.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(multiApplicationEntity.ApplicationIds), "Property is required for class MultiApplicationEntity.");
+                throw new JsonException("Cannot write null property MultiApplicationEntity.ApplicationIds to non-nullable JSON property 'applicationIds'.");
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, multiApplicationEntity.ApplicationIds, jsonSerializerOptions);

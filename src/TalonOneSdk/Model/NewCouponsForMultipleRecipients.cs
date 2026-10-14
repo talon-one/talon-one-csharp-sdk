@@ -388,10 +388,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!recipientsIntegrationIds.IsSet)
-                throw new ArgumentException("Property is required for class NewCouponsForMultipleRecipients.", nameof(recipientsIntegrationIds));
+                throw new JsonException("Property is required for class NewCouponsForMultipleRecipients: recipientsIntegrationIds.");
 
             if (recipientsIntegrationIds.IsSet && recipientsIntegrationIds.Value == null)
-                throw new ArgumentNullException(nameof(recipientsIntegrationIds), "Property is not nullable for class NewCouponsForMultipleRecipients.");
+                throw new JsonException("Property is not nullable for class NewCouponsForMultipleRecipients: recipientsIntegrationIds.");
 
             return new NewCouponsForMultipleRecipients(recipientsIntegrationIds.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, batchId, attributes, validCharacters, couponPattern);
         }
@@ -402,7 +402,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCouponsForMultipleRecipients"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewCouponsForMultipleRecipients newCouponsForMultipleRecipients, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -417,11 +416,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCouponsForMultipleRecipients"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCouponsForMultipleRecipients newCouponsForMultipleRecipients, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newCouponsForMultipleRecipients.RecipientsIntegrationIds == null)
-                throw new ArgumentNullException(nameof(newCouponsForMultipleRecipients.RecipientsIntegrationIds), "Property is required for class NewCouponsForMultipleRecipients.");
+                throw new JsonException("Cannot write null property NewCouponsForMultipleRecipients.RecipientsIntegrationIds to non-nullable JSON property 'recipientsIntegrationIds'.");
 
             writer.WritePropertyName("recipientsIntegrationIds");
             JsonSerializer.Serialize(writer, newCouponsForMultipleRecipients.RecipientsIntegrationIds, jsonSerializerOptions);

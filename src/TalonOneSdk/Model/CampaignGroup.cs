@@ -274,34 +274,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignGroup.", nameof(id));
+                throw new JsonException("Property is required for class CampaignGroup: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CampaignGroup.", nameof(created));
+                throw new JsonException("Property is required for class CampaignGroup: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class CampaignGroup.", nameof(modified));
+                throw new JsonException("Property is required for class CampaignGroup: modified.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignGroup.", nameof(accountId));
+                throw new JsonException("Property is required for class CampaignGroup: accountId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignGroup.", nameof(name));
+                throw new JsonException("Property is required for class CampaignGroup: name.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignGroup.");
+                throw new JsonException("Property is not nullable for class CampaignGroup: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignGroup.");
+                throw new JsonException("Property is not nullable for class CampaignGroup: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CampaignGroup.");
+                throw new JsonException("Property is not nullable for class CampaignGroup: modified.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CampaignGroup.");
+                throw new JsonException("Property is not nullable for class CampaignGroup: accountId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignGroup.");
+                throw new JsonException("Property is not nullable for class CampaignGroup: name.");
 
             return new CampaignGroup(id.Value.Value, created.Value.Value, modified.Value.Value, accountId.Value.Value, name.Value, description, subscribedApplicationsIds, campaignIds);
         }
@@ -312,7 +312,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignGroup campaignGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -327,11 +326,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignGroup campaignGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignGroup.Name == null)
-                throw new ArgumentNullException(nameof(campaignGroup.Name), "Property is required for class CampaignGroup.");
+                throw new JsonException("Cannot write null property CampaignGroup.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", campaignGroup.Id);
 

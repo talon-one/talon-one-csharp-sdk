@@ -278,16 +278,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!priceType.IsSet)
-                throw new ArgumentException("Property is required for class NewPriceAdjustment.", nameof(priceType));
+                throw new JsonException("Property is required for class NewPriceAdjustment: priceType.");
 
             if (!referenceId.IsSet)
-                throw new ArgumentException("Property is required for class NewPriceAdjustment.", nameof(referenceId));
+                throw new JsonException("Property is required for class NewPriceAdjustment: referenceId.");
 
             if (priceType.IsSet && priceType.Value == null)
-                throw new ArgumentNullException(nameof(priceType), "Property is not nullable for class NewPriceAdjustment.");
+                throw new JsonException("Property is not nullable for class NewPriceAdjustment: priceType.");
 
             if (referenceId.IsSet && referenceId.Value == null)
-                throw new ArgumentNullException(nameof(referenceId), "Property is not nullable for class NewPriceAdjustment.");
+                throw new JsonException("Property is not nullable for class NewPriceAdjustment: referenceId.");
 
             return new NewPriceAdjustment(priceType.Value, referenceId.Value, price, calculatedAt, effectiveFrom, effectiveUntil, contextId);
         }
@@ -298,7 +298,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newPriceAdjustment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewPriceAdjustment newPriceAdjustment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -313,14 +312,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newPriceAdjustment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewPriceAdjustment newPriceAdjustment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newPriceAdjustment.PriceType == null)
-                throw new ArgumentNullException(nameof(newPriceAdjustment.PriceType), "Property is required for class NewPriceAdjustment.");
+                throw new JsonException("Cannot write null property NewPriceAdjustment.PriceType to non-nullable JSON property 'priceType'.");
 
             if (newPriceAdjustment.ReferenceId == null)
-                throw new ArgumentNullException(nameof(newPriceAdjustment.ReferenceId), "Property is required for class NewPriceAdjustment.");
+                throw new JsonException("Cannot write null property NewPriceAdjustment.ReferenceId to non-nullable JSON property 'referenceId'.");
 
             writer.WriteString("priceType", newPriceAdjustment.PriceType);
 

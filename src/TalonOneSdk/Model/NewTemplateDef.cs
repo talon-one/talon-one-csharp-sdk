@@ -248,28 +248,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class NewTemplateDef.", nameof(title));
+                throw new JsonException("Property is required for class NewTemplateDef: title.");
 
             if (!category.IsSet)
-                throw new ArgumentException("Property is required for class NewTemplateDef.", nameof(category));
+                throw new JsonException("Property is required for class NewTemplateDef: category.");
 
             if (!expr.IsSet)
-                throw new ArgumentException("Property is required for class NewTemplateDef.", nameof(expr));
+                throw new JsonException("Property is required for class NewTemplateDef: expr.");
 
             if (!args.IsSet)
-                throw new ArgumentException("Property is required for class NewTemplateDef.", nameof(args));
+                throw new JsonException("Property is required for class NewTemplateDef: args.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewTemplateDef.");
+                throw new JsonException("Property is not nullable for class NewTemplateDef: title.");
 
             if (category.IsSet && category.Value == null)
-                throw new ArgumentNullException(nameof(category), "Property is not nullable for class NewTemplateDef.");
+                throw new JsonException("Property is not nullable for class NewTemplateDef: category.");
 
             if (expr.IsSet && expr.Value == null)
-                throw new ArgumentNullException(nameof(expr), "Property is not nullable for class NewTemplateDef.");
+                throw new JsonException("Property is not nullable for class NewTemplateDef: expr.");
 
             if (args.IsSet && args.Value == null)
-                throw new ArgumentNullException(nameof(args), "Property is not nullable for class NewTemplateDef.");
+                throw new JsonException("Property is not nullable for class NewTemplateDef: args.");
 
             return new NewTemplateDef(title.Value, category.Value, expr.Value, args.Value, description, help, expose);
         }
@@ -280,7 +280,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newTemplateDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewTemplateDef newTemplateDef, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -295,20 +294,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newTemplateDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewTemplateDef newTemplateDef, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newTemplateDef.Title == null)
-                throw new ArgumentNullException(nameof(newTemplateDef.Title), "Property is required for class NewTemplateDef.");
+                throw new JsonException("Cannot write null property NewTemplateDef.Title to non-nullable JSON property 'title'.");
 
             if (newTemplateDef.Category == null)
-                throw new ArgumentNullException(nameof(newTemplateDef.Category), "Property is required for class NewTemplateDef.");
+                throw new JsonException("Cannot write null property NewTemplateDef.Category to non-nullable JSON property 'category'.");
 
             if (newTemplateDef.Expr == null)
-                throw new ArgumentNullException(nameof(newTemplateDef.Expr), "Property is required for class NewTemplateDef.");
+                throw new JsonException("Cannot write null property NewTemplateDef.Expr to non-nullable JSON property 'expr'.");
 
             if (newTemplateDef.Args == null)
-                throw new ArgumentNullException(nameof(newTemplateDef.Args), "Property is required for class NewTemplateDef.");
+                throw new JsonException("Cannot write null property NewTemplateDef.Args to non-nullable JSON property 'args'.");
 
             writer.WriteString("title", newTemplateDef.Title);
 

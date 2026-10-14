@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="effectType">An effect discriminator of type &#x60;setDiscount&#x60;.</param>
-        /// <param name="props">The properties of the &#x60;setDiscount&#x60; effect.</param>
+        /// <param name="props">props</param>
         /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
         /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
         /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
@@ -170,9 +170,8 @@ namespace TalonOneSdk.Model
         public string RuleName { get; set; }
 
         /// <summary>
-        /// The properties of the &#x60;setDiscount&#x60; effect.
+        /// Gets or Sets Props
         /// </summary>
-        /// <value>The properties of the &#x60;setDiscount&#x60; effect.</value>
         [JsonPropertyName("props")]
         public SetDiscountEffectProps Props { get; set; }
 
@@ -551,40 +550,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetDiscount.", nameof(campaignId));
+                throw new JsonException("Property is required for class EffectSetDiscount: campaignId.");
 
             if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetDiscount.", nameof(rulesetId));
+                throw new JsonException("Property is required for class EffectSetDiscount: rulesetId.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetDiscount.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class EffectSetDiscount: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetDiscount.", nameof(ruleName));
+                throw new JsonException("Property is required for class EffectSetDiscount: ruleName.");
 
             if (!effectType.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetDiscount.", nameof(effectType));
+                throw new JsonException("Property is required for class EffectSetDiscount: effectType.");
 
             if (!props.IsSet)
-                throw new ArgumentException("Property is required for class EffectSetDiscount.", nameof(props));
+                throw new JsonException("Property is required for class EffectSetDiscount: props.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectSetDiscount.");
+                throw new JsonException("Property is not nullable for class EffectSetDiscount: campaignId.");
 
             if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectSetDiscount.");
+                throw new JsonException("Property is not nullable for class EffectSetDiscount: rulesetId.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectSetDiscount.");
+                throw new JsonException("Property is not nullable for class EffectSetDiscount: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectSetDiscount.");
+                throw new JsonException("Property is not nullable for class EffectSetDiscount: ruleName.");
 
             if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectSetDiscount.");
+                throw new JsonException("Property is not nullable for class EffectSetDiscount: effectType.");
 
             if (props.IsSet && props.Value == null)
-                throw new ArgumentNullException(nameof(props), "Property is not nullable for class EffectSetDiscount.");
+                throw new JsonException("Property is not nullable for class EffectSetDiscount: props.");
 
             return new EffectSetDiscount(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, props.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, rewardIntegrationId);
         }
@@ -595,7 +594,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectSetDiscount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EffectSetDiscount effectSetDiscount, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -610,14 +608,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectSetDiscount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EffectSetDiscount effectSetDiscount, JsonSerializerOptions jsonSerializerOptions)
         {
             if (effectSetDiscount.RuleName == null)
-                throw new ArgumentNullException(nameof(effectSetDiscount.RuleName), "Property is required for class EffectSetDiscount.");
+                throw new JsonException("Cannot write null property EffectSetDiscount.RuleName to non-nullable JSON property 'ruleName'.");
 
             if (effectSetDiscount.Props == null)
-                throw new ArgumentNullException(nameof(effectSetDiscount.Props), "Property is required for class EffectSetDiscount.");
+                throw new JsonException("Cannot write null property EffectSetDiscount.Props to non-nullable JSON property 'props'.");
 
             writer.WriteNumber("campaignId", effectSetDiscount.CampaignId);
 

@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="WebhookAuthenticationBase" /> class.
         /// </summary>
         /// <param name="webhookAuthenticationBaseBasic"></param>
-        public WebhookAuthenticationBase(WebhookAuthenticationBaseBasic webhookAuthenticationBaseBasic)
+        internal WebhookAuthenticationBase(WebhookAuthenticationBaseBasic webhookAuthenticationBaseBasic)
         {
             WebhookAuthenticationBaseBasic = webhookAuthenticationBaseBasic;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="WebhookAuthenticationBase" /> class.
         /// </summary>
         /// <param name="webhookAuthenticationBaseCustom"></param>
-        public WebhookAuthenticationBase(WebhookAuthenticationBaseCustom webhookAuthenticationBaseCustom)
+        internal WebhookAuthenticationBase(WebhookAuthenticationBaseCustom webhookAuthenticationBaseCustom)
         {
             WebhookAuthenticationBaseCustom = webhookAuthenticationBaseCustom;
             OnCreated();
@@ -261,7 +261,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthenticationBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookAuthenticationBase webhookAuthenticationBase, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -288,7 +287,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthenticationBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookAuthenticationBase webhookAuthenticationBase, JsonSerializerOptions jsonSerializerOptions)
         {
 

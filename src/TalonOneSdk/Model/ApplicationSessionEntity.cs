@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!sessionId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationSessionEntity.", nameof(sessionId));
+                throw new JsonException("Property is required for class ApplicationSessionEntity: sessionId.");
 
             if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class ApplicationSessionEntity.");
+                throw new JsonException("Property is not nullable for class ApplicationSessionEntity: sessionId.");
 
             return new ApplicationSessionEntity(sessionId.Value.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationSessionEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationSessionEntity applicationSessionEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,7 +160,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationSessionEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationSessionEntity applicationSessionEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("sessionId", applicationSessionEntity.SessionId);

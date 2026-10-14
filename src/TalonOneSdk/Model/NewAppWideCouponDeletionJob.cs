@@ -143,16 +143,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!filters.IsSet)
-                throw new ArgumentException("Property is required for class NewAppWideCouponDeletionJob.", nameof(filters));
+                throw new JsonException("Property is required for class NewAppWideCouponDeletionJob: filters.");
 
             if (!campaignids.IsSet)
-                throw new ArgumentException("Property is required for class NewAppWideCouponDeletionJob.", nameof(campaignids));
+                throw new JsonException("Property is required for class NewAppWideCouponDeletionJob: campaignids.");
 
             if (filters.IsSet && filters.Value == null)
-                throw new ArgumentNullException(nameof(filters), "Property is not nullable for class NewAppWideCouponDeletionJob.");
+                throw new JsonException("Property is not nullable for class NewAppWideCouponDeletionJob: filters.");
 
             if (campaignids.IsSet && campaignids.Value == null)
-                throw new ArgumentNullException(nameof(campaignids), "Property is not nullable for class NewAppWideCouponDeletionJob.");
+                throw new JsonException("Property is not nullable for class NewAppWideCouponDeletionJob: campaignids.");
 
             return new NewAppWideCouponDeletionJob(filters.Value, campaignids.Value);
         }
@@ -163,7 +163,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newAppWideCouponDeletionJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewAppWideCouponDeletionJob newAppWideCouponDeletionJob, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -178,14 +177,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newAppWideCouponDeletionJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewAppWideCouponDeletionJob newAppWideCouponDeletionJob, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newAppWideCouponDeletionJob.Filters == null)
-                throw new ArgumentNullException(nameof(newAppWideCouponDeletionJob.Filters), "Property is required for class NewAppWideCouponDeletionJob.");
+                throw new JsonException("Cannot write null property NewAppWideCouponDeletionJob.Filters to non-nullable JSON property 'filters'.");
 
             if (newAppWideCouponDeletionJob.Campaignids == null)
-                throw new ArgumentNullException(nameof(newAppWideCouponDeletionJob.Campaignids), "Property is required for class NewAppWideCouponDeletionJob.");
+                throw new JsonException("Cannot write null property NewAppWideCouponDeletionJob.Campaignids to non-nullable JSON property 'campaignids'.");
 
             writer.WritePropertyName("filters");
             JsonSerializer.Serialize(writer, newAppWideCouponDeletionJob.Filters, jsonSerializerOptions);

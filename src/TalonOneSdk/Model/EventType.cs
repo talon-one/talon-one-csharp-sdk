@@ -216,28 +216,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class EventType.", nameof(id));
+                throw new JsonException("Property is required for class EventType: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class EventType.", nameof(created));
+                throw new JsonException("Property is required for class EventType: created.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class EventType.", nameof(title));
+                throw new JsonException("Property is required for class EventType: title.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class EventType.", nameof(name));
+                throw new JsonException("Property is required for class EventType: name.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class EventType.");
+                throw new JsonException("Property is not nullable for class EventType: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class EventType.");
+                throw new JsonException("Property is not nullable for class EventType: created.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class EventType.");
+                throw new JsonException("Property is not nullable for class EventType: title.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class EventType.");
+                throw new JsonException("Property is not nullable for class EventType: name.");
 
             return new EventType(id.Value.Value, created.Value.Value, title.Value, name.Value, description);
         }
@@ -248,7 +248,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EventType eventType, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -263,14 +262,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EventType eventType, JsonSerializerOptions jsonSerializerOptions)
         {
             if (eventType.Title == null)
-                throw new ArgumentNullException(nameof(eventType.Title), "Property is required for class EventType.");
+                throw new JsonException("Cannot write null property EventType.Title to non-nullable JSON property 'title'.");
 
             if (eventType.Name == null)
-                throw new ArgumentNullException(nameof(eventType.Name), "Property is required for class EventType.");
+                throw new JsonException("Cannot write null property EventType.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", eventType.Id);
 

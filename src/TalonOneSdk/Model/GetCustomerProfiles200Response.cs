@@ -143,16 +143,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class GetCustomerProfiles200Response.", nameof(hasMore));
+                throw new JsonException("Property is required for class GetCustomerProfiles200Response: hasMore.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GetCustomerProfiles200Response.", nameof(data));
+                throw new JsonException("Property is required for class GetCustomerProfiles200Response: data.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class GetCustomerProfiles200Response.");
+                throw new JsonException("Property is not nullable for class GetCustomerProfiles200Response: hasMore.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetCustomerProfiles200Response.");
+                throw new JsonException("Property is not nullable for class GetCustomerProfiles200Response: data.");
 
             return new GetCustomerProfiles200Response(hasMore.Value.Value, data.Value);
         }
@@ -163,7 +163,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCustomerProfiles200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetCustomerProfiles200Response getCustomerProfiles200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -178,11 +177,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCustomerProfiles200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetCustomerProfiles200Response getCustomerProfiles200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getCustomerProfiles200Response.Data == null)
-                throw new ArgumentNullException(nameof(getCustomerProfiles200Response.Data), "Property is required for class GetCustomerProfiles200Response.");
+                throw new JsonException("Cannot write null property GetCustomerProfiles200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WriteBoolean("hasMore", getCustomerProfiles200Response.HasMore);
 

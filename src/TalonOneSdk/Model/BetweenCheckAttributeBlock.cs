@@ -228,10 +228,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!min.IsSet)
-                throw new ArgumentException("Property is required for class BetweenCheckAttributeBlock.", nameof(min));
+                throw new JsonException("Property is required for class BetweenCheckAttributeBlock: min.");
 
             if (!max.IsSet)
-                throw new ArgumentException("Property is required for class BetweenCheckAttributeBlock.", nameof(max));
+                throw new JsonException("Property is required for class BetweenCheckAttributeBlock: max.");
 
             return new BetweenCheckAttributeBlock(varOperator, min.Value, max.Value);
         }
@@ -242,7 +242,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="betweenCheckAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BetweenCheckAttributeBlock betweenCheckAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,7 +256,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="betweenCheckAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BetweenCheckAttributeBlock betweenCheckAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (betweenCheckAttributeBlock.OperatorOption.IsSet)

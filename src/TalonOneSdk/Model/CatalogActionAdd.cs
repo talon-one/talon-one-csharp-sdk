@@ -205,16 +205,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionAdd.", nameof(type));
+                throw new JsonException("Property is required for class CatalogActionAdd: type.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionAdd.", nameof(payload));
+                throw new JsonException("Property is required for class CatalogActionAdd: payload.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CatalogActionAdd.");
+                throw new JsonException("Property is not nullable for class CatalogActionAdd: type.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CatalogActionAdd.");
+                throw new JsonException("Property is not nullable for class CatalogActionAdd: payload.");
 
             return new CatalogActionAdd(type.Value.Value, payload.Value);
         }
@@ -225,7 +225,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogActionAdd"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CatalogActionAdd catalogActionAdd, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -240,11 +239,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogActionAdd"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CatalogActionAdd catalogActionAdd, JsonSerializerOptions jsonSerializerOptions)
         {
             if (catalogActionAdd.Payload == null)
-                throw new ArgumentNullException(nameof(catalogActionAdd.Payload), "Property is required for class CatalogActionAdd.");
+                throw new JsonException("Cannot write null property CatalogActionAdd.Payload to non-nullable JSON property 'payload'.");
 
             var typeRawValue = CatalogActionAdd.TypeEnumToJsonValue(catalogActionAdd.Type);
             writer.WriteString("type", typeRawValue);

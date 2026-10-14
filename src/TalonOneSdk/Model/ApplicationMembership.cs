@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationMembership.", nameof(applicationId));
+                throw new JsonException("Property is required for class ApplicationMembership: applicationId.");
 
             if (!applicationName.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationMembership.", nameof(applicationName));
+                throw new JsonException("Property is required for class ApplicationMembership: applicationName.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationMembership.");
+                throw new JsonException("Property is not nullable for class ApplicationMembership: applicationId.");
 
             if (applicationName.IsSet && applicationName.Value == null)
-                throw new ArgumentNullException(nameof(applicationName), "Property is not nullable for class ApplicationMembership.");
+                throw new JsonException("Property is not nullable for class ApplicationMembership: applicationName.");
 
             return new ApplicationMembership(applicationId.Value.Value, applicationName.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationMembership"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationMembership applicationMembership, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,11 +181,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationMembership"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationMembership applicationMembership, JsonSerializerOptions jsonSerializerOptions)
         {
             if (applicationMembership.ApplicationName == null)
-                throw new ArgumentNullException(nameof(applicationMembership.ApplicationName), "Property is required for class ApplicationMembership.");
+                throw new JsonException("Cannot write null property ApplicationMembership.ApplicationName to non-nullable JSON property 'applicationName'.");
 
             writer.WriteNumber("applicationId", applicationMembership.ApplicationId);
 

@@ -80,7 +80,7 @@ namespace TalonOneSdk.Model
         /// <param name="revisionFrontendState">The campaign revision state displayed in the Campaign Manager.</param>
         /// <param name="activeRevisionId">ID of the revision that was last activated on this campaign. </param>
         /// <param name="activeRevisionVersionId">ID of the revision version that is active on the campaign. </param>
-        /// <param name="varVersion">Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign. </param>
+        /// <param name="varVersion">Incrementing number representing how many revisions have been activated on this campaign. Starts from &#x60;0&#x60; for a new campaign. </param>
         /// <param name="currentRevisionId">ID of the revision currently being modified for the campaign. </param>
         /// <param name="currentRevisionVersionId">ID of the latest version applied on the current revision. </param>
         /// <param name="stageRevision">Flag for determining whether we use current revision when sending requests with staging API key.  (default to false)</param>
@@ -1285,9 +1285,9 @@ namespace TalonOneSdk.Model
         public Option<long?> VarVersionOption { get; private set; }
 
         /// <summary>
-        /// Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign. 
+        /// Incrementing number representing how many revisions have been activated on this campaign. Starts from &#x60;0&#x60; for a new campaign. 
         /// </summary>
-        /// <value>Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign. </value>
+        /// <value>Incrementing number representing how many revisions have been activated on this campaign. Starts from &#x60;0&#x60; for a new campaign. </value>
         /* <example>6</example> */
         [JsonPropertyName("version")]
         public long? VarVersion { get { return this.VarVersionOption.Value; } set { this.VarVersionOption = new Option<long?>(value); } }
@@ -1760,76 +1760,76 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(id));
+                throw new JsonException("Property is required for class Campaign: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(created));
+                throw new JsonException("Property is required for class Campaign: created.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(applicationId));
+                throw new JsonException("Property is required for class Campaign: applicationId.");
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(userId));
+                throw new JsonException("Property is required for class Campaign: userId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(name));
+                throw new JsonException("Property is required for class Campaign: name.");
 
             if (!tags.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(tags));
+                throw new JsonException("Property is required for class Campaign: tags.");
 
             if (!reevaluateOnReturn.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(reevaluateOnReturn));
+                throw new JsonException("Property is required for class Campaign: reevaluateOnReturn.");
 
             if (!features.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(features));
+                throw new JsonException("Property is required for class Campaign: features.");
 
             if (!limits.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(limits));
+                throw new JsonException("Property is required for class Campaign: limits.");
 
             if (!frontendState.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(frontendState));
+                throw new JsonException("Property is required for class Campaign: frontendState.");
 
             if (!storesImported.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(storesImported));
+                throw new JsonException("Property is required for class Campaign: storesImported.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class Campaign.", nameof(state));
+                throw new JsonException("Property is required for class Campaign: state.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: created.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: applicationId.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: userId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: name.");
 
             if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: tags.");
 
             if (reevaluateOnReturn.IsSet && reevaluateOnReturn.Value == null)
-                throw new ArgumentNullException(nameof(reevaluateOnReturn), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: reevaluateOnReturn.");
 
             if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: features.");
 
             if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: limits.");
 
             if (frontendState.IsSet && frontendState.Value == null)
-                throw new ArgumentNullException(nameof(frontendState), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: frontendState.");
 
             if (storesImported.IsSet && storesImported.Value == null)
-                throw new ArgumentNullException(nameof(storesImported), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: storesImported.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class Campaign.");
+                throw new JsonException("Property is not nullable for class Campaign: state.");
 
             return new Campaign(id.Value.Value, created.Value.Value, applicationId.Value.Value, userId.Value.Value, name.Value, tags.Value, reevaluateOnReturn.Value.Value, features.Value, limits.Value, frontendState.Value.Value, storesImported.Value.Value, description, startTime, endTime, attributes, state.Value.Value, activeRulesetId, couponSettings, referralSettings, campaignGroups, type, linkedStoreIds, couponAttributes, budgets, couponRedemptionCount, referralRedemptionCount, discountCount, discountEffectCount, couponCreationCount, customEffectCount, referralCreationCount, addFreeItemEffectCount, awardedGiveawaysCount, createdLoyaltyPointsCount, createdLoyaltyPointsEffectCount, redeemedLoyaltyPointsCount, redeemedLoyaltyPointsEffectCount, callApiEffectCount, reservecouponEffectCount, lastActivity, updated, createdBy, updatedBy, templateId, valueMapsIds, experimentId, revisionFrontendState, activeRevisionId, activeRevisionVersionId, varVersion, currentRevisionId, currentRevisionVersionId, stageRevision);
         }
@@ -1840,7 +1840,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Campaign campaign, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -1855,20 +1854,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Campaign campaign, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaign.Name == null)
-                throw new ArgumentNullException(nameof(campaign.Name), "Property is required for class Campaign.");
+                throw new JsonException("Cannot write null property Campaign.Name to non-nullable JSON property 'name'.");
 
             if (campaign.Tags == null)
-                throw new ArgumentNullException(nameof(campaign.Tags), "Property is required for class Campaign.");
+                throw new JsonException("Cannot write null property Campaign.Tags to non-nullable JSON property 'tags'.");
 
             if (campaign.Features == null)
-                throw new ArgumentNullException(nameof(campaign.Features), "Property is required for class Campaign.");
+                throw new JsonException("Cannot write null property Campaign.Features to non-nullable JSON property 'features'.");
 
             if (campaign.Limits == null)
-                throw new ArgumentNullException(nameof(campaign.Limits), "Property is required for class Campaign.");
+                throw new JsonException("Cannot write null property Campaign.Limits to non-nullable JSON property 'limits'.");
 
             writer.WriteNumber("id", campaign.Id);
 

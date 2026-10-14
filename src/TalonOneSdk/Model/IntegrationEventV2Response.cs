@@ -348,22 +348,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!effects.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEventV2Response.", nameof(effects));
+                throw new JsonException("Property is required for class IntegrationEventV2Response: effects.");
 
             if (!createdCoupons.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEventV2Response.", nameof(createdCoupons));
+                throw new JsonException("Property is required for class IntegrationEventV2Response: createdCoupons.");
 
             if (!createdReferrals.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEventV2Response.", nameof(createdReferrals));
+                throw new JsonException("Property is required for class IntegrationEventV2Response: createdReferrals.");
 
             if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationEventV2Response.");
+                throw new JsonException("Property is not nullable for class IntegrationEventV2Response: effects.");
 
             if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class IntegrationEventV2Response.");
+                throw new JsonException("Property is not nullable for class IntegrationEventV2Response: createdCoupons.");
 
             if (createdReferrals.IsSet && createdReferrals.Value == null)
-                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class IntegrationEventV2Response.");
+                throw new JsonException("Property is not nullable for class IntegrationEventV2Response: createdReferrals.");
 
             return new IntegrationEventV2Response(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, loyalty, triggeredCampaigns, campaignEligibility, ruleFailureReasons, awardedGiveaways, achievements, rewards, varEvent);
         }
@@ -374,7 +374,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEventV2Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationEventV2Response integrationEventV2Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -389,17 +388,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEventV2Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationEventV2Response integrationEventV2Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationEventV2Response.Effects == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Response.Effects), "Property is required for class IntegrationEventV2Response.");
+                throw new JsonException("Cannot write null property IntegrationEventV2Response.Effects to non-nullable JSON property 'effects'.");
 
             if (integrationEventV2Response.CreatedCoupons == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Response.CreatedCoupons), "Property is required for class IntegrationEventV2Response.");
+                throw new JsonException("Cannot write null property IntegrationEventV2Response.CreatedCoupons to non-nullable JSON property 'createdCoupons'.");
 
             if (integrationEventV2Response.CreatedReferrals == null)
-                throw new ArgumentNullException(nameof(integrationEventV2Response.CreatedReferrals), "Property is required for class IntegrationEventV2Response.");
+                throw new JsonException("Cannot write null property IntegrationEventV2Response.CreatedReferrals to non-nullable JSON property 'createdReferrals'.");
 
             writer.WritePropertyName("effects");
             JsonSerializer.Serialize(writer, integrationEventV2Response.Effects, jsonSerializerOptions);

@@ -169,16 +169,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!validCharacters.IsSet)
-                throw new ArgumentException("Property is required for class CodeGeneratorSettings.", nameof(validCharacters));
+                throw new JsonException("Property is required for class CodeGeneratorSettings: validCharacters.");
 
             if (!couponPattern.IsSet)
-                throw new ArgumentException("Property is required for class CodeGeneratorSettings.", nameof(couponPattern));
+                throw new JsonException("Property is required for class CodeGeneratorSettings: couponPattern.");
 
             if (validCharacters.IsSet && validCharacters.Value == null)
-                throw new ArgumentNullException(nameof(validCharacters), "Property is not nullable for class CodeGeneratorSettings.");
+                throw new JsonException("Property is not nullable for class CodeGeneratorSettings: validCharacters.");
 
             if (couponPattern.IsSet && couponPattern.Value == null)
-                throw new ArgumentNullException(nameof(couponPattern), "Property is not nullable for class CodeGeneratorSettings.");
+                throw new JsonException("Property is not nullable for class CodeGeneratorSettings: couponPattern.");
 
             return new CodeGeneratorSettings(validCharacters.Value, couponPattern.Value);
         }
@@ -189,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="codeGeneratorSettings"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CodeGeneratorSettings codeGeneratorSettings, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -204,14 +203,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="codeGeneratorSettings"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CodeGeneratorSettings codeGeneratorSettings, JsonSerializerOptions jsonSerializerOptions)
         {
             if (codeGeneratorSettings.ValidCharacters == null)
-                throw new ArgumentNullException(nameof(codeGeneratorSettings.ValidCharacters), "Property is required for class CodeGeneratorSettings.");
+                throw new JsonException("Cannot write null property CodeGeneratorSettings.ValidCharacters to non-nullable JSON property 'validCharacters'.");
 
             if (codeGeneratorSettings.CouponPattern == null)
-                throw new ArgumentNullException(nameof(codeGeneratorSettings.CouponPattern), "Property is required for class CodeGeneratorSettings.");
+                throw new JsonException("Cannot write null property CodeGeneratorSettings.CouponPattern to non-nullable JSON property 'couponPattern'.");
 
             writer.WritePropertyName("validCharacters");
             JsonSerializer.Serialize(writer, codeGeneratorSettings.ValidCharacters, jsonSerializerOptions);

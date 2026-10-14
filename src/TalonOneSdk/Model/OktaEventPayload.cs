@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class OktaEventPayload.", nameof(data));
+                throw new JsonException("Property is required for class OktaEventPayload: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class OktaEventPayload.");
+                throw new JsonException("Property is not nullable for class OktaEventPayload: data.");
 
             return new OktaEventPayload(data.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="oktaEventPayload"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OktaEventPayload oktaEventPayload, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="oktaEventPayload"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OktaEventPayload oktaEventPayload, JsonSerializerOptions jsonSerializerOptions)
         {
             if (oktaEventPayload.Data == null)
-                throw new ArgumentNullException(nameof(oktaEventPayload.Data), "Property is required for class OktaEventPayload.");
+                throw new JsonException("Cannot write null property OktaEventPayload.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, oktaEventPayload.Data, jsonSerializerOptions);

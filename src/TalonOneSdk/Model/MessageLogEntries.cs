@@ -153,10 +153,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class MessageLogEntries.", nameof(data));
+                throw new JsonException("Property is required for class MessageLogEntries: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class MessageLogEntries.");
+                throw new JsonException("Property is not nullable for class MessageLogEntries: data.");
 
             return new MessageLogEntries(data.Value, nextCursor);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="messageLogEntries"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageLogEntries messageLogEntries, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,11 +181,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="messageLogEntries"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageLogEntries messageLogEntries, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageLogEntries.Data == null)
-                throw new ArgumentNullException(nameof(messageLogEntries.Data), "Property is required for class MessageLogEntries.");
+                throw new JsonException("Cannot write null property MessageLogEntries.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, messageLogEntries.Data, jsonSerializerOptions);

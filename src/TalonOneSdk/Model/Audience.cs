@@ -359,28 +359,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Audience.", nameof(accountId));
+                throw new JsonException("Property is required for class Audience: accountId.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Audience.", nameof(id));
+                throw new JsonException("Property is required for class Audience: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Audience.", nameof(created));
+                throw new JsonException("Property is required for class Audience: created.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Audience.", nameof(name));
+                throw new JsonException("Property is required for class Audience: name.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Audience.");
+                throw new JsonException("Property is not nullable for class Audience: accountId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Audience.");
+                throw new JsonException("Property is not nullable for class Audience: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Audience.");
+                throw new JsonException("Property is not nullable for class Audience: created.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Audience.");
+                throw new JsonException("Property is not nullable for class Audience: name.");
 
             return new Audience(accountId.Value.Value, id.Value.Value, created.Value.Value, name.Value, sandbox, description, subscribedApplicationsIds, integration, integrationId, createdIn3rdParty, lastUpdate);
         }
@@ -391,7 +391,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="audience"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Audience audience, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -406,11 +405,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="audience"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Audience audience, JsonSerializerOptions jsonSerializerOptions)
         {
             if (audience.Name == null)
-                throw new ArgumentNullException(nameof(audience.Name), "Property is required for class Audience.");
+                throw new JsonException("Cannot write null property Audience.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("accountId", audience.AccountId);
 

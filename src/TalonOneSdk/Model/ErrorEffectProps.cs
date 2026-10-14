@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class ErrorEffectProps.", nameof(message));
+                throw new JsonException("Property is required for class ErrorEffectProps: message.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class ErrorEffectProps.");
+                throw new JsonException("Property is not nullable for class ErrorEffectProps: message.");
 
             return new ErrorEffectProps(message.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="errorEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ErrorEffectProps errorEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="errorEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ErrorEffectProps errorEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (errorEffectProps.Message == null)
-                throw new ArgumentNullException(nameof(errorEffectProps.Message), "Property is required for class ErrorEffectProps.");
+                throw new JsonException("Cannot write null property ErrorEffectProps.Message to non-nullable JSON property 'message'.");
 
             writer.WriteString("message", errorEffectProps.Message);
         }

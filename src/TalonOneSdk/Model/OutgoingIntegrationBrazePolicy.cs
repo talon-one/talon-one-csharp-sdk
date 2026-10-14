@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!baseUrl.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationBrazePolicy.", nameof(baseUrl));
+                throw new JsonException("Property is required for class OutgoingIntegrationBrazePolicy: baseUrl.");
 
             if (!apiKey.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationBrazePolicy.", nameof(apiKey));
+                throw new JsonException("Property is required for class OutgoingIntegrationBrazePolicy: apiKey.");
 
             if (baseUrl.IsSet && baseUrl.Value == null)
-                throw new ArgumentNullException(nameof(baseUrl), "Property is not nullable for class OutgoingIntegrationBrazePolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationBrazePolicy: baseUrl.");
 
             if (apiKey.IsSet && apiKey.Value == null)
-                throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class OutgoingIntegrationBrazePolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationBrazePolicy: apiKey.");
 
             return new OutgoingIntegrationBrazePolicy(baseUrl.Value, apiKey.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationBrazePolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutgoingIntegrationBrazePolicy outgoingIntegrationBrazePolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationBrazePolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationBrazePolicy outgoingIntegrationBrazePolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outgoingIntegrationBrazePolicy.BaseUrl == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationBrazePolicy.BaseUrl), "Property is required for class OutgoingIntegrationBrazePolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationBrazePolicy.BaseUrl to non-nullable JSON property 'baseUrl'.");
 
             if (outgoingIntegrationBrazePolicy.ApiKey == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationBrazePolicy.ApiKey), "Property is required for class OutgoingIntegrationBrazePolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationBrazePolicy.ApiKey to non-nullable JSON property 'apiKey'.");
 
             writer.WriteString("baseUrl", outgoingIntegrationBrazePolicy.BaseUrl);
 

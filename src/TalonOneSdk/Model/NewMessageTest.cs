@@ -374,16 +374,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!verb.IsSet)
-                throw new ArgumentException("Property is required for class NewMessageTest.", nameof(verb));
+                throw new JsonException("Property is required for class NewMessageTest: verb.");
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class NewMessageTest.", nameof(url));
+                throw new JsonException("Property is required for class NewMessageTest: url.");
 
             if (verb.IsSet && verb.Value == null)
-                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class NewMessageTest.");
+                throw new JsonException("Property is not nullable for class NewMessageTest: verb.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class NewMessageTest.");
+                throw new JsonException("Property is not nullable for class NewMessageTest: url.");
 
             return new NewMessageTest(verb.Value.Value, url.Value, headers, payload, varParams, applicationIds, authenticationId);
         }
@@ -394,7 +394,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newMessageTest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewMessageTest newMessageTest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -409,11 +408,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newMessageTest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewMessageTest newMessageTest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newMessageTest.Url == null)
-                throw new ArgumentNullException(nameof(newMessageTest.Url), "Property is required for class NewMessageTest.");
+                throw new JsonException("Cannot write null property NewMessageTest.Url to non-nullable JSON property 'url'.");
 
             var verbRawValue = NewMessageTest.VerbEnumToJsonValue(newMessageTest.Verb);
             writer.WriteString("verb", verbRawValue);

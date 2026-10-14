@@ -175,28 +175,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!metrics.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsights.", nameof(metrics));
+                throw new JsonException("Property is required for class ExperimentSegmentInsights: metrics.");
 
             if (!totalSegmentsTested.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsights.", nameof(totalSegmentsTested));
+                throw new JsonException("Property is required for class ExperimentSegmentInsights: totalSegmentsTested.");
 
             if (!dimensionsTested.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsights.", nameof(dimensionsTested));
+                throw new JsonException("Property is required for class ExperimentSegmentInsights: dimensionsTested.");
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsights.", nameof(reason));
+                throw new JsonException("Property is required for class ExperimentSegmentInsights: reason.");
 
             if (metrics.IsSet && metrics.Value == null)
-                throw new ArgumentNullException(nameof(metrics), "Property is not nullable for class ExperimentSegmentInsights.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsights: metrics.");
 
             if (totalSegmentsTested.IsSet && totalSegmentsTested.Value == null)
-                throw new ArgumentNullException(nameof(totalSegmentsTested), "Property is not nullable for class ExperimentSegmentInsights.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsights: totalSegmentsTested.");
 
             if (dimensionsTested.IsSet && dimensionsTested.Value == null)
-                throw new ArgumentNullException(nameof(dimensionsTested), "Property is not nullable for class ExperimentSegmentInsights.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsights: dimensionsTested.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class ExperimentSegmentInsights.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsights: reason.");
 
             return new ExperimentSegmentInsights(metrics.Value, totalSegmentsTested.Value.Value, dimensionsTested.Value.Value, reason.Value);
         }
@@ -207,7 +207,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentSegmentInsights"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentSegmentInsights experimentSegmentInsights, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -222,14 +221,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentSegmentInsights"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentSegmentInsights experimentSegmentInsights, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentSegmentInsights.Metrics == null)
-                throw new ArgumentNullException(nameof(experimentSegmentInsights.Metrics), "Property is required for class ExperimentSegmentInsights.");
+                throw new JsonException("Cannot write null property ExperimentSegmentInsights.Metrics to non-nullable JSON property 'metrics'.");
 
             if (experimentSegmentInsights.Reason == null)
-                throw new ArgumentNullException(nameof(experimentSegmentInsights.Reason), "Property is required for class ExperimentSegmentInsights.");
+                throw new JsonException("Cannot write null property ExperimentSegmentInsights.Reason to non-nullable JSON property 'reason'.");
 
             writer.WritePropertyName("metrics");
             JsonSerializer.Serialize(writer, experimentSegmentInsights.Metrics, jsonSerializerOptions);

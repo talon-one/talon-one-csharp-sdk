@@ -283,16 +283,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyCardBlock.", nameof(type));
+                throw new JsonException("Property is required for class CheckLoyaltyCardBlock: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyCardBlock.", nameof(varOperator));
+                throw new JsonException("Property is required for class CheckLoyaltyCardBlock: operator.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckLoyaltyCardBlock.");
+                throw new JsonException("Property is not nullable for class CheckLoyaltyCardBlock: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckLoyaltyCardBlock.");
+                throw new JsonException("Property is not nullable for class CheckLoyaltyCardBlock: operator.");
 
             return new CheckLoyaltyCardBlock(type.Value, varOperator.Value.Value, id, tags, onFailure);
         }
@@ -303,7 +303,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkLoyaltyCardBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckLoyaltyCardBlock checkLoyaltyCardBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -318,11 +317,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkLoyaltyCardBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckLoyaltyCardBlock checkLoyaltyCardBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (checkLoyaltyCardBlock.Type == null)
-                throw new ArgumentNullException(nameof(checkLoyaltyCardBlock.Type), "Property is required for class CheckLoyaltyCardBlock.");
+                throw new JsonException("Cannot write null property CheckLoyaltyCardBlock.Type to non-nullable JSON property 'type'.");
 
             writer.WriteString("type", checkLoyaltyCardBlock.Type);
 

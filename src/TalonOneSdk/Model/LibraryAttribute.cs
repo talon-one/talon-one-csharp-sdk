@@ -461,46 +461,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class LibraryAttribute.", nameof(entity));
+                throw new JsonException("Property is required for class LibraryAttribute: entity.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class LibraryAttribute.", nameof(name));
+                throw new JsonException("Property is required for class LibraryAttribute: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class LibraryAttribute.", nameof(title));
+                throw new JsonException("Property is required for class LibraryAttribute: title.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class LibraryAttribute.", nameof(type));
+                throw new JsonException("Property is required for class LibraryAttribute: type.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class LibraryAttribute.", nameof(description));
+                throw new JsonException("Property is required for class LibraryAttribute: description.");
 
             if (!presets.IsSet)
-                throw new ArgumentException("Property is required for class LibraryAttribute.", nameof(presets));
+                throw new JsonException("Property is required for class LibraryAttribute: presets.");
 
             if (!suggestions.IsSet)
-                throw new ArgumentException("Property is required for class LibraryAttribute.", nameof(suggestions));
+                throw new JsonException("Property is required for class LibraryAttribute: suggestions.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class LibraryAttribute.");
+                throw new JsonException("Property is not nullable for class LibraryAttribute: entity.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class LibraryAttribute.");
+                throw new JsonException("Property is not nullable for class LibraryAttribute: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class LibraryAttribute.");
+                throw new JsonException("Property is not nullable for class LibraryAttribute: title.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LibraryAttribute.");
+                throw new JsonException("Property is not nullable for class LibraryAttribute: type.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class LibraryAttribute.");
+                throw new JsonException("Property is not nullable for class LibraryAttribute: description.");
 
             if (presets.IsSet && presets.Value == null)
-                throw new ArgumentNullException(nameof(presets), "Property is not nullable for class LibraryAttribute.");
+                throw new JsonException("Property is not nullable for class LibraryAttribute: presets.");
 
             if (suggestions.IsSet && suggestions.Value == null)
-                throw new ArgumentNullException(nameof(suggestions), "Property is not nullable for class LibraryAttribute.");
+                throw new JsonException("Property is not nullable for class LibraryAttribute: suggestions.");
 
             return new LibraryAttribute(entity.Value.Value, name.Value, title.Value, type.Value.Value, description.Value, presets.Value, suggestions.Value);
         }
@@ -511,7 +511,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="libraryAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LibraryAttribute libraryAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -526,23 +525,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="libraryAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LibraryAttribute libraryAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             if (libraryAttribute.Name == null)
-                throw new ArgumentNullException(nameof(libraryAttribute.Name), "Property is required for class LibraryAttribute.");
+                throw new JsonException("Cannot write null property LibraryAttribute.Name to non-nullable JSON property 'name'.");
 
             if (libraryAttribute.Title == null)
-                throw new ArgumentNullException(nameof(libraryAttribute.Title), "Property is required for class LibraryAttribute.");
+                throw new JsonException("Cannot write null property LibraryAttribute.Title to non-nullable JSON property 'title'.");
 
             if (libraryAttribute.Description == null)
-                throw new ArgumentNullException(nameof(libraryAttribute.Description), "Property is required for class LibraryAttribute.");
+                throw new JsonException("Cannot write null property LibraryAttribute.Description to non-nullable JSON property 'description'.");
 
             if (libraryAttribute.Presets == null)
-                throw new ArgumentNullException(nameof(libraryAttribute.Presets), "Property is required for class LibraryAttribute.");
+                throw new JsonException("Cannot write null property LibraryAttribute.Presets to non-nullable JSON property 'presets'.");
 
             if (libraryAttribute.Suggestions == null)
-                throw new ArgumentNullException(nameof(libraryAttribute.Suggestions), "Property is required for class LibraryAttribute.");
+                throw new JsonException("Cannot write null property LibraryAttribute.Suggestions to non-nullable JSON property 'suggestions'.");
 
             var entityRawValue = LibraryAttribute.EntityEnumToJsonValue(libraryAttribute.Entity);
             writer.WriteString("entity", entityRawValue);

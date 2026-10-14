@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="AwardDiscountBlock1Value" /> class.
         /// </summary>
         /// <param name="decimal"></param>
-        internal AwardDiscountBlock1Value(decimal @decimal)
+        public AwardDiscountBlock1Value(decimal @decimal)
         {
             Decimal = @decimal;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="AwardDiscountBlock1Value" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal AwardDiscountBlock1Value(string @string)
+        public AwardDiscountBlock1Value(string @string)
         {
             String = @string;
             OnCreated();
@@ -175,7 +175,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBlock1Value"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardDiscountBlock1Value awardDiscountBlock1Value, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBlock1Value"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardDiscountBlock1Value awardDiscountBlock1Value, JsonSerializerOptions jsonSerializerOptions)
         {
 

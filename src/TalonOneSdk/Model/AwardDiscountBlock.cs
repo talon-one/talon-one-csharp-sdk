@@ -230,34 +230,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBlock.", nameof(type));
+                throw new JsonException("Property is required for class AwardDiscountBlock: type.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBlock.", nameof(name));
+                throw new JsonException("Property is required for class AwardDiscountBlock: name.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBlock.", nameof(value));
+                throw new JsonException("Property is required for class AwardDiscountBlock: value.");
 
             if (!partial.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBlock.", nameof(partial));
+                throw new JsonException("Property is required for class AwardDiscountBlock: partial.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBlock.", nameof(target));
+                throw new JsonException("Property is required for class AwardDiscountBlock: target.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountBlock.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBlock: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AwardDiscountBlock.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBlock: name.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AwardDiscountBlock.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBlock: value.");
 
             if (partial.IsSet && partial.Value == null)
-                throw new ArgumentNullException(nameof(partial), "Property is not nullable for class AwardDiscountBlock.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBlock: partial.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class AwardDiscountBlock.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBlock: target.");
 
             return new AwardDiscountBlock(type.Value, name.Value, value.Value, partial.Value.Value, target.Value, id, tags);
         }
@@ -268,7 +268,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardDiscountBlock awardDiscountBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -283,20 +282,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardDiscountBlock awardDiscountBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardDiscountBlock.Type == null)
-                throw new ArgumentNullException(nameof(awardDiscountBlock.Type), "Property is required for class AwardDiscountBlock.");
+                throw new JsonException("Cannot write null property AwardDiscountBlock.Type to non-nullable JSON property 'type'.");
 
             if (awardDiscountBlock.Name == null)
-                throw new ArgumentNullException(nameof(awardDiscountBlock.Name), "Property is required for class AwardDiscountBlock.");
+                throw new JsonException("Cannot write null property AwardDiscountBlock.Name to non-nullable JSON property 'name'.");
 
             if (awardDiscountBlock.Value == null)
-                throw new ArgumentNullException(nameof(awardDiscountBlock.Value), "Property is required for class AwardDiscountBlock.");
+                throw new JsonException("Cannot write null property AwardDiscountBlock.Value to non-nullable JSON property 'value'.");
 
             if (awardDiscountBlock.Target == null)
-                throw new ArgumentNullException(nameof(awardDiscountBlock.Target), "Property is required for class AwardDiscountBlock.");
+                throw new JsonException("Cannot write null property AwardDiscountBlock.Target to non-nullable JSON property 'target'.");
 
             writer.WriteString("type", awardDiscountBlock.Type);
 

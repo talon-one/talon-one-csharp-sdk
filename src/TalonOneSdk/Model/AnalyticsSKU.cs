@@ -239,16 +239,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsSKU.", nameof(id));
+                throw new JsonException("Property is required for class AnalyticsSKU: id.");
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsSKU.", nameof(sku));
+                throw new JsonException("Property is required for class AnalyticsSKU: sku.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AnalyticsSKU.");
+                throw new JsonException("Property is not nullable for class AnalyticsSKU: id.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class AnalyticsSKU.");
+                throw new JsonException("Property is not nullable for class AnalyticsSKU: sku.");
 
             return new AnalyticsSKU(id.Value.Value, sku.Value, lastUpdated, catalogId, productId, unitsSold);
         }
@@ -259,7 +259,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsSKU"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AnalyticsSKU analyticsSKU, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -274,11 +273,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsSKU"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AnalyticsSKU analyticsSKU, JsonSerializerOptions jsonSerializerOptions)
         {
             if (analyticsSKU.Sku == null)
-                throw new ArgumentNullException(nameof(analyticsSKU.Sku), "Property is required for class AnalyticsSKU.");
+                throw new JsonException("Cannot write null property AnalyticsSKU.Sku to non-nullable JSON property 'sku'.");
 
             writer.WriteNumber("id", analyticsSKU.Id);
 

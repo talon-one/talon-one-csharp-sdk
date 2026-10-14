@@ -289,19 +289,19 @@ namespace TalonOneSdk.Model
             }
 
             if (!attr.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionFilter.", nameof(attr));
+                throw new JsonException("Property is required for class CatalogActionFilter: attr.");
 
             if (!op.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionFilter.", nameof(op));
+                throw new JsonException("Property is required for class CatalogActionFilter: op.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionFilter.", nameof(value));
+                throw new JsonException("Property is required for class CatalogActionFilter: value.");
 
             if (attr.IsSet && attr.Value == null)
-                throw new ArgumentNullException(nameof(attr), "Property is not nullable for class CatalogActionFilter.");
+                throw new JsonException("Property is not nullable for class CatalogActionFilter: attr.");
 
             if (op.IsSet && op.Value == null)
-                throw new ArgumentNullException(nameof(op), "Property is not nullable for class CatalogActionFilter.");
+                throw new JsonException("Property is not nullable for class CatalogActionFilter: op.");
 
             return new CatalogActionFilter(attr.Value, op.Value.Value, value.Value);
         }
@@ -312,7 +312,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogActionFilter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CatalogActionFilter catalogActionFilter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -327,11 +326,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogActionFilter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CatalogActionFilter catalogActionFilter, JsonSerializerOptions jsonSerializerOptions)
         {
             if (catalogActionFilter.Attr == null)
-                throw new ArgumentNullException(nameof(catalogActionFilter.Attr), "Property is required for class CatalogActionFilter.");
+                throw new JsonException("Cannot write null property CatalogActionFilter.Attr to non-nullable JSON property 'attr'.");
 
             writer.WriteString("attr", catalogActionFilter.Attr);
 

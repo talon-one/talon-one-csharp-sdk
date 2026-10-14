@@ -171,10 +171,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListCatalogItems200Response.", nameof(data));
+                throw new JsonException("Property is required for class ListCatalogItems200Response: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListCatalogItems200Response.");
+                throw new JsonException("Property is not nullable for class ListCatalogItems200Response: data.");
 
             return new ListCatalogItems200Response(data.Value, hasMore, totalResultSize);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listCatalogItems200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListCatalogItems200Response listCatalogItems200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,11 +199,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listCatalogItems200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListCatalogItems200Response listCatalogItems200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (listCatalogItems200Response.Data == null)
-                throw new ArgumentNullException(nameof(listCatalogItems200Response.Data), "Property is required for class ListCatalogItems200Response.");
+                throw new JsonException("Cannot write null property ListCatalogItems200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, listCatalogItems200Response.Data, jsonSerializerOptions);

@@ -176,10 +176,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!newCardIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class TransferLoyaltyCard.", nameof(newCardIdentifier));
+                throw new JsonException("Property is required for class TransferLoyaltyCard: newCardIdentifier.");
 
             if (newCardIdentifier.IsSet && newCardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(newCardIdentifier), "Property is not nullable for class TransferLoyaltyCard.");
+                throw new JsonException("Property is not nullable for class TransferLoyaltyCard: newCardIdentifier.");
 
             return new TransferLoyaltyCard(newCardIdentifier.Value, blockReason);
         }
@@ -190,7 +190,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="transferLoyaltyCard"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransferLoyaltyCard transferLoyaltyCard, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -205,11 +204,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="transferLoyaltyCard"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransferLoyaltyCard transferLoyaltyCard, JsonSerializerOptions jsonSerializerOptions)
         {
             if (transferLoyaltyCard.NewCardIdentifier == null)
-                throw new ArgumentNullException(nameof(transferLoyaltyCard.NewCardIdentifier), "Property is required for class TransferLoyaltyCard.");
+                throw new JsonException("Cannot write null property TransferLoyaltyCard.NewCardIdentifier to non-nullable JSON property 'newCardIdentifier'.");
 
             writer.WriteString("newCardIdentifier", transferLoyaltyCard.NewCardIdentifier);
 

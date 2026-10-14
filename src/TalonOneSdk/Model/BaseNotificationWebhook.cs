@@ -223,34 +223,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotificationWebhook.", nameof(id));
+                throw new JsonException("Property is required for class BaseNotificationWebhook: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotificationWebhook.", nameof(created));
+                throw new JsonException("Property is required for class BaseNotificationWebhook: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotificationWebhook.", nameof(modified));
+                throw new JsonException("Property is required for class BaseNotificationWebhook: modified.");
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotificationWebhook.", nameof(url));
+                throw new JsonException("Property is required for class BaseNotificationWebhook: url.");
 
             if (!headers.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotificationWebhook.", nameof(headers));
+                throw new JsonException("Property is required for class BaseNotificationWebhook: headers.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class BaseNotificationWebhook.");
+                throw new JsonException("Property is not nullable for class BaseNotificationWebhook: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class BaseNotificationWebhook.");
+                throw new JsonException("Property is not nullable for class BaseNotificationWebhook: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class BaseNotificationWebhook.");
+                throw new JsonException("Property is not nullable for class BaseNotificationWebhook: modified.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class BaseNotificationWebhook.");
+                throw new JsonException("Property is not nullable for class BaseNotificationWebhook: url.");
 
             if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class BaseNotificationWebhook.");
+                throw new JsonException("Property is not nullable for class BaseNotificationWebhook: headers.");
 
             return new BaseNotificationWebhook(id.Value.Value, created.Value.Value, modified.Value.Value, url.Value, headers.Value, enabled);
         }
@@ -261,7 +261,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseNotificationWebhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BaseNotificationWebhook baseNotificationWebhook, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -276,14 +275,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseNotificationWebhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseNotificationWebhook baseNotificationWebhook, JsonSerializerOptions jsonSerializerOptions)
         {
             if (baseNotificationWebhook.Url == null)
-                throw new ArgumentNullException(nameof(baseNotificationWebhook.Url), "Property is required for class BaseNotificationWebhook.");
+                throw new JsonException("Cannot write null property BaseNotificationWebhook.Url to non-nullable JSON property 'url'.");
 
             if (baseNotificationWebhook.Headers == null)
-                throw new ArgumentNullException(nameof(baseNotificationWebhook.Headers), "Property is required for class BaseNotificationWebhook.");
+                throw new JsonException("Cannot write null property BaseNotificationWebhook.Headers to non-nullable JSON property 'headers'.");
 
             writer.WriteNumber("id", baseNotificationWebhook.Id);
 

@@ -222,46 +222,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!issuer.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthServerMetadata.", nameof(issuer));
+                throw new JsonException("Property is required for class MCPOAuthServerMetadata: issuer.");
 
             if (!authorizationEndpoint.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthServerMetadata.", nameof(authorizationEndpoint));
+                throw new JsonException("Property is required for class MCPOAuthServerMetadata: authorization_endpoint.");
 
             if (!tokenEndpoint.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthServerMetadata.", nameof(tokenEndpoint));
+                throw new JsonException("Property is required for class MCPOAuthServerMetadata: token_endpoint.");
 
             if (!registrationEndpoint.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthServerMetadata.", nameof(registrationEndpoint));
+                throw new JsonException("Property is required for class MCPOAuthServerMetadata: registration_endpoint.");
 
             if (!responseTypesSupported.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthServerMetadata.", nameof(responseTypesSupported));
+                throw new JsonException("Property is required for class MCPOAuthServerMetadata: response_types_supported.");
 
             if (!grantTypesSupported.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthServerMetadata.", nameof(grantTypesSupported));
+                throw new JsonException("Property is required for class MCPOAuthServerMetadata: grant_types_supported.");
 
             if (!codeChallengeMethodsSupported.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthServerMetadata.", nameof(codeChallengeMethodsSupported));
+                throw new JsonException("Property is required for class MCPOAuthServerMetadata: code_challenge_methods_supported.");
 
             if (issuer.IsSet && issuer.Value == null)
-                throw new ArgumentNullException(nameof(issuer), "Property is not nullable for class MCPOAuthServerMetadata.");
+                throw new JsonException("Property is not nullable for class MCPOAuthServerMetadata: issuer.");
 
             if (authorizationEndpoint.IsSet && authorizationEndpoint.Value == null)
-                throw new ArgumentNullException(nameof(authorizationEndpoint), "Property is not nullable for class MCPOAuthServerMetadata.");
+                throw new JsonException("Property is not nullable for class MCPOAuthServerMetadata: authorization_endpoint.");
 
             if (tokenEndpoint.IsSet && tokenEndpoint.Value == null)
-                throw new ArgumentNullException(nameof(tokenEndpoint), "Property is not nullable for class MCPOAuthServerMetadata.");
+                throw new JsonException("Property is not nullable for class MCPOAuthServerMetadata: token_endpoint.");
 
             if (registrationEndpoint.IsSet && registrationEndpoint.Value == null)
-                throw new ArgumentNullException(nameof(registrationEndpoint), "Property is not nullable for class MCPOAuthServerMetadata.");
+                throw new JsonException("Property is not nullable for class MCPOAuthServerMetadata: registration_endpoint.");
 
             if (responseTypesSupported.IsSet && responseTypesSupported.Value == null)
-                throw new ArgumentNullException(nameof(responseTypesSupported), "Property is not nullable for class MCPOAuthServerMetadata.");
+                throw new JsonException("Property is not nullable for class MCPOAuthServerMetadata: response_types_supported.");
 
             if (grantTypesSupported.IsSet && grantTypesSupported.Value == null)
-                throw new ArgumentNullException(nameof(grantTypesSupported), "Property is not nullable for class MCPOAuthServerMetadata.");
+                throw new JsonException("Property is not nullable for class MCPOAuthServerMetadata: grant_types_supported.");
 
             if (codeChallengeMethodsSupported.IsSet && codeChallengeMethodsSupported.Value == null)
-                throw new ArgumentNullException(nameof(codeChallengeMethodsSupported), "Property is not nullable for class MCPOAuthServerMetadata.");
+                throw new JsonException("Property is not nullable for class MCPOAuthServerMetadata: code_challenge_methods_supported.");
 
             return new MCPOAuthServerMetadata(issuer.Value, authorizationEndpoint.Value, tokenEndpoint.Value, registrationEndpoint.Value, responseTypesSupported.Value, grantTypesSupported.Value, codeChallengeMethodsSupported.Value);
         }
@@ -272,7 +272,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthServerMetadata"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPOAuthServerMetadata mCPOAuthServerMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -287,29 +286,28 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthServerMetadata"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPOAuthServerMetadata mCPOAuthServerMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mCPOAuthServerMetadata.Issuer == null)
-                throw new ArgumentNullException(nameof(mCPOAuthServerMetadata.Issuer), "Property is required for class MCPOAuthServerMetadata.");
+                throw new JsonException("Cannot write null property MCPOAuthServerMetadata.Issuer to non-nullable JSON property 'issuer'.");
 
             if (mCPOAuthServerMetadata.AuthorizationEndpoint == null)
-                throw new ArgumentNullException(nameof(mCPOAuthServerMetadata.AuthorizationEndpoint), "Property is required for class MCPOAuthServerMetadata.");
+                throw new JsonException("Cannot write null property MCPOAuthServerMetadata.AuthorizationEndpoint to non-nullable JSON property 'authorization_endpoint'.");
 
             if (mCPOAuthServerMetadata.TokenEndpoint == null)
-                throw new ArgumentNullException(nameof(mCPOAuthServerMetadata.TokenEndpoint), "Property is required for class MCPOAuthServerMetadata.");
+                throw new JsonException("Cannot write null property MCPOAuthServerMetadata.TokenEndpoint to non-nullable JSON property 'token_endpoint'.");
 
             if (mCPOAuthServerMetadata.RegistrationEndpoint == null)
-                throw new ArgumentNullException(nameof(mCPOAuthServerMetadata.RegistrationEndpoint), "Property is required for class MCPOAuthServerMetadata.");
+                throw new JsonException("Cannot write null property MCPOAuthServerMetadata.RegistrationEndpoint to non-nullable JSON property 'registration_endpoint'.");
 
             if (mCPOAuthServerMetadata.ResponseTypesSupported == null)
-                throw new ArgumentNullException(nameof(mCPOAuthServerMetadata.ResponseTypesSupported), "Property is required for class MCPOAuthServerMetadata.");
+                throw new JsonException("Cannot write null property MCPOAuthServerMetadata.ResponseTypesSupported to non-nullable JSON property 'response_types_supported'.");
 
             if (mCPOAuthServerMetadata.GrantTypesSupported == null)
-                throw new ArgumentNullException(nameof(mCPOAuthServerMetadata.GrantTypesSupported), "Property is required for class MCPOAuthServerMetadata.");
+                throw new JsonException("Cannot write null property MCPOAuthServerMetadata.GrantTypesSupported to non-nullable JSON property 'grant_types_supported'.");
 
             if (mCPOAuthServerMetadata.CodeChallengeMethodsSupported == null)
-                throw new ArgumentNullException(nameof(mCPOAuthServerMetadata.CodeChallengeMethodsSupported), "Property is required for class MCPOAuthServerMetadata.");
+                throw new JsonException("Cannot write null property MCPOAuthServerMetadata.CodeChallengeMethodsSupported to non-nullable JSON property 'code_challenge_methods_supported'.");
 
             writer.WriteString("issuer", mCPOAuthServerMetadata.Issuer);
 

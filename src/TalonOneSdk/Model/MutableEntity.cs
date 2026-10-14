@@ -137,10 +137,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class MutableEntity.", nameof(modified));
+                throw new JsonException("Property is required for class MutableEntity: modified.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class MutableEntity.");
+                throw new JsonException("Property is not nullable for class MutableEntity: modified.");
 
             return new MutableEntity(modified.Value.Value);
         }
@@ -151,7 +151,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mutableEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MutableEntity mutableEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -166,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mutableEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MutableEntity mutableEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteString("modified", mutableEntity.Modified.ToString(ModifiedFormat));

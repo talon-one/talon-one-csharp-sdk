@@ -394,34 +394,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignEvaluationGroup.", nameof(name));
+                throw new JsonException("Property is required for class UpdateCampaignEvaluationGroup: name.");
 
             if (!parentId.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignEvaluationGroup.", nameof(parentId));
+                throw new JsonException("Property is required for class UpdateCampaignEvaluationGroup: parentId.");
 
             if (!evaluationMode.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignEvaluationGroup.", nameof(evaluationMode));
+                throw new JsonException("Property is required for class UpdateCampaignEvaluationGroup: evaluationMode.");
 
             if (!evaluationScope.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignEvaluationGroup.", nameof(evaluationScope));
+                throw new JsonException("Property is required for class UpdateCampaignEvaluationGroup: evaluationScope.");
 
             if (!locked.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaignEvaluationGroup.", nameof(locked));
+                throw new JsonException("Property is required for class UpdateCampaignEvaluationGroup: locked.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignEvaluationGroup: name.");
 
             if (parentId.IsSet && parentId.Value == null)
-                throw new ArgumentNullException(nameof(parentId), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignEvaluationGroup: parentId.");
 
             if (evaluationMode.IsSet && evaluationMode.Value == null)
-                throw new ArgumentNullException(nameof(evaluationMode), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignEvaluationGroup: evaluationMode.");
 
             if (evaluationScope.IsSet && evaluationScope.Value == null)
-                throw new ArgumentNullException(nameof(evaluationScope), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignEvaluationGroup: evaluationScope.");
 
             if (locked.IsSet && locked.Value == null)
-                throw new ArgumentNullException(nameof(locked), "Property is not nullable for class UpdateCampaignEvaluationGroup.");
+                throw new JsonException("Property is not nullable for class UpdateCampaignEvaluationGroup: locked.");
 
             return new UpdateCampaignEvaluationGroup(name.Value, parentId.Value.Value, evaluationMode.Value.Value, evaluationScope.Value.Value, locked.Value.Value, description);
         }
@@ -432,7 +432,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCampaignEvaluationGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateCampaignEvaluationGroup updateCampaignEvaluationGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -447,11 +446,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCampaignEvaluationGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCampaignEvaluationGroup updateCampaignEvaluationGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateCampaignEvaluationGroup.Name == null)
-                throw new ArgumentNullException(nameof(updateCampaignEvaluationGroup.Name), "Property is required for class UpdateCampaignEvaluationGroup.");
+                throw new JsonException("Cannot write null property UpdateCampaignEvaluationGroup.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", updateCampaignEvaluationGroup.Name);
 

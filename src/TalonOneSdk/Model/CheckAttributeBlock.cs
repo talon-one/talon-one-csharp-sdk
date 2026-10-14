@@ -1157,13 +1157,13 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckAttributeBlock.", nameof(type));
+                throw new JsonException("Property is required for class CheckAttributeBlock: type.");
 
             if (!attribute.IsSet)
-                throw new ArgumentException("Property is required for class CheckAttributeBlock.", nameof(attribute));
+                throw new JsonException("Property is required for class CheckAttributeBlock: attribute.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckAttributeBlock.");
+                throw new JsonException("Property is not nullable for class CheckAttributeBlock: type.");
 
             if (afterScalarCheckAttributeBlock != null)
                 return new CheckAttributeBlock(afterScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
@@ -1273,7 +1273,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckAttributeBlock checkAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -1330,7 +1329,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckAttributeBlock checkAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = CheckAttributeBlock.TypeEnumToJsonValue(checkAttributeBlock.Type);

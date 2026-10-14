@@ -172,22 +172,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SamlLoginEndpoint.", nameof(id));
+                throw new JsonException("Property is required for class SamlLoginEndpoint: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SamlLoginEndpoint.", nameof(name));
+                throw new JsonException("Property is required for class SamlLoginEndpoint: name.");
 
             if (!loginURL.IsSet)
-                throw new ArgumentException("Property is required for class SamlLoginEndpoint.", nameof(loginURL));
+                throw new JsonException("Property is required for class SamlLoginEndpoint: loginURL.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class SamlLoginEndpoint.");
+                throw new JsonException("Property is not nullable for class SamlLoginEndpoint: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SamlLoginEndpoint.");
+                throw new JsonException("Property is not nullable for class SamlLoginEndpoint: name.");
 
             if (loginURL.IsSet && loginURL.Value == null)
-                throw new ArgumentNullException(nameof(loginURL), "Property is not nullable for class SamlLoginEndpoint.");
+                throw new JsonException("Property is not nullable for class SamlLoginEndpoint: loginURL.");
 
             return new SamlLoginEndpoint(id.Value.Value, name.Value, loginURL.Value);
         }
@@ -198,7 +198,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="samlLoginEndpoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SamlLoginEndpoint samlLoginEndpoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -213,14 +212,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="samlLoginEndpoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SamlLoginEndpoint samlLoginEndpoint, JsonSerializerOptions jsonSerializerOptions)
         {
             if (samlLoginEndpoint.Name == null)
-                throw new ArgumentNullException(nameof(samlLoginEndpoint.Name), "Property is required for class SamlLoginEndpoint.");
+                throw new JsonException("Cannot write null property SamlLoginEndpoint.Name to non-nullable JSON property 'name'.");
 
             if (samlLoginEndpoint.LoginURL == null)
-                throw new ArgumentNullException(nameof(samlLoginEndpoint.LoginURL), "Property is required for class SamlLoginEndpoint.");
+                throw new JsonException("Cannot write null property SamlLoginEndpoint.LoginURL to non-nullable JSON property 'loginURL'.");
 
             writer.WriteNumber("id", samlLoginEndpoint.Id);
 

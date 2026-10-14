@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MultipleAttribute multipleAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,7 +159,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="multipleAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MultipleAttribute multipleAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             if (multipleAttribute.AttributesOption.IsSet)

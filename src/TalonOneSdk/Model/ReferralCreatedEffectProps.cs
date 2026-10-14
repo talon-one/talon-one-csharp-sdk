@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class ReferralCreatedEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class ReferralCreatedEffectProps: value.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class ReferralCreatedEffectProps.");
+                throw new JsonException("Property is not nullable for class ReferralCreatedEffectProps: value.");
 
             return new ReferralCreatedEffectProps(value.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="referralCreatedEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ReferralCreatedEffectProps referralCreatedEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="referralCreatedEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReferralCreatedEffectProps referralCreatedEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (referralCreatedEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(referralCreatedEffectProps.Value), "Property is required for class ReferralCreatedEffectProps.");
+                throw new JsonException("Cannot write null property ReferralCreatedEffectProps.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("value", referralCreatedEffectProps.Value);
         }

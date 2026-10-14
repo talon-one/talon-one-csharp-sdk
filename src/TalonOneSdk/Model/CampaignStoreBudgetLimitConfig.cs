@@ -449,28 +449,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudgetLimitConfig.", nameof(action));
+                throw new JsonException("Property is required for class CampaignStoreBudgetLimitConfig: action.");
 
             if (!limit.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudgetLimitConfig.", nameof(limit));
+                throw new JsonException("Property is required for class CampaignStoreBudgetLimitConfig: limit.");
 
             if (!entities.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudgetLimitConfig.", nameof(entities));
+                throw new JsonException("Property is required for class CampaignStoreBudgetLimitConfig: entities.");
 
             if (!imported.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudgetLimitConfig.", nameof(imported));
+                throw new JsonException("Property is required for class CampaignStoreBudgetLimitConfig: imported.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class CampaignStoreBudgetLimitConfig.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudgetLimitConfig: action.");
 
             if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class CampaignStoreBudgetLimitConfig.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudgetLimitConfig: limit.");
 
             if (entities.IsSet && entities.Value == null)
-                throw new ArgumentNullException(nameof(entities), "Property is not nullable for class CampaignStoreBudgetLimitConfig.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudgetLimitConfig: entities.");
 
             if (imported.IsSet && imported.Value == null)
-                throw new ArgumentNullException(nameof(imported), "Property is not nullable for class CampaignStoreBudgetLimitConfig.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudgetLimitConfig: imported.");
 
             return new CampaignStoreBudgetLimitConfig(action.Value, limit.Value.Value, entities.Value, imported.Value.Value, period);
         }
@@ -481,7 +481,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignStoreBudgetLimitConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignStoreBudgetLimitConfig campaignStoreBudgetLimitConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -496,14 +495,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignStoreBudgetLimitConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignStoreBudgetLimitConfig campaignStoreBudgetLimitConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignStoreBudgetLimitConfig.Action == null)
-                throw new ArgumentNullException(nameof(campaignStoreBudgetLimitConfig.Action), "Property is required for class CampaignStoreBudgetLimitConfig.");
+                throw new JsonException("Cannot write null property CampaignStoreBudgetLimitConfig.Action to non-nullable JSON property 'action'.");
 
             if (campaignStoreBudgetLimitConfig.Entities == null)
-                throw new ArgumentNullException(nameof(campaignStoreBudgetLimitConfig.Entities), "Property is required for class CampaignStoreBudgetLimitConfig.");
+                throw new JsonException("Cannot write null property CampaignStoreBudgetLimitConfig.Entities to non-nullable JSON property 'entities'.");
 
             writer.WriteString("action", campaignStoreBudgetLimitConfig.Action);
 

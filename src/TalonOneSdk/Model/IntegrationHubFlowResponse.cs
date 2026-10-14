@@ -289,28 +289,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(id));
+                throw new JsonException("Property is required for class IntegrationHubFlowResponse: id.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(createdAt));
+                throw new JsonException("Property is required for class IntegrationHubFlowResponse: createdAt.");
 
             if (!eventType.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(eventType));
+                throw new JsonException("Property is required for class IntegrationHubFlowResponse: eventType.");
 
             if (!config.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowResponse.", nameof(config));
+                throw new JsonException("Property is required for class IntegrationHubFlowResponse: config.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubFlowResponse.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlowResponse: id.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class IntegrationHubFlowResponse.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlowResponse: createdAt.");
 
             if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubFlowResponse.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlowResponse: eventType.");
 
             if (config.IsSet && config.Value == null)
-                throw new ArgumentNullException(nameof(config), "Property is not nullable for class IntegrationHubFlowResponse.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlowResponse: config.");
 
             return new IntegrationHubFlowResponse(id.Value.Value, createdAt.Value.Value, eventType.Value, config.Value, integrationName, instanceName, disabledUntil, applicationId, loyaltyProgramId);
         }
@@ -321,7 +321,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubFlowResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubFlowResponse integrationHubFlowResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -336,14 +335,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubFlowResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubFlowResponse integrationHubFlowResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubFlowResponse.EventType == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowResponse.EventType), "Property is required for class IntegrationHubFlowResponse.");
+                throw new JsonException("Cannot write null property IntegrationHubFlowResponse.EventType to non-nullable JSON property 'eventType'.");
 
             if (integrationHubFlowResponse.Config == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowResponse.Config), "Property is required for class IntegrationHubFlowResponse.");
+                throw new JsonException("Cannot write null property IntegrationHubFlowResponse.Config to non-nullable JSON property 'config'.");
 
             writer.WriteNumber("id", integrationHubFlowResponse.Id);
 

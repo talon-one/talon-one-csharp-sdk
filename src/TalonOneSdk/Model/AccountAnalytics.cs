@@ -421,124 +421,124 @@ namespace TalonOneSdk.Model
             }
 
             if (!applications.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(applications));
+                throw new JsonException("Property is required for class AccountAnalytics: applications.");
 
             if (!liveApplications.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(liveApplications));
+                throw new JsonException("Property is required for class AccountAnalytics: liveApplications.");
 
             if (!sandboxApplications.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(sandboxApplications));
+                throw new JsonException("Property is required for class AccountAnalytics: sandboxApplications.");
 
             if (!campaigns.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(campaigns));
+                throw new JsonException("Property is required for class AccountAnalytics: campaigns.");
 
             if (!activeCampaigns.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(activeCampaigns));
+                throw new JsonException("Property is required for class AccountAnalytics: activeCampaigns.");
 
             if (!liveActiveCampaigns.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(liveActiveCampaigns));
+                throw new JsonException("Property is required for class AccountAnalytics: liveActiveCampaigns.");
 
             if (!coupons.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(coupons));
+                throw new JsonException("Property is required for class AccountAnalytics: coupons.");
 
             if (!activeCoupons.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(activeCoupons));
+                throw new JsonException("Property is required for class AccountAnalytics: activeCoupons.");
 
             if (!expiredCoupons.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(expiredCoupons));
+                throw new JsonException("Property is required for class AccountAnalytics: expiredCoupons.");
 
             if (!referralCodes.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(referralCodes));
+                throw new JsonException("Property is required for class AccountAnalytics: referralCodes.");
 
             if (!activeReferralCodes.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(activeReferralCodes));
+                throw new JsonException("Property is required for class AccountAnalytics: activeReferralCodes.");
 
             if (!expiredReferralCodes.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(expiredReferralCodes));
+                throw new JsonException("Property is required for class AccountAnalytics: expiredReferralCodes.");
 
             if (!activeRules.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(activeRules));
+                throw new JsonException("Property is required for class AccountAnalytics: activeRules.");
 
             if (!users.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(users));
+                throw new JsonException("Property is required for class AccountAnalytics: users.");
 
             if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(roles));
+                throw new JsonException("Property is required for class AccountAnalytics: roles.");
 
             if (!customAttributes.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(customAttributes));
+                throw new JsonException("Property is required for class AccountAnalytics: customAttributes.");
 
             if (!webhooks.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(webhooks));
+                throw new JsonException("Property is required for class AccountAnalytics: webhooks.");
 
             if (!loyaltyPrograms.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(loyaltyPrograms));
+                throw new JsonException("Property is required for class AccountAnalytics: loyaltyPrograms.");
 
             if (!liveLoyaltyPrograms.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(liveLoyaltyPrograms));
+                throw new JsonException("Property is required for class AccountAnalytics: liveLoyaltyPrograms.");
 
             if (!lastUpdatedAt.IsSet)
-                throw new ArgumentException("Property is required for class AccountAnalytics.", nameof(lastUpdatedAt));
+                throw new JsonException("Property is required for class AccountAnalytics: lastUpdatedAt.");
 
             if (applications.IsSet && applications.Value == null)
-                throw new ArgumentNullException(nameof(applications), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: applications.");
 
             if (liveApplications.IsSet && liveApplications.Value == null)
-                throw new ArgumentNullException(nameof(liveApplications), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: liveApplications.");
 
             if (sandboxApplications.IsSet && sandboxApplications.Value == null)
-                throw new ArgumentNullException(nameof(sandboxApplications), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: sandboxApplications.");
 
             if (campaigns.IsSet && campaigns.Value == null)
-                throw new ArgumentNullException(nameof(campaigns), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: campaigns.");
 
             if (activeCampaigns.IsSet && activeCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(activeCampaigns), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: activeCampaigns.");
 
             if (liveActiveCampaigns.IsSet && liveActiveCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(liveActiveCampaigns), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: liveActiveCampaigns.");
 
             if (coupons.IsSet && coupons.Value == null)
-                throw new ArgumentNullException(nameof(coupons), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: coupons.");
 
             if (activeCoupons.IsSet && activeCoupons.Value == null)
-                throw new ArgumentNullException(nameof(activeCoupons), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: activeCoupons.");
 
             if (expiredCoupons.IsSet && expiredCoupons.Value == null)
-                throw new ArgumentNullException(nameof(expiredCoupons), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: expiredCoupons.");
 
             if (referralCodes.IsSet && referralCodes.Value == null)
-                throw new ArgumentNullException(nameof(referralCodes), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: referralCodes.");
 
             if (activeReferralCodes.IsSet && activeReferralCodes.Value == null)
-                throw new ArgumentNullException(nameof(activeReferralCodes), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: activeReferralCodes.");
 
             if (expiredReferralCodes.IsSet && expiredReferralCodes.Value == null)
-                throw new ArgumentNullException(nameof(expiredReferralCodes), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: expiredReferralCodes.");
 
             if (activeRules.IsSet && activeRules.Value == null)
-                throw new ArgumentNullException(nameof(activeRules), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: activeRules.");
 
             if (users.IsSet && users.Value == null)
-                throw new ArgumentNullException(nameof(users), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: users.");
 
             if (roles.IsSet && roles.Value == null)
-                throw new ArgumentNullException(nameof(roles), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: roles.");
 
             if (customAttributes.IsSet && customAttributes.Value == null)
-                throw new ArgumentNullException(nameof(customAttributes), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: customAttributes.");
 
             if (webhooks.IsSet && webhooks.Value == null)
-                throw new ArgumentNullException(nameof(webhooks), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: webhooks.");
 
             if (loyaltyPrograms.IsSet && loyaltyPrograms.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyPrograms), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: loyaltyPrograms.");
 
             if (liveLoyaltyPrograms.IsSet && liveLoyaltyPrograms.Value == null)
-                throw new ArgumentNullException(nameof(liveLoyaltyPrograms), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: liveLoyaltyPrograms.");
 
             if (lastUpdatedAt.IsSet && lastUpdatedAt.Value == null)
-                throw new ArgumentNullException(nameof(lastUpdatedAt), "Property is not nullable for class AccountAnalytics.");
+                throw new JsonException("Property is not nullable for class AccountAnalytics: lastUpdatedAt.");
 
             return new AccountAnalytics(applications.Value.Value, liveApplications.Value.Value, sandboxApplications.Value.Value, campaigns.Value.Value, activeCampaigns.Value.Value, liveActiveCampaigns.Value.Value, coupons.Value.Value, activeCoupons.Value.Value, expiredCoupons.Value.Value, referralCodes.Value.Value, activeReferralCodes.Value.Value, expiredReferralCodes.Value.Value, activeRules.Value.Value, users.Value.Value, roles.Value.Value, customAttributes.Value.Value, webhooks.Value.Value, loyaltyPrograms.Value.Value, liveLoyaltyPrograms.Value.Value, lastUpdatedAt.Value.Value);
         }
@@ -549,7 +549,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountAnalytics accountAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -564,7 +563,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="accountAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountAnalytics accountAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("applications", accountAnalytics.Applications);

@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!experimentIds.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentListResultsRequest.", nameof(experimentIds));
+                throw new JsonException("Property is required for class ExperimentListResultsRequest: experimentIds.");
 
             if (experimentIds.IsSet && experimentIds.Value == null)
-                throw new ArgumentNullException(nameof(experimentIds), "Property is not nullable for class ExperimentListResultsRequest.");
+                throw new JsonException("Property is not nullable for class ExperimentListResultsRequest: experimentIds.");
 
             return new ExperimentListResultsRequest(experimentIds.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentListResultsRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentListResultsRequest experimentListResultsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,11 +158,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentListResultsRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentListResultsRequest experimentListResultsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentListResultsRequest.ExperimentIds == null)
-                throw new ArgumentNullException(nameof(experimentListResultsRequest.ExperimentIds), "Property is required for class ExperimentListResultsRequest.");
+                throw new JsonException("Cannot write null property ExperimentListResultsRequest.ExperimentIds to non-nullable JSON property 'experimentIds'.");
 
             writer.WritePropertyName("experimentIds");
             JsonSerializer.Serialize(writer, experimentListResultsRequest.ExperimentIds, jsonSerializerOptions);

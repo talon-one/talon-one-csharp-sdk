@@ -144,16 +144,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationRewardsCatalog200ResponseCatalog.", nameof(hasMore));
+                throw new JsonException("Property is required for class IntegrationRewardsCatalog200ResponseCatalog: hasMore.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationRewardsCatalog200ResponseCatalog.", nameof(data));
+                throw new JsonException("Property is required for class IntegrationRewardsCatalog200ResponseCatalog: data.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class IntegrationRewardsCatalog200ResponseCatalog.");
+                throw new JsonException("Property is not nullable for class IntegrationRewardsCatalog200ResponseCatalog: hasMore.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class IntegrationRewardsCatalog200ResponseCatalog.");
+                throw new JsonException("Property is not nullable for class IntegrationRewardsCatalog200ResponseCatalog: data.");
 
             return new IntegrationRewardsCatalog200ResponseCatalog(hasMore.Value.Value, data.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationRewardsCatalog200ResponseCatalog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationRewardsCatalog200ResponseCatalog integrationRewardsCatalog200ResponseCatalog, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationRewardsCatalog200ResponseCatalog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationRewardsCatalog200ResponseCatalog integrationRewardsCatalog200ResponseCatalog, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationRewardsCatalog200ResponseCatalog.Data == null)
-                throw new ArgumentNullException(nameof(integrationRewardsCatalog200ResponseCatalog.Data), "Property is required for class IntegrationRewardsCatalog200ResponseCatalog.");
+                throw new JsonException("Cannot write null property IntegrationRewardsCatalog200ResponseCatalog.Data to non-nullable JSON property 'data'.");
 
             writer.WriteBoolean("hasMore", integrationRewardsCatalog200ResponseCatalog.HasMore);
 

@@ -158,16 +158,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignIds.IsSet)
-                throw new ArgumentException("Property is required for class GetIntegrationCouponRequest.", nameof(campaignIds));
+                throw new JsonException("Property is required for class GetIntegrationCouponRequest: campaignIds.");
 
             if (!limit.IsSet)
-                throw new ArgumentException("Property is required for class GetIntegrationCouponRequest.", nameof(limit));
+                throw new JsonException("Property is required for class GetIntegrationCouponRequest: limit.");
 
             if (campaignIds.IsSet && campaignIds.Value == null)
-                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class GetIntegrationCouponRequest.");
+                throw new JsonException("Property is not nullable for class GetIntegrationCouponRequest: campaignIds.");
 
             if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class GetIntegrationCouponRequest.");
+                throw new JsonException("Property is not nullable for class GetIntegrationCouponRequest: limit.");
 
             return new GetIntegrationCouponRequest(campaignIds.Value, limit.Value.Value);
         }
@@ -178,7 +178,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getIntegrationCouponRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetIntegrationCouponRequest getIntegrationCouponRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -193,11 +192,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getIntegrationCouponRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetIntegrationCouponRequest getIntegrationCouponRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getIntegrationCouponRequest.CampaignIds == null)
-                throw new ArgumentNullException(nameof(getIntegrationCouponRequest.CampaignIds), "Property is required for class GetIntegrationCouponRequest.");
+                throw new JsonException("Cannot write null property GetIntegrationCouponRequest.CampaignIds to non-nullable JSON property 'campaignIds'.");
 
             writer.WritePropertyName("campaignIds");
             JsonSerializer.Serialize(writer, getIntegrationCouponRequest.CampaignIds, jsonSerializerOptions);

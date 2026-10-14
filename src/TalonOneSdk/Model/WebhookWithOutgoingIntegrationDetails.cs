@@ -551,70 +551,70 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(id));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(created));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(modified));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: modified.");
 
             if (!applicationIds.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(applicationIds));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: applicationIds.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(title));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: title.");
 
             if (!draft.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(draft));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: draft.");
 
             if (!verb.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(verb));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: verb.");
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(url));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: url.");
 
             if (!headers.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(headers));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: headers.");
 
             if (!varParams.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(varParams));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: params.");
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class WebhookWithOutgoingIntegrationDetails.", nameof(enabled));
+                throw new JsonException("Property is required for class WebhookWithOutgoingIntegrationDetails: enabled.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: modified.");
 
             if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: applicationIds.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: title.");
 
             if (draft.IsSet && draft.Value == null)
-                throw new ArgumentNullException(nameof(draft), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: draft.");
 
             if (verb.IsSet && verb.Value == null)
-                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: verb.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: url.");
 
             if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: headers.");
 
             if (varParams.IsSet && varParams.Value == null)
-                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: params.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Property is not nullable for class WebhookWithOutgoingIntegrationDetails: enabled.");
 
             return new WebhookWithOutgoingIntegrationDetails(id.Value.Value, created.Value.Value, modified.Value.Value, applicationIds.Value, title.Value, draft.Value.Value, verb.Value.Value, url.Value, headers.Value, varParams.Value, enabled.Value.Value, description, payload, authenticationId, outgoingIntegrationTemplateId, outgoingIntegrationTypeId, outgoingIntegrationTypeName);
         }
@@ -625,7 +625,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookWithOutgoingIntegrationDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookWithOutgoingIntegrationDetails webhookWithOutgoingIntegrationDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -640,23 +639,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookWithOutgoingIntegrationDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookWithOutgoingIntegrationDetails webhookWithOutgoingIntegrationDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             if (webhookWithOutgoingIntegrationDetails.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(webhookWithOutgoingIntegrationDetails.ApplicationIds), "Property is required for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Cannot write null property WebhookWithOutgoingIntegrationDetails.ApplicationIds to non-nullable JSON property 'applicationIds'.");
 
             if (webhookWithOutgoingIntegrationDetails.Title == null)
-                throw new ArgumentNullException(nameof(webhookWithOutgoingIntegrationDetails.Title), "Property is required for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Cannot write null property WebhookWithOutgoingIntegrationDetails.Title to non-nullable JSON property 'title'.");
 
             if (webhookWithOutgoingIntegrationDetails.Url == null)
-                throw new ArgumentNullException(nameof(webhookWithOutgoingIntegrationDetails.Url), "Property is required for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Cannot write null property WebhookWithOutgoingIntegrationDetails.Url to non-nullable JSON property 'url'.");
 
             if (webhookWithOutgoingIntegrationDetails.Headers == null)
-                throw new ArgumentNullException(nameof(webhookWithOutgoingIntegrationDetails.Headers), "Property is required for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Cannot write null property WebhookWithOutgoingIntegrationDetails.Headers to non-nullable JSON property 'headers'.");
 
             if (webhookWithOutgoingIntegrationDetails.Params == null)
-                throw new ArgumentNullException(nameof(webhookWithOutgoingIntegrationDetails.Params), "Property is required for class WebhookWithOutgoingIntegrationDetails.");
+                throw new JsonException("Cannot write null property WebhookWithOutgoingIntegrationDetails.Params to non-nullable JSON property 'params'.");
 
             writer.WriteNumber("id", webhookWithOutgoingIntegrationDetails.Id);
 

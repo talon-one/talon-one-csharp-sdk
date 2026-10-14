@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!headers.IsSet)
-                throw new ArgumentException("Property is required for class WebhookAuthenticationDataCustom.", nameof(headers));
+                throw new JsonException("Property is required for class WebhookAuthenticationDataCustom: headers.");
 
             if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class WebhookAuthenticationDataCustom.");
+                throw new JsonException("Property is not nullable for class WebhookAuthenticationDataCustom: headers.");
 
             return new WebhookAuthenticationDataCustom(headers.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthenticationDataCustom"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookAuthenticationDataCustom webhookAuthenticationDataCustom, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,11 +158,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookAuthenticationDataCustom"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookAuthenticationDataCustom webhookAuthenticationDataCustom, JsonSerializerOptions jsonSerializerOptions)
         {
             if (webhookAuthenticationDataCustom.Headers == null)
-                throw new ArgumentNullException(nameof(webhookAuthenticationDataCustom.Headers), "Property is required for class WebhookAuthenticationDataCustom.");
+                throw new JsonException("Cannot write null property WebhookAuthenticationDataCustom.Headers to non-nullable JSON property 'headers'.");
 
             writer.WritePropertyName("headers");
             JsonSerializer.Serialize(writer, webhookAuthenticationDataCustom.Headers, jsonSerializerOptions);

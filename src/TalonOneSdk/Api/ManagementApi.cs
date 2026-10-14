@@ -574,7 +574,7 @@ namespace TalonOneSdk.Api
         /// Create ruleset (V2)
         /// </summary>
         /// <remarks>
-        /// Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule&#39;s &#x60;blocks&#x60; array may contain at most one block.
+        /// Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only the first block of a rule can be a condition. Every other block must be an effect.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
@@ -588,7 +588,7 @@ namespace TalonOneSdk.Api
         /// Create ruleset (V2)
         /// </summary>
         /// <remarks>
-        /// Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule&#39;s &#x60;blocks&#x60; array may contain at most one block.
+        /// Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only the first block of a rule can be a condition. Every other block must be an effect.
         /// </remarks>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
@@ -1541,13 +1541,13 @@ namespace TalonOneSdk.Api
         /// Export customer loyalty balances
         /// </summary>
         /// <remarks>
-        /// Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. 
+        /// Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file contains the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. - &#x60;negativeBalance&#x60;: The number of negative points. Only contains a value when requested via &#x60;balances&#x60; and the program uses negative points. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
         /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
-        /// <param name="subledgerIds">Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
+        /// <param name="subledgerIds">Filters the results to specific subledgers.  **Note:** - When this parameter is not provided, the export includes all subledgers   and main ledger data for the specified loyalty program.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
         Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, Option<List<string>> subledgerIds = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1556,12 +1556,12 @@ namespace TalonOneSdk.Api
         /// Export customer loyalty balances
         /// </summary>
         /// <remarks>
-        /// Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. 
+        /// Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file contains the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. - &#x60;negativeBalance&#x60;: The number of negative points. Only contains a value when requested via &#x60;balances&#x60; and the program uses negative points. 
         /// </remarks>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
         /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
-        /// <param name="subledgerIds">Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
+        /// <param name="subledgerIds">Filters the results to specific subledgers.  **Note:** - When this parameter is not provided, the export includes all subledgers   and main ledger data for the specified loyalty program.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
         Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, Option<List<string>> subledgerIds = default, System.Threading.CancellationToken cancellationToken = default);
@@ -2155,9 +2155,10 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="withLoyaltyMemberships">When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersApiResponse"/>&gt;</returns>
-        Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, Option<bool> withLoyaltyMemberships = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List application&#39;s customers
@@ -2170,9 +2171,10 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="withLoyaltyMemberships">When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersApiResponse"/>&gt;</returns>
-        Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersOrDefaultAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersOrDefaultAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, Option<bool> withLoyaltyMemberships = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List application customers matching the given attributes
@@ -2186,9 +2188,10 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="withLoyaltyMemberships">When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersByAttributesApiResponse"/>&gt;</returns>
-        Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, Option<bool> withLoyaltyMemberships = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List application customers matching the given attributes
@@ -2201,9 +2204,10 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="withLoyaltyMemberships">When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersByAttributesApiResponse"/>&gt;</returns>
-        Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesOrDefaultAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesOrDefaultAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, Option<bool> withLoyaltyMemberships = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List Applications event types
@@ -2948,6 +2952,31 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCouponsWithoutTotalCountApiResponse"/>&gt;</returns>
         Task<IGetCouponsWithoutTotalCountApiResponse> GetCouponsWithoutTotalCountOrDefaultAsync(long applicationId, long campaignId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<string> value = default, Option<DateTime> createdBefore = default, Option<DateTime> createdAfter = default, Option<string> valid = default, Option<string> usable = default, Option<string> redeemed = default, Option<long> referralId = default, Option<string> recipientIntegrationId = default, Option<string> batchId = default, Option<bool> exactMatch = default, Option<DateTime> expiresBefore = default, Option<DateTime> expiresAfter = default, Option<DateTime> startsBefore = default, Option<DateTime> startsAfter = default, Option<bool> valuesOnly = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get current revision version
+        /// </summary>
+        /// <remarks>
+        /// Get the current revision version for the given campaign.  **Note:** The [Campaign staging and revisions](https://docs.talon.one/docs/product/applications/manage-general-settings#campaign-staging-and-revisions) feature must be enabled for your Application. For more information, see [Revise campaigns](https://docs.talon.one/docs/product/campaigns/revise-campaigns). 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCurrentRevisionApiResponse"/>&gt;</returns>
+        Task<IGetCurrentRevisionApiResponse> GetCurrentRevisionAsync(long applicationId, long campaignId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get current revision version
+        /// </summary>
+        /// <remarks>
+        /// Get the current revision version for the given campaign.  **Note:** The [Campaign staging and revisions](https://docs.talon.one/docs/product/applications/manage-general-settings#campaign-staging-and-revisions) feature must be enabled for your Application. For more information, see [Revise campaigns](https://docs.talon.one/docs/product/campaigns/revise-campaigns). 
+        /// </remarks>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCurrentRevisionApiResponse"/>&gt;</returns>
+        Task<IGetCurrentRevisionApiResponse> GetCurrentRevisionOrDefaultAsync(long applicationId, long campaignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get customer&#39;s activity report
@@ -4201,7 +4230,7 @@ namespace TalonOneSdk.Api
         /// Import join dates for a loyalty program
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it. - If a join date is in the future at the time of the import, the import fails with a &#x60;400&#x60; error.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -4214,7 +4243,7 @@ namespace TalonOneSdk.Api
         /// Import join dates for a loyalty program
         /// </summary>
         /// <remarks>
-        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it. - If a join date is in the future at the time of the import, the import fails with a &#x60;400&#x60; error.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
@@ -4629,6 +4658,37 @@ namespace TalonOneSdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListExperimentsApiResponse"/>&gt;</returns>
         Task<IListExperimentsApiResponse> ListExperimentsOrDefaultAsync(long applicationId, Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List giveaway pools
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all the giveaway pools for an account.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="applicationIds">Filter by one or more Application IDs, separated by a comma. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IListGiveawaysPoolApiResponse"/>&gt;</returns>
+        Task<IListGiveawaysPoolApiResponse> ListGiveawaysPoolAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, Option<string> applicationIds = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List giveaway pools
+        /// </summary>
+        /// <remarks>
+        /// Retrieve all the giveaway pools for an account.
+        /// </remarks>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="applicationIds">Filter by one or more Application IDs, separated by a comma. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IListGiveawaysPoolApiResponse"/>&gt;</returns>
+        Task<IListGiveawaysPoolApiResponse> ListGiveawaysPoolOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, Option<string> applicationIds = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List stores
@@ -7362,6 +7422,18 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IGetCurrentRevisionApiResponse"/>
+    /// </summary>
+    public interface IGetCurrentRevisionApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.Revision>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IGetCustomerActivityReportApiResponse"/>
     /// </summary>
     public interface IGetCustomerActivityReportApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.CustomerActivityReport>
@@ -8337,6 +8409,18 @@ namespace TalonOneSdk.Api
     /// The <see cref="IListExperimentsApiResponse"/>
     /// </summary>
     public interface IListExperimentsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.ListExperiments200Response>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IListGiveawaysPoolApiResponse"/>
+    /// </summary>
+    public interface IListGiveawaysPoolApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.ListGiveawaysPool200Response>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -10993,6 +11077,26 @@ namespace TalonOneSdk.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnGetCurrentRevision;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorGetCurrentRevision;
+
+        internal void ExecuteOnGetCurrentRevision(ManagementApi.GetCurrentRevisionApiResponse apiResponse)
+        {
+            OnGetCurrentRevision?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetCurrentRevision(Exception exception)
+        {
+            OnErrorGetCurrentRevision?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs> OnGetCustomerActivityReport;
 
         /// <summary>
@@ -12128,6 +12232,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorListExperiments(Exception exception)
         {
             OnErrorListExperiments?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnListGiveawaysPool;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorListGiveawaysPool;
+
+        internal void ExecuteOnListGiveawaysPool(ManagementApi.ListGiveawaysPoolApiResponse apiResponse)
+        {
+            OnListGiveawaysPool?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorListGiveawaysPool(Exception exception)
+        {
+            OnErrorListGiveawaysPool?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -19668,7 +19792,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorCreateRulesetV2(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, RulesetV2 rulesetV2);
 
         /// <summary>
-        /// Create ruleset (V2) Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule&#39;s &#x60;blocks&#x60; array may contain at most one block.
+        /// Create ruleset (V2) Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only the first block of a rule can be a condition. Every other block must be an effect.
         /// </summary>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
@@ -19688,7 +19812,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Create ruleset (V2) Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only &#x60;group&#x60; and &#x60;passthrough&#x60; blocks are currently writable, with optional &#x60;onFailure&#x60; blocks. A payload containing any other block type is rejected. Each rule&#39;s &#x60;blocks&#x60; array may contain at most one block.
+        /// Create ruleset (V2) Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only the first block of a rule can be a condition. Every other block must be an effect.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
@@ -30738,12 +30862,12 @@ namespace TalonOneSdk.Api
         partial void OnErrorExportLoyaltyBalances(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string loyaltyProgramId, Option<DateTime> endDate, Option<string> balances, Option<List<string>> subledgerIds);
 
         /// <summary>
-        /// Export customer loyalty balances Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. 
+        /// Export customer loyalty balances Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file contains the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. - &#x60;negativeBalance&#x60;: The number of negative points. Only contains a value when requested via &#x60;balances&#x60; and the program uses negative points. 
         /// </summary>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
         /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
-        /// <param name="subledgerIds">Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
+        /// <param name="subledgerIds">Filters the results to specific subledgers.  **Note:** - When this parameter is not provided, the export includes all subledgers   and main ledger data for the specified loyalty program.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
         public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesOrDefaultAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, Option<List<string>> subledgerIds = default, System.Threading.CancellationToken cancellationToken = default)
@@ -30759,13 +30883,13 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Export customer loyalty balances Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file can contain the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. 
+        /// Export customer loyalty balances Download a CSV file containing the balance of each customer in the loyalty program.  &gt; [!tip] If the exported CSV file is too large to view, you can &gt; [split it into multiple files](https://www.google.com/search?q&#x3D;split+CSV+into+multiple+files).  The generated file contains the following columns:  - &#x60;loyaltyProgramID&#x60;: The ID of the loyalty program. - &#x60;loyaltySubledger&#x60;: The name of the subledger, when applicable. - &#x60;profileIntegrationID&#x60;: The integration ID of the customer profile. - &#x60;currentBalance&#x60;: The current point balance. - &#x60;pendingBalance&#x60;: The number of pending points. - &#x60;expiredBalance&#x60;: The number of expired points. - &#x60;spentBalance&#x60;: The number of spent points. - &#x60;currentTier&#x60;: The tier that the customer is in at the time of the export. - &#x60;negativeBalance&#x60;: The number of negative points. Only contains a value when requested via &#x60;balances&#x60; and the program uses negative points. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">The identifier for the loyalty program.</param>
         /// <param name="endDate">Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  (optional)</param>
         /// <param name="balances">Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  (optional)</param>
-        /// <param name="subledgerIds">Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  (optional)</param>
+        /// <param name="subledgerIds">Filters the results to specific subledgers.  **Note:** - When this parameter is not provided, the export includes all subledgers   and main ledger data for the specified loyalty program.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IExportLoyaltyBalancesApiResponse"/>&gt;</returns>
         public async Task<IExportLoyaltyBalancesApiResponse> ExportLoyaltyBalancesAsync(string loyaltyProgramId, Option<DateTime> endDate = default, Option<string> balances = default, Option<List<string>> subledgerIds = default, System.Threading.CancellationToken cancellationToken = default)
@@ -37580,7 +37704,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetApplicationCustomers(ref long applicationId, ref Option<string> integrationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> withTotalResultSize);
+        partial void FormatGetApplicationCustomers(ref long applicationId, ref Option<string> integrationId, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> withTotalResultSize, ref Option<bool> withLoyaltyMemberships);
 
         /// <summary>
         /// Validates the request parameters
@@ -37602,10 +37726,11 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="withTotalResultSize"></param>
-        private void AfterGetApplicationCustomersDefaultImplementation(IGetApplicationCustomersApiResponse apiResponseLocalVar, long applicationId, Option<string> integrationId, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize)
+        /// <param name="withLoyaltyMemberships"></param>
+        private void AfterGetApplicationCustomersDefaultImplementation(IGetApplicationCustomersApiResponse apiResponseLocalVar, long applicationId, Option<string> integrationId, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize, Option<bool> withLoyaltyMemberships)
         {
             bool suppressDefaultLog = false;
-            AfterGetApplicationCustomers(ref suppressDefaultLog, apiResponseLocalVar, applicationId, integrationId, pageSize, skip, withTotalResultSize);
+            AfterGetApplicationCustomers(ref suppressDefaultLog, apiResponseLocalVar, applicationId, integrationId, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -37620,7 +37745,8 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="withTotalResultSize"></param>
-        partial void AfterGetApplicationCustomers(ref bool suppressDefaultLog, IGetApplicationCustomersApiResponse apiResponseLocalVar, long applicationId, Option<string> integrationId, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize);
+        /// <param name="withLoyaltyMemberships"></param>
+        partial void AfterGetApplicationCustomers(ref bool suppressDefaultLog, IGetApplicationCustomersApiResponse apiResponseLocalVar, long applicationId, Option<string> integrationId, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize, Option<bool> withLoyaltyMemberships);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -37633,10 +37759,11 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="withTotalResultSize"></param>
-        private void OnErrorGetApplicationCustomersDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<string> integrationId, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize)
+        /// <param name="withLoyaltyMemberships"></param>
+        private void OnErrorGetApplicationCustomersDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<string> integrationId, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize, Option<bool> withLoyaltyMemberships)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetApplicationCustomers(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, integrationId, pageSize, skip, withTotalResultSize);
+            OnErrorGetApplicationCustomers(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, integrationId, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -37653,7 +37780,8 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="withTotalResultSize"></param>
-        partial void OnErrorGetApplicationCustomers(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<string> integrationId, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize);
+        /// <param name="withLoyaltyMemberships"></param>
+        partial void OnErrorGetApplicationCustomers(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, Option<string> integrationId, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize, Option<bool> withLoyaltyMemberships);
 
         /// <summary>
         /// List application&#39;s customers List all the customers of the specified application.
@@ -37663,13 +37791,14 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="withLoyaltyMemberships">When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersApiResponse"/>&gt;</returns>
-        public async Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersOrDefaultAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersOrDefaultAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, Option<bool> withLoyaltyMemberships = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetApplicationCustomersAsync(applicationId, integrationId, pageSize, skip, withTotalResultSize, cancellationToken).ConfigureAwait(false);
+                return await GetApplicationCustomersAsync(applicationId, integrationId, pageSize, skip, withTotalResultSize, withLoyaltyMemberships, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -37686,9 +37815,10 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="withLoyaltyMemberships">When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersApiResponse"/>&gt;</returns>
-        public async Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetApplicationCustomersApiResponse> GetApplicationCustomersAsync(long applicationId, Option<string> integrationId = default, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, Option<bool> withLoyaltyMemberships = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -37696,7 +37826,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetApplicationCustomers(integrationId);
 
-                FormatGetApplicationCustomers(ref applicationId, ref integrationId, ref pageSize, ref skip, ref withTotalResultSize);
+                FormatGetApplicationCustomers(ref applicationId, ref integrationId, ref pageSize, ref skip, ref withTotalResultSize, ref withLoyaltyMemberships);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -37721,6 +37851,9 @@ namespace TalonOneSdk.Api
 
                     if (withTotalResultSize.IsSet)
                         parseQueryStringLocalVar["withTotalResultSize"] = ClientUtils.ParameterToString(withTotalResultSize.Value);
+
+                    if (withLoyaltyMemberships.IsSet)
+                        parseQueryStringLocalVar["withLoyaltyMemberships"] = ClientUtils.ParameterToString(withLoyaltyMemberships.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -37756,7 +37889,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetApplicationCustomersDefaultImplementation(apiResponseLocalVar, applicationId, integrationId, pageSize, skip, withTotalResultSize);
+                        AfterGetApplicationCustomersDefaultImplementation(apiResponseLocalVar, applicationId, integrationId, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
 
                         Events.ExecuteOnGetApplicationCustomers(apiResponseLocalVar);
 
@@ -37770,7 +37903,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetApplicationCustomersDefaultImplementation(e, "/v1/applications/{applicationId}/customers", uriBuilderLocalVar.Path, applicationId, integrationId, pageSize, skip, withTotalResultSize);
+                OnErrorGetApplicationCustomersDefaultImplementation(e, "/v1/applications/{applicationId}/customers", uriBuilderLocalVar.Path, applicationId, integrationId, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
                 Events.ExecuteOnErrorGetApplicationCustomers(e);
                 throw;
             }
@@ -37881,7 +38014,7 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetApplicationCustomersByAttributes(ref long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> withTotalResultSize);
+        partial void FormatGetApplicationCustomersByAttributes(ref long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, ref Option<long> pageSize, ref Option<long> skip, ref Option<bool> withTotalResultSize, ref Option<bool> withLoyaltyMemberships);
 
         /// <summary>
         /// Validates the request parameters
@@ -37903,10 +38036,11 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="withTotalResultSize"></param>
-        private void AfterGetApplicationCustomersByAttributesDefaultImplementation(IGetApplicationCustomersByAttributesApiResponse apiResponseLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize)
+        /// <param name="withLoyaltyMemberships"></param>
+        private void AfterGetApplicationCustomersByAttributesDefaultImplementation(IGetApplicationCustomersByAttributesApiResponse apiResponseLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize, Option<bool> withLoyaltyMemberships)
         {
             bool suppressDefaultLog = false;
-            AfterGetApplicationCustomersByAttributes(ref suppressDefaultLog, apiResponseLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+            AfterGetApplicationCustomersByAttributes(ref suppressDefaultLog, apiResponseLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -37921,7 +38055,8 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="withTotalResultSize"></param>
-        partial void AfterGetApplicationCustomersByAttributes(ref bool suppressDefaultLog, IGetApplicationCustomersByAttributesApiResponse apiResponseLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize);
+        /// <param name="withLoyaltyMemberships"></param>
+        partial void AfterGetApplicationCustomersByAttributes(ref bool suppressDefaultLog, IGetApplicationCustomersByAttributesApiResponse apiResponseLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize, Option<bool> withLoyaltyMemberships);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -37934,10 +38069,11 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="withTotalResultSize"></param>
-        private void OnErrorGetApplicationCustomersByAttributesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize)
+        /// <param name="withLoyaltyMemberships"></param>
+        private void OnErrorGetApplicationCustomersByAttributesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize, Option<bool> withLoyaltyMemberships)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetApplicationCustomersByAttributes(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+            OnErrorGetApplicationCustomersByAttributes(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -37954,7 +38090,8 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize"></param>
         /// <param name="skip"></param>
         /// <param name="withTotalResultSize"></param>
-        partial void OnErrorGetApplicationCustomersByAttributes(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize);
+        /// <param name="withLoyaltyMemberships"></param>
+        partial void OnErrorGetApplicationCustomersByAttributes(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize, Option<long> skip, Option<bool> withTotalResultSize, Option<bool> withLoyaltyMemberships);
 
         /// <summary>
         /// List application customers matching the given attributes Get a list of the application customers matching the provided criteria.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request. 
@@ -37964,13 +38101,14 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="withLoyaltyMemberships">When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersByAttributesApiResponse"/>&gt;</returns>
-        public async Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesOrDefaultAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesOrDefaultAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, Option<bool> withLoyaltyMemberships = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetApplicationCustomersByAttributesAsync(applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize, cancellationToken).ConfigureAwait(false);
+                return await GetApplicationCustomersByAttributesAsync(applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize, withLoyaltyMemberships, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -37987,9 +38125,10 @@ namespace TalonOneSdk.Api
         /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
         /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
         /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="withLoyaltyMemberships">When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetApplicationCustomersByAttributesApiResponse"/>&gt;</returns>
-        public async Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetApplicationCustomersByAttributesApiResponse> GetApplicationCustomersByAttributesAsync(long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, Option<long> pageSize = default, Option<long> skip = default, Option<bool> withTotalResultSize = default, Option<bool> withLoyaltyMemberships = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -37997,7 +38136,7 @@ namespace TalonOneSdk.Api
             {
                 ValidateGetApplicationCustomersByAttributes(customerProfileSearchQuery);
 
-                FormatGetApplicationCustomersByAttributes(ref applicationId, customerProfileSearchQuery, ref pageSize, ref skip, ref withTotalResultSize);
+                FormatGetApplicationCustomersByAttributes(ref applicationId, customerProfileSearchQuery, ref pageSize, ref skip, ref withTotalResultSize, ref withLoyaltyMemberships);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -38019,6 +38158,9 @@ namespace TalonOneSdk.Api
 
                     if (withTotalResultSize.IsSet)
                         parseQueryStringLocalVar["withTotalResultSize"] = ClientUtils.ParameterToString(withTotalResultSize.Value);
+
+                    if (withLoyaltyMemberships.IsSet)
+                        parseQueryStringLocalVar["withLoyaltyMemberships"] = ClientUtils.ParameterToString(withLoyaltyMemberships.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -38067,7 +38209,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterGetApplicationCustomersByAttributesDefaultImplementation(apiResponseLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+                        AfterGetApplicationCustomersByAttributesDefaultImplementation(apiResponseLocalVar, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
 
                         Events.ExecuteOnGetApplicationCustomersByAttributes(apiResponseLocalVar);
 
@@ -38081,7 +38223,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorGetApplicationCustomersByAttributesDefaultImplementation(e, "/v1/applications/{applicationId}/customer_search", uriBuilderLocalVar.Path, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+                OnErrorGetApplicationCustomersByAttributesDefaultImplementation(e, "/v1/applications/{applicationId}/customer_search", uriBuilderLocalVar.Path, applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
                 Events.ExecuteOnErrorGetApplicationCustomersByAttributes(e);
                 throw;
             }
@@ -45344,6 +45486,261 @@ namespace TalonOneSdk.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk(out TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetCurrentRevision(ref long applicationId, ref long campaignId);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        private void AfterGetCurrentRevisionDefaultImplementation(IGetCurrentRevisionApiResponse apiResponseLocalVar, long applicationId, long campaignId)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetCurrentRevision(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        partial void AfterGetCurrentRevision(ref bool suppressDefaultLog, IGetCurrentRevisionApiResponse apiResponseLocalVar, long applicationId, long campaignId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        private void OnErrorGetCurrentRevisionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetCurrentRevision(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="campaignId"></param>
+        partial void OnErrorGetCurrentRevision(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId);
+
+        /// <summary>
+        /// Get current revision version Get the current revision version for the given campaign.  **Note:** The [Campaign staging and revisions](https://docs.talon.one/docs/product/applications/manage-general-settings#campaign-staging-and-revisions) feature must be enabled for your Application. For more information, see [Revise campaigns](https://docs.talon.one/docs/product/campaigns/revise-campaigns). 
+        /// </summary>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCurrentRevisionApiResponse"/>&gt;</returns>
+        public async Task<IGetCurrentRevisionApiResponse> GetCurrentRevisionOrDefaultAsync(long applicationId, long campaignId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetCurrentRevisionAsync(applicationId, campaignId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get current revision version Get the current revision version for the given campaign.  **Note:** The [Campaign staging and revisions](https://docs.talon.one/docs/product/applications/manage-general-settings#campaign-staging-and-revisions) feature must be enabled for your Application. For more information, see [Revise campaigns](https://docs.talon.one/docs/product/campaigns/revise-campaigns). 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCurrentRevisionApiResponse"/>&gt;</returns>
+        public async Task<IGetCurrentRevisionApiResponse> GetCurrentRevisionAsync(long applicationId, long campaignId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatGetCurrentRevision(ref applicationId, ref campaignId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/applications/{applicationId}/campaigns/{campaignId}/revisions/current"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/applications/{applicationId}/campaigns/{campaignId}/revisions/current");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BapplicationId%7D", Uri.EscapeDataString(applicationId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BcampaignId%7D", Uri.EscapeDataString(campaignId.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetCurrentRevisionApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new GetCurrentRevisionApiResponse(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/applications/{applicationId}/campaigns/{campaignId}/revisions/current", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetCurrentRevisionDefaultImplementation(apiResponseLocalVar, applicationId, campaignId);
+
+                        Events.ExecuteOnGetCurrentRevision(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetCurrentRevisionDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns/{campaignId}/revisions/current", uriBuilderLocalVar.Path, applicationId, campaignId);
+                Events.ExecuteOnErrorGetCurrentRevision(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetCurrentRevisionApiResponse"/>
+        /// </summary>
+        public partial class GetCurrentRevisionApiResponse : TalonOneSdk.Client.ApiResponse, IGetCurrentRevisionApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ManagementApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetCurrentRevisionApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCurrentRevisionApiResponse(ILogger<ManagementApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetCurrentRevisionApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCurrentRevisionApiResponse(ILogger<ManagementApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.Revision Ok()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.Revision result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.Revision DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.Revision>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.Revision result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.Revision result)
             {
                 result = null;
 
@@ -59678,7 +60075,7 @@ namespace TalonOneSdk.Api
         partial void OnErrorImportLoyaltyJoinDates(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, Option<TalonOneSdk.Client.FileParameter> upFile);
 
         /// <summary>
-        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it. - If a join date is in the future at the time of the import, the import fails with a &#x60;400&#x60; error.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </summary>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
         /// <param name="upFile">The CSV file containing the data that is being imported. (optional)</param>
@@ -59697,7 +60094,7 @@ namespace TalonOneSdk.Api
         }
 
         /// <summary>
-        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
+        /// Import join dates for a loyalty program Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  &gt; [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - &#x60;customerprofileid&#x60;: The integration ID of the customer profile whose join   date you want to update. - &#x60;joindate&#x60;: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a &#x60;400&#x60; error. - If a join date already exists for a profile, the uploaded date replaces it. - If a join date is in the future at the time of the import, the import fails with a &#x60;400&#x60; error.  &gt; [!note] We recommend limiting your file size to 500 MB.  ## Example  &#x60;&#x60;&#x60;csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="loyaltyProgramId">Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
@@ -64618,6 +65015,313 @@ namespace TalonOneSdk.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk(out TalonOneSdk.Model.ListExperiments200Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatListGiveawaysPool(ref Option<long> pageSize, ref Option<long> skip, ref Option<string> sort, ref Option<bool> withTotalResultSize, ref Option<string> applicationIds);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="sort"></param>
+        /// <param name="applicationIds"></param>
+        /// <returns></returns>
+        private void ValidateListGiveawaysPool(Option<string> sort, Option<string> applicationIds)
+        {
+            if (sort.IsSet && sort.Value == null)
+                throw new ArgumentNullException(nameof(sort));
+
+            if (applicationIds.IsSet && applicationIds.Value == null)
+                throw new ArgumentNullException(nameof(applicationIds));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="sort"></param>
+        /// <param name="withTotalResultSize"></param>
+        /// <param name="applicationIds"></param>
+        private void AfterListGiveawaysPoolDefaultImplementation(IListGiveawaysPoolApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<bool> withTotalResultSize, Option<string> applicationIds)
+        {
+            bool suppressDefaultLog = false;
+            AfterListGiveawaysPool(ref suppressDefaultLog, apiResponseLocalVar, pageSize, skip, sort, withTotalResultSize, applicationIds);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="sort"></param>
+        /// <param name="withTotalResultSize"></param>
+        /// <param name="applicationIds"></param>
+        partial void AfterListGiveawaysPool(ref bool suppressDefaultLog, IListGiveawaysPoolApiResponse apiResponseLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<bool> withTotalResultSize, Option<string> applicationIds);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="sort"></param>
+        /// <param name="withTotalResultSize"></param>
+        /// <param name="applicationIds"></param>
+        private void OnErrorListGiveawaysPoolDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<bool> withTotalResultSize, Option<string> applicationIds)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorListGiveawaysPool(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pageSize, skip, sort, withTotalResultSize, applicationIds);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="skip"></param>
+        /// <param name="sort"></param>
+        /// <param name="withTotalResultSize"></param>
+        /// <param name="applicationIds"></param>
+        partial void OnErrorListGiveawaysPool(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<long> pageSize, Option<long> skip, Option<string> sort, Option<bool> withTotalResultSize, Option<string> applicationIds);
+
+        /// <summary>
+        /// List giveaway pools Retrieve all the giveaway pools for an account.
+        /// </summary>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="applicationIds">Filter by one or more Application IDs, separated by a comma. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IListGiveawaysPoolApiResponse"/>&gt;</returns>
+        public async Task<IListGiveawaysPoolApiResponse> ListGiveawaysPoolOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, Option<string> applicationIds = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await ListGiveawaysPoolAsync(pageSize, skip, sort, withTotalResultSize, applicationIds, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// List giveaway pools Retrieve all the giveaway pools for an account.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="pageSize">The number of items in the response. (optional, default to 1000)</param>
+        /// <param name="skip">The number of items to skip when paging through large result sets. (optional)</param>
+        /// <param name="sort">The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  (optional)</param>
+        /// <param name="withTotalResultSize">When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  (optional)</param>
+        /// <param name="applicationIds">Filter by one or more Application IDs, separated by a comma. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IListGiveawaysPoolApiResponse"/>&gt;</returns>
+        public async Task<IListGiveawaysPoolApiResponse> ListGiveawaysPoolAsync(Option<long> pageSize = default, Option<long> skip = default, Option<string> sort = default, Option<bool> withTotalResultSize = default, Option<string> applicationIds = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateListGiveawaysPool(sort, applicationIds);
+
+                FormatListGiveawaysPool(ref pageSize, ref skip, ref sort, ref withTotalResultSize, ref applicationIds);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/giveaways/pools"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/giveaways/pools");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (pageSize.IsSet)
+                        parseQueryStringLocalVar["pageSize"] = ClientUtils.ParameterToString(pageSize.Value);
+
+                    if (skip.IsSet)
+                        parseQueryStringLocalVar["skip"] = ClientUtils.ParameterToString(skip.Value);
+
+                    if (sort.IsSet)
+                        parseQueryStringLocalVar["sort"] = ClientUtils.ParameterToString(sort.Value);
+
+                    if (withTotalResultSize.IsSet)
+                        parseQueryStringLocalVar["withTotalResultSize"] = ClientUtils.ParameterToString(withTotalResultSize.Value);
+
+                    if (applicationIds.IsSet)
+                        parseQueryStringLocalVar["applicationIds"] = ClientUtils.ParameterToString(applicationIds.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("GET");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        ListGiveawaysPoolApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new ListGiveawaysPoolApiResponse(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/giveaways/pools", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterListGiveawaysPoolDefaultImplementation(apiResponseLocalVar, pageSize, skip, sort, withTotalResultSize, applicationIds);
+
+                        Events.ExecuteOnListGiveawaysPool(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorListGiveawaysPoolDefaultImplementation(e, "/v1/giveaways/pools", uriBuilderLocalVar.Path, pageSize, skip, sort, withTotalResultSize, applicationIds);
+                Events.ExecuteOnErrorListGiveawaysPool(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="ListGiveawaysPoolApiResponse"/>
+        /// </summary>
+        public partial class ListGiveawaysPoolApiResponse : TalonOneSdk.Client.ApiResponse, IListGiveawaysPoolApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ManagementApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="ListGiveawaysPoolApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ListGiveawaysPoolApiResponse(ILogger<ManagementApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="ListGiveawaysPoolApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public ListGiveawaysPoolApiResponse(ILogger<ManagementApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ListGiveawaysPool200Response Ok()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ListGiveawaysPool200Response result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ListGiveawaysPool200Response DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ListGiveawaysPool200Response>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.ListGiveawaysPool200Response result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.ListGiveawaysPool200Response result)
             {
                 result = null;
 

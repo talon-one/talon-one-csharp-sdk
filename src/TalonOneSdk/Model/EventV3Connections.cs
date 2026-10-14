@@ -153,7 +153,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventV3Connections"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EventV3Connections eventV3Connections, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -168,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventV3Connections"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EventV3Connections eventV3Connections, JsonSerializerOptions jsonSerializerOptions)
         {
             if (eventV3Connections.ConnectedSessionIdOption.IsSet)

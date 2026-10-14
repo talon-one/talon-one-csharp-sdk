@@ -198,10 +198,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AudienceBlockReference.", nameof(id));
+                throw new JsonException("Property is required for class AudienceBlockReference: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AudienceBlockReference.");
+                throw new JsonException("Property is not nullable for class AudienceBlockReference: id.");
 
             return new AudienceBlockReference(id.Value.Value, name, integration, integrationId);
         }
@@ -212,7 +212,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="audienceBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AudienceBlockReference audienceBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -227,7 +226,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="audienceBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AudienceBlockReference audienceBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", audienceBlockReference.Id);

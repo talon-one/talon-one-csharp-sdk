@@ -238,10 +238,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class EventV2.", nameof(type));
+                throw new JsonException("Property is required for class EventV2: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class EventV2.");
+                throw new JsonException("Property is not nullable for class EventV2: type.");
 
             return new EventV2(type.Value, profileId, storeIntegrationId, evaluableCampaignIds, attributes);
         }
@@ -252,7 +252,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EventV2 eventV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -267,11 +266,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="eventV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EventV2 eventV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (eventV2.Type == null)
-                throw new ArgumentNullException(nameof(eventV2.Type), "Property is required for class EventV2.");
+                throw new JsonException("Cannot write null property EventV2.Type to non-nullable JSON property 'type'.");
 
             writer.WriteString("type", eventV2.Type);
 

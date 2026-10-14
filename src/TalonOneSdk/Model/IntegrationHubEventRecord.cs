@@ -318,46 +318,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(id));
+                throw new JsonException("Property is required for class IntegrationHubEventRecord: id.");
 
             if (!flowId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(flowId));
+                throw new JsonException("Property is required for class IntegrationHubEventRecord: flowId.");
 
             if (!eventType.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(eventType));
+                throw new JsonException("Property is required for class IntegrationHubEventRecord: eventType.");
 
             if (!publishedAt.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(publishedAt));
+                throw new JsonException("Property is required for class IntegrationHubEventRecord: publishedAt.");
 
             if (!scheduledTo.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(scheduledTo));
+                throw new JsonException("Property is required for class IntegrationHubEventRecord: scheduledTo.");
 
             if (!retry.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(retry));
+                throw new JsonException("Property is required for class IntegrationHubEventRecord: retry.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventRecord.", nameof(payload));
+                throw new JsonException("Property is required for class IntegrationHubEventRecord: payload.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationHubEventRecord.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventRecord: id.");
 
             if (flowId.IsSet && flowId.Value == null)
-                throw new ArgumentNullException(nameof(flowId), "Property is not nullable for class IntegrationHubEventRecord.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventRecord: flowId.");
 
             if (eventType.IsSet && eventType.Value == null)
-                throw new ArgumentNullException(nameof(eventType), "Property is not nullable for class IntegrationHubEventRecord.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventRecord: eventType.");
 
             if (publishedAt.IsSet && publishedAt.Value == null)
-                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventRecord.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventRecord: publishedAt.");
 
             if (scheduledTo.IsSet && scheduledTo.Value == null)
-                throw new ArgumentNullException(nameof(scheduledTo), "Property is not nullable for class IntegrationHubEventRecord.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventRecord: scheduledTo.");
 
             if (retry.IsSet && retry.Value == null)
-                throw new ArgumentNullException(nameof(retry), "Property is not nullable for class IntegrationHubEventRecord.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventRecord: retry.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class IntegrationHubEventRecord.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventRecord: payload.");
 
             return new IntegrationHubEventRecord(id.Value.Value, flowId.Value.Value, eventType.Value.Value, publishedAt.Value.Value, scheduledTo.Value.Value, retry.Value.Value, payload.Value, integrationName, instanceName, processedAt, deliveredAt);
         }
@@ -368,7 +368,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventRecord"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventRecord integrationHubEventRecord, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -383,11 +382,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventRecord"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventRecord integrationHubEventRecord, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubEventRecord.Payload == null)
-                throw new ArgumentNullException(nameof(integrationHubEventRecord.Payload), "Property is required for class IntegrationHubEventRecord.");
+                throw new JsonException("Cannot write null property IntegrationHubEventRecord.Payload to non-nullable JSON property 'payload'.");
 
             writer.WriteNumber("id", integrationHubEventRecord.Id);
 

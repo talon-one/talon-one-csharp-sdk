@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!events.IsSet)
-                throw new ArgumentException("Property is required for class OktaEventPayloadData.", nameof(events));
+                throw new JsonException("Property is required for class OktaEventPayloadData: events.");
 
             if (events.IsSet && events.Value == null)
-                throw new ArgumentNullException(nameof(events), "Property is not nullable for class OktaEventPayloadData.");
+                throw new JsonException("Property is not nullable for class OktaEventPayloadData: events.");
 
             return new OktaEventPayloadData(events.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="oktaEventPayloadData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OktaEventPayloadData oktaEventPayloadData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,11 +158,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="oktaEventPayloadData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OktaEventPayloadData oktaEventPayloadData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (oktaEventPayloadData.Events == null)
-                throw new ArgumentNullException(nameof(oktaEventPayloadData.Events), "Property is required for class OktaEventPayloadData.");
+                throw new JsonException("Cannot write null property OktaEventPayloadData.Events to non-nullable JSON property 'events'.");
 
             writer.WritePropertyName("events");
             JsonSerializer.Serialize(writer, oktaEventPayloadData.Events, jsonSerializerOptions);

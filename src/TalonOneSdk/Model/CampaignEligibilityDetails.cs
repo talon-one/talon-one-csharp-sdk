@@ -49,6 +49,7 @@ namespace TalonOneSdk.Model
         /// Indicates whether the customer was eligible for the campaign in the current session.
         /// </summary>
         /// <value>Indicates whether the customer was eligible for the campaign in the current session.</value>
+        /* <example>false</example> */
         [JsonPropertyName("passed")]
         public bool Passed { get; set; }
 
@@ -63,6 +64,7 @@ namespace TalonOneSdk.Model
         /// The coupon code used to check a customer&#39;s eligibility for the campaign in the current session, if applicable.
         /// </summary>
         /// <value>The coupon code used to check a customer&#39;s eligibility for the campaign in the current session, if applicable.</value>
+        /* <example>XMAS-20-2021</example> */
         [JsonPropertyName("couponCode")]
         public string CouponCode { get { return this.CouponCodeOption.Value; } set { this.CouponCodeOption = new Option<string>(value); } }
 
@@ -173,10 +175,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!passed.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibilityDetails.", nameof(passed));
+                throw new JsonException("Property is required for class CampaignEligibilityDetails: passed.");
 
             if (passed.IsSet && passed.Value == null)
-                throw new ArgumentNullException(nameof(passed), "Property is not nullable for class CampaignEligibilityDetails.");
+                throw new JsonException("Property is not nullable for class CampaignEligibilityDetails: passed.");
 
             return new CampaignEligibilityDetails(passed.Value.Value, couponCode, details);
         }
@@ -187,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEligibilityDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEligibilityDetails campaignEligibilityDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -202,7 +203,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEligibilityDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEligibilityDetails campaignEligibilityDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteBoolean("passed", campaignEligibilityDetails.Passed);

@@ -261,16 +261,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationType.", nameof(id));
+                throw new JsonException("Property is required for class OutgoingIntegrationType: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationType.", nameof(name));
+                throw new JsonException("Property is required for class OutgoingIntegrationType: name.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class OutgoingIntegrationType.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationType: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class OutgoingIntegrationType.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationType: name.");
 
             return new OutgoingIntegrationType(id.Value.Value, name.Value, description, category, documentationLink);
         }
@@ -281,7 +281,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutgoingIntegrationType outgoingIntegrationType, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -296,11 +295,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationType outgoingIntegrationType, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outgoingIntegrationType.Name == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationType.Name), "Property is required for class OutgoingIntegrationType.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationType.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", outgoingIntegrationType.Id);
 

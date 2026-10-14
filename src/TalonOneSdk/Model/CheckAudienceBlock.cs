@@ -422,22 +422,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(type));
+                throw new JsonException("Property is required for class CheckAudienceBlock: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(varOperator));
+                throw new JsonException("Property is required for class CheckAudienceBlock: operator.");
 
             if (!audience.IsSet)
-                throw new ArgumentException("Property is required for class CheckAudienceBlock.", nameof(audience));
+                throw new JsonException("Property is required for class CheckAudienceBlock: audience.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckAudienceBlock.");
+                throw new JsonException("Property is not nullable for class CheckAudienceBlock: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckAudienceBlock.");
+                throw new JsonException("Property is not nullable for class CheckAudienceBlock: operator.");
 
             if (audience.IsSet && audience.Value == null)
-                throw new ArgumentNullException(nameof(audience), "Property is not nullable for class CheckAudienceBlock.");
+                throw new JsonException("Property is not nullable for class CheckAudienceBlock: audience.");
 
             return new CheckAudienceBlock(type.Value, varOperator.Value.Value, audience.Value, id, tags, profile, onFailure);
         }
@@ -448,7 +448,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkAudienceBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckAudienceBlock checkAudienceBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -463,14 +462,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkAudienceBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckAudienceBlock checkAudienceBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (checkAudienceBlock.Type == null)
-                throw new ArgumentNullException(nameof(checkAudienceBlock.Type), "Property is required for class CheckAudienceBlock.");
+                throw new JsonException("Cannot write null property CheckAudienceBlock.Type to non-nullable JSON property 'type'.");
 
             if (checkAudienceBlock.Audience == null)
-                throw new ArgumentNullException(nameof(checkAudienceBlock.Audience), "Property is required for class CheckAudienceBlock.");
+                throw new JsonException("Cannot write null property CheckAudienceBlock.Audience to non-nullable JSON property 'audience'.");
 
             writer.WriteString("type", checkAudienceBlock.Type);
 

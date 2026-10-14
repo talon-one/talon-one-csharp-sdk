@@ -259,10 +259,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!apiKey.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubFlowConfig.", nameof(apiKey));
+                throw new JsonException("Property is required for class IntegrationHubFlowConfig: ApiKey.");
 
             if (apiKey.IsSet && apiKey.Value == null)
-                throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class IntegrationHubFlowConfig.");
+                throw new JsonException("Property is not nullable for class IntegrationHubFlowConfig: ApiKey.");
 
             return new IntegrationHubFlowConfig(apiKey.Value, workerCount, maxEventsPerMessage, maxRetries, instanceName, integrationName);
         }
@@ -273,7 +273,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubFlowConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubFlowConfig integrationHubFlowConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -288,11 +287,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubFlowConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubFlowConfig integrationHubFlowConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubFlowConfig.ApiKey == null)
-                throw new ArgumentNullException(nameof(integrationHubFlowConfig.ApiKey), "Property is required for class IntegrationHubFlowConfig.");
+                throw new JsonException("Cannot write null property IntegrationHubFlowConfig.ApiKey to non-nullable JSON property 'ApiKey'.");
 
             writer.WriteString("ApiKey", integrationHubFlowConfig.ApiKey);
 

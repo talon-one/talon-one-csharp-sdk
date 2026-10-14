@@ -177,28 +177,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!baseUrl.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationMoEngagePolicy.", nameof(baseUrl));
+                throw new JsonException("Property is required for class OutgoingIntegrationMoEngagePolicy: baseUrl.");
 
             if (!appId.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationMoEngagePolicy.", nameof(appId));
+                throw new JsonException("Property is required for class OutgoingIntegrationMoEngagePolicy: appId.");
 
             if (!dataApiId.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationMoEngagePolicy.", nameof(dataApiId));
+                throw new JsonException("Property is required for class OutgoingIntegrationMoEngagePolicy: dataApiId.");
 
             if (!dataApiKey.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationMoEngagePolicy.", nameof(dataApiKey));
+                throw new JsonException("Property is required for class OutgoingIntegrationMoEngagePolicy: dataApiKey.");
 
             if (baseUrl.IsSet && baseUrl.Value == null)
-                throw new ArgumentNullException(nameof(baseUrl), "Property is not nullable for class OutgoingIntegrationMoEngagePolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationMoEngagePolicy: baseUrl.");
 
             if (appId.IsSet && appId.Value == null)
-                throw new ArgumentNullException(nameof(appId), "Property is not nullable for class OutgoingIntegrationMoEngagePolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationMoEngagePolicy: appId.");
 
             if (dataApiId.IsSet && dataApiId.Value == null)
-                throw new ArgumentNullException(nameof(dataApiId), "Property is not nullable for class OutgoingIntegrationMoEngagePolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationMoEngagePolicy: dataApiId.");
 
             if (dataApiKey.IsSet && dataApiKey.Value == null)
-                throw new ArgumentNullException(nameof(dataApiKey), "Property is not nullable for class OutgoingIntegrationMoEngagePolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationMoEngagePolicy: dataApiKey.");
 
             return new OutgoingIntegrationMoEngagePolicy(baseUrl.Value, appId.Value, dataApiId.Value, dataApiKey.Value);
         }
@@ -209,7 +209,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationMoEngagePolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutgoingIntegrationMoEngagePolicy outgoingIntegrationMoEngagePolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -224,20 +223,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationMoEngagePolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationMoEngagePolicy outgoingIntegrationMoEngagePolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outgoingIntegrationMoEngagePolicy.BaseUrl == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationMoEngagePolicy.BaseUrl), "Property is required for class OutgoingIntegrationMoEngagePolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationMoEngagePolicy.BaseUrl to non-nullable JSON property 'baseUrl'.");
 
             if (outgoingIntegrationMoEngagePolicy.AppId == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationMoEngagePolicy.AppId), "Property is required for class OutgoingIntegrationMoEngagePolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationMoEngagePolicy.AppId to non-nullable JSON property 'appId'.");
 
             if (outgoingIntegrationMoEngagePolicy.DataApiId == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationMoEngagePolicy.DataApiId), "Property is required for class OutgoingIntegrationMoEngagePolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationMoEngagePolicy.DataApiId to non-nullable JSON property 'dataApiId'.");
 
             if (outgoingIntegrationMoEngagePolicy.DataApiKey == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationMoEngagePolicy.DataApiKey), "Property is required for class OutgoingIntegrationMoEngagePolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationMoEngagePolicy.DataApiKey to non-nullable JSON property 'dataApiKey'.");
 
             writer.WriteString("baseUrl", outgoingIntegrationMoEngagePolicy.BaseUrl);
 

@@ -330,16 +330,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgress.", nameof(status));
+                throw new JsonException("Property is required for class AchievementProgress: status.");
 
             if (!progress.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgress.", nameof(progress));
+                throw new JsonException("Property is required for class AchievementProgress: progress.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementProgress.");
+                throw new JsonException("Property is not nullable for class AchievementProgress: status.");
 
             if (progress.IsSet && progress.Value == null)
-                throw new ArgumentNullException(nameof(progress), "Property is not nullable for class AchievementProgress.");
+                throw new JsonException("Property is not nullable for class AchievementProgress: progress.");
 
             return new AchievementProgress(status.Value.Value, progress.Value.Value, startDate, completionDate, endDate);
         }
@@ -350,7 +350,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementProgress"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AchievementProgress achievementProgress, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -365,7 +364,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementProgress"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementProgress achievementProgress, JsonSerializerOptions jsonSerializerOptions)
         {
             var statusRawValue = AchievementProgress.StatusEnumToJsonValue(achievementProgress.Status);

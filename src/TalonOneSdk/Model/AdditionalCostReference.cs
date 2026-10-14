@@ -169,16 +169,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AdditionalCostReference.", nameof(id));
+                throw new JsonException("Property is required for class AdditionalCostReference: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AdditionalCostReference.", nameof(name));
+                throw new JsonException("Property is required for class AdditionalCostReference: name.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AdditionalCostReference.");
+                throw new JsonException("Property is not nullable for class AdditionalCostReference: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AdditionalCostReference.");
+                throw new JsonException("Property is not nullable for class AdditionalCostReference: name.");
 
             return new AdditionalCostReference(id.Value.Value, name.Value, title);
         }
@@ -189,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="additionalCostReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AdditionalCostReference additionalCostReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -204,11 +203,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="additionalCostReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalCostReference additionalCostReference, JsonSerializerOptions jsonSerializerOptions)
         {
             if (additionalCostReference.Name == null)
-                throw new ArgumentNullException(nameof(additionalCostReference.Name), "Property is required for class AdditionalCostReference.");
+                throw new JsonException("Cannot write null property AdditionalCostReference.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", additionalCostReference.Id);
 

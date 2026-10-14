@@ -248,16 +248,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBundleTarget.", nameof(type));
+                throw new JsonException("Property is required for class AwardDiscountBundleTarget: type.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBundleTarget.", nameof(name));
+                throw new JsonException("Property is required for class AwardDiscountBundleTarget: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountBundleTarget.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBundleTarget: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AwardDiscountBundleTarget.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBundleTarget: name.");
 
             return new AwardDiscountBundleTarget(type.Value.Value, name.Value, item, prorated);
         }
@@ -268,7 +268,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBundleTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardDiscountBundleTarget awardDiscountBundleTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -283,11 +282,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBundleTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardDiscountBundleTarget awardDiscountBundleTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardDiscountBundleTarget.Name == null)
-                throw new ArgumentNullException(nameof(awardDiscountBundleTarget.Name), "Property is required for class AwardDiscountBundleTarget.");
+                throw new JsonException("Cannot write null property AwardDiscountBundleTarget.Name to non-nullable JSON property 'name'.");
 
             var typeRawValue = AwardDiscountBundleTarget.TypeEnumToJsonValue(awardDiscountBundleTarget.Type);
             writer.WriteString("type", typeRawValue);

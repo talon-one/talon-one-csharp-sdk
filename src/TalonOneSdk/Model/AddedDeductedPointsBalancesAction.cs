@@ -37,8 +37,11 @@ namespace TalonOneSdk.Model
         /// <param name="transactionUUID">The identifier of the transaction in the loyalty ledger.</param>
         /// <param name="startDate">The start date for loyalty points.</param>
         /// <param name="expiryDate">The expiration date for loyalty points.</param>
+        /// <param name="created">The timestamp when the loyalty transaction occurred.</param>
+        /// <param name="awaitsActivation">Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, calculated relative to their start date.   **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public AddedDeductedPointsBalancesAction(decimal amount, string reason, OperationEnum operation, Guid transactionUUID, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default)
+        public AddedDeductedPointsBalancesAction(decimal amount, string reason, OperationEnum operation, Guid transactionUUID, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<DateTime?> created = default, Option<bool?> awaitsActivation = default, Option<string> validityDuration = default)
         {
             Amount = amount;
             Reason = reason;
@@ -46,6 +49,9 @@ namespace TalonOneSdk.Model
             TransactionUUID = transactionUUID;
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
+            CreatedOption = created;
+            AwaitsActivationOption = awaitsActivation;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -179,6 +185,51 @@ namespace TalonOneSdk.Model
         public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Used to track the state of Created
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> CreatedOption { get; private set; }
+
+        /// <summary>
+        /// The timestamp when the loyalty transaction occurred.
+        /// </summary>
+        /// <value>The timestamp when the loyalty transaction occurred.</value>
+        /* <example>2023-01-24T14:15:22Z</example> */
+        [JsonPropertyName("Created")]
+        public DateTime? Created { get { return this.CreatedOption.Value; } set { this.CreatedOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of AwaitsActivation
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> AwaitsActivationOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+        /// </summary>
+        /// <value>Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("AwaitsActivation")]
+        public bool? AwaitsActivation { get { return this.AwaitsActivationOption.Value; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, calculated relative to their start date.   **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, calculated relative to their start date.   **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("ValidityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -192,6 +243,9 @@ namespace TalonOneSdk.Model
             sb.Append("  TransactionUUID: ").Append(TransactionUUID).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
+            sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  AwaitsActivation: ").Append(AwaitsActivation).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -233,6 +287,11 @@ namespace TalonOneSdk.Model
         public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize Created
+        /// </summary>
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="AddedDeductedPointsBalancesAction" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -255,6 +314,9 @@ namespace TalonOneSdk.Model
             Option<Guid?> transactionUUID = default;
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
+            Option<DateTime?> created = default;
+            Option<bool?> awaitsActivation = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -296,6 +358,15 @@ namespace TalonOneSdk.Model
                         case "ExpiryDate":
                             expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "Created":
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "AwaitsActivation":
+                            awaitsActivation = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "ValidityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -303,30 +374,30 @@ namespace TalonOneSdk.Model
             }
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesAction.", nameof(amount));
+                throw new JsonException("Property is required for class AddedDeductedPointsBalancesAction: Amount.");
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesAction.", nameof(reason));
+                throw new JsonException("Property is required for class AddedDeductedPointsBalancesAction: Reason.");
 
             if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesAction.", nameof(operation));
+                throw new JsonException("Property is required for class AddedDeductedPointsBalancesAction: Operation.");
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesAction.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class AddedDeductedPointsBalancesAction: TransactionUUID.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+                throw new JsonException("Property is not nullable for class AddedDeductedPointsBalancesAction: Amount.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+                throw new JsonException("Property is not nullable for class AddedDeductedPointsBalancesAction: Reason.");
 
             if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+                throw new JsonException("Property is not nullable for class AddedDeductedPointsBalancesAction: Operation.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class AddedDeductedPointsBalancesAction.");
+                throw new JsonException("Property is not nullable for class AddedDeductedPointsBalancesAction: TransactionUUID.");
 
-            return new AddedDeductedPointsBalancesAction(amount.Value.Value, reason.Value, operation.Value.Value, transactionUUID.Value.Value, startDate, expiryDate);
+            return new AddedDeductedPointsBalancesAction(amount.Value.Value, reason.Value, operation.Value.Value, transactionUUID.Value.Value, startDate, expiryDate, created, awaitsActivation, validityDuration);
         }
 
         /// <summary>
@@ -335,7 +406,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addedDeductedPointsBalancesAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AddedDeductedPointsBalancesAction addedDeductedPointsBalancesAction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -350,11 +420,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addedDeductedPointsBalancesAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AddedDeductedPointsBalancesAction addedDeductedPointsBalancesAction, JsonSerializerOptions jsonSerializerOptions)
         {
             if (addedDeductedPointsBalancesAction.Reason == null)
-                throw new ArgumentNullException(nameof(addedDeductedPointsBalancesAction.Reason), "Property is required for class AddedDeductedPointsBalancesAction.");
+                throw new JsonException("Cannot write null property AddedDeductedPointsBalancesAction.Reason to non-nullable JSON property 'Reason'.");
 
             writer.WriteNumber("Amount", addedDeductedPointsBalancesAction.Amount);
 
@@ -369,6 +438,15 @@ namespace TalonOneSdk.Model
 
             if (addedDeductedPointsBalancesAction.ExpiryDateOption.IsSet)
                 writer.WriteString("ExpiryDate", addedDeductedPointsBalancesAction.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+
+            if (addedDeductedPointsBalancesAction.CreatedOption.IsSet)
+                writer.WriteString("Created", addedDeductedPointsBalancesAction.CreatedOption.Value.Value.ToString(CreatedFormat));
+
+            if (addedDeductedPointsBalancesAction.AwaitsActivationOption.IsSet)
+                writer.WriteBoolean("AwaitsActivation", addedDeductedPointsBalancesAction.AwaitsActivationOption.Value.Value);
+
+            if (addedDeductedPointsBalancesAction.ValidityDurationOption.IsSet)
+                writer.WriteString("ValidityDuration", addedDeductedPointsBalancesAction.ValidityDuration);
         }
     }
 }

@@ -169,16 +169,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewCatalog.", nameof(name));
+                throw new JsonException("Property is required for class NewCatalog: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class NewCatalog.", nameof(description));
+                throw new JsonException("Property is required for class NewCatalog: description.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewCatalog.");
+                throw new JsonException("Property is not nullable for class NewCatalog: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewCatalog.");
+                throw new JsonException("Property is not nullable for class NewCatalog: description.");
 
             return new NewCatalog(name.Value, description.Value, subscribedApplicationsIds);
         }
@@ -189,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCatalog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewCatalog newCatalog, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -204,14 +203,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newCatalog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewCatalog newCatalog, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newCatalog.Name == null)
-                throw new ArgumentNullException(nameof(newCatalog.Name), "Property is required for class NewCatalog.");
+                throw new JsonException("Cannot write null property NewCatalog.Name to non-nullable JSON property 'name'.");
 
             if (newCatalog.Description == null)
-                throw new ArgumentNullException(nameof(newCatalog.Description), "Property is required for class NewCatalog.");
+                throw new JsonException("Cannot write null property NewCatalog.Description to non-nullable JSON property 'description'.");
 
             writer.WriteString("name", newCatalog.Name);
 

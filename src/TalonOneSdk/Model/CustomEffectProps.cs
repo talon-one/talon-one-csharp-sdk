@@ -249,22 +249,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!effectId.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffectProps.", nameof(effectId));
+                throw new JsonException("Property is required for class CustomEffectProps: effectId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffectProps.", nameof(name));
+                throw new JsonException("Property is required for class CustomEffectProps: name.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffectProps.", nameof(payload));
+                throw new JsonException("Property is required for class CustomEffectProps: payload.");
 
             if (effectId.IsSet && effectId.Value == null)
-                throw new ArgumentNullException(nameof(effectId), "Property is not nullable for class CustomEffectProps.");
+                throw new JsonException("Property is not nullable for class CustomEffectProps: effectId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomEffectProps.");
+                throw new JsonException("Property is not nullable for class CustomEffectProps: name.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CustomEffectProps.");
+                throw new JsonException("Property is not nullable for class CustomEffectProps: payload.");
 
             return new CustomEffectProps(effectId.Value.Value, name.Value, payload.Value, cartItemPosition, cartItemSubPosition, bundleIndex, bundleName);
         }
@@ -275,7 +275,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomEffectProps customEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -290,14 +289,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomEffectProps customEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(customEffectProps.Name), "Property is required for class CustomEffectProps.");
+                throw new JsonException("Cannot write null property CustomEffectProps.Name to non-nullable JSON property 'name'.");
 
             if (customEffectProps.Payload == null)
-                throw new ArgumentNullException(nameof(customEffectProps.Payload), "Property is required for class CustomEffectProps.");
+                throw new JsonException("Cannot write null property CustomEffectProps.Payload to non-nullable JSON property 'payload'.");
 
             writer.WriteNumber("effectId", customEffectProps.EffectId);
 

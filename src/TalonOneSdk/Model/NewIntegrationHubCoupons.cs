@@ -359,9 +359,9 @@ namespace TalonOneSdk.Model
             }
 
             // NumberOfCoupons (long) maximum
-            if (this.NumberOfCoupons > (long)20000)
+            if (this.NumberOfCoupons > (long)5000000)
             {
-                yield return new ValidationResult("Invalid value for NumberOfCoupons, must be a value less than or equal to 20000.", new [] { "NumberOfCoupons" });
+                yield return new ValidationResult("Invalid value for NumberOfCoupons, must be a value less than or equal to 5000000.", new [] { "NumberOfCoupons" });
             }
 
             // NumberOfCoupons (long) minimum
@@ -553,34 +553,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!usageLimit.IsSet)
-                throw new ArgumentException("Property is required for class NewIntegrationHubCoupons.", nameof(usageLimit));
+                throw new JsonException("Property is required for class NewIntegrationHubCoupons: usageLimit.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class NewIntegrationHubCoupons.", nameof(applicationId));
+                throw new JsonException("Property is required for class NewIntegrationHubCoupons: applicationId.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class NewIntegrationHubCoupons.", nameof(campaignId));
+                throw new JsonException("Property is required for class NewIntegrationHubCoupons: campaignId.");
 
             if (!batchId.IsSet)
-                throw new ArgumentException("Property is required for class NewIntegrationHubCoupons.", nameof(batchId));
+                throw new JsonException("Property is required for class NewIntegrationHubCoupons: batchId.");
 
             if (!numberOfCoupons.IsSet)
-                throw new ArgumentException("Property is required for class NewIntegrationHubCoupons.", nameof(numberOfCoupons));
+                throw new JsonException("Property is required for class NewIntegrationHubCoupons: numberOfCoupons.");
 
             if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class NewIntegrationHubCoupons.");
+                throw new JsonException("Property is not nullable for class NewIntegrationHubCoupons: usageLimit.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class NewIntegrationHubCoupons.");
+                throw new JsonException("Property is not nullable for class NewIntegrationHubCoupons: applicationId.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class NewIntegrationHubCoupons.");
+                throw new JsonException("Property is not nullable for class NewIntegrationHubCoupons: campaignId.");
 
             if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class NewIntegrationHubCoupons.");
+                throw new JsonException("Property is not nullable for class NewIntegrationHubCoupons: batchId.");
 
             if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCoupons), "Property is not nullable for class NewIntegrationHubCoupons.");
+                throw new JsonException("Property is not nullable for class NewIntegrationHubCoupons: numberOfCoupons.");
 
             return new NewIntegrationHubCoupons(usageLimit.Value.Value, applicationId.Value.Value, campaignId.Value.Value, batchId.Value, numberOfCoupons.Value.Value, discountLimit, reservationLimit, startDate, expiryDate, limits, attributes, validCharacters, couponPattern, isReservationMandatory, implicitlyReserved, recipientIntegrationId, supportRequestId, supportRequestNote);
         }
@@ -591,7 +591,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newIntegrationHubCoupons"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewIntegrationHubCoupons newIntegrationHubCoupons, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -606,11 +605,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newIntegrationHubCoupons"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewIntegrationHubCoupons newIntegrationHubCoupons, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newIntegrationHubCoupons.BatchId == null)
-                throw new ArgumentNullException(nameof(newIntegrationHubCoupons.BatchId), "Property is required for class NewIntegrationHubCoupons.");
+                throw new JsonException("Cannot write null property NewIntegrationHubCoupons.BatchId to non-nullable JSON property 'batchId'.");
 
             writer.WriteNumber("usageLimit", newIntegrationHubCoupons.UsageLimit);
 

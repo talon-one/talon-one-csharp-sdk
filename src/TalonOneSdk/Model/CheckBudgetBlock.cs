@@ -563,22 +563,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckBudgetBlock.", nameof(type));
+                throw new JsonException("Property is required for class CheckBudgetBlock: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class CheckBudgetBlock.", nameof(varOperator));
+                throw new JsonException("Property is required for class CheckBudgetBlock: operator.");
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class CheckBudgetBlock.", nameof(action));
+                throw new JsonException("Property is required for class CheckBudgetBlock: action.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckBudgetBlock.");
+                throw new JsonException("Property is not nullable for class CheckBudgetBlock: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckBudgetBlock.");
+                throw new JsonException("Property is not nullable for class CheckBudgetBlock: operator.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class CheckBudgetBlock.");
+                throw new JsonException("Property is not nullable for class CheckBudgetBlock: action.");
 
             return new CheckBudgetBlock(type.Value, varOperator.Value.Value, action.Value.Value, id, tags, value, onFailure);
         }
@@ -589,7 +589,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkBudgetBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckBudgetBlock checkBudgetBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -604,11 +603,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkBudgetBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckBudgetBlock checkBudgetBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (checkBudgetBlock.Type == null)
-                throw new ArgumentNullException(nameof(checkBudgetBlock.Type), "Property is required for class CheckBudgetBlock.");
+                throw new JsonException("Cannot write null property CheckBudgetBlock.Type to non-nullable JSON property 'type'.");
 
             writer.WriteString("type", checkBudgetBlock.Type);
 

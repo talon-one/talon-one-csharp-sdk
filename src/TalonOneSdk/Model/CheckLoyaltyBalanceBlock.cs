@@ -34,8 +34,8 @@ namespace TalonOneSdk.Model
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="operator">An indicator of how the block compares the balance to the value.</param>
         /// <param name="program">program</param>
-        /// <param name="subledger">The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger.</param>
-        /// <param name="balance">The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.</param>
+        /// <param name="subledger">The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger. A subledger can only be used when the loyalty program has subledgers enabled.</param>
+        /// <param name="balance">The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points. It cannot be used with a subledger.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.</param>
         /// <param name="value">The numeric value to compare the balance against.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
@@ -189,9 +189,9 @@ namespace TalonOneSdk.Model
         public OperatorEnum Operator { get; set; }
 
         /// <summary>
-        /// The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.
+        /// The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points. It cannot be used with a subledger.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.
         /// </summary>
-        /// <value>The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.</value>
+        /// <value>The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points. It cannot be used with a subledger.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.</value>
         public enum BalanceEnum
         {
             /// <summary>
@@ -284,9 +284,9 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.
+        /// The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points. It cannot be used with a subledger.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.
         /// </summary>
-        /// <value>The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.</value>
+        /// <value>The type of balance to check:  - &#x60;current&#x60; is the sum of currently active points  - &#x60;pending&#x60; is the sum of pending points.  - &#x60;negative&#x60; is the sum of negative points. It cannot be used with a subledger.  - &#x60;tentativeCurrent&#x60; is the tentative points balance within the current open customer session.</value>
         /* <example>current</example> */
         [JsonPropertyName("balance")]
         public BalanceEnum Balance { get; set; }
@@ -305,9 +305,9 @@ namespace TalonOneSdk.Model
         public CheckLoyaltyBalanceBlock1Program Program { get; set; }
 
         /// <summary>
-        /// The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger.
+        /// The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger. A subledger can only be used when the loyalty program has subledgers enabled.
         /// </summary>
-        /// <value>The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger.</value>
+        /// <value>The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger. A subledger can only be used when the loyalty program has subledgers enabled.</value>
         [JsonPropertyName("subledger")]
         public string Subledger { get; set; }
 
@@ -499,40 +499,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(type));
+                throw new JsonException("Property is required for class CheckLoyaltyBalanceBlock: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(varOperator));
+                throw new JsonException("Property is required for class CheckLoyaltyBalanceBlock: operator.");
 
             if (!program.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(program));
+                throw new JsonException("Property is required for class CheckLoyaltyBalanceBlock: program.");
 
             if (!subledger.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(subledger));
+                throw new JsonException("Property is required for class CheckLoyaltyBalanceBlock: subledger.");
 
             if (!balance.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(balance));
+                throw new JsonException("Property is required for class CheckLoyaltyBalanceBlock: balance.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class CheckLoyaltyBalanceBlock.", nameof(value));
+                throw new JsonException("Property is required for class CheckLoyaltyBalanceBlock: value.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Property is not nullable for class CheckLoyaltyBalanceBlock: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Property is not nullable for class CheckLoyaltyBalanceBlock: operator.");
 
             if (program.IsSet && program.Value == null)
-                throw new ArgumentNullException(nameof(program), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Property is not nullable for class CheckLoyaltyBalanceBlock: program.");
 
             if (subledger.IsSet && subledger.Value == null)
-                throw new ArgumentNullException(nameof(subledger), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Property is not nullable for class CheckLoyaltyBalanceBlock: subledger.");
 
             if (balance.IsSet && balance.Value == null)
-                throw new ArgumentNullException(nameof(balance), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Property is not nullable for class CheckLoyaltyBalanceBlock: balance.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Property is not nullable for class CheckLoyaltyBalanceBlock: value.");
 
             return new CheckLoyaltyBalanceBlock(type.Value, varOperator.Value.Value, program.Value, subledger.Value, balance.Value.Value, value.Value.Value, id, tags, onFailure);
         }
@@ -543,7 +543,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkLoyaltyBalanceBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckLoyaltyBalanceBlock checkLoyaltyBalanceBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -558,17 +557,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkLoyaltyBalanceBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckLoyaltyBalanceBlock checkLoyaltyBalanceBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (checkLoyaltyBalanceBlock.Type == null)
-                throw new ArgumentNullException(nameof(checkLoyaltyBalanceBlock.Type), "Property is required for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Cannot write null property CheckLoyaltyBalanceBlock.Type to non-nullable JSON property 'type'.");
 
             if (checkLoyaltyBalanceBlock.Program == null)
-                throw new ArgumentNullException(nameof(checkLoyaltyBalanceBlock.Program), "Property is required for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Cannot write null property CheckLoyaltyBalanceBlock.Program to non-nullable JSON property 'program'.");
 
             if (checkLoyaltyBalanceBlock.Subledger == null)
-                throw new ArgumentNullException(nameof(checkLoyaltyBalanceBlock.Subledger), "Property is required for class CheckLoyaltyBalanceBlock.");
+                throw new JsonException("Cannot write null property CheckLoyaltyBalanceBlock.Subledger to non-nullable JSON property 'subledger'.");
 
             writer.WriteString("type", checkLoyaltyBalanceBlock.Type);
 

@@ -295,22 +295,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBundleItemByAttribute.", nameof(type));
+                throw new JsonException("Property is required for class AwardDiscountBundleItemByAttribute: type.");
 
             if (!attribute.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBundleItemByAttribute.", nameof(attribute));
+                throw new JsonException("Property is required for class AwardDiscountBundleItemByAttribute: attribute.");
 
             if (!direction.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBundleItemByAttribute.", nameof(direction));
+                throw new JsonException("Property is required for class AwardDiscountBundleItemByAttribute: direction.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountBundleItemByAttribute.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBundleItemByAttribute: type.");
 
             if (attribute.IsSet && attribute.Value == null)
-                throw new ArgumentNullException(nameof(attribute), "Property is not nullable for class AwardDiscountBundleItemByAttribute.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBundleItemByAttribute: attribute.");
 
             if (direction.IsSet && direction.Value == null)
-                throw new ArgumentNullException(nameof(direction), "Property is not nullable for class AwardDiscountBundleItemByAttribute.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBundleItemByAttribute: direction.");
 
             return new AwardDiscountBundleItemByAttribute(type.Value.Value, attribute.Value, direction.Value.Value);
         }
@@ -321,7 +321,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBundleItemByAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardDiscountBundleItemByAttribute awardDiscountBundleItemByAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -336,11 +335,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBundleItemByAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardDiscountBundleItemByAttribute awardDiscountBundleItemByAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardDiscountBundleItemByAttribute.Attribute == null)
-                throw new ArgumentNullException(nameof(awardDiscountBundleItemByAttribute.Attribute), "Property is required for class AwardDiscountBundleItemByAttribute.");
+                throw new JsonException("Cannot write null property AwardDiscountBundleItemByAttribute.Attribute to non-nullable JSON property 'attribute'.");
 
             var typeRawValue = AwardDiscountBundleItemByAttribute.TypeEnumToJsonValue(awardDiscountBundleItemByAttribute.Type);
             writer.WriteString("type", typeRawValue);

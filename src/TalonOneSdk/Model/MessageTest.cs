@@ -155,16 +155,16 @@ Content-Length: 256
             }
 
             if (!httpResponse.IsSet)
-                throw new ArgumentException("Property is required for class MessageTest.", nameof(httpResponse));
+                throw new JsonException("Property is required for class MessageTest: httpResponse.");
 
             if (!httpStatus.IsSet)
-                throw new ArgumentException("Property is required for class MessageTest.", nameof(httpStatus));
+                throw new JsonException("Property is required for class MessageTest: httpStatus.");
 
             if (httpResponse.IsSet && httpResponse.Value == null)
-                throw new ArgumentNullException(nameof(httpResponse), "Property is not nullable for class MessageTest.");
+                throw new JsonException("Property is not nullable for class MessageTest: httpResponse.");
 
             if (httpStatus.IsSet && httpStatus.Value == null)
-                throw new ArgumentNullException(nameof(httpStatus), "Property is not nullable for class MessageTest.");
+                throw new JsonException("Property is not nullable for class MessageTest: httpStatus.");
 
             return new MessageTest(httpResponse.Value, httpStatus.Value.Value);
         }
@@ -175,7 +175,6 @@ Content-Length: 256
         /// <param name="writer"></param>
         /// <param name="messageTest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageTest messageTest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,11 +189,10 @@ Content-Length: 256
         /// <param name="writer"></param>
         /// <param name="messageTest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageTest messageTest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageTest.HttpResponse == null)
-                throw new ArgumentNullException(nameof(messageTest.HttpResponse), "Property is required for class MessageTest.");
+                throw new JsonException("Cannot write null property MessageTest.HttpResponse to non-nullable JSON property 'httpResponse'.");
 
             writer.WriteString("httpResponse", messageTest.HttpResponse);
 

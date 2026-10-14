@@ -302,46 +302,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ManagementKey.", nameof(name));
+                throw new JsonException("Property is required for class ManagementKey: name.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class ManagementKey.", nameof(expiryDate));
+                throw new JsonException("Property is required for class ManagementKey: expiryDate.");
 
             if (!endpoints.IsSet)
-                throw new ArgumentException("Property is required for class ManagementKey.", nameof(endpoints));
+                throw new JsonException("Property is required for class ManagementKey: endpoints.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ManagementKey.", nameof(id));
+                throw new JsonException("Property is required for class ManagementKey: id.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class ManagementKey.", nameof(createdBy));
+                throw new JsonException("Property is required for class ManagementKey: createdBy.");
 
             if (!accountID.IsSet)
-                throw new ArgumentException("Property is required for class ManagementKey.", nameof(accountID));
+                throw new JsonException("Property is required for class ManagementKey: accountID.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ManagementKey.", nameof(created));
+                throw new JsonException("Property is required for class ManagementKey: created.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ManagementKey.");
+                throw new JsonException("Property is not nullable for class ManagementKey: name.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ManagementKey.");
+                throw new JsonException("Property is not nullable for class ManagementKey: expiryDate.");
 
             if (endpoints.IsSet && endpoints.Value == null)
-                throw new ArgumentNullException(nameof(endpoints), "Property is not nullable for class ManagementKey.");
+                throw new JsonException("Property is not nullable for class ManagementKey: endpoints.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ManagementKey.");
+                throw new JsonException("Property is not nullable for class ManagementKey: id.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class ManagementKey.");
+                throw new JsonException("Property is not nullable for class ManagementKey: createdBy.");
 
             if (accountID.IsSet && accountID.Value == null)
-                throw new ArgumentNullException(nameof(accountID), "Property is not nullable for class ManagementKey.");
+                throw new JsonException("Property is not nullable for class ManagementKey: accountID.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ManagementKey.");
+                throw new JsonException("Property is not nullable for class ManagementKey: created.");
 
             return new ManagementKey(name.Value, expiryDate.Value.Value, endpoints.Value, id.Value.Value, createdBy.Value.Value, accountID.Value.Value, created.Value.Value, allowedApplicationIds, disabled, lastUsed);
         }
@@ -352,7 +352,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="managementKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ManagementKey managementKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -367,14 +366,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="managementKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ManagementKey managementKey, JsonSerializerOptions jsonSerializerOptions)
         {
             if (managementKey.Name == null)
-                throw new ArgumentNullException(nameof(managementKey.Name), "Property is required for class ManagementKey.");
+                throw new JsonException("Cannot write null property ManagementKey.Name to non-nullable JSON property 'name'.");
 
             if (managementKey.Endpoints == null)
-                throw new ArgumentNullException(nameof(managementKey.Endpoints), "Property is required for class ManagementKey.");
+                throw new JsonException("Cannot write null property ManagementKey.Endpoints to non-nullable JSON property 'endpoints'.");
 
             writer.WriteString("name", managementKey.Name);
 

@@ -209,28 +209,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReward.", nameof(applicationId));
+                throw new JsonException("Property is required for class CustomerReward: applicationId.");
 
             if (!profileIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReward.", nameof(profileIntegrationId));
+                throw new JsonException("Property is required for class CustomerReward: profileIntegrationId.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReward.", nameof(integrationId));
+                throw new JsonException("Property is required for class CustomerReward: integrationId.");
 
             if (!unlockedAt.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReward.", nameof(unlockedAt));
+                throw new JsonException("Property is required for class CustomerReward: unlockedAt.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CustomerReward.");
+                throw new JsonException("Property is not nullable for class CustomerReward: applicationId.");
 
             if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class CustomerReward.");
+                throw new JsonException("Property is not nullable for class CustomerReward: profileIntegrationId.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerReward.");
+                throw new JsonException("Property is not nullable for class CustomerReward: integrationId.");
 
             if (unlockedAt.IsSet && unlockedAt.Value == null)
-                throw new ArgumentNullException(nameof(unlockedAt), "Property is not nullable for class CustomerReward.");
+                throw new JsonException("Property is not nullable for class CustomerReward: unlockedAt.");
 
             return new CustomerReward(applicationId.Value.Value, profileIntegrationId.Value, integrationId.Value, unlockedAt.Value.Value, usedAt);
         }
@@ -241,7 +241,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerReward"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerReward customerReward, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -256,14 +255,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerReward"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerReward customerReward, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerReward.ProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(customerReward.ProfileIntegrationId), "Property is required for class CustomerReward.");
+                throw new JsonException("Cannot write null property CustomerReward.ProfileIntegrationId to non-nullable JSON property 'profileIntegrationId'.");
 
             if (customerReward.IntegrationId == null)
-                throw new ArgumentNullException(nameof(customerReward.IntegrationId), "Property is required for class CustomerReward.");
+                throw new JsonException("Cannot write null property CustomerReward.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteNumber("applicationId", customerReward.ApplicationId);
 

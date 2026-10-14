@@ -479,154 +479,154 @@ namespace TalonOneSdk.Model
             }
 
             if (!date.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(date));
+                throw new JsonException("Property is required for class CampaignAnalytics: date.");
 
             if (!campaignRevenue.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(campaignRevenue));
+                throw new JsonException("Property is required for class CampaignAnalytics: campaignRevenue.");
 
             if (!totalCampaignRevenue.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalCampaignRevenue));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalCampaignRevenue.");
 
             if (!campaignRefund.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(campaignRefund));
+                throw new JsonException("Property is required for class CampaignAnalytics: campaignRefund.");
 
             if (!totalCampaignRefund.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalCampaignRefund));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalCampaignRefund.");
 
             if (!campaignDiscountCosts.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(campaignDiscountCosts));
+                throw new JsonException("Property is required for class CampaignAnalytics: campaignDiscountCosts.");
 
             if (!totalCampaignDiscountCosts.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalCampaignDiscountCosts));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalCampaignDiscountCosts.");
 
             if (!campaignRefundedDiscounts.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(campaignRefundedDiscounts));
+                throw new JsonException("Property is required for class CampaignAnalytics: campaignRefundedDiscounts.");
 
             if (!totalCampaignRefundedDiscounts.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalCampaignRefundedDiscounts));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalCampaignRefundedDiscounts.");
 
             if (!campaignFreeItems.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(campaignFreeItems));
+                throw new JsonException("Property is required for class CampaignAnalytics: campaignFreeItems.");
 
             if (!totalCampaignFreeItems.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalCampaignFreeItems));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalCampaignFreeItems.");
 
             if (!couponRedemptions.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(couponRedemptions));
+                throw new JsonException("Property is required for class CampaignAnalytics: couponRedemptions.");
 
             if (!totalCouponRedemptions.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalCouponRedemptions));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalCouponRedemptions.");
 
             if (!couponRolledbackRedemptions.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(couponRolledbackRedemptions));
+                throw new JsonException("Property is required for class CampaignAnalytics: couponRolledbackRedemptions.");
 
             if (!totalCouponRolledbackRedemptions.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalCouponRolledbackRedemptions));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalCouponRolledbackRedemptions.");
 
             if (!referralRedemptions.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(referralRedemptions));
+                throw new JsonException("Property is required for class CampaignAnalytics: referralRedemptions.");
 
             if (!totalReferralRedemptions.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalReferralRedemptions));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalReferralRedemptions.");
 
             if (!couponsCreated.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(couponsCreated));
+                throw new JsonException("Property is required for class CampaignAnalytics: couponsCreated.");
 
             if (!totalCouponsCreated.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalCouponsCreated));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalCouponsCreated.");
 
             if (!referralsCreated.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(referralsCreated));
+                throw new JsonException("Property is required for class CampaignAnalytics: referralsCreated.");
 
             if (!totalReferralsCreated.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalReferralsCreated));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalReferralsCreated.");
 
             if (!addedLoyaltyPoints.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(addedLoyaltyPoints));
+                throw new JsonException("Property is required for class CampaignAnalytics: addedLoyaltyPoints.");
 
             if (!totalAddedLoyaltyPoints.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalAddedLoyaltyPoints));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalAddedLoyaltyPoints.");
 
             if (!deductedLoyaltyPoints.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(deductedLoyaltyPoints));
+                throw new JsonException("Property is required for class CampaignAnalytics: deductedLoyaltyPoints.");
 
             if (!totalDeductedLoyaltyPoints.IsSet)
-                throw new ArgumentException("Property is required for class CampaignAnalytics.", nameof(totalDeductedLoyaltyPoints));
+                throw new JsonException("Property is required for class CampaignAnalytics: totalDeductedLoyaltyPoints.");
 
             if (date.IsSet && date.Value == null)
-                throw new ArgumentNullException(nameof(date), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: date.");
 
             if (campaignRevenue.IsSet && campaignRevenue.Value == null)
-                throw new ArgumentNullException(nameof(campaignRevenue), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: campaignRevenue.");
 
             if (totalCampaignRevenue.IsSet && totalCampaignRevenue.Value == null)
-                throw new ArgumentNullException(nameof(totalCampaignRevenue), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalCampaignRevenue.");
 
             if (campaignRefund.IsSet && campaignRefund.Value == null)
-                throw new ArgumentNullException(nameof(campaignRefund), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: campaignRefund.");
 
             if (totalCampaignRefund.IsSet && totalCampaignRefund.Value == null)
-                throw new ArgumentNullException(nameof(totalCampaignRefund), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalCampaignRefund.");
 
             if (campaignDiscountCosts.IsSet && campaignDiscountCosts.Value == null)
-                throw new ArgumentNullException(nameof(campaignDiscountCosts), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: campaignDiscountCosts.");
 
             if (totalCampaignDiscountCosts.IsSet && totalCampaignDiscountCosts.Value == null)
-                throw new ArgumentNullException(nameof(totalCampaignDiscountCosts), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalCampaignDiscountCosts.");
 
             if (campaignRefundedDiscounts.IsSet && campaignRefundedDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(campaignRefundedDiscounts), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: campaignRefundedDiscounts.");
 
             if (totalCampaignRefundedDiscounts.IsSet && totalCampaignRefundedDiscounts.Value == null)
-                throw new ArgumentNullException(nameof(totalCampaignRefundedDiscounts), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalCampaignRefundedDiscounts.");
 
             if (campaignFreeItems.IsSet && campaignFreeItems.Value == null)
-                throw new ArgumentNullException(nameof(campaignFreeItems), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: campaignFreeItems.");
 
             if (totalCampaignFreeItems.IsSet && totalCampaignFreeItems.Value == null)
-                throw new ArgumentNullException(nameof(totalCampaignFreeItems), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalCampaignFreeItems.");
 
             if (couponRedemptions.IsSet && couponRedemptions.Value == null)
-                throw new ArgumentNullException(nameof(couponRedemptions), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: couponRedemptions.");
 
             if (totalCouponRedemptions.IsSet && totalCouponRedemptions.Value == null)
-                throw new ArgumentNullException(nameof(totalCouponRedemptions), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalCouponRedemptions.");
 
             if (couponRolledbackRedemptions.IsSet && couponRolledbackRedemptions.Value == null)
-                throw new ArgumentNullException(nameof(couponRolledbackRedemptions), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: couponRolledbackRedemptions.");
 
             if (totalCouponRolledbackRedemptions.IsSet && totalCouponRolledbackRedemptions.Value == null)
-                throw new ArgumentNullException(nameof(totalCouponRolledbackRedemptions), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalCouponRolledbackRedemptions.");
 
             if (referralRedemptions.IsSet && referralRedemptions.Value == null)
-                throw new ArgumentNullException(nameof(referralRedemptions), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: referralRedemptions.");
 
             if (totalReferralRedemptions.IsSet && totalReferralRedemptions.Value == null)
-                throw new ArgumentNullException(nameof(totalReferralRedemptions), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalReferralRedemptions.");
 
             if (couponsCreated.IsSet && couponsCreated.Value == null)
-                throw new ArgumentNullException(nameof(couponsCreated), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: couponsCreated.");
 
             if (totalCouponsCreated.IsSet && totalCouponsCreated.Value == null)
-                throw new ArgumentNullException(nameof(totalCouponsCreated), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalCouponsCreated.");
 
             if (referralsCreated.IsSet && referralsCreated.Value == null)
-                throw new ArgumentNullException(nameof(referralsCreated), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: referralsCreated.");
 
             if (totalReferralsCreated.IsSet && totalReferralsCreated.Value == null)
-                throw new ArgumentNullException(nameof(totalReferralsCreated), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalReferralsCreated.");
 
             if (addedLoyaltyPoints.IsSet && addedLoyaltyPoints.Value == null)
-                throw new ArgumentNullException(nameof(addedLoyaltyPoints), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: addedLoyaltyPoints.");
 
             if (totalAddedLoyaltyPoints.IsSet && totalAddedLoyaltyPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalAddedLoyaltyPoints), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalAddedLoyaltyPoints.");
 
             if (deductedLoyaltyPoints.IsSet && deductedLoyaltyPoints.Value == null)
-                throw new ArgumentNullException(nameof(deductedLoyaltyPoints), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: deductedLoyaltyPoints.");
 
             if (totalDeductedLoyaltyPoints.IsSet && totalDeductedLoyaltyPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalDeductedLoyaltyPoints), "Property is not nullable for class CampaignAnalytics.");
+                throw new JsonException("Property is not nullable for class CampaignAnalytics: totalDeductedLoyaltyPoints.");
 
             return new CampaignAnalytics(date.Value.Value, campaignRevenue.Value.Value, totalCampaignRevenue.Value.Value, campaignRefund.Value.Value, totalCampaignRefund.Value.Value, campaignDiscountCosts.Value.Value, totalCampaignDiscountCosts.Value.Value, campaignRefundedDiscounts.Value.Value, totalCampaignRefundedDiscounts.Value.Value, campaignFreeItems.Value.Value, totalCampaignFreeItems.Value.Value, couponRedemptions.Value.Value, totalCouponRedemptions.Value.Value, couponRolledbackRedemptions.Value.Value, totalCouponRolledbackRedemptions.Value.Value, referralRedemptions.Value.Value, totalReferralRedemptions.Value.Value, couponsCreated.Value.Value, totalCouponsCreated.Value.Value, referralsCreated.Value.Value, totalReferralsCreated.Value.Value, addedLoyaltyPoints.Value.Value, totalAddedLoyaltyPoints.Value.Value, deductedLoyaltyPoints.Value.Value, totalDeductedLoyaltyPoints.Value.Value);
         }
@@ -637,7 +637,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignAnalytics campaignAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -652,7 +651,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignAnalytics campaignAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteString("date", campaignAnalytics.Date.ToString(DateFormat));

@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="ruleIndex">The position of the rule that triggered this effect within the ruleset.</param>
         /// <param name="ruleName">The name of the rule that triggered this effect.</param>
         /// <param name="effectType">An effect discriminator of type &#x60;addLoyaltyPoints&#x60;.</param>
-        /// <param name="props">The properties of the &#x60;addLoyaltyPoints&#x60; effect.</param>
+        /// <param name="props">props</param>
         /// <param name="experimentId">The ID of the experiment that campaign belongs to.</param>
         /// <param name="triggeredByCoupon">The ID of the coupon that was being evaluated when this effect was triggered.</param>
         /// <param name="triggeredForCatalogItem">The ID of the catalog item that was being evaluated when this effect was triggered.</param>
@@ -170,9 +170,8 @@ namespace TalonOneSdk.Model
         public string RuleName { get; set; }
 
         /// <summary>
-        /// The properties of the &#x60;addLoyaltyPoints&#x60; effect.
+        /// Gets or Sets Props
         /// </summary>
-        /// <value>The properties of the &#x60;addLoyaltyPoints&#x60; effect.</value>
         [JsonPropertyName("props")]
         public AddLoyaltyPointsEffectProps Props { get; set; }
 
@@ -551,40 +550,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddLoyaltyPoints.", nameof(campaignId));
+                throw new JsonException("Property is required for class EffectAddLoyaltyPoints: campaignId.");
 
             if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddLoyaltyPoints.", nameof(rulesetId));
+                throw new JsonException("Property is required for class EffectAddLoyaltyPoints: rulesetId.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddLoyaltyPoints.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class EffectAddLoyaltyPoints: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddLoyaltyPoints.", nameof(ruleName));
+                throw new JsonException("Property is required for class EffectAddLoyaltyPoints: ruleName.");
 
             if (!effectType.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddLoyaltyPoints.", nameof(effectType));
+                throw new JsonException("Property is required for class EffectAddLoyaltyPoints: effectType.");
 
             if (!props.IsSet)
-                throw new ArgumentException("Property is required for class EffectAddLoyaltyPoints.", nameof(props));
+                throw new JsonException("Property is required for class EffectAddLoyaltyPoints: props.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class EffectAddLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddLoyaltyPoints: campaignId.");
 
             if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class EffectAddLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddLoyaltyPoints: rulesetId.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class EffectAddLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddLoyaltyPoints: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class EffectAddLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddLoyaltyPoints: ruleName.");
 
             if (effectType.IsSet && effectType.Value == null)
-                throw new ArgumentNullException(nameof(effectType), "Property is not nullable for class EffectAddLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddLoyaltyPoints: effectType.");
 
             if (props.IsSet && props.Value == null)
-                throw new ArgumentNullException(nameof(props), "Property is not nullable for class EffectAddLoyaltyPoints.");
+                throw new JsonException("Property is not nullable for class EffectAddLoyaltyPoints: props.");
 
             return new EffectAddLoyaltyPoints(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, effectType.Value.Value, props.Value, experimentId, triggeredByCoupon, triggeredForCatalogItem, conditionIndex, evaluationGroupID, evaluationGroupMode, campaignRevisionId, campaignRevisionVersionId, selectedPriceType, selectedPrice, adjustmentReferenceId, rewardId, rewardIntegrationId);
         }
@@ -595,7 +594,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectAddLoyaltyPoints"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EffectAddLoyaltyPoints effectAddLoyaltyPoints, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -610,14 +608,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="effectAddLoyaltyPoints"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EffectAddLoyaltyPoints effectAddLoyaltyPoints, JsonSerializerOptions jsonSerializerOptions)
         {
             if (effectAddLoyaltyPoints.RuleName == null)
-                throw new ArgumentNullException(nameof(effectAddLoyaltyPoints.RuleName), "Property is required for class EffectAddLoyaltyPoints.");
+                throw new JsonException("Cannot write null property EffectAddLoyaltyPoints.RuleName to non-nullable JSON property 'ruleName'.");
 
             if (effectAddLoyaltyPoints.Props == null)
-                throw new ArgumentNullException(nameof(effectAddLoyaltyPoints.Props), "Property is required for class EffectAddLoyaltyPoints.");
+                throw new JsonException("Cannot write null property EffectAddLoyaltyPoints.Props to non-nullable JSON property 'props'.");
 
             writer.WriteNumber("campaignId", effectAddLoyaltyPoints.CampaignId);
 

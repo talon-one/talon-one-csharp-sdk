@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RollbackCouponEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class RollbackCouponEffectProps: value.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackCouponEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackCouponEffectProps: value.");
 
             return new RollbackCouponEffectProps(value.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackCouponEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RollbackCouponEffectProps rollbackCouponEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,11 +159,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackCouponEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RollbackCouponEffectProps rollbackCouponEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rollbackCouponEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(rollbackCouponEffectProps.Value), "Property is required for class RollbackCouponEffectProps.");
+                throw new JsonException("Cannot write null property RollbackCouponEffectProps.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("value", rollbackCouponEffectProps.Value);
         }

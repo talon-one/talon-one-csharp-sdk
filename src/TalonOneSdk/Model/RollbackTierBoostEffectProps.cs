@@ -176,28 +176,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackTierBoostEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class RollbackTierBoostEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackTierBoostEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class RollbackTierBoostEffectProps: subLedgerId.");
 
             if (!tierName.IsSet)
-                throw new ArgumentException("Property is required for class RollbackTierBoostEffectProps.", nameof(tierName));
+                throw new JsonException("Property is required for class RollbackTierBoostEffectProps: tierName.");
 
             if (!boostUuid.IsSet)
-                throw new ArgumentException("Property is required for class RollbackTierBoostEffectProps.", nameof(boostUuid));
+                throw new JsonException("Property is required for class RollbackTierBoostEffectProps: boostUuid.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class RollbackTierBoostEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackTierBoostEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class RollbackTierBoostEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackTierBoostEffectProps: subLedgerId.");
 
             if (tierName.IsSet && tierName.Value == null)
-                throw new ArgumentNullException(nameof(tierName), "Property is not nullable for class RollbackTierBoostEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackTierBoostEffectProps: tierName.");
 
             if (boostUuid.IsSet && boostUuid.Value == null)
-                throw new ArgumentNullException(nameof(boostUuid), "Property is not nullable for class RollbackTierBoostEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackTierBoostEffectProps: boostUuid.");
 
             return new RollbackTierBoostEffectProps(programId.Value.Value, subLedgerId.Value, tierName.Value, boostUuid.Value.Value);
         }
@@ -208,7 +208,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackTierBoostEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RollbackTierBoostEffectProps rollbackTierBoostEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -223,14 +222,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackTierBoostEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RollbackTierBoostEffectProps rollbackTierBoostEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rollbackTierBoostEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(rollbackTierBoostEffectProps.SubLedgerId), "Property is required for class RollbackTierBoostEffectProps.");
+                throw new JsonException("Cannot write null property RollbackTierBoostEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             if (rollbackTierBoostEffectProps.TierName == null)
-                throw new ArgumentNullException(nameof(rollbackTierBoostEffectProps.TierName), "Property is required for class RollbackTierBoostEffectProps.");
+                throw new JsonException("Cannot write null property RollbackTierBoostEffectProps.TierName to non-nullable JSON property 'tierName'.");
 
             writer.WriteNumber("programId", rollbackTierBoostEffectProps.ProgramId);
 

@@ -143,16 +143,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class SkuUnitAnalytics.", nameof(data));
+                throw new JsonException("Property is required for class SkuUnitAnalytics: data.");
 
             if (!totals.IsSet)
-                throw new ArgumentException("Property is required for class SkuUnitAnalytics.", nameof(totals));
+                throw new JsonException("Property is required for class SkuUnitAnalytics: totals.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class SkuUnitAnalytics.");
+                throw new JsonException("Property is not nullable for class SkuUnitAnalytics: data.");
 
             if (totals.IsSet && totals.Value == null)
-                throw new ArgumentNullException(nameof(totals), "Property is not nullable for class SkuUnitAnalytics.");
+                throw new JsonException("Property is not nullable for class SkuUnitAnalytics: totals.");
 
             return new SkuUnitAnalytics(data.Value, totals.Value);
         }
@@ -163,7 +163,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="skuUnitAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SkuUnitAnalytics skuUnitAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -178,14 +177,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="skuUnitAnalytics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SkuUnitAnalytics skuUnitAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
             if (skuUnitAnalytics.Data == null)
-                throw new ArgumentNullException(nameof(skuUnitAnalytics.Data), "Property is required for class SkuUnitAnalytics.");
+                throw new JsonException("Cannot write null property SkuUnitAnalytics.Data to non-nullable JSON property 'data'.");
 
             if (skuUnitAnalytics.Totals == null)
-                throw new ArgumentNullException(nameof(skuUnitAnalytics.Totals), "Property is required for class SkuUnitAnalytics.");
+                throw new JsonException("Cannot write null property SkuUnitAnalytics.Totals to non-nullable JSON property 'totals'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, skuUnitAnalytics.Data, jsonSerializerOptions);

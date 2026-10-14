@@ -415,16 +415,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Tier.", nameof(id));
+                throw new JsonException("Property is required for class Tier: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Tier.", nameof(name));
+                throw new JsonException("Property is required for class Tier: name.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Tier.");
+                throw new JsonException("Property is not nullable for class Tier: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Tier.");
+                throw new JsonException("Property is not nullable for class Tier: name.");
 
             return new Tier(id.Value.Value, name.Value, startDate, expiryDate, downgradePolicy, source, reason);
         }
@@ -435,7 +435,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Tier tier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -450,11 +449,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Tier tier, JsonSerializerOptions jsonSerializerOptions)
         {
             if (tier.Name == null)
-                throw new ArgumentNullException(nameof(tier.Name), "Property is required for class Tier.");
+                throw new JsonException("Cannot write null property Tier.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", tier.Id);
 

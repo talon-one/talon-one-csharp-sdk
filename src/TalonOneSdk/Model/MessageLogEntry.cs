@@ -526,28 +526,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class MessageLogEntry.", nameof(id));
+                throw new JsonException("Property is required for class MessageLogEntry: id.");
 
             if (!service.IsSet)
-                throw new ArgumentException("Property is required for class MessageLogEntry.", nameof(service));
+                throw new JsonException("Property is required for class MessageLogEntry: service.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class MessageLogEntry.", nameof(createdAt));
+                throw new JsonException("Property is required for class MessageLogEntry: createdAt.");
 
             if (!entityType.IsSet)
-                throw new ArgumentException("Property is required for class MessageLogEntry.", nameof(entityType));
+                throw new JsonException("Property is required for class MessageLogEntry: entityType.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class MessageLogEntry.");
+                throw new JsonException("Property is not nullable for class MessageLogEntry: id.");
 
             if (service.IsSet && service.Value == null)
-                throw new ArgumentNullException(nameof(service), "Property is not nullable for class MessageLogEntry.");
+                throw new JsonException("Property is not nullable for class MessageLogEntry: service.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class MessageLogEntry.");
+                throw new JsonException("Property is not nullable for class MessageLogEntry: createdAt.");
 
             if (entityType.IsSet && entityType.Value == null)
-                throw new ArgumentNullException(nameof(entityType), "Property is not nullable for class MessageLogEntry.");
+                throw new JsonException("Property is not nullable for class MessageLogEntry: entityType.");
 
             return new MessageLogEntry(id.Value, service.Value, createdAt.Value.Value, entityType.Value.Value, changeType, notificationId, notificationName, webhookId, webhookName, request, response, url, applicationId, loyaltyProgramId, campaignId);
         }
@@ -558,7 +558,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="messageLogEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageLogEntry messageLogEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -573,14 +572,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="messageLogEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageLogEntry messageLogEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageLogEntry.Id == null)
-                throw new ArgumentNullException(nameof(messageLogEntry.Id), "Property is required for class MessageLogEntry.");
+                throw new JsonException("Cannot write null property MessageLogEntry.Id to non-nullable JSON property 'id'.");
 
             if (messageLogEntry.Service == null)
-                throw new ArgumentNullException(nameof(messageLogEntry.Service), "Property is required for class MessageLogEntry.");
+                throw new JsonException("Cannot write null property MessageLogEntry.Service to non-nullable JSON property 'service'.");
 
             writer.WriteString("id", messageLogEntry.Id);
 

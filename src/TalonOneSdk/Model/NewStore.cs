@@ -208,22 +208,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewStore.", nameof(name));
+                throw new JsonException("Property is required for class NewStore: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class NewStore.", nameof(description));
+                throw new JsonException("Property is required for class NewStore: description.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class NewStore.", nameof(integrationId));
+                throw new JsonException("Property is required for class NewStore: integrationId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewStore.");
+                throw new JsonException("Property is not nullable for class NewStore: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewStore.");
+                throw new JsonException("Property is not nullable for class NewStore: description.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class NewStore.");
+                throw new JsonException("Property is not nullable for class NewStore: integrationId.");
 
             return new NewStore(name.Value, description.Value, integrationId.Value, attributes);
         }
@@ -234,7 +234,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newStore"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewStore newStore, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -249,17 +248,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newStore"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewStore newStore, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newStore.Name == null)
-                throw new ArgumentNullException(nameof(newStore.Name), "Property is required for class NewStore.");
+                throw new JsonException("Cannot write null property NewStore.Name to non-nullable JSON property 'name'.");
 
             if (newStore.Description == null)
-                throw new ArgumentNullException(nameof(newStore.Description), "Property is required for class NewStore.");
+                throw new JsonException("Cannot write null property NewStore.Description to non-nullable JSON property 'description'.");
 
             if (newStore.IntegrationId == null)
-                throw new ArgumentNullException(nameof(newStore.IntegrationId), "Property is required for class NewStore.");
+                throw new JsonException("Cannot write null property NewStore.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("name", newStore.Name);
 

@@ -441,28 +441,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class UpdateRiskNotification.", nameof(entity));
+                throw new JsonException("Property is required for class UpdateRiskNotification: entity.");
 
             if (!activity.IsSet)
-                throw new ArgumentException("Property is required for class UpdateRiskNotification.", nameof(activity));
+                throw new JsonException("Property is required for class UpdateRiskNotification: activity.");
 
             if (!timeFrame.IsSet)
-                throw new ArgumentException("Property is required for class UpdateRiskNotification.", nameof(timeFrame));
+                throw new JsonException("Property is required for class UpdateRiskNotification: timeFrame.");
 
             if (!active.IsSet)
-                throw new ArgumentException("Property is required for class UpdateRiskNotification.", nameof(active));
+                throw new JsonException("Property is required for class UpdateRiskNotification: active.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class UpdateRiskNotification.");
+                throw new JsonException("Property is not nullable for class UpdateRiskNotification: entity.");
 
             if (activity.IsSet && activity.Value == null)
-                throw new ArgumentNullException(nameof(activity), "Property is not nullable for class UpdateRiskNotification.");
+                throw new JsonException("Property is not nullable for class UpdateRiskNotification: activity.");
 
             if (timeFrame.IsSet && timeFrame.Value == null)
-                throw new ArgumentNullException(nameof(timeFrame), "Property is not nullable for class UpdateRiskNotification.");
+                throw new JsonException("Property is not nullable for class UpdateRiskNotification: timeFrame.");
 
             if (active.IsSet && active.Value == null)
-                throw new ArgumentNullException(nameof(active), "Property is not nullable for class UpdateRiskNotification.");
+                throw new JsonException("Property is not nullable for class UpdateRiskNotification: active.");
 
             return new UpdateRiskNotification(entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, active.Value.Value);
         }
@@ -473,7 +473,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateRiskNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateRiskNotification updateRiskNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -488,7 +487,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateRiskNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateRiskNotification updateRiskNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             var entityRawValue = UpdateRiskNotification.EntityEnumToJsonValue(updateRiskNotification.Entity);

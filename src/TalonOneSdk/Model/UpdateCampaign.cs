@@ -814,28 +814,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaign.", nameof(name));
+                throw new JsonException("Property is required for class UpdateCampaign: name.");
 
             if (!tags.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaign.", nameof(tags));
+                throw new JsonException("Property is required for class UpdateCampaign: tags.");
 
             if (!features.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaign.", nameof(features));
+                throw new JsonException("Property is required for class UpdateCampaign: features.");
 
             if (!limits.IsSet)
-                throw new ArgumentException("Property is required for class UpdateCampaign.", nameof(limits));
+                throw new JsonException("Property is required for class UpdateCampaign: limits.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateCampaign.");
+                throw new JsonException("Property is not nullable for class UpdateCampaign: name.");
 
             if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class UpdateCampaign.");
+                throw new JsonException("Property is not nullable for class UpdateCampaign: tags.");
 
             if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class UpdateCampaign.");
+                throw new JsonException("Property is not nullable for class UpdateCampaign: features.");
 
             if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class UpdateCampaign.");
+                throw new JsonException("Property is not nullable for class UpdateCampaign: limits.");
 
             return new UpdateCampaign(name.Value, tags.Value, features.Value, limits.Value, description, startTime, endTime, attributes, state, activeRulesetId, reevaluateOnReturn, couponSettings, referralSettings, campaignGroups, evaluationGroupId, type, linkedStoreIds, couponAttributes);
         }
@@ -846,7 +846,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCampaign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateCampaign updateCampaign, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -861,20 +860,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCampaign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCampaign updateCampaign, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateCampaign.Name == null)
-                throw new ArgumentNullException(nameof(updateCampaign.Name), "Property is required for class UpdateCampaign.");
+                throw new JsonException("Cannot write null property UpdateCampaign.Name to non-nullable JSON property 'name'.");
 
             if (updateCampaign.Tags == null)
-                throw new ArgumentNullException(nameof(updateCampaign.Tags), "Property is required for class UpdateCampaign.");
+                throw new JsonException("Cannot write null property UpdateCampaign.Tags to non-nullable JSON property 'tags'.");
 
             if (updateCampaign.Features == null)
-                throw new ArgumentNullException(nameof(updateCampaign.Features), "Property is required for class UpdateCampaign.");
+                throw new JsonException("Cannot write null property UpdateCampaign.Features to non-nullable JSON property 'features'.");
 
             if (updateCampaign.Limits == null)
-                throw new ArgumentNullException(nameof(updateCampaign.Limits), "Property is required for class UpdateCampaign.");
+                throw new JsonException("Cannot write null property UpdateCampaign.Limits to non-nullable JSON property 'limits'.");
 
             writer.WriteString("name", updateCampaign.Name);
 

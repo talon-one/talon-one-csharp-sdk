@@ -34,10 +34,10 @@ namespace TalonOneSdk.Model
         /// <param name="id">The unique identifier of the giveaway pool.</param>
         /// <param name="name">The display name of the giveaway pool.</param>
         [JsonConstructor]
-        public GiveawayPoolBlockReference(long id, string name)
+        public GiveawayPoolBlockReference(long id, Option<string> name = default)
         {
             Id = id;
-            Name = name;
+            NameOption = name;
             OnCreated();
         }
 
@@ -52,12 +52,19 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
+        /// Used to track the state of Name
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> NameOption { get; }
+
+        /// <summary>
         /// The display name of the giveaway pool.
         /// </summary>
         /// <value>The display name of the giveaway pool.</value>
         /* <example>Summer Campaign Pool</example> */
         [JsonPropertyName("name")]
-        public string Name { get; }
+        public string Name { get { return this.NameOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -147,18 +154,12 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolBlockReference.", nameof(id));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolBlockReference.", nameof(name));
+                throw new JsonException("Property is required for class GiveawayPoolBlockReference: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class GiveawayPoolBlockReference.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolBlockReference: id.");
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class GiveawayPoolBlockReference.");
-
-            return new GiveawayPoolBlockReference(id.Value.Value, name.Value);
+            return new GiveawayPoolBlockReference(id.Value.Value, name);
         }
 
         /// <summary>
@@ -167,7 +168,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveawayPoolBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GiveawayPoolBlockReference giveawayPoolBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,15 +182,12 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveawayPoolBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GiveawayPoolBlockReference giveawayPoolBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (giveawayPoolBlockReference.Name == null)
-                throw new ArgumentNullException(nameof(giveawayPoolBlockReference.Name), "Property is required for class GiveawayPoolBlockReference.");
-
             writer.WriteNumber("id", giveawayPoolBlockReference.Id);
 
-            writer.WriteString("name", giveawayPoolBlockReference.Name);
+            if (giveawayPoolBlockReference.NameOption.IsSet)
+                writer.WriteString("name", giveawayPoolBlockReference.Name);
         }
     }
 }

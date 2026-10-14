@@ -205,16 +205,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionAddPriceAdjustment.", nameof(type));
+                throw new JsonException("Property is required for class CatalogActionAddPriceAdjustment: type.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class CatalogActionAddPriceAdjustment.", nameof(payload));
+                throw new JsonException("Property is required for class CatalogActionAddPriceAdjustment: payload.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CatalogActionAddPriceAdjustment.");
+                throw new JsonException("Property is not nullable for class CatalogActionAddPriceAdjustment: type.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CatalogActionAddPriceAdjustment.");
+                throw new JsonException("Property is not nullable for class CatalogActionAddPriceAdjustment: payload.");
 
             return new CatalogActionAddPriceAdjustment(type.Value.Value, payload.Value);
         }
@@ -225,7 +225,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogActionAddPriceAdjustment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CatalogActionAddPriceAdjustment catalogActionAddPriceAdjustment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -240,11 +239,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogActionAddPriceAdjustment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CatalogActionAddPriceAdjustment catalogActionAddPriceAdjustment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (catalogActionAddPriceAdjustment.Payload == null)
-                throw new ArgumentNullException(nameof(catalogActionAddPriceAdjustment.Payload), "Property is required for class CatalogActionAddPriceAdjustment.");
+                throw new JsonException("Cannot write null property CatalogActionAddPriceAdjustment.Payload to non-nullable JSON property 'payload'.");
 
             var typeRawValue = CatalogActionAddPriceAdjustment.TypeEnumToJsonValue(catalogActionAddPriceAdjustment.Type);
             writer.WriteString("type", typeRawValue);

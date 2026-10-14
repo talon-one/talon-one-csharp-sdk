@@ -206,16 +206,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class GeoJSONPolygon.", nameof(type));
+                throw new JsonException("Property is required for class GeoJSONPolygon: type.");
 
             if (!coordinates.IsSet)
-                throw new ArgumentException("Property is required for class GeoJSONPolygon.", nameof(coordinates));
+                throw new JsonException("Property is required for class GeoJSONPolygon: coordinates.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class GeoJSONPolygon.");
+                throw new JsonException("Property is not nullable for class GeoJSONPolygon: type.");
 
             if (coordinates.IsSet && coordinates.Value == null)
-                throw new ArgumentNullException(nameof(coordinates), "Property is not nullable for class GeoJSONPolygon.");
+                throw new JsonException("Property is not nullable for class GeoJSONPolygon: coordinates.");
 
             return new GeoJSONPolygon(type.Value.Value, coordinates.Value);
         }
@@ -226,7 +226,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="geoJSONPolygon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GeoJSONPolygon geoJSONPolygon, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -241,11 +240,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="geoJSONPolygon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GeoJSONPolygon geoJSONPolygon, JsonSerializerOptions jsonSerializerOptions)
         {
             if (geoJSONPolygon.Coordinates == null)
-                throw new ArgumentNullException(nameof(geoJSONPolygon.Coordinates), "Property is required for class GeoJSONPolygon.");
+                throw new JsonException("Cannot write null property GeoJSONPolygon.Coordinates to non-nullable JSON property 'coordinates'.");
 
             var typeRawValue = GeoJSONPolygon.TypeEnumToJsonValue(geoJSONPolygon.Type);
             writer.WriteString("type", typeRawValue);

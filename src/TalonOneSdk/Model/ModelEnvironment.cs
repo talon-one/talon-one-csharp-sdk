@@ -412,46 +412,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(id));
+                throw new JsonException("Property is required for class ModelEnvironment: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(created));
+                throw new JsonException("Property is required for class ModelEnvironment: created.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(applicationId));
+                throw new JsonException("Property is required for class ModelEnvironment: applicationId.");
 
             if (!slots.IsSet)
-                throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(slots));
+                throw new JsonException("Property is required for class ModelEnvironment: slots.");
 
             if (!functions.IsSet)
-                throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(functions));
+                throw new JsonException("Property is required for class ModelEnvironment: functions.");
 
             if (!templates.IsSet)
-                throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(templates));
+                throw new JsonException("Property is required for class ModelEnvironment: templates.");
 
             if (!variables.IsSet)
-                throw new ArgumentException("Property is required for class ModelEnvironment.", nameof(variables));
+                throw new JsonException("Property is required for class ModelEnvironment: variables.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ModelEnvironment.");
+                throw new JsonException("Property is not nullable for class ModelEnvironment: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ModelEnvironment.");
+                throw new JsonException("Property is not nullable for class ModelEnvironment: created.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ModelEnvironment.");
+                throw new JsonException("Property is not nullable for class ModelEnvironment: applicationId.");
 
             if (slots.IsSet && slots.Value == null)
-                throw new ArgumentNullException(nameof(slots), "Property is not nullable for class ModelEnvironment.");
+                throw new JsonException("Property is not nullable for class ModelEnvironment: slots.");
 
             if (functions.IsSet && functions.Value == null)
-                throw new ArgumentNullException(nameof(functions), "Property is not nullable for class ModelEnvironment.");
+                throw new JsonException("Property is not nullable for class ModelEnvironment: functions.");
 
             if (templates.IsSet && templates.Value == null)
-                throw new ArgumentNullException(nameof(templates), "Property is not nullable for class ModelEnvironment.");
+                throw new JsonException("Property is not nullable for class ModelEnvironment: templates.");
 
             if (variables.IsSet && variables.Value == null)
-                throw new ArgumentNullException(nameof(variables), "Property is not nullable for class ModelEnvironment.");
+                throw new JsonException("Property is not nullable for class ModelEnvironment: variables.");
 
             return new ModelEnvironment(id.Value.Value, created.Value.Value, applicationId.Value.Value, slots.Value, functions.Value, templates.Value, variables.Value, giveawaysPools, loyaltyPrograms, achievements, attributes, additionalCosts, audiences, collections, applicationCartItemFilters, priceTypes);
         }
@@ -462,7 +462,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="modelEnvironment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModelEnvironment modelEnvironment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -477,20 +476,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="modelEnvironment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModelEnvironment modelEnvironment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (modelEnvironment.Slots == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.Slots), "Property is required for class ModelEnvironment.");
+                throw new JsonException("Cannot write null property ModelEnvironment.Slots to non-nullable JSON property 'slots'.");
 
             if (modelEnvironment.Functions == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.Functions), "Property is required for class ModelEnvironment.");
+                throw new JsonException("Cannot write null property ModelEnvironment.Functions to non-nullable JSON property 'functions'.");
 
             if (modelEnvironment.Templates == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.Templates), "Property is required for class ModelEnvironment.");
+                throw new JsonException("Cannot write null property ModelEnvironment.Templates to non-nullable JSON property 'templates'.");
 
             if (modelEnvironment.Variables == null)
-                throw new ArgumentNullException(nameof(modelEnvironment.Variables), "Property is required for class ModelEnvironment.");
+                throw new JsonException("Cannot write null property ModelEnvironment.Variables to non-nullable JSON property 'variables'.");
 
             writer.WriteNumber("id", modelEnvironment.Id);
 

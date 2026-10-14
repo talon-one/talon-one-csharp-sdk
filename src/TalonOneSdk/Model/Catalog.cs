@@ -269,52 +269,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Catalog.", nameof(id));
+                throw new JsonException("Property is required for class Catalog: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Catalog.", nameof(created));
+                throw new JsonException("Property is required for class Catalog: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Catalog.", nameof(accountId));
+                throw new JsonException("Property is required for class Catalog: accountId.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class Catalog.", nameof(modified));
+                throw new JsonException("Property is required for class Catalog: modified.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Catalog.", nameof(name));
+                throw new JsonException("Property is required for class Catalog: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class Catalog.", nameof(description));
+                throw new JsonException("Property is required for class Catalog: description.");
 
             if (!varVersion.IsSet)
-                throw new ArgumentException("Property is required for class Catalog.", nameof(varVersion));
+                throw new JsonException("Property is required for class Catalog: version.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class Catalog.", nameof(createdBy));
+                throw new JsonException("Property is required for class Catalog: createdBy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Catalog.");
+                throw new JsonException("Property is not nullable for class Catalog: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Catalog.");
+                throw new JsonException("Property is not nullable for class Catalog: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Catalog.");
+                throw new JsonException("Property is not nullable for class Catalog: accountId.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Catalog.");
+                throw new JsonException("Property is not nullable for class Catalog: modified.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Catalog.");
+                throw new JsonException("Property is not nullable for class Catalog: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class Catalog.");
+                throw new JsonException("Property is not nullable for class Catalog: description.");
 
             if (varVersion.IsSet && varVersion.Value == null)
-                throw new ArgumentNullException(nameof(varVersion), "Property is not nullable for class Catalog.");
+                throw new JsonException("Property is not nullable for class Catalog: version.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Catalog.");
+                throw new JsonException("Property is not nullable for class Catalog: createdBy.");
 
             return new Catalog(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, name.Value, description.Value, varVersion.Value.Value, createdBy.Value.Value, subscribedApplicationsIds);
         }
@@ -325,7 +325,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Catalog catalog, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -340,14 +339,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Catalog catalog, JsonSerializerOptions jsonSerializerOptions)
         {
             if (catalog.Name == null)
-                throw new ArgumentNullException(nameof(catalog.Name), "Property is required for class Catalog.");
+                throw new JsonException("Cannot write null property Catalog.Name to non-nullable JSON property 'name'.");
 
             if (catalog.Description == null)
-                throw new ArgumentNullException(nameof(catalog.Description), "Property is required for class Catalog.");
+                throw new JsonException("Cannot write null property Catalog.Description to non-nullable JSON property 'description'.");
 
             writer.WriteNumber("id", catalog.Id);
 

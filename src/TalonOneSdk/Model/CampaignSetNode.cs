@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CampaignSetNode" /> class.
         /// </summary>
         /// <param name="campaignSetBranchNode"></param>
-        public CampaignSetNode(CampaignSetBranchNode campaignSetBranchNode)
+        internal CampaignSetNode(CampaignSetBranchNode campaignSetBranchNode)
         {
             CampaignSetBranchNode = campaignSetBranchNode;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CampaignSetNode" /> class.
         /// </summary>
         /// <param name="campaignSetLeafNode"></param>
-        public CampaignSetNode(CampaignSetLeafNode campaignSetLeafNode)
+        internal CampaignSetNode(CampaignSetLeafNode campaignSetLeafNode)
         {
             CampaignSetLeafNode = campaignSetLeafNode;
             OnCreated();
@@ -173,7 +173,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignSetNode"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignSetNode campaignSetNode, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -188,7 +187,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignSetNode"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignSetNode campaignSetNode, JsonSerializerOptions jsonSerializerOptions)
         {
 

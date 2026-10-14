@@ -403,16 +403,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SelectSelectorStep.", nameof(type));
+                throw new JsonException("Property is required for class SelectSelectorStep: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class SelectSelectorStep.", nameof(varOperator));
+                throw new JsonException("Property is required for class SelectSelectorStep: operator.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class SelectSelectorStep.");
+                throw new JsonException("Property is not nullable for class SelectSelectorStep: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class SelectSelectorStep.");
+                throw new JsonException("Property is not nullable for class SelectSelectorStep: operator.");
 
             return new SelectSelectorStep(type.Value.Value, varOperator.Value.Value, from, to, count, index, partial);
         }
@@ -423,7 +423,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="selectSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SelectSelectorStep selectSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -438,7 +437,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="selectSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SelectSelectorStep selectSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = SelectSelectorStep.TypeEnumToJsonValue(selectSelectorStep.Type);

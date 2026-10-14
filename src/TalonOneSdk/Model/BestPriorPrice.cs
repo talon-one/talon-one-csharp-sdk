@@ -223,46 +223,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(id));
+                throw new JsonException("Property is required for class BestPriorPrice: id.");
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(sku));
+                throw new JsonException("Property is required for class BestPriorPrice: sku.");
 
             if (!observedAt.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(observedAt));
+                throw new JsonException("Property is required for class BestPriorPrice: observedAt.");
 
             if (!contextIds.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(contextIds));
+                throw new JsonException("Property is required for class BestPriorPrice: contextIds.");
 
             if (!price.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(price));
+                throw new JsonException("Property is required for class BestPriorPrice: price.");
 
             if (!metadata.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(metadata));
+                throw new JsonException("Property is required for class BestPriorPrice: metadata.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPrice.", nameof(target));
+                throw new JsonException("Property is required for class BestPriorPrice: target.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class BestPriorPrice.");
+                throw new JsonException("Property is not nullable for class BestPriorPrice: id.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class BestPriorPrice.");
+                throw new JsonException("Property is not nullable for class BestPriorPrice: sku.");
 
             if (observedAt.IsSet && observedAt.Value == null)
-                throw new ArgumentNullException(nameof(observedAt), "Property is not nullable for class BestPriorPrice.");
+                throw new JsonException("Property is not nullable for class BestPriorPrice: observedAt.");
 
             if (contextIds.IsSet && contextIds.Value == null)
-                throw new ArgumentNullException(nameof(contextIds), "Property is not nullable for class BestPriorPrice.");
+                throw new JsonException("Property is not nullable for class BestPriorPrice: contextIds.");
 
             if (price.IsSet && price.Value == null)
-                throw new ArgumentNullException(nameof(price), "Property is not nullable for class BestPriorPrice.");
+                throw new JsonException("Property is not nullable for class BestPriorPrice: price.");
 
             if (metadata.IsSet && metadata.Value == null)
-                throw new ArgumentNullException(nameof(metadata), "Property is not nullable for class BestPriorPrice.");
+                throw new JsonException("Property is not nullable for class BestPriorPrice: metadata.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class BestPriorPrice.");
+                throw new JsonException("Property is not nullable for class BestPriorPrice: target.");
 
             return new BestPriorPrice(id.Value.Value, sku.Value, observedAt.Value.Value, contextIds.Value, price.Value.Value, metadata.Value, target.Value);
         }
@@ -273,7 +273,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bestPriorPrice"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BestPriorPrice bestPriorPrice, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -288,20 +287,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bestPriorPrice"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BestPriorPrice bestPriorPrice, JsonSerializerOptions jsonSerializerOptions)
         {
             if (bestPriorPrice.Sku == null)
-                throw new ArgumentNullException(nameof(bestPriorPrice.Sku), "Property is required for class BestPriorPrice.");
+                throw new JsonException("Cannot write null property BestPriorPrice.Sku to non-nullable JSON property 'sku'.");
 
             if (bestPriorPrice.ContextIds == null)
-                throw new ArgumentNullException(nameof(bestPriorPrice.ContextIds), "Property is required for class BestPriorPrice.");
+                throw new JsonException("Cannot write null property BestPriorPrice.ContextIds to non-nullable JSON property 'contextIds'.");
 
             if (bestPriorPrice.Metadata == null)
-                throw new ArgumentNullException(nameof(bestPriorPrice.Metadata), "Property is required for class BestPriorPrice.");
+                throw new JsonException("Cannot write null property BestPriorPrice.Metadata to non-nullable JSON property 'metadata'.");
 
             if (bestPriorPrice.Target == null)
-                throw new ArgumentNullException(nameof(bestPriorPrice.Target), "Property is required for class BestPriorPrice.");
+                throw new JsonException("Cannot write null property BestPriorPrice.Target to non-nullable JSON property 'target'.");
 
             writer.WriteNumber("id", bestPriorPrice.Id);
 

@@ -318,22 +318,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!effects.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileIntegrationResponseV2.", nameof(effects));
+                throw new JsonException("Property is required for class CustomerProfileIntegrationResponseV2: effects.");
 
             if (!createdCoupons.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileIntegrationResponseV2.", nameof(createdCoupons));
+                throw new JsonException("Property is required for class CustomerProfileIntegrationResponseV2: createdCoupons.");
 
             if (!createdReferrals.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileIntegrationResponseV2.", nameof(createdReferrals));
+                throw new JsonException("Property is required for class CustomerProfileIntegrationResponseV2: createdReferrals.");
 
             if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
+                throw new JsonException("Property is not nullable for class CustomerProfileIntegrationResponseV2: effects.");
 
             if (createdCoupons.IsSet && createdCoupons.Value == null)
-                throw new ArgumentNullException(nameof(createdCoupons), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
+                throw new JsonException("Property is not nullable for class CustomerProfileIntegrationResponseV2: createdCoupons.");
 
             if (createdReferrals.IsSet && createdReferrals.Value == null)
-                throw new ArgumentNullException(nameof(createdReferrals), "Property is not nullable for class CustomerProfileIntegrationResponseV2.");
+                throw new JsonException("Property is not nullable for class CustomerProfileIntegrationResponseV2: createdReferrals.");
 
             return new CustomerProfileIntegrationResponseV2(effects.Value, createdCoupons.Value, createdReferrals.Value, customerProfile, varEvent, loyalty, triggeredCampaigns, ruleFailureReasons, campaignEligibility, awardedGiveaways, rewards);
         }
@@ -344,7 +344,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileIntegrationResponseV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerProfileIntegrationResponseV2 customerProfileIntegrationResponseV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -359,17 +358,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileIntegrationResponseV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerProfileIntegrationResponseV2 customerProfileIntegrationResponseV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerProfileIntegrationResponseV2.Effects == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.Effects), "Property is required for class CustomerProfileIntegrationResponseV2.");
+                throw new JsonException("Cannot write null property CustomerProfileIntegrationResponseV2.Effects to non-nullable JSON property 'effects'.");
 
             if (customerProfileIntegrationResponseV2.CreatedCoupons == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.CreatedCoupons), "Property is required for class CustomerProfileIntegrationResponseV2.");
+                throw new JsonException("Cannot write null property CustomerProfileIntegrationResponseV2.CreatedCoupons to non-nullable JSON property 'createdCoupons'.");
 
             if (customerProfileIntegrationResponseV2.CreatedReferrals == null)
-                throw new ArgumentNullException(nameof(customerProfileIntegrationResponseV2.CreatedReferrals), "Property is required for class CustomerProfileIntegrationResponseV2.");
+                throw new JsonException("Cannot write null property CustomerProfileIntegrationResponseV2.CreatedReferrals to non-nullable JSON property 'createdReferrals'.");
 
             writer.WritePropertyName("effects");
             JsonSerializer.Serialize(writer, customerProfileIntegrationResponseV2.Effects, jsonSerializerOptions);

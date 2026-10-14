@@ -36,17 +36,15 @@ namespace TalonOneSdk.Model
         /// <param name="profile">The customer profile to award the giveaway to. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="onFailure">Blocks evaluated when this block fails or returns false.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public AwardGiveawayBlock(string type, GiveawayPoolBlockReference giveawayPool, ProfileEnum profile, Option<string> id = default, Option<List<string>> tags = default, Option<List<Block>> onFailure = default, Option<Dictionary<string, List<Block>>> onError = default)
+        public AwardGiveawayBlock(string type, GiveawayPoolBlockReference giveawayPool, ProfileEnum profile, Option<string> id = default, Option<List<string>> tags = default, Option<Dictionary<string, List<Block>>> onError = default)
         {
             Type = type;
             GiveawayPool = giveawayPool;
             Profile = profile;
             IdOption = id;
             TagsOption = tags;
-            OnFailureOption = onFailure;
             OnErrorOption = onError;
             OnCreated();
         }
@@ -172,20 +170,6 @@ namespace TalonOneSdk.Model
         public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
-        /// Used to track the state of OnFailure
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Block>> OnFailureOption { get; private set; }
-
-        /// <summary>
-        /// Blocks evaluated when this block fails or returns false.
-        /// </summary>
-        /// <value>Blocks evaluated when this block fails or returns false.</value>
-        [JsonPropertyName("onFailure")]
-        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
-
-        /// <summary>
         /// Used to track the state of OnError
         /// </summary>
         [JsonIgnore]
@@ -212,7 +196,6 @@ namespace TalonOneSdk.Model
             sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
-            sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("  OnError: ").Append(OnError).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -266,7 +249,6 @@ namespace TalonOneSdk.Model
             Option<AwardGiveawayBlock.ProfileEnum?> profile = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
-            Option<List<Block>> onFailure = default;
             Option<Dictionary<string, List<Block>>> onError = default;
 
             while (utf8JsonReader.Read())
@@ -306,9 +288,6 @@ namespace TalonOneSdk.Model
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "onFailure":
-                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "onError":
                             onError = new Option<Dictionary<string, List<Block>>>(JsonSerializer.Deserialize<Dictionary<string, List<Block>>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -319,24 +298,24 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayBlock.", nameof(type));
+                throw new JsonException("Property is required for class AwardGiveawayBlock: type.");
 
             if (!giveawayPool.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayBlock.", nameof(giveawayPool));
+                throw new JsonException("Property is required for class AwardGiveawayBlock: giveawayPool.");
 
             if (!profile.IsSet)
-                throw new ArgumentException("Property is required for class AwardGiveawayBlock.", nameof(profile));
+                throw new JsonException("Property is required for class AwardGiveawayBlock: profile.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardGiveawayBlock.");
+                throw new JsonException("Property is not nullable for class AwardGiveawayBlock: type.");
 
             if (giveawayPool.IsSet && giveawayPool.Value == null)
-                throw new ArgumentNullException(nameof(giveawayPool), "Property is not nullable for class AwardGiveawayBlock.");
+                throw new JsonException("Property is not nullable for class AwardGiveawayBlock: giveawayPool.");
 
             if (profile.IsSet && profile.Value == null)
-                throw new ArgumentNullException(nameof(profile), "Property is not nullable for class AwardGiveawayBlock.");
+                throw new JsonException("Property is not nullable for class AwardGiveawayBlock: profile.");
 
-            return new AwardGiveawayBlock(type.Value, giveawayPool.Value, profile.Value.Value, id, tags, onFailure, onError);
+            return new AwardGiveawayBlock(type.Value, giveawayPool.Value, profile.Value.Value, id, tags, onError);
         }
 
         /// <summary>
@@ -345,7 +324,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardGiveawayBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardGiveawayBlock awardGiveawayBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -360,14 +338,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardGiveawayBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardGiveawayBlock awardGiveawayBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardGiveawayBlock.Type == null)
-                throw new ArgumentNullException(nameof(awardGiveawayBlock.Type), "Property is required for class AwardGiveawayBlock.");
+                throw new JsonException("Cannot write null property AwardGiveawayBlock.Type to non-nullable JSON property 'type'.");
 
             if (awardGiveawayBlock.GiveawayPool == null)
-                throw new ArgumentNullException(nameof(awardGiveawayBlock.GiveawayPool), "Property is required for class AwardGiveawayBlock.");
+                throw new JsonException("Cannot write null property AwardGiveawayBlock.GiveawayPool to non-nullable JSON property 'giveawayPool'.");
 
             writer.WriteString("type", awardGiveawayBlock.Type);
 
@@ -382,11 +359,6 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("tags");
                 JsonSerializer.Serialize(writer, awardGiveawayBlock.Tags, jsonSerializerOptions);
-            }
-            if (awardGiveawayBlock.OnFailureOption.IsSet)
-            {
-                writer.WritePropertyName("onFailure");
-                JsonSerializer.Serialize(writer, awardGiveawayBlock.OnFailure, jsonSerializerOptions);
             }
             if (awardGiveawayBlock.OnErrorOption.IsSet)
             {

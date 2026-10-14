@@ -35,11 +35,11 @@ namespace TalonOneSdk.Model
         /// <param name="name">The internal name of the loyalty program.</param>
         /// <param name="title">The display name of the loyalty program.</param>
         [JsonConstructor]
-        public UpdateLoyaltyPointsExpiryBlock1Program(long id, string name, string title)
+        public UpdateLoyaltyPointsExpiryBlock1Program(long id, Option<string> name = default, Option<string> title = default)
         {
             Id = id;
-            Name = name;
-            Title = title;
+            NameOption = name;
+            TitleOption = title;
             OnCreated();
         }
 
@@ -54,12 +54,26 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
+        /// Used to track the state of Name
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> NameOption { get; }
+
+        /// <summary>
         /// The internal name of the loyalty program.
         /// </summary>
         /// <value>The internal name of the loyalty program.</value>
         /* <example>MainProgram</example> */
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return this.NameOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of Title
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> TitleOption { get; }
 
         /// <summary>
         /// The display name of the loyalty program.
@@ -67,7 +81,7 @@ namespace TalonOneSdk.Model
         /// <value>The display name of the loyalty program.</value>
         /* <example>Main Loyalty Program</example> */
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return this.TitleOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -162,24 +176,12 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock1Program.", nameof(id));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock1Program.", nameof(name));
-
-            if (!title.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock1Program.", nameof(title));
+                throw new JsonException("Property is required for class UpdateLoyaltyPointsExpiryBlock1Program: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UpdateLoyaltyPointsExpiryBlock1Program.");
+                throw new JsonException("Property is not nullable for class UpdateLoyaltyPointsExpiryBlock1Program: id.");
 
-            if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateLoyaltyPointsExpiryBlock1Program.");
-
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class UpdateLoyaltyPointsExpiryBlock1Program.");
-
-            return new UpdateLoyaltyPointsExpiryBlock1Program(id.Value.Value, name.Value, title.Value);
+            return new UpdateLoyaltyPointsExpiryBlock1Program(id.Value.Value, name, title);
         }
 
         /// <summary>
@@ -188,7 +190,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateLoyaltyPointsExpiryBlock1Program"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateLoyaltyPointsExpiryBlock1Program updateLoyaltyPointsExpiryBlock1Program, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,20 +204,15 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateLoyaltyPointsExpiryBlock1Program"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateLoyaltyPointsExpiryBlock1Program updateLoyaltyPointsExpiryBlock1Program, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (updateLoyaltyPointsExpiryBlock1Program.Name == null)
-                throw new ArgumentNullException(nameof(updateLoyaltyPointsExpiryBlock1Program.Name), "Property is required for class UpdateLoyaltyPointsExpiryBlock1Program.");
-
-            if (updateLoyaltyPointsExpiryBlock1Program.Title == null)
-                throw new ArgumentNullException(nameof(updateLoyaltyPointsExpiryBlock1Program.Title), "Property is required for class UpdateLoyaltyPointsExpiryBlock1Program.");
-
             writer.WriteNumber("id", updateLoyaltyPointsExpiryBlock1Program.Id);
 
-            writer.WriteString("name", updateLoyaltyPointsExpiryBlock1Program.Name);
+            if (updateLoyaltyPointsExpiryBlock1Program.NameOption.IsSet)
+                writer.WriteString("name", updateLoyaltyPointsExpiryBlock1Program.Name);
 
-            writer.WriteString("title", updateLoyaltyPointsExpiryBlock1Program.Title);
+            if (updateLoyaltyPointsExpiryBlock1Program.TitleOption.IsSet)
+                writer.WriteString("title", updateLoyaltyPointsExpiryBlock1Program.Title);
         }
     }
 }

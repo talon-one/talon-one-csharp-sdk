@@ -157,16 +157,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SamlConnectionInternal.", nameof(name));
+                throw new JsonException("Property is required for class SamlConnectionInternal: name.");
 
             if (!metadataDocument.IsSet)
-                throw new ArgumentException("Property is required for class SamlConnectionInternal.", nameof(metadataDocument));
+                throw new JsonException("Property is required for class SamlConnectionInternal: metadataDocument.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SamlConnectionInternal.");
+                throw new JsonException("Property is not nullable for class SamlConnectionInternal: name.");
 
             if (metadataDocument.IsSet && metadataDocument.Value == null)
-                throw new ArgumentNullException(nameof(metadataDocument), "Property is not nullable for class SamlConnectionInternal.");
+                throw new JsonException("Property is not nullable for class SamlConnectionInternal: metadataDocument.");
 
             return new SamlConnectionInternal(name.Value, metadataDocument.Value);
         }
@@ -177,7 +177,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="samlConnectionInternal"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SamlConnectionInternal samlConnectionInternal, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -192,14 +191,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="samlConnectionInternal"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SamlConnectionInternal samlConnectionInternal, JsonSerializerOptions jsonSerializerOptions)
         {
             if (samlConnectionInternal.Name == null)
-                throw new ArgumentNullException(nameof(samlConnectionInternal.Name), "Property is required for class SamlConnectionInternal.");
+                throw new JsonException("Cannot write null property SamlConnectionInternal.Name to non-nullable JSON property 'name'.");
 
             if (samlConnectionInternal.MetadataDocument == null)
-                throw new ArgumentNullException(nameof(samlConnectionInternal.MetadataDocument), "Property is required for class SamlConnectionInternal.");
+                throw new JsonException("Cannot write null property SamlConnectionInternal.MetadataDocument to non-nullable JSON property 'metadataDocument'.");
 
             writer.WriteString("name", samlConnectionInternal.Name);
 

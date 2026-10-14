@@ -189,10 +189,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class LabelTargetNone.", nameof(type));
+                throw new JsonException("Property is required for class LabelTargetNone: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LabelTargetNone.");
+                throw new JsonException("Property is not nullable for class LabelTargetNone: type.");
 
             return new LabelTargetNone(type.Value.Value);
         }
@@ -203,7 +203,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="labelTargetNone"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LabelTargetNone labelTargetNone, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -218,7 +217,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="labelTargetNone"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LabelTargetNone labelTargetNone, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = LabelTargetNone.TypeEnumToJsonValue(labelTargetNone.Type);

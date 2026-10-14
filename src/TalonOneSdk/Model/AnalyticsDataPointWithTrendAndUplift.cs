@@ -159,22 +159,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsDataPointWithTrendAndUplift.", nameof(value));
+                throw new JsonException("Property is required for class AnalyticsDataPointWithTrendAndUplift: value.");
 
             if (!uplift.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsDataPointWithTrendAndUplift.", nameof(uplift));
+                throw new JsonException("Property is required for class AnalyticsDataPointWithTrendAndUplift: uplift.");
 
             if (!trend.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsDataPointWithTrendAndUplift.", nameof(trend));
+                throw new JsonException("Property is required for class AnalyticsDataPointWithTrendAndUplift: trend.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AnalyticsDataPointWithTrendAndUplift.");
+                throw new JsonException("Property is not nullable for class AnalyticsDataPointWithTrendAndUplift: value.");
 
             if (uplift.IsSet && uplift.Value == null)
-                throw new ArgumentNullException(nameof(uplift), "Property is not nullable for class AnalyticsDataPointWithTrendAndUplift.");
+                throw new JsonException("Property is not nullable for class AnalyticsDataPointWithTrendAndUplift: uplift.");
 
             if (trend.IsSet && trend.Value == null)
-                throw new ArgumentNullException(nameof(trend), "Property is not nullable for class AnalyticsDataPointWithTrendAndUplift.");
+                throw new JsonException("Property is not nullable for class AnalyticsDataPointWithTrendAndUplift: trend.");
 
             return new AnalyticsDataPointWithTrendAndUplift(value.Value.Value, uplift.Value.Value, trend.Value.Value);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsDataPointWithTrendAndUplift"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AnalyticsDataPointWithTrendAndUplift analyticsDataPointWithTrendAndUplift, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,7 +199,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsDataPointWithTrendAndUplift"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AnalyticsDataPointWithTrendAndUplift analyticsDataPointWithTrendAndUplift, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("value", analyticsDataPointWithTrendAndUplift.Value);

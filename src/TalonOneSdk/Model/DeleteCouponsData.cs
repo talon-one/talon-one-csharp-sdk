@@ -282,52 +282,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!typeOfChange.IsSet)
-                throw new ArgumentException("Property is required for class DeleteCouponsData.", nameof(typeOfChange));
+                throw new JsonException("Property is required for class DeleteCouponsData: TypeOfChange.");
 
             if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class DeleteCouponsData.", nameof(operation));
+                throw new JsonException("Property is required for class DeleteCouponsData: Operation.");
 
             if (!employeeName.IsSet)
-                throw new ArgumentException("Property is required for class DeleteCouponsData.", nameof(employeeName));
+                throw new JsonException("Property is required for class DeleteCouponsData: EmployeeName.");
 
             if (!batchID.IsSet)
-                throw new ArgumentException("Property is required for class DeleteCouponsData.", nameof(batchID));
+                throw new JsonException("Property is required for class DeleteCouponsData: BatchID.");
 
             if (!applicationID.IsSet)
-                throw new ArgumentException("Property is required for class DeleteCouponsData.", nameof(applicationID));
+                throw new JsonException("Property is required for class DeleteCouponsData: ApplicationID.");
 
             if (!campaignID.IsSet)
-                throw new ArgumentException("Property is required for class DeleteCouponsData.", nameof(campaignID));
+                throw new JsonException("Property is required for class DeleteCouponsData: CampaignID.");
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class DeleteCouponsData.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class DeleteCouponsData: TotalResultSize.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class DeleteCouponsData.", nameof(notificationType));
+                throw new JsonException("Property is required for class DeleteCouponsData: NotificationType.");
 
             if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class DeleteCouponsData.");
+                throw new JsonException("Property is not nullable for class DeleteCouponsData: TypeOfChange.");
 
             if (operation.IsSet && operation.Value == null)
-                throw new ArgumentNullException(nameof(operation), "Property is not nullable for class DeleteCouponsData.");
+                throw new JsonException("Property is not nullable for class DeleteCouponsData: Operation.");
 
             if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class DeleteCouponsData.");
+                throw new JsonException("Property is not nullable for class DeleteCouponsData: EmployeeName.");
 
             if (batchID.IsSet && batchID.Value == null)
-                throw new ArgumentNullException(nameof(batchID), "Property is not nullable for class DeleteCouponsData.");
+                throw new JsonException("Property is not nullable for class DeleteCouponsData: BatchID.");
 
             if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class DeleteCouponsData.");
+                throw new JsonException("Property is not nullable for class DeleteCouponsData: ApplicationID.");
 
             if (campaignID.IsSet && campaignID.Value == null)
-                throw new ArgumentNullException(nameof(campaignID), "Property is not nullable for class DeleteCouponsData.");
+                throw new JsonException("Property is not nullable for class DeleteCouponsData: CampaignID.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class DeleteCouponsData.");
+                throw new JsonException("Property is not nullable for class DeleteCouponsData: TotalResultSize.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class DeleteCouponsData.");
+                throw new JsonException("Property is not nullable for class DeleteCouponsData: NotificationType.");
 
             return new DeleteCouponsData(typeOfChange.Value, operation.Value, employeeName.Value, batchID.Value, applicationID.Value.Value, campaignID.Value.Value, totalResultSize.Value.Value, notificationType.Value.Value);
         }
@@ -338,7 +338,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="deleteCouponsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeleteCouponsData deleteCouponsData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -353,20 +352,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="deleteCouponsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeleteCouponsData deleteCouponsData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (deleteCouponsData.TypeOfChange == null)
-                throw new ArgumentNullException(nameof(deleteCouponsData.TypeOfChange), "Property is required for class DeleteCouponsData.");
+                throw new JsonException("Cannot write null property DeleteCouponsData.TypeOfChange to non-nullable JSON property 'TypeOfChange'.");
 
             if (deleteCouponsData.Operation == null)
-                throw new ArgumentNullException(nameof(deleteCouponsData.Operation), "Property is required for class DeleteCouponsData.");
+                throw new JsonException("Cannot write null property DeleteCouponsData.Operation to non-nullable JSON property 'Operation'.");
 
             if (deleteCouponsData.EmployeeName == null)
-                throw new ArgumentNullException(nameof(deleteCouponsData.EmployeeName), "Property is required for class DeleteCouponsData.");
+                throw new JsonException("Cannot write null property DeleteCouponsData.EmployeeName to non-nullable JSON property 'EmployeeName'.");
 
             if (deleteCouponsData.BatchID == null)
-                throw new ArgumentNullException(nameof(deleteCouponsData.BatchID), "Property is required for class DeleteCouponsData.");
+                throw new JsonException("Cannot write null property DeleteCouponsData.BatchID to non-nullable JSON property 'BatchID'.");
 
             writer.WriteString("TypeOfChange", deleteCouponsData.TypeOfChange);
 

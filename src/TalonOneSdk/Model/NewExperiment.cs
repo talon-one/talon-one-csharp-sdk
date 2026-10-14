@@ -400,16 +400,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class NewExperiment.", nameof(campaign));
+                throw new JsonException("Property is required for class NewExperiment: campaign.");
 
             if (!goalType.IsSet)
-                throw new ArgumentException("Property is required for class NewExperiment.", nameof(goalType));
+                throw new JsonException("Property is required for class NewExperiment: goalType.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class NewExperiment.");
+                throw new JsonException("Property is not nullable for class NewExperiment: campaign.");
 
             if (goalType.IsSet && goalType.Value == null)
-                throw new ArgumentNullException(nameof(goalType), "Property is not nullable for class NewExperiment.");
+                throw new JsonException("Property is not nullable for class NewExperiment: goalType.");
 
             return new NewExperiment(campaign.Value, assignmentType, isVariantAssignmentExternal, goalType.Value.Value, goalDescription);
         }
@@ -420,7 +420,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewExperiment newExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -435,11 +434,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewExperiment newExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newExperiment.Campaign == null)
-                throw new ArgumentNullException(nameof(newExperiment.Campaign), "Property is required for class NewExperiment.");
+                throw new JsonException("Cannot write null property NewExperiment.Campaign to non-nullable JSON property 'campaign'.");
 
             writer.WritePropertyName("campaign");
             JsonSerializer.Serialize(writer, newExperiment.Campaign, jsonSerializerOptions);

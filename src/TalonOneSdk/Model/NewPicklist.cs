@@ -249,16 +249,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NewPicklist.", nameof(type));
+                throw new JsonException("Property is required for class NewPicklist: type.");
 
             if (!values.IsSet)
-                throw new ArgumentException("Property is required for class NewPicklist.", nameof(values));
+                throw new JsonException("Property is required for class NewPicklist: values.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewPicklist.");
+                throw new JsonException("Property is not nullable for class NewPicklist: type.");
 
             if (values.IsSet && values.Value == null)
-                throw new ArgumentNullException(nameof(values), "Property is not nullable for class NewPicklist.");
+                throw new JsonException("Property is not nullable for class NewPicklist: values.");
 
             return new NewPicklist(type.Value.Value, values.Value);
         }
@@ -269,7 +269,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newPicklist"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewPicklist newPicklist, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -284,11 +283,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newPicklist"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewPicklist newPicklist, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newPicklist.Values == null)
-                throw new ArgumentNullException(nameof(newPicklist.Values), "Property is required for class NewPicklist.");
+                throw new JsonException("Cannot write null property NewPicklist.Values to non-nullable JSON property 'values'.");
 
             var typeRawValue = NewPicklist.TypeEnumToJsonValue(newPicklist.Type);
             writer.WriteString("type", typeRawValue);

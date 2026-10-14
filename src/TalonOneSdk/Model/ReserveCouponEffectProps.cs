@@ -159,22 +159,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!couponValue.IsSet)
-                throw new ArgumentException("Property is required for class ReserveCouponEffectProps.", nameof(couponValue));
+                throw new JsonException("Property is required for class ReserveCouponEffectProps: couponValue.");
 
             if (!profileIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class ReserveCouponEffectProps.", nameof(profileIntegrationId));
+                throw new JsonException("Property is required for class ReserveCouponEffectProps: profileIntegrationId.");
 
             if (!isNewReservation.IsSet)
-                throw new ArgumentException("Property is required for class ReserveCouponEffectProps.", nameof(isNewReservation));
+                throw new JsonException("Property is required for class ReserveCouponEffectProps: isNewReservation.");
 
             if (couponValue.IsSet && couponValue.Value == null)
-                throw new ArgumentNullException(nameof(couponValue), "Property is not nullable for class ReserveCouponEffectProps.");
+                throw new JsonException("Property is not nullable for class ReserveCouponEffectProps: couponValue.");
 
             if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class ReserveCouponEffectProps.");
+                throw new JsonException("Property is not nullable for class ReserveCouponEffectProps: profileIntegrationId.");
 
             if (isNewReservation.IsSet && isNewReservation.Value == null)
-                throw new ArgumentNullException(nameof(isNewReservation), "Property is not nullable for class ReserveCouponEffectProps.");
+                throw new JsonException("Property is not nullable for class ReserveCouponEffectProps: isNewReservation.");
 
             return new ReserveCouponEffectProps(couponValue.Value, profileIntegrationId.Value, isNewReservation.Value.Value);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="reserveCouponEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ReserveCouponEffectProps reserveCouponEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,14 +199,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="reserveCouponEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReserveCouponEffectProps reserveCouponEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (reserveCouponEffectProps.CouponValue == null)
-                throw new ArgumentNullException(nameof(reserveCouponEffectProps.CouponValue), "Property is required for class ReserveCouponEffectProps.");
+                throw new JsonException("Cannot write null property ReserveCouponEffectProps.CouponValue to non-nullable JSON property 'couponValue'.");
 
             if (reserveCouponEffectProps.ProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(reserveCouponEffectProps.ProfileIntegrationId), "Property is required for class ReserveCouponEffectProps.");
+                throw new JsonException("Cannot write null property ReserveCouponEffectProps.ProfileIntegrationId to non-nullable JSON property 'profileIntegrationId'.");
 
             writer.WriteString("couponValue", reserveCouponEffectProps.CouponValue);
 

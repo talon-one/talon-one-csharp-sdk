@@ -201,40 +201,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!disabled.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignStats.", nameof(disabled));
+                throw new JsonException("Property is required for class ApplicationCampaignStats: disabled.");
 
             if (!staged.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignStats.", nameof(staged));
+                throw new JsonException("Property is required for class ApplicationCampaignStats: staged.");
 
             if (!scheduled.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignStats.", nameof(scheduled));
+                throw new JsonException("Property is required for class ApplicationCampaignStats: scheduled.");
 
             if (!running.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignStats.", nameof(running));
+                throw new JsonException("Property is required for class ApplicationCampaignStats: running.");
 
             if (!expired.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignStats.", nameof(expired));
+                throw new JsonException("Property is required for class ApplicationCampaignStats: expired.");
 
             if (!archived.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationCampaignStats.", nameof(archived));
+                throw new JsonException("Property is required for class ApplicationCampaignStats: archived.");
 
             if (disabled.IsSet && disabled.Value == null)
-                throw new ArgumentNullException(nameof(disabled), "Property is not nullable for class ApplicationCampaignStats.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignStats: disabled.");
 
             if (staged.IsSet && staged.Value == null)
-                throw new ArgumentNullException(nameof(staged), "Property is not nullable for class ApplicationCampaignStats.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignStats: staged.");
 
             if (scheduled.IsSet && scheduled.Value == null)
-                throw new ArgumentNullException(nameof(scheduled), "Property is not nullable for class ApplicationCampaignStats.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignStats: scheduled.");
 
             if (running.IsSet && running.Value == null)
-                throw new ArgumentNullException(nameof(running), "Property is not nullable for class ApplicationCampaignStats.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignStats: running.");
 
             if (expired.IsSet && expired.Value == null)
-                throw new ArgumentNullException(nameof(expired), "Property is not nullable for class ApplicationCampaignStats.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignStats: expired.");
 
             if (archived.IsSet && archived.Value == null)
-                throw new ArgumentNullException(nameof(archived), "Property is not nullable for class ApplicationCampaignStats.");
+                throw new JsonException("Property is not nullable for class ApplicationCampaignStats: archived.");
 
             return new ApplicationCampaignStats(disabled.Value.Value, staged.Value.Value, scheduled.Value.Value, running.Value.Value, expired.Value.Value, archived.Value.Value);
         }
@@ -245,7 +245,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCampaignStats"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationCampaignStats applicationCampaignStats, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,7 +259,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationCampaignStats"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationCampaignStats applicationCampaignStats, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("disabled", applicationCampaignStats.Disabled);

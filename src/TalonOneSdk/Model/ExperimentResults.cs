@@ -143,16 +143,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!variants.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentResults.", nameof(variants));
+                throw new JsonException("Property is required for class ExperimentResults: variants.");
 
             if (!confidence.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentResults.", nameof(confidence));
+                throw new JsonException("Property is required for class ExperimentResults: confidence.");
 
             if (variants.IsSet && variants.Value == null)
-                throw new ArgumentNullException(nameof(variants), "Property is not nullable for class ExperimentResults.");
+                throw new JsonException("Property is not nullable for class ExperimentResults: variants.");
 
             if (confidence.IsSet && confidence.Value == null)
-                throw new ArgumentNullException(nameof(confidence), "Property is not nullable for class ExperimentResults.");
+                throw new JsonException("Property is not nullable for class ExperimentResults: confidence.");
 
             return new ExperimentResults(variants.Value, confidence.Value);
         }
@@ -163,7 +163,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentResults"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentResults experimentResults, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -178,14 +177,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentResults"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentResults experimentResults, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentResults.Variants == null)
-                throw new ArgumentNullException(nameof(experimentResults.Variants), "Property is required for class ExperimentResults.");
+                throw new JsonException("Cannot write null property ExperimentResults.Variants to non-nullable JSON property 'variants'.");
 
             if (experimentResults.Confidence == null)
-                throw new ArgumentNullException(nameof(experimentResults.Confidence), "Property is required for class ExperimentResults.");
+                throw new JsonException("Cannot write null property ExperimentResults.Confidence to non-nullable JSON property 'confidence'.");
 
             writer.WritePropertyName("variants");
             JsonSerializer.Serialize(writer, experimentResults.Variants, jsonSerializerOptions);

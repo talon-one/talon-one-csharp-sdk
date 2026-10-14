@@ -395,7 +395,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCoupon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateCoupon updateCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -410,7 +409,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateCoupon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateCoupon updateCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateCoupon.UsageLimitOption.IsSet)

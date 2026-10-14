@@ -507,64 +507,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(id));
+                throw new JsonException("Property is required for class Blueprint: id.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(accountId));
+                throw new JsonException("Property is required for class Blueprint: accountId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(applicationId));
+                throw new JsonException("Property is required for class Blueprint: applicationId.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(title));
+                throw new JsonException("Property is required for class Blueprint: title.");
 
             if (!category.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(category));
+                throw new JsonException("Property is required for class Blueprint: category.");
 
             if (!source.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(source));
+                throw new JsonException("Property is required for class Blueprint: source.");
 
             if (!rules.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(rules));
+                throw new JsonException("Property is required for class Blueprint: rules.");
 
             if (!cartItemFilters.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(cartItemFilters));
+                throw new JsonException("Property is required for class Blueprint: cartItemFilters.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(created));
+                throw new JsonException("Property is required for class Blueprint: created.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class Blueprint.", nameof(createdBy));
+                throw new JsonException("Property is required for class Blueprint: createdBy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: id.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: accountId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: applicationId.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: title.");
 
             if (category.IsSet && category.Value == null)
-                throw new ArgumentNullException(nameof(category), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: category.");
 
             if (source.IsSet && source.Value == null)
-                throw new ArgumentNullException(nameof(source), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: source.");
 
             if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: rules.");
 
             if (cartItemFilters.IsSet && cartItemFilters.Value == null)
-                throw new ArgumentNullException(nameof(cartItemFilters), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: cartItemFilters.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: created.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Blueprint.");
+                throw new JsonException("Property is not nullable for class Blueprint: createdBy.");
 
             return new Blueprint(id.Value.Value, accountId.Value.Value, applicationId.Value.Value, title.Value, category.Value.Value, source.Value.Value, rules.Value, cartItemFilters.Value, created.Value.Value, createdBy.Value.Value, description, modified, modifiedBy);
         }
@@ -575,7 +575,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="blueprint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Blueprint blueprint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -590,17 +589,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="blueprint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Blueprint blueprint, JsonSerializerOptions jsonSerializerOptions)
         {
             if (blueprint.Title == null)
-                throw new ArgumentNullException(nameof(blueprint.Title), "Property is required for class Blueprint.");
+                throw new JsonException("Cannot write null property Blueprint.Title to non-nullable JSON property 'title'.");
 
             if (blueprint.Rules == null)
-                throw new ArgumentNullException(nameof(blueprint.Rules), "Property is required for class Blueprint.");
+                throw new JsonException("Cannot write null property Blueprint.Rules to non-nullable JSON property 'rules'.");
 
             if (blueprint.CartItemFilters == null)
-                throw new ArgumentNullException(nameof(blueprint.CartItemFilters), "Property is required for class Blueprint.");
+                throw new JsonException("Cannot write null property Blueprint.CartItemFilters to non-nullable JSON property 'cartItemFilters'.");
 
             writer.WriteNumber("id", blueprint.Id);
 

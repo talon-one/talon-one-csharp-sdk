@@ -589,16 +589,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!sandbox.IsSet)
-                throw new ArgumentException("Property is required for class CreateAchievementV2.", nameof(sandbox));
+                throw new JsonException("Property is required for class CreateAchievementV2: sandbox.");
 
             if (!timezone.IsSet)
-                throw new ArgumentException("Property is required for class CreateAchievementV2.", nameof(timezone));
+                throw new JsonException("Property is required for class CreateAchievementV2: timezone.");
 
             if (sandbox.IsSet && sandbox.Value == null)
-                throw new ArgumentNullException(nameof(sandbox), "Property is not nullable for class CreateAchievementV2.");
+                throw new JsonException("Property is not nullable for class CreateAchievementV2: sandbox.");
 
             if (timezone.IsSet && timezone.Value == null)
-                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class CreateAchievementV2.");
+                throw new JsonException("Property is not nullable for class CreateAchievementV2: timezone.");
 
             return new CreateAchievementV2(sandbox.Value.Value, timezone.Value, name, title, description, target, period, recurrencePolicy, activationPolicy, fixedStartDate, endDate, allowRollbackAfterCompletion, subscribedApplications);
         }
@@ -609,7 +609,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createAchievementV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateAchievementV2 createAchievementV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -624,11 +623,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createAchievementV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateAchievementV2 createAchievementV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createAchievementV2.Timezone == null)
-                throw new ArgumentNullException(nameof(createAchievementV2.Timezone), "Property is required for class CreateAchievementV2.");
+                throw new JsonException("Cannot write null property CreateAchievementV2.Timezone to non-nullable JSON property 'timezone'.");
 
             writer.WriteBoolean("sandbox", createAchievementV2.Sandbox);
 

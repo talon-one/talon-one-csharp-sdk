@@ -442,28 +442,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!policy.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotification.", nameof(policy));
+                throw new JsonException("Property is required for class BaseNotification: policy.");
 
             if (!webhook.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotification.", nameof(webhook));
+                throw new JsonException("Property is required for class BaseNotification: webhook.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotification.", nameof(id));
+                throw new JsonException("Property is required for class BaseNotification: id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BaseNotification.", nameof(type));
+                throw new JsonException("Property is required for class BaseNotification: type.");
 
             if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class BaseNotification.");
+                throw new JsonException("Property is not nullable for class BaseNotification: policy.");
 
             if (webhook.IsSet && webhook.Value == null)
-                throw new ArgumentNullException(nameof(webhook), "Property is not nullable for class BaseNotification.");
+                throw new JsonException("Property is not nullable for class BaseNotification: webhook.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class BaseNotification.");
+                throw new JsonException("Property is not nullable for class BaseNotification: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class BaseNotification.");
+                throw new JsonException("Property is not nullable for class BaseNotification: type.");
 
             return new BaseNotification(policy.Value, webhook.Value, id.Value.Value, type.Value.Value, enabled);
         }
@@ -474,7 +474,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BaseNotification baseNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -489,14 +488,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseNotification baseNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (baseNotification.Policy == null)
-                throw new ArgumentNullException(nameof(baseNotification.Policy), "Property is required for class BaseNotification.");
+                throw new JsonException("Cannot write null property BaseNotification.Policy to non-nullable JSON property 'policy'.");
 
             if (baseNotification.Webhook == null)
-                throw new ArgumentNullException(nameof(baseNotification.Webhook), "Property is required for class BaseNotification.");
+                throw new JsonException("Cannot write null property BaseNotification.Webhook to non-nullable JSON property 'webhook'.");
 
             writer.WritePropertyName("policy");
             JsonSerializer.Serialize(writer, baseNotification.Policy, jsonSerializerOptions);

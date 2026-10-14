@@ -167,16 +167,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedNotification.", nameof(applicationId));
+                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedNotification: applicationId.");
 
             if (!evaluationTree.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEvaluationTreeChangedNotification.", nameof(evaluationTree));
+                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedNotification: evaluationTree.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignEvaluationTreeChangedNotification.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedNotification: applicationId.");
 
             if (evaluationTree.IsSet && evaluationTree.Value == null)
-                throw new ArgumentNullException(nameof(evaluationTree), "Property is not nullable for class CampaignEvaluationTreeChangedNotification.");
+                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedNotification: evaluationTree.");
 
             return new CampaignEvaluationTreeChangedNotification(applicationId.Value.Value, evaluationTree.Value, oldEvaluationTree);
         }
@@ -187,7 +187,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEvaluationTreeChangedNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEvaluationTreeChangedNotification campaignEvaluationTreeChangedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -202,11 +201,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEvaluationTreeChangedNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEvaluationTreeChangedNotification campaignEvaluationTreeChangedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignEvaluationTreeChangedNotification.EvaluationTree == null)
-                throw new ArgumentNullException(nameof(campaignEvaluationTreeChangedNotification.EvaluationTree), "Property is required for class CampaignEvaluationTreeChangedNotification.");
+                throw new JsonException("Cannot write null property CampaignEvaluationTreeChangedNotification.EvaluationTree to non-nullable JSON property 'evaluationTree'.");
 
             writer.WriteNumber("applicationId", campaignEvaluationTreeChangedNotification.ApplicationId);
 

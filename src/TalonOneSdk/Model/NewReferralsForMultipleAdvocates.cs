@@ -313,16 +313,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class NewReferralsForMultipleAdvocates.", nameof(campaignId));
+                throw new JsonException("Property is required for class NewReferralsForMultipleAdvocates: campaignId.");
 
             if (!advocateProfileIntegrationIds.IsSet)
-                throw new ArgumentException("Property is required for class NewReferralsForMultipleAdvocates.", nameof(advocateProfileIntegrationIds));
+                throw new JsonException("Property is required for class NewReferralsForMultipleAdvocates: advocateProfileIntegrationIds.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
+                throw new JsonException("Property is not nullable for class NewReferralsForMultipleAdvocates: campaignId.");
 
             if (advocateProfileIntegrationIds.IsSet && advocateProfileIntegrationIds.Value == null)
-                throw new ArgumentNullException(nameof(advocateProfileIntegrationIds), "Property is not nullable for class NewReferralsForMultipleAdvocates.");
+                throw new JsonException("Property is not nullable for class NewReferralsForMultipleAdvocates: advocateProfileIntegrationIds.");
 
             return new NewReferralsForMultipleAdvocates(campaignId.Value.Value, advocateProfileIntegrationIds.Value, startDate, expiryDate, usageLimit, attributes, validCharacters, referralPattern);
         }
@@ -333,7 +333,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newReferralsForMultipleAdvocates"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewReferralsForMultipleAdvocates newReferralsForMultipleAdvocates, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -348,11 +347,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newReferralsForMultipleAdvocates"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewReferralsForMultipleAdvocates newReferralsForMultipleAdvocates, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newReferralsForMultipleAdvocates.AdvocateProfileIntegrationIds == null)
-                throw new ArgumentNullException(nameof(newReferralsForMultipleAdvocates.AdvocateProfileIntegrationIds), "Property is required for class NewReferralsForMultipleAdvocates.");
+                throw new JsonException("Cannot write null property NewReferralsForMultipleAdvocates.AdvocateProfileIntegrationIds to non-nullable JSON property 'advocateProfileIntegrationIds'.");
 
             writer.WriteNumber("campaignId", newReferralsForMultipleAdvocates.CampaignId);
 

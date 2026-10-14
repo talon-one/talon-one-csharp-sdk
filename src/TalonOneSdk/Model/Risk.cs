@@ -983,82 +983,82 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(id));
+                throw new JsonException("Property is required for class Risk: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(created));
+                throw new JsonException("Property is required for class Risk: created.");
 
             if (!notificationId.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(notificationId));
+                throw new JsonException("Property is required for class Risk: notificationId.");
 
             if (!featureDate.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(featureDate));
+                throw new JsonException("Property is required for class Risk: featureDate.");
 
             if (!groupKey.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(groupKey));
+                throw new JsonException("Property is required for class Risk: groupKey.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(status));
+                throw new JsonException("Property is required for class Risk: status.");
 
             if (!criticality.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(criticality));
+                throw new JsonException("Property is required for class Risk: criticality.");
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(entity));
+                throw new JsonException("Property is required for class Risk: entity.");
 
             if (!activity.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(activity));
+                throw new JsonException("Property is required for class Risk: activity.");
 
             if (!timeFrame.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(timeFrame));
+                throw new JsonException("Property is required for class Risk: timeFrame.");
 
             if (!reportedDate.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(reportedDate));
+                throw new JsonException("Property is required for class Risk: reportedDate.");
 
             if (!affectedEntityCount.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(affectedEntityCount));
+                throw new JsonException("Property is required for class Risk: affectedEntityCount.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class Risk.", nameof(modified));
+                throw new JsonException("Property is required for class Risk: modified.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: created.");
 
             if (notificationId.IsSet && notificationId.Value == null)
-                throw new ArgumentNullException(nameof(notificationId), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: notificationId.");
 
             if (featureDate.IsSet && featureDate.Value == null)
-                throw new ArgumentNullException(nameof(featureDate), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: featureDate.");
 
             if (groupKey.IsSet && groupKey.Value == null)
-                throw new ArgumentNullException(nameof(groupKey), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: groupKey.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: status.");
 
             if (criticality.IsSet && criticality.Value == null)
-                throw new ArgumentNullException(nameof(criticality), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: criticality.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: entity.");
 
             if (activity.IsSet && activity.Value == null)
-                throw new ArgumentNullException(nameof(activity), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: activity.");
 
             if (timeFrame.IsSet && timeFrame.Value == null)
-                throw new ArgumentNullException(nameof(timeFrame), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: timeFrame.");
 
             if (reportedDate.IsSet && reportedDate.Value == null)
-                throw new ArgumentNullException(nameof(reportedDate), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: reportedDate.");
 
             if (affectedEntityCount.IsSet && affectedEntityCount.Value == null)
-                throw new ArgumentNullException(nameof(affectedEntityCount), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: affectedEntityCount.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Risk.");
+                throw new JsonException("Property is not nullable for class Risk: modified.");
 
             return new Risk(id.Value.Value, created.Value.Value, notificationId.Value.Value, featureDate.Value.Value, groupKey.Value, status.Value.Value, criticality.Value.Value, entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, reportedDate.Value.Value, affectedEntityCount.Value.Value, modified.Value.Value, applicationId, description, discardReason, statusComment, statusChangedBy, statusChangedAt);
         }
@@ -1069,7 +1069,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="risk"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Risk risk, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -1084,11 +1083,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="risk"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Risk risk, JsonSerializerOptions jsonSerializerOptions)
         {
             if (risk.GroupKey == null)
-                throw new ArgumentNullException(nameof(risk.GroupKey), "Property is required for class Risk.");
+                throw new JsonException("Cannot write null property Risk.GroupKey to non-nullable JSON property 'groupKey'.");
 
             writer.WriteNumber("id", risk.Id);
 

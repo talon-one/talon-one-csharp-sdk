@@ -151,10 +151,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!operations.IsSet)
-                throw new ArgumentException("Property is required for class ScimPatchRequest.", nameof(operations));
+                throw new JsonException("Property is required for class ScimPatchRequest: Operations.");
 
             if (operations.IsSet && operations.Value == null)
-                throw new ArgumentNullException(nameof(operations), "Property is not nullable for class ScimPatchRequest.");
+                throw new JsonException("Property is not nullable for class ScimPatchRequest: Operations.");
 
             return new ScimPatchRequest(operations.Value, schemas);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimPatchRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ScimPatchRequest scimPatchRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,11 +179,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimPatchRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimPatchRequest scimPatchRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (scimPatchRequest.Operations == null)
-                throw new ArgumentNullException(nameof(scimPatchRequest.Operations), "Property is required for class ScimPatchRequest.");
+                throw new JsonException("Cannot write null property ScimPatchRequest.Operations to non-nullable JSON property 'Operations'.");
 
             writer.WritePropertyName("Operations");
             JsonSerializer.Serialize(writer, scimPatchRequest.Operations, jsonSerializerOptions);

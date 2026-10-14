@@ -293,16 +293,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!companyName.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAccount.", nameof(companyName));
+                throw new JsonException("Property is required for class UpdateAccount: companyName.");
 
             if (!billingEmail.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAccount.", nameof(billingEmail));
+                throw new JsonException("Property is required for class UpdateAccount: billingEmail.");
 
             if (companyName.IsSet && companyName.Value == null)
-                throw new ArgumentNullException(nameof(companyName), "Property is not nullable for class UpdateAccount.");
+                throw new JsonException("Property is not nullable for class UpdateAccount: companyName.");
 
             if (billingEmail.IsSet && billingEmail.Value == null)
-                throw new ArgumentNullException(nameof(billingEmail), "Property is not nullable for class UpdateAccount.");
+                throw new JsonException("Property is not nullable for class UpdateAccount: billingEmail.");
 
             return new UpdateAccount(companyName.Value, billingEmail.Value, attributes, state, planExpires);
         }
@@ -313,7 +313,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAccount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateAccount updateAccount, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -328,14 +327,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAccount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAccount updateAccount, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateAccount.CompanyName == null)
-                throw new ArgumentNullException(nameof(updateAccount.CompanyName), "Property is required for class UpdateAccount.");
+                throw new JsonException("Cannot write null property UpdateAccount.CompanyName to non-nullable JSON property 'companyName'.");
 
             if (updateAccount.BillingEmail == null)
-                throw new ArgumentNullException(nameof(updateAccount.BillingEmail), "Property is required for class UpdateAccount.");
+                throw new JsonException("Cannot write null property UpdateAccount.BillingEmail to non-nullable JSON property 'billingEmail'.");
 
             writer.WriteString("companyName", updateAccount.CompanyName);
 

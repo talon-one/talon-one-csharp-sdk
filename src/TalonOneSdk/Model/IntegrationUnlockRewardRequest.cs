@@ -372,16 +372,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationUnlockRewardRequest.", nameof(integrationId));
+                throw new JsonException("Property is required for class IntegrationUnlockRewardRequest: integrationId.");
 
             if (!profileIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationUnlockRewardRequest.", nameof(profileIntegrationId));
+                throw new JsonException("Property is required for class IntegrationUnlockRewardRequest: profileIntegrationId.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationUnlockRewardRequest.");
+                throw new JsonException("Property is not nullable for class IntegrationUnlockRewardRequest: integrationId.");
 
             if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationId), "Property is not nullable for class IntegrationUnlockRewardRequest.");
+                throw new JsonException("Property is not nullable for class IntegrationUnlockRewardRequest: profileIntegrationId.");
 
             return new IntegrationUnlockRewardRequest(integrationId.Value, profileIntegrationId.Value, loyaltyCardId, loyaltyProgramId, subledgerId, responseContent);
         }
@@ -392,7 +392,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationUnlockRewardRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -407,14 +406,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationUnlockRewardRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationUnlockRewardRequest integrationUnlockRewardRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationUnlockRewardRequest.IntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationUnlockRewardRequest.IntegrationId), "Property is required for class IntegrationUnlockRewardRequest.");
+                throw new JsonException("Cannot write null property IntegrationUnlockRewardRequest.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             if (integrationUnlockRewardRequest.ProfileIntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationUnlockRewardRequest.ProfileIntegrationId), "Property is required for class IntegrationUnlockRewardRequest.");
+                throw new JsonException("Cannot write null property IntegrationUnlockRewardRequest.ProfileIntegrationId to non-nullable JSON property 'profileIntegrationId'.");
 
             writer.WriteString("integrationId", integrationUnlockRewardRequest.IntegrationId);
 

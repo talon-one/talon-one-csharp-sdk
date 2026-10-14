@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class InfluencingCampaignDetails.", nameof(campaignId));
+                throw new JsonException("Property is required for class InfluencingCampaignDetails: campaignId.");
 
             if (!discountValue.IsSet)
-                throw new ArgumentException("Property is required for class InfluencingCampaignDetails.", nameof(discountValue));
+                throw new JsonException("Property is required for class InfluencingCampaignDetails: discountValue.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class InfluencingCampaignDetails.");
+                throw new JsonException("Property is not nullable for class InfluencingCampaignDetails: campaignId.");
 
             if (discountValue.IsSet && discountValue.Value == null)
-                throw new ArgumentNullException(nameof(discountValue), "Property is not nullable for class InfluencingCampaignDetails.");
+                throw new JsonException("Property is not nullable for class InfluencingCampaignDetails: discountValue.");
 
             return new InfluencingCampaignDetails(campaignId.Value.Value, discountValue.Value.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="influencingCampaignDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, InfluencingCampaignDetails influencingCampaignDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,7 +179,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="influencingCampaignDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InfluencingCampaignDetails influencingCampaignDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("campaignId", influencingCampaignDetails.CampaignId);

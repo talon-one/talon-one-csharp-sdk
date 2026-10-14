@@ -346,28 +346,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CreateReferralBlock.", nameof(type));
+                throw new JsonException("Property is required for class CreateReferralBlock: type.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class CreateReferralBlock.", nameof(campaignId));
+                throw new JsonException("Property is required for class CreateReferralBlock: campaignId.");
 
             if (!friendId.IsSet)
-                throw new ArgumentException("Property is required for class CreateReferralBlock.", nameof(friendId));
+                throw new JsonException("Property is required for class CreateReferralBlock: friendId.");
 
             if (!storeInSession.IsSet)
-                throw new ArgumentException("Property is required for class CreateReferralBlock.", nameof(storeInSession));
+                throw new JsonException("Property is required for class CreateReferralBlock: storeInSession.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CreateReferralBlock.");
+                throw new JsonException("Property is not nullable for class CreateReferralBlock: type.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CreateReferralBlock.");
+                throw new JsonException("Property is not nullable for class CreateReferralBlock: campaignId.");
 
             if (friendId.IsSet && friendId.Value == null)
-                throw new ArgumentNullException(nameof(friendId), "Property is not nullable for class CreateReferralBlock.");
+                throw new JsonException("Property is not nullable for class CreateReferralBlock: friendId.");
 
             if (storeInSession.IsSet && storeInSession.Value == null)
-                throw new ArgumentNullException(nameof(storeInSession), "Property is not nullable for class CreateReferralBlock.");
+                throw new JsonException("Property is not nullable for class CreateReferralBlock: storeInSession.");
 
             return new CreateReferralBlock(type.Value, campaignId.Value, friendId.Value, storeInSession.Value.Value, id, tags, usageLimit, startDate, expiryDate, attributes, validCharacters, pattern);
         }
@@ -378,7 +378,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createReferralBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateReferralBlock createReferralBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -393,17 +392,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createReferralBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateReferralBlock createReferralBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createReferralBlock.Type == null)
-                throw new ArgumentNullException(nameof(createReferralBlock.Type), "Property is required for class CreateReferralBlock.");
+                throw new JsonException("Cannot write null property CreateReferralBlock.Type to non-nullable JSON property 'type'.");
 
             if (createReferralBlock.CampaignId == null)
-                throw new ArgumentNullException(nameof(createReferralBlock.CampaignId), "Property is required for class CreateReferralBlock.");
+                throw new JsonException("Cannot write null property CreateReferralBlock.CampaignId to non-nullable JSON property 'campaignId'.");
 
             if (createReferralBlock.FriendId == null)
-                throw new ArgumentNullException(nameof(createReferralBlock.FriendId), "Property is required for class CreateReferralBlock.");
+                throw new JsonException("Cannot write null property CreateReferralBlock.FriendId to non-nullable JSON property 'friendId'.");
 
             writer.WriteString("type", createReferralBlock.Type);
 

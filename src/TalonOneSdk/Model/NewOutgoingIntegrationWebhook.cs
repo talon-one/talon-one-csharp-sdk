@@ -169,16 +169,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class NewOutgoingIntegrationWebhook.", nameof(title));
+                throw new JsonException("Property is required for class NewOutgoingIntegrationWebhook: title.");
 
             if (!applicationIds.IsSet)
-                throw new ArgumentException("Property is required for class NewOutgoingIntegrationWebhook.", nameof(applicationIds));
+                throw new JsonException("Property is required for class NewOutgoingIntegrationWebhook: applicationIds.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewOutgoingIntegrationWebhook.");
+                throw new JsonException("Property is not nullable for class NewOutgoingIntegrationWebhook: title.");
 
             if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class NewOutgoingIntegrationWebhook.");
+                throw new JsonException("Property is not nullable for class NewOutgoingIntegrationWebhook: applicationIds.");
 
             return new NewOutgoingIntegrationWebhook(title.Value, applicationIds.Value, description);
         }
@@ -189,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newOutgoingIntegrationWebhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewOutgoingIntegrationWebhook newOutgoingIntegrationWebhook, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -204,14 +203,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newOutgoingIntegrationWebhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewOutgoingIntegrationWebhook newOutgoingIntegrationWebhook, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newOutgoingIntegrationWebhook.Title == null)
-                throw new ArgumentNullException(nameof(newOutgoingIntegrationWebhook.Title), "Property is required for class NewOutgoingIntegrationWebhook.");
+                throw new JsonException("Cannot write null property NewOutgoingIntegrationWebhook.Title to non-nullable JSON property 'title'.");
 
             if (newOutgoingIntegrationWebhook.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(newOutgoingIntegrationWebhook.ApplicationIds), "Property is required for class NewOutgoingIntegrationWebhook.");
+                throw new JsonException("Cannot write null property NewOutgoingIntegrationWebhook.ApplicationIds to non-nullable JSON property 'applicationIds'.");
 
             writer.WriteString("title", newOutgoingIntegrationWebhook.Title);
 

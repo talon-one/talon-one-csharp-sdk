@@ -175,10 +175,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ScimGroup.", nameof(id));
+                throw new JsonException("Property is required for class ScimGroup: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ScimGroup.");
+                throw new JsonException("Property is not nullable for class ScimGroup: id.");
 
             return new ScimGroup(id.Value, displayName, members);
         }
@@ -189,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ScimGroup scimGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -204,11 +203,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimGroup"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimGroup scimGroup, JsonSerializerOptions jsonSerializerOptions)
         {
             if (scimGroup.Id == null)
-                throw new ArgumentNullException(nameof(scimGroup.Id), "Property is required for class ScimGroup.");
+                throw new JsonException("Cannot write null property ScimGroup.Id to non-nullable JSON property 'id'.");
 
             writer.WriteString("id", scimGroup.Id);
 

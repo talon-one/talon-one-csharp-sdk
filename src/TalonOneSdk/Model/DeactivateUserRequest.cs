@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class DeactivateUserRequest.", nameof(email));
+                throw new JsonException("Property is required for class DeactivateUserRequest: email.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class DeactivateUserRequest.");
+                throw new JsonException("Property is not nullable for class DeactivateUserRequest: email.");
 
             return new DeactivateUserRequest(email.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="deactivateUserRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeactivateUserRequest deactivateUserRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="deactivateUserRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeactivateUserRequest deactivateUserRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (deactivateUserRequest.Email == null)
-                throw new ArgumentNullException(nameof(deactivateUserRequest.Email), "Property is required for class DeactivateUserRequest.");
+                throw new JsonException("Cannot write null property DeactivateUserRequest.Email to non-nullable JSON property 'email'.");
 
             writer.WriteString("email", deactivateUserRequest.Email);
         }

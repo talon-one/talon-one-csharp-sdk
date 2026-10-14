@@ -168,7 +168,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyLedgerTransactions"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyLedgerTransactions loyaltyLedgerTransactions, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -183,7 +182,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyLedgerTransactions"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyLedgerTransactions loyaltyLedgerTransactions, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyLedgerTransactions.HasMoreOption.IsSet)

@@ -160,5 +160,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'AdvocateIntegrationId'
         }
+
+        /// <summary>
+        /// Test the property 'LoyaltyProgramJoinDates'
+        /// </summary>
+        [Fact]
+        public void LoyaltyProgramJoinDatesTest()
+        {
+            // TODO unit test for the property 'LoyaltyProgramJoinDates'
+        }
     }
 }

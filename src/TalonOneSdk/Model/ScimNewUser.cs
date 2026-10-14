@@ -196,10 +196,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!userName.IsSet)
-                throw new ArgumentException("Property is required for class ScimNewUser.", nameof(userName));
+                throw new JsonException("Property is required for class ScimNewUser: userName.");
 
             if (userName.IsSet && userName.Value == null)
-                throw new ArgumentNullException(nameof(userName), "Property is not nullable for class ScimNewUser.");
+                throw new JsonException("Property is not nullable for class ScimNewUser: userName.");
 
             return new ScimNewUser(userName.Value, active, displayName, name);
         }
@@ -210,7 +210,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimNewUser"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ScimNewUser scimNewUser, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -225,11 +224,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="scimNewUser"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScimNewUser scimNewUser, JsonSerializerOptions jsonSerializerOptions)
         {
             if (scimNewUser.UserName == null)
-                throw new ArgumentNullException(nameof(scimNewUser.UserName), "Property is required for class ScimNewUser.");
+                throw new JsonException("Cannot write null property ScimNewUser.UserName to non-nullable JSON property 'userName'.");
 
             writer.WriteString("userName", scimNewUser.UserName);
 

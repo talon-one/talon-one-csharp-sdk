@@ -340,10 +340,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAttributeValueBlock1Target.", nameof(type));
+                throw new JsonException("Property is required for class UpdateAttributeValueBlock1Target: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class UpdateAttributeValueBlock1Target.");
+                throw new JsonException("Property is not nullable for class UpdateAttributeValueBlock1Target: type.");
 
             return new UpdateAttributeValueBlock1Target(type.Value.Value, name);
         }
@@ -354,7 +354,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAttributeValueBlock1Target"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateAttributeValueBlock1Target updateAttributeValueBlock1Target, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -369,7 +368,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAttributeValueBlock1Target"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAttributeValueBlock1Target updateAttributeValueBlock1Target, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = UpdateAttributeValueBlock1Target.TypeEnumToJsonValue(updateAttributeValueBlock1Target.Type);

@@ -184,22 +184,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class OneTimeCode.", nameof(userId));
+                throw new JsonException("Property is required for class OneTimeCode: userId.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class OneTimeCode.", nameof(accountId));
+                throw new JsonException("Property is required for class OneTimeCode: accountId.");
 
             if (!token.IsSet)
-                throw new ArgumentException("Property is required for class OneTimeCode.", nameof(token));
+                throw new JsonException("Property is required for class OneTimeCode: token.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class OneTimeCode.");
+                throw new JsonException("Property is not nullable for class OneTimeCode: userId.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class OneTimeCode.");
+                throw new JsonException("Property is not nullable for class OneTimeCode: accountId.");
 
             if (token.IsSet && token.Value == null)
-                throw new ArgumentNullException(nameof(token), "Property is not nullable for class OneTimeCode.");
+                throw new JsonException("Property is not nullable for class OneTimeCode: token.");
 
             return new OneTimeCode(userId.Value.Value, accountId.Value.Value, token.Value, code);
         }
@@ -210,7 +210,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="oneTimeCode"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OneTimeCode oneTimeCode, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -225,11 +224,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="oneTimeCode"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OneTimeCode oneTimeCode, JsonSerializerOptions jsonSerializerOptions)
         {
             if (oneTimeCode.Token == null)
-                throw new ArgumentNullException(nameof(oneTimeCode.Token), "Property is required for class OneTimeCode.");
+                throw new JsonException("Cannot write null property OneTimeCode.Token to non-nullable JSON property 'token'.");
 
             writer.WriteNumber("userId", oneTimeCode.UserId);
 

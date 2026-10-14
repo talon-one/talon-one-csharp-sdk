@@ -768,22 +768,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateApplication.", nameof(name));
+                throw new JsonException("Property is required for class UpdateApplication: name.");
 
             if (!timezone.IsSet)
-                throw new ArgumentException("Property is required for class UpdateApplication.", nameof(timezone));
+                throw new JsonException("Property is required for class UpdateApplication: timezone.");
 
             if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class UpdateApplication.", nameof(currency));
+                throw new JsonException("Property is required for class UpdateApplication: currency.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateApplication.");
+                throw new JsonException("Property is not nullable for class UpdateApplication: name.");
 
             if (timezone.IsSet && timezone.Value == null)
-                throw new ArgumentNullException(nameof(timezone), "Property is not nullable for class UpdateApplication.");
+                throw new JsonException("Property is not nullable for class UpdateApplication: timezone.");
 
             if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class UpdateApplication.");
+                throw new JsonException("Property is not nullable for class UpdateApplication: currency.");
 
             return new UpdateApplication(name.Value, timezone.Value, currency.Value, description, caseSensitivity, attributes, limits, defaultDiscountScope, enableCascadingDiscounts, enableFlattenedCartItems, attributesSettings, sandbox, enablePartialDiscounts, defaultDiscountAdditionalCostPerItemScope, defaultEvaluationGroupId, defaultCartItemFilterId, enableCampaignStateManagement, bestPriorPriceSettings);
         }
@@ -794,7 +794,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateApplication"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateApplication updateApplication, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -809,17 +808,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateApplication"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateApplication updateApplication, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateApplication.Name == null)
-                throw new ArgumentNullException(nameof(updateApplication.Name), "Property is required for class UpdateApplication.");
+                throw new JsonException("Cannot write null property UpdateApplication.Name to non-nullable JSON property 'name'.");
 
             if (updateApplication.Timezone == null)
-                throw new ArgumentNullException(nameof(updateApplication.Timezone), "Property is required for class UpdateApplication.");
+                throw new JsonException("Cannot write null property UpdateApplication.Timezone to non-nullable JSON property 'timezone'.");
 
             if (updateApplication.Currency == null)
-                throw new ArgumentNullException(nameof(updateApplication.Currency), "Property is required for class UpdateApplication.");
+                throw new JsonException("Cannot write null property UpdateApplication.Currency to non-nullable JSON property 'currency'.");
 
             writer.WriteString("name", updateApplication.Name);
 

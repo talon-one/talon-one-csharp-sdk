@@ -365,34 +365,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Picklist.", nameof(id));
+                throw new JsonException("Property is required for class Picklist: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Picklist.", nameof(created));
+                throw new JsonException("Property is required for class Picklist: created.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Picklist.", nameof(type));
+                throw new JsonException("Property is required for class Picklist: type.");
 
             if (!values.IsSet)
-                throw new ArgumentException("Property is required for class Picklist.", nameof(values));
+                throw new JsonException("Property is required for class Picklist: values.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class Picklist.", nameof(createdBy));
+                throw new JsonException("Property is required for class Picklist: createdBy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Picklist.");
+                throw new JsonException("Property is not nullable for class Picklist: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Picklist.");
+                throw new JsonException("Property is not nullable for class Picklist: created.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Picklist.");
+                throw new JsonException("Property is not nullable for class Picklist: type.");
 
             if (values.IsSet && values.Value == null)
-                throw new ArgumentNullException(nameof(values), "Property is not nullable for class Picklist.");
+                throw new JsonException("Property is not nullable for class Picklist: values.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class Picklist.");
+                throw new JsonException("Property is not nullable for class Picklist: createdBy.");
 
             return new Picklist(id.Value.Value, created.Value.Value, type.Value.Value, values.Value, createdBy.Value.Value, modifiedBy, accountId, imported);
         }
@@ -403,7 +403,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="picklist"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Picklist picklist, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -418,11 +417,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="picklist"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Picklist picklist, JsonSerializerOptions jsonSerializerOptions)
         {
             if (picklist.Values == null)
-                throw new ArgumentNullException(nameof(picklist.Values), "Property is required for class Picklist.");
+                throw new JsonException("Cannot write null property Picklist.Values to non-nullable JSON property 'values'.");
 
             writer.WriteNumber("id", picklist.Id);
 

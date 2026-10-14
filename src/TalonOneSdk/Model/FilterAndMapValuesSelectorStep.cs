@@ -205,16 +205,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class FilterAndMapValuesSelectorStep.", nameof(type));
+                throw new JsonException("Property is required for class FilterAndMapValuesSelectorStep: type.");
 
             if (!valueMap.IsSet)
-                throw new ArgumentException("Property is required for class FilterAndMapValuesSelectorStep.", nameof(valueMap));
+                throw new JsonException("Property is required for class FilterAndMapValuesSelectorStep: valueMap.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FilterAndMapValuesSelectorStep.");
+                throw new JsonException("Property is not nullable for class FilterAndMapValuesSelectorStep: type.");
 
             if (valueMap.IsSet && valueMap.Value == null)
-                throw new ArgumentNullException(nameof(valueMap), "Property is not nullable for class FilterAndMapValuesSelectorStep.");
+                throw new JsonException("Property is not nullable for class FilterAndMapValuesSelectorStep: valueMap.");
 
             return new FilterAndMapValuesSelectorStep(type.Value.Value, valueMap.Value);
         }
@@ -225,7 +225,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="filterAndMapValuesSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FilterAndMapValuesSelectorStep filterAndMapValuesSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -240,11 +239,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="filterAndMapValuesSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FilterAndMapValuesSelectorStep filterAndMapValuesSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             if (filterAndMapValuesSelectorStep.ValueMap == null)
-                throw new ArgumentNullException(nameof(filterAndMapValuesSelectorStep.ValueMap), "Property is required for class FilterAndMapValuesSelectorStep.");
+                throw new JsonException("Cannot write null property FilterAndMapValuesSelectorStep.ValueMap to non-nullable JSON property 'valueMap'.");
 
             var typeRawValue = FilterAndMapValuesSelectorStep.TypeEnumToJsonValue(filterAndMapValuesSelectorStep.Type);
             writer.WriteString("type", typeRawValue);

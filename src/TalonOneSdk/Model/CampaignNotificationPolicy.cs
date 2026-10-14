@@ -182,10 +182,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignNotificationPolicy.", nameof(name));
+                throw new JsonException("Property is required for class CampaignNotificationPolicy: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class CampaignNotificationPolicy: name.");
 
             return new CampaignNotificationPolicy(name.Value, batchingEnabled, batchSize);
         }
@@ -196,7 +196,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignNotificationPolicy campaignNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -211,11 +210,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignNotificationPolicy campaignNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignNotificationPolicy.Name == null)
-                throw new ArgumentNullException(nameof(campaignNotificationPolicy.Name), "Property is required for class CampaignNotificationPolicy.");
+                throw new JsonException("Cannot write null property CampaignNotificationPolicy.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", campaignNotificationPolicy.Name);
 

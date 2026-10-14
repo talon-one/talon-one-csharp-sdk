@@ -430,52 +430,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationIds.IsSet)
-                throw new ArgumentException("Property is required for class NewWebhook.", nameof(applicationIds));
+                throw new JsonException("Property is required for class NewWebhook: applicationIds.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class NewWebhook.", nameof(title));
+                throw new JsonException("Property is required for class NewWebhook: title.");
 
             if (!draft.IsSet)
-                throw new ArgumentException("Property is required for class NewWebhook.", nameof(draft));
+                throw new JsonException("Property is required for class NewWebhook: draft.");
 
             if (!verb.IsSet)
-                throw new ArgumentException("Property is required for class NewWebhook.", nameof(verb));
+                throw new JsonException("Property is required for class NewWebhook: verb.");
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class NewWebhook.", nameof(url));
+                throw new JsonException("Property is required for class NewWebhook: url.");
 
             if (!headers.IsSet)
-                throw new ArgumentException("Property is required for class NewWebhook.", nameof(headers));
+                throw new JsonException("Property is required for class NewWebhook: headers.");
 
             if (!varParams.IsSet)
-                throw new ArgumentException("Property is required for class NewWebhook.", nameof(varParams));
+                throw new JsonException("Property is required for class NewWebhook: params.");
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class NewWebhook.", nameof(enabled));
+                throw new JsonException("Property is required for class NewWebhook: enabled.");
 
             if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class NewWebhook.");
+                throw new JsonException("Property is not nullable for class NewWebhook: applicationIds.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewWebhook.");
+                throw new JsonException("Property is not nullable for class NewWebhook: title.");
 
             if (draft.IsSet && draft.Value == null)
-                throw new ArgumentNullException(nameof(draft), "Property is not nullable for class NewWebhook.");
+                throw new JsonException("Property is not nullable for class NewWebhook: draft.");
 
             if (verb.IsSet && verb.Value == null)
-                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class NewWebhook.");
+                throw new JsonException("Property is not nullable for class NewWebhook: verb.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class NewWebhook.");
+                throw new JsonException("Property is not nullable for class NewWebhook: url.");
 
             if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class NewWebhook.");
+                throw new JsonException("Property is not nullable for class NewWebhook: headers.");
 
             if (varParams.IsSet && varParams.Value == null)
-                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class NewWebhook.");
+                throw new JsonException("Property is not nullable for class NewWebhook: params.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class NewWebhook.");
+                throw new JsonException("Property is not nullable for class NewWebhook: enabled.");
 
             return new NewWebhook(applicationIds.Value, title.Value, draft.Value.Value, verb.Value.Value, url.Value, headers.Value, varParams.Value, enabled.Value.Value, description, payload, authenticationId);
         }
@@ -486,7 +486,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newWebhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewWebhook newWebhook, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -501,23 +500,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newWebhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewWebhook newWebhook, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newWebhook.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(newWebhook.ApplicationIds), "Property is required for class NewWebhook.");
+                throw new JsonException("Cannot write null property NewWebhook.ApplicationIds to non-nullable JSON property 'applicationIds'.");
 
             if (newWebhook.Title == null)
-                throw new ArgumentNullException(nameof(newWebhook.Title), "Property is required for class NewWebhook.");
+                throw new JsonException("Cannot write null property NewWebhook.Title to non-nullable JSON property 'title'.");
 
             if (newWebhook.Url == null)
-                throw new ArgumentNullException(nameof(newWebhook.Url), "Property is required for class NewWebhook.");
+                throw new JsonException("Cannot write null property NewWebhook.Url to non-nullable JSON property 'url'.");
 
             if (newWebhook.Headers == null)
-                throw new ArgumentNullException(nameof(newWebhook.Headers), "Property is required for class NewWebhook.");
+                throw new JsonException("Cannot write null property NewWebhook.Headers to non-nullable JSON property 'headers'.");
 
             if (newWebhook.Params == null)
-                throw new ArgumentNullException(nameof(newWebhook.Params), "Property is required for class NewWebhook.");
+                throw new JsonException("Cannot write null property NewWebhook.Params to non-nullable JSON property 'params'.");
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, newWebhook.ApplicationIds, jsonSerializerOptions);

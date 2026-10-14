@@ -177,28 +177,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!variantId.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsightVariant.", nameof(variantId));
+                throw new JsonException("Property is required for class ExperimentSegmentInsightVariant: variantId.");
 
             if (!variantName.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsightVariant.", nameof(variantName));
+                throw new JsonException("Property is required for class ExperimentSegmentInsightVariant: variantName.");
 
             if (!sessionsCount.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsightVariant.", nameof(sessionsCount));
+                throw new JsonException("Property is required for class ExperimentSegmentInsightVariant: sessionsCount.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentSegmentInsightVariant.", nameof(value));
+                throw new JsonException("Property is required for class ExperimentSegmentInsightVariant: value.");
 
             if (variantId.IsSet && variantId.Value == null)
-                throw new ArgumentNullException(nameof(variantId), "Property is not nullable for class ExperimentSegmentInsightVariant.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsightVariant: variantId.");
 
             if (variantName.IsSet && variantName.Value == null)
-                throw new ArgumentNullException(nameof(variantName), "Property is not nullable for class ExperimentSegmentInsightVariant.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsightVariant: variantName.");
 
             if (sessionsCount.IsSet && sessionsCount.Value == null)
-                throw new ArgumentNullException(nameof(sessionsCount), "Property is not nullable for class ExperimentSegmentInsightVariant.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsightVariant: sessionsCount.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class ExperimentSegmentInsightVariant.");
+                throw new JsonException("Property is not nullable for class ExperimentSegmentInsightVariant: value.");
 
             return new ExperimentSegmentInsightVariant(variantId.Value.Value, variantName.Value, sessionsCount.Value.Value, value.Value.Value);
         }
@@ -209,7 +209,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentSegmentInsightVariant"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentSegmentInsightVariant experimentSegmentInsightVariant, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -224,11 +223,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentSegmentInsightVariant"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentSegmentInsightVariant experimentSegmentInsightVariant, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentSegmentInsightVariant.VariantName == null)
-                throw new ArgumentNullException(nameof(experimentSegmentInsightVariant.VariantName), "Property is required for class ExperimentSegmentInsightVariant.");
+                throw new JsonException("Cannot write null property ExperimentSegmentInsightVariant.VariantName to non-nullable JSON property 'variantName'.");
 
             writer.WriteNumber("variantId", experimentSegmentInsightVariant.VariantId);
 

@@ -206,16 +206,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsGlobalFilterTarget.", nameof(type));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsGlobalFilterTarget: type.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AwardLoyaltyPointsGlobalFilterTarget.", nameof(name));
+                throw new JsonException("Property is required for class AwardLoyaltyPointsGlobalFilterTarget: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardLoyaltyPointsGlobalFilterTarget.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsGlobalFilterTarget: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AwardLoyaltyPointsGlobalFilterTarget.");
+                throw new JsonException("Property is not nullable for class AwardLoyaltyPointsGlobalFilterTarget: name.");
 
             return new AwardLoyaltyPointsGlobalFilterTarget(type.Value.Value, name.Value);
         }
@@ -226,7 +226,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardLoyaltyPointsGlobalFilterTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardLoyaltyPointsGlobalFilterTarget awardLoyaltyPointsGlobalFilterTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -241,11 +240,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardLoyaltyPointsGlobalFilterTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardLoyaltyPointsGlobalFilterTarget awardLoyaltyPointsGlobalFilterTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardLoyaltyPointsGlobalFilterTarget.Name == null)
-                throw new ArgumentNullException(nameof(awardLoyaltyPointsGlobalFilterTarget.Name), "Property is required for class AwardLoyaltyPointsGlobalFilterTarget.");
+                throw new JsonException("Cannot write null property AwardLoyaltyPointsGlobalFilterTarget.Name to non-nullable JSON property 'name'.");
 
             var typeRawValue = AwardLoyaltyPointsGlobalFilterTarget.TypeEnumToJsonValue(awardLoyaltyPointsGlobalFilterTarget.Type);
             writer.WriteString("type", typeRawValue);

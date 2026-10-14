@@ -196,34 +196,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SupportCustomerProfile.", nameof(id));
+                throw new JsonException("Property is required for class SupportCustomerProfile: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class SupportCustomerProfile.", nameof(created));
+                throw new JsonException("Property is required for class SupportCustomerProfile: created.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class SupportCustomerProfile.", nameof(integrationId));
+                throw new JsonException("Property is required for class SupportCustomerProfile: integrationId.");
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class SupportCustomerProfile.", nameof(attributes));
+                throw new JsonException("Property is required for class SupportCustomerProfile: attributes.");
 
             if (!applicationMemberships.IsSet)
-                throw new ArgumentException("Property is required for class SupportCustomerProfile.", nameof(applicationMemberships));
+                throw new JsonException("Property is required for class SupportCustomerProfile: applicationMemberships.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class SupportCustomerProfile.");
+                throw new JsonException("Property is not nullable for class SupportCustomerProfile: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class SupportCustomerProfile.");
+                throw new JsonException("Property is not nullable for class SupportCustomerProfile: created.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class SupportCustomerProfile.");
+                throw new JsonException("Property is not nullable for class SupportCustomerProfile: integrationId.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class SupportCustomerProfile.");
+                throw new JsonException("Property is not nullable for class SupportCustomerProfile: attributes.");
 
             if (applicationMemberships.IsSet && applicationMemberships.Value == null)
-                throw new ArgumentNullException(nameof(applicationMemberships), "Property is not nullable for class SupportCustomerProfile.");
+                throw new JsonException("Property is not nullable for class SupportCustomerProfile: applicationMemberships.");
 
             return new SupportCustomerProfile(id.Value.Value, created.Value.Value, integrationId.Value, attributes.Value, applicationMemberships.Value);
         }
@@ -234,7 +234,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="supportCustomerProfile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SupportCustomerProfile supportCustomerProfile, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -249,17 +248,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="supportCustomerProfile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SupportCustomerProfile supportCustomerProfile, JsonSerializerOptions jsonSerializerOptions)
         {
             if (supportCustomerProfile.IntegrationId == null)
-                throw new ArgumentNullException(nameof(supportCustomerProfile.IntegrationId), "Property is required for class SupportCustomerProfile.");
+                throw new JsonException("Cannot write null property SupportCustomerProfile.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             if (supportCustomerProfile.Attributes == null)
-                throw new ArgumentNullException(nameof(supportCustomerProfile.Attributes), "Property is required for class SupportCustomerProfile.");
+                throw new JsonException("Cannot write null property SupportCustomerProfile.Attributes to non-nullable JSON property 'attributes'.");
 
             if (supportCustomerProfile.ApplicationMemberships == null)
-                throw new ArgumentNullException(nameof(supportCustomerProfile.ApplicationMemberships), "Property is required for class SupportCustomerProfile.");
+                throw new JsonException("Cannot write null property SupportCustomerProfile.ApplicationMemberships to non-nullable JSON property 'applicationMemberships'.");
 
             writer.WriteNumber("id", supportCustomerProfile.Id);
 

@@ -159,22 +159,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class ShowNotificationEffectProps.", nameof(notificationType));
+                throw new JsonException("Property is required for class ShowNotificationEffectProps: notificationType.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class ShowNotificationEffectProps.", nameof(title));
+                throw new JsonException("Property is required for class ShowNotificationEffectProps: title.");
 
             if (!body.IsSet)
-                throw new ArgumentException("Property is required for class ShowNotificationEffectProps.", nameof(body));
+                throw new JsonException("Property is required for class ShowNotificationEffectProps: body.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class ShowNotificationEffectProps.");
+                throw new JsonException("Property is not nullable for class ShowNotificationEffectProps: notificationType.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class ShowNotificationEffectProps.");
+                throw new JsonException("Property is not nullable for class ShowNotificationEffectProps: title.");
 
             if (body.IsSet && body.Value == null)
-                throw new ArgumentNullException(nameof(body), "Property is not nullable for class ShowNotificationEffectProps.");
+                throw new JsonException("Property is not nullable for class ShowNotificationEffectProps: body.");
 
             return new ShowNotificationEffectProps(notificationType.Value, title.Value, body.Value);
         }
@@ -185,7 +185,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="showNotificationEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ShowNotificationEffectProps showNotificationEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,17 +199,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="showNotificationEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ShowNotificationEffectProps showNotificationEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (showNotificationEffectProps.NotificationType == null)
-                throw new ArgumentNullException(nameof(showNotificationEffectProps.NotificationType), "Property is required for class ShowNotificationEffectProps.");
+                throw new JsonException("Cannot write null property ShowNotificationEffectProps.NotificationType to non-nullable JSON property 'notificationType'.");
 
             if (showNotificationEffectProps.Title == null)
-                throw new ArgumentNullException(nameof(showNotificationEffectProps.Title), "Property is required for class ShowNotificationEffectProps.");
+                throw new JsonException("Cannot write null property ShowNotificationEffectProps.Title to non-nullable JSON property 'title'.");
 
             if (showNotificationEffectProps.Body == null)
-                throw new ArgumentNullException(nameof(showNotificationEffectProps.Body), "Property is required for class ShowNotificationEffectProps.");
+                throw new JsonException("Cannot write null property ShowNotificationEffectProps.Body to non-nullable JSON property 'body'.");
 
             writer.WriteString("notificationType", showNotificationEffectProps.NotificationType);
 

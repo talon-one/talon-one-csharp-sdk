@@ -154,10 +154,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class TwoFAConfig.", nameof(enabled));
+                throw new JsonException("Property is required for class TwoFAConfig: enabled.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class TwoFAConfig.");
+                throw new JsonException("Property is not nullable for class TwoFAConfig: enabled.");
 
             return new TwoFAConfig(enabled.Value.Value, requireEverySignIn);
         }
@@ -168,7 +168,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="twoFAConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TwoFAConfig twoFAConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -183,7 +182,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="twoFAConfig"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TwoFAConfig twoFAConfig, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteBoolean("enabled", twoFAConfig.Enabled);

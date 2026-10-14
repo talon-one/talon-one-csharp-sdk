@@ -150,10 +150,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListApplicationCartItemFilters200Response.", nameof(data));
+                throw new JsonException("Property is required for class ListApplicationCartItemFilters200Response: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListApplicationCartItemFilters200Response.");
+                throw new JsonException("Property is not nullable for class ListApplicationCartItemFilters200Response: data.");
 
             return new ListApplicationCartItemFilters200Response(data.Value, hasMore);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listApplicationCartItemFilters200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListApplicationCartItemFilters200Response listApplicationCartItemFilters200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listApplicationCartItemFilters200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListApplicationCartItemFilters200Response listApplicationCartItemFilters200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (listApplicationCartItemFilters200Response.Data == null)
-                throw new ArgumentNullException(nameof(listApplicationCartItemFilters200Response.Data), "Property is required for class ListApplicationCartItemFilters200Response.");
+                throw new JsonException("Cannot write null property ListApplicationCartItemFilters200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, listApplicationCartItemFilters200Response.Data, jsonSerializerOptions);

@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!batchId.IsSet)
-                throw new ArgumentException("Property is required for class AsyncCouponCreationResponse.", nameof(batchId));
+                throw new JsonException("Property is required for class AsyncCouponCreationResponse: batchId.");
 
             if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class AsyncCouponCreationResponse.");
+                throw new JsonException("Property is not nullable for class AsyncCouponCreationResponse: batchId.");
 
             return new AsyncCouponCreationResponse(batchId.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="asyncCouponCreationResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AsyncCouponCreationResponse asyncCouponCreationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="asyncCouponCreationResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AsyncCouponCreationResponse asyncCouponCreationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (asyncCouponCreationResponse.BatchId == null)
-                throw new ArgumentNullException(nameof(asyncCouponCreationResponse.BatchId), "Property is required for class AsyncCouponCreationResponse.");
+                throw new JsonException("Cannot write null property AsyncCouponCreationResponse.BatchId to non-nullable JSON property 'batchId'.");
 
             writer.WriteString("batchId", asyncCouponCreationResponse.BatchId);
         }

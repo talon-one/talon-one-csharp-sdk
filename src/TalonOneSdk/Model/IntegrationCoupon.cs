@@ -649,34 +649,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCoupon.", nameof(id));
+                throw new JsonException("Property is required for class IntegrationCoupon: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCoupon.", nameof(created));
+                throw new JsonException("Property is required for class IntegrationCoupon: created.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCoupon.", nameof(campaignId));
+                throw new JsonException("Property is required for class IntegrationCoupon: campaignId.");
 
             if (!usageCounter.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCoupon.", nameof(usageCounter));
+                throw new JsonException("Property is required for class IntegrationCoupon: usageCounter.");
 
             if (!profileRedemptionCount.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCoupon.", nameof(profileRedemptionCount));
+                throw new JsonException("Property is required for class IntegrationCoupon: profileRedemptionCount.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationCoupon.");
+                throw new JsonException("Property is not nullable for class IntegrationCoupon: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class IntegrationCoupon.");
+                throw new JsonException("Property is not nullable for class IntegrationCoupon: created.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class IntegrationCoupon.");
+                throw new JsonException("Property is not nullable for class IntegrationCoupon: campaignId.");
 
             if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class IntegrationCoupon.");
+                throw new JsonException("Property is not nullable for class IntegrationCoupon: usageCounter.");
 
             if (profileRedemptionCount.IsSet && profileRedemptionCount.Value == null)
-                throw new ArgumentNullException(nameof(profileRedemptionCount), "Property is not nullable for class IntegrationCoupon.");
+                throw new JsonException("Property is not nullable for class IntegrationCoupon: profileRedemptionCount.");
 
             return new IntegrationCoupon(id.Value.Value, created.Value.Value, campaignId.Value.Value, usageCounter.Value.Value, profileRedemptionCount.Value.Value, value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, discountCounter, discountRemainder, reservationCounter, attributes, referralId, recipientIntegrationId, importId, reservation, batchId, isReservationMandatory, implicitlyReserved);
         }
@@ -687,7 +687,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationCoupon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationCoupon integrationCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -702,7 +701,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationCoupon"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationCoupon integrationCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", integrationCoupon.Id);

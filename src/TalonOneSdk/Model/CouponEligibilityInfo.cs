@@ -169,16 +169,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class CouponEligibilityInfo.", nameof(campaignId));
+                throw new JsonException("Property is required for class CouponEligibilityInfo: campaignId.");
 
             if (!campaignName.IsSet)
-                throw new ArgumentException("Property is required for class CouponEligibilityInfo.", nameof(campaignName));
+                throw new JsonException("Property is required for class CouponEligibilityInfo: campaignName.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CouponEligibilityInfo.");
+                throw new JsonException("Property is not nullable for class CouponEligibilityInfo: campaignId.");
 
             if (campaignName.IsSet && campaignName.Value == null)
-                throw new ArgumentNullException(nameof(campaignName), "Property is not nullable for class CouponEligibilityInfo.");
+                throw new JsonException("Property is not nullable for class CouponEligibilityInfo: campaignName.");
 
             return new CouponEligibilityInfo(campaignId.Value.Value, campaignName.Value, failureReason);
         }
@@ -189,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponEligibilityInfo"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CouponEligibilityInfo couponEligibilityInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -204,11 +203,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="couponEligibilityInfo"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CouponEligibilityInfo couponEligibilityInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             if (couponEligibilityInfo.CampaignName == null)
-                throw new ArgumentNullException(nameof(couponEligibilityInfo.CampaignName), "Property is required for class CouponEligibilityInfo.");
+                throw new JsonException("Cannot write null property CouponEligibilityInfo.CampaignName to non-nullable JSON property 'campaignName'.");
 
             writer.WriteNumber("campaignId", couponEligibilityInfo.CampaignId);
 

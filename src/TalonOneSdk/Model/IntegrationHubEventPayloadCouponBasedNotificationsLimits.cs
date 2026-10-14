@@ -176,22 +176,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.", nameof(action));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits: Action.");
 
             if (!limit.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.", nameof(limit));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits: Limit.");
 
             if (!entities.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.", nameof(entities));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits: Entities.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits: Action.");
 
             if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits: Limit.");
 
             if (entities.IsSet && entities.Value == null)
-                throw new ArgumentNullException(nameof(entities), "Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadCouponBasedNotificationsLimits: Entities.");
 
             return new IntegrationHubEventPayloadCouponBasedNotificationsLimits(action.Value, limit.Value.Value, entities.Value, period);
         }
@@ -202,7 +202,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadCouponBasedNotificationsLimits"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventPayloadCouponBasedNotificationsLimits integrationHubEventPayloadCouponBasedNotificationsLimits, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -217,14 +216,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadCouponBasedNotificationsLimits"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventPayloadCouponBasedNotificationsLimits integrationHubEventPayloadCouponBasedNotificationsLimits, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubEventPayloadCouponBasedNotificationsLimits.Action == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotificationsLimits.Action), "Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadCouponBasedNotificationsLimits.Action to non-nullable JSON property 'Action'.");
 
             if (integrationHubEventPayloadCouponBasedNotificationsLimits.Entities == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadCouponBasedNotificationsLimits.Entities), "Property is required for class IntegrationHubEventPayloadCouponBasedNotificationsLimits.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadCouponBasedNotificationsLimits.Entities to non-nullable JSON property 'Entities'.");
 
             writer.WriteString("Action", integrationHubEventPayloadCouponBasedNotificationsLimits.Action);
 

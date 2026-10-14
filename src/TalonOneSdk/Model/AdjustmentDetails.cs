@@ -161,22 +161,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!referenceId.IsSet)
-                throw new ArgumentException("Property is required for class AdjustmentDetails.", nameof(referenceId));
+                throw new JsonException("Property is required for class AdjustmentDetails: referenceId.");
 
             if (!selectedPriceType.IsSet)
-                throw new ArgumentException("Property is required for class AdjustmentDetails.", nameof(selectedPriceType));
+                throw new JsonException("Property is required for class AdjustmentDetails: selectedPriceType.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AdjustmentDetails.", nameof(value));
+                throw new JsonException("Property is required for class AdjustmentDetails: value.");
 
             if (referenceId.IsSet && referenceId.Value == null)
-                throw new ArgumentNullException(nameof(referenceId), "Property is not nullable for class AdjustmentDetails.");
+                throw new JsonException("Property is not nullable for class AdjustmentDetails: referenceId.");
 
             if (selectedPriceType.IsSet && selectedPriceType.Value == null)
-                throw new ArgumentNullException(nameof(selectedPriceType), "Property is not nullable for class AdjustmentDetails.");
+                throw new JsonException("Property is not nullable for class AdjustmentDetails: selectedPriceType.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AdjustmentDetails.");
+                throw new JsonException("Property is not nullable for class AdjustmentDetails: value.");
 
             return new AdjustmentDetails(referenceId.Value, selectedPriceType.Value, value.Value.Value);
         }
@@ -187,7 +187,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="adjustmentDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AdjustmentDetails adjustmentDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -202,14 +201,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="adjustmentDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdjustmentDetails adjustmentDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             if (adjustmentDetails.ReferenceId == null)
-                throw new ArgumentNullException(nameof(adjustmentDetails.ReferenceId), "Property is required for class AdjustmentDetails.");
+                throw new JsonException("Cannot write null property AdjustmentDetails.ReferenceId to non-nullable JSON property 'referenceId'.");
 
             if (adjustmentDetails.SelectedPriceType == null)
-                throw new ArgumentNullException(nameof(adjustmentDetails.SelectedPriceType), "Property is required for class AdjustmentDetails.");
+                throw new JsonException("Cannot write null property AdjustmentDetails.SelectedPriceType to non-nullable JSON property 'selectedPriceType'.");
 
             writer.WriteString("referenceId", adjustmentDetails.ReferenceId);
 

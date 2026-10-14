@@ -378,40 +378,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!customerProfileID.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeData.", nameof(customerProfileID));
+                throw new JsonException("Property is required for class TierWillDowngradeData: CustomerProfileID.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeData.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class TierWillDowngradeData: LoyaltyProgramID.");
 
             if (!currentTier.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeData.", nameof(currentTier));
+                throw new JsonException("Property is required for class TierWillDowngradeData: CurrentTier.");
 
             if (!currentPoints.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeData.", nameof(currentPoints));
+                throw new JsonException("Property is required for class TierWillDowngradeData: CurrentPoints.");
 
             if (!pointsRequiredToRemain.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeData.", nameof(pointsRequiredToRemain));
+                throw new JsonException("Property is required for class TierWillDowngradeData: PointsRequiredToRemain.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class TierWillDowngradeData.", nameof(subledgerID));
+                throw new JsonException("Property is required for class TierWillDowngradeData: SubledgerID.");
 
             if (customerProfileID.IsSet && customerProfileID.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class TierWillDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeData: CustomerProfileID.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class TierWillDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeData: LoyaltyProgramID.");
 
             if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class TierWillDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeData: CurrentTier.");
 
             if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class TierWillDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeData: CurrentPoints.");
 
             if (pointsRequiredToRemain.IsSet && pointsRequiredToRemain.Value == null)
-                throw new ArgumentNullException(nameof(pointsRequiredToRemain), "Property is not nullable for class TierWillDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeData: PointsRequiredToRemain.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class TierWillDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierWillDowngradeData: SubledgerID.");
 
             return new TierWillDowngradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentTier.Value, currentPoints.Value.Value, pointsRequiredToRemain.Value.Value, subledgerID.Value, nextTier, tierExpirationDate, source, reason);
         }
@@ -422,7 +422,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierWillDowngradeData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TierWillDowngradeData tierWillDowngradeData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -437,17 +436,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierWillDowngradeData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TierWillDowngradeData tierWillDowngradeData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (tierWillDowngradeData.CustomerProfileID == null)
-                throw new ArgumentNullException(nameof(tierWillDowngradeData.CustomerProfileID), "Property is required for class TierWillDowngradeData.");
+                throw new JsonException("Cannot write null property TierWillDowngradeData.CustomerProfileID to non-nullable JSON property 'CustomerProfileID'.");
 
             if (tierWillDowngradeData.CurrentTier == null)
-                throw new ArgumentNullException(nameof(tierWillDowngradeData.CurrentTier), "Property is required for class TierWillDowngradeData.");
+                throw new JsonException("Cannot write null property TierWillDowngradeData.CurrentTier to non-nullable JSON property 'CurrentTier'.");
 
             if (tierWillDowngradeData.SubledgerID == null)
-                throw new ArgumentNullException(nameof(tierWillDowngradeData.SubledgerID), "Property is required for class TierWillDowngradeData.");
+                throw new JsonException("Cannot write null property TierWillDowngradeData.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             writer.WriteString("CustomerProfileID", tierWillDowngradeData.CustomerProfileID);
 

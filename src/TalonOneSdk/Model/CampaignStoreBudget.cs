@@ -195,34 +195,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudget.", nameof(id));
+                throw new JsonException("Property is required for class CampaignStoreBudget: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudget.", nameof(created));
+                throw new JsonException("Property is required for class CampaignStoreBudget: created.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudget.", nameof(campaignId));
+                throw new JsonException("Property is required for class CampaignStoreBudget: campaignId.");
 
             if (!storeId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudget.", nameof(storeId));
+                throw new JsonException("Property is required for class CampaignStoreBudget: storeId.");
 
             if (!limits.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStoreBudget.", nameof(limits));
+                throw new JsonException("Property is required for class CampaignStoreBudget: limits.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudget: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudget: created.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudget: campaignId.");
 
             if (storeId.IsSet && storeId.Value == null)
-                throw new ArgumentNullException(nameof(storeId), "Property is not nullable for class CampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudget: storeId.");
 
             if (limits.IsSet && limits.Value == null)
-                throw new ArgumentNullException(nameof(limits), "Property is not nullable for class CampaignStoreBudget.");
+                throw new JsonException("Property is not nullable for class CampaignStoreBudget: limits.");
 
             return new CampaignStoreBudget(id.Value.Value, created.Value.Value, campaignId.Value.Value, storeId.Value.Value, limits.Value);
         }
@@ -233,7 +233,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignStoreBudget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignStoreBudget campaignStoreBudget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -248,11 +247,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignStoreBudget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignStoreBudget campaignStoreBudget, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignStoreBudget.Limits == null)
-                throw new ArgumentNullException(nameof(campaignStoreBudget.Limits), "Property is required for class CampaignStoreBudget.");
+                throw new JsonException("Cannot write null property CampaignStoreBudget.Limits to non-nullable JSON property 'limits'.");
 
             writer.WriteNumber("id", campaignStoreBudget.Id);
 

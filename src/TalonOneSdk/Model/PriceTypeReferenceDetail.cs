@@ -271,22 +271,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!referencingType.IsSet)
-                throw new ArgumentException("Property is required for class PriceTypeReferenceDetail.", nameof(referencingType));
+                throw new JsonException("Property is required for class PriceTypeReferenceDetail: referencingType.");
 
             if (!referencingId.IsSet)
-                throw new ArgumentException("Property is required for class PriceTypeReferenceDetail.", nameof(referencingId));
+                throw new JsonException("Property is required for class PriceTypeReferenceDetail: referencingId.");
 
             if (!referencingName.IsSet)
-                throw new ArgumentException("Property is required for class PriceTypeReferenceDetail.", nameof(referencingName));
+                throw new JsonException("Property is required for class PriceTypeReferenceDetail: referencingName.");
 
             if (referencingType.IsSet && referencingType.Value == null)
-                throw new ArgumentNullException(nameof(referencingType), "Property is not nullable for class PriceTypeReferenceDetail.");
+                throw new JsonException("Property is not nullable for class PriceTypeReferenceDetail: referencingType.");
 
             if (referencingId.IsSet && referencingId.Value == null)
-                throw new ArgumentNullException(nameof(referencingId), "Property is not nullable for class PriceTypeReferenceDetail.");
+                throw new JsonException("Property is not nullable for class PriceTypeReferenceDetail: referencingId.");
 
             if (referencingName.IsSet && referencingName.Value == null)
-                throw new ArgumentNullException(nameof(referencingName), "Property is not nullable for class PriceTypeReferenceDetail.");
+                throw new JsonException("Property is not nullable for class PriceTypeReferenceDetail: referencingName.");
 
             return new PriceTypeReferenceDetail(referencingType.Value.Value, referencingId.Value.Value, referencingName.Value, applicationId);
         }
@@ -297,7 +297,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="priceTypeReferenceDetail"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PriceTypeReferenceDetail priceTypeReferenceDetail, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -312,11 +311,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="priceTypeReferenceDetail"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PriceTypeReferenceDetail priceTypeReferenceDetail, JsonSerializerOptions jsonSerializerOptions)
         {
             if (priceTypeReferenceDetail.ReferencingName == null)
-                throw new ArgumentNullException(nameof(priceTypeReferenceDetail.ReferencingName), "Property is required for class PriceTypeReferenceDetail.");
+                throw new JsonException("Cannot write null property PriceTypeReferenceDetail.ReferencingName to non-nullable JSON property 'referencingName'.");
 
             var referencingTypeRawValue = PriceTypeReferenceDetail.ReferencingTypeEnumToJsonValue(priceTypeReferenceDetail.ReferencingType);
             writer.WriteString("referencingType", referencingTypeRawValue);

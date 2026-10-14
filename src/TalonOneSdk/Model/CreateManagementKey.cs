@@ -188,22 +188,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CreateManagementKey.", nameof(name));
+                throw new JsonException("Property is required for class CreateManagementKey: name.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class CreateManagementKey.", nameof(expiryDate));
+                throw new JsonException("Property is required for class CreateManagementKey: expiryDate.");
 
             if (!endpoints.IsSet)
-                throw new ArgumentException("Property is required for class CreateManagementKey.", nameof(endpoints));
+                throw new JsonException("Property is required for class CreateManagementKey: endpoints.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CreateManagementKey.");
+                throw new JsonException("Property is not nullable for class CreateManagementKey: name.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CreateManagementKey.");
+                throw new JsonException("Property is not nullable for class CreateManagementKey: expiryDate.");
 
             if (endpoints.IsSet && endpoints.Value == null)
-                throw new ArgumentNullException(nameof(endpoints), "Property is not nullable for class CreateManagementKey.");
+                throw new JsonException("Property is not nullable for class CreateManagementKey: endpoints.");
 
             return new CreateManagementKey(name.Value, expiryDate.Value.Value, endpoints.Value, allowedApplicationIds);
         }
@@ -214,7 +214,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createManagementKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateManagementKey createManagementKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -229,14 +228,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createManagementKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateManagementKey createManagementKey, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createManagementKey.Name == null)
-                throw new ArgumentNullException(nameof(createManagementKey.Name), "Property is required for class CreateManagementKey.");
+                throw new JsonException("Cannot write null property CreateManagementKey.Name to non-nullable JSON property 'name'.");
 
             if (createManagementKey.Endpoints == null)
-                throw new ArgumentNullException(nameof(createManagementKey.Endpoints), "Property is required for class CreateManagementKey.");
+                throw new JsonException("Cannot write null property CreateManagementKey.Endpoints to non-nullable JSON property 'endpoints'.");
 
             writer.WriteString("name", createManagementKey.Name);
 

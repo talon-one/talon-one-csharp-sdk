@@ -202,16 +202,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class LabelTargetAudience.", nameof(type));
+                throw new JsonException("Property is required for class LabelTargetAudience: type.");
 
             if (!audience.IsSet)
-                throw new ArgumentException("Property is required for class LabelTargetAudience.", nameof(audience));
+                throw new JsonException("Property is required for class LabelTargetAudience: audience.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class LabelTargetAudience.");
+                throw new JsonException("Property is not nullable for class LabelTargetAudience: type.");
 
             if (audience.IsSet && audience.Value == null)
-                throw new ArgumentNullException(nameof(audience), "Property is not nullable for class LabelTargetAudience.");
+                throw new JsonException("Property is not nullable for class LabelTargetAudience: audience.");
 
             return new LabelTargetAudience(type.Value.Value, audience.Value);
         }
@@ -222,7 +222,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="labelTargetAudience"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LabelTargetAudience labelTargetAudience, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,11 +236,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="labelTargetAudience"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LabelTargetAudience labelTargetAudience, JsonSerializerOptions jsonSerializerOptions)
         {
             if (labelTargetAudience.Audience == null)
-                throw new ArgumentNullException(nameof(labelTargetAudience.Audience), "Property is required for class LabelTargetAudience.");
+                throw new JsonException("Cannot write null property LabelTargetAudience.Audience to non-nullable JSON property 'audience'.");
 
             var typeRawValue = LabelTargetAudience.TypeEnumToJsonValue(labelTargetAudience.Type);
             writer.WriteString("type", typeRawValue);

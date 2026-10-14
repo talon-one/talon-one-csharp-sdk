@@ -144,16 +144,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class BulkApplicationNotification.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class BulkApplicationNotification: totalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class BulkApplicationNotification.", nameof(data));
+                throw new JsonException("Property is required for class BulkApplicationNotification: data.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class BulkApplicationNotification.");
+                throw new JsonException("Property is not nullable for class BulkApplicationNotification: totalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class BulkApplicationNotification.");
+                throw new JsonException("Property is not nullable for class BulkApplicationNotification: data.");
 
             return new BulkApplicationNotification(totalResultSize.Value.Value, data.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bulkApplicationNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BulkApplicationNotification bulkApplicationNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bulkApplicationNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BulkApplicationNotification bulkApplicationNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (bulkApplicationNotification.Data == null)
-                throw new ArgumentNullException(nameof(bulkApplicationNotification.Data), "Property is required for class BulkApplicationNotification.");
+                throw new JsonException("Cannot write null property BulkApplicationNotification.Data to non-nullable JSON property 'data'.");
 
             writer.WriteNumber("totalResultSize", bulkApplicationNotification.TotalResultSize);
 

@@ -173,16 +173,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!sessionId.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthSessionInfo.", nameof(sessionId));
+                throw new JsonException("Property is required for class MCPOAuthSessionInfo: session_id.");
 
             if (!varClient.IsSet)
-                throw new ArgumentException("Property is required for class MCPOAuthSessionInfo.", nameof(varClient));
+                throw new JsonException("Property is required for class MCPOAuthSessionInfo: client.");
 
             if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class MCPOAuthSessionInfo.");
+                throw new JsonException("Property is not nullable for class MCPOAuthSessionInfo: session_id.");
 
             if (varClient.IsSet && varClient.Value == null)
-                throw new ArgumentNullException(nameof(varClient), "Property is not nullable for class MCPOAuthSessionInfo.");
+                throw new JsonException("Property is not nullable for class MCPOAuthSessionInfo: client.");
 
             return new MCPOAuthSessionInfo(sessionId.Value, varClient.Value, expiresAt);
         }
@@ -193,7 +193,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthSessionInfo"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MCPOAuthSessionInfo mCPOAuthSessionInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -208,14 +207,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mCPOAuthSessionInfo"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MCPOAuthSessionInfo mCPOAuthSessionInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mCPOAuthSessionInfo.SessionId == null)
-                throw new ArgumentNullException(nameof(mCPOAuthSessionInfo.SessionId), "Property is required for class MCPOAuthSessionInfo.");
+                throw new JsonException("Cannot write null property MCPOAuthSessionInfo.SessionId to non-nullable JSON property 'session_id'.");
 
             if (mCPOAuthSessionInfo.VarClient == null)
-                throw new ArgumentNullException(nameof(mCPOAuthSessionInfo.VarClient), "Property is required for class MCPOAuthSessionInfo.");
+                throw new JsonException("Cannot write null property MCPOAuthSessionInfo.VarClient to non-nullable JSON property 'client'.");
 
             writer.WriteString("session_id", mCPOAuthSessionInfo.SessionId);
 

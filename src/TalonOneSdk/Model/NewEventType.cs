@@ -181,16 +181,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class NewEventType.", nameof(title));
+                throw new JsonException("Property is required for class NewEventType: title.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewEventType.", nameof(name));
+                throw new JsonException("Property is required for class NewEventType: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewEventType.");
+                throw new JsonException("Property is not nullable for class NewEventType: title.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewEventType.");
+                throw new JsonException("Property is not nullable for class NewEventType: name.");
 
             return new NewEventType(title.Value, name.Value, description);
         }
@@ -201,7 +201,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newEventType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewEventType newEventType, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -216,14 +215,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newEventType"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewEventType newEventType, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newEventType.Title == null)
-                throw new ArgumentNullException(nameof(newEventType.Title), "Property is required for class NewEventType.");
+                throw new JsonException("Cannot write null property NewEventType.Title to non-nullable JSON property 'title'.");
 
             if (newEventType.Name == null)
-                throw new ArgumentNullException(nameof(newEventType.Name), "Property is required for class NewEventType.");
+                throw new JsonException("Cannot write null property NewEventType.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("title", newEventType.Title);
 

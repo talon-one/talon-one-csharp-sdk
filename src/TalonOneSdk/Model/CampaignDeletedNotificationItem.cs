@@ -166,22 +166,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class CampaignDeletedNotificationItem.", nameof(varEvent));
+                throw new JsonException("Property is required for class CampaignDeletedNotificationItem: Event.");
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class CampaignDeletedNotificationItem.", nameof(campaign));
+                throw new JsonException("Property is required for class CampaignDeletedNotificationItem: campaign.");
 
             if (!deletedAt.IsSet)
-                throw new ArgumentException("Property is required for class CampaignDeletedNotificationItem.", nameof(deletedAt));
+                throw new JsonException("Property is required for class CampaignDeletedNotificationItem: deletedAt.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignDeletedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignDeletedNotificationItem: Event.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignDeletedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignDeletedNotificationItem: campaign.");
 
             if (deletedAt.IsSet && deletedAt.Value == null)
-                throw new ArgumentNullException(nameof(deletedAt), "Property is not nullable for class CampaignDeletedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignDeletedNotificationItem: deletedAt.");
 
             return new CampaignDeletedNotificationItem(varEvent.Value, campaign.Value, deletedAt.Value.Value);
         }
@@ -192,7 +192,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignDeletedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignDeletedNotificationItem campaignDeletedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -207,14 +206,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignDeletedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignDeletedNotificationItem campaignDeletedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignDeletedNotificationItem.Event == null)
-                throw new ArgumentNullException(nameof(campaignDeletedNotificationItem.Event), "Property is required for class CampaignDeletedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignDeletedNotificationItem.Event to non-nullable JSON property 'Event'.");
 
             if (campaignDeletedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignDeletedNotificationItem.Campaign), "Property is required for class CampaignDeletedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignDeletedNotificationItem.Campaign to non-nullable JSON property 'campaign'.");
 
             writer.WriteString("Event", campaignDeletedNotificationItem.Event);
 

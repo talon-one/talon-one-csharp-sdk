@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="quantity">The number of items to award. Supports template placeholders (e.g. \&quot;{{$Session.Total / 2}}\&quot;) for dynamic quantities.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="partial">When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward.</param>
+        /// <param name="partial">When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward. When omitted, the Application&#39;s partial discounts setting applies.</param>
         /// <param name="onFailure">Blocks evaluated when this block fails or returns false.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
@@ -125,9 +125,9 @@ namespace TalonOneSdk.Model
         public Option<bool?> PartialOption { get; private set; }
 
         /// <summary>
-        /// When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward.
+        /// When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward. When omitted, the Application&#39;s partial discounts setting applies.
         /// </summary>
-        /// <value>When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward.</value>
+        /// <value>When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward. When omitted, the Application&#39;s partial discounts setting applies.</value>
         /* <example>false</example> */
         [JsonPropertyName("partial")]
         public bool? Partial { get { return this.PartialOption.Value; } set { this.PartialOption = new Option<bool?>(value); } }
@@ -283,28 +283,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardItemBlock.", nameof(type));
+                throw new JsonException("Property is required for class AwardItemBlock: type.");
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class AwardItemBlock.", nameof(sku));
+                throw new JsonException("Property is required for class AwardItemBlock: sku.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AwardItemBlock.", nameof(name));
+                throw new JsonException("Property is required for class AwardItemBlock: name.");
 
             if (!quantity.IsSet)
-                throw new ArgumentException("Property is required for class AwardItemBlock.", nameof(quantity));
+                throw new JsonException("Property is required for class AwardItemBlock: quantity.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardItemBlock.");
+                throw new JsonException("Property is not nullable for class AwardItemBlock: type.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class AwardItemBlock.");
+                throw new JsonException("Property is not nullable for class AwardItemBlock: sku.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AwardItemBlock.");
+                throw new JsonException("Property is not nullable for class AwardItemBlock: name.");
 
             if (quantity.IsSet && quantity.Value == null)
-                throw new ArgumentNullException(nameof(quantity), "Property is not nullable for class AwardItemBlock.");
+                throw new JsonException("Property is not nullable for class AwardItemBlock: quantity.");
 
             return new AwardItemBlock(type.Value, sku.Value, name.Value, quantity.Value, id, tags, partial, onFailure, onError);
         }
@@ -315,7 +315,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardItemBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardItemBlock awardItemBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -330,20 +329,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardItemBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardItemBlock awardItemBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardItemBlock.Type == null)
-                throw new ArgumentNullException(nameof(awardItemBlock.Type), "Property is required for class AwardItemBlock.");
+                throw new JsonException("Cannot write null property AwardItemBlock.Type to non-nullable JSON property 'type'.");
 
             if (awardItemBlock.Sku == null)
-                throw new ArgumentNullException(nameof(awardItemBlock.Sku), "Property is required for class AwardItemBlock.");
+                throw new JsonException("Cannot write null property AwardItemBlock.Sku to non-nullable JSON property 'sku'.");
 
             if (awardItemBlock.Name == null)
-                throw new ArgumentNullException(nameof(awardItemBlock.Name), "Property is required for class AwardItemBlock.");
+                throw new JsonException("Cannot write null property AwardItemBlock.Name to non-nullable JSON property 'name'.");
 
             if (awardItemBlock.Quantity == null)
-                throw new ArgumentNullException(nameof(awardItemBlock.Quantity), "Property is required for class AwardItemBlock.");
+                throw new JsonException("Cannot write null property AwardItemBlock.Quantity to non-nullable JSON property 'quantity'.");
 
             writer.WriteString("type", awardItemBlock.Type);
 

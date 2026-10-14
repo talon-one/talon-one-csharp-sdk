@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="expiringCouponsNotificationPolicy"></param>
-        public BaseNotificationPolicy(ExpiringCouponsNotificationPolicy expiringCouponsNotificationPolicy)
+        internal BaseNotificationPolicy(ExpiringCouponsNotificationPolicy expiringCouponsNotificationPolicy)
         {
             ExpiringCouponsNotificationPolicy = expiringCouponsNotificationPolicy;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="cardExpiringPointsNotificationPolicy"></param>
-        public BaseNotificationPolicy(CardExpiringPointsNotificationPolicy cardExpiringPointsNotificationPolicy)
+        internal BaseNotificationPolicy(CardExpiringPointsNotificationPolicy cardExpiringPointsNotificationPolicy)
         {
             CardExpiringPointsNotificationPolicy = cardExpiringPointsNotificationPolicy;
             OnCreated();
@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="expiringPointsNotificationPolicy"></param>
-        public BaseNotificationPolicy(ExpiringPointsNotificationPolicy expiringPointsNotificationPolicy)
+        internal BaseNotificationPolicy(ExpiringPointsNotificationPolicy expiringPointsNotificationPolicy)
         {
             ExpiringPointsNotificationPolicy = expiringPointsNotificationPolicy;
             OnCreated();
@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="addedDeductedPointsNotificationPolicy"></param>
-        public BaseNotificationPolicy(AddedDeductedPointsNotificationPolicy addedDeductedPointsNotificationPolicy)
+        internal BaseNotificationPolicy(AddedDeductedPointsNotificationPolicy addedDeductedPointsNotificationPolicy)
         {
             AddedDeductedPointsNotificationPolicy = addedDeductedPointsNotificationPolicy;
             OnCreated();
@@ -72,7 +72,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="cardAddedDeductedPointsNotificationPolicy"></param>
-        public BaseNotificationPolicy(CardAddedDeductedPointsNotificationPolicy cardAddedDeductedPointsNotificationPolicy)
+        internal BaseNotificationPolicy(CardAddedDeductedPointsNotificationPolicy cardAddedDeductedPointsNotificationPolicy)
         {
             CardAddedDeductedPointsNotificationPolicy = cardAddedDeductedPointsNotificationPolicy;
             OnCreated();
@@ -82,7 +82,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="addedDeductedPointsBalancesNotificationPolicy"></param>
-        public BaseNotificationPolicy(AddedDeductedPointsBalancesNotificationPolicy addedDeductedPointsBalancesNotificationPolicy)
+        internal BaseNotificationPolicy(AddedDeductedPointsBalancesNotificationPolicy addedDeductedPointsBalancesNotificationPolicy)
         {
             AddedDeductedPointsBalancesNotificationPolicy = addedDeductedPointsBalancesNotificationPolicy;
             OnCreated();
@@ -92,7 +92,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="cardAddedDeductedPointsBalancesNotificationPolicy"></param>
-        public BaseNotificationPolicy(CardAddedDeductedPointsBalancesNotificationPolicy cardAddedDeductedPointsBalancesNotificationPolicy)
+        internal BaseNotificationPolicy(CardAddedDeductedPointsBalancesNotificationPolicy cardAddedDeductedPointsBalancesNotificationPolicy)
         {
             CardAddedDeductedPointsBalancesNotificationPolicy = cardAddedDeductedPointsBalancesNotificationPolicy;
             OnCreated();
@@ -102,7 +102,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="couponsNotificationPolicy"></param>
-        public BaseNotificationPolicy(CouponsNotificationPolicy couponsNotificationPolicy)
+        internal BaseNotificationPolicy(CouponsNotificationPolicy couponsNotificationPolicy)
         {
             CouponsNotificationPolicy = couponsNotificationPolicy;
             OnCreated();
@@ -112,7 +112,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="catalogsStrikethroughNotificationPolicy"></param>
-        public BaseNotificationPolicy(CatalogsStrikethroughNotificationPolicy catalogsStrikethroughNotificationPolicy)
+        internal BaseNotificationPolicy(CatalogsStrikethroughNotificationPolicy catalogsStrikethroughNotificationPolicy)
         {
             CatalogsStrikethroughNotificationPolicy = catalogsStrikethroughNotificationPolicy;
             OnCreated();
@@ -122,7 +122,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="pendingPointsNotificationPolicy"></param>
-        public BaseNotificationPolicy(PendingPointsNotificationPolicy pendingPointsNotificationPolicy)
+        internal BaseNotificationPolicy(PendingPointsNotificationPolicy pendingPointsNotificationPolicy)
         {
             PendingPointsNotificationPolicy = pendingPointsNotificationPolicy;
             OnCreated();
@@ -132,7 +132,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="campaignNotificationPolicy"></param>
-        public BaseNotificationPolicy(CampaignNotificationPolicy campaignNotificationPolicy)
+        internal BaseNotificationPolicy(CampaignNotificationPolicy campaignNotificationPolicy)
         {
             CampaignNotificationPolicy = campaignNotificationPolicy;
             OnCreated();
@@ -142,7 +142,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="tierDowngradeNotificationPolicy"></param>
-        public BaseNotificationPolicy(TierDowngradeNotificationPolicy tierDowngradeNotificationPolicy)
+        internal BaseNotificationPolicy(TierDowngradeNotificationPolicy tierDowngradeNotificationPolicy)
         {
             TierDowngradeNotificationPolicy = tierDowngradeNotificationPolicy;
             OnCreated();
@@ -152,7 +152,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="tierUpgradeNotificationPolicy"></param>
-        public BaseNotificationPolicy(TierUpgradeNotificationPolicy tierUpgradeNotificationPolicy)
+        internal BaseNotificationPolicy(TierUpgradeNotificationPolicy tierUpgradeNotificationPolicy)
         {
             TierUpgradeNotificationPolicy = tierUpgradeNotificationPolicy;
             OnCreated();
@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
         /// <param name="tierWillDowngradeNotificationPolicy"></param>
-        public BaseNotificationPolicy(TierWillDowngradeNotificationPolicy tierWillDowngradeNotificationPolicy)
+        internal BaseNotificationPolicy(TierWillDowngradeNotificationPolicy tierWillDowngradeNotificationPolicy)
         {
             TierWillDowngradeNotificationPolicy = tierWillDowngradeNotificationPolicy;
             OnCreated();
@@ -437,7 +437,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BaseNotificationPolicy baseNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -452,7 +451,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseNotificationPolicy baseNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
 

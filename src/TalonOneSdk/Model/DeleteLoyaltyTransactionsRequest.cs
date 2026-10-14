@@ -228,10 +228,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!scope.IsSet)
-                throw new ArgumentException("Property is required for class DeleteLoyaltyTransactionsRequest.", nameof(scope));
+                throw new JsonException("Property is required for class DeleteLoyaltyTransactionsRequest: scope.");
 
             if (scope.IsSet && scope.Value == null)
-                throw new ArgumentNullException(nameof(scope), "Property is not nullable for class DeleteLoyaltyTransactionsRequest.");
+                throw new JsonException("Property is not nullable for class DeleteLoyaltyTransactionsRequest: scope.");
 
             return new DeleteLoyaltyTransactionsRequest(scope.Value.Value, subledgerIds);
         }
@@ -242,7 +242,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="deleteLoyaltyTransactionsRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,7 +256,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="deleteLoyaltyTransactionsRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeleteLoyaltyTransactionsRequest deleteLoyaltyTransactionsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             var scopeRawValue = DeleteLoyaltyTransactionsRequest.ScopeEnumToJsonValue(deleteLoyaltyTransactionsRequest.Scope);

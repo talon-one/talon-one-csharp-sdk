@@ -151,10 +151,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!catalog.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationRewardsCatalog200Response.", nameof(catalog));
+                throw new JsonException("Property is required for class IntegrationRewardsCatalog200Response: catalog.");
 
             if (catalog.IsSet && catalog.Value == null)
-                throw new ArgumentNullException(nameof(catalog), "Property is not nullable for class IntegrationRewardsCatalog200Response.");
+                throw new JsonException("Property is not nullable for class IntegrationRewardsCatalog200Response: catalog.");
 
             return new IntegrationRewardsCatalog200Response(catalog.Value, loyalty);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationRewardsCatalog200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationRewardsCatalog200Response integrationRewardsCatalog200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,11 +179,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationRewardsCatalog200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationRewardsCatalog200Response integrationRewardsCatalog200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationRewardsCatalog200Response.Catalog == null)
-                throw new ArgumentNullException(nameof(integrationRewardsCatalog200Response.Catalog), "Property is required for class IntegrationRewardsCatalog200Response.");
+                throw new JsonException("Cannot write null property IntegrationRewardsCatalog200Response.Catalog to non-nullable JSON property 'catalog'.");
 
             writer.WritePropertyName("catalog");
             JsonSerializer.Serialize(writer, integrationRewardsCatalog200Response.Catalog, jsonSerializerOptions);

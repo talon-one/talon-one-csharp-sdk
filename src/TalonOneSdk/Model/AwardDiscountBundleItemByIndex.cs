@@ -206,16 +206,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBundleItemByIndex.", nameof(type));
+                throw new JsonException("Property is required for class AwardDiscountBundleItemByIndex: type.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountBundleItemByIndex.", nameof(value));
+                throw new JsonException("Property is required for class AwardDiscountBundleItemByIndex: value.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountBundleItemByIndex.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBundleItemByIndex: type.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AwardDiscountBundleItemByIndex.");
+                throw new JsonException("Property is not nullable for class AwardDiscountBundleItemByIndex: value.");
 
             return new AwardDiscountBundleItemByIndex(type.Value.Value, value.Value.Value);
         }
@@ -226,7 +226,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBundleItemByIndex"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardDiscountBundleItemByIndex awardDiscountBundleItemByIndex, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -241,7 +240,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountBundleItemByIndex"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardDiscountBundleItemByIndex awardDiscountBundleItemByIndex, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = AwardDiscountBundleItemByIndex.TypeEnumToJsonValue(awardDiscountBundleItemByIndex.Type);

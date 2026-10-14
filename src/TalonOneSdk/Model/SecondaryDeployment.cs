@@ -396,34 +396,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SecondaryDeployment.", nameof(id));
+                throw new JsonException("Property is required for class SecondaryDeployment: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SecondaryDeployment.", nameof(name));
+                throw new JsonException("Property is required for class SecondaryDeployment: name.");
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class SecondaryDeployment.", nameof(userId));
+                throw new JsonException("Property is required for class SecondaryDeployment: userId.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class SecondaryDeployment.", nameof(status));
+                throw new JsonException("Property is required for class SecondaryDeployment: status.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class SecondaryDeployment.", nameof(createdAt));
+                throw new JsonException("Property is required for class SecondaryDeployment: createdAt.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class SecondaryDeployment.");
+                throw new JsonException("Property is not nullable for class SecondaryDeployment: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SecondaryDeployment.");
+                throw new JsonException("Property is not nullable for class SecondaryDeployment: name.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class SecondaryDeployment.");
+                throw new JsonException("Property is not nullable for class SecondaryDeployment: userId.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class SecondaryDeployment.");
+                throw new JsonException("Property is not nullable for class SecondaryDeployment: status.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class SecondaryDeployment.");
+                throw new JsonException("Property is not nullable for class SecondaryDeployment: createdAt.");
 
             return new SecondaryDeployment(id.Value.Value, name.Value, userId.Value.Value, status.Value.Value, createdAt.Value.Value, activeAt, failedAt, deletedAt);
         }
@@ -434,7 +434,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="secondaryDeployment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SecondaryDeployment secondaryDeployment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -449,11 +448,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="secondaryDeployment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SecondaryDeployment secondaryDeployment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (secondaryDeployment.Name == null)
-                throw new ArgumentNullException(nameof(secondaryDeployment.Name), "Property is required for class SecondaryDeployment.");
+                throw new JsonException("Cannot write null property SecondaryDeployment.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", secondaryDeployment.Id);
 

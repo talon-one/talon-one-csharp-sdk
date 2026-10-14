@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Properties returned when a rule triggers a &#x60;boostLoyaltyTier&#x60; effect. The customer is temporarily placed in a higher loyalty tier for a specified period without any change to their points balance. 
+    /// This effect indicates that the customer was temporarily placed in a higher loyalty tier for a specified period, without any change to their points balance.
     /// </summary>
     public partial class BoostLoyaltyTierEffectProps : IValidatableObject
     {
@@ -214,34 +214,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class BoostLoyaltyTierEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class BoostLoyaltyTierEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class BoostLoyaltyTierEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class BoostLoyaltyTierEffectProps: subLedgerId.");
 
             if (!tierName.IsSet)
-                throw new ArgumentException("Property is required for class BoostLoyaltyTierEffectProps.", nameof(tierName));
+                throw new JsonException("Property is required for class BoostLoyaltyTierEffectProps: tierName.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class BoostLoyaltyTierEffectProps.", nameof(expiryDate));
+                throw new JsonException("Property is required for class BoostLoyaltyTierEffectProps: expiryDate.");
 
             if (!boostUuid.IsSet)
-                throw new ArgumentException("Property is required for class BoostLoyaltyTierEffectProps.", nameof(boostUuid));
+                throw new JsonException("Property is required for class BoostLoyaltyTierEffectProps: boostUuid.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class BoostLoyaltyTierEffectProps.");
+                throw new JsonException("Property is not nullable for class BoostLoyaltyTierEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class BoostLoyaltyTierEffectProps.");
+                throw new JsonException("Property is not nullable for class BoostLoyaltyTierEffectProps: subLedgerId.");
 
             if (tierName.IsSet && tierName.Value == null)
-                throw new ArgumentNullException(nameof(tierName), "Property is not nullable for class BoostLoyaltyTierEffectProps.");
+                throw new JsonException("Property is not nullable for class BoostLoyaltyTierEffectProps: tierName.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class BoostLoyaltyTierEffectProps.");
+                throw new JsonException("Property is not nullable for class BoostLoyaltyTierEffectProps: expiryDate.");
 
             if (boostUuid.IsSet && boostUuid.Value == null)
-                throw new ArgumentNullException(nameof(boostUuid), "Property is not nullable for class BoostLoyaltyTierEffectProps.");
+                throw new JsonException("Property is not nullable for class BoostLoyaltyTierEffectProps: boostUuid.");
 
             return new BoostLoyaltyTierEffectProps(programId.Value.Value, subLedgerId.Value, tierName.Value, expiryDate.Value.Value, boostUuid.Value.Value, reason);
         }
@@ -252,7 +252,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="boostLoyaltyTierEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BoostLoyaltyTierEffectProps boostLoyaltyTierEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -267,14 +266,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="boostLoyaltyTierEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BoostLoyaltyTierEffectProps boostLoyaltyTierEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (boostLoyaltyTierEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(boostLoyaltyTierEffectProps.SubLedgerId), "Property is required for class BoostLoyaltyTierEffectProps.");
+                throw new JsonException("Cannot write null property BoostLoyaltyTierEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             if (boostLoyaltyTierEffectProps.TierName == null)
-                throw new ArgumentNullException(nameof(boostLoyaltyTierEffectProps.TierName), "Property is required for class BoostLoyaltyTierEffectProps.");
+                throw new JsonException("Cannot write null property BoostLoyaltyTierEffectProps.TierName to non-nullable JSON property 'tierName'.");
 
             writer.WriteNumber("programId", boostLoyaltyTierEffectProps.ProgramId);
 

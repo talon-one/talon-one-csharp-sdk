@@ -150,16 +150,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!date.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentConfidenceTimelineDataPoint.", nameof(date));
+                throw new JsonException("Property is required for class ExperimentConfidenceTimelineDataPoint: date.");
 
             if (!confidence.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentConfidenceTimelineDataPoint.", nameof(confidence));
+                throw new JsonException("Property is required for class ExperimentConfidenceTimelineDataPoint: confidence.");
 
             if (date.IsSet && date.Value == null)
-                throw new ArgumentNullException(nameof(date), "Property is not nullable for class ExperimentConfidenceTimelineDataPoint.");
+                throw new JsonException("Property is not nullable for class ExperimentConfidenceTimelineDataPoint: date.");
 
             if (confidence.IsSet && confidence.Value == null)
-                throw new ArgumentNullException(nameof(confidence), "Property is not nullable for class ExperimentConfidenceTimelineDataPoint.");
+                throw new JsonException("Property is not nullable for class ExperimentConfidenceTimelineDataPoint: confidence.");
 
             return new ExperimentConfidenceTimelineDataPoint(date.Value.Value, confidence.Value);
         }
@@ -170,7 +170,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentConfidenceTimelineDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentConfidenceTimelineDataPoint experimentConfidenceTimelineDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -185,11 +184,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentConfidenceTimelineDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentConfidenceTimelineDataPoint experimentConfidenceTimelineDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentConfidenceTimelineDataPoint.Confidence == null)
-                throw new ArgumentNullException(nameof(experimentConfidenceTimelineDataPoint.Confidence), "Property is required for class ExperimentConfidenceTimelineDataPoint.");
+                throw new JsonException("Cannot write null property ExperimentConfidenceTimelineDataPoint.Confidence to non-nullable JSON property 'confidence'.");
 
             writer.WriteString("date", experimentConfidenceTimelineDataPoint.Date.ToString(DateFormat));
 

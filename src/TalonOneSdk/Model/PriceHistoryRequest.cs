@@ -172,22 +172,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class PriceHistoryRequest.", nameof(sku));
+                throw new JsonException("Property is required for class PriceHistoryRequest: sku.");
 
             if (!startDate.IsSet)
-                throw new ArgumentException("Property is required for class PriceHistoryRequest.", nameof(startDate));
+                throw new JsonException("Property is required for class PriceHistoryRequest: startDate.");
 
             if (!endDate.IsSet)
-                throw new ArgumentException("Property is required for class PriceHistoryRequest.", nameof(endDate));
+                throw new JsonException("Property is required for class PriceHistoryRequest: endDate.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class PriceHistoryRequest.");
+                throw new JsonException("Property is not nullable for class PriceHistoryRequest: sku.");
 
             if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class PriceHistoryRequest.");
+                throw new JsonException("Property is not nullable for class PriceHistoryRequest: startDate.");
 
             if (endDate.IsSet && endDate.Value == null)
-                throw new ArgumentNullException(nameof(endDate), "Property is not nullable for class PriceHistoryRequest.");
+                throw new JsonException("Property is not nullable for class PriceHistoryRequest: endDate.");
 
             return new PriceHistoryRequest(sku.Value, startDate.Value.Value, endDate.Value.Value);
         }
@@ -198,7 +198,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="priceHistoryRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PriceHistoryRequest priceHistoryRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -213,11 +212,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="priceHistoryRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PriceHistoryRequest priceHistoryRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (priceHistoryRequest.Sku == null)
-                throw new ArgumentNullException(nameof(priceHistoryRequest.Sku), "Property is required for class PriceHistoryRequest.");
+                throw new JsonException("Cannot write null property PriceHistoryRequest.Sku to non-nullable JSON property 'sku'.");
 
             writer.WriteString("sku", priceHistoryRequest.Sku);
 

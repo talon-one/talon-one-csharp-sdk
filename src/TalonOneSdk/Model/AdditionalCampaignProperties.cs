@@ -807,16 +807,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!frontendState.IsSet)
-                throw new ArgumentException("Property is required for class AdditionalCampaignProperties.", nameof(frontendState));
+                throw new JsonException("Property is required for class AdditionalCampaignProperties: frontendState.");
 
             if (!storesImported.IsSet)
-                throw new ArgumentException("Property is required for class AdditionalCampaignProperties.", nameof(storesImported));
+                throw new JsonException("Property is required for class AdditionalCampaignProperties: storesImported.");
 
             if (frontendState.IsSet && frontendState.Value == null)
-                throw new ArgumentNullException(nameof(frontendState), "Property is not nullable for class AdditionalCampaignProperties.");
+                throw new JsonException("Property is not nullable for class AdditionalCampaignProperties: frontendState.");
 
             if (storesImported.IsSet && storesImported.Value == null)
-                throw new ArgumentNullException(nameof(storesImported), "Property is not nullable for class AdditionalCampaignProperties.");
+                throw new JsonException("Property is not nullable for class AdditionalCampaignProperties: storesImported.");
 
             return new AdditionalCampaignProperties(frontendState.Value.Value, storesImported.Value.Value, budgets, couponRedemptionCount, referralRedemptionCount, discountCount, discountEffectCount, couponCreationCount, customEffectCount, referralCreationCount, addFreeItemEffectCount, awardedGiveawaysCount, createdLoyaltyPointsCount, createdLoyaltyPointsEffectCount, redeemedLoyaltyPointsCount, redeemedLoyaltyPointsEffectCount, callApiEffectCount, reservecouponEffectCount, lastActivity, updated, createdBy, updatedBy, templateId, valueMapsIds, experimentId);
         }
@@ -827,7 +827,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="additionalCampaignProperties"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AdditionalCampaignProperties additionalCampaignProperties, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -842,7 +841,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="additionalCampaignProperties"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalCampaignProperties additionalCampaignProperties, JsonSerializerOptions jsonSerializerOptions)
         {
             var frontendStateRawValue = AdditionalCampaignProperties.FrontendStateEnumToJsonValue(additionalCampaignProperties.FrontendState);

@@ -420,46 +420,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!customerProfileID.IsSet)
-                throw new ArgumentException("Property is required for class TierUpgradeData.", nameof(customerProfileID));
+                throw new JsonException("Property is required for class TierUpgradeData: CustomerProfileID.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class TierUpgradeData.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class TierUpgradeData: LoyaltyProgramID.");
 
             if (!currentTier.IsSet)
-                throw new ArgumentException("Property is required for class TierUpgradeData.", nameof(currentTier));
+                throw new JsonException("Property is required for class TierUpgradeData: CurrentTier.");
 
             if (!currentPoints.IsSet)
-                throw new ArgumentException("Property is required for class TierUpgradeData.", nameof(currentPoints));
+                throw new JsonException("Property is required for class TierUpgradeData: CurrentPoints.");
 
             if (!tierExpirationDate.IsSet)
-                throw new ArgumentException("Property is required for class TierUpgradeData.", nameof(tierExpirationDate));
+                throw new JsonException("Property is required for class TierUpgradeData: TierExpirationDate.");
 
             if (!timestampOfTierChange.IsSet)
-                throw new ArgumentException("Property is required for class TierUpgradeData.", nameof(timestampOfTierChange));
+                throw new JsonException("Property is required for class TierUpgradeData: TimestampOfTierChange.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class TierUpgradeData.", nameof(subledgerID));
+                throw new JsonException("Property is required for class TierUpgradeData: SubledgerID.");
 
             if (customerProfileID.IsSet && customerProfileID.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class TierUpgradeData.");
+                throw new JsonException("Property is not nullable for class TierUpgradeData: CustomerProfileID.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class TierUpgradeData.");
+                throw new JsonException("Property is not nullable for class TierUpgradeData: LoyaltyProgramID.");
 
             if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class TierUpgradeData.");
+                throw new JsonException("Property is not nullable for class TierUpgradeData: CurrentTier.");
 
             if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class TierUpgradeData.");
+                throw new JsonException("Property is not nullable for class TierUpgradeData: CurrentPoints.");
 
             if (tierExpirationDate.IsSet && tierExpirationDate.Value == null)
-                throw new ArgumentNullException(nameof(tierExpirationDate), "Property is not nullable for class TierUpgradeData.");
+                throw new JsonException("Property is not nullable for class TierUpgradeData: TierExpirationDate.");
 
             if (timestampOfTierChange.IsSet && timestampOfTierChange.Value == null)
-                throw new ArgumentNullException(nameof(timestampOfTierChange), "Property is not nullable for class TierUpgradeData.");
+                throw new JsonException("Property is not nullable for class TierUpgradeData: TimestampOfTierChange.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class TierUpgradeData.");
+                throw new JsonException("Property is not nullable for class TierUpgradeData: SubledgerID.");
 
             return new TierUpgradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentTier.Value, currentPoints.Value.Value, tierExpirationDate.Value.Value, timestampOfTierChange.Value.Value, subledgerID.Value, oldTier, pointsRequiredToTheNextTier, nextTier, source, reason);
         }
@@ -470,7 +470,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierUpgradeData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TierUpgradeData tierUpgradeData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -485,17 +484,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierUpgradeData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TierUpgradeData tierUpgradeData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (tierUpgradeData.CustomerProfileID == null)
-                throw new ArgumentNullException(nameof(tierUpgradeData.CustomerProfileID), "Property is required for class TierUpgradeData.");
+                throw new JsonException("Cannot write null property TierUpgradeData.CustomerProfileID to non-nullable JSON property 'CustomerProfileID'.");
 
             if (tierUpgradeData.CurrentTier == null)
-                throw new ArgumentNullException(nameof(tierUpgradeData.CurrentTier), "Property is required for class TierUpgradeData.");
+                throw new JsonException("Cannot write null property TierUpgradeData.CurrentTier to non-nullable JSON property 'CurrentTier'.");
 
             if (tierUpgradeData.SubledgerID == null)
-                throw new ArgumentNullException(nameof(tierUpgradeData.SubledgerID), "Property is required for class TierUpgradeData.");
+                throw new JsonException("Cannot write null property TierUpgradeData.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             writer.WriteString("CustomerProfileID", tierUpgradeData.CustomerProfileID);
 

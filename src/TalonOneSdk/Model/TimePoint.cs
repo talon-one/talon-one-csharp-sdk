@@ -263,22 +263,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!hour.IsSet)
-                throw new ArgumentException("Property is required for class TimePoint.", nameof(hour));
+                throw new JsonException("Property is required for class TimePoint: hour.");
 
             if (!minute.IsSet)
-                throw new ArgumentException("Property is required for class TimePoint.", nameof(minute));
+                throw new JsonException("Property is required for class TimePoint: minute.");
 
             if (!second.IsSet)
-                throw new ArgumentException("Property is required for class TimePoint.", nameof(second));
+                throw new JsonException("Property is required for class TimePoint: second.");
 
             if (hour.IsSet && hour.Value == null)
-                throw new ArgumentNullException(nameof(hour), "Property is not nullable for class TimePoint.");
+                throw new JsonException("Property is not nullable for class TimePoint: hour.");
 
             if (minute.IsSet && minute.Value == null)
-                throw new ArgumentNullException(nameof(minute), "Property is not nullable for class TimePoint.");
+                throw new JsonException("Property is not nullable for class TimePoint: minute.");
 
             if (second.IsSet && second.Value == null)
-                throw new ArgumentNullException(nameof(second), "Property is not nullable for class TimePoint.");
+                throw new JsonException("Property is not nullable for class TimePoint: second.");
 
             return new TimePoint(hour.Value.Value, minute.Value.Value, second.Value.Value, month, dayOfMonth, dayOfWeek);
         }
@@ -289,7 +289,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="timePoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TimePoint timePoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -304,7 +303,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="timePoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TimePoint timePoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("hour", timePoint.Hour);

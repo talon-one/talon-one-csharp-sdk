@@ -153,10 +153,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!ledger.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyLedger.", nameof(ledger));
+                throw new JsonException("Property is required for class LoyaltyLedger: ledger.");
 
             if (ledger.IsSet && ledger.Value == null)
-                throw new ArgumentNullException(nameof(ledger), "Property is not nullable for class LoyaltyLedger.");
+                throw new JsonException("Property is not nullable for class LoyaltyLedger: ledger.");
 
             return new LoyaltyLedger(ledger.Value, subLedgers);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyLedger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyLedger loyaltyLedger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,11 +181,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyLedger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyLedger loyaltyLedger, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyLedger.Ledger == null)
-                throw new ArgumentNullException(nameof(loyaltyLedger.Ledger), "Property is required for class LoyaltyLedger.");
+                throw new JsonException("Cannot write null property LoyaltyLedger.Ledger to non-nullable JSON property 'ledger'.");
 
             writer.WritePropertyName("ledger");
             JsonSerializer.Serialize(writer, loyaltyLedger.Ledger, jsonSerializerOptions);

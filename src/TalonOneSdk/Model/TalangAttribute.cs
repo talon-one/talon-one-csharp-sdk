@@ -699,34 +699,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class TalangAttribute.", nameof(name));
+                throw new JsonException("Property is required for class TalangAttribute: name.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TalangAttribute.", nameof(type));
+                throw new JsonException("Property is required for class TalangAttribute: type.");
 
             if (!kind.IsSet)
-                throw new ArgumentException("Property is required for class TalangAttribute.", nameof(kind));
+                throw new JsonException("Property is required for class TalangAttribute: kind.");
 
             if (!campaignsCount.IsSet)
-                throw new ArgumentException("Property is required for class TalangAttribute.", nameof(campaignsCount));
+                throw new JsonException("Property is required for class TalangAttribute: campaignsCount.");
 
             if (!visible.IsSet)
-                throw new ArgumentException("Property is required for class TalangAttribute.", nameof(visible));
+                throw new JsonException("Property is required for class TalangAttribute: visible.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class TalangAttribute.");
+                throw new JsonException("Property is not nullable for class TalangAttribute: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TalangAttribute.");
+                throw new JsonException("Property is not nullable for class TalangAttribute: type.");
 
             if (kind.IsSet && kind.Value == null)
-                throw new ArgumentNullException(nameof(kind), "Property is not nullable for class TalangAttribute.");
+                throw new JsonException("Property is not nullable for class TalangAttribute: kind.");
 
             if (campaignsCount.IsSet && campaignsCount.Value == null)
-                throw new ArgumentNullException(nameof(campaignsCount), "Property is not nullable for class TalangAttribute.");
+                throw new JsonException("Property is not nullable for class TalangAttribute: campaignsCount.");
 
             if (visible.IsSet && visible.Value == null)
-                throw new ArgumentNullException(nameof(visible), "Property is not nullable for class TalangAttribute.");
+                throw new JsonException("Property is not nullable for class TalangAttribute: visible.");
 
             return new TalangAttribute(name.Value, type.Value, kind.Value.Value, campaignsCount.Value.Value, entity, title, description, visible.Value.Value, exampleValue);
         }
@@ -737,7 +737,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="talangAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TalangAttribute talangAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -752,14 +751,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="talangAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TalangAttribute talangAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             if (talangAttribute.Name == null)
-                throw new ArgumentNullException(nameof(talangAttribute.Name), "Property is required for class TalangAttribute.");
+                throw new JsonException("Cannot write null property TalangAttribute.Name to non-nullable JSON property 'name'.");
 
             if (talangAttribute.Type == null)
-                throw new ArgumentNullException(nameof(talangAttribute.Type), "Property is required for class TalangAttribute.");
+                throw new JsonException("Cannot write null property TalangAttribute.Type to non-nullable JSON property 'type'.");
 
             writer.WriteString("name", talangAttribute.Name);
 

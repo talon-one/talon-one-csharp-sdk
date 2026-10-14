@@ -144,16 +144,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class GetCampaignGroups200Response.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class GetCampaignGroups200Response: totalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GetCampaignGroups200Response.", nameof(data));
+                throw new JsonException("Property is required for class GetCampaignGroups200Response: data.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class GetCampaignGroups200Response.");
+                throw new JsonException("Property is not nullable for class GetCampaignGroups200Response: totalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetCampaignGroups200Response.");
+                throw new JsonException("Property is not nullable for class GetCampaignGroups200Response: data.");
 
             return new GetCampaignGroups200Response(totalResultSize.Value.Value, data.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCampaignGroups200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetCampaignGroups200Response getCampaignGroups200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getCampaignGroups200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetCampaignGroups200Response getCampaignGroups200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getCampaignGroups200Response.Data == null)
-                throw new ArgumentNullException(nameof(getCampaignGroups200Response.Data), "Property is required for class GetCampaignGroups200Response.");
+                throw new JsonException("Cannot write null property GetCampaignGroups200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WriteNumber("totalResultSize", getCampaignGroups200Response.TotalResultSize);
 

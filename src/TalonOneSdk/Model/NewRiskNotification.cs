@@ -426,22 +426,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class NewRiskNotification.", nameof(entity));
+                throw new JsonException("Property is required for class NewRiskNotification: entity.");
 
             if (!activity.IsSet)
-                throw new ArgumentException("Property is required for class NewRiskNotification.", nameof(activity));
+                throw new JsonException("Property is required for class NewRiskNotification: activity.");
 
             if (!timeFrame.IsSet)
-                throw new ArgumentException("Property is required for class NewRiskNotification.", nameof(timeFrame));
+                throw new JsonException("Property is required for class NewRiskNotification: timeFrame.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class NewRiskNotification.");
+                throw new JsonException("Property is not nullable for class NewRiskNotification: entity.");
 
             if (activity.IsSet && activity.Value == null)
-                throw new ArgumentNullException(nameof(activity), "Property is not nullable for class NewRiskNotification.");
+                throw new JsonException("Property is not nullable for class NewRiskNotification: activity.");
 
             if (timeFrame.IsSet && timeFrame.Value == null)
-                throw new ArgumentNullException(nameof(timeFrame), "Property is not nullable for class NewRiskNotification.");
+                throw new JsonException("Property is not nullable for class NewRiskNotification: timeFrame.");
 
             return new NewRiskNotification(entity.Value.Value, activity.Value.Value, timeFrame.Value.Value);
         }
@@ -452,7 +452,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newRiskNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewRiskNotification newRiskNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -467,7 +466,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newRiskNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewRiskNotification newRiskNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             var entityRawValue = NewRiskNotification.EntityEnumToJsonValue(newRiskNotification.Entity);

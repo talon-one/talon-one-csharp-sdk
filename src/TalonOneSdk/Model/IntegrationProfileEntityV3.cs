@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!profileId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationProfileEntityV3.", nameof(profileId));
+                throw new JsonException("Property is required for class IntegrationProfileEntityV3: profileId.");
 
             if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class IntegrationProfileEntityV3.");
+                throw new JsonException("Property is not nullable for class IntegrationProfileEntityV3: profileId.");
 
             return new IntegrationProfileEntityV3(profileId.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationProfileEntityV3"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationProfileEntityV3 integrationProfileEntityV3, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationProfileEntityV3"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationProfileEntityV3 integrationProfileEntityV3, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationProfileEntityV3.ProfileId == null)
-                throw new ArgumentNullException(nameof(integrationProfileEntityV3.ProfileId), "Property is required for class IntegrationProfileEntityV3.");
+                throw new JsonException("Cannot write null property IntegrationProfileEntityV3.ProfileId to non-nullable JSON property 'profileId'.");
 
             writer.WriteString("profileId", integrationProfileEntityV3.ProfileId);
         }

@@ -352,46 +352,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReservation.", nameof(id));
+                throw new JsonException("Property is required for class CustomerReservation: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReservation.", nameof(created));
+                throw new JsonException("Property is required for class CustomerReservation: created.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReservation.", nameof(integrationId));
+                throw new JsonException("Property is required for class CustomerReservation: integrationId.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReservation.", nameof(accountId));
+                throw new JsonException("Property is required for class CustomerReservation: accountId.");
 
             if (!closedSessions.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReservation.", nameof(closedSessions));
+                throw new JsonException("Property is required for class CustomerReservation: closedSessions.");
 
             if (!totalSales.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReservation.", nameof(totalSales));
+                throw new JsonException("Property is required for class CustomerReservation: totalSales.");
 
             if (!lastActivity.IsSet)
-                throw new ArgumentException("Property is required for class CustomerReservation.", nameof(lastActivity));
+                throw new JsonException("Property is required for class CustomerReservation: lastActivity.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerReservation.");
+                throw new JsonException("Property is not nullable for class CustomerReservation: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerReservation.");
+                throw new JsonException("Property is not nullable for class CustomerReservation: created.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerReservation.");
+                throw new JsonException("Property is not nullable for class CustomerReservation: integrationId.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CustomerReservation.");
+                throw new JsonException("Property is not nullable for class CustomerReservation: accountId.");
 
             if (closedSessions.IsSet && closedSessions.Value == null)
-                throw new ArgumentNullException(nameof(closedSessions), "Property is not nullable for class CustomerReservation.");
+                throw new JsonException("Property is not nullable for class CustomerReservation: closedSessions.");
 
             if (totalSales.IsSet && totalSales.Value == null)
-                throw new ArgumentNullException(nameof(totalSales), "Property is not nullable for class CustomerReservation.");
+                throw new JsonException("Property is not nullable for class CustomerReservation: totalSales.");
 
             if (lastActivity.IsSet && lastActivity.Value == null)
-                throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class CustomerReservation.");
+                throw new JsonException("Property is not nullable for class CustomerReservation: lastActivity.");
 
             return new CustomerReservation(id.Value.Value, created.Value.Value, integrationId.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, attributes, loyaltyMemberships, audienceMemberships, sandbox, reservedAt);
         }
@@ -402,7 +402,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerReservation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerReservation customerReservation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -417,11 +416,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerReservation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerReservation customerReservation, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerReservation.IntegrationId == null)
-                throw new ArgumentNullException(nameof(customerReservation.IntegrationId), "Property is required for class CustomerReservation.");
+                throw new JsonException("Cannot write null property CustomerReservation.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteNumber("id", customerReservation.Id);
 

@@ -202,22 +202,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCreatedNotificationItem.", nameof(varEvent));
+                throw new JsonException("Property is required for class CampaignCreatedNotificationItem: Event.");
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCreatedNotificationItem.", nameof(campaign));
+                throw new JsonException("Property is required for class CampaignCreatedNotificationItem: campaign.");
 
             if (!evaluationPosition.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCreatedNotificationItem.", nameof(evaluationPosition));
+                throw new JsonException("Property is required for class CampaignCreatedNotificationItem: evaluationPosition.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignCreatedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignCreatedNotificationItem: Event.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignCreatedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignCreatedNotificationItem: campaign.");
 
             if (evaluationPosition.IsSet && evaluationPosition.Value == null)
-                throw new ArgumentNullException(nameof(evaluationPosition), "Property is not nullable for class CampaignCreatedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignCreatedNotificationItem: evaluationPosition.");
 
             return new CampaignCreatedNotificationItem(varEvent.Value, campaign.Value, evaluationPosition.Value, ruleset, placeholders);
         }
@@ -228,7 +228,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignCreatedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignCreatedNotificationItem campaignCreatedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -243,17 +242,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignCreatedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignCreatedNotificationItem campaignCreatedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignCreatedNotificationItem.Event == null)
-                throw new ArgumentNullException(nameof(campaignCreatedNotificationItem.Event), "Property is required for class CampaignCreatedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignCreatedNotificationItem.Event to non-nullable JSON property 'Event'.");
 
             if (campaignCreatedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignCreatedNotificationItem.Campaign), "Property is required for class CampaignCreatedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignCreatedNotificationItem.Campaign to non-nullable JSON property 'campaign'.");
 
             if (campaignCreatedNotificationItem.EvaluationPosition == null)
-                throw new ArgumentNullException(nameof(campaignCreatedNotificationItem.EvaluationPosition), "Property is required for class CampaignCreatedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignCreatedNotificationItem.EvaluationPosition to non-nullable JSON property 'evaluationPosition'.");
 
             writer.WriteString("Event", campaignCreatedNotificationItem.Event);
 

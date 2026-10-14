@@ -168,16 +168,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class NewNotificationWebhook.", nameof(url));
+                throw new JsonException("Property is required for class NewNotificationWebhook: url.");
 
             if (!headers.IsSet)
-                throw new ArgumentException("Property is required for class NewNotificationWebhook.", nameof(headers));
+                throw new JsonException("Property is required for class NewNotificationWebhook: headers.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class NewNotificationWebhook.");
+                throw new JsonException("Property is not nullable for class NewNotificationWebhook: url.");
 
             if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class NewNotificationWebhook.");
+                throw new JsonException("Property is not nullable for class NewNotificationWebhook: headers.");
 
             return new NewNotificationWebhook(url.Value, headers.Value, enabled);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newNotificationWebhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewNotificationWebhook newNotificationWebhook, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,14 +202,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newNotificationWebhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewNotificationWebhook newNotificationWebhook, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newNotificationWebhook.Url == null)
-                throw new ArgumentNullException(nameof(newNotificationWebhook.Url), "Property is required for class NewNotificationWebhook.");
+                throw new JsonException("Cannot write null property NewNotificationWebhook.Url to non-nullable JSON property 'url'.");
 
             if (newNotificationWebhook.Headers == null)
-                throw new ArgumentNullException(nameof(newNotificationWebhook.Headers), "Property is required for class NewNotificationWebhook.");
+                throw new JsonException("Cannot write null property NewNotificationWebhook.Headers to non-nullable JSON property 'headers'.");
 
             writer.WriteString("url", newNotificationWebhook.Url);
 

@@ -812,7 +812,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseLoyaltyProgram"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BaseLoyaltyProgram baseLoyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -827,7 +826,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="baseLoyaltyProgram"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BaseLoyaltyProgram baseLoyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
             if (baseLoyaltyProgram.TitleOption.IsSet)

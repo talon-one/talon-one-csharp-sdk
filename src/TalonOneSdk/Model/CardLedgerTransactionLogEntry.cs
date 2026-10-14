@@ -473,70 +473,70 @@ namespace TalonOneSdk.Model
             }
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: transactionUUID.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(created));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: created.");
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(programId));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: programId.");
 
             if (!cardIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(cardIdentifier));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: cardIdentifier.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(type));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: type.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(name));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: name.");
 
             if (!startDate.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(startDate));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: startDate.");
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(expiryDate));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: expiryDate.");
 
             if (!subledgerId.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(subledgerId));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: subledgerId.");
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(amount));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: amount.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CardLedgerTransactionLogEntry.", nameof(id));
+                throw new JsonException("Property is required for class CardLedgerTransactionLogEntry: id.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: transactionUUID.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: created.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: programId.");
 
             if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: cardIdentifier.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: name.");
 
             if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: startDate.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: expiryDate.");
 
             if (subledgerId.IsSet && subledgerId.Value == null)
-                throw new ArgumentNullException(nameof(subledgerId), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: subledgerId.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: amount.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Property is not nullable for class CardLedgerTransactionLogEntry: id.");
 
             return new CardLedgerTransactionLogEntry(transactionUUID.Value, created.Value.Value, programId.Value.Value, cardIdentifier.Value, type.Value.Value, name.Value, startDate.Value, expiryDate.Value, subledgerId.Value, amount.Value.Value, id.Value.Value, applicationId, sessionId, customerSessionId);
         }
@@ -547,7 +547,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardLedgerTransactionLogEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CardLedgerTransactionLogEntry cardLedgerTransactionLogEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -562,26 +561,25 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardLedgerTransactionLogEntry"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CardLedgerTransactionLogEntry cardLedgerTransactionLogEntry, JsonSerializerOptions jsonSerializerOptions)
         {
             if (cardLedgerTransactionLogEntry.TransactionUUID == null)
-                throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntry.TransactionUUID), "Property is required for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Cannot write null property CardLedgerTransactionLogEntry.TransactionUUID to non-nullable JSON property 'transactionUUID'.");
 
             if (cardLedgerTransactionLogEntry.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntry.CardIdentifier), "Property is required for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Cannot write null property CardLedgerTransactionLogEntry.CardIdentifier to non-nullable JSON property 'cardIdentifier'.");
 
             if (cardLedgerTransactionLogEntry.Name == null)
-                throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntry.Name), "Property is required for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Cannot write null property CardLedgerTransactionLogEntry.Name to non-nullable JSON property 'name'.");
 
             if (cardLedgerTransactionLogEntry.StartDate == null)
-                throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntry.StartDate), "Property is required for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Cannot write null property CardLedgerTransactionLogEntry.StartDate to non-nullable JSON property 'startDate'.");
 
             if (cardLedgerTransactionLogEntry.ExpiryDate == null)
-                throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntry.ExpiryDate), "Property is required for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Cannot write null property CardLedgerTransactionLogEntry.ExpiryDate to non-nullable JSON property 'expiryDate'.");
 
             if (cardLedgerTransactionLogEntry.SubledgerId == null)
-                throw new ArgumentNullException(nameof(cardLedgerTransactionLogEntry.SubledgerId), "Property is required for class CardLedgerTransactionLogEntry.");
+                throw new JsonException("Cannot write null property CardLedgerTransactionLogEntry.SubledgerId to non-nullable JSON property 'subledgerId'.");
 
             writer.WriteString("transactionUUID", cardLedgerTransactionLogEntry.TransactionUUID);
 

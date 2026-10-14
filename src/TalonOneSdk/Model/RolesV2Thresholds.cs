@@ -169,7 +169,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rolesV2Thresholds"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RolesV2Thresholds rolesV2Thresholds, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -184,7 +183,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rolesV2Thresholds"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RolesV2Thresholds rolesV2Thresholds, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rolesV2Thresholds.LoyaltyProgramIdOption.IsSet)

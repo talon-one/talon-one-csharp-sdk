@@ -198,10 +198,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class RuleMetadata.", nameof(title));
+                throw new JsonException("Property is required for class RuleMetadata: title.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class RuleMetadata.");
+                throw new JsonException("Property is not nullable for class RuleMetadata: title.");
 
             return new RuleMetadata(title.Value, displayName, displayDescription, relatedData);
         }
@@ -212,7 +212,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleMetadata"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RuleMetadata ruleMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -227,11 +226,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleMetadata"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RuleMetadata ruleMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ruleMetadata.Title == null)
-                throw new ArgumentNullException(nameof(ruleMetadata.Title), "Property is required for class RuleMetadata.");
+                throw new JsonException("Cannot write null property RuleMetadata.Title to non-nullable JSON property 'title'.");
 
             writer.WriteString("title", ruleMetadata.Title);
 

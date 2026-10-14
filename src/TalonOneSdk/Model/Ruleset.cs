@@ -331,34 +331,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Ruleset.", nameof(id));
+                throw new JsonException("Property is required for class Ruleset: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Ruleset.", nameof(created));
+                throw new JsonException("Property is required for class Ruleset: created.");
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class Ruleset.", nameof(userId));
+                throw new JsonException("Property is required for class Ruleset: userId.");
 
             if (!rules.IsSet)
-                throw new ArgumentException("Property is required for class Ruleset.", nameof(rules));
+                throw new JsonException("Property is required for class Ruleset: rules.");
 
             if (!bindings.IsSet)
-                throw new ArgumentException("Property is required for class Ruleset.", nameof(bindings));
+                throw new JsonException("Property is required for class Ruleset: bindings.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Ruleset.");
+                throw new JsonException("Property is not nullable for class Ruleset: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Ruleset.");
+                throw new JsonException("Property is not nullable for class Ruleset: created.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Ruleset.");
+                throw new JsonException("Property is not nullable for class Ruleset: userId.");
 
             if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class Ruleset.");
+                throw new JsonException("Property is not nullable for class Ruleset: rules.");
 
             if (bindings.IsSet && bindings.Value == null)
-                throw new ArgumentNullException(nameof(bindings), "Property is not nullable for class Ruleset.");
+                throw new JsonException("Property is not nullable for class Ruleset: bindings.");
 
             return new Ruleset(id.Value.Value, created.Value.Value, userId.Value.Value, rules.Value, bindings.Value, strikethroughRules, rbVersion, activate, campaignId, templateId, activatedAt);
         }
@@ -369,7 +369,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleset"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Ruleset ruleset, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -384,14 +383,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="ruleset"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Ruleset ruleset, JsonSerializerOptions jsonSerializerOptions)
         {
             if (ruleset.Rules == null)
-                throw new ArgumentNullException(nameof(ruleset.Rules), "Property is required for class Ruleset.");
+                throw new JsonException("Cannot write null property Ruleset.Rules to non-nullable JSON property 'rules'.");
 
             if (ruleset.Bindings == null)
-                throw new ArgumentNullException(nameof(ruleset.Bindings), "Property is required for class Ruleset.");
+                throw new JsonException("Cannot write null property Ruleset.Bindings to non-nullable JSON property 'bindings'.");
 
             writer.WriteNumber("id", ruleset.Id);
 

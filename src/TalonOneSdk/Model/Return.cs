@@ -319,52 +319,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Return.", nameof(id));
+                throw new JsonException("Property is required for class Return: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Return.", nameof(created));
+                throw new JsonException("Property is required for class Return: created.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class Return.", nameof(applicationId));
+                throw new JsonException("Property is required for class Return: applicationId.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Return.", nameof(accountId));
+                throw new JsonException("Property is required for class Return: accountId.");
 
             if (!returnedCartItems.IsSet)
-                throw new ArgumentException("Property is required for class Return.", nameof(returnedCartItems));
+                throw new JsonException("Property is required for class Return: returnedCartItems.");
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class Return.", nameof(eventId));
+                throw new JsonException("Property is required for class Return: eventId.");
 
             if (!sessionId.IsSet)
-                throw new ArgumentException("Property is required for class Return.", nameof(sessionId));
+                throw new JsonException("Property is required for class Return: sessionId.");
 
             if (!sessionIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class Return.", nameof(sessionIntegrationId));
+                throw new JsonException("Property is required for class Return: sessionIntegrationId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Return.");
+                throw new JsonException("Property is not nullable for class Return: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Return.");
+                throw new JsonException("Property is not nullable for class Return: created.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class Return.");
+                throw new JsonException("Property is not nullable for class Return: applicationId.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Return.");
+                throw new JsonException("Property is not nullable for class Return: accountId.");
 
             if (returnedCartItems.IsSet && returnedCartItems.Value == null)
-                throw new ArgumentNullException(nameof(returnedCartItems), "Property is not nullable for class Return.");
+                throw new JsonException("Property is not nullable for class Return: returnedCartItems.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class Return.");
+                throw new JsonException("Property is not nullable for class Return: eventId.");
 
             if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class Return.");
+                throw new JsonException("Property is not nullable for class Return: sessionId.");
 
             if (sessionIntegrationId.IsSet && sessionIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationId), "Property is not nullable for class Return.");
+                throw new JsonException("Property is not nullable for class Return: sessionIntegrationId.");
 
             return new Return(id.Value.Value, created.Value.Value, applicationId.Value.Value, accountId.Value.Value, returnedCartItems.Value, eventId.Value.Value, sessionId.Value.Value, sessionIntegrationId.Value, profileId, profileIntegrationId, createdBy);
         }
@@ -375,7 +375,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="varReturn"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Return varReturn, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -390,14 +389,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="varReturn"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Return varReturn, JsonSerializerOptions jsonSerializerOptions)
         {
             if (varReturn.ReturnedCartItems == null)
-                throw new ArgumentNullException(nameof(varReturn.ReturnedCartItems), "Property is required for class Return.");
+                throw new JsonException("Cannot write null property Return.ReturnedCartItems to non-nullable JSON property 'returnedCartItems'.");
 
             if (varReturn.SessionIntegrationId == null)
-                throw new ArgumentNullException(nameof(varReturn.SessionIntegrationId), "Property is required for class Return.");
+                throw new JsonException("Cannot write null property Return.SessionIntegrationId to non-nullable JSON property 'sessionIntegrationId'.");
 
             writer.WriteNumber("id", varReturn.Id);
 

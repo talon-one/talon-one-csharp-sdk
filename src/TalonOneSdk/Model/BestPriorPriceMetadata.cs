@@ -152,10 +152,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!influencingCampaignDetails.IsSet)
-                throw new ArgumentException("Property is required for class BestPriorPriceMetadata.", nameof(influencingCampaignDetails));
+                throw new JsonException("Property is required for class BestPriorPriceMetadata: influencingCampaignDetails.");
 
             if (influencingCampaignDetails.IsSet && influencingCampaignDetails.Value == null)
-                throw new ArgumentNullException(nameof(influencingCampaignDetails), "Property is not nullable for class BestPriorPriceMetadata.");
+                throw new JsonException("Property is not nullable for class BestPriorPriceMetadata: influencingCampaignDetails.");
 
             return new BestPriorPriceMetadata(influencingCampaignDetails.Value, adjustmentDetails);
         }
@@ -166,7 +166,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bestPriorPriceMetadata"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BestPriorPriceMetadata bestPriorPriceMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -181,11 +180,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="bestPriorPriceMetadata"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BestPriorPriceMetadata bestPriorPriceMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
             if (bestPriorPriceMetadata.InfluencingCampaignDetails == null)
-                throw new ArgumentNullException(nameof(bestPriorPriceMetadata.InfluencingCampaignDetails), "Property is required for class BestPriorPriceMetadata.");
+                throw new JsonException("Cannot write null property BestPriorPriceMetadata.InfluencingCampaignDetails to non-nullable JSON property 'influencingCampaignDetails'.");
 
             writer.WritePropertyName("influencingCampaignDetails");
             JsonSerializer.Serialize(writer, bestPriorPriceMetadata.InfluencingCampaignDetails, jsonSerializerOptions);

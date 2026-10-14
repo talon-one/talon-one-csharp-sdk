@@ -250,16 +250,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class RollbackDiscountEffectProps.", nameof(name));
+                throw new JsonException("Property is required for class RollbackDiscountEffectProps: name.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RollbackDiscountEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class RollbackDiscountEffectProps: value.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RollbackDiscountEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackDiscountEffectProps: name.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackDiscountEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackDiscountEffectProps: value.");
 
             return new RollbackDiscountEffectProps(name.Value, value.Value.Value, cartItemPosition, cartItemSubPosition, additionalCostId, additionalCost, scope);
         }
@@ -270,7 +270,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackDiscountEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RollbackDiscountEffectProps rollbackDiscountEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -285,11 +284,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackDiscountEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RollbackDiscountEffectProps rollbackDiscountEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rollbackDiscountEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(rollbackDiscountEffectProps.Name), "Property is required for class RollbackDiscountEffectProps.");
+                throw new JsonException("Cannot write null property RollbackDiscountEffectProps.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", rollbackDiscountEffectProps.Name);
 

@@ -416,37 +416,37 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock.", nameof(type));
+                throw new JsonException("Property is required for class UpdateLoyaltyPointsExpiryBlock: type.");
 
             if (!varOperator.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock.", nameof(varOperator));
+                throw new JsonException("Property is required for class UpdateLoyaltyPointsExpiryBlock: operator.");
 
             if (!program.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock.", nameof(program));
+                throw new JsonException("Property is required for class UpdateLoyaltyPointsExpiryBlock: program.");
 
             if (!recipient.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock.", nameof(recipient));
+                throw new JsonException("Property is required for class UpdateLoyaltyPointsExpiryBlock: recipient.");
 
             if (!subledger.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock.", nameof(subledger));
+                throw new JsonException("Property is required for class UpdateLoyaltyPointsExpiryBlock: subledger.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class UpdateLoyaltyPointsExpiryBlock.", nameof(value));
+                throw new JsonException("Property is required for class UpdateLoyaltyPointsExpiryBlock: value.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class UpdateLoyaltyPointsExpiryBlock.");
+                throw new JsonException("Property is not nullable for class UpdateLoyaltyPointsExpiryBlock: type.");
 
             if (varOperator.IsSet && varOperator.Value == null)
-                throw new ArgumentNullException(nameof(varOperator), "Property is not nullable for class UpdateLoyaltyPointsExpiryBlock.");
+                throw new JsonException("Property is not nullable for class UpdateLoyaltyPointsExpiryBlock: operator.");
 
             if (program.IsSet && program.Value == null)
-                throw new ArgumentNullException(nameof(program), "Property is not nullable for class UpdateLoyaltyPointsExpiryBlock.");
+                throw new JsonException("Property is not nullable for class UpdateLoyaltyPointsExpiryBlock: program.");
 
             if (recipient.IsSet && recipient.Value == null)
-                throw new ArgumentNullException(nameof(recipient), "Property is not nullable for class UpdateLoyaltyPointsExpiryBlock.");
+                throw new JsonException("Property is not nullable for class UpdateLoyaltyPointsExpiryBlock: recipient.");
 
             if (subledger.IsSet && subledger.Value == null)
-                throw new ArgumentNullException(nameof(subledger), "Property is not nullable for class UpdateLoyaltyPointsExpiryBlock.");
+                throw new JsonException("Property is not nullable for class UpdateLoyaltyPointsExpiryBlock: subledger.");
 
             return new UpdateLoyaltyPointsExpiryBlock(type.Value, varOperator.Value.Value, program.Value, recipient.Value.Value, subledger.Value, id, tags, value.Value, onFailure);
         }
@@ -457,7 +457,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateLoyaltyPointsExpiryBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateLoyaltyPointsExpiryBlock updateLoyaltyPointsExpiryBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -472,17 +471,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateLoyaltyPointsExpiryBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateLoyaltyPointsExpiryBlock updateLoyaltyPointsExpiryBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateLoyaltyPointsExpiryBlock.Type == null)
-                throw new ArgumentNullException(nameof(updateLoyaltyPointsExpiryBlock.Type), "Property is required for class UpdateLoyaltyPointsExpiryBlock.");
+                throw new JsonException("Cannot write null property UpdateLoyaltyPointsExpiryBlock.Type to non-nullable JSON property 'type'.");
 
             if (updateLoyaltyPointsExpiryBlock.Program == null)
-                throw new ArgumentNullException(nameof(updateLoyaltyPointsExpiryBlock.Program), "Property is required for class UpdateLoyaltyPointsExpiryBlock.");
+                throw new JsonException("Cannot write null property UpdateLoyaltyPointsExpiryBlock.Program to non-nullable JSON property 'program'.");
 
             if (updateLoyaltyPointsExpiryBlock.Subledger == null)
-                throw new ArgumentNullException(nameof(updateLoyaltyPointsExpiryBlock.Subledger), "Property is required for class UpdateLoyaltyPointsExpiryBlock.");
+                throw new JsonException("Cannot write null property UpdateLoyaltyPointsExpiryBlock.Subledger to non-nullable JSON property 'subledger'.");
 
             writer.WriteString("type", updateLoyaltyPointsExpiryBlock.Type);
 

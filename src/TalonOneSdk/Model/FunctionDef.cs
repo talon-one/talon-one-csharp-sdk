@@ -207,22 +207,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class FunctionDef.", nameof(name));
+                throw new JsonException("Property is required for class FunctionDef: name.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class FunctionDef.", nameof(type));
+                throw new JsonException("Property is required for class FunctionDef: type.");
 
             if (!args.IsSet)
-                throw new ArgumentException("Property is required for class FunctionDef.", nameof(args));
+                throw new JsonException("Property is required for class FunctionDef: args.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class FunctionDef.");
+                throw new JsonException("Property is not nullable for class FunctionDef: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FunctionDef.");
+                throw new JsonException("Property is not nullable for class FunctionDef: type.");
 
             if (args.IsSet && args.Value == null)
-                throw new ArgumentNullException(nameof(args), "Property is not nullable for class FunctionDef.");
+                throw new JsonException("Property is not nullable for class FunctionDef: args.");
 
             return new FunctionDef(name.Value, type.Value, args.Value, description, help);
         }
@@ -233,7 +233,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="functionDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FunctionDef functionDef, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -248,17 +247,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="functionDef"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FunctionDef functionDef, JsonSerializerOptions jsonSerializerOptions)
         {
             if (functionDef.Name == null)
-                throw new ArgumentNullException(nameof(functionDef.Name), "Property is required for class FunctionDef.");
+                throw new JsonException("Cannot write null property FunctionDef.Name to non-nullable JSON property 'name'.");
 
             if (functionDef.Type == null)
-                throw new ArgumentNullException(nameof(functionDef.Type), "Property is required for class FunctionDef.");
+                throw new JsonException("Cannot write null property FunctionDef.Type to non-nullable JSON property 'type'.");
 
             if (functionDef.Args == null)
-                throw new ArgumentNullException(nameof(functionDef.Args), "Property is required for class FunctionDef.");
+                throw new JsonException("Cannot write null property FunctionDef.Args to non-nullable JSON property 'args'.");
 
             writer.WriteString("name", functionDef.Name);
 

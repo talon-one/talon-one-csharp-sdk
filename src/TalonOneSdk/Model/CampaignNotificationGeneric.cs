@@ -220,22 +220,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class CampaignNotificationGeneric.", nameof(notificationType));
+                throw new JsonException("Property is required for class CampaignNotificationGeneric: NotificationType.");
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class CampaignNotificationGeneric.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class CampaignNotificationGeneric: TotalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class CampaignNotificationGeneric.", nameof(data));
+                throw new JsonException("Property is required for class CampaignNotificationGeneric: Data.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CampaignNotificationGeneric.");
+                throw new JsonException("Property is not nullable for class CampaignNotificationGeneric: NotificationType.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class CampaignNotificationGeneric.");
+                throw new JsonException("Property is not nullable for class CampaignNotificationGeneric: TotalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class CampaignNotificationGeneric.");
+                throw new JsonException("Property is not nullable for class CampaignNotificationGeneric: Data.");
 
             return new CampaignNotificationGeneric(notificationType.Value.Value, totalResultSize.Value.Value, data.Value);
         }
@@ -246,7 +246,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignNotificationGeneric"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignNotificationGeneric campaignNotificationGeneric, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -261,11 +260,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignNotificationGeneric"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignNotificationGeneric campaignNotificationGeneric, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignNotificationGeneric.Data == null)
-                throw new ArgumentNullException(nameof(campaignNotificationGeneric.Data), "Property is required for class CampaignNotificationGeneric.");
+                throw new JsonException("Cannot write null property CampaignNotificationGeneric.Data to non-nullable JSON property 'Data'.");
 
             var notificationTypeRawValue = CampaignNotificationGeneric.NotificationTypeEnumToJsonValue(campaignNotificationGeneric.NotificationType);
             writer.WriteString("NotificationType", notificationTypeRawValue);

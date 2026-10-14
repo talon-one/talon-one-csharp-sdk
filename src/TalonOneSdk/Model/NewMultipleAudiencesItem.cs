@@ -194,10 +194,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewMultipleAudiencesItem.", nameof(name));
+                throw new JsonException("Property is required for class NewMultipleAudiencesItem: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewMultipleAudiencesItem.");
+                throw new JsonException("Property is not nullable for class NewMultipleAudiencesItem: name.");
 
             return new NewMultipleAudiencesItem(name.Value, subscribedApplicationsIds, integrationId);
         }
@@ -208,7 +208,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newMultipleAudiencesItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewMultipleAudiencesItem newMultipleAudiencesItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -223,11 +222,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newMultipleAudiencesItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewMultipleAudiencesItem newMultipleAudiencesItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newMultipleAudiencesItem.Name == null)
-                throw new ArgumentNullException(nameof(newMultipleAudiencesItem.Name), "Property is required for class NewMultipleAudiencesItem.");
+                throw new JsonException("Cannot write null property NewMultipleAudiencesItem.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", newMultipleAudiencesItem.Name);
 

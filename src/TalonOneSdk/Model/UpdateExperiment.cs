@@ -297,10 +297,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class UpdateExperiment.", nameof(campaign));
+                throw new JsonException("Property is required for class UpdateExperiment: campaign.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class UpdateExperiment.");
+                throw new JsonException("Property is not nullable for class UpdateExperiment: campaign.");
 
             return new UpdateExperiment(campaign.Value, isVariantAssignmentExternal, goalType, goalDescription);
         }
@@ -311,7 +311,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateExperiment updateExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -326,11 +325,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateExperiment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateExperiment updateExperiment, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateExperiment.Campaign == null)
-                throw new ArgumentNullException(nameof(updateExperiment.Campaign), "Property is required for class UpdateExperiment.");
+                throw new JsonException("Cannot write null property UpdateExperiment.Campaign to non-nullable JSON property 'campaign'.");
 
             writer.WritePropertyName("campaign");
             JsonSerializer.Serialize(writer, updateExperiment.Campaign, jsonSerializerOptions);

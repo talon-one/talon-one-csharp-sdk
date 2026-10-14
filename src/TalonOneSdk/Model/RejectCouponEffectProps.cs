@@ -230,16 +230,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RejectCouponEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class RejectCouponEffectProps: value.");
 
             if (!rejectionReason.IsSet)
-                throw new ArgumentException("Property is required for class RejectCouponEffectProps.", nameof(rejectionReason));
+                throw new JsonException("Property is required for class RejectCouponEffectProps: rejectionReason.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RejectCouponEffectProps.");
+                throw new JsonException("Property is not nullable for class RejectCouponEffectProps: value.");
 
             if (rejectionReason.IsSet && rejectionReason.Value == null)
-                throw new ArgumentNullException(nameof(rejectionReason), "Property is not nullable for class RejectCouponEffectProps.");
+                throw new JsonException("Property is not nullable for class RejectCouponEffectProps: rejectionReason.");
 
             return new RejectCouponEffectProps(value.Value, rejectionReason.Value, conditionIndex, effectIndex, details, campaignExclusionReason);
         }
@@ -250,7 +250,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rejectCouponEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RejectCouponEffectProps rejectCouponEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -265,14 +264,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rejectCouponEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RejectCouponEffectProps rejectCouponEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rejectCouponEffectProps.Value == null)
-                throw new ArgumentNullException(nameof(rejectCouponEffectProps.Value), "Property is required for class RejectCouponEffectProps.");
+                throw new JsonException("Cannot write null property RejectCouponEffectProps.Value to non-nullable JSON property 'value'.");
 
             if (rejectCouponEffectProps.RejectionReason == null)
-                throw new ArgumentNullException(nameof(rejectCouponEffectProps.RejectionReason), "Property is required for class RejectCouponEffectProps.");
+                throw new JsonException("Cannot write null property RejectCouponEffectProps.RejectionReason to non-nullable JSON property 'rejectionReason'.");
 
             writer.WriteString("value", rejectCouponEffectProps.Value);
 

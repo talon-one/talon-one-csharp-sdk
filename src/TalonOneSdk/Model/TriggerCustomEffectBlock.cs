@@ -244,22 +244,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TriggerCustomEffectBlock.", nameof(type));
+                throw new JsonException("Property is required for class TriggerCustomEffectBlock: type.");
 
             if (!customEffect.IsSet)
-                throw new ArgumentException("Property is required for class TriggerCustomEffectBlock.", nameof(customEffect));
+                throw new JsonException("Property is required for class TriggerCustomEffectBlock: customEffect.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class TriggerCustomEffectBlock.", nameof(target));
+                throw new JsonException("Property is required for class TriggerCustomEffectBlock: target.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TriggerCustomEffectBlock.");
+                throw new JsonException("Property is not nullable for class TriggerCustomEffectBlock: type.");
 
             if (customEffect.IsSet && customEffect.Value == null)
-                throw new ArgumentNullException(nameof(customEffect), "Property is not nullable for class TriggerCustomEffectBlock.");
+                throw new JsonException("Property is not nullable for class TriggerCustomEffectBlock: customEffect.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class TriggerCustomEffectBlock.");
+                throw new JsonException("Property is not nullable for class TriggerCustomEffectBlock: target.");
 
             return new TriggerCustomEffectBlock(type.Value, customEffect.Value, target.Value, id, tags, varParams, onError);
         }
@@ -270,7 +270,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="triggerCustomEffectBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TriggerCustomEffectBlock triggerCustomEffectBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -285,17 +284,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="triggerCustomEffectBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TriggerCustomEffectBlock triggerCustomEffectBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (triggerCustomEffectBlock.Type == null)
-                throw new ArgumentNullException(nameof(triggerCustomEffectBlock.Type), "Property is required for class TriggerCustomEffectBlock.");
+                throw new JsonException("Cannot write null property TriggerCustomEffectBlock.Type to non-nullable JSON property 'type'.");
 
             if (triggerCustomEffectBlock.CustomEffect == null)
-                throw new ArgumentNullException(nameof(triggerCustomEffectBlock.CustomEffect), "Property is required for class TriggerCustomEffectBlock.");
+                throw new JsonException("Cannot write null property TriggerCustomEffectBlock.CustomEffect to non-nullable JSON property 'customEffect'.");
 
             if (triggerCustomEffectBlock.Target == null)
-                throw new ArgumentNullException(nameof(triggerCustomEffectBlock.Target), "Property is required for class TriggerCustomEffectBlock.");
+                throw new JsonException("Cannot write null property TriggerCustomEffectBlock.Target to non-nullable JSON property 'target'.");
 
             writer.WriteString("type", triggerCustomEffectBlock.Type);
 

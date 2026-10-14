@@ -831,46 +831,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class NewAttribute.", nameof(entity));
+                throw new JsonException("Property is required for class NewAttribute: entity.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewAttribute.", nameof(name));
+                throw new JsonException("Property is required for class NewAttribute: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class NewAttribute.", nameof(title));
+                throw new JsonException("Property is required for class NewAttribute: title.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NewAttribute.", nameof(type));
+                throw new JsonException("Property is required for class NewAttribute: type.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class NewAttribute.", nameof(description));
+                throw new JsonException("Property is required for class NewAttribute: description.");
 
             if (!suggestions.IsSet)
-                throw new ArgumentException("Property is required for class NewAttribute.", nameof(suggestions));
+                throw new JsonException("Property is required for class NewAttribute: suggestions.");
 
             if (!editable.IsSet)
-                throw new ArgumentException("Property is required for class NewAttribute.", nameof(editable));
+                throw new JsonException("Property is required for class NewAttribute: editable.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class NewAttribute.");
+                throw new JsonException("Property is not nullable for class NewAttribute: entity.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewAttribute.");
+                throw new JsonException("Property is not nullable for class NewAttribute: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewAttribute.");
+                throw new JsonException("Property is not nullable for class NewAttribute: title.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class NewAttribute.");
+                throw new JsonException("Property is not nullable for class NewAttribute: type.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewAttribute.");
+                throw new JsonException("Property is not nullable for class NewAttribute: description.");
 
             if (suggestions.IsSet && suggestions.Value == null)
-                throw new ArgumentNullException(nameof(suggestions), "Property is not nullable for class NewAttribute.");
+                throw new JsonException("Property is not nullable for class NewAttribute: suggestions.");
 
             if (editable.IsSet && editable.Value == null)
-                throw new ArgumentNullException(nameof(editable), "Property is not nullable for class NewAttribute.");
+                throw new JsonException("Property is not nullable for class NewAttribute: editable.");
 
             return new NewAttribute(entity.Value.Value, name.Value, title.Value, type.Value.Value, description.Value, suggestions.Value, editable.Value.Value, eventType, hasAllowedList, restrictedBySuggestions, subscribedApplicationsIds, subscribedCatalogsIds, allowedSubscriptions);
         }
@@ -881,7 +881,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewAttribute newAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -896,20 +895,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newAttribute"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewAttribute newAttribute, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newAttribute.Name == null)
-                throw new ArgumentNullException(nameof(newAttribute.Name), "Property is required for class NewAttribute.");
+                throw new JsonException("Cannot write null property NewAttribute.Name to non-nullable JSON property 'name'.");
 
             if (newAttribute.Title == null)
-                throw new ArgumentNullException(nameof(newAttribute.Title), "Property is required for class NewAttribute.");
+                throw new JsonException("Cannot write null property NewAttribute.Title to non-nullable JSON property 'title'.");
 
             if (newAttribute.Description == null)
-                throw new ArgumentNullException(nameof(newAttribute.Description), "Property is required for class NewAttribute.");
+                throw new JsonException("Cannot write null property NewAttribute.Description to non-nullable JSON property 'description'.");
 
             if (newAttribute.Suggestions == null)
-                throw new ArgumentNullException(nameof(newAttribute.Suggestions), "Property is required for class NewAttribute.");
+                throw new JsonException("Cannot write null property NewAttribute.Suggestions to non-nullable JSON property 'suggestions'.");
 
             var entityRawValue = NewAttribute.EntityEnumToJsonValue(newAttribute.Entity);
             writer.WriteString("entity", entityRawValue);

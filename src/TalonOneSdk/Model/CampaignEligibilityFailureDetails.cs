@@ -219,10 +219,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!failureCode.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibilityFailureDetails.", nameof(failureCode));
+                throw new JsonException("Property is required for class CampaignEligibilityFailureDetails: failureCode.");
 
             if (failureCode.IsSet && failureCode.Value == null)
-                throw new ArgumentNullException(nameof(failureCode), "Property is not nullable for class CampaignEligibilityFailureDetails.");
+                throw new JsonException("Property is not nullable for class CampaignEligibilityFailureDetails: failureCode.");
 
             return new CampaignEligibilityFailureDetails(failureCode.Value.Value);
         }
@@ -233,7 +233,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEligibilityFailureDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEligibilityFailureDetails campaignEligibilityFailureDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -248,7 +247,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEligibilityFailureDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEligibilityFailureDetails campaignEligibilityFailureDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             var failureCodeRawValue = CampaignEligibilityFailureDetails.FailureCodeEnumToJsonValue(campaignEligibilityFailureDetails.FailureCode);

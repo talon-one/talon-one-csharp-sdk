@@ -181,22 +181,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps: subLedgerId.");
 
             if (!extensionDuration.IsSet)
-                throw new ArgumentException("Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps.", nameof(extensionDuration));
+                throw new JsonException("Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps: extensionDuration.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps: subLedgerId.");
 
             if (extensionDuration.IsSet && extensionDuration.Value == null)
-                throw new ArgumentNullException(nameof(extensionDuration), "Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Property is not nullable for class ExtendLoyaltyPointsExpiryDateEffectProps: extensionDuration.");
 
             return new ExtendLoyaltyPointsExpiryDateEffectProps(programId.Value.Value, subLedgerId.Value, extensionDuration.Value, affectedTransactions);
         }
@@ -207,7 +207,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="extendLoyaltyPointsExpiryDateEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExtendLoyaltyPointsExpiryDateEffectProps extendLoyaltyPointsExpiryDateEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -222,14 +221,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="extendLoyaltyPointsExpiryDateEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExtendLoyaltyPointsExpiryDateEffectProps extendLoyaltyPointsExpiryDateEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (extendLoyaltyPointsExpiryDateEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(extendLoyaltyPointsExpiryDateEffectProps.SubLedgerId), "Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Cannot write null property ExtendLoyaltyPointsExpiryDateEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             if (extendLoyaltyPointsExpiryDateEffectProps.ExtensionDuration == null)
-                throw new ArgumentNullException(nameof(extendLoyaltyPointsExpiryDateEffectProps.ExtensionDuration), "Property is required for class ExtendLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Cannot write null property ExtendLoyaltyPointsExpiryDateEffectProps.ExtensionDuration to non-nullable JSON property 'extensionDuration'.");
 
             writer.WriteNumber("programId", extendLoyaltyPointsExpiryDateEffectProps.ProgramId);
 

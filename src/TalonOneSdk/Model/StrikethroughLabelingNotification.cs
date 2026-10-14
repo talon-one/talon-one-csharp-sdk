@@ -389,46 +389,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(applicationId));
+                throw new JsonException("Property is required for class StrikethroughLabelingNotification: applicationId.");
 
             if (!currentBatch.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(currentBatch));
+                throw new JsonException("Property is required for class StrikethroughLabelingNotification: currentBatch.");
 
             if (!totalBatches.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(totalBatches));
+                throw new JsonException("Property is required for class StrikethroughLabelingNotification: totalBatches.");
 
             if (!trigger.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(trigger));
+                throw new JsonException("Property is required for class StrikethroughLabelingNotification: trigger.");
 
             if (!changedItems.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(changedItems));
+                throw new JsonException("Property is required for class StrikethroughLabelingNotification: changedItems.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(notificationType));
+                throw new JsonException("Property is required for class StrikethroughLabelingNotification: NotificationType.");
 
             if (!sentAt.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughLabelingNotification.", nameof(sentAt));
+                throw new JsonException("Property is required for class StrikethroughLabelingNotification: sentAt.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class StrikethroughLabelingNotification.");
+                throw new JsonException("Property is not nullable for class StrikethroughLabelingNotification: applicationId.");
 
             if (currentBatch.IsSet && currentBatch.Value == null)
-                throw new ArgumentNullException(nameof(currentBatch), "Property is not nullable for class StrikethroughLabelingNotification.");
+                throw new JsonException("Property is not nullable for class StrikethroughLabelingNotification: currentBatch.");
 
             if (totalBatches.IsSet && totalBatches.Value == null)
-                throw new ArgumentNullException(nameof(totalBatches), "Property is not nullable for class StrikethroughLabelingNotification.");
+                throw new JsonException("Property is not nullable for class StrikethroughLabelingNotification: totalBatches.");
 
             if (trigger.IsSet && trigger.Value == null)
-                throw new ArgumentNullException(nameof(trigger), "Property is not nullable for class StrikethroughLabelingNotification.");
+                throw new JsonException("Property is not nullable for class StrikethroughLabelingNotification: trigger.");
 
             if (changedItems.IsSet && changedItems.Value == null)
-                throw new ArgumentNullException(nameof(changedItems), "Property is not nullable for class StrikethroughLabelingNotification.");
+                throw new JsonException("Property is not nullable for class StrikethroughLabelingNotification: changedItems.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class StrikethroughLabelingNotification.");
+                throw new JsonException("Property is not nullable for class StrikethroughLabelingNotification: NotificationType.");
 
             if (sentAt.IsSet && sentAt.Value == null)
-                throw new ArgumentNullException(nameof(sentAt), "Property is not nullable for class StrikethroughLabelingNotification.");
+                throw new JsonException("Property is not nullable for class StrikethroughLabelingNotification: sentAt.");
 
             return new StrikethroughLabelingNotification(applicationId.Value.Value, currentBatch.Value.Value, totalBatches.Value.Value, trigger.Value, changedItems.Value, notificationType.Value.Value, sentAt.Value.Value, varVersion, validFrom);
         }
@@ -439,7 +439,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughLabelingNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StrikethroughLabelingNotification strikethroughLabelingNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -454,14 +453,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughLabelingNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StrikethroughLabelingNotification strikethroughLabelingNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (strikethroughLabelingNotification.Trigger == null)
-                throw new ArgumentNullException(nameof(strikethroughLabelingNotification.Trigger), "Property is required for class StrikethroughLabelingNotification.");
+                throw new JsonException("Cannot write null property StrikethroughLabelingNotification.Trigger to non-nullable JSON property 'trigger'.");
 
             if (strikethroughLabelingNotification.ChangedItems == null)
-                throw new ArgumentNullException(nameof(strikethroughLabelingNotification.ChangedItems), "Property is required for class StrikethroughLabelingNotification.");
+                throw new JsonException("Cannot write null property StrikethroughLabelingNotification.ChangedItems to non-nullable JSON property 'changedItems'.");
 
             writer.WriteNumber("applicationId", strikethroughLabelingNotification.ApplicationId);
 

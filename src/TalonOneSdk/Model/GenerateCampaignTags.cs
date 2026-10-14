@@ -131,10 +131,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!rulesetID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateCampaignTags.", nameof(rulesetID));
+                throw new JsonException("Property is required for class GenerateCampaignTags: rulesetID.");
 
             if (rulesetID.IsSet && rulesetID.Value == null)
-                throw new ArgumentNullException(nameof(rulesetID), "Property is not nullable for class GenerateCampaignTags.");
+                throw new JsonException("Property is not nullable for class GenerateCampaignTags: rulesetID.");
 
             return new GenerateCampaignTags(rulesetID.Value.Value);
         }
@@ -145,7 +145,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateCampaignTags"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GenerateCampaignTags generateCampaignTags, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -160,7 +159,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateCampaignTags"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateCampaignTags generateCampaignTags, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("rulesetID", generateCampaignTags.RulesetID);

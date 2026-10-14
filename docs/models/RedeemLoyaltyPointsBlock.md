@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **Id** | **string** | Unique identifier for this block. | [optional] [readonly] 
 **Tags** | **List&lt;string&gt;** | Semantic labels attached to this block. | [optional] [readonly] 
 **Name** | **string** | A custom description recorded as the reason for the point deduction. | [optional] 
-**OnFailure** | [**List&lt;Block&gt;**](Block.md) | Promotion blocks evaluated when this block fails or returns false. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

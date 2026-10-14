@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="featuresFeed"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FeaturesFeed featuresFeed, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,7 +179,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="featuresFeed"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FeaturesFeed featuresFeed, JsonSerializerOptions jsonSerializerOptions)
         {
             if (featuresFeed.TitleOption.IsSet)

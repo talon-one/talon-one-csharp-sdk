@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!createdManually.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardPointsBreakdown.", nameof(createdManually));
+                throw new JsonException("Property is required for class LoyaltyDashboardPointsBreakdown: createdManually.");
 
             if (!createdViaRuleEngine.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardPointsBreakdown.", nameof(createdViaRuleEngine));
+                throw new JsonException("Property is required for class LoyaltyDashboardPointsBreakdown: createdViaRuleEngine.");
 
             if (createdManually.IsSet && createdManually.Value == null)
-                throw new ArgumentNullException(nameof(createdManually), "Property is not nullable for class LoyaltyDashboardPointsBreakdown.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardPointsBreakdown: createdManually.");
 
             if (createdViaRuleEngine.IsSet && createdViaRuleEngine.Value == null)
-                throw new ArgumentNullException(nameof(createdViaRuleEngine), "Property is not nullable for class LoyaltyDashboardPointsBreakdown.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardPointsBreakdown: createdViaRuleEngine.");
 
             return new LoyaltyDashboardPointsBreakdown(createdManually.Value.Value, createdViaRuleEngine.Value.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyDashboardPointsBreakdown"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyDashboardPointsBreakdown loyaltyDashboardPointsBreakdown, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,7 +179,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyDashboardPointsBreakdown"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyDashboardPointsBreakdown loyaltyDashboardPointsBreakdown, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("createdManually", loyaltyDashboardPointsBreakdown.CreatedManually);

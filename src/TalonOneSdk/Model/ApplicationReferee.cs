@@ -247,40 +247,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationReferee.", nameof(applicationId));
+                throw new JsonException("Property is required for class ApplicationReferee: applicationId.");
 
             if (!sessionId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationReferee.", nameof(sessionId));
+                throw new JsonException("Property is required for class ApplicationReferee: sessionId.");
 
             if (!advocateIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationReferee.", nameof(advocateIntegrationId));
+                throw new JsonException("Property is required for class ApplicationReferee: advocateIntegrationId.");
 
             if (!friendIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationReferee.", nameof(friendIntegrationId));
+                throw new JsonException("Property is required for class ApplicationReferee: friendIntegrationId.");
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationReferee.", nameof(code));
+                throw new JsonException("Property is required for class ApplicationReferee: code.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ApplicationReferee.", nameof(created));
+                throw new JsonException("Property is required for class ApplicationReferee: created.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class ApplicationReferee.");
+                throw new JsonException("Property is not nullable for class ApplicationReferee: applicationId.");
 
             if (sessionId.IsSet && sessionId.Value == null)
-                throw new ArgumentNullException(nameof(sessionId), "Property is not nullable for class ApplicationReferee.");
+                throw new JsonException("Property is not nullable for class ApplicationReferee: sessionId.");
 
             if (advocateIntegrationId.IsSet && advocateIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(advocateIntegrationId), "Property is not nullable for class ApplicationReferee.");
+                throw new JsonException("Property is not nullable for class ApplicationReferee: advocateIntegrationId.");
 
             if (friendIntegrationId.IsSet && friendIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(friendIntegrationId), "Property is not nullable for class ApplicationReferee.");
+                throw new JsonException("Property is not nullable for class ApplicationReferee: friendIntegrationId.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class ApplicationReferee.");
+                throw new JsonException("Property is not nullable for class ApplicationReferee: code.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ApplicationReferee.");
+                throw new JsonException("Property is not nullable for class ApplicationReferee: created.");
 
             return new ApplicationReferee(applicationId.Value.Value, sessionId.Value, advocateIntegrationId.Value, friendIntegrationId.Value, code.Value, created.Value.Value, advancedEventIntegrationId);
         }
@@ -291,7 +291,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationReferee"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplicationReferee applicationReferee, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -306,20 +305,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="applicationReferee"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationReferee applicationReferee, JsonSerializerOptions jsonSerializerOptions)
         {
             if (applicationReferee.SessionId == null)
-                throw new ArgumentNullException(nameof(applicationReferee.SessionId), "Property is required for class ApplicationReferee.");
+                throw new JsonException("Cannot write null property ApplicationReferee.SessionId to non-nullable JSON property 'sessionId'.");
 
             if (applicationReferee.AdvocateIntegrationId == null)
-                throw new ArgumentNullException(nameof(applicationReferee.AdvocateIntegrationId), "Property is required for class ApplicationReferee.");
+                throw new JsonException("Cannot write null property ApplicationReferee.AdvocateIntegrationId to non-nullable JSON property 'advocateIntegrationId'.");
 
             if (applicationReferee.FriendIntegrationId == null)
-                throw new ArgumentNullException(nameof(applicationReferee.FriendIntegrationId), "Property is required for class ApplicationReferee.");
+                throw new JsonException("Cannot write null property ApplicationReferee.FriendIntegrationId to non-nullable JSON property 'friendIntegrationId'.");
 
             if (applicationReferee.Code == null)
-                throw new ArgumentNullException(nameof(applicationReferee.Code), "Property is required for class ApplicationReferee.");
+                throw new JsonException("Cannot write null property ApplicationReferee.Code to non-nullable JSON property 'code'.");
 
             writer.WriteNumber("applicationId", applicationReferee.ApplicationId);
 

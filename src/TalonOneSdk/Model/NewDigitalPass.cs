@@ -313,28 +313,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!loyaltyProgramId.IsSet)
-                throw new ArgumentException("Property is required for class NewDigitalPass.", nameof(loyaltyProgramId));
+                throw new JsonException("Property is required for class NewDigitalPass: loyaltyProgramId.");
 
             if (!passTemplateId.IsSet)
-                throw new ArgumentException("Property is required for class NewDigitalPass.", nameof(passTemplateId));
+                throw new JsonException("Property is required for class NewDigitalPass: passTemplateId.");
 
             if (!profileId.IsSet)
-                throw new ArgumentException("Property is required for class NewDigitalPass.", nameof(profileId));
+                throw new JsonException("Property is required for class NewDigitalPass: profileId.");
 
             if (!platform.IsSet)
-                throw new ArgumentException("Property is required for class NewDigitalPass.", nameof(platform));
+                throw new JsonException("Property is required for class NewDigitalPass: platform.");
 
             if (loyaltyProgramId.IsSet && loyaltyProgramId.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramId), "Property is not nullable for class NewDigitalPass.");
+                throw new JsonException("Property is not nullable for class NewDigitalPass: loyaltyProgramId.");
 
             if (passTemplateId.IsSet && passTemplateId.Value == null)
-                throw new ArgumentNullException(nameof(passTemplateId), "Property is not nullable for class NewDigitalPass.");
+                throw new JsonException("Property is not nullable for class NewDigitalPass: passTemplateId.");
 
             if (profileId.IsSet && profileId.Value == null)
-                throw new ArgumentNullException(nameof(profileId), "Property is not nullable for class NewDigitalPass.");
+                throw new JsonException("Property is not nullable for class NewDigitalPass: profileId.");
 
             if (platform.IsSet && platform.Value == null)
-                throw new ArgumentNullException(nameof(platform), "Property is not nullable for class NewDigitalPass.");
+                throw new JsonException("Property is not nullable for class NewDigitalPass: platform.");
 
             return new NewDigitalPass(loyaltyProgramId.Value.Value, passTemplateId.Value, profileId.Value, platform.Value.Value, loyaltyCardId, attributes);
         }
@@ -345,7 +345,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newDigitalPass"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewDigitalPass newDigitalPass, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -360,14 +359,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newDigitalPass"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewDigitalPass newDigitalPass, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newDigitalPass.PassTemplateId == null)
-                throw new ArgumentNullException(nameof(newDigitalPass.PassTemplateId), "Property is required for class NewDigitalPass.");
+                throw new JsonException("Cannot write null property NewDigitalPass.PassTemplateId to non-nullable JSON property 'passTemplateId'.");
 
             if (newDigitalPass.ProfileId == null)
-                throw new ArgumentNullException(nameof(newDigitalPass.ProfileId), "Property is required for class NewDigitalPass.");
+                throw new JsonException("Cannot write null property NewDigitalPass.ProfileId to non-nullable JSON property 'profileId'.");
 
             writer.WriteNumber("loyaltyProgramId", newDigitalPass.LoyaltyProgramId);
 

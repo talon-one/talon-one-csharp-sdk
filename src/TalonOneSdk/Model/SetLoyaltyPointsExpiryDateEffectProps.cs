@@ -186,22 +186,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class SetLoyaltyPointsExpiryDateEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class SetLoyaltyPointsExpiryDateEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class SetLoyaltyPointsExpiryDateEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class SetLoyaltyPointsExpiryDateEffectProps: subLedgerId.");
 
             if (!newExpiryDate.IsSet)
-                throw new ArgumentException("Property is required for class SetLoyaltyPointsExpiryDateEffectProps.", nameof(newExpiryDate));
+                throw new JsonException("Property is required for class SetLoyaltyPointsExpiryDateEffectProps: newExpiryDate.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps: subLedgerId.");
 
             if (newExpiryDate.IsSet && newExpiryDate.Value == null)
-                throw new ArgumentNullException(nameof(newExpiryDate), "Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Property is not nullable for class SetLoyaltyPointsExpiryDateEffectProps: newExpiryDate.");
 
             return new SetLoyaltyPointsExpiryDateEffectProps(programId.Value.Value, subLedgerId.Value, newExpiryDate.Value.Value, affectedTransactions);
         }
@@ -212,7 +212,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="setLoyaltyPointsExpiryDateEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SetLoyaltyPointsExpiryDateEffectProps setLoyaltyPointsExpiryDateEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -227,11 +226,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="setLoyaltyPointsExpiryDateEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SetLoyaltyPointsExpiryDateEffectProps setLoyaltyPointsExpiryDateEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (setLoyaltyPointsExpiryDateEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(setLoyaltyPointsExpiryDateEffectProps.SubLedgerId), "Property is required for class SetLoyaltyPointsExpiryDateEffectProps.");
+                throw new JsonException("Cannot write null property SetLoyaltyPointsExpiryDateEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             writer.WriteNumber("programId", setLoyaltyPointsExpiryDateEffectProps.ProgramId);
 

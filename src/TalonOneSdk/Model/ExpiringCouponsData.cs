@@ -334,34 +334,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!couponValue.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsData.", nameof(couponValue));
+                throw new JsonException("Property is required for class ExpiringCouponsData: CouponValue.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsData.", nameof(campaignId));
+                throw new JsonException("Property is required for class ExpiringCouponsData: CampaignId.");
 
             if (!usageLimit.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsData.", nameof(usageLimit));
+                throw new JsonException("Property is required for class ExpiringCouponsData: UsageLimit.");
 
             if (!usageCounter.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsData.", nameof(usageCounter));
+                throw new JsonException("Property is required for class ExpiringCouponsData: UsageCounter.");
 
             if (!attributes.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCouponsData.", nameof(attributes));
+                throw new JsonException("Property is required for class ExpiringCouponsData: Attributes.");
 
             if (couponValue.IsSet && couponValue.Value == null)
-                throw new ArgumentNullException(nameof(couponValue), "Property is not nullable for class ExpiringCouponsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsData: CouponValue.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class ExpiringCouponsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsData: CampaignId.");
 
             if (usageLimit.IsSet && usageLimit.Value == null)
-                throw new ArgumentNullException(nameof(usageLimit), "Property is not nullable for class ExpiringCouponsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsData: UsageLimit.");
 
             if (usageCounter.IsSet && usageCounter.Value == null)
-                throw new ArgumentNullException(nameof(usageCounter), "Property is not nullable for class ExpiringCouponsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsData: UsageCounter.");
 
             if (attributes.IsSet && attributes.Value == null)
-                throw new ArgumentNullException(nameof(attributes), "Property is not nullable for class ExpiringCouponsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCouponsData: Attributes.");
 
             return new ExpiringCouponsData(couponValue.Value, campaignId.Value.Value, usageLimit.Value.Value, usageCounter.Value.Value, attributes.Value, createdDate, validFrom, validUntil, customerProfileId, batchId);
         }
@@ -372,7 +372,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCouponsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExpiringCouponsData expiringCouponsData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -387,14 +386,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCouponsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExpiringCouponsData expiringCouponsData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (expiringCouponsData.CouponValue == null)
-                throw new ArgumentNullException(nameof(expiringCouponsData.CouponValue), "Property is required for class ExpiringCouponsData.");
+                throw new JsonException("Cannot write null property ExpiringCouponsData.CouponValue to non-nullable JSON property 'CouponValue'.");
 
             if (expiringCouponsData.Attributes == null)
-                throw new ArgumentNullException(nameof(expiringCouponsData.Attributes), "Property is required for class ExpiringCouponsData.");
+                throw new JsonException("Cannot write null property ExpiringCouponsData.Attributes to non-nullable JSON property 'Attributes'.");
 
             writer.WriteString("CouponValue", expiringCouponsData.CouponValue);
 

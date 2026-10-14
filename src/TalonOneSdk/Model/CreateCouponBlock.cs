@@ -366,28 +366,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponBlock.", nameof(type));
+                throw new JsonException("Property is required for class CreateCouponBlock: type.");
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponBlock.", nameof(campaignId));
+                throw new JsonException("Property is required for class CreateCouponBlock: campaignId.");
 
             if (!recipientId.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponBlock.", nameof(recipientId));
+                throw new JsonException("Property is required for class CreateCouponBlock: recipientId.");
 
             if (!storeInSession.IsSet)
-                throw new ArgumentException("Property is required for class CreateCouponBlock.", nameof(storeInSession));
+                throw new JsonException("Property is required for class CreateCouponBlock: storeInSession.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CreateCouponBlock.");
+                throw new JsonException("Property is not nullable for class CreateCouponBlock: type.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class CreateCouponBlock.");
+                throw new JsonException("Property is not nullable for class CreateCouponBlock: campaignId.");
 
             if (recipientId.IsSet && recipientId.Value == null)
-                throw new ArgumentNullException(nameof(recipientId), "Property is not nullable for class CreateCouponBlock.");
+                throw new JsonException("Property is not nullable for class CreateCouponBlock: recipientId.");
 
             if (storeInSession.IsSet && storeInSession.Value == null)
-                throw new ArgumentNullException(nameof(storeInSession), "Property is not nullable for class CreateCouponBlock.");
+                throw new JsonException("Property is not nullable for class CreateCouponBlock: storeInSession.");
 
             return new CreateCouponBlock(type.Value, campaignId.Value, recipientId.Value, storeInSession.Value.Value, id, tags, usageLimit, discountLimit, startDate, expiryDate, attributes, validCharacters, pattern);
         }
@@ -398,7 +398,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createCouponBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCouponBlock createCouponBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -413,17 +412,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createCouponBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCouponBlock createCouponBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createCouponBlock.Type == null)
-                throw new ArgumentNullException(nameof(createCouponBlock.Type), "Property is required for class CreateCouponBlock.");
+                throw new JsonException("Cannot write null property CreateCouponBlock.Type to non-nullable JSON property 'type'.");
 
             if (createCouponBlock.CampaignId == null)
-                throw new ArgumentNullException(nameof(createCouponBlock.CampaignId), "Property is required for class CreateCouponBlock.");
+                throw new JsonException("Cannot write null property CreateCouponBlock.CampaignId to non-nullable JSON property 'campaignId'.");
 
             if (createCouponBlock.RecipientId == null)
-                throw new ArgumentNullException(nameof(createCouponBlock.RecipientId), "Property is required for class CreateCouponBlock.");
+                throw new JsonException("Cannot write null property CreateCouponBlock.RecipientId to non-nullable JSON property 'recipientId'.");
 
             writer.WriteString("type", createCouponBlock.Type);
 

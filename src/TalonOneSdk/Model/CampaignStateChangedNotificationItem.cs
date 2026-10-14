@@ -218,28 +218,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStateChangedNotificationItem.", nameof(varEvent));
+                throw new JsonException("Property is required for class CampaignStateChangedNotificationItem: Event.");
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStateChangedNotificationItem.", nameof(campaign));
+                throw new JsonException("Property is required for class CampaignStateChangedNotificationItem: campaign.");
 
             if (!oldState.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStateChangedNotificationItem.", nameof(oldState));
+                throw new JsonException("Property is required for class CampaignStateChangedNotificationItem: oldState.");
 
             if (!newState.IsSet)
-                throw new ArgumentException("Property is required for class CampaignStateChangedNotificationItem.", nameof(newState));
+                throw new JsonException("Property is required for class CampaignStateChangedNotificationItem: newState.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignStateChangedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignStateChangedNotificationItem: Event.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignStateChangedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignStateChangedNotificationItem: campaign.");
 
             if (oldState.IsSet && oldState.Value == null)
-                throw new ArgumentNullException(nameof(oldState), "Property is not nullable for class CampaignStateChangedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignStateChangedNotificationItem: oldState.");
 
             if (newState.IsSet && newState.Value == null)
-                throw new ArgumentNullException(nameof(newState), "Property is not nullable for class CampaignStateChangedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignStateChangedNotificationItem: newState.");
 
             return new CampaignStateChangedNotificationItem(varEvent.Value, campaign.Value, oldState.Value, newState.Value, ruleset, placeholders);
         }
@@ -250,7 +250,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignStateChangedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignStateChangedNotificationItem campaignStateChangedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -265,20 +264,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignStateChangedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignStateChangedNotificationItem campaignStateChangedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignStateChangedNotificationItem.Event == null)
-                throw new ArgumentNullException(nameof(campaignStateChangedNotificationItem.Event), "Property is required for class CampaignStateChangedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignStateChangedNotificationItem.Event to non-nullable JSON property 'Event'.");
 
             if (campaignStateChangedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignStateChangedNotificationItem.Campaign), "Property is required for class CampaignStateChangedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignStateChangedNotificationItem.Campaign to non-nullable JSON property 'campaign'.");
 
             if (campaignStateChangedNotificationItem.OldState == null)
-                throw new ArgumentNullException(nameof(campaignStateChangedNotificationItem.OldState), "Property is required for class CampaignStateChangedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignStateChangedNotificationItem.OldState to non-nullable JSON property 'oldState'.");
 
             if (campaignStateChangedNotificationItem.NewState == null)
-                throw new ArgumentNullException(nameof(campaignStateChangedNotificationItem.NewState), "Property is required for class CampaignStateChangedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignStateChangedNotificationItem.NewState to non-nullable JSON property 'newState'.");
 
             writer.WriteString("Event", campaignStateChangedNotificationItem.Event);
 

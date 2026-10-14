@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!adds.IsSet)
-                throw new ArgumentException("Property is required for class ProfileAudiencesChanges.", nameof(adds));
+                throw new JsonException("Property is required for class ProfileAudiencesChanges: adds.");
 
             if (!deletes.IsSet)
-                throw new ArgumentException("Property is required for class ProfileAudiencesChanges.", nameof(deletes));
+                throw new JsonException("Property is required for class ProfileAudiencesChanges: deletes.");
 
             if (adds.IsSet && adds.Value == null)
-                throw new ArgumentNullException(nameof(adds), "Property is not nullable for class ProfileAudiencesChanges.");
+                throw new JsonException("Property is not nullable for class ProfileAudiencesChanges: adds.");
 
             if (deletes.IsSet && deletes.Value == null)
-                throw new ArgumentNullException(nameof(deletes), "Property is not nullable for class ProfileAudiencesChanges.");
+                throw new JsonException("Property is not nullable for class ProfileAudiencesChanges: deletes.");
 
             return new ProfileAudiencesChanges(adds.Value, deletes.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="profileAudiencesChanges"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProfileAudiencesChanges profileAudiencesChanges, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="profileAudiencesChanges"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProfileAudiencesChanges profileAudiencesChanges, JsonSerializerOptions jsonSerializerOptions)
         {
             if (profileAudiencesChanges.Adds == null)
-                throw new ArgumentNullException(nameof(profileAudiencesChanges.Adds), "Property is required for class ProfileAudiencesChanges.");
+                throw new JsonException("Cannot write null property ProfileAudiencesChanges.Adds to non-nullable JSON property 'adds'.");
 
             if (profileAudiencesChanges.Deletes == null)
-                throw new ArgumentNullException(nameof(profileAudiencesChanges.Deletes), "Property is required for class ProfileAudiencesChanges.");
+                throw new JsonException("Cannot write null property ProfileAudiencesChanges.Deletes to non-nullable JSON property 'deletes'.");
 
             writer.WritePropertyName("adds");
             JsonSerializer.Serialize(writer, profileAudiencesChanges.Adds, jsonSerializerOptions);

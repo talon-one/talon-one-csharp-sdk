@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AudienceMembership.", nameof(id));
+                throw new JsonException("Property is required for class AudienceMembership: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AudienceMembership.", nameof(name));
+                throw new JsonException("Property is required for class AudienceMembership: name.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AudienceMembership.");
+                throw new JsonException("Property is not nullable for class AudienceMembership: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AudienceMembership.");
+                throw new JsonException("Property is not nullable for class AudienceMembership: name.");
 
             return new AudienceMembership(id.Value.Value, name.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="audienceMembership"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AudienceMembership audienceMembership, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,11 +181,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="audienceMembership"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AudienceMembership audienceMembership, JsonSerializerOptions jsonSerializerOptions)
         {
             if (audienceMembership.Name == null)
-                throw new ArgumentNullException(nameof(audienceMembership.Name), "Property is required for class AudienceMembership.");
+                throw new JsonException("Cannot write null property AudienceMembership.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", audienceMembership.Id);
 

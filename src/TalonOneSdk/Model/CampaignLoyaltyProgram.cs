@@ -177,28 +177,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLoyaltyProgram.", nameof(id));
+                throw new JsonException("Property is required for class CampaignLoyaltyProgram: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLoyaltyProgram.", nameof(name));
+                throw new JsonException("Property is required for class CampaignLoyaltyProgram: name.");
 
             if (!tiers.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLoyaltyProgram.", nameof(tiers));
+                throw new JsonException("Property is required for class CampaignLoyaltyProgram: tiers.");
 
             if (!cardBased.IsSet)
-                throw new ArgumentException("Property is required for class CampaignLoyaltyProgram.", nameof(cardBased));
+                throw new JsonException("Property is required for class CampaignLoyaltyProgram: cardBased.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class CampaignLoyaltyProgram: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class CampaignLoyaltyProgram: name.");
 
             if (tiers.IsSet && tiers.Value == null)
-                throw new ArgumentNullException(nameof(tiers), "Property is not nullable for class CampaignLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class CampaignLoyaltyProgram: tiers.");
 
             if (cardBased.IsSet && cardBased.Value == null)
-                throw new ArgumentNullException(nameof(cardBased), "Property is not nullable for class CampaignLoyaltyProgram.");
+                throw new JsonException("Property is not nullable for class CampaignLoyaltyProgram: cardBased.");
 
             return new CampaignLoyaltyProgram(id.Value.Value, name.Value, tiers.Value, cardBased.Value.Value);
         }
@@ -209,7 +209,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignLoyaltyProgram"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignLoyaltyProgram campaignLoyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -224,14 +223,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignLoyaltyProgram"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignLoyaltyProgram campaignLoyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignLoyaltyProgram.Name == null)
-                throw new ArgumentNullException(nameof(campaignLoyaltyProgram.Name), "Property is required for class CampaignLoyaltyProgram.");
+                throw new JsonException("Cannot write null property CampaignLoyaltyProgram.Name to non-nullable JSON property 'name'.");
 
             if (campaignLoyaltyProgram.Tiers == null)
-                throw new ArgumentNullException(nameof(campaignLoyaltyProgram.Tiers), "Property is required for class CampaignLoyaltyProgram.");
+                throw new JsonException("Cannot write null property CampaignLoyaltyProgram.Tiers to non-nullable JSON property 'tiers'.");
 
             writer.WriteNumber("id", campaignLoyaltyProgram.Id);
 

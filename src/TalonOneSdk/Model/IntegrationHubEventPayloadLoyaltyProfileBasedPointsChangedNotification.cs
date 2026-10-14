@@ -325,58 +325,58 @@ namespace TalonOneSdk.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(eventId));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: EventId.");
 
             if (!profileIntegrationID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(profileIntegrationID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: ProfileIntegrationID.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: LoyaltyProgramID.");
 
             if (!loyaltyProgramName.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(loyaltyProgramName));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: LoyaltyProgramName.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(subledgerID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: SubledgerID.");
 
             if (!sourceOfEvent.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(sourceOfEvent));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: SourceOfEvent.");
 
             if (!currentTier.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(currentTier));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: CurrentTier.");
 
             if (!currentPoints.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(currentPoints));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: CurrentPoints.");
 
             if (!publishedAt.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.", nameof(publishedAt));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: PublishedAt.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: EventId.");
 
             if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: ProfileIntegrationID.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: LoyaltyProgramID.");
 
             if (loyaltyProgramName.IsSet && loyaltyProgramName.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramName), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: LoyaltyProgramName.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: SubledgerID.");
 
             if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
-                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: SourceOfEvent.");
 
             if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: CurrentTier.");
 
             if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: CurrentPoints.");
 
             if (publishedAt.IsSet && publishedAt.Value == null)
-                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification: PublishedAt.");
 
             return new IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(eventId.Value.Value, profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentTier.Value, currentPoints.Value.Value, publishedAt.Value.Value, sessionIntegrationID, employeeName, userID, actions);
         }
@@ -387,7 +387,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -402,23 +401,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ProfileIntegrationID == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ProfileIntegrationID), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.ProfileIntegrationID to non-nullable JSON property 'ProfileIntegrationID'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.LoyaltyProgramName == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.LoyaltyProgramName), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.LoyaltyProgramName to non-nullable JSON property 'LoyaltyProgramName'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SubledgerID == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SubledgerID), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SourceOfEvent == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SourceOfEvent), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SourceOfEvent to non-nullable JSON property 'SourceOfEvent'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentTier == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentTier), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentTier to non-nullable JSON property 'CurrentTier'.");
 
             writer.WriteNumber("EventId", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.EventId);
 

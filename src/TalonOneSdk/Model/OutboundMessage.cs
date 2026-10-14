@@ -418,34 +418,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!uuid.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessage.", nameof(uuid));
+                throw new JsonException("Property is required for class OutboundMessage: uuid.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessage.", nameof(notificationType));
+                throw new JsonException("Property is required for class OutboundMessage: notificationType.");
 
             if (!firstLogAt.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessage.", nameof(firstLogAt));
+                throw new JsonException("Property is required for class OutboundMessage: firstLogAt.");
 
             if (!lastLogAt.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessage.", nameof(lastLogAt));
+                throw new JsonException("Property is required for class OutboundMessage: lastLogAt.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class OutboundMessage.", nameof(status));
+                throw new JsonException("Property is required for class OutboundMessage: status.");
 
             if (uuid.IsSet && uuid.Value == null)
-                throw new ArgumentNullException(nameof(uuid), "Property is not nullable for class OutboundMessage.");
+                throw new JsonException("Property is not nullable for class OutboundMessage: uuid.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class OutboundMessage.");
+                throw new JsonException("Property is not nullable for class OutboundMessage: notificationType.");
 
             if (firstLogAt.IsSet && firstLogAt.Value == null)
-                throw new ArgumentNullException(nameof(firstLogAt), "Property is not nullable for class OutboundMessage.");
+                throw new JsonException("Property is not nullable for class OutboundMessage: firstLogAt.");
 
             if (lastLogAt.IsSet && lastLogAt.Value == null)
-                throw new ArgumentNullException(nameof(lastLogAt), "Property is not nullable for class OutboundMessage.");
+                throw new JsonException("Property is not nullable for class OutboundMessage: lastLogAt.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class OutboundMessage.");
+                throw new JsonException("Property is not nullable for class OutboundMessage: status.");
 
             return new OutboundMessage(uuid.Value.Value, notificationType.Value, firstLogAt.Value.Value, lastLogAt.Value.Value, status.Value, notificationId, notificationName, webhookId, webhookName, applicationId, loyaltyProgramId, request, lastResponseCode, retryCount, responses);
         }
@@ -456,7 +456,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutboundMessage outboundMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -471,14 +470,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outboundMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutboundMessage outboundMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outboundMessage.NotificationType == null)
-                throw new ArgumentNullException(nameof(outboundMessage.NotificationType), "Property is required for class OutboundMessage.");
+                throw new JsonException("Cannot write null property OutboundMessage.NotificationType to non-nullable JSON property 'notificationType'.");
 
             if (outboundMessage.Status == null)
-                throw new ArgumentNullException(nameof(outboundMessage.Status), "Property is required for class OutboundMessage.");
+                throw new JsonException("Cannot write null property OutboundMessage.Status to non-nullable JSON property 'status'.");
 
             writer.WriteString("uuid", outboundMessage.Uuid);
 

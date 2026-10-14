@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!numberOfCardsGenerated.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCardBatchResponse.", nameof(numberOfCardsGenerated));
+                throw new JsonException("Property is required for class LoyaltyCardBatchResponse: numberOfCardsGenerated.");
 
             if (!batchId.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCardBatchResponse.", nameof(batchId));
+                throw new JsonException("Property is required for class LoyaltyCardBatchResponse: batchId.");
 
             if (numberOfCardsGenerated.IsSet && numberOfCardsGenerated.Value == null)
-                throw new ArgumentNullException(nameof(numberOfCardsGenerated), "Property is not nullable for class LoyaltyCardBatchResponse.");
+                throw new JsonException("Property is not nullable for class LoyaltyCardBatchResponse: numberOfCardsGenerated.");
 
             if (batchId.IsSet && batchId.Value == null)
-                throw new ArgumentNullException(nameof(batchId), "Property is not nullable for class LoyaltyCardBatchResponse.");
+                throw new JsonException("Property is not nullable for class LoyaltyCardBatchResponse: batchId.");
 
             return new LoyaltyCardBatchResponse(numberOfCardsGenerated.Value.Value, batchId.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyCardBatchResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyCardBatchResponse loyaltyCardBatchResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,11 +181,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyCardBatchResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyCardBatchResponse loyaltyCardBatchResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyCardBatchResponse.BatchId == null)
-                throw new ArgumentNullException(nameof(loyaltyCardBatchResponse.BatchId), "Property is required for class LoyaltyCardBatchResponse.");
+                throw new JsonException("Cannot write null property LoyaltyCardBatchResponse.BatchId to non-nullable JSON property 'batchId'.");
 
             writer.WriteNumber("numberOfCardsGenerated", loyaltyCardBatchResponse.NumberOfCardsGenerated);
 

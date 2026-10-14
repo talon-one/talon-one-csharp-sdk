@@ -481,46 +481,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(id));
+                throw new JsonException("Property is required for class CustomerProfileReward: id.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(integrationId));
+                throw new JsonException("Property is required for class CustomerProfileReward: integrationId.");
 
             if (!rewardId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(rewardId));
+                throw new JsonException("Property is required for class CustomerProfileReward: rewardId.");
 
             if (!rewardIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(rewardIntegrationId));
+                throw new JsonException("Property is required for class CustomerProfileReward: rewardIntegrationId.");
 
             if (!rewardName.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(rewardName));
+                throw new JsonException("Property is required for class CustomerProfileReward: rewardName.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(status));
+                throw new JsonException("Property is required for class CustomerProfileReward: status.");
 
             if (!unlockedAt.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfileReward.", nameof(unlockedAt));
+                throw new JsonException("Property is required for class CustomerProfileReward: unlockedAt.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerProfileReward.");
+                throw new JsonException("Property is not nullable for class CustomerProfileReward: id.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerProfileReward.");
+                throw new JsonException("Property is not nullable for class CustomerProfileReward: integrationId.");
 
             if (rewardId.IsSet && rewardId.Value == null)
-                throw new ArgumentNullException(nameof(rewardId), "Property is not nullable for class CustomerProfileReward.");
+                throw new JsonException("Property is not nullable for class CustomerProfileReward: rewardId.");
 
             if (rewardIntegrationId.IsSet && rewardIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(rewardIntegrationId), "Property is not nullable for class CustomerProfileReward.");
+                throw new JsonException("Property is not nullable for class CustomerProfileReward: rewardIntegrationId.");
 
             if (rewardName.IsSet && rewardName.Value == null)
-                throw new ArgumentNullException(nameof(rewardName), "Property is not nullable for class CustomerProfileReward.");
+                throw new JsonException("Property is not nullable for class CustomerProfileReward: rewardName.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class CustomerProfileReward.");
+                throw new JsonException("Property is not nullable for class CustomerProfileReward: status.");
 
             if (unlockedAt.IsSet && unlockedAt.Value == null)
-                throw new ArgumentNullException(nameof(unlockedAt), "Property is not nullable for class CustomerProfileReward.");
+                throw new JsonException("Property is not nullable for class CustomerProfileReward: unlockedAt.");
 
             return new CustomerProfileReward(id.Value.Value, integrationId.Value, rewardId.Value.Value, rewardIntegrationId.Value, rewardName.Value, status.Value.Value, unlockedAt.Value.Value, description, rule, unlockedByProfileIntegrationId, usedAt, usedByProfileIntegrationId, loyaltyProgramId, loyaltyCardId);
         }
@@ -531,7 +531,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileReward"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerProfileReward customerProfileReward, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -546,17 +545,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfileReward"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerProfileReward customerProfileReward, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerProfileReward.IntegrationId == null)
-                throw new ArgumentNullException(nameof(customerProfileReward.IntegrationId), "Property is required for class CustomerProfileReward.");
+                throw new JsonException("Cannot write null property CustomerProfileReward.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             if (customerProfileReward.RewardIntegrationId == null)
-                throw new ArgumentNullException(nameof(customerProfileReward.RewardIntegrationId), "Property is required for class CustomerProfileReward.");
+                throw new JsonException("Cannot write null property CustomerProfileReward.RewardIntegrationId to non-nullable JSON property 'rewardIntegrationId'.");
 
             if (customerProfileReward.RewardName == null)
-                throw new ArgumentNullException(nameof(customerProfileReward.RewardName), "Property is required for class CustomerProfileReward.");
+                throw new JsonException("Cannot write null property CustomerProfileReward.RewardName to non-nullable JSON property 'rewardName'.");
 
             writer.WriteNumber("id", customerProfileReward.Id);
 

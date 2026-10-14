@@ -146,16 +146,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class GetLoyaltyCardTransactionLogs200Response.", nameof(hasMore));
+                throw new JsonException("Property is required for class GetLoyaltyCardTransactionLogs200Response: hasMore.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GetLoyaltyCardTransactionLogs200Response.", nameof(data));
+                throw new JsonException("Property is required for class GetLoyaltyCardTransactionLogs200Response: data.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class GetLoyaltyCardTransactionLogs200Response.");
+                throw new JsonException("Property is not nullable for class GetLoyaltyCardTransactionLogs200Response: hasMore.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetLoyaltyCardTransactionLogs200Response.");
+                throw new JsonException("Property is not nullable for class GetLoyaltyCardTransactionLogs200Response: data.");
 
             return new GetLoyaltyCardTransactionLogs200Response(hasMore.Value.Value, data.Value);
         }
@@ -166,7 +166,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getLoyaltyCardTransactionLogs200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetLoyaltyCardTransactionLogs200Response getLoyaltyCardTransactionLogs200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -181,11 +180,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getLoyaltyCardTransactionLogs200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetLoyaltyCardTransactionLogs200Response getLoyaltyCardTransactionLogs200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getLoyaltyCardTransactionLogs200Response.Data == null)
-                throw new ArgumentNullException(nameof(getLoyaltyCardTransactionLogs200Response.Data), "Property is required for class GetLoyaltyCardTransactionLogs200Response.");
+                throw new JsonException("Cannot write null property GetLoyaltyCardTransactionLogs200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WriteBoolean("hasMore", getLoyaltyCardTransactionLogs200Response.HasMore);
 

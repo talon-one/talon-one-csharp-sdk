@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class IdentifiableEntity.", nameof(id));
+                throw new JsonException("Property is required for class IdentifiableEntity: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IdentifiableEntity.");
+                throw new JsonException("Property is not nullable for class IdentifiableEntity: id.");
 
             return new IdentifiableEntity(id.Value.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="identifiableEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IdentifiableEntity identifiableEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,7 +160,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="identifiableEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IdentifiableEntity identifiableEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("id", identifiableEntity.Id);

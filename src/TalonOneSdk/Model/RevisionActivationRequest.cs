@@ -159,10 +159,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!userIds.IsSet)
-                throw new ArgumentException("Property is required for class RevisionActivationRequest.", nameof(userIds));
+                throw new JsonException("Property is required for class RevisionActivationRequest: userIds.");
 
             if (userIds.IsSet && userIds.Value == null)
-                throw new ArgumentNullException(nameof(userIds), "Property is not nullable for class RevisionActivationRequest.");
+                throw new JsonException("Property is not nullable for class RevisionActivationRequest: userIds.");
 
             return new RevisionActivationRequest(userIds.Value, activateAt);
         }
@@ -173,7 +173,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="revisionActivationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RevisionActivationRequest revisionActivationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -188,11 +187,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="revisionActivationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RevisionActivationRequest revisionActivationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (revisionActivationRequest.UserIds == null)
-                throw new ArgumentNullException(nameof(revisionActivationRequest.UserIds), "Property is required for class RevisionActivationRequest.");
+                throw new JsonException("Cannot write null property RevisionActivationRequest.UserIds to non-nullable JSON property 'userIds'.");
 
             writer.WritePropertyName("userIds");
             JsonSerializer.Serialize(writer, revisionActivationRequest.UserIds, jsonSerializerOptions);

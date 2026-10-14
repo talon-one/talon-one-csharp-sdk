@@ -197,34 +197,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughTrigger.", nameof(id));
+                throw new JsonException("Property is required for class StrikethroughTrigger: id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughTrigger.", nameof(type));
+                throw new JsonException("Property is required for class StrikethroughTrigger: type.");
 
             if (!triggeredAt.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughTrigger.", nameof(triggeredAt));
+                throw new JsonException("Property is required for class StrikethroughTrigger: triggeredAt.");
 
             if (!totalAffectedItems.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughTrigger.", nameof(totalAffectedItems));
+                throw new JsonException("Property is required for class StrikethroughTrigger: totalAffectedItems.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughTrigger.", nameof(payload));
+                throw new JsonException("Property is required for class StrikethroughTrigger: payload.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class StrikethroughTrigger.");
+                throw new JsonException("Property is not nullable for class StrikethroughTrigger: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class StrikethroughTrigger.");
+                throw new JsonException("Property is not nullable for class StrikethroughTrigger: type.");
 
             if (triggeredAt.IsSet && triggeredAt.Value == null)
-                throw new ArgumentNullException(nameof(triggeredAt), "Property is not nullable for class StrikethroughTrigger.");
+                throw new JsonException("Property is not nullable for class StrikethroughTrigger: triggeredAt.");
 
             if (totalAffectedItems.IsSet && totalAffectedItems.Value == null)
-                throw new ArgumentNullException(nameof(totalAffectedItems), "Property is not nullable for class StrikethroughTrigger.");
+                throw new JsonException("Property is not nullable for class StrikethroughTrigger: totalAffectedItems.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class StrikethroughTrigger.");
+                throw new JsonException("Property is not nullable for class StrikethroughTrigger: payload.");
 
             return new StrikethroughTrigger(id.Value.Value, type.Value, triggeredAt.Value.Value, totalAffectedItems.Value.Value, payload.Value);
         }
@@ -235,7 +235,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughTrigger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StrikethroughTrigger strikethroughTrigger, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -250,14 +249,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughTrigger"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StrikethroughTrigger strikethroughTrigger, JsonSerializerOptions jsonSerializerOptions)
         {
             if (strikethroughTrigger.Type == null)
-                throw new ArgumentNullException(nameof(strikethroughTrigger.Type), "Property is required for class StrikethroughTrigger.");
+                throw new JsonException("Cannot write null property StrikethroughTrigger.Type to non-nullable JSON property 'type'.");
 
             if (strikethroughTrigger.Payload == null)
-                throw new ArgumentNullException(nameof(strikethroughTrigger.Payload), "Property is required for class StrikethroughTrigger.");
+                throw new JsonException("Cannot write null property StrikethroughTrigger.Payload to non-nullable JSON property 'payload'.");
 
             writer.WriteNumber("id", strikethroughTrigger.Id);
 

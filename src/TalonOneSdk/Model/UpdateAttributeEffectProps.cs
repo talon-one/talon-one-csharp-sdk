@@ -145,13 +145,13 @@ namespace TalonOneSdk.Model
             }
 
             if (!path.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAttributeEffectProps.", nameof(path));
+                throw new JsonException("Property is required for class UpdateAttributeEffectProps: path.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAttributeEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class UpdateAttributeEffectProps: value.");
 
             if (path.IsSet && path.Value == null)
-                throw new ArgumentNullException(nameof(path), "Property is not nullable for class UpdateAttributeEffectProps.");
+                throw new JsonException("Property is not nullable for class UpdateAttributeEffectProps: path.");
 
             return new UpdateAttributeEffectProps(path.Value, value.Value);
         }
@@ -162,7 +162,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAttributeEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateAttributeEffectProps updateAttributeEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -177,11 +176,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAttributeEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAttributeEffectProps updateAttributeEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateAttributeEffectProps.Path == null)
-                throw new ArgumentNullException(nameof(updateAttributeEffectProps.Path), "Property is required for class UpdateAttributeEffectProps.");
+                throw new JsonException("Cannot write null property UpdateAttributeEffectProps.Path to non-nullable JSON property 'path'.");
 
             writer.WriteString("path", updateAttributeEffectProps.Path);
 

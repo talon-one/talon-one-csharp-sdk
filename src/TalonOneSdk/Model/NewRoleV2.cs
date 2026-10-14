@@ -190,16 +190,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class NewRoleV2.", nameof(name));
+                throw new JsonException("Property is required for class NewRoleV2: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class NewRoleV2.", nameof(description));
+                throw new JsonException("Property is required for class NewRoleV2: description.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class NewRoleV2.");
+                throw new JsonException("Property is not nullable for class NewRoleV2: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class NewRoleV2.");
+                throw new JsonException("Property is not nullable for class NewRoleV2: description.");
 
             return new NewRoleV2(name.Value, description.Value, permissions, members);
         }
@@ -210,7 +210,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newRoleV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewRoleV2 newRoleV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -225,14 +224,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newRoleV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewRoleV2 newRoleV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newRoleV2.Name == null)
-                throw new ArgumentNullException(nameof(newRoleV2.Name), "Property is required for class NewRoleV2.");
+                throw new JsonException("Cannot write null property NewRoleV2.Name to non-nullable JSON property 'name'.");
 
             if (newRoleV2.Description == null)
-                throw new ArgumentNullException(nameof(newRoleV2.Description), "Property is required for class NewRoleV2.");
+                throw new JsonException("Cannot write null property NewRoleV2.Description to non-nullable JSON property 'description'.");
 
             writer.WriteString("name", newRoleV2.Name);
 

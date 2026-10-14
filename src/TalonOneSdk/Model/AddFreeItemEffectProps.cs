@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// This effect indicates that a free item should be added to the shopping cart in the current session. In this example, add the SKU to the shopping cart and set its price to &#x60;0&#x60;.  The effect of a successful referral can mean a free item for someone else, such as the referrer.
+    /// This effect indicates that a free item should be added to the shopping cart in the current session. In this example, add the SKU to the shopping cart and set its price to &#x60;0&#x60;.
     /// </summary>
     public partial class AddFreeItemEffectProps : IValidatableObject
     {
@@ -167,16 +167,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class AddFreeItemEffectProps.", nameof(sku));
+                throw new JsonException("Property is required for class AddFreeItemEffectProps: sku.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AddFreeItemEffectProps.", nameof(name));
+                throw new JsonException("Property is required for class AddFreeItemEffectProps: name.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class AddFreeItemEffectProps.");
+                throw new JsonException("Property is not nullable for class AddFreeItemEffectProps: sku.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AddFreeItemEffectProps.");
+                throw new JsonException("Property is not nullable for class AddFreeItemEffectProps: name.");
 
             return new AddFreeItemEffectProps(sku.Value, name.Value, desiredQuantity);
         }
@@ -187,7 +187,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addFreeItemEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AddFreeItemEffectProps addFreeItemEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -202,14 +201,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addFreeItemEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AddFreeItemEffectProps addFreeItemEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (addFreeItemEffectProps.Sku == null)
-                throw new ArgumentNullException(nameof(addFreeItemEffectProps.Sku), "Property is required for class AddFreeItemEffectProps.");
+                throw new JsonException("Cannot write null property AddFreeItemEffectProps.Sku to non-nullable JSON property 'sku'.");
 
             if (addFreeItemEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(addFreeItemEffectProps.Name), "Property is required for class AddFreeItemEffectProps.");
+                throw new JsonException("Cannot write null property AddFreeItemEffectProps.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("sku", addFreeItemEffectProps.Sku);
 

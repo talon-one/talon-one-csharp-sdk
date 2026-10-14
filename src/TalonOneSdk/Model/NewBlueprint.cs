@@ -318,10 +318,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class NewBlueprint.", nameof(title));
+                throw new JsonException("Property is required for class NewBlueprint: title.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class NewBlueprint.");
+                throw new JsonException("Property is not nullable for class NewBlueprint: title.");
 
             return new NewBlueprint(title.Value, description, category, rules, cartItemFilters);
         }
@@ -332,7 +332,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newBlueprint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewBlueprint newBlueprint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -347,11 +346,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newBlueprint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewBlueprint newBlueprint, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newBlueprint.Title == null)
-                throw new ArgumentNullException(nameof(newBlueprint.Title), "Property is required for class NewBlueprint.");
+                throw new JsonException("Cannot write null property NewBlueprint.Title to non-nullable JSON property 'title'.");
 
             writer.WriteString("title", newBlueprint.Title);
 

@@ -377,64 +377,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(id));
+                throw new JsonException("Property is required for class CustomEffect: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(created));
+                throw new JsonException("Property is required for class CustomEffect: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(accountId));
+                throw new JsonException("Property is required for class CustomEffect: accountId.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(modified));
+                throw new JsonException("Property is required for class CustomEffect: modified.");
 
             if (!applicationIds.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(applicationIds));
+                throw new JsonException("Property is required for class CustomEffect: applicationIds.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(name));
+                throw new JsonException("Property is required for class CustomEffect: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(title));
+                throw new JsonException("Property is required for class CustomEffect: title.");
 
             if (!payload.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(payload));
+                throw new JsonException("Property is required for class CustomEffect: payload.");
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(enabled));
+                throw new JsonException("Property is required for class CustomEffect: enabled.");
 
             if (!createdBy.IsSet)
-                throw new ArgumentException("Property is required for class CustomEffect.", nameof(createdBy));
+                throw new JsonException("Property is required for class CustomEffect: createdBy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: accountId.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: modified.");
 
             if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: applicationIds.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: title.");
 
             if (payload.IsSet && payload.Value == null)
-                throw new ArgumentNullException(nameof(payload), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: payload.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: enabled.");
 
             if (createdBy.IsSet && createdBy.Value == null)
-                throw new ArgumentNullException(nameof(createdBy), "Property is not nullable for class CustomEffect.");
+                throw new JsonException("Property is not nullable for class CustomEffect: createdBy.");
 
             return new CustomEffect(id.Value.Value, created.Value.Value, accountId.Value.Value, modified.Value.Value, applicationIds.Value, name.Value, title.Value, payload.Value, enabled.Value.Value, createdBy.Value.Value, isPerItem, description, varParams, modifiedBy);
         }
@@ -445,7 +445,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customEffect"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomEffect customEffect, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -460,20 +459,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customEffect"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomEffect customEffect, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customEffect.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(customEffect.ApplicationIds), "Property is required for class CustomEffect.");
+                throw new JsonException("Cannot write null property CustomEffect.ApplicationIds to non-nullable JSON property 'applicationIds'.");
 
             if (customEffect.Name == null)
-                throw new ArgumentNullException(nameof(customEffect.Name), "Property is required for class CustomEffect.");
+                throw new JsonException("Cannot write null property CustomEffect.Name to non-nullable JSON property 'name'.");
 
             if (customEffect.Title == null)
-                throw new ArgumentNullException(nameof(customEffect.Title), "Property is required for class CustomEffect.");
+                throw new JsonException("Cannot write null property CustomEffect.Title to non-nullable JSON property 'title'.");
 
             if (customEffect.Payload == null)
-                throw new ArgumentNullException(nameof(customEffect.Payload), "Property is required for class CustomEffect.");
+                throw new JsonException("Cannot write null property CustomEffect.Payload to non-nullable JSON property 'payload'.");
 
             writer.WriteNumber("id", customEffect.Id);
 

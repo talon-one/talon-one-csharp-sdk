@@ -150,10 +150,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class GetAudienceMemberships200Response.", nameof(data));
+                throw new JsonException("Property is required for class GetAudienceMemberships200Response: data.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class GetAudienceMemberships200Response.");
+                throw new JsonException("Property is not nullable for class GetAudienceMemberships200Response: data.");
 
             return new GetAudienceMemberships200Response(data.Value, hasMore);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getAudienceMemberships200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetAudienceMemberships200Response getAudienceMemberships200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="getAudienceMemberships200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetAudienceMemberships200Response getAudienceMemberships200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (getAudienceMemberships200Response.Data == null)
-                throw new ArgumentNullException(nameof(getAudienceMemberships200Response.Data), "Property is required for class GetAudienceMemberships200Response.");
+                throw new JsonException("Cannot write null property GetAudienceMemberships200Response.Data to non-nullable JSON property 'data'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, getAudienceMemberships200Response.Data, jsonSerializerOptions);

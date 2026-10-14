@@ -464,16 +464,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class CreateApplicationAPIKey.", nameof(title));
+                throw new JsonException("Property is required for class CreateApplicationAPIKey: title.");
 
             if (!expires.IsSet)
-                throw new ArgumentException("Property is required for class CreateApplicationAPIKey.", nameof(expires));
+                throw new JsonException("Property is required for class CreateApplicationAPIKey: expires.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class CreateApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class CreateApplicationAPIKey: title.");
 
             if (expires.IsSet && expires.Value == null)
-                throw new ArgumentNullException(nameof(expires), "Property is not nullable for class CreateApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class CreateApplicationAPIKey: expires.");
 
             return new CreateApplicationAPIKey(title.Value, expires.Value.Value, platform, type, timeOffset);
         }
@@ -484,7 +484,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createApplicationAPIKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateApplicationAPIKey createApplicationAPIKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -499,11 +498,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createApplicationAPIKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateApplicationAPIKey createApplicationAPIKey, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createApplicationAPIKey.Title == null)
-                throw new ArgumentNullException(nameof(createApplicationAPIKey.Title), "Property is required for class CreateApplicationAPIKey.");
+                throw new JsonException("Cannot write null property CreateApplicationAPIKey.Title to non-nullable JSON property 'title'.");
 
             writer.WriteString("title", createApplicationAPIKey.Title);
 

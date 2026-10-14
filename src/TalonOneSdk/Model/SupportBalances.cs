@@ -176,10 +176,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!awardedPoints.IsSet)
-                throw new ArgumentException("Property is required for class SupportBalances.", nameof(awardedPoints));
+                throw new JsonException("Property is required for class SupportBalances: awardedPoints.");
 
             if (awardedPoints.IsSet && awardedPoints.Value == null)
-                throw new ArgumentNullException(nameof(awardedPoints), "Property is not nullable for class SupportBalances.");
+                throw new JsonException("Property is not nullable for class SupportBalances: awardedPoints.");
 
             return new SupportBalances(awardedPoints.Value.Value, threshold, remainingBalance);
         }
@@ -190,7 +190,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="supportBalances"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SupportBalances supportBalances, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -205,7 +204,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="supportBalances"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SupportBalances supportBalances, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("awardedPoints", supportBalances.AwardedPoints);

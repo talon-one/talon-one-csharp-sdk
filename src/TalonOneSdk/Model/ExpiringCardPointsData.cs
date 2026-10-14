@@ -38,8 +38,11 @@ namespace TalonOneSdk.Model
         /// <param name="cardIdentifier">The identifier of the loyalty card, &#x60;which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
         /// <param name="usersPerCardLimit">The maximum number of customer profiles with which a card can be shared. This can be set to &#x60;0&#x60; for no limit. </param>
         /// <param name="profiles">The integration IDs of the customer profiles linked to the card.</param>
+        /// <param name="created">The timestamp when the loyalty transaction occurred.</param>
+        /// <param name="awaitsActivation">Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</param>
+        /// <param name="validityDuration">The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. </param>
         [JsonConstructor]
-        public ExpiringCardPointsData(DateTime expiryDate, long loyaltyProgramID, decimal amountOfExpiringPoints, string subledgerID, string cardIdentifier, long usersPerCardLimit, List<string> profiles)
+        public ExpiringCardPointsData(DateTime expiryDate, long loyaltyProgramID, decimal amountOfExpiringPoints, string subledgerID, string cardIdentifier, long usersPerCardLimit, List<string> profiles, Option<DateTime?> created = default, Option<bool?> awaitsActivation = default, Option<string> validityDuration = default)
         {
             ExpiryDate = expiryDate;
             LoyaltyProgramID = loyaltyProgramID;
@@ -48,6 +51,9 @@ namespace TalonOneSdk.Model
             CardIdentifier = cardIdentifier;
             UsersPerCardLimit = usersPerCardLimit;
             Profiles = profiles;
+            CreatedOption = created;
+            AwaitsActivationOption = awaitsActivation;
+            ValidityDurationOption = validityDuration;
             OnCreated();
         }
 
@@ -108,6 +114,51 @@ namespace TalonOneSdk.Model
         public List<string> Profiles { get; set; }
 
         /// <summary>
+        /// Used to track the state of Created
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> CreatedOption { get; private set; }
+
+        /// <summary>
+        /// The timestamp when the loyalty transaction occurred.
+        /// </summary>
+        /// <value>The timestamp when the loyalty transaction occurred.</value>
+        /* <example>2023-01-24T14:15:22Z</example> */
+        [JsonPropertyName("Created")]
+        public DateTime? Created { get { return this.CreatedOption.Value; } set { this.CreatedOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of AwaitsActivation
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> AwaitsActivationOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+        /// </summary>
+        /// <value>Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("AwaitsActivation")]
+        public bool? AwaitsActivation { get { return this.AwaitsActivationOption.Value; } set { this.AwaitsActivationOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. 
+        /// </summary>
+        /// <value>The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set. </value>
+        /* <example>30D</example> */
+        [JsonPropertyName("ValidityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -122,6 +173,9 @@ namespace TalonOneSdk.Model
             sb.Append("  CardIdentifier: ").Append(CardIdentifier).Append("\n");
             sb.Append("  UsersPerCardLimit: ").Append(UsersPerCardLimit).Append("\n");
             sb.Append("  Profiles: ").Append(Profiles).Append("\n");
+            sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  AwaitsActivation: ").Append(AwaitsActivation).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -170,6 +224,11 @@ namespace TalonOneSdk.Model
         public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd";
 
         /// <summary>
+        /// The format to use to serialize Created
+        /// </summary>
+        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// Deserializes json to <see cref="ExpiringCardPointsData" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -193,6 +252,9 @@ namespace TalonOneSdk.Model
             Option<string> cardIdentifier = default;
             Option<long?> usersPerCardLimit = default;
             Option<List<string>> profiles = default;
+            Option<DateTime?> created = default;
+            Option<bool?> awaitsActivation = default;
+            Option<string> validityDuration = default;
 
             while (utf8JsonReader.Read())
             {
@@ -230,6 +292,15 @@ namespace TalonOneSdk.Model
                         case "Profiles":
                             profiles = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "Created":
+                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "AwaitsActivation":
+                            awaitsActivation = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "ValidityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -237,48 +308,48 @@ namespace TalonOneSdk.Model
             }
 
             if (!expiryDate.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(expiryDate));
+                throw new JsonException("Property is required for class ExpiringCardPointsData: ExpiryDate.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class ExpiringCardPointsData: LoyaltyProgramID.");
 
             if (!amountOfExpiringPoints.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(amountOfExpiringPoints));
+                throw new JsonException("Property is required for class ExpiringCardPointsData: AmountOfExpiringPoints.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(subledgerID));
+                throw new JsonException("Property is required for class ExpiringCardPointsData: SubledgerID.");
 
             if (!cardIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(cardIdentifier));
+                throw new JsonException("Property is required for class ExpiringCardPointsData: CardIdentifier.");
 
             if (!usersPerCardLimit.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(usersPerCardLimit));
+                throw new JsonException("Property is required for class ExpiringCardPointsData: UsersPerCardLimit.");
 
             if (!profiles.IsSet)
-                throw new ArgumentException("Property is required for class ExpiringCardPointsData.", nameof(profiles));
+                throw new JsonException("Property is required for class ExpiringCardPointsData: Profiles.");
 
             if (expiryDate.IsSet && expiryDate.Value == null)
-                throw new ArgumentNullException(nameof(expiryDate), "Property is not nullable for class ExpiringCardPointsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsData: ExpiryDate.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class ExpiringCardPointsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsData: LoyaltyProgramID.");
 
             if (amountOfExpiringPoints.IsSet && amountOfExpiringPoints.Value == null)
-                throw new ArgumentNullException(nameof(amountOfExpiringPoints), "Property is not nullable for class ExpiringCardPointsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsData: AmountOfExpiringPoints.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class ExpiringCardPointsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsData: SubledgerID.");
 
             if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class ExpiringCardPointsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsData: CardIdentifier.");
 
             if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
-                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class ExpiringCardPointsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsData: UsersPerCardLimit.");
 
             if (profiles.IsSet && profiles.Value == null)
-                throw new ArgumentNullException(nameof(profiles), "Property is not nullable for class ExpiringCardPointsData.");
+                throw new JsonException("Property is not nullable for class ExpiringCardPointsData: Profiles.");
 
-            return new ExpiringCardPointsData(expiryDate.Value.Value, loyaltyProgramID.Value.Value, amountOfExpiringPoints.Value.Value, subledgerID.Value, cardIdentifier.Value, usersPerCardLimit.Value.Value, profiles.Value);
+            return new ExpiringCardPointsData(expiryDate.Value.Value, loyaltyProgramID.Value.Value, amountOfExpiringPoints.Value.Value, subledgerID.Value, cardIdentifier.Value, usersPerCardLimit.Value.Value, profiles.Value, created, awaitsActivation, validityDuration);
         }
 
         /// <summary>
@@ -287,7 +358,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCardPointsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExpiringCardPointsData expiringCardPointsData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -302,17 +372,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="expiringCardPointsData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExpiringCardPointsData expiringCardPointsData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (expiringCardPointsData.SubledgerID == null)
-                throw new ArgumentNullException(nameof(expiringCardPointsData.SubledgerID), "Property is required for class ExpiringCardPointsData.");
+                throw new JsonException("Cannot write null property ExpiringCardPointsData.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             if (expiringCardPointsData.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(expiringCardPointsData.CardIdentifier), "Property is required for class ExpiringCardPointsData.");
+                throw new JsonException("Cannot write null property ExpiringCardPointsData.CardIdentifier to non-nullable JSON property 'CardIdentifier'.");
 
             if (expiringCardPointsData.Profiles == null)
-                throw new ArgumentNullException(nameof(expiringCardPointsData.Profiles), "Property is required for class ExpiringCardPointsData.");
+                throw new JsonException("Cannot write null property ExpiringCardPointsData.Profiles to non-nullable JSON property 'Profiles'.");
 
             writer.WriteString("ExpiryDate", expiringCardPointsData.ExpiryDate.ToString(ExpiryDateFormat));
 
@@ -328,6 +397,14 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("Profiles");
             JsonSerializer.Serialize(writer, expiringCardPointsData.Profiles, jsonSerializerOptions);
+            if (expiringCardPointsData.CreatedOption.IsSet)
+                writer.WriteString("Created", expiringCardPointsData.CreatedOption.Value.Value.ToString(CreatedFormat));
+
+            if (expiringCardPointsData.AwaitsActivationOption.IsSet)
+                writer.WriteBoolean("AwaitsActivation", expiringCardPointsData.AwaitsActivationOption.Value.Value);
+
+            if (expiringCardPointsData.ValidityDurationOption.IsSet)
+                writer.WriteString("ValidityDuration", expiringCardPointsData.ValidityDuration);
         }
     }
 }

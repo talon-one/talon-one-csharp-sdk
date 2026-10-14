@@ -160,10 +160,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UpdateAudience.", nameof(name));
+                throw new JsonException("Property is required for class UpdateAudience: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class UpdateAudience.");
+                throw new JsonException("Property is not nullable for class UpdateAudience: name.");
 
             return new UpdateAudience(name.Value, subscribedApplicationsIds);
         }
@@ -174,7 +174,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAudience"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateAudience updateAudience, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -189,11 +188,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateAudience"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateAudience updateAudience, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateAudience.Name == null)
-                throw new ArgumentNullException(nameof(updateAudience.Name), "Property is required for class UpdateAudience.");
+                throw new JsonException("Cannot write null property UpdateAudience.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", updateAudience.Name);
 

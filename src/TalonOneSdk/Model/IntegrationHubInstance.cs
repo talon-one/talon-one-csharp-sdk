@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!instanceId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubInstance.", nameof(instanceId));
+                throw new JsonException("Property is required for class IntegrationHubInstance: instanceId.");
 
             if (!instanceName.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubInstance.", nameof(instanceName));
+                throw new JsonException("Property is required for class IntegrationHubInstance: instanceName.");
 
             if (instanceId.IsSet && instanceId.Value == null)
-                throw new ArgumentNullException(nameof(instanceId), "Property is not nullable for class IntegrationHubInstance.");
+                throw new JsonException("Property is not nullable for class IntegrationHubInstance: instanceId.");
 
             if (instanceName.IsSet && instanceName.Value == null)
-                throw new ArgumentNullException(nameof(instanceName), "Property is not nullable for class IntegrationHubInstance.");
+                throw new JsonException("Property is not nullable for class IntegrationHubInstance: instanceName.");
 
             return new IntegrationHubInstance(instanceId.Value, instanceName.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubInstance"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubInstance integrationHubInstance, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubInstance"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubInstance integrationHubInstance, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubInstance.InstanceId == null)
-                throw new ArgumentNullException(nameof(integrationHubInstance.InstanceId), "Property is required for class IntegrationHubInstance.");
+                throw new JsonException("Cannot write null property IntegrationHubInstance.InstanceId to non-nullable JSON property 'instanceId'.");
 
             if (integrationHubInstance.InstanceName == null)
-                throw new ArgumentNullException(nameof(integrationHubInstance.InstanceName), "Property is required for class IntegrationHubInstance.");
+                throw new JsonException("Cannot write null property IntegrationHubInstance.InstanceName to non-nullable JSON property 'instanceName'.");
 
             writer.WriteString("instanceId", integrationHubInstance.InstanceId);
 

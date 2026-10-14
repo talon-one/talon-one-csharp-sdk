@@ -162,22 +162,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!baseUrl.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationCleverTapPolicy.", nameof(baseUrl));
+                throw new JsonException("Property is required for class OutgoingIntegrationCleverTapPolicy: baseUrl.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationCleverTapPolicy.", nameof(accountId));
+                throw new JsonException("Property is required for class OutgoingIntegrationCleverTapPolicy: accountId.");
 
             if (!passcode.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationCleverTapPolicy.", nameof(passcode));
+                throw new JsonException("Property is required for class OutgoingIntegrationCleverTapPolicy: passcode.");
 
             if (baseUrl.IsSet && baseUrl.Value == null)
-                throw new ArgumentNullException(nameof(baseUrl), "Property is not nullable for class OutgoingIntegrationCleverTapPolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationCleverTapPolicy: baseUrl.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class OutgoingIntegrationCleverTapPolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationCleverTapPolicy: accountId.");
 
             if (passcode.IsSet && passcode.Value == null)
-                throw new ArgumentNullException(nameof(passcode), "Property is not nullable for class OutgoingIntegrationCleverTapPolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationCleverTapPolicy: passcode.");
 
             return new OutgoingIntegrationCleverTapPolicy(baseUrl.Value, accountId.Value, passcode.Value);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationCleverTapPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutgoingIntegrationCleverTapPolicy outgoingIntegrationCleverTapPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,17 +202,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationCleverTapPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationCleverTapPolicy outgoingIntegrationCleverTapPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outgoingIntegrationCleverTapPolicy.BaseUrl == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationCleverTapPolicy.BaseUrl), "Property is required for class OutgoingIntegrationCleverTapPolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationCleverTapPolicy.BaseUrl to non-nullable JSON property 'baseUrl'.");
 
             if (outgoingIntegrationCleverTapPolicy.AccountId == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationCleverTapPolicy.AccountId), "Property is required for class OutgoingIntegrationCleverTapPolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationCleverTapPolicy.AccountId to non-nullable JSON property 'accountId'.");
 
             if (outgoingIntegrationCleverTapPolicy.Passcode == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationCleverTapPolicy.Passcode), "Property is required for class OutgoingIntegrationCleverTapPolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationCleverTapPolicy.Passcode to non-nullable JSON property 'passcode'.");
 
             writer.WriteString("baseUrl", outgoingIntegrationCleverTapPolicy.BaseUrl);
 

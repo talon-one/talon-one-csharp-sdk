@@ -280,34 +280,34 @@ namespace TalonOneSdk.Model
             }
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackAddedLoyaltyPointsEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class RollbackAddedLoyaltyPointsEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackAddedLoyaltyPointsEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class RollbackAddedLoyaltyPointsEffectProps: subLedgerId.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RollbackAddedLoyaltyPointsEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class RollbackAddedLoyaltyPointsEffectProps: value.");
 
             if (!recipientIntegrationId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackAddedLoyaltyPointsEffectProps.", nameof(recipientIntegrationId));
+                throw new JsonException("Property is required for class RollbackAddedLoyaltyPointsEffectProps: recipientIntegrationId.");
 
             if (!transactionUUID.IsSet)
-                throw new ArgumentException("Property is required for class RollbackAddedLoyaltyPointsEffectProps.", nameof(transactionUUID));
+                throw new JsonException("Property is required for class RollbackAddedLoyaltyPointsEffectProps: transactionUUID.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps: subLedgerId.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps: value.");
 
             if (recipientIntegrationId.IsSet && recipientIntegrationId.Value == null)
-                throw new ArgumentNullException(nameof(recipientIntegrationId), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps: recipientIntegrationId.");
 
             if (transactionUUID.IsSet && transactionUUID.Value == null)
-                throw new ArgumentNullException(nameof(transactionUUID), "Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackAddedLoyaltyPointsEffectProps: transactionUUID.");
 
             return new RollbackAddedLoyaltyPointsEffectProps(programId.Value.Value, subLedgerId.Value, value.Value.Value, recipientIntegrationId.Value, transactionUUID.Value, cartItemPosition, cartItemSubPosition, cardIdentifier);
         }
@@ -318,7 +318,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackAddedLoyaltyPointsEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RollbackAddedLoyaltyPointsEffectProps rollbackAddedLoyaltyPointsEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -333,17 +332,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackAddedLoyaltyPointsEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RollbackAddedLoyaltyPointsEffectProps rollbackAddedLoyaltyPointsEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rollbackAddedLoyaltyPointsEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(rollbackAddedLoyaltyPointsEffectProps.SubLedgerId), "Property is required for class RollbackAddedLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property RollbackAddedLoyaltyPointsEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             if (rollbackAddedLoyaltyPointsEffectProps.RecipientIntegrationId == null)
-                throw new ArgumentNullException(nameof(rollbackAddedLoyaltyPointsEffectProps.RecipientIntegrationId), "Property is required for class RollbackAddedLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property RollbackAddedLoyaltyPointsEffectProps.RecipientIntegrationId to non-nullable JSON property 'recipientIntegrationId'.");
 
             if (rollbackAddedLoyaltyPointsEffectProps.TransactionUUID == null)
-                throw new ArgumentNullException(nameof(rollbackAddedLoyaltyPointsEffectProps.TransactionUUID), "Property is required for class RollbackAddedLoyaltyPointsEffectProps.");
+                throw new JsonException("Cannot write null property RollbackAddedLoyaltyPointsEffectProps.TransactionUUID to non-nullable JSON property 'transactionUUID'.");
 
             writer.WriteNumber("programId", rollbackAddedLoyaltyPointsEffectProps.ProgramId);
 

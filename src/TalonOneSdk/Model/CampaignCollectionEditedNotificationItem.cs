@@ -202,22 +202,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollectionEditedNotificationItem.", nameof(varEvent));
+                throw new JsonException("Property is required for class CampaignCollectionEditedNotificationItem: Event.");
 
             if (!campaign.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollectionEditedNotificationItem.", nameof(campaign));
+                throw new JsonException("Property is required for class CampaignCollectionEditedNotificationItem: campaign.");
 
             if (!collection.IsSet)
-                throw new ArgumentException("Property is required for class CampaignCollectionEditedNotificationItem.", nameof(collection));
+                throw new JsonException("Property is required for class CampaignCollectionEditedNotificationItem: collection.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignCollectionEditedNotificationItem: Event.");
 
             if (campaign.IsSet && campaign.Value == null)
-                throw new ArgumentNullException(nameof(campaign), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignCollectionEditedNotificationItem: campaign.");
 
             if (collection.IsSet && collection.Value == null)
-                throw new ArgumentNullException(nameof(collection), "Property is not nullable for class CampaignCollectionEditedNotificationItem.");
+                throw new JsonException("Property is not nullable for class CampaignCollectionEditedNotificationItem: collection.");
 
             return new CampaignCollectionEditedNotificationItem(varEvent.Value, campaign.Value, collection.Value, ruleset, placeholders);
         }
@@ -228,7 +228,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignCollectionEditedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignCollectionEditedNotificationItem campaignCollectionEditedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -243,17 +242,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignCollectionEditedNotificationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignCollectionEditedNotificationItem campaignCollectionEditedNotificationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignCollectionEditedNotificationItem.Event == null)
-                throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Event), "Property is required for class CampaignCollectionEditedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignCollectionEditedNotificationItem.Event to non-nullable JSON property 'Event'.");
 
             if (campaignCollectionEditedNotificationItem.Campaign == null)
-                throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Campaign), "Property is required for class CampaignCollectionEditedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignCollectionEditedNotificationItem.Campaign to non-nullable JSON property 'campaign'.");
 
             if (campaignCollectionEditedNotificationItem.Collection == null)
-                throw new ArgumentNullException(nameof(campaignCollectionEditedNotificationItem.Collection), "Property is required for class CampaignCollectionEditedNotificationItem.");
+                throw new JsonException("Cannot write null property CampaignCollectionEditedNotificationItem.Collection to non-nullable JSON property 'collection'.");
 
             writer.WriteString("Event", campaignCollectionEditedNotificationItem.Event);
 

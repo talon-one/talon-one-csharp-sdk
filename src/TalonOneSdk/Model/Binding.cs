@@ -279,16 +279,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Binding.", nameof(name));
+                throw new JsonException("Property is required for class Binding: name.");
 
             if (!expression.IsSet)
-                throw new ArgumentException("Property is required for class Binding.", nameof(expression));
+                throw new JsonException("Property is required for class Binding: expression.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class Binding.");
+                throw new JsonException("Property is not nullable for class Binding: name.");
 
             if (expression.IsSet && expression.Value == null)
-                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class Binding.");
+                throw new JsonException("Property is not nullable for class Binding: expression.");
 
             return new Binding(name.Value, expression.Value, type, valueType, minValue, maxValue, attributeId, description);
         }
@@ -299,7 +299,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="binding"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Binding binding, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -314,14 +313,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="binding"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Binding binding, JsonSerializerOptions jsonSerializerOptions)
         {
             if (binding.Name == null)
-                throw new ArgumentNullException(nameof(binding.Name), "Property is required for class Binding.");
+                throw new JsonException("Cannot write null property Binding.Name to non-nullable JSON property 'name'.");
 
             if (binding.Expression == null)
-                throw new ArgumentNullException(nameof(binding.Expression), "Property is required for class Binding.");
+                throw new JsonException("Cannot write null property Binding.Expression to non-nullable JSON property 'expression'.");
 
             writer.WriteString("name", binding.Name);
 

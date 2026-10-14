@@ -144,16 +144,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!targetApplicationId.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentCopy.", nameof(targetApplicationId));
+                throw new JsonException("Property is required for class ExperimentCopy: targetApplicationId.");
 
             if (!experiment.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentCopy.", nameof(experiment));
+                throw new JsonException("Property is required for class ExperimentCopy: experiment.");
 
             if (targetApplicationId.IsSet && targetApplicationId.Value == null)
-                throw new ArgumentNullException(nameof(targetApplicationId), "Property is not nullable for class ExperimentCopy.");
+                throw new JsonException("Property is not nullable for class ExperimentCopy: targetApplicationId.");
 
             if (experiment.IsSet && experiment.Value == null)
-                throw new ArgumentNullException(nameof(experiment), "Property is not nullable for class ExperimentCopy.");
+                throw new JsonException("Property is not nullable for class ExperimentCopy: experiment.");
 
             return new ExperimentCopy(targetApplicationId.Value.Value, experiment.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentCopy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentCopy experimentCopy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentCopy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentCopy experimentCopy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentCopy.Experiment == null)
-                throw new ArgumentNullException(nameof(experimentCopy.Experiment), "Property is required for class ExperimentCopy.");
+                throw new JsonException("Cannot write null property ExperimentCopy.Experiment to non-nullable JSON property 'experiment'.");
 
             writer.WriteNumber("targetApplicationId", experimentCopy.TargetApplicationId);
 

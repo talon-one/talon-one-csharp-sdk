@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CartItemFilterTemplate.", nameof(name));
+                throw new JsonException("Property is required for class CartItemFilterTemplate: name.");
 
             if (!expression.IsSet)
-                throw new ArgumentException("Property is required for class CartItemFilterTemplate.", nameof(expression));
+                throw new JsonException("Property is required for class CartItemFilterTemplate: expression.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CartItemFilterTemplate.");
+                throw new JsonException("Property is not nullable for class CartItemFilterTemplate: name.");
 
             if (expression.IsSet && expression.Value == null)
-                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class CartItemFilterTemplate.");
+                throw new JsonException("Property is not nullable for class CartItemFilterTemplate: expression.");
 
             return new CartItemFilterTemplate(name.Value, expression.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cartItemFilterTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CartItemFilterTemplate cartItemFilterTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cartItemFilterTemplate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CartItemFilterTemplate cartItemFilterTemplate, JsonSerializerOptions jsonSerializerOptions)
         {
             if (cartItemFilterTemplate.Name == null)
-                throw new ArgumentNullException(nameof(cartItemFilterTemplate.Name), "Property is required for class CartItemFilterTemplate.");
+                throw new JsonException("Cannot write null property CartItemFilterTemplate.Name to non-nullable JSON property 'name'.");
 
             if (cartItemFilterTemplate.Expression == null)
-                throw new ArgumentNullException(nameof(cartItemFilterTemplate.Expression), "Property is required for class CartItemFilterTemplate.");
+                throw new JsonException("Cannot write null property CartItemFilterTemplate.Expression to non-nullable JSON property 'expression'.");
 
             writer.WriteString("name", cartItemFilterTemplate.Name);
 

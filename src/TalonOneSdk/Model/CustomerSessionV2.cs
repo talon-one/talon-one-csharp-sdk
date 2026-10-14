@@ -702,70 +702,70 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(id));
+                throw new JsonException("Property is required for class CustomerSessionV2: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(created));
+                throw new JsonException("Property is required for class CustomerSessionV2: created.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(integrationId));
+                throw new JsonException("Property is required for class CustomerSessionV2: integrationId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(applicationId));
+                throw new JsonException("Property is required for class CustomerSessionV2: applicationId.");
 
             if (!firstSession.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(firstSession));
+                throw new JsonException("Property is required for class CustomerSessionV2: firstSession.");
 
             if (!updateCount.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(updateCount));
+                throw new JsonException("Property is required for class CustomerSessionV2: updateCount.");
 
             if (!total.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(total));
+                throw new JsonException("Property is required for class CustomerSessionV2: total.");
 
             if (!cartItemTotal.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(cartItemTotal));
+                throw new JsonException("Property is required for class CustomerSessionV2: cartItemTotal.");
 
             if (!additionalCostTotal.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(additionalCostTotal));
+                throw new JsonException("Property is required for class CustomerSessionV2: additionalCostTotal.");
 
             if (!cartItemAdditionalCostTotal.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(cartItemAdditionalCostTotal));
+                throw new JsonException("Property is required for class CustomerSessionV2: cartItemAdditionalCostTotal.");
 
             if (!updated.IsSet)
-                throw new ArgumentException("Property is required for class CustomerSessionV2.", nameof(updated));
+                throw new JsonException("Property is required for class CustomerSessionV2: updated.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: created.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: integrationId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: applicationId.");
 
             if (firstSession.IsSet && firstSession.Value == null)
-                throw new ArgumentNullException(nameof(firstSession), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: firstSession.");
 
             if (updateCount.IsSet && updateCount.Value == null)
-                throw new ArgumentNullException(nameof(updateCount), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: updateCount.");
 
             if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: total.");
 
             if (cartItemTotal.IsSet && cartItemTotal.Value == null)
-                throw new ArgumentNullException(nameof(cartItemTotal), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: cartItemTotal.");
 
             if (additionalCostTotal.IsSet && additionalCostTotal.Value == null)
-                throw new ArgumentNullException(nameof(additionalCostTotal), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: additionalCostTotal.");
 
             if (cartItemAdditionalCostTotal.IsSet && cartItemAdditionalCostTotal.Value == null)
-                throw new ArgumentNullException(nameof(cartItemAdditionalCostTotal), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: cartItemAdditionalCostTotal.");
 
             if (updated.IsSet && updated.Value == null)
-                throw new ArgumentNullException(nameof(updated), "Property is not nullable for class CustomerSessionV2.");
+                throw new JsonException("Property is not nullable for class CustomerSessionV2: updated.");
 
             return new CustomerSessionV2(id.Value.Value, created.Value.Value, integrationId.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, total.Value.Value, cartItemTotal.Value.Value, additionalCostTotal.Value.Value, cartItemAdditionalCostTotal.Value.Value, updated.Value.Value, profileId, storeIntegrationId, evaluableCampaignIds, couponCodes, referralCode, loyaltyCards, rewardIntegrationIds, state, cartItems, experimentVariantAllocations, additionalCosts, identifiers, attributes);
         }
@@ -776,7 +776,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerSessionV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerSessionV2 customerSessionV2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -791,11 +790,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerSessionV2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerSessionV2 customerSessionV2, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerSessionV2.IntegrationId == null)
-                throw new ArgumentNullException(nameof(customerSessionV2.IntegrationId), "Property is required for class CustomerSessionV2.");
+                throw new JsonException("Cannot write null property CustomerSessionV2.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteNumber("id", customerSessionV2.Id);
 

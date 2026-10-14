@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!baseUrl.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationIterablePolicy.", nameof(baseUrl));
+                throw new JsonException("Property is required for class OutgoingIntegrationIterablePolicy: baseUrl.");
 
             if (!apiKey.IsSet)
-                throw new ArgumentException("Property is required for class OutgoingIntegrationIterablePolicy.", nameof(apiKey));
+                throw new JsonException("Property is required for class OutgoingIntegrationIterablePolicy: apiKey.");
 
             if (baseUrl.IsSet && baseUrl.Value == null)
-                throw new ArgumentNullException(nameof(baseUrl), "Property is not nullable for class OutgoingIntegrationIterablePolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationIterablePolicy: baseUrl.");
 
             if (apiKey.IsSet && apiKey.Value == null)
-                throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class OutgoingIntegrationIterablePolicy.");
+                throw new JsonException("Property is not nullable for class OutgoingIntegrationIterablePolicy: apiKey.");
 
             return new OutgoingIntegrationIterablePolicy(baseUrl.Value, apiKey.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationIterablePolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OutgoingIntegrationIterablePolicy outgoingIntegrationIterablePolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="outgoingIntegrationIterablePolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OutgoingIntegrationIterablePolicy outgoingIntegrationIterablePolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (outgoingIntegrationIterablePolicy.BaseUrl == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationIterablePolicy.BaseUrl), "Property is required for class OutgoingIntegrationIterablePolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationIterablePolicy.BaseUrl to non-nullable JSON property 'baseUrl'.");
 
             if (outgoingIntegrationIterablePolicy.ApiKey == null)
-                throw new ArgumentNullException(nameof(outgoingIntegrationIterablePolicy.ApiKey), "Property is required for class OutgoingIntegrationIterablePolicy.");
+                throw new JsonException("Cannot write null property OutgoingIntegrationIterablePolicy.ApiKey to non-nullable JSON property 'apiKey'.");
 
             writer.WriteString("baseUrl", outgoingIntegrationIterablePolicy.BaseUrl);
 

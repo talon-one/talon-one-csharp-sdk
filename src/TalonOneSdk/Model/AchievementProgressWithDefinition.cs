@@ -754,64 +754,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(status));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: status.");
 
             if (!progress.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(progress));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: progress.");
 
             if (!achievementId.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(achievementId));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: achievementId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(name));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: name.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(title));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: title.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(description));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: description.");
 
             if (!campaignIds.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(campaignIds));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: campaignIds.");
 
             if (!referencedByCampaigns.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(referencedByCampaigns));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: referencedByCampaigns.");
 
             if (!achievementRecurrencePolicy.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(achievementRecurrencePolicy));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: achievementRecurrencePolicy.");
 
             if (!achievementActivationPolicy.IsSet)
-                throw new ArgumentException("Property is required for class AchievementProgressWithDefinition.", nameof(achievementActivationPolicy));
+                throw new JsonException("Property is required for class AchievementProgressWithDefinition: achievementActivationPolicy.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: status.");
 
             if (progress.IsSet && progress.Value == null)
-                throw new ArgumentNullException(nameof(progress), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: progress.");
 
             if (achievementId.IsSet && achievementId.Value == null)
-                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: achievementId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: title.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: description.");
 
             if (campaignIds.IsSet && campaignIds.Value == null)
-                throw new ArgumentNullException(nameof(campaignIds), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: campaignIds.");
 
             if (referencedByCampaigns.IsSet && referencedByCampaigns.Value == null)
-                throw new ArgumentNullException(nameof(referencedByCampaigns), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: referencedByCampaigns.");
 
             if (achievementRecurrencePolicy.IsSet && achievementRecurrencePolicy.Value == null)
-                throw new ArgumentNullException(nameof(achievementRecurrencePolicy), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: achievementRecurrencePolicy.");
 
             if (achievementActivationPolicy.IsSet && achievementActivationPolicy.Value == null)
-                throw new ArgumentNullException(nameof(achievementActivationPolicy), "Property is not nullable for class AchievementProgressWithDefinition.");
+                throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: achievementActivationPolicy.");
 
             return new AchievementProgressWithDefinition(status.Value.Value, progress.Value.Value, achievementId.Value.Value, name.Value, title.Value, description.Value, campaignIds.Value, referencedByCampaigns.Value, achievementRecurrencePolicy.Value.Value, achievementActivationPolicy.Value.Value, startDate, completionDate, endDate, campaignId, target, achievementFixedStartDate, achievementEndDate, achievementAllowRollbackAfterCompletion);
         }
@@ -822,7 +822,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementProgressWithDefinition"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AchievementProgressWithDefinition achievementProgressWithDefinition, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -837,23 +836,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="achievementProgressWithDefinition"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AchievementProgressWithDefinition achievementProgressWithDefinition, JsonSerializerOptions jsonSerializerOptions)
         {
             if (achievementProgressWithDefinition.Name == null)
-                throw new ArgumentNullException(nameof(achievementProgressWithDefinition.Name), "Property is required for class AchievementProgressWithDefinition.");
+                throw new JsonException("Cannot write null property AchievementProgressWithDefinition.Name to non-nullable JSON property 'name'.");
 
             if (achievementProgressWithDefinition.Title == null)
-                throw new ArgumentNullException(nameof(achievementProgressWithDefinition.Title), "Property is required for class AchievementProgressWithDefinition.");
+                throw new JsonException("Cannot write null property AchievementProgressWithDefinition.Title to non-nullable JSON property 'title'.");
 
             if (achievementProgressWithDefinition.Description == null)
-                throw new ArgumentNullException(nameof(achievementProgressWithDefinition.Description), "Property is required for class AchievementProgressWithDefinition.");
+                throw new JsonException("Cannot write null property AchievementProgressWithDefinition.Description to non-nullable JSON property 'description'.");
 
             if (achievementProgressWithDefinition.CampaignIds == null)
-                throw new ArgumentNullException(nameof(achievementProgressWithDefinition.CampaignIds), "Property is required for class AchievementProgressWithDefinition.");
+                throw new JsonException("Cannot write null property AchievementProgressWithDefinition.CampaignIds to non-nullable JSON property 'campaignIds'.");
 
             if (achievementProgressWithDefinition.ReferencedByCampaigns == null)
-                throw new ArgumentNullException(nameof(achievementProgressWithDefinition.ReferencedByCampaigns), "Property is required for class AchievementProgressWithDefinition.");
+                throw new JsonException("Cannot write null property AchievementProgressWithDefinition.ReferencedByCampaigns to non-nullable JSON property 'referencedByCampaigns'.");
 
             var statusRawValue = AchievementProgressWithDefinition.StatusEnumToJsonValue(achievementProgressWithDefinition.Status);
             writer.WriteString("status", statusRawValue);

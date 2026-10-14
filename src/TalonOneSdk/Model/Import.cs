@@ -218,40 +218,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Import.", nameof(id));
+                throw new JsonException("Property is required for class Import: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Import.", nameof(created));
+                throw new JsonException("Property is required for class Import: created.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class Import.", nameof(accountId));
+                throw new JsonException("Property is required for class Import: accountId.");
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class Import.", nameof(userId));
+                throw new JsonException("Property is required for class Import: userId.");
 
             if (!entity.IsSet)
-                throw new ArgumentException("Property is required for class Import.", nameof(entity));
+                throw new JsonException("Property is required for class Import: entity.");
 
             if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Import.", nameof(amount));
+                throw new JsonException("Property is required for class Import: amount.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Import.");
+                throw new JsonException("Property is not nullable for class Import: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Import.");
+                throw new JsonException("Property is not nullable for class Import: created.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class Import.");
+                throw new JsonException("Property is not nullable for class Import: accountId.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class Import.");
+                throw new JsonException("Property is not nullable for class Import: userId.");
 
             if (entity.IsSet && entity.Value == null)
-                throw new ArgumentNullException(nameof(entity), "Property is not nullable for class Import.");
+                throw new JsonException("Property is not nullable for class Import: entity.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class Import.");
+                throw new JsonException("Property is not nullable for class Import: amount.");
 
             return new Import(id.Value.Value, created.Value.Value, accountId.Value.Value, userId.Value.Value, entity.Value, amount.Value.Value);
         }
@@ -262,7 +262,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="import"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Import import, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -277,11 +276,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="import"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Import import, JsonSerializerOptions jsonSerializerOptions)
         {
             if (import.Entity == null)
-                throw new ArgumentNullException(nameof(import.Entity), "Property is required for class Import.");
+                throw new JsonException("Cannot write null property Import.Entity to non-nullable JSON property 'entity'.");
 
             writer.WriteNumber("id", import.Id);
 

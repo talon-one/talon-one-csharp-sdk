@@ -347,40 +347,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!campaignId.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughEffect.", nameof(campaignId));
+                throw new JsonException("Property is required for class StrikethroughEffect: campaignId.");
 
             if (!rulesetId.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughEffect.", nameof(rulesetId));
+                throw new JsonException("Property is required for class StrikethroughEffect: rulesetId.");
 
             if (!ruleIndex.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughEffect.", nameof(ruleIndex));
+                throw new JsonException("Property is required for class StrikethroughEffect: ruleIndex.");
 
             if (!ruleName.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughEffect.", nameof(ruleName));
+                throw new JsonException("Property is required for class StrikethroughEffect: ruleName.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughEffect.", nameof(type));
+                throw new JsonException("Property is required for class StrikethroughEffect: type.");
 
             if (!props.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughEffect.", nameof(props));
+                throw new JsonException("Property is required for class StrikethroughEffect: props.");
 
             if (campaignId.IsSet && campaignId.Value == null)
-                throw new ArgumentNullException(nameof(campaignId), "Property is not nullable for class StrikethroughEffect.");
+                throw new JsonException("Property is not nullable for class StrikethroughEffect: campaignId.");
 
             if (rulesetId.IsSet && rulesetId.Value == null)
-                throw new ArgumentNullException(nameof(rulesetId), "Property is not nullable for class StrikethroughEffect.");
+                throw new JsonException("Property is not nullable for class StrikethroughEffect: rulesetId.");
 
             if (ruleIndex.IsSet && ruleIndex.Value == null)
-                throw new ArgumentNullException(nameof(ruleIndex), "Property is not nullable for class StrikethroughEffect.");
+                throw new JsonException("Property is not nullable for class StrikethroughEffect: ruleIndex.");
 
             if (ruleName.IsSet && ruleName.Value == null)
-                throw new ArgumentNullException(nameof(ruleName), "Property is not nullable for class StrikethroughEffect.");
+                throw new JsonException("Property is not nullable for class StrikethroughEffect: ruleName.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class StrikethroughEffect.");
+                throw new JsonException("Property is not nullable for class StrikethroughEffect: type.");
 
             if (props.IsSet && props.Value == null)
-                throw new ArgumentNullException(nameof(props), "Property is not nullable for class StrikethroughEffect.");
+                throw new JsonException("Property is not nullable for class StrikethroughEffect: props.");
 
             return new StrikethroughEffect(campaignId.Value.Value, rulesetId.Value.Value, ruleIndex.Value.Value, ruleName.Value, type.Value, props.Value, startTime, endTime, selectedPriceType, selectedPrice, adjustmentReferenceId, targets);
         }
@@ -391,7 +391,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughEffect"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StrikethroughEffect strikethroughEffect, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -406,17 +405,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughEffect"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StrikethroughEffect strikethroughEffect, JsonSerializerOptions jsonSerializerOptions)
         {
             if (strikethroughEffect.RuleName == null)
-                throw new ArgumentNullException(nameof(strikethroughEffect.RuleName), "Property is required for class StrikethroughEffect.");
+                throw new JsonException("Cannot write null property StrikethroughEffect.RuleName to non-nullable JSON property 'ruleName'.");
 
             if (strikethroughEffect.Type == null)
-                throw new ArgumentNullException(nameof(strikethroughEffect.Type), "Property is required for class StrikethroughEffect.");
+                throw new JsonException("Cannot write null property StrikethroughEffect.Type to non-nullable JSON property 'type'.");
 
             if (strikethroughEffect.Props == null)
-                throw new ArgumentNullException(nameof(strikethroughEffect.Props), "Property is required for class StrikethroughEffect.");
+                throw new JsonException("Cannot write null property StrikethroughEffect.Props to non-nullable JSON property 'props'.");
 
             writer.WriteNumber("campaignId", strikethroughEffect.CampaignId);
 

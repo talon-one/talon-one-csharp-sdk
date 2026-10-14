@@ -176,22 +176,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!store.IsSet)
-                throw new ArgumentException("Property is required for class ListCampaignStoreBudgets.", nameof(store));
+                throw new JsonException("Property is required for class ListCampaignStoreBudgets: store.");
 
             if (!limit.IsSet)
-                throw new ArgumentException("Property is required for class ListCampaignStoreBudgets.", nameof(limit));
+                throw new JsonException("Property is required for class ListCampaignStoreBudgets: limit.");
 
             if (!action.IsSet)
-                throw new ArgumentException("Property is required for class ListCampaignStoreBudgets.", nameof(action));
+                throw new JsonException("Property is required for class ListCampaignStoreBudgets: action.");
 
             if (store.IsSet && store.Value == null)
-                throw new ArgumentNullException(nameof(store), "Property is not nullable for class ListCampaignStoreBudgets.");
+                throw new JsonException("Property is not nullable for class ListCampaignStoreBudgets: store.");
 
             if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class ListCampaignStoreBudgets.");
+                throw new JsonException("Property is not nullable for class ListCampaignStoreBudgets: limit.");
 
             if (action.IsSet && action.Value == null)
-                throw new ArgumentNullException(nameof(action), "Property is not nullable for class ListCampaignStoreBudgets.");
+                throw new JsonException("Property is not nullable for class ListCampaignStoreBudgets: action.");
 
             return new ListCampaignStoreBudgets(store.Value, limit.Value.Value, action.Value, period);
         }
@@ -202,7 +202,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listCampaignStoreBudgets"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListCampaignStoreBudgets listCampaignStoreBudgets, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -217,14 +216,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="listCampaignStoreBudgets"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListCampaignStoreBudgets listCampaignStoreBudgets, JsonSerializerOptions jsonSerializerOptions)
         {
             if (listCampaignStoreBudgets.Store == null)
-                throw new ArgumentNullException(nameof(listCampaignStoreBudgets.Store), "Property is required for class ListCampaignStoreBudgets.");
+                throw new JsonException("Cannot write null property ListCampaignStoreBudgets.Store to non-nullable JSON property 'store'.");
 
             if (listCampaignStoreBudgets.Action == null)
-                throw new ArgumentNullException(nameof(listCampaignStoreBudgets.Action), "Property is required for class ListCampaignStoreBudgets.");
+                throw new JsonException("Cannot write null property ListCampaignStoreBudgets.Action to non-nullable JSON property 'action'.");
 
             writer.WritePropertyName("store");
             JsonSerializer.Serialize(writer, listCampaignStoreBudgets.Store, jsonSerializerOptions);

@@ -448,76 +448,76 @@ namespace TalonOneSdk.Model
             }
 
             if (!cardIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(cardIdentifier));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: CardIdentifier.");
 
             if (!employeeName.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(employeeName));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: EmployeeName.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: LoyaltyProgramID.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(notificationType));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: NotificationType.");
 
             if (!profileIntegrationIDs.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(profileIntegrationIDs));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: ProfileIntegrationIDs.");
 
             if (!sessionIntegrationID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(sessionIntegrationID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: SessionIntegrationID.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(subledgerID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: SubledgerID.");
 
             if (!typeOfChange.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(typeOfChange));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: TypeOfChange.");
 
             if (!userID.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(userID));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: UserID.");
 
             if (!usersPerCardLimit.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(usersPerCardLimit));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: UsersPerCardLimit.");
 
             if (!actions.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(actions));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: Actions.");
 
             if (!currentPoints.IsSet)
-                throw new ArgumentException("Property is required for class CardAddedDeductedPointsBalancesNotification.", nameof(currentPoints));
+                throw new JsonException("Property is required for class CardAddedDeductedPointsBalancesNotification: CurrentPoints.");
 
             if (cardIdentifier.IsSet && cardIdentifier.Value == null)
-                throw new ArgumentNullException(nameof(cardIdentifier), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: CardIdentifier.");
 
             if (employeeName.IsSet && employeeName.Value == null)
-                throw new ArgumentNullException(nameof(employeeName), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: EmployeeName.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: LoyaltyProgramID.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: NotificationType.");
 
             if (profileIntegrationIDs.IsSet && profileIntegrationIDs.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationIDs), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: ProfileIntegrationIDs.");
 
             if (sessionIntegrationID.IsSet && sessionIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(sessionIntegrationID), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: SessionIntegrationID.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: SubledgerID.");
 
             if (typeOfChange.IsSet && typeOfChange.Value == null)
-                throw new ArgumentNullException(nameof(typeOfChange), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: TypeOfChange.");
 
             if (userID.IsSet && userID.Value == null)
-                throw new ArgumentNullException(nameof(userID), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: UserID.");
 
             if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
-                throw new ArgumentNullException(nameof(usersPerCardLimit), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: UsersPerCardLimit.");
 
             if (actions.IsSet && actions.Value == null)
-                throw new ArgumentNullException(nameof(actions), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: Actions.");
 
             if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Property is not nullable for class CardAddedDeductedPointsBalancesNotification: CurrentPoints.");
 
             return new CardAddedDeductedPointsBalancesNotification(cardIdentifier.Value, employeeName.Value, loyaltyProgramID.Value.Value, notificationType.Value.Value, profileIntegrationIDs.Value, sessionIntegrationID.Value, subledgerID.Value, typeOfChange.Value.Value, userID.Value.Value, usersPerCardLimit.Value.Value, actions.Value, currentPoints.Value.Value);
         }
@@ -528,7 +528,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardAddedDeductedPointsBalancesNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CardAddedDeductedPointsBalancesNotification cardAddedDeductedPointsBalancesNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -543,26 +542,25 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="cardAddedDeductedPointsBalancesNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CardAddedDeductedPointsBalancesNotification cardAddedDeductedPointsBalancesNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (cardAddedDeductedPointsBalancesNotification.CardIdentifier == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsBalancesNotification.CardIdentifier), "Property is required for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsBalancesNotification.CardIdentifier to non-nullable JSON property 'CardIdentifier'.");
 
             if (cardAddedDeductedPointsBalancesNotification.EmployeeName == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsBalancesNotification.EmployeeName), "Property is required for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsBalancesNotification.EmployeeName to non-nullable JSON property 'EmployeeName'.");
 
             if (cardAddedDeductedPointsBalancesNotification.ProfileIntegrationIDs == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsBalancesNotification.ProfileIntegrationIDs), "Property is required for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsBalancesNotification.ProfileIntegrationIDs to non-nullable JSON property 'ProfileIntegrationIDs'.");
 
             if (cardAddedDeductedPointsBalancesNotification.SessionIntegrationID == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsBalancesNotification.SessionIntegrationID), "Property is required for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsBalancesNotification.SessionIntegrationID to non-nullable JSON property 'SessionIntegrationID'.");
 
             if (cardAddedDeductedPointsBalancesNotification.SubledgerID == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsBalancesNotification.SubledgerID), "Property is required for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsBalancesNotification.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             if (cardAddedDeductedPointsBalancesNotification.Actions == null)
-                throw new ArgumentNullException(nameof(cardAddedDeductedPointsBalancesNotification.Actions), "Property is required for class CardAddedDeductedPointsBalancesNotification.");
+                throw new JsonException("Cannot write null property CardAddedDeductedPointsBalancesNotification.Actions to non-nullable JSON property 'Actions'.");
 
             writer.WriteString("CardIdentifier", cardAddedDeductedPointsBalancesNotification.CardIdentifier);
 

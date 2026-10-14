@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!total.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsDataPoint.", nameof(total));
+                throw new JsonException("Property is required for class AnalyticsDataPoint: total.");
 
             if (!influenced.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsDataPoint.", nameof(influenced));
+                throw new JsonException("Property is required for class AnalyticsDataPoint: influenced.");
 
             if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class AnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class AnalyticsDataPoint: total.");
 
             if (influenced.IsSet && influenced.Value == null)
-                throw new ArgumentNullException(nameof(influenced), "Property is not nullable for class AnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class AnalyticsDataPoint: influenced.");
 
             return new AnalyticsDataPoint(total.Value.Value, influenced.Value.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AnalyticsDataPoint analyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,7 +179,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AnalyticsDataPoint analyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("total", analyticsDataPoint.Total);

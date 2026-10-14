@@ -207,16 +207,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!riskIds.IsSet)
-                throw new ArgumentException("Property is required for class RiskCriticalityUpdate.", nameof(riskIds));
+                throw new JsonException("Property is required for class RiskCriticalityUpdate: riskIds.");
 
             if (!criticality.IsSet)
-                throw new ArgumentException("Property is required for class RiskCriticalityUpdate.", nameof(criticality));
+                throw new JsonException("Property is required for class RiskCriticalityUpdate: criticality.");
 
             if (riskIds.IsSet && riskIds.Value == null)
-                throw new ArgumentNullException(nameof(riskIds), "Property is not nullable for class RiskCriticalityUpdate.");
+                throw new JsonException("Property is not nullable for class RiskCriticalityUpdate: riskIds.");
 
             if (criticality.IsSet && criticality.Value == null)
-                throw new ArgumentNullException(nameof(criticality), "Property is not nullable for class RiskCriticalityUpdate.");
+                throw new JsonException("Property is not nullable for class RiskCriticalityUpdate: criticality.");
 
             return new RiskCriticalityUpdate(riskIds.Value, criticality.Value.Value);
         }
@@ -227,7 +227,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="riskCriticalityUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RiskCriticalityUpdate riskCriticalityUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -242,11 +241,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="riskCriticalityUpdate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RiskCriticalityUpdate riskCriticalityUpdate, JsonSerializerOptions jsonSerializerOptions)
         {
             if (riskCriticalityUpdate.RiskIds == null)
-                throw new ArgumentNullException(nameof(riskCriticalityUpdate.RiskIds), "Property is required for class RiskCriticalityUpdate.");
+                throw new JsonException("Cannot write null property RiskCriticalityUpdate.RiskIds to non-nullable JSON property 'riskIds'.");
 
             writer.WritePropertyName("riskIds");
             JsonSerializer.Serialize(writer, riskCriticalityUpdate.RiskIds, jsonSerializerOptions);

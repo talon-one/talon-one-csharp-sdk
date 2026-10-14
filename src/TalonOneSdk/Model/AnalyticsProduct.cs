@@ -183,22 +183,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsProduct.", nameof(id));
+                throw new JsonException("Property is required for class AnalyticsProduct: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsProduct.", nameof(name));
+                throw new JsonException("Property is required for class AnalyticsProduct: name.");
 
             if (!catalogId.IsSet)
-                throw new ArgumentException("Property is required for class AnalyticsProduct.", nameof(catalogId));
+                throw new JsonException("Property is required for class AnalyticsProduct: catalogId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AnalyticsProduct.");
+                throw new JsonException("Property is not nullable for class AnalyticsProduct: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AnalyticsProduct.");
+                throw new JsonException("Property is not nullable for class AnalyticsProduct: name.");
 
             if (catalogId.IsSet && catalogId.Value == null)
-                throw new ArgumentNullException(nameof(catalogId), "Property is not nullable for class AnalyticsProduct.");
+                throw new JsonException("Property is not nullable for class AnalyticsProduct: catalogId.");
 
             return new AnalyticsProduct(id.Value.Value, name.Value, catalogId.Value.Value, unitsSold);
         }
@@ -209,7 +209,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsProduct"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AnalyticsProduct analyticsProduct, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -224,11 +223,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="analyticsProduct"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AnalyticsProduct analyticsProduct, JsonSerializerOptions jsonSerializerOptions)
         {
             if (analyticsProduct.Name == null)
-                throw new ArgumentNullException(nameof(analyticsProduct.Name), "Property is required for class AnalyticsProduct.");
+                throw new JsonException("Cannot write null property AnalyticsProduct.Name to non-nullable JSON property 'name'.");
 
             writer.WriteNumber("id", analyticsProduct.Id);
 

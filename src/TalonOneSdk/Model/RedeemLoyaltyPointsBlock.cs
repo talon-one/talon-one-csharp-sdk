@@ -38,9 +38,8 @@ namespace TalonOneSdk.Model
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
         /// <param name="name">A custom description recorded as the reason for the point deduction.</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public RedeemLoyaltyPointsBlock(string type, RedeemLoyaltyPointsBlock1Program program, string subledger, RedeemLoyaltyPointsBlock1Value value, Option<string> id = default, Option<List<string>> tags = default, Option<string> name = default, Option<List<Block>> onFailure = default)
+        public RedeemLoyaltyPointsBlock(string type, RedeemLoyaltyPointsBlock1Program program, string subledger, RedeemLoyaltyPointsBlock1Value value, Option<string> id = default, Option<List<string>> tags = default, Option<string> name = default)
         {
             Type = type;
             Program = program;
@@ -49,7 +48,6 @@ namespace TalonOneSdk.Model
             IdOption = id;
             TagsOption = tags;
             NameOption = name;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -127,20 +125,6 @@ namespace TalonOneSdk.Model
         public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
-        /// Used to track the state of OnFailure
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Block>> OnFailureOption { get; private set; }
-
-        /// <summary>
-        /// Promotion blocks evaluated when this block fails or returns false.
-        /// </summary>
-        /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
-        [JsonPropertyName("onFailure")]
-        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -155,7 +139,6 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -210,7 +193,6 @@ namespace TalonOneSdk.Model
             Option<string> id = default;
             Option<List<string>> tags = default;
             Option<string> name = default;
-            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -248,9 +230,6 @@ namespace TalonOneSdk.Model
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "onFailure":
-                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         default:
                             break;
                     }
@@ -258,30 +237,30 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RedeemLoyaltyPointsBlock.", nameof(type));
+                throw new JsonException("Property is required for class RedeemLoyaltyPointsBlock: type.");
 
             if (!program.IsSet)
-                throw new ArgumentException("Property is required for class RedeemLoyaltyPointsBlock.", nameof(program));
+                throw new JsonException("Property is required for class RedeemLoyaltyPointsBlock: program.");
 
             if (!subledger.IsSet)
-                throw new ArgumentException("Property is required for class RedeemLoyaltyPointsBlock.", nameof(subledger));
+                throw new JsonException("Property is required for class RedeemLoyaltyPointsBlock: subledger.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class RedeemLoyaltyPointsBlock.", nameof(value));
+                throw new JsonException("Property is required for class RedeemLoyaltyPointsBlock: value.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RedeemLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class RedeemLoyaltyPointsBlock: type.");
 
             if (program.IsSet && program.Value == null)
-                throw new ArgumentNullException(nameof(program), "Property is not nullable for class RedeemLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class RedeemLoyaltyPointsBlock: program.");
 
             if (subledger.IsSet && subledger.Value == null)
-                throw new ArgumentNullException(nameof(subledger), "Property is not nullable for class RedeemLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class RedeemLoyaltyPointsBlock: subledger.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RedeemLoyaltyPointsBlock.");
+                throw new JsonException("Property is not nullable for class RedeemLoyaltyPointsBlock: value.");
 
-            return new RedeemLoyaltyPointsBlock(type.Value, program.Value, subledger.Value, value.Value, id, tags, name, onFailure);
+            return new RedeemLoyaltyPointsBlock(type.Value, program.Value, subledger.Value, value.Value, id, tags, name);
         }
 
         /// <summary>
@@ -290,7 +269,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="redeemLoyaltyPointsBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RedeemLoyaltyPointsBlock redeemLoyaltyPointsBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -305,20 +283,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="redeemLoyaltyPointsBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RedeemLoyaltyPointsBlock redeemLoyaltyPointsBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (redeemLoyaltyPointsBlock.Type == null)
-                throw new ArgumentNullException(nameof(redeemLoyaltyPointsBlock.Type), "Property is required for class RedeemLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property RedeemLoyaltyPointsBlock.Type to non-nullable JSON property 'type'.");
 
             if (redeemLoyaltyPointsBlock.Program == null)
-                throw new ArgumentNullException(nameof(redeemLoyaltyPointsBlock.Program), "Property is required for class RedeemLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property RedeemLoyaltyPointsBlock.Program to non-nullable JSON property 'program'.");
 
             if (redeemLoyaltyPointsBlock.Subledger == null)
-                throw new ArgumentNullException(nameof(redeemLoyaltyPointsBlock.Subledger), "Property is required for class RedeemLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property RedeemLoyaltyPointsBlock.Subledger to non-nullable JSON property 'subledger'.");
 
             if (redeemLoyaltyPointsBlock.Value == null)
-                throw new ArgumentNullException(nameof(redeemLoyaltyPointsBlock.Value), "Property is required for class RedeemLoyaltyPointsBlock.");
+                throw new JsonException("Cannot write null property RedeemLoyaltyPointsBlock.Value to non-nullable JSON property 'value'.");
 
             writer.WriteString("type", redeemLoyaltyPointsBlock.Type);
 
@@ -338,12 +315,6 @@ namespace TalonOneSdk.Model
             }
             if (redeemLoyaltyPointsBlock.NameOption.IsSet)
                 writer.WriteString("name", redeemLoyaltyPointsBlock.Name);
-
-            if (redeemLoyaltyPointsBlock.OnFailureOption.IsSet)
-            {
-                writer.WritePropertyName("onFailure");
-                JsonSerializer.Serialize(writer, redeemLoyaltyPointsBlock.OnFailure, jsonSerializerOptions);
-            }
         }
     }
 }

@@ -145,16 +145,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!sessionID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateUserSessionSummary.", nameof(sessionID));
+                throw new JsonException("Property is required for class GenerateUserSessionSummary: sessionID.");
 
             if (!applicationID.IsSet)
-                throw new ArgumentException("Property is required for class GenerateUserSessionSummary.", nameof(applicationID));
+                throw new JsonException("Property is required for class GenerateUserSessionSummary: applicationID.");
 
             if (sessionID.IsSet && sessionID.Value == null)
-                throw new ArgumentNullException(nameof(sessionID), "Property is not nullable for class GenerateUserSessionSummary.");
+                throw new JsonException("Property is not nullable for class GenerateUserSessionSummary: sessionID.");
 
             if (applicationID.IsSet && applicationID.Value == null)
-                throw new ArgumentNullException(nameof(applicationID), "Property is not nullable for class GenerateUserSessionSummary.");
+                throw new JsonException("Property is not nullable for class GenerateUserSessionSummary: applicationID.");
 
             return new GenerateUserSessionSummary(sessionID.Value, applicationID.Value.Value);
         }
@@ -165,7 +165,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateUserSessionSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GenerateUserSessionSummary generateUserSessionSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -180,11 +179,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="generateUserSessionSummary"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateUserSessionSummary generateUserSessionSummary, JsonSerializerOptions jsonSerializerOptions)
         {
             if (generateUserSessionSummary.SessionID == null)
-                throw new ArgumentNullException(nameof(generateUserSessionSummary.SessionID), "Property is required for class GenerateUserSessionSummary.");
+                throw new JsonException("Cannot write null property GenerateUserSessionSummary.SessionID to non-nullable JSON property 'sessionID'.");
 
             writer.WriteString("sessionID", generateUserSessionSummary.SessionID);
 

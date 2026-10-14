@@ -271,16 +271,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckCouponBlock.", nameof(type));
+                throw new JsonException("Property is required for class CheckCouponBlock: type.");
 
             if (!redeem.IsSet)
-                throw new ArgumentException("Property is required for class CheckCouponBlock.", nameof(redeem));
+                throw new JsonException("Property is required for class CheckCouponBlock: redeem.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CheckCouponBlock.");
+                throw new JsonException("Property is not nullable for class CheckCouponBlock: type.");
 
             if (redeem.IsSet && redeem.Value == null)
-                throw new ArgumentNullException(nameof(redeem), "Property is not nullable for class CheckCouponBlock.");
+                throw new JsonException("Property is not nullable for class CheckCouponBlock: redeem.");
 
             return new CheckCouponBlock(type.Value.Value, redeem.Value.Value, id, tags, onFailure);
         }
@@ -291,7 +291,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkCouponBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckCouponBlock checkCouponBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -306,7 +305,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="checkCouponBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckCouponBlock checkCouponBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = CheckCouponBlock.TypeEnumToJsonValue(checkCouponBlock.Type);

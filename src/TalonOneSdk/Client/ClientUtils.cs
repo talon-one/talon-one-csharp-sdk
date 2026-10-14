@@ -446,6 +446,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.CustomerAchievement.RecurrencePolicyEnumToJsonValue(customerAchievementRecurrencePolicyEnum);
             if (obj is TalonOneSdk.Model.CustomerAchievement.ActivationPolicyEnum customerAchievementActivationPolicyEnum)
                 return TalonOneSdk.Model.CustomerAchievement.ActivationPolicyEnumToJsonValue(customerAchievementActivationPolicyEnum);
+            if (obj is TalonOneSdk.Model.CustomerAchievementHistoryEntry.StatusEnum customerAchievementHistoryEntryStatusEnum)
+                return TalonOneSdk.Model.CustomerAchievementHistoryEntry.StatusEnumToJsonValue(customerAchievementHistoryEntryStatusEnum);
             if (obj is TalonOneSdk.Model.CustomerProfileAudienceRequestItem.ActionEnum customerProfileAudienceRequestItemActionEnum)
                 return TalonOneSdk.Model.CustomerProfileAudienceRequestItem.ActionEnumToJsonValue(customerProfileAudienceRequestItemActionEnum);
             if (obj is TalonOneSdk.Model.CustomerProfileIntegrationRequestV2.ResponseContentEnum customerProfileIntegrationRequestV2ResponseContentEnum)
@@ -498,6 +500,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.EffectExtendLoyaltyPointsExpiryDate.EffectTypeEnumToJsonValue(effectExtendLoyaltyPointsExpiryDateEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectIncreaseAchievementProgress.EffectTypeEnum effectIncreaseAchievementProgressEffectTypeEnum)
                 return TalonOneSdk.Model.EffectIncreaseAchievementProgress.EffectTypeEnumToJsonValue(effectIncreaseAchievementProgressEffectTypeEnum);
+            if (obj is TalonOneSdk.Model.EffectIncreaseAchievementProgressPerItem.EffectTypeEnum effectIncreaseAchievementProgressPerItemEffectTypeEnum)
+                return TalonOneSdk.Model.EffectIncreaseAchievementProgressPerItem.EffectTypeEnumToJsonValue(effectIncreaseAchievementProgressPerItemEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectJoinLoyaltyProgram.EffectTypeEnum effectJoinLoyaltyProgramEffectTypeEnum)
                 return TalonOneSdk.Model.EffectJoinLoyaltyProgram.EffectTypeEnumToJsonValue(effectJoinLoyaltyProgramEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectOffsetNegativeLoyaltyPoints.EffectTypeEnum effectOffsetNegativeLoyaltyPointsEffectTypeEnum)
@@ -524,8 +528,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.EffectRollbackDiscount.EffectTypeEnumToJsonValue(effectRollbackDiscountEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectRollbackIncreasedAchievementProgress.EffectTypeEnum effectRollbackIncreasedAchievementProgressEffectTypeEnum)
                 return TalonOneSdk.Model.EffectRollbackIncreasedAchievementProgress.EffectTypeEnumToJsonValue(effectRollbackIncreasedAchievementProgressEffectTypeEnum);
+            if (obj is TalonOneSdk.Model.EffectRollbackIncreasedAchievementProgressPerItem.EffectTypeEnum effectRollbackIncreasedAchievementProgressPerItemEffectTypeEnum)
+                return TalonOneSdk.Model.EffectRollbackIncreasedAchievementProgressPerItem.EffectTypeEnumToJsonValue(effectRollbackIncreasedAchievementProgressPerItemEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectRollbackReferral.EffectTypeEnum effectRollbackReferralEffectTypeEnum)
                 return TalonOneSdk.Model.EffectRollbackReferral.EffectTypeEnumToJsonValue(effectRollbackReferralEffectTypeEnum);
+            if (obj is TalonOneSdk.Model.EffectRollbackTierBoost.EffectTypeEnum effectRollbackTierBoostEffectTypeEnum)
+                return TalonOneSdk.Model.EffectRollbackTierBoost.EffectTypeEnumToJsonValue(effectRollbackTierBoostEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectRollbackUseReward.EffectTypeEnum effectRollbackUseRewardEffectTypeEnum)
                 return TalonOneSdk.Model.EffectRollbackUseReward.EffectTypeEnumToJsonValue(effectRollbackUseRewardEffectTypeEnum);
             if (obj is TalonOneSdk.Model.EffectSet.EffectTypeEnum effectSetEffectTypeEnum)
@@ -558,6 +566,10 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.Experiment.AssignmentTypeEnumToJsonValue(experimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.Experiment.StateEnum experimentStateEnum)
                 return TalonOneSdk.Model.Experiment.StateEnumToJsonValue(experimentStateEnum);
+            if (obj is TalonOneSdk.Model.ExperimentBlueprint.CategoryEnum experimentBlueprintCategoryEnum)
+                return TalonOneSdk.Model.ExperimentBlueprint.CategoryEnumToJsonValue(experimentBlueprintCategoryEnum);
+            if (obj is TalonOneSdk.Model.ExperimentBlueprint.SourceEnum experimentBlueprintSourceEnum)
+                return TalonOneSdk.Model.ExperimentBlueprint.SourceEnumToJsonValue(experimentBlueprintSourceEnum);
             if (obj is TalonOneSdk.Model.ExperimentCopyExperiment.AssignmentTypeEnum experimentCopyExperimentAssignmentTypeEnum)
                 return TalonOneSdk.Model.ExperimentCopyExperiment.AssignmentTypeEnumToJsonValue(experimentCopyExperimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.ExperimentCopyExperiment.GoalTypeEnum experimentCopyExperimentGoalTypeEnum)
@@ -722,6 +734,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.NewExperiment.AssignmentTypeEnumToJsonValue(newExperimentAssignmentTypeEnum);
             if (obj is TalonOneSdk.Model.NewExperiment.GoalTypeEnum newExperimentGoalTypeEnum)
                 return TalonOneSdk.Model.NewExperiment.GoalTypeEnumToJsonValue(newExperimentGoalTypeEnum);
+            if (obj is TalonOneSdk.Model.NewExperimentBlueprint.CategoryEnum newExperimentBlueprintCategoryEnum)
+                return TalonOneSdk.Model.NewExperimentBlueprint.CategoryEnumToJsonValue(newExperimentBlueprintCategoryEnum);
             if (obj is TalonOneSdk.Model.NewLoyaltyProgram.ProgramJoinPolicyEnum newLoyaltyProgramProgramJoinPolicyEnum)
                 return TalonOneSdk.Model.NewLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(newLoyaltyProgramProgramJoinPolicyEnum);
             if (obj is TalonOneSdk.Model.NewLoyaltyProgram.TiersExpirationPolicyEnum newLoyaltyProgramTiersExpirationPolicyEnum)
@@ -922,6 +936,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.UpdateCouponsData.NotificationTypeEnumToJsonValue(updateCouponsDataNotificationTypeEnum);
             if (obj is TalonOneSdk.Model.UpdateExperiment.GoalTypeEnum updateExperimentGoalTypeEnum)
                 return TalonOneSdk.Model.UpdateExperiment.GoalTypeEnumToJsonValue(updateExperimentGoalTypeEnum);
+            if (obj is TalonOneSdk.Model.UpdateExperimentBlueprint.CategoryEnum updateExperimentBlueprintCategoryEnum)
+                return TalonOneSdk.Model.UpdateExperimentBlueprint.CategoryEnumToJsonValue(updateExperimentBlueprintCategoryEnum);
             if (obj is TalonOneSdk.Model.UpdateLoyaltyPointsExpiryBlock.OperatorEnum updateLoyaltyPointsExpiryBlockOperatorEnum)
                 return TalonOneSdk.Model.UpdateLoyaltyPointsExpiryBlock.OperatorEnumToJsonValue(updateLoyaltyPointsExpiryBlockOperatorEnum);
             if (obj is TalonOneSdk.Model.UpdateLoyaltyPointsExpiryBlock.RecipientEnum updateLoyaltyPointsExpiryBlockRecipientEnum)

@@ -266,16 +266,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesNotificationPolicy.", nameof(name));
+                throw new JsonException("Property is required for class AddedDeductedPointsBalancesNotificationPolicy: name.");
 
             if (!scopes.IsSet)
-                throw new ArgumentException("Property is required for class AddedDeductedPointsBalancesNotificationPolicy.", nameof(scopes));
+                throw new JsonException("Property is required for class AddedDeductedPointsBalancesNotificationPolicy: scopes.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AddedDeductedPointsBalancesNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class AddedDeductedPointsBalancesNotificationPolicy: name.");
 
             if (scopes.IsSet && scopes.Value == null)
-                throw new ArgumentNullException(nameof(scopes), "Property is not nullable for class AddedDeductedPointsBalancesNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class AddedDeductedPointsBalancesNotificationPolicy: scopes.");
 
             return new AddedDeductedPointsBalancesNotificationPolicy(name.Value, scopes.Value);
         }
@@ -286,7 +286,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addedDeductedPointsBalancesNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AddedDeductedPointsBalancesNotificationPolicy addedDeductedPointsBalancesNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -301,14 +300,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="addedDeductedPointsBalancesNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AddedDeductedPointsBalancesNotificationPolicy addedDeductedPointsBalancesNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (addedDeductedPointsBalancesNotificationPolicy.Name == null)
-                throw new ArgumentNullException(nameof(addedDeductedPointsBalancesNotificationPolicy.Name), "Property is required for class AddedDeductedPointsBalancesNotificationPolicy.");
+                throw new JsonException("Cannot write null property AddedDeductedPointsBalancesNotificationPolicy.Name to non-nullable JSON property 'name'.");
 
             if (addedDeductedPointsBalancesNotificationPolicy.Scopes == null)
-                throw new ArgumentNullException(nameof(addedDeductedPointsBalancesNotificationPolicy.Scopes), "Property is required for class AddedDeductedPointsBalancesNotificationPolicy.");
+                throw new JsonException("Cannot write null property AddedDeductedPointsBalancesNotificationPolicy.Scopes to non-nullable JSON property 'scopes'.");
 
             writer.WriteString("name", addedDeductedPointsBalancesNotificationPolicy.Name);
 

@@ -34,10 +34,10 @@ namespace TalonOneSdk.Model
         /// <param name="id">The unique identifier of the webhook.</param>
         /// <param name="title">The display name of the webhook.</param>
         [JsonConstructor]
-        public WebhookBlockReference(long id, string title)
+        public WebhookBlockReference(long id, Option<string> title = default)
         {
             Id = id;
-            Title = title;
+            TitleOption = title;
             OnCreated();
         }
 
@@ -52,12 +52,19 @@ namespace TalonOneSdk.Model
         public long Id { get; set; }
 
         /// <summary>
+        /// Used to track the state of Title
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> TitleOption { get; }
+
+        /// <summary>
         /// The display name of the webhook.
         /// </summary>
         /// <value>The display name of the webhook.</value>
         /* <example>Thank you for your order.</example> */
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return this.TitleOption.Value; } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -147,18 +154,12 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class WebhookBlockReference.", nameof(id));
-
-            if (!title.IsSet)
-                throw new ArgumentException("Property is required for class WebhookBlockReference.", nameof(title));
+                throw new JsonException("Property is required for class WebhookBlockReference: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class WebhookBlockReference.");
+                throw new JsonException("Property is not nullable for class WebhookBlockReference: id.");
 
-            if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class WebhookBlockReference.");
-
-            return new WebhookBlockReference(id.Value.Value, title.Value);
+            return new WebhookBlockReference(id.Value.Value, title);
         }
 
         /// <summary>
@@ -167,7 +168,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookBlockReference webhookBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,15 +182,12 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhookBlockReference"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookBlockReference webhookBlockReference, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (webhookBlockReference.Title == null)
-                throw new ArgumentNullException(nameof(webhookBlockReference.Title), "Property is required for class WebhookBlockReference.");
-
             writer.WriteNumber("id", webhookBlockReference.Id);
 
-            writer.WriteString("title", webhookBlockReference.Title);
+            if (webhookBlockReference.TitleOption.IsSet)
+                writer.WriteString("title", webhookBlockReference.Title);
         }
     }
 }

@@ -575,52 +575,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(applicationId));
+                throw new JsonException("Property is required for class CampaignEligibility: applicationId.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(id));
+                throw new JsonException("Property is required for class CampaignEligibility: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(name));
+                throw new JsonException("Property is required for class CampaignEligibility: name.");
 
             if (!tags.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(tags));
+                throw new JsonException("Property is required for class CampaignEligibility: tags.");
 
             if (!features.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(features));
+                throw new JsonException("Property is required for class CampaignEligibility: features.");
 
             if (!eligibility.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(eligibility));
+                throw new JsonException("Property is required for class CampaignEligibility: eligibility.");
 
             if (!rules.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(rules));
+                throw new JsonException("Property is required for class CampaignEligibility: rules.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class CampaignEligibility.", nameof(state));
+                throw new JsonException("Property is required for class CampaignEligibility: state.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class CampaignEligibility.");
+                throw new JsonException("Property is not nullable for class CampaignEligibility: applicationId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CampaignEligibility.");
+                throw new JsonException("Property is not nullable for class CampaignEligibility: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CampaignEligibility.");
+                throw new JsonException("Property is not nullable for class CampaignEligibility: name.");
 
             if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class CampaignEligibility.");
+                throw new JsonException("Property is not nullable for class CampaignEligibility: tags.");
 
             if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class CampaignEligibility.");
+                throw new JsonException("Property is not nullable for class CampaignEligibility: features.");
 
             if (eligibility.IsSet && eligibility.Value == null)
-                throw new ArgumentNullException(nameof(eligibility), "Property is not nullable for class CampaignEligibility.");
+                throw new JsonException("Property is not nullable for class CampaignEligibility: eligibility.");
 
             if (rules.IsSet && rules.Value == null)
-                throw new ArgumentNullException(nameof(rules), "Property is not nullable for class CampaignEligibility.");
+                throw new JsonException("Property is not nullable for class CampaignEligibility: rules.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class CampaignEligibility.");
+                throw new JsonException("Property is not nullable for class CampaignEligibility: state.");
 
             return new CampaignEligibility(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, eligibility.Value, rules.Value, description, startTime, endTime, attributes, state.Value.Value, experiment);
         }
@@ -631,7 +631,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignEligibility campaignEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -646,23 +645,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEligibility campaignEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignEligibility.Name == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Name), "Property is required for class CampaignEligibility.");
+                throw new JsonException("Cannot write null property CampaignEligibility.Name to non-nullable JSON property 'name'.");
 
             if (campaignEligibility.Tags == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Tags), "Property is required for class CampaignEligibility.");
+                throw new JsonException("Cannot write null property CampaignEligibility.Tags to non-nullable JSON property 'tags'.");
 
             if (campaignEligibility.Features == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Features), "Property is required for class CampaignEligibility.");
+                throw new JsonException("Cannot write null property CampaignEligibility.Features to non-nullable JSON property 'features'.");
 
             if (campaignEligibility.Eligibility == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Eligibility), "Property is required for class CampaignEligibility.");
+                throw new JsonException("Cannot write null property CampaignEligibility.Eligibility to non-nullable JSON property 'eligibility'.");
 
             if (campaignEligibility.Rules == null)
-                throw new ArgumentNullException(nameof(campaignEligibility.Rules), "Property is required for class CampaignEligibility.");
+                throw new JsonException("Cannot write null property CampaignEligibility.Rules to non-nullable JSON property 'rules'.");
 
             writer.WriteNumber("applicationId", campaignEligibility.ApplicationId);
 

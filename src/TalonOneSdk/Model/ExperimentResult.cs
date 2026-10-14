@@ -157,22 +157,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!variants.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentResult.", nameof(variants));
+                throw new JsonException("Property is required for class ExperimentResult: variants.");
 
             if (!confidence.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentResult.", nameof(confidence));
+                throw new JsonException("Property is required for class ExperimentResult: confidence.");
 
             if (!experimentId.IsSet)
-                throw new ArgumentException("Property is required for class ExperimentResult.", nameof(experimentId));
+                throw new JsonException("Property is required for class ExperimentResult: experimentId.");
 
             if (variants.IsSet && variants.Value == null)
-                throw new ArgumentNullException(nameof(variants), "Property is not nullable for class ExperimentResult.");
+                throw new JsonException("Property is not nullable for class ExperimentResult: variants.");
 
             if (confidence.IsSet && confidence.Value == null)
-                throw new ArgumentNullException(nameof(confidence), "Property is not nullable for class ExperimentResult.");
+                throw new JsonException("Property is not nullable for class ExperimentResult: confidence.");
 
             if (experimentId.IsSet && experimentId.Value == null)
-                throw new ArgumentNullException(nameof(experimentId), "Property is not nullable for class ExperimentResult.");
+                throw new JsonException("Property is not nullable for class ExperimentResult: experimentId.");
 
             return new ExperimentResult(variants.Value, confidence.Value, experimentId.Value.Value);
         }
@@ -183,7 +183,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ExperimentResult experimentResult, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -198,14 +197,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="experimentResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ExperimentResult experimentResult, JsonSerializerOptions jsonSerializerOptions)
         {
             if (experimentResult.Variants == null)
-                throw new ArgumentNullException(nameof(experimentResult.Variants), "Property is required for class ExperimentResult.");
+                throw new JsonException("Cannot write null property ExperimentResult.Variants to non-nullable JSON property 'variants'.");
 
             if (experimentResult.Confidence == null)
-                throw new ArgumentNullException(nameof(experimentResult.Confidence), "Property is required for class ExperimentResult.");
+                throw new JsonException("Cannot write null property ExperimentResult.Confidence to non-nullable JSON property 'confidence'.");
 
             writer.WritePropertyName("variants");
             JsonSerializer.Serialize(writer, experimentResult.Variants, jsonSerializerOptions);

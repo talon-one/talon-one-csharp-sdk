@@ -325,46 +325,46 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfile.", nameof(id));
+                throw new JsonException("Property is required for class CustomerProfile: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfile.", nameof(created));
+                throw new JsonException("Property is required for class CustomerProfile: created.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfile.", nameof(integrationId));
+                throw new JsonException("Property is required for class CustomerProfile: integrationId.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfile.", nameof(accountId));
+                throw new JsonException("Property is required for class CustomerProfile: accountId.");
 
             if (!closedSessions.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfile.", nameof(closedSessions));
+                throw new JsonException("Property is required for class CustomerProfile: closedSessions.");
 
             if (!totalSales.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfile.", nameof(totalSales));
+                throw new JsonException("Property is required for class CustomerProfile: totalSales.");
 
             if (!lastActivity.IsSet)
-                throw new ArgumentException("Property is required for class CustomerProfile.", nameof(lastActivity));
+                throw new JsonException("Property is required for class CustomerProfile: lastActivity.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CustomerProfile.");
+                throw new JsonException("Property is not nullable for class CustomerProfile: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CustomerProfile.");
+                throw new JsonException("Property is not nullable for class CustomerProfile: created.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class CustomerProfile.");
+                throw new JsonException("Property is not nullable for class CustomerProfile: integrationId.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class CustomerProfile.");
+                throw new JsonException("Property is not nullable for class CustomerProfile: accountId.");
 
             if (closedSessions.IsSet && closedSessions.Value == null)
-                throw new ArgumentNullException(nameof(closedSessions), "Property is not nullable for class CustomerProfile.");
+                throw new JsonException("Property is not nullable for class CustomerProfile: closedSessions.");
 
             if (totalSales.IsSet && totalSales.Value == null)
-                throw new ArgumentNullException(nameof(totalSales), "Property is not nullable for class CustomerProfile.");
+                throw new JsonException("Property is not nullable for class CustomerProfile: totalSales.");
 
             if (lastActivity.IsSet && lastActivity.Value == null)
-                throw new ArgumentNullException(nameof(lastActivity), "Property is not nullable for class CustomerProfile.");
+                throw new JsonException("Property is not nullable for class CustomerProfile: lastActivity.");
 
             return new CustomerProfile(id.Value.Value, created.Value.Value, integrationId.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, attributes, loyaltyMemberships, audienceMemberships, sandbox);
         }
@@ -375,7 +375,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CustomerProfile customerProfile, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -390,11 +389,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="customerProfile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CustomerProfile customerProfile, JsonSerializerOptions jsonSerializerOptions)
         {
             if (customerProfile.IntegrationId == null)
-                throw new ArgumentNullException(nameof(customerProfile.IntegrationId), "Property is required for class CustomerProfile.");
+                throw new JsonException("Cannot write null property CustomerProfile.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteNumber("id", customerProfile.Id);
 

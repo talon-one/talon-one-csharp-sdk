@@ -256,10 +256,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!failureCode.IsSet)
-                throw new ArgumentException("Property is required for class RewardEligibilityFailureDetails.", nameof(failureCode));
+                throw new JsonException("Property is required for class RewardEligibilityFailureDetails: failureCode.");
 
             if (failureCode.IsSet && failureCode.Value == null)
-                throw new ArgumentNullException(nameof(failureCode), "Property is not nullable for class RewardEligibilityFailureDetails.");
+                throw new JsonException("Property is not nullable for class RewardEligibilityFailureDetails: failureCode.");
 
             return new RewardEligibilityFailureDetails(failureCode.Value.Value, conditionIndex);
         }
@@ -270,7 +270,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardEligibilityFailureDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RewardEligibilityFailureDetails rewardEligibilityFailureDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -285,7 +284,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardEligibilityFailureDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RewardEligibilityFailureDetails rewardEligibilityFailureDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             var failureCodeRawValue = RewardEligibilityFailureDetails.FailureCodeEnumToJsonValue(rewardEligibilityFailureDetails.FailureCode);

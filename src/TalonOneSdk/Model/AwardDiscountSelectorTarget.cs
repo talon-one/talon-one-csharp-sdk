@@ -228,16 +228,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountSelectorTarget.", nameof(type));
+                throw new JsonException("Property is required for class AwardDiscountSelectorTarget: type.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AwardDiscountSelectorTarget.", nameof(name));
+                throw new JsonException("Property is required for class AwardDiscountSelectorTarget: name.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AwardDiscountSelectorTarget.");
+                throw new JsonException("Property is not nullable for class AwardDiscountSelectorTarget: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AwardDiscountSelectorTarget.");
+                throw new JsonException("Property is not nullable for class AwardDiscountSelectorTarget: name.");
 
             return new AwardDiscountSelectorTarget(type.Value.Value, name.Value, prorated);
         }
@@ -248,7 +248,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountSelectorTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AwardDiscountSelectorTarget awardDiscountSelectorTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -263,11 +262,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="awardDiscountSelectorTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AwardDiscountSelectorTarget awardDiscountSelectorTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             if (awardDiscountSelectorTarget.Name == null)
-                throw new ArgumentNullException(nameof(awardDiscountSelectorTarget.Name), "Property is required for class AwardDiscountSelectorTarget.");
+                throw new JsonException("Cannot write null property AwardDiscountSelectorTarget.Name to non-nullable JSON property 'name'.");
 
             var typeRawValue = AwardDiscountSelectorTarget.TypeEnumToJsonValue(awardDiscountSelectorTarget.Type);
             writer.WriteString("type", typeRawValue);

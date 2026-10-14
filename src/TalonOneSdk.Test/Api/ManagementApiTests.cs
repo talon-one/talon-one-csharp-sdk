@@ -1105,7 +1105,8 @@ namespace TalonOneSdk.Test.Api
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
             Client.Option<bool> withTotalResultSize = default;
-            var response = await _instance.GetApplicationCustomersAsync(applicationId, integrationId, pageSize, skip, withTotalResultSize);
+            Client.Option<bool> withLoyaltyMemberships = default;
+            var response = await _instance.GetApplicationCustomersAsync(applicationId, integrationId, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.GetApplicationCustomers200Response>(model);
         }
@@ -1121,7 +1122,8 @@ namespace TalonOneSdk.Test.Api
             Client.Option<long> pageSize = default;
             Client.Option<long> skip = default;
             Client.Option<bool> withTotalResultSize = default;
-            var response = await _instance.GetApplicationCustomersByAttributesAsync(applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize);
+            Client.Option<bool> withLoyaltyMemberships = default;
+            var response = await _instance.GetApplicationCustomersByAttributesAsync(applicationId, customerProfileSearchQuery, pageSize, skip, withTotalResultSize, withLoyaltyMemberships);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.GetApplicationCustomersByAttributes200Response>(model);
         }
@@ -1507,6 +1509,19 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.GetCouponsWithoutTotalCountAsync(applicationId, campaignId, pageSize, skip, sort, value, createdBefore, createdAfter, valid, usable, redeemed, referralId, recipientIntegrationId, batchId, exactMatch, expiresBefore, expiresAfter, startsBefore, startsAfter, valuesOnly);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.GetCouponsWithoutTotalCount200Response>(model);
+        }
+
+        /// <summary>
+        /// Test GetCurrentRevision
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task GetCurrentRevisionAsyncTest()
+        {
+            long applicationId = default;
+            long campaignId = default;
+            var response = await _instance.GetCurrentRevisionAsync(applicationId, campaignId);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.Revision>(model);
         }
 
         /// <summary>
@@ -2371,6 +2386,22 @@ namespace TalonOneSdk.Test.Api
             var response = await _instance.ListExperimentsAsync(applicationId, pageSize, skip, sort);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.ListExperiments200Response>(model);
+        }
+
+        /// <summary>
+        /// Test ListGiveawaysPool
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task ListGiveawaysPoolAsyncTest()
+        {
+            Client.Option<long> pageSize = default;
+            Client.Option<long> skip = default;
+            Client.Option<string> sort = default;
+            Client.Option<bool> withTotalResultSize = default;
+            Client.Option<string> applicationIds = default;
+            var response = await _instance.ListGiveawaysPoolAsync(pageSize, skip, sort, withTotalResultSize, applicationIds);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.ListGiveawaysPool200Response>(model);
         }
 
         /// <summary>

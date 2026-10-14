@@ -34,21 +34,19 @@ namespace TalonOneSdk.Model
         /// <param name="type">Identifies the block variant and determines which additional properties are present in it.</param>
         /// <param name="notificationType">The type of notification to display.</param>
         /// <param name="title">The notification heading shown to the customer.</param>
+        /// <param name="body">The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time.</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="body">The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time.</param>
-        /// <param name="onFailure">Blocks evaluated when this block fails or returns false.</param>
         /// <param name="onError">Named error handlers evaluated when a specific error occurs.</param>
         [JsonConstructor]
-        public ShowNotificationBlock(string type, string notificationType, string title, Option<string> id = default, Option<List<string>> tags = default, Option<string> body = default, Option<List<Block>> onFailure = default, Option<Dictionary<string, List<Block>>> onError = default)
+        public ShowNotificationBlock(string type, string notificationType, string title, string body, Option<string> id = default, Option<List<string>> tags = default, Option<Dictionary<string, List<Block>>> onError = default)
         {
             Type = type;
             NotificationType = notificationType;
             Title = title;
+            Body = body;
             IdOption = id;
             TagsOption = tags;
-            BodyOption = body;
-            OnFailureOption = onFailure;
             OnErrorOption = onError;
             OnCreated();
         }
@@ -77,6 +75,14 @@ namespace TalonOneSdk.Model
         /* <example>You earned a reward!</example> */
         [JsonPropertyName("title")]
         public string Title { get; set; }
+
+        /// <summary>
+        /// The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time.
+        /// </summary>
+        /// <value>The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time.</value>
+        /* <example>You saved $10 on your order.</example> */
+        [JsonPropertyName("body")]
+        public string Body { get; set; }
 
         /// <summary>
         /// Used to track the state of Id
@@ -108,35 +114,6 @@ namespace TalonOneSdk.Model
         public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
-        /// Used to track the state of Body
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> BodyOption { get; private set; }
-
-        /// <summary>
-        /// The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time.
-        /// </summary>
-        /// <value>The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time.</value>
-        /* <example>You saved $10 on your order.</example> */
-        [JsonPropertyName("body")]
-        public string Body { get { return this.BodyOption.Value; } set { this.BodyOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of OnFailure
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Block>> OnFailureOption { get; private set; }
-
-        /// <summary>
-        /// Blocks evaluated when this block fails or returns false.
-        /// </summary>
-        /// <value>Blocks evaluated when this block fails or returns false.</value>
-        [JsonPropertyName("onFailure")]
-        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
-
-        /// <summary>
         /// Used to track the state of OnError
         /// </summary>
         [JsonIgnore]
@@ -161,10 +138,9 @@ namespace TalonOneSdk.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  NotificationType: ").Append(NotificationType).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
-            sb.Append("  Body: ").Append(Body).Append("\n");
-            sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
             sb.Append("  OnError: ").Append(OnError).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -216,10 +192,9 @@ namespace TalonOneSdk.Model
             Option<string> type = default;
             Option<string> notificationType = default;
             Option<string> title = default;
+            Option<string> body = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
-            Option<string> body = default;
-            Option<List<Block>> onFailure = default;
             Option<Dictionary<string, List<Block>>> onError = default;
 
             while (utf8JsonReader.Read())
@@ -246,17 +221,14 @@ namespace TalonOneSdk.Model
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "body":
+                            body = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "id":
                             id = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "body":
-                            body = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "onFailure":
-                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "onError":
                             onError = new Option<Dictionary<string, List<Block>>>(JsonSerializer.Deserialize<Dictionary<string, List<Block>>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -268,24 +240,30 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ShowNotificationBlock.", nameof(type));
+                throw new JsonException("Property is required for class ShowNotificationBlock: type.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class ShowNotificationBlock.", nameof(notificationType));
+                throw new JsonException("Property is required for class ShowNotificationBlock: notificationType.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class ShowNotificationBlock.", nameof(title));
+                throw new JsonException("Property is required for class ShowNotificationBlock: title.");
+
+            if (!body.IsSet)
+                throw new JsonException("Property is required for class ShowNotificationBlock: body.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ShowNotificationBlock.");
+                throw new JsonException("Property is not nullable for class ShowNotificationBlock: type.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class ShowNotificationBlock.");
+                throw new JsonException("Property is not nullable for class ShowNotificationBlock: notificationType.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class ShowNotificationBlock.");
+                throw new JsonException("Property is not nullable for class ShowNotificationBlock: title.");
 
-            return new ShowNotificationBlock(type.Value, notificationType.Value, title.Value, id, tags, body, onFailure, onError);
+            if (body.IsSet && body.Value == null)
+                throw new JsonException("Property is not nullable for class ShowNotificationBlock: body.");
+
+            return new ShowNotificationBlock(type.Value, notificationType.Value, title.Value, body.Value, id, tags, onError);
         }
 
         /// <summary>
@@ -294,7 +272,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="showNotificationBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ShowNotificationBlock showNotificationBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -309,23 +286,27 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="showNotificationBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ShowNotificationBlock showNotificationBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (showNotificationBlock.Type == null)
-                throw new ArgumentNullException(nameof(showNotificationBlock.Type), "Property is required for class ShowNotificationBlock.");
+                throw new JsonException("Cannot write null property ShowNotificationBlock.Type to non-nullable JSON property 'type'.");
 
             if (showNotificationBlock.NotificationType == null)
-                throw new ArgumentNullException(nameof(showNotificationBlock.NotificationType), "Property is required for class ShowNotificationBlock.");
+                throw new JsonException("Cannot write null property ShowNotificationBlock.NotificationType to non-nullable JSON property 'notificationType'.");
 
             if (showNotificationBlock.Title == null)
-                throw new ArgumentNullException(nameof(showNotificationBlock.Title), "Property is required for class ShowNotificationBlock.");
+                throw new JsonException("Cannot write null property ShowNotificationBlock.Title to non-nullable JSON property 'title'.");
+
+            if (showNotificationBlock.Body == null)
+                throw new JsonException("Cannot write null property ShowNotificationBlock.Body to non-nullable JSON property 'body'.");
 
             writer.WriteString("type", showNotificationBlock.Type);
 
             writer.WriteString("notificationType", showNotificationBlock.NotificationType);
 
             writer.WriteString("title", showNotificationBlock.Title);
+
+            writer.WriteString("body", showNotificationBlock.Body);
 
             if (showNotificationBlock.IdOption.IsSet)
                 writer.WriteString("id", showNotificationBlock.Id);
@@ -334,14 +315,6 @@ namespace TalonOneSdk.Model
             {
                 writer.WritePropertyName("tags");
                 JsonSerializer.Serialize(writer, showNotificationBlock.Tags, jsonSerializerOptions);
-            }
-            if (showNotificationBlock.BodyOption.IsSet)
-                writer.WriteString("body", showNotificationBlock.Body);
-
-            if (showNotificationBlock.OnFailureOption.IsSet)
-            {
-                writer.WritePropertyName("onFailure");
-                JsonSerializer.Serialize(writer, showNotificationBlock.OnFailure, jsonSerializerOptions);
             }
             if (showNotificationBlock.OnErrorOption.IsSet)
             {

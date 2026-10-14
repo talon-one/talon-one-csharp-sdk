@@ -219,22 +219,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!totalResultSize.IsSet)
-                throw new ArgumentException("Property is required for class PendingActivePointsNotification.", nameof(totalResultSize));
+                throw new JsonException("Property is required for class PendingActivePointsNotification: TotalResultSize.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class PendingActivePointsNotification.", nameof(data));
+                throw new JsonException("Property is required for class PendingActivePointsNotification: Data.");
 
             if (!notificationType.IsSet)
-                throw new ArgumentException("Property is required for class PendingActivePointsNotification.", nameof(notificationType));
+                throw new JsonException("Property is required for class PendingActivePointsNotification: NotificationType.");
 
             if (totalResultSize.IsSet && totalResultSize.Value == null)
-                throw new ArgumentNullException(nameof(totalResultSize), "Property is not nullable for class PendingActivePointsNotification.");
+                throw new JsonException("Property is not nullable for class PendingActivePointsNotification: TotalResultSize.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class PendingActivePointsNotification.");
+                throw new JsonException("Property is not nullable for class PendingActivePointsNotification: Data.");
 
             if (notificationType.IsSet && notificationType.Value == null)
-                throw new ArgumentNullException(nameof(notificationType), "Property is not nullable for class PendingActivePointsNotification.");
+                throw new JsonException("Property is not nullable for class PendingActivePointsNotification: NotificationType.");
 
             return new PendingActivePointsNotification(totalResultSize.Value.Value, data.Value, notificationType.Value.Value);
         }
@@ -245,7 +245,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="pendingActivePointsNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PendingActivePointsNotification pendingActivePointsNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,11 +259,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="pendingActivePointsNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PendingActivePointsNotification pendingActivePointsNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (pendingActivePointsNotification.Data == null)
-                throw new ArgumentNullException(nameof(pendingActivePointsNotification.Data), "Property is required for class PendingActivePointsNotification.");
+                throw new JsonException("Cannot write null property PendingActivePointsNotification.Data to non-nullable JSON property 'Data'.");
 
             writer.WriteNumber("TotalResultSize", pendingActivePointsNotification.TotalResultSize);
 

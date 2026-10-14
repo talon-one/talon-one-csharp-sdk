@@ -485,70 +485,70 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(id));
+                throw new JsonException("Property is required for class Webhook: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(created));
+                throw new JsonException("Property is required for class Webhook: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(modified));
+                throw new JsonException("Property is required for class Webhook: modified.");
 
             if (!applicationIds.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(applicationIds));
+                throw new JsonException("Property is required for class Webhook: applicationIds.");
 
             if (!title.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(title));
+                throw new JsonException("Property is required for class Webhook: title.");
 
             if (!draft.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(draft));
+                throw new JsonException("Property is required for class Webhook: draft.");
 
             if (!verb.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(verb));
+                throw new JsonException("Property is required for class Webhook: verb.");
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(url));
+                throw new JsonException("Property is required for class Webhook: url.");
 
             if (!headers.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(headers));
+                throw new JsonException("Property is required for class Webhook: headers.");
 
             if (!varParams.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(varParams));
+                throw new JsonException("Property is required for class Webhook: params.");
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(enabled));
+                throw new JsonException("Property is required for class Webhook: enabled.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: modified.");
 
             if (applicationIds.IsSet && applicationIds.Value == null)
-                throw new ArgumentNullException(nameof(applicationIds), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: applicationIds.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: title.");
 
             if (draft.IsSet && draft.Value == null)
-                throw new ArgumentNullException(nameof(draft), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: draft.");
 
             if (verb.IsSet && verb.Value == null)
-                throw new ArgumentNullException(nameof(verb), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: verb.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: url.");
 
             if (headers.IsSet && headers.Value == null)
-                throw new ArgumentNullException(nameof(headers), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: headers.");
 
             if (varParams.IsSet && varParams.Value == null)
-                throw new ArgumentNullException(nameof(varParams), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: params.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class Webhook.");
+                throw new JsonException("Property is not nullable for class Webhook: enabled.");
 
             return new Webhook(id.Value.Value, created.Value.Value, modified.Value.Value, applicationIds.Value, title.Value, draft.Value.Value, verb.Value.Value, url.Value, headers.Value, varParams.Value, enabled.Value.Value, description, payload, authenticationId);
         }
@@ -559,7 +559,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Webhook webhook, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -574,23 +573,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="webhook"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Webhook webhook, JsonSerializerOptions jsonSerializerOptions)
         {
             if (webhook.ApplicationIds == null)
-                throw new ArgumentNullException(nameof(webhook.ApplicationIds), "Property is required for class Webhook.");
+                throw new JsonException("Cannot write null property Webhook.ApplicationIds to non-nullable JSON property 'applicationIds'.");
 
             if (webhook.Title == null)
-                throw new ArgumentNullException(nameof(webhook.Title), "Property is required for class Webhook.");
+                throw new JsonException("Cannot write null property Webhook.Title to non-nullable JSON property 'title'.");
 
             if (webhook.Url == null)
-                throw new ArgumentNullException(nameof(webhook.Url), "Property is required for class Webhook.");
+                throw new JsonException("Cannot write null property Webhook.Url to non-nullable JSON property 'url'.");
 
             if (webhook.Headers == null)
-                throw new ArgumentNullException(nameof(webhook.Headers), "Property is required for class Webhook.");
+                throw new JsonException("Cannot write null property Webhook.Headers to non-nullable JSON property 'headers'.");
 
             if (webhook.Params == null)
-                throw new ArgumentNullException(nameof(webhook.Params), "Property is required for class Webhook.");
+                throw new JsonException("Cannot write null property Webhook.Params to non-nullable JSON property 'params'.");
 
             writer.WriteNumber("id", webhook.Id);
 

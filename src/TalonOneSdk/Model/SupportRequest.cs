@@ -41,14 +41,14 @@ namespace TalonOneSdk.Model
         /// <param name="requestStatus">Current status of the support request.</param>
         /// <param name="campaignId">Identifier of the campaign where the coupon or gift card is created.</param>
         /// <param name="loyaltyProgramId">Identifier of the loyalty program where the points are added or deducted.</param>
-        /// <param name="subledgerId">Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.</param>
+        /// <param name="subledgerId">ID of the subledger the points are added to or deducted from. Must be combined with &#x60;loyaltyProgramId&#x60;. The subledger must already exist in the given loyalty program.</param>
         /// <param name="requestValue">Requested monetary balance of the gift card or the number of loyalty points to be added or deducted.</param>
         /// <param name="processedAt">Timestamp when the request was approved or rejected.</param>
         /// <param name="processingNote">Notes attached by the admin when rejecting or approving a request.</param>
         /// <param name="processedByUser">Email address of the admin who approved or rejected the support request.</param>
         /// <param name="couponCode">Coupon code associated with the approved support request.</param>
         [JsonConstructor]
-        public SupportRequest(long id, long applicationId, string createdByUser, DateTime createdAt, string customerProfileId, RequestTypeEnum requestType, string requestNote, RequestStatusEnum requestStatus, Option<long?> campaignId = default, Option<long?> loyaltyProgramId = default, Option<long?> subledgerId = default, Option<float?> requestValue = default, Option<DateTime?> processedAt = default, Option<string> processingNote = default, Option<string> processedByUser = default, Option<string> couponCode = default)
+        public SupportRequest(long id, long applicationId, string createdByUser, DateTime createdAt, string customerProfileId, RequestTypeEnum requestType, string requestNote, RequestStatusEnum requestStatus, Option<long?> campaignId = default, Option<long?> loyaltyProgramId = default, Option<string> subledgerId = default, Option<float?> requestValue = default, Option<DateTime?> processedAt = default, Option<string> processingNote = default, Option<string> processedByUser = default, Option<string> couponCode = default)
         {
             Id = id;
             ApplicationId = applicationId;
@@ -360,15 +360,15 @@ namespace TalonOneSdk.Model
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> SubledgerIdOption { get; private set; }
+        public Option<string> SubledgerIdOption { get; private set; }
 
         /// <summary>
-        /// Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.
+        /// ID of the subledger the points are added to or deducted from. Must be combined with &#x60;loyaltyProgramId&#x60;. The subledger must already exist in the given loyalty program.
         /// </summary>
-        /// <value>Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.</value>
-        /* <example>123</example> */
+        /// <value>ID of the subledger the points are added to or deducted from. Must be combined with &#x60;loyaltyProgramId&#x60;. The subledger must already exist in the given loyalty program.</value>
+        /* <example>sub-123</example> */
         [JsonPropertyName("subledgerId")]
-        public long? SubledgerId { get { return this.SubledgerIdOption.Value; } set { this.SubledgerIdOption = new Option<long?>(value); } }
+        public string SubledgerId { get { return this.SubledgerIdOption.Value; } set { this.SubledgerIdOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of RequestValue
@@ -542,7 +542,7 @@ namespace TalonOneSdk.Model
             Option<SupportRequest.RequestStatusEnum?> requestStatus = default;
             Option<long?> campaignId = default;
             Option<long?> loyaltyProgramId = default;
-            Option<long?> subledgerId = default;
+            Option<string> subledgerId = default;
             Option<float?> requestValue = default;
             Option<DateTime?> processedAt = default;
             Option<string> processingNote = default;
@@ -609,7 +609,7 @@ namespace TalonOneSdk.Model
                             loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "subledgerId":
-                            subledgerId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            subledgerId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "requestValue":
                             requestValue = new Option<float?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (float?)null : (float)utf8JsonReader.GetDouble());
@@ -633,52 +633,52 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequest.", nameof(id));
+                throw new JsonException("Property is required for class SupportRequest: id.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequest.", nameof(applicationId));
+                throw new JsonException("Property is required for class SupportRequest: applicationId.");
 
             if (!createdByUser.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequest.", nameof(createdByUser));
+                throw new JsonException("Property is required for class SupportRequest: createdByUser.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequest.", nameof(createdAt));
+                throw new JsonException("Property is required for class SupportRequest: createdAt.");
 
             if (!customerProfileId.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequest.", nameof(customerProfileId));
+                throw new JsonException("Property is required for class SupportRequest: customerProfileId.");
 
             if (!requestType.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequest.", nameof(requestType));
+                throw new JsonException("Property is required for class SupportRequest: requestType.");
 
             if (!requestNote.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequest.", nameof(requestNote));
+                throw new JsonException("Property is required for class SupportRequest: requestNote.");
 
             if (!requestStatus.IsSet)
-                throw new ArgumentException("Property is required for class SupportRequest.", nameof(requestStatus));
+                throw new JsonException("Property is required for class SupportRequest: requestStatus.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class SupportRequest.");
+                throw new JsonException("Property is not nullable for class SupportRequest: id.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class SupportRequest.");
+                throw new JsonException("Property is not nullable for class SupportRequest: applicationId.");
 
             if (createdByUser.IsSet && createdByUser.Value == null)
-                throw new ArgumentNullException(nameof(createdByUser), "Property is not nullable for class SupportRequest.");
+                throw new JsonException("Property is not nullable for class SupportRequest: createdByUser.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class SupportRequest.");
+                throw new JsonException("Property is not nullable for class SupportRequest: createdAt.");
 
             if (customerProfileId.IsSet && customerProfileId.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileId), "Property is not nullable for class SupportRequest.");
+                throw new JsonException("Property is not nullable for class SupportRequest: customerProfileId.");
 
             if (requestType.IsSet && requestType.Value == null)
-                throw new ArgumentNullException(nameof(requestType), "Property is not nullable for class SupportRequest.");
+                throw new JsonException("Property is not nullable for class SupportRequest: requestType.");
 
             if (requestNote.IsSet && requestNote.Value == null)
-                throw new ArgumentNullException(nameof(requestNote), "Property is not nullable for class SupportRequest.");
+                throw new JsonException("Property is not nullable for class SupportRequest: requestNote.");
 
             if (requestStatus.IsSet && requestStatus.Value == null)
-                throw new ArgumentNullException(nameof(requestStatus), "Property is not nullable for class SupportRequest.");
+                throw new JsonException("Property is not nullable for class SupportRequest: requestStatus.");
 
             return new SupportRequest(id.Value.Value, applicationId.Value.Value, createdByUser.Value, createdAt.Value.Value, customerProfileId.Value, requestType.Value.Value, requestNote.Value, requestStatus.Value.Value, campaignId, loyaltyProgramId, subledgerId, requestValue, processedAt, processingNote, processedByUser, couponCode);
         }
@@ -689,7 +689,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="supportRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SupportRequest supportRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -704,17 +703,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="supportRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SupportRequest supportRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (supportRequest.CreatedByUser == null)
-                throw new ArgumentNullException(nameof(supportRequest.CreatedByUser), "Property is required for class SupportRequest.");
+                throw new JsonException("Cannot write null property SupportRequest.CreatedByUser to non-nullable JSON property 'createdByUser'.");
 
             if (supportRequest.CustomerProfileId == null)
-                throw new ArgumentNullException(nameof(supportRequest.CustomerProfileId), "Property is required for class SupportRequest.");
+                throw new JsonException("Cannot write null property SupportRequest.CustomerProfileId to non-nullable JSON property 'customerProfileId'.");
 
             if (supportRequest.RequestNote == null)
-                throw new ArgumentNullException(nameof(supportRequest.RequestNote), "Property is required for class SupportRequest.");
+                throw new JsonException("Cannot write null property SupportRequest.RequestNote to non-nullable JSON property 'requestNote'.");
 
             writer.WriteNumber("id", supportRequest.Id);
 
@@ -739,7 +737,7 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("loyaltyProgramId", supportRequest.LoyaltyProgramIdOption.Value.Value);
 
             if (supportRequest.SubledgerIdOption.IsSet)
-                writer.WriteNumber("subledgerId", supportRequest.SubledgerIdOption.Value.Value);
+                writer.WriteString("subledgerId", supportRequest.SubledgerId);
 
             if (supportRequest.RequestValueOption.IsSet)
                 writer.WriteNumber("requestValue", supportRequest.RequestValueOption.Value.Value);

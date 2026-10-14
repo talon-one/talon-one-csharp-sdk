@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!timeOffset.IsSet)
-                throw new ArgumentException("Property is required for class UpdateApplicationAPIKey.", nameof(timeOffset));
+                throw new JsonException("Property is required for class UpdateApplicationAPIKey: timeOffset.");
 
             if (timeOffset.IsSet && timeOffset.Value == null)
-                throw new ArgumentNullException(nameof(timeOffset), "Property is not nullable for class UpdateApplicationAPIKey.");
+                throw new JsonException("Property is not nullable for class UpdateApplicationAPIKey: timeOffset.");
 
             return new UpdateApplicationAPIKey(timeOffset.Value.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateApplicationAPIKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateApplicationAPIKey updateApplicationAPIKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,7 +160,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="updateApplicationAPIKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateApplicationAPIKey updateApplicationAPIKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("timeOffset", updateApplicationAPIKey.TimeOffset);

@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="LabelTarget" /> class.
         /// </summary>
         /// <param name="labelTargetNone"></param>
-        public LabelTarget(LabelTargetNone labelTargetNone)
+        internal LabelTarget(LabelTargetNone labelTargetNone)
         {
             LabelTargetNone = labelTargetNone;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="LabelTarget" /> class.
         /// </summary>
         /// <param name="labelTargetAudience"></param>
-        public LabelTarget(LabelTargetAudience labelTargetAudience)
+        internal LabelTarget(LabelTargetAudience labelTargetAudience)
         {
             LabelTargetAudience = labelTargetAudience;
             OnCreated();
@@ -173,7 +173,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="labelTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LabelTarget labelTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -188,7 +187,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="labelTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LabelTarget labelTarget, JsonSerializerOptions jsonSerializerOptions)
         {
 

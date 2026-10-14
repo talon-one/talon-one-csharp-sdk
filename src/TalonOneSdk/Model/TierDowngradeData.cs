@@ -383,40 +383,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!customerProfileID.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeData.", nameof(customerProfileID));
+                throw new JsonException("Property is required for class TierDowngradeData: CustomerProfileID.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeData.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class TierDowngradeData: LoyaltyProgramID.");
 
             if (!currentPoints.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeData.", nameof(currentPoints));
+                throw new JsonException("Property is required for class TierDowngradeData: CurrentPoints.");
 
             if (!oldTier.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeData.", nameof(oldTier));
+                throw new JsonException("Property is required for class TierDowngradeData: OldTier.");
 
             if (!timestampOfTierChange.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeData.", nameof(timestampOfTierChange));
+                throw new JsonException("Property is required for class TierDowngradeData: TimestampOfTierChange.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class TierDowngradeData.", nameof(subledgerID));
+                throw new JsonException("Property is required for class TierDowngradeData: SubledgerID.");
 
             if (customerProfileID.IsSet && customerProfileID.Value == null)
-                throw new ArgumentNullException(nameof(customerProfileID), "Property is not nullable for class TierDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierDowngradeData: CustomerProfileID.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class TierDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierDowngradeData: LoyaltyProgramID.");
 
             if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class TierDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierDowngradeData: CurrentPoints.");
 
             if (oldTier.IsSet && oldTier.Value == null)
-                throw new ArgumentNullException(nameof(oldTier), "Property is not nullable for class TierDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierDowngradeData: OldTier.");
 
             if (timestampOfTierChange.IsSet && timestampOfTierChange.Value == null)
-                throw new ArgumentNullException(nameof(timestampOfTierChange), "Property is not nullable for class TierDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierDowngradeData: TimestampOfTierChange.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class TierDowngradeData.");
+                throw new JsonException("Property is not nullable for class TierDowngradeData: SubledgerID.");
 
             return new TierDowngradeData(customerProfileID.Value, loyaltyProgramID.Value.Value, currentPoints.Value.Value, oldTier.Value, timestampOfTierChange.Value.Value, subledgerID.Value, currentTier, tierExpirationDate, source, reason);
         }
@@ -427,7 +427,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierDowngradeData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TierDowngradeData tierDowngradeData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -442,17 +441,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierDowngradeData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TierDowngradeData tierDowngradeData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (tierDowngradeData.CustomerProfileID == null)
-                throw new ArgumentNullException(nameof(tierDowngradeData.CustomerProfileID), "Property is required for class TierDowngradeData.");
+                throw new JsonException("Cannot write null property TierDowngradeData.CustomerProfileID to non-nullable JSON property 'CustomerProfileID'.");
 
             if (tierDowngradeData.OldTier == null)
-                throw new ArgumentNullException(nameof(tierDowngradeData.OldTier), "Property is required for class TierDowngradeData.");
+                throw new JsonException("Cannot write null property TierDowngradeData.OldTier to non-nullable JSON property 'OldTier'.");
 
             if (tierDowngradeData.SubledgerID == null)
-                throw new ArgumentNullException(nameof(tierDowngradeData.SubledgerID), "Property is required for class TierDowngradeData.");
+                throw new JsonException("Cannot write null property TierDowngradeData.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             writer.WriteString("CustomerProfileID", tierDowngradeData.CustomerProfileID);
 

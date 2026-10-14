@@ -219,28 +219,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RewardWithUnlocks.", nameof(id));
+                throw new JsonException("Property is required for class RewardWithUnlocks: id.");
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class RewardWithUnlocks.", nameof(integrationId));
+                throw new JsonException("Property is required for class RewardWithUnlocks: integrationId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class RewardWithUnlocks.", nameof(name));
+                throw new JsonException("Property is required for class RewardWithUnlocks: name.");
 
             if (!rule.IsSet)
-                throw new ArgumentException("Property is required for class RewardWithUnlocks.", nameof(rule));
+                throw new JsonException("Property is required for class RewardWithUnlocks: rule.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RewardWithUnlocks.");
+                throw new JsonException("Property is not nullable for class RewardWithUnlocks: id.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class RewardWithUnlocks.");
+                throw new JsonException("Property is not nullable for class RewardWithUnlocks: integrationId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RewardWithUnlocks.");
+                throw new JsonException("Property is not nullable for class RewardWithUnlocks: name.");
 
             if (rule.IsSet && rule.Value == null)
-                throw new ArgumentNullException(nameof(rule), "Property is not nullable for class RewardWithUnlocks.");
+                throw new JsonException("Property is not nullable for class RewardWithUnlocks: rule.");
 
             return new RewardWithUnlocks(id.Value.Value, integrationId.Value, name.Value, rule.Value, description, unlocked);
         }
@@ -251,7 +251,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardWithUnlocks"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RewardWithUnlocks rewardWithUnlocks, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -266,17 +265,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardWithUnlocks"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RewardWithUnlocks rewardWithUnlocks, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rewardWithUnlocks.IntegrationId == null)
-                throw new ArgumentNullException(nameof(rewardWithUnlocks.IntegrationId), "Property is required for class RewardWithUnlocks.");
+                throw new JsonException("Cannot write null property RewardWithUnlocks.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             if (rewardWithUnlocks.Name == null)
-                throw new ArgumentNullException(nameof(rewardWithUnlocks.Name), "Property is required for class RewardWithUnlocks.");
+                throw new JsonException("Cannot write null property RewardWithUnlocks.Name to non-nullable JSON property 'name'.");
 
             if (rewardWithUnlocks.Rule == null)
-                throw new ArgumentNullException(nameof(rewardWithUnlocks.Rule), "Property is required for class RewardWithUnlocks.");
+                throw new JsonException("Cannot write null property RewardWithUnlocks.Rule to non-nullable JSON property 'rule'.");
 
             writer.WriteNumber("id", rewardWithUnlocks.Id);
 

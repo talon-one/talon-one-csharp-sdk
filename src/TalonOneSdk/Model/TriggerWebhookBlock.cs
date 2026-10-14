@@ -231,16 +231,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TriggerWebhookBlock.", nameof(type));
+                throw new JsonException("Property is required for class TriggerWebhookBlock: type.");
 
             if (!webhook.IsSet)
-                throw new ArgumentException("Property is required for class TriggerWebhookBlock.", nameof(webhook));
+                throw new JsonException("Property is required for class TriggerWebhookBlock: webhook.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TriggerWebhookBlock.");
+                throw new JsonException("Property is not nullable for class TriggerWebhookBlock: type.");
 
             if (webhook.IsSet && webhook.Value == null)
-                throw new ArgumentNullException(nameof(webhook), "Property is not nullable for class TriggerWebhookBlock.");
+                throw new JsonException("Property is not nullable for class TriggerWebhookBlock: webhook.");
 
             return new TriggerWebhookBlock(type.Value, webhook.Value, id, tags, varParams, onError);
         }
@@ -251,7 +251,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="triggerWebhookBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TriggerWebhookBlock triggerWebhookBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -266,14 +265,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="triggerWebhookBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TriggerWebhookBlock triggerWebhookBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (triggerWebhookBlock.Type == null)
-                throw new ArgumentNullException(nameof(triggerWebhookBlock.Type), "Property is required for class TriggerWebhookBlock.");
+                throw new JsonException("Cannot write null property TriggerWebhookBlock.Type to non-nullable JSON property 'type'.");
 
             if (triggerWebhookBlock.Webhook == null)
-                throw new ArgumentNullException(nameof(triggerWebhookBlock.Webhook), "Property is required for class TriggerWebhookBlock.");
+                throw new JsonException("Cannot write null property TriggerWebhookBlock.Webhook to non-nullable JSON property 'webhook'.");
 
             writer.WriteString("type", triggerWebhookBlock.Type);
 

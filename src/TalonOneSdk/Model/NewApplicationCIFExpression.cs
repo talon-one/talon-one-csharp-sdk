@@ -191,7 +191,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newApplicationCIFExpression"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewApplicationCIFExpression newApplicationCIFExpression, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -206,7 +205,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newApplicationCIFExpression"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewApplicationCIFExpression newApplicationCIFExpression, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newApplicationCIFExpression.CartItemFilterIdOption.IsSet)

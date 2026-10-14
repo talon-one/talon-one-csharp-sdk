@@ -132,10 +132,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class CampaignNotificationItemBase.", nameof(varEvent));
+                throw new JsonException("Property is required for class CampaignNotificationItemBase: Event.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class CampaignNotificationItemBase.");
+                throw new JsonException("Property is not nullable for class CampaignNotificationItemBase: Event.");
 
             return new CampaignNotificationItemBase(varEvent.Value);
         }
@@ -146,7 +146,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignNotificationItemBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CampaignNotificationItemBase campaignNotificationItemBase, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -161,11 +160,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="campaignNotificationItemBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CampaignNotificationItemBase campaignNotificationItemBase, JsonSerializerOptions jsonSerializerOptions)
         {
             if (campaignNotificationItemBase.Event == null)
-                throw new ArgumentNullException(nameof(campaignNotificationItemBase.Event), "Property is required for class CampaignNotificationItemBase.");
+                throw new JsonException("Cannot write null property CampaignNotificationItemBase.Event to non-nullable JSON property 'Event'.");
 
             writer.WriteString("Event", campaignNotificationItemBase.Event);
         }

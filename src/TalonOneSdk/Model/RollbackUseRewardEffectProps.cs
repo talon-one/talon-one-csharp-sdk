@@ -162,22 +162,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackUseRewardEffectProps.", nameof(integrationId));
+                throw new JsonException("Property is required for class RollbackUseRewardEffectProps: integrationId.");
 
             if (!rewardId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackUseRewardEffectProps.", nameof(rewardId));
+                throw new JsonException("Property is required for class RollbackUseRewardEffectProps: rewardId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackUseRewardEffectProps.", nameof(applicationId));
+                throw new JsonException("Property is required for class RollbackUseRewardEffectProps: applicationId.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class RollbackUseRewardEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackUseRewardEffectProps: integrationId.");
 
             if (rewardId.IsSet && rewardId.Value == null)
-                throw new ArgumentNullException(nameof(rewardId), "Property is not nullable for class RollbackUseRewardEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackUseRewardEffectProps: rewardId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class RollbackUseRewardEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackUseRewardEffectProps: applicationId.");
 
             return new RollbackUseRewardEffectProps(integrationId.Value, rewardId.Value.Value, applicationId.Value.Value);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackUseRewardEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RollbackUseRewardEffectProps rollbackUseRewardEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,11 +202,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackUseRewardEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RollbackUseRewardEffectProps rollbackUseRewardEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rollbackUseRewardEffectProps.IntegrationId == null)
-                throw new ArgumentNullException(nameof(rollbackUseRewardEffectProps.IntegrationId), "Property is required for class RollbackUseRewardEffectProps.");
+                throw new JsonException("Cannot write null property RollbackUseRewardEffectProps.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("integrationId", rollbackUseRewardEffectProps.IntegrationId);
 

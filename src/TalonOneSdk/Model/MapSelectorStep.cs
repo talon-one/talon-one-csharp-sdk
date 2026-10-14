@@ -207,16 +207,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MapSelectorStep.", nameof(type));
+                throw new JsonException("Property is required for class MapSelectorStep: type.");
 
             if (!expression.IsSet)
-                throw new ArgumentException("Property is required for class MapSelectorStep.", nameof(expression));
+                throw new JsonException("Property is required for class MapSelectorStep: expression.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class MapSelectorStep.");
+                throw new JsonException("Property is not nullable for class MapSelectorStep: type.");
 
             if (expression.IsSet && expression.Value == null)
-                throw new ArgumentNullException(nameof(expression), "Property is not nullable for class MapSelectorStep.");
+                throw new JsonException("Property is not nullable for class MapSelectorStep: expression.");
 
             return new MapSelectorStep(type.Value.Value, expression.Value);
         }
@@ -227,7 +227,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mapSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MapSelectorStep mapSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -242,11 +241,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="mapSelectorStep"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MapSelectorStep mapSelectorStep, JsonSerializerOptions jsonSerializerOptions)
         {
             if (mapSelectorStep.Expression == null)
-                throw new ArgumentNullException(nameof(mapSelectorStep.Expression), "Property is required for class MapSelectorStep.");
+                throw new JsonException("Cannot write null property MapSelectorStep.Expression to non-nullable JSON property 'expression'.");
 
             var typeRawValue = MapSelectorStep.TypeEnumToJsonValue(mapSelectorStep.Type);
             writer.WriteString("type", typeRawValue);

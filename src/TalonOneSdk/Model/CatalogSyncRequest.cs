@@ -158,10 +158,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!actions.IsSet)
-                throw new ArgumentException("Property is required for class CatalogSyncRequest.", nameof(actions));
+                throw new JsonException("Property is required for class CatalogSyncRequest: actions.");
 
             if (actions.IsSet && actions.Value == null)
-                throw new ArgumentNullException(nameof(actions), "Property is not nullable for class CatalogSyncRequest.");
+                throw new JsonException("Property is not nullable for class CatalogSyncRequest: actions.");
 
             return new CatalogSyncRequest(actions.Value, varVersion);
         }
@@ -172,7 +172,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogSyncRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CatalogSyncRequest catalogSyncRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -187,11 +186,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogSyncRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CatalogSyncRequest catalogSyncRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (catalogSyncRequest.Actions == null)
-                throw new ArgumentNullException(nameof(catalogSyncRequest.Actions), "Property is required for class CatalogSyncRequest.");
+                throw new JsonException("Cannot write null property CatalogSyncRequest.Actions to non-nullable JSON property 'actions'.");
 
             writer.WritePropertyName("actions");
             JsonSerializer.Serialize(writer, catalogSyncRequest.Actions, jsonSerializerOptions);

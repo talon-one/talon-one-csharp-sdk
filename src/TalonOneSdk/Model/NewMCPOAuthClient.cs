@@ -147,16 +147,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!clientName.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPOAuthClient.", nameof(clientName));
+                throw new JsonException("Property is required for class NewMCPOAuthClient: client_name.");
 
             if (!redirectUris.IsSet)
-                throw new ArgumentException("Property is required for class NewMCPOAuthClient.", nameof(redirectUris));
+                throw new JsonException("Property is required for class NewMCPOAuthClient: redirect_uris.");
 
             if (clientName.IsSet && clientName.Value == null)
-                throw new ArgumentNullException(nameof(clientName), "Property is not nullable for class NewMCPOAuthClient.");
+                throw new JsonException("Property is not nullable for class NewMCPOAuthClient: client_name.");
 
             if (redirectUris.IsSet && redirectUris.Value == null)
-                throw new ArgumentNullException(nameof(redirectUris), "Property is not nullable for class NewMCPOAuthClient.");
+                throw new JsonException("Property is not nullable for class NewMCPOAuthClient: redirect_uris.");
 
             return new NewMCPOAuthClient(clientName.Value, redirectUris.Value);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newMCPOAuthClient"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NewMCPOAuthClient newMCPOAuthClient, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,14 +181,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="newMCPOAuthClient"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NewMCPOAuthClient newMCPOAuthClient, JsonSerializerOptions jsonSerializerOptions)
         {
             if (newMCPOAuthClient.ClientName == null)
-                throw new ArgumentNullException(nameof(newMCPOAuthClient.ClientName), "Property is required for class NewMCPOAuthClient.");
+                throw new JsonException("Cannot write null property NewMCPOAuthClient.ClientName to non-nullable JSON property 'client_name'.");
 
             if (newMCPOAuthClient.RedirectUris == null)
-                throw new ArgumentNullException(nameof(newMCPOAuthClient.RedirectUris), "Property is required for class NewMCPOAuthClient.");
+                throw new JsonException("Cannot write null property NewMCPOAuthClient.RedirectUris to non-nullable JSON property 'redirect_uris'.");
 
             writer.WriteString("client_name", newMCPOAuthClient.ClientName);
 

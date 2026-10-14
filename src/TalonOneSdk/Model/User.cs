@@ -541,58 +541,58 @@ namespace TalonOneSdk.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(id));
+                throw new JsonException("Property is required for class User: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(created));
+                throw new JsonException("Property is required for class User: created.");
 
             if (!modified.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(modified));
+                throw new JsonException("Property is required for class User: modified.");
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(email));
+                throw new JsonException("Property is required for class User: email.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(accountId));
+                throw new JsonException("Property is required for class User: accountId.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(name));
+                throw new JsonException("Property is required for class User: name.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(state));
+                throw new JsonException("Property is required for class User: state.");
 
             if (!inviteToken.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(inviteToken));
+                throw new JsonException("Property is required for class User: inviteToken.");
 
             if (!policy.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(policy));
+                throw new JsonException("Property is required for class User: policy.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: created.");
 
             if (modified.IsSet && modified.Value == null)
-                throw new ArgumentNullException(nameof(modified), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: modified.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: email.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: accountId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: name.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: state.");
 
             if (inviteToken.IsSet && inviteToken.Value == null)
-                throw new ArgumentNullException(nameof(inviteToken), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: inviteToken.");
 
             if (policy.IsSet && policy.Value == null)
-                throw new ArgumentNullException(nameof(policy), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: policy.");
 
             return new User(id.Value.Value, created.Value.Value, modified.Value.Value, email.Value, accountId.Value.Value, name.Value, state.Value.Value, inviteToken.Value, policy.Value, isAdmin, roles, authMethod, applicationNotificationSubscriptions, lastSignedIn, lastAccessed, latestFeedTimestamp, additionalAttributes);
         }
@@ -603,7 +603,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="user"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, User user, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -618,20 +617,19 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="user"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, User user, JsonSerializerOptions jsonSerializerOptions)
         {
             if (user.Email == null)
-                throw new ArgumentNullException(nameof(user.Email), "Property is required for class User.");
+                throw new JsonException("Cannot write null property User.Email to non-nullable JSON property 'email'.");
 
             if (user.Name == null)
-                throw new ArgumentNullException(nameof(user.Name), "Property is required for class User.");
+                throw new JsonException("Cannot write null property User.Name to non-nullable JSON property 'name'.");
 
             if (user.InviteToken == null)
-                throw new ArgumentNullException(nameof(user.InviteToken), "Property is required for class User.");
+                throw new JsonException("Cannot write null property User.InviteToken to non-nullable JSON property 'inviteToken'.");
 
             if (user.Policy == null)
-                throw new ArgumentNullException(nameof(user.Policy), "Property is required for class User.");
+                throw new JsonException("Cannot write null property User.Policy to non-nullable JSON property 'policy'.");
 
             writer.WriteNumber("id", user.Id);
 

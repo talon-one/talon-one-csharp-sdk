@@ -285,64 +285,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(varEvent));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: Event.");
 
             if (!poolId.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(poolId));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: PoolId.");
 
             if (!poolName.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(poolName));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: PoolName.");
 
             if (!poolDescription.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(poolDescription));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: PoolDescription.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(accountId));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: AccountId.");
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(applicationId));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: ApplicationId.");
 
             if (!totalCodes.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(totalCodes));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: TotalCodes.");
 
             if (!usedCodes.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(usedCodes));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: UsedCodes.");
 
             if (!remainingCodes.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(remainingCodes));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: RemainingCodes.");
 
             if (!thresholdPercent.IsSet)
-                throw new ArgumentException("Property is required for class GiveawayPoolNotificationData.", nameof(thresholdPercent));
+                throw new JsonException("Property is required for class GiveawayPoolNotificationData: ThresholdPercent.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: Event.");
 
             if (poolId.IsSet && poolId.Value == null)
-                throw new ArgumentNullException(nameof(poolId), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: PoolId.");
 
             if (poolName.IsSet && poolName.Value == null)
-                throw new ArgumentNullException(nameof(poolName), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: PoolName.");
 
             if (poolDescription.IsSet && poolDescription.Value == null)
-                throw new ArgumentNullException(nameof(poolDescription), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: PoolDescription.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: AccountId.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: ApplicationId.");
 
             if (totalCodes.IsSet && totalCodes.Value == null)
-                throw new ArgumentNullException(nameof(totalCodes), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: TotalCodes.");
 
             if (usedCodes.IsSet && usedCodes.Value == null)
-                throw new ArgumentNullException(nameof(usedCodes), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: UsedCodes.");
 
             if (remainingCodes.IsSet && remainingCodes.Value == null)
-                throw new ArgumentNullException(nameof(remainingCodes), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: RemainingCodes.");
 
             if (thresholdPercent.IsSet && thresholdPercent.Value == null)
-                throw new ArgumentNullException(nameof(thresholdPercent), "Property is not nullable for class GiveawayPoolNotificationData.");
+                throw new JsonException("Property is not nullable for class GiveawayPoolNotificationData: ThresholdPercent.");
 
             return new GiveawayPoolNotificationData(varEvent.Value, poolId.Value.Value, poolName.Value, poolDescription.Value, accountId.Value.Value, applicationId.Value.Value, totalCodes.Value.Value, usedCodes.Value.Value, remainingCodes.Value.Value, thresholdPercent.Value.Value);
         }
@@ -353,7 +353,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveawayPoolNotificationData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GiveawayPoolNotificationData giveawayPoolNotificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -368,17 +367,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="giveawayPoolNotificationData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GiveawayPoolNotificationData giveawayPoolNotificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (giveawayPoolNotificationData.Event == null)
-                throw new ArgumentNullException(nameof(giveawayPoolNotificationData.Event), "Property is required for class GiveawayPoolNotificationData.");
+                throw new JsonException("Cannot write null property GiveawayPoolNotificationData.Event to non-nullable JSON property 'Event'.");
 
             if (giveawayPoolNotificationData.PoolName == null)
-                throw new ArgumentNullException(nameof(giveawayPoolNotificationData.PoolName), "Property is required for class GiveawayPoolNotificationData.");
+                throw new JsonException("Cannot write null property GiveawayPoolNotificationData.PoolName to non-nullable JSON property 'PoolName'.");
 
             if (giveawayPoolNotificationData.PoolDescription == null)
-                throw new ArgumentNullException(nameof(giveawayPoolNotificationData.PoolDescription), "Property is required for class GiveawayPoolNotificationData.");
+                throw new JsonException("Cannot write null property GiveawayPoolNotificationData.PoolDescription to non-nullable JSON property 'PoolDescription'.");
 
             writer.WriteString("Event", giveawayPoolNotificationData.Event);
 

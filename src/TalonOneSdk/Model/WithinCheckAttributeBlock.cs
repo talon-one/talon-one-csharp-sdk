@@ -308,10 +308,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!start.IsSet)
-                throw new ArgumentException("Property is required for class WithinCheckAttributeBlock.", nameof(start));
+                throw new JsonException("Property is required for class WithinCheckAttributeBlock: start.");
 
             if (!end.IsSet)
-                throw new ArgumentException("Property is required for class WithinCheckAttributeBlock.", nameof(end));
+                throw new JsonException("Property is required for class WithinCheckAttributeBlock: end.");
 
             return new WithinCheckAttributeBlock(varOperator, start.Value, end.Value, startInclusive, endInclusive, timezoneInsensitive);
         }
@@ -322,7 +322,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="withinCheckAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WithinCheckAttributeBlock withinCheckAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -337,7 +336,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="withinCheckAttributeBlock"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WithinCheckAttributeBlock withinCheckAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
         {
             if (withinCheckAttributeBlock.OperatorOption.IsSet)

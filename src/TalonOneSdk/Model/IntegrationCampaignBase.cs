@@ -527,40 +527,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!applicationId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(applicationId));
+                throw new JsonException("Property is required for class IntegrationCampaignBase: applicationId.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(id));
+                throw new JsonException("Property is required for class IntegrationCampaignBase: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(name));
+                throw new JsonException("Property is required for class IntegrationCampaignBase: name.");
 
             if (!tags.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(tags));
+                throw new JsonException("Property is required for class IntegrationCampaignBase: tags.");
 
             if (!features.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(features));
+                throw new JsonException("Property is required for class IntegrationCampaignBase: features.");
 
             if (!state.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationCampaignBase.", nameof(state));
+                throw new JsonException("Property is required for class IntegrationCampaignBase: state.");
 
             if (applicationId.IsSet && applicationId.Value == null)
-                throw new ArgumentNullException(nameof(applicationId), "Property is not nullable for class IntegrationCampaignBase.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaignBase: applicationId.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class IntegrationCampaignBase.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaignBase: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class IntegrationCampaignBase.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaignBase: name.");
 
             if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class IntegrationCampaignBase.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaignBase: tags.");
 
             if (features.IsSet && features.Value == null)
-                throw new ArgumentNullException(nameof(features), "Property is not nullable for class IntegrationCampaignBase.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaignBase: features.");
 
             if (state.IsSet && state.Value == null)
-                throw new ArgumentNullException(nameof(state), "Property is not nullable for class IntegrationCampaignBase.");
+                throw new JsonException("Property is not nullable for class IntegrationCampaignBase: state.");
 
             return new IntegrationCampaignBase(applicationId.Value.Value, id.Value.Value, name.Value, tags.Value, features.Value, description, startTime, endTime, attributes, state.Value.Value);
         }
@@ -571,7 +571,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationCampaignBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationCampaignBase integrationCampaignBase, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -586,17 +585,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationCampaignBase"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationCampaignBase integrationCampaignBase, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationCampaignBase.Name == null)
-                throw new ArgumentNullException(nameof(integrationCampaignBase.Name), "Property is required for class IntegrationCampaignBase.");
+                throw new JsonException("Cannot write null property IntegrationCampaignBase.Name to non-nullable JSON property 'name'.");
 
             if (integrationCampaignBase.Tags == null)
-                throw new ArgumentNullException(nameof(integrationCampaignBase.Tags), "Property is required for class IntegrationCampaignBase.");
+                throw new JsonException("Cannot write null property IntegrationCampaignBase.Tags to non-nullable JSON property 'tags'.");
 
             if (integrationCampaignBase.Features == null)
-                throw new ArgumentNullException(nameof(integrationCampaignBase.Features), "Property is required for class IntegrationCampaignBase.");
+                throw new JsonException("Cannot write null property IntegrationCampaignBase.Features to non-nullable JSON property 'features'.");
 
             writer.WriteNumber("applicationId", integrationCampaignBase.ApplicationId);
 

@@ -162,22 +162,22 @@ namespace TalonOneSdk.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class OktaEventTarget.", nameof(type));
+                throw new JsonException("Property is required for class OktaEventTarget: type.");
 
             if (!alternateId.IsSet)
-                throw new ArgumentException("Property is required for class OktaEventTarget.", nameof(alternateId));
+                throw new JsonException("Property is required for class OktaEventTarget: alternateId.");
 
             if (!displayName.IsSet)
-                throw new ArgumentException("Property is required for class OktaEventTarget.", nameof(displayName));
+                throw new JsonException("Property is required for class OktaEventTarget: displayName.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class OktaEventTarget.");
+                throw new JsonException("Property is not nullable for class OktaEventTarget: type.");
 
             if (alternateId.IsSet && alternateId.Value == null)
-                throw new ArgumentNullException(nameof(alternateId), "Property is not nullable for class OktaEventTarget.");
+                throw new JsonException("Property is not nullable for class OktaEventTarget: alternateId.");
 
             if (displayName.IsSet && displayName.Value == null)
-                throw new ArgumentNullException(nameof(displayName), "Property is not nullable for class OktaEventTarget.");
+                throw new JsonException("Property is not nullable for class OktaEventTarget: displayName.");
 
             return new OktaEventTarget(type.Value, alternateId.Value, displayName.Value);
         }
@@ -188,7 +188,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="oktaEventTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OktaEventTarget oktaEventTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,17 +202,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="oktaEventTarget"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OktaEventTarget oktaEventTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             if (oktaEventTarget.Type == null)
-                throw new ArgumentNullException(nameof(oktaEventTarget.Type), "Property is required for class OktaEventTarget.");
+                throw new JsonException("Cannot write null property OktaEventTarget.Type to non-nullable JSON property 'type'.");
 
             if (oktaEventTarget.AlternateId == null)
-                throw new ArgumentNullException(nameof(oktaEventTarget.AlternateId), "Property is required for class OktaEventTarget.");
+                throw new JsonException("Cannot write null property OktaEventTarget.AlternateId to non-nullable JSON property 'alternateId'.");
 
             if (oktaEventTarget.DisplayName == null)
-                throw new ArgumentNullException(nameof(oktaEventTarget.DisplayName), "Property is required for class OktaEventTarget.");
+                throw new JsonException("Cannot write null property OktaEventTarget.DisplayName to non-nullable JSON property 'displayName'.");
 
             writer.WriteString("type", oktaEventTarget.Type);
 

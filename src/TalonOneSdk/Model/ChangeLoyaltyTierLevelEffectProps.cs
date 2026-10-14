@@ -220,28 +220,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!ruleTitle.IsSet)
-                throw new ArgumentException("Property is required for class ChangeLoyaltyTierLevelEffectProps.", nameof(ruleTitle));
+                throw new JsonException("Property is required for class ChangeLoyaltyTierLevelEffectProps: ruleTitle.");
 
             if (!programId.IsSet)
-                throw new ArgumentException("Property is required for class ChangeLoyaltyTierLevelEffectProps.", nameof(programId));
+                throw new JsonException("Property is required for class ChangeLoyaltyTierLevelEffectProps: programId.");
 
             if (!subLedgerId.IsSet)
-                throw new ArgumentException("Property is required for class ChangeLoyaltyTierLevelEffectProps.", nameof(subLedgerId));
+                throw new JsonException("Property is required for class ChangeLoyaltyTierLevelEffectProps: subLedgerId.");
 
             if (!newTierName.IsSet)
-                throw new ArgumentException("Property is required for class ChangeLoyaltyTierLevelEffectProps.", nameof(newTierName));
+                throw new JsonException("Property is required for class ChangeLoyaltyTierLevelEffectProps: newTierName.");
 
             if (ruleTitle.IsSet && ruleTitle.Value == null)
-                throw new ArgumentNullException(nameof(ruleTitle), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
+                throw new JsonException("Property is not nullable for class ChangeLoyaltyTierLevelEffectProps: ruleTitle.");
 
             if (programId.IsSet && programId.Value == null)
-                throw new ArgumentNullException(nameof(programId), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
+                throw new JsonException("Property is not nullable for class ChangeLoyaltyTierLevelEffectProps: programId.");
 
             if (subLedgerId.IsSet && subLedgerId.Value == null)
-                throw new ArgumentNullException(nameof(subLedgerId), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
+                throw new JsonException("Property is not nullable for class ChangeLoyaltyTierLevelEffectProps: subLedgerId.");
 
             if (newTierName.IsSet && newTierName.Value == null)
-                throw new ArgumentNullException(nameof(newTierName), "Property is not nullable for class ChangeLoyaltyTierLevelEffectProps.");
+                throw new JsonException("Property is not nullable for class ChangeLoyaltyTierLevelEffectProps: newTierName.");
 
             return new ChangeLoyaltyTierLevelEffectProps(ruleTitle.Value, programId.Value.Value, subLedgerId.Value, newTierName.Value, previousTierName, expiryDate);
         }
@@ -252,7 +252,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="changeLoyaltyTierLevelEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChangeLoyaltyTierLevelEffectProps changeLoyaltyTierLevelEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -267,17 +266,16 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="changeLoyaltyTierLevelEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChangeLoyaltyTierLevelEffectProps changeLoyaltyTierLevelEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (changeLoyaltyTierLevelEffectProps.RuleTitle == null)
-                throw new ArgumentNullException(nameof(changeLoyaltyTierLevelEffectProps.RuleTitle), "Property is required for class ChangeLoyaltyTierLevelEffectProps.");
+                throw new JsonException("Cannot write null property ChangeLoyaltyTierLevelEffectProps.RuleTitle to non-nullable JSON property 'ruleTitle'.");
 
             if (changeLoyaltyTierLevelEffectProps.SubLedgerId == null)
-                throw new ArgumentNullException(nameof(changeLoyaltyTierLevelEffectProps.SubLedgerId), "Property is required for class ChangeLoyaltyTierLevelEffectProps.");
+                throw new JsonException("Cannot write null property ChangeLoyaltyTierLevelEffectProps.SubLedgerId to non-nullable JSON property 'subLedgerId'.");
 
             if (changeLoyaltyTierLevelEffectProps.NewTierName == null)
-                throw new ArgumentNullException(nameof(changeLoyaltyTierLevelEffectProps.NewTierName), "Property is required for class ChangeLoyaltyTierLevelEffectProps.");
+                throw new JsonException("Cannot write null property ChangeLoyaltyTierLevelEffectProps.NewTierName to non-nullable JSON property 'newTierName'.");
 
             writer.WriteString("ruleTitle", changeLoyaltyTierLevelEffectProps.RuleTitle);
 

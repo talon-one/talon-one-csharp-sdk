@@ -182,10 +182,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class TierUpgradeNotificationPolicy.", nameof(name));
+                throw new JsonException("Property is required for class TierUpgradeNotificationPolicy: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class TierUpgradeNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class TierUpgradeNotificationPolicy: name.");
 
             return new TierUpgradeNotificationPolicy(name.Value, batchingEnabled, batchSize);
         }
@@ -196,7 +196,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierUpgradeNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TierUpgradeNotificationPolicy tierUpgradeNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -211,11 +210,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="tierUpgradeNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TierUpgradeNotificationPolicy tierUpgradeNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (tierUpgradeNotificationPolicy.Name == null)
-                throw new ArgumentNullException(nameof(tierUpgradeNotificationPolicy.Name), "Property is required for class TierUpgradeNotificationPolicy.");
+                throw new JsonException("Cannot write null property TierUpgradeNotificationPolicy.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", tierUpgradeNotificationPolicy.Name);
 

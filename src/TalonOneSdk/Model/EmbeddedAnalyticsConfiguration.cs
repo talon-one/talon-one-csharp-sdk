@@ -130,10 +130,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!dashboards.IsSet)
-                throw new ArgumentException("Property is required for class EmbeddedAnalyticsConfiguration.", nameof(dashboards));
+                throw new JsonException("Property is required for class EmbeddedAnalyticsConfiguration: dashboards.");
 
             if (dashboards.IsSet && dashboards.Value == null)
-                throw new ArgumentNullException(nameof(dashboards), "Property is not nullable for class EmbeddedAnalyticsConfiguration.");
+                throw new JsonException("Property is not nullable for class EmbeddedAnalyticsConfiguration: dashboards.");
 
             return new EmbeddedAnalyticsConfiguration(dashboards.Value);
         }
@@ -144,7 +144,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="embeddedAnalyticsConfiguration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, EmbeddedAnalyticsConfiguration embeddedAnalyticsConfiguration, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -159,11 +158,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="embeddedAnalyticsConfiguration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, EmbeddedAnalyticsConfiguration embeddedAnalyticsConfiguration, JsonSerializerOptions jsonSerializerOptions)
         {
             if (embeddedAnalyticsConfiguration.Dashboards == null)
-                throw new ArgumentNullException(nameof(embeddedAnalyticsConfiguration.Dashboards), "Property is required for class EmbeddedAnalyticsConfiguration.");
+                throw new JsonException("Cannot write null property EmbeddedAnalyticsConfiguration.Dashboards to non-nullable JSON property 'dashboards'.");
 
             writer.WritePropertyName("dashboards");
             JsonSerializer.Serialize(writer, embeddedAnalyticsConfiguration.Dashboards, jsonSerializerOptions);

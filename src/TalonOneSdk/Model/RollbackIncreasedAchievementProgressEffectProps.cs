@@ -203,40 +203,40 @@ namespace TalonOneSdk.Model
             }
 
             if (!achievementId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackIncreasedAchievementProgressEffectProps.", nameof(achievementId));
+                throw new JsonException("Property is required for class RollbackIncreasedAchievementProgressEffectProps: achievementId.");
 
             if (!achievementName.IsSet)
-                throw new ArgumentException("Property is required for class RollbackIncreasedAchievementProgressEffectProps.", nameof(achievementName));
+                throw new JsonException("Property is required for class RollbackIncreasedAchievementProgressEffectProps: achievementName.");
 
             if (!progressTrackerId.IsSet)
-                throw new ArgumentException("Property is required for class RollbackIncreasedAchievementProgressEffectProps.", nameof(progressTrackerId));
+                throw new JsonException("Property is required for class RollbackIncreasedAchievementProgressEffectProps: progressTrackerId.");
 
             if (!decreaseProgressBy.IsSet)
-                throw new ArgumentException("Property is required for class RollbackIncreasedAchievementProgressEffectProps.", nameof(decreaseProgressBy));
+                throw new JsonException("Property is required for class RollbackIncreasedAchievementProgressEffectProps: decreaseProgressBy.");
 
             if (!currentProgress.IsSet)
-                throw new ArgumentException("Property is required for class RollbackIncreasedAchievementProgressEffectProps.", nameof(currentProgress));
+                throw new JsonException("Property is required for class RollbackIncreasedAchievementProgressEffectProps: currentProgress.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class RollbackIncreasedAchievementProgressEffectProps.", nameof(target));
+                throw new JsonException("Property is required for class RollbackIncreasedAchievementProgressEffectProps: target.");
 
             if (achievementId.IsSet && achievementId.Value == null)
-                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps: achievementId.");
 
             if (achievementName.IsSet && achievementName.Value == null)
-                throw new ArgumentNullException(nameof(achievementName), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps: achievementName.");
 
             if (progressTrackerId.IsSet && progressTrackerId.Value == null)
-                throw new ArgumentNullException(nameof(progressTrackerId), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps: progressTrackerId.");
 
             if (decreaseProgressBy.IsSet && decreaseProgressBy.Value == null)
-                throw new ArgumentNullException(nameof(decreaseProgressBy), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps: decreaseProgressBy.");
 
             if (currentProgress.IsSet && currentProgress.Value == null)
-                throw new ArgumentNullException(nameof(currentProgress), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps: currentProgress.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class RollbackIncreasedAchievementProgressEffectProps: target.");
 
             return new RollbackIncreasedAchievementProgressEffectProps(achievementId.Value.Value, achievementName.Value, progressTrackerId.Value.Value, decreaseProgressBy.Value.Value, currentProgress.Value.Value, target.Value.Value);
         }
@@ -247,7 +247,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackIncreasedAchievementProgressEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RollbackIncreasedAchievementProgressEffectProps rollbackIncreasedAchievementProgressEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -262,11 +261,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rollbackIncreasedAchievementProgressEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RollbackIncreasedAchievementProgressEffectProps rollbackIncreasedAchievementProgressEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (rollbackIncreasedAchievementProgressEffectProps.AchievementName == null)
-                throw new ArgumentNullException(nameof(rollbackIncreasedAchievementProgressEffectProps.AchievementName), "Property is required for class RollbackIncreasedAchievementProgressEffectProps.");
+                throw new JsonException("Cannot write null property RollbackIncreasedAchievementProgressEffectProps.AchievementName to non-nullable JSON property 'achievementName'.");
 
             writer.WriteNumber("achievementId", rollbackIncreasedAchievementProgressEffectProps.AchievementId);
 

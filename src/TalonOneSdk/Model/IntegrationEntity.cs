@@ -158,16 +158,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEntity.", nameof(integrationId));
+                throw new JsonException("Property is required for class IntegrationEntity: integrationId.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationEntity.", nameof(created));
+                throw new JsonException("Property is required for class IntegrationEntity: created.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class IntegrationEntity.");
+                throw new JsonException("Property is not nullable for class IntegrationEntity: integrationId.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class IntegrationEntity.");
+                throw new JsonException("Property is not nullable for class IntegrationEntity: created.");
 
             return new IntegrationEntity(integrationId.Value, created.Value.Value);
         }
@@ -178,7 +178,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationEntity integrationEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -193,11 +192,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationEntity"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationEntity integrationEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationEntity.IntegrationId == null)
-                throw new ArgumentNullException(nameof(integrationEntity.IntegrationId), "Property is required for class IntegrationEntity.");
+                throw new JsonException("Cannot write null property IntegrationEntity.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("integrationId", integrationEntity.IntegrationId);
 

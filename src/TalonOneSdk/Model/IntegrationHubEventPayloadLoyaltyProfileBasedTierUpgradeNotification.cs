@@ -354,58 +354,58 @@ namespace TalonOneSdk.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(eventId));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: EventId.");
 
             if (!profileIntegrationID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(profileIntegrationID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: ProfileIntegrationID.");
 
             if (!loyaltyProgramID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(loyaltyProgramID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: LoyaltyProgramID.");
 
             if (!loyaltyProgramName.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(loyaltyProgramName));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: LoyaltyProgramName.");
 
             if (!subledgerID.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(subledgerID));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: SubledgerID.");
 
             if (!sourceOfEvent.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(sourceOfEvent));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: SourceOfEvent.");
 
             if (!currentTier.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(currentTier));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: CurrentTier.");
 
             if (!currentPoints.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(currentPoints));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: CurrentPoints.");
 
             if (!publishedAt.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.", nameof(publishedAt));
+                throw new JsonException("Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: PublishedAt.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: EventId.");
 
             if (profileIntegrationID.IsSet && profileIntegrationID.Value == null)
-                throw new ArgumentNullException(nameof(profileIntegrationID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: ProfileIntegrationID.");
 
             if (loyaltyProgramID.IsSet && loyaltyProgramID.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: LoyaltyProgramID.");
 
             if (loyaltyProgramName.IsSet && loyaltyProgramName.Value == null)
-                throw new ArgumentNullException(nameof(loyaltyProgramName), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: LoyaltyProgramName.");
 
             if (subledgerID.IsSet && subledgerID.Value == null)
-                throw new ArgumentNullException(nameof(subledgerID), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: SubledgerID.");
 
             if (sourceOfEvent.IsSet && sourceOfEvent.Value == null)
-                throw new ArgumentNullException(nameof(sourceOfEvent), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: SourceOfEvent.");
 
             if (currentTier.IsSet && currentTier.Value == null)
-                throw new ArgumentNullException(nameof(currentTier), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: CurrentTier.");
 
             if (currentPoints.IsSet && currentPoints.Value == null)
-                throw new ArgumentNullException(nameof(currentPoints), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: CurrentPoints.");
 
             if (publishedAt.IsSet && publishedAt.Value == null)
-                throw new ArgumentNullException(nameof(publishedAt), "Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Property is not nullable for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification: PublishedAt.");
 
             return new IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification(eventId.Value.Value, profileIntegrationID.Value, loyaltyProgramID.Value.Value, loyaltyProgramName.Value, subledgerID.Value, sourceOfEvent.Value, currentTier.Value, currentPoints.Value.Value, publishedAt.Value.Value, oldTier, pointsRequiredToTheNextTier, nextTier, tierExpirationDate, timestampOfTierChange);
         }
@@ -416,7 +416,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -431,23 +430,22 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.ProfileIntegrationID == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.ProfileIntegrationID), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.ProfileIntegrationID to non-nullable JSON property 'ProfileIntegrationID'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.LoyaltyProgramName == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.LoyaltyProgramName), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.LoyaltyProgramName to non-nullable JSON property 'LoyaltyProgramName'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.SubledgerID == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.SubledgerID), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.SourceOfEvent == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.SourceOfEvent), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.SourceOfEvent to non-nullable JSON property 'SourceOfEvent'.");
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.CurrentTier == null)
-                throw new ArgumentNullException(nameof(integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.CurrentTier), "Property is required for class IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.");
+                throw new JsonException("Cannot write null property IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.CurrentTier to non-nullable JSON property 'CurrentTier'.");
 
             writer.WriteNumber("EventId", integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.EventId);
 

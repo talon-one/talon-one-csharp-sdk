@@ -186,28 +186,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!startTime.IsSet)
-                throw new ArgumentException("Property is required for class SkuUnitAnalyticsDataPoint.", nameof(startTime));
+                throw new JsonException("Property is required for class SkuUnitAnalyticsDataPoint: startTime.");
 
             if (!endTime.IsSet)
-                throw new ArgumentException("Property is required for class SkuUnitAnalyticsDataPoint.", nameof(endTime));
+                throw new JsonException("Property is required for class SkuUnitAnalyticsDataPoint: endTime.");
 
             if (!unitsSold.IsSet)
-                throw new ArgumentException("Property is required for class SkuUnitAnalyticsDataPoint.", nameof(unitsSold));
+                throw new JsonException("Property is required for class SkuUnitAnalyticsDataPoint: unitsSold.");
 
             if (!sku.IsSet)
-                throw new ArgumentException("Property is required for class SkuUnitAnalyticsDataPoint.", nameof(sku));
+                throw new JsonException("Property is required for class SkuUnitAnalyticsDataPoint: sku.");
 
             if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class SkuUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class SkuUnitAnalyticsDataPoint: startTime.");
 
             if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class SkuUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class SkuUnitAnalyticsDataPoint: endTime.");
 
             if (unitsSold.IsSet && unitsSold.Value == null)
-                throw new ArgumentNullException(nameof(unitsSold), "Property is not nullable for class SkuUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class SkuUnitAnalyticsDataPoint: unitsSold.");
 
             if (sku.IsSet && sku.Value == null)
-                throw new ArgumentNullException(nameof(sku), "Property is not nullable for class SkuUnitAnalyticsDataPoint.");
+                throw new JsonException("Property is not nullable for class SkuUnitAnalyticsDataPoint: sku.");
 
             return new SkuUnitAnalyticsDataPoint(startTime.Value.Value, endTime.Value.Value, unitsSold.Value, sku.Value);
         }
@@ -218,7 +218,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="skuUnitAnalyticsDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SkuUnitAnalyticsDataPoint skuUnitAnalyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -233,14 +232,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="skuUnitAnalyticsDataPoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SkuUnitAnalyticsDataPoint skuUnitAnalyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
             if (skuUnitAnalyticsDataPoint.UnitsSold == null)
-                throw new ArgumentNullException(nameof(skuUnitAnalyticsDataPoint.UnitsSold), "Property is required for class SkuUnitAnalyticsDataPoint.");
+                throw new JsonException("Cannot write null property SkuUnitAnalyticsDataPoint.UnitsSold to non-nullable JSON property 'unitsSold'.");
 
             if (skuUnitAnalyticsDataPoint.Sku == null)
-                throw new ArgumentNullException(nameof(skuUnitAnalyticsDataPoint.Sku), "Property is required for class SkuUnitAnalyticsDataPoint.");
+                throw new JsonException("Cannot write null property SkuUnitAnalyticsDataPoint.Sku to non-nullable JSON property 'sku'.");
 
             writer.WriteString("startTime", skuUnitAnalyticsDataPoint.StartTime.ToString(StartTimeFormat));
 

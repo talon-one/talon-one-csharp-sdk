@@ -231,28 +231,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!achievementId.IsSet)
-                throw new ArgumentException("Property is required for class StartAchievementProgressEffectProps.", nameof(achievementId));
+                throw new JsonException("Property is required for class StartAchievementProgressEffectProps: achievementId.");
 
             if (!achievementName.IsSet)
-                throw new ArgumentException("Property is required for class StartAchievementProgressEffectProps.", nameof(achievementName));
+                throw new JsonException("Property is required for class StartAchievementProgressEffectProps: achievementName.");
 
             if (!target.IsSet)
-                throw new ArgumentException("Property is required for class StartAchievementProgressEffectProps.", nameof(target));
+                throw new JsonException("Property is required for class StartAchievementProgressEffectProps: target.");
 
             if (!startDate.IsSet)
-                throw new ArgumentException("Property is required for class StartAchievementProgressEffectProps.", nameof(startDate));
+                throw new JsonException("Property is required for class StartAchievementProgressEffectProps: startDate.");
 
             if (achievementId.IsSet && achievementId.Value == null)
-                throw new ArgumentNullException(nameof(achievementId), "Property is not nullable for class StartAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class StartAchievementProgressEffectProps: achievementId.");
 
             if (achievementName.IsSet && achievementName.Value == null)
-                throw new ArgumentNullException(nameof(achievementName), "Property is not nullable for class StartAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class StartAchievementProgressEffectProps: achievementName.");
 
             if (target.IsSet && target.Value == null)
-                throw new ArgumentNullException(nameof(target), "Property is not nullable for class StartAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class StartAchievementProgressEffectProps: target.");
 
             if (startDate.IsSet && startDate.Value == null)
-                throw new ArgumentNullException(nameof(startDate), "Property is not nullable for class StartAchievementProgressEffectProps.");
+                throw new JsonException("Property is not nullable for class StartAchievementProgressEffectProps: startDate.");
 
             return new StartAchievementProgressEffectProps(achievementId.Value.Value, achievementName.Value, target.Value.Value, startDate.Value.Value, progressTrackerId, endDate);
         }
@@ -263,7 +263,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="startAchievementProgressEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StartAchievementProgressEffectProps startAchievementProgressEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -278,11 +277,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="startAchievementProgressEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StartAchievementProgressEffectProps startAchievementProgressEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (startAchievementProgressEffectProps.AchievementName == null)
-                throw new ArgumentNullException(nameof(startAchievementProgressEffectProps.AchievementName), "Property is required for class StartAchievementProgressEffectProps.");
+                throw new JsonException("Cannot write null property StartAchievementProgressEffectProps.AchievementName to non-nullable JSON property 'achievementName'.");
 
             writer.WriteNumber("achievementId", startAchievementProgressEffectProps.AchievementId);
 

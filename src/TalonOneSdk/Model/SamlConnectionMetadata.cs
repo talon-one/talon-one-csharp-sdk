@@ -184,28 +184,28 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SamlConnectionMetadata.", nameof(name));
+                throw new JsonException("Property is required for class SamlConnectionMetadata: name.");
 
             if (!enabled.IsSet)
-                throw new ArgumentException("Property is required for class SamlConnectionMetadata.", nameof(enabled));
+                throw new JsonException("Property is required for class SamlConnectionMetadata: enabled.");
 
             if (!accountId.IsSet)
-                throw new ArgumentException("Property is required for class SamlConnectionMetadata.", nameof(accountId));
+                throw new JsonException("Property is required for class SamlConnectionMetadata: accountId.");
 
             if (!metadataDocument.IsSet)
-                throw new ArgumentException("Property is required for class SamlConnectionMetadata.", nameof(metadataDocument));
+                throw new JsonException("Property is required for class SamlConnectionMetadata: metadataDocument.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class SamlConnectionMetadata.");
+                throw new JsonException("Property is not nullable for class SamlConnectionMetadata: name.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class SamlConnectionMetadata.");
+                throw new JsonException("Property is not nullable for class SamlConnectionMetadata: enabled.");
 
             if (accountId.IsSet && accountId.Value == null)
-                throw new ArgumentNullException(nameof(accountId), "Property is not nullable for class SamlConnectionMetadata.");
+                throw new JsonException("Property is not nullable for class SamlConnectionMetadata: accountId.");
 
             if (metadataDocument.IsSet && metadataDocument.Value == null)
-                throw new ArgumentNullException(nameof(metadataDocument), "Property is not nullable for class SamlConnectionMetadata.");
+                throw new JsonException("Property is not nullable for class SamlConnectionMetadata: metadataDocument.");
 
             return new SamlConnectionMetadata(name.Value, enabled.Value.Value, accountId.Value.Value, metadataDocument.Value);
         }
@@ -216,7 +216,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="samlConnectionMetadata"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SamlConnectionMetadata samlConnectionMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -231,14 +230,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="samlConnectionMetadata"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SamlConnectionMetadata samlConnectionMetadata, JsonSerializerOptions jsonSerializerOptions)
         {
             if (samlConnectionMetadata.Name == null)
-                throw new ArgumentNullException(nameof(samlConnectionMetadata.Name), "Property is required for class SamlConnectionMetadata.");
+                throw new JsonException("Cannot write null property SamlConnectionMetadata.Name to non-nullable JSON property 'name'.");
 
             if (samlConnectionMetadata.MetadataDocument == null)
-                throw new ArgumentNullException(nameof(samlConnectionMetadata.MetadataDocument), "Property is required for class SamlConnectionMetadata.");
+                throw new JsonException("Cannot write null property SamlConnectionMetadata.MetadataDocument to non-nullable JSON property 'metadataDocument'.");
 
             writer.WriteString("name", samlConnectionMetadata.Name);
 

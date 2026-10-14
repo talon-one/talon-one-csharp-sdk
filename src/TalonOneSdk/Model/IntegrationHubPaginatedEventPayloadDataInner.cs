@@ -32,7 +32,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="IntegrationHubPaginatedEventPayloadDataInner" /> class.
         /// </summary>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification"></param>
-        public IntegrationHubPaginatedEventPayloadDataInner(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification)
+        internal IntegrationHubPaginatedEventPayloadDataInner(IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification)
         {
             IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification = integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification;
             OnCreated();
@@ -42,7 +42,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="IntegrationHubPaginatedEventPayloadDataInner" /> class.
         /// </summary>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification"></param>
-        public IntegrationHubPaginatedEventPayloadDataInner(IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification)
+        internal IntegrationHubPaginatedEventPayloadDataInner(IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification)
         {
             IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification = integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification;
             OnCreated();
@@ -52,7 +52,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="IntegrationHubPaginatedEventPayloadDataInner" /> class.
         /// </summary>
         /// <param name="integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification"></param>
-        public IntegrationHubPaginatedEventPayloadDataInner(IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification)
+        internal IntegrationHubPaginatedEventPayloadDataInner(IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification)
         {
             IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification = integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification;
             OnCreated();
@@ -62,7 +62,7 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="IntegrationHubPaginatedEventPayloadDataInner" /> class.
         /// </summary>
         /// <param name="integrationHubEventPayloadCouponBasedNotifications"></param>
-        public IntegrationHubPaginatedEventPayloadDataInner(IntegrationHubEventPayloadCouponBasedNotifications integrationHubEventPayloadCouponBasedNotifications)
+        internal IntegrationHubPaginatedEventPayloadDataInner(IntegrationHubEventPayloadCouponBasedNotifications integrationHubEventPayloadCouponBasedNotifications)
         {
             IntegrationHubEventPayloadCouponBasedNotifications = integrationHubEventPayloadCouponBasedNotifications;
             OnCreated();
@@ -260,7 +260,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubPaginatedEventPayloadDataInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationHubPaginatedEventPayloadDataInner integrationHubPaginatedEventPayloadDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -299,7 +298,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationHubPaginatedEventPayloadDataInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationHubPaginatedEventPayloadDataInner integrationHubPaginatedEventPayloadDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

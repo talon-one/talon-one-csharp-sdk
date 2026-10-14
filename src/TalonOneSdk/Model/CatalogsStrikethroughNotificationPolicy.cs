@@ -193,10 +193,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CatalogsStrikethroughNotificationPolicy.", nameof(name));
+                throw new JsonException("Property is required for class CatalogsStrikethroughNotificationPolicy: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CatalogsStrikethroughNotificationPolicy.");
+                throw new JsonException("Property is not nullable for class CatalogsStrikethroughNotificationPolicy: name.");
 
             return new CatalogsStrikethroughNotificationPolicy(name.Value, aheadOfDaysTrigger, batchSize);
         }
@@ -207,7 +207,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogsStrikethroughNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CatalogsStrikethroughNotificationPolicy catalogsStrikethroughNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -222,11 +221,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="catalogsStrikethroughNotificationPolicy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CatalogsStrikethroughNotificationPolicy catalogsStrikethroughNotificationPolicy, JsonSerializerOptions jsonSerializerOptions)
         {
             if (catalogsStrikethroughNotificationPolicy.Name == null)
-                throw new ArgumentNullException(nameof(catalogsStrikethroughNotificationPolicy.Name), "Property is required for class CatalogsStrikethroughNotificationPolicy.");
+                throw new JsonException("Cannot write null property CatalogsStrikethroughNotificationPolicy.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", catalogsStrikethroughNotificationPolicy.Name);
 

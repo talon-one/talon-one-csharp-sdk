@@ -326,16 +326,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class CreateTemplateCampaign.", nameof(name));
+                throw new JsonException("Property is required for class CreateTemplateCampaign: name.");
 
             if (!templateId.IsSet)
-                throw new ArgumentException("Property is required for class CreateTemplateCampaign.", nameof(templateId));
+                throw new JsonException("Property is required for class CreateTemplateCampaign: templateId.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CreateTemplateCampaign.");
+                throw new JsonException("Property is not nullable for class CreateTemplateCampaign: name.");
 
             if (templateId.IsSet && templateId.Value == null)
-                throw new ArgumentNullException(nameof(templateId), "Property is not nullable for class CreateTemplateCampaign.");
+                throw new JsonException("Property is not nullable for class CreateTemplateCampaign: templateId.");
 
             return new CreateTemplateCampaign(name.Value, templateId.Value.Value, description, campaignAttributesOverrides, templateParamValues, limitOverrides, campaignGroups, tags, evaluationGroupId, linkedStoreIds);
         }
@@ -346,7 +346,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createTemplateCampaign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateTemplateCampaign createTemplateCampaign, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -361,11 +360,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="createTemplateCampaign"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateTemplateCampaign createTemplateCampaign, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createTemplateCampaign.Name == null)
-                throw new ArgumentNullException(nameof(createTemplateCampaign.Name), "Property is required for class CreateTemplateCampaign.");
+                throw new JsonException("Cannot write null property CreateTemplateCampaign.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", createTemplateCampaign.Name);
 

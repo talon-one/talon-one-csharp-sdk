@@ -106,6 +106,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**GetCollection**](ManagementApi.md#getcollection) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Get campaign-level collection |
 | [**GetCollectionItems**](ManagementApi.md#getcollectionitems) | **GET** /v1/collections/{collectionId}/items | Get collection items |
 | [**GetCouponsWithoutTotalCount**](ManagementApi.md#getcouponswithouttotalcount) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/no_total | List coupons |
+| [**GetCurrentRevision**](ManagementApi.md#getcurrentrevision) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/revisions/current | Get current revision version |
 | [**GetCustomerActivityReport**](ManagementApi.md#getcustomeractivityreport) | **GET** /v1/applications/{applicationId}/customer_activity_reports/{customerId} | Get customer&#39;s activity report |
 | [**GetCustomerActivityReportsWithoutTotalCount**](ManagementApi.md#getcustomeractivityreportswithouttotalcount) | **GET** /v1/applications/{applicationId}/customer_activity_reports/no_total | Get Activity Reports for Application Customers |
 | [**GetCustomerAnalytics**](ManagementApi.md#getcustomeranalytics) | **GET** /v1/applications/{applicationId}/customers/{customerId}/analytics | Get customer&#39;s analytics report |
@@ -163,6 +164,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 | [**ListCollections**](ManagementApi.md#listcollections) | **GET** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign |
 | [**ListCollectionsInApplication**](ManagementApi.md#listcollectionsinapplication) | **GET** /v1/applications/{applicationId}/collections | List collections in Application |
 | [**ListExperiments**](ManagementApi.md#listexperiments) | **GET** /v1/applications/{applicationId}/experiments | List experiments |
+| [**ListGiveawaysPool**](ManagementApi.md#listgiveawayspool) | **GET** /v1/giveaways/pools | List giveaway pools |
 | [**ListStores**](ManagementApi.md#liststores) | **GET** /v1/applications/{applicationId}/stores | List stores |
 | [**OktaEventHandlerChallenge**](ManagementApi.md#oktaeventhandlerchallenge) | **GET** /v1/provisioning/okta | Validate Okta API ownership |
 | [**PriceHistory**](ManagementApi.md#pricehistory) | **POST** /v1/applications/{applicationId}/price_history | Get summary of price history |
@@ -1009,7 +1011,7 @@ Send an email with a password recovery link to the email address of an existing 
 
 Create ruleset (V2)
 
-Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only `group` and `passthrough` blocks are currently writable, with optional `onFailure` blocks. A payload containing any other block type is rejected. Each rule's `blocks` array may contain at most one block.
+Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only the first block of a rule can be a condition. Every other block must be an effect.
 
 
 ### Parameters
@@ -2387,7 +2389,7 @@ To export customer loyalty balances to CSV, use the [Export customer loyalty bal
 
 Export customer loyalty balances
 
-Download a CSV file containing the balance of each customer in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subledger, when applicable. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. 
+Download a CSV file containing the balance of each customer in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file contains the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subledger, when applicable. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. - `negativeBalance`: The number of negative points. Only contains a value when requested via `balances` and the program uses negative points. 
 
 
 ### Parameters
@@ -2397,7 +2399,7 @@ Download a CSV file containing the balance of each customer in the loyalty progr
 | **loyaltyProgramId** | **string** | The identifier for the loyalty program. |  |
 | **endDate** | **DateTime** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  | [optional]  |
 | **balances** | **string** | Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  | [optional]  |
-| **subledgerIds** | [**List&lt;string&gt;**](string.md) | Filter results by an array of subledger IDs. If no value is provided, the export includes all subledgers and main ledger data for the specified loyalty program.  To specify the main ledger, provide an empty string (\&quot;\&quot;).  | [optional]  |
+| **subledgerIds** | [**List&lt;string&gt;**](string.md) | Filters the results to specific subledgers.  **Note:** - When this parameter is not provided, the export includes all subledgers   and main ledger data for the specified loyalty program.  | [optional]  |
 
 ### Return type
 
@@ -3240,7 +3242,7 @@ List the friends referred by the specified customer profile in this Application.
 
 <a id="getapplicationcustomers"></a>
 # **GetApplicationCustomers**
-> GetApplicationCustomers200Response GetApplicationCustomers (long applicationId, string integrationId = null, long pageSize = null, long skip = null, bool withTotalResultSize = null)
+> GetApplicationCustomers200Response GetApplicationCustomers (long applicationId, string integrationId = null, long pageSize = null, long skip = null, bool withTotalResultSize = null, bool withLoyaltyMemberships = null)
 
 List application's customers
 
@@ -3256,6 +3258,7 @@ List all the customers of the specified application.
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
+| **withLoyaltyMemberships** | **bool** | When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. | [optional]  |
 
 ### Return type
 
@@ -3280,7 +3283,7 @@ List all the customers of the specified application.
 
 <a id="getapplicationcustomersbyattributes"></a>
 # **GetApplicationCustomersByAttributes**
-> GetApplicationCustomersByAttributes200Response GetApplicationCustomersByAttributes (long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, long pageSize = null, long skip = null, bool withTotalResultSize = null)
+> GetApplicationCustomersByAttributes200Response GetApplicationCustomersByAttributes (long applicationId, CustomerProfileSearchQuery customerProfileSearchQuery, long pageSize = null, long skip = null, bool withTotalResultSize = null, bool withLoyaltyMemberships = null)
 
 List application customers matching the given attributes
 
@@ -3296,6 +3299,7 @@ Get a list of the application customers matching the provided criteria.  The mat
 | **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
 | **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
 | **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
+| **withLoyaltyMemberships** | **bool** | When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. | [optional]  |
 
 ### Return type
 
@@ -4215,6 +4219,43 @@ List all the coupons matching the specified criteria.
 ### Return type
 
 [**GetCouponsWithoutTotalCount200Response**](GetCouponsWithoutTotalCount200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="getcurrentrevision"></a>
+# **GetCurrentRevision**
+> Revision GetCurrentRevision (long applicationId, long campaignId)
+
+Get current revision version
+
+Get the current revision version for the given campaign.  **Note:** The [Campaign staging and revisions](https://docs.talon.one/docs/product/applications/manage-general-settings#campaign-staging-and-revisions) feature must be enabled for your Application. For more information, see [Revise campaigns](https://docs.talon.one/docs/product/campaigns/revise-campaigns). 
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
+| **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
+
+### Return type
+
+[**Revision**](Revision.md)
 
 ### Authorization
 
@@ -5924,7 +5965,7 @@ Upload a CSV file containing existing customers to be assigned to existing tiers
 
 Import join dates for a loyalty program
 
-Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
+Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it. - If a join date is in the future at the time of the import, the import fails with a `400` error.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
 
 
 ### Parameters
@@ -6493,6 +6534,46 @@ List all experiments of the specified Application that match your filter criteri
 ### Return type
 
 [**ListExperiments200Response**](ListExperiments200Response.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="listgiveawayspool"></a>
+# **ListGiveawaysPool**
+> ListGiveawaysPool200Response ListGiveawaysPool (long pageSize = null, long skip = null, string sort = null, bool withTotalResultSize = null, string applicationIds = null)
+
+List giveaway pools
+
+Retrieve all the giveaway pools for an account.
+
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **pageSize** | **long** | The number of items in the response. | [optional] [default to 1000] |
+| **skip** | **long** | The number of items to skip when paging through large result sets. | [optional]  |
+| **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | [optional]  |
+| **withTotalResultSize** | **bool** | When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | [optional]  |
+| **applicationIds** | **string** | Filter by one or more Application IDs, separated by a comma. | [optional]  |
+
+### Return type
+
+[**ListGiveawaysPool200Response**](ListGiveawaysPool200Response.md)
 
 ### Authorization
 

@@ -173,10 +173,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!effects.IsSet)
-                throw new ArgumentException("Property is required for class IntegrationUnlockRewardResponse.", nameof(effects));
+                throw new JsonException("Property is required for class IntegrationUnlockRewardResponse: effects.");
 
             if (effects.IsSet && effects.Value == null)
-                throw new ArgumentNullException(nameof(effects), "Property is not nullable for class IntegrationUnlockRewardResponse.");
+                throw new JsonException("Property is not nullable for class IntegrationUnlockRewardResponse: effects.");
 
             return new IntegrationUnlockRewardResponse(effects.Value, customerProfile, loyalty);
         }
@@ -187,7 +187,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationUnlockRewardResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IntegrationUnlockRewardResponse integrationUnlockRewardResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -202,11 +201,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="integrationUnlockRewardResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IntegrationUnlockRewardResponse integrationUnlockRewardResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (integrationUnlockRewardResponse.Effects == null)
-                throw new ArgumentNullException(nameof(integrationUnlockRewardResponse.Effects), "Property is required for class IntegrationUnlockRewardResponse.");
+                throw new JsonException("Cannot write null property IntegrationUnlockRewardResponse.Effects to non-nullable JSON property 'effects'.");
 
             writer.WritePropertyName("effects");
             JsonSerializer.Serialize(writer, integrationUnlockRewardResponse.Effects, jsonSerializerOptions);

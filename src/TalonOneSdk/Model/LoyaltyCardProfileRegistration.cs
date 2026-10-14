@@ -158,16 +158,16 @@ namespace TalonOneSdk.Model
             }
 
             if (!integrationId.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCardProfileRegistration.", nameof(integrationId));
+                throw new JsonException("Property is required for class LoyaltyCardProfileRegistration: integrationId.");
 
             if (!timestamp.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyCardProfileRegistration.", nameof(timestamp));
+                throw new JsonException("Property is required for class LoyaltyCardProfileRegistration: timestamp.");
 
             if (integrationId.IsSet && integrationId.Value == null)
-                throw new ArgumentNullException(nameof(integrationId), "Property is not nullable for class LoyaltyCardProfileRegistration.");
+                throw new JsonException("Property is not nullable for class LoyaltyCardProfileRegistration: integrationId.");
 
             if (timestamp.IsSet && timestamp.Value == null)
-                throw new ArgumentNullException(nameof(timestamp), "Property is not nullable for class LoyaltyCardProfileRegistration.");
+                throw new JsonException("Property is not nullable for class LoyaltyCardProfileRegistration: timestamp.");
 
             return new LoyaltyCardProfileRegistration(integrationId.Value, timestamp.Value.Value);
         }
@@ -178,7 +178,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyCardProfileRegistration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyCardProfileRegistration loyaltyCardProfileRegistration, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -193,11 +192,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyCardProfileRegistration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyCardProfileRegistration loyaltyCardProfileRegistration, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyCardProfileRegistration.IntegrationId == null)
-                throw new ArgumentNullException(nameof(loyaltyCardProfileRegistration.IntegrationId), "Property is required for class LoyaltyCardProfileRegistration.");
+                throw new JsonException("Cannot write null property LoyaltyCardProfileRegistration.IntegrationId to non-nullable JSON property 'integrationId'.");
 
             writer.WriteString("integrationId", loyaltyCardProfileRegistration.IntegrationId);
 

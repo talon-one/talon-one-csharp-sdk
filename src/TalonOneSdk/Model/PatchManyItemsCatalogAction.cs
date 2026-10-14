@@ -189,7 +189,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="patchManyItemsCatalogAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PatchManyItemsCatalogAction patchManyItemsCatalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -204,7 +203,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="patchManyItemsCatalogAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PatchManyItemsCatalogAction patchManyItemsCatalogAction, JsonSerializerOptions jsonSerializerOptions)
         {
             if (patchManyItemsCatalogAction.PriceOption.IsSet)

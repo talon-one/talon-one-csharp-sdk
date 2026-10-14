@@ -147,13 +147,13 @@ namespace TalonOneSdk.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughSetDiscountPerItemMemberEffectProps.", nameof(name));
+                throw new JsonException("Property is required for class StrikethroughSetDiscountPerItemMemberEffectProps: name.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class StrikethroughSetDiscountPerItemMemberEffectProps.", nameof(value));
+                throw new JsonException("Property is required for class StrikethroughSetDiscountPerItemMemberEffectProps: value.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class StrikethroughSetDiscountPerItemMemberEffectProps.");
+                throw new JsonException("Property is not nullable for class StrikethroughSetDiscountPerItemMemberEffectProps: name.");
 
             return new StrikethroughSetDiscountPerItemMemberEffectProps(name.Value, value.Value);
         }
@@ -164,7 +164,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughSetDiscountPerItemMemberEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StrikethroughSetDiscountPerItemMemberEffectProps strikethroughSetDiscountPerItemMemberEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -179,11 +178,10 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="strikethroughSetDiscountPerItemMemberEffectProps"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StrikethroughSetDiscountPerItemMemberEffectProps strikethroughSetDiscountPerItemMemberEffectProps, JsonSerializerOptions jsonSerializerOptions)
         {
             if (strikethroughSetDiscountPerItemMemberEffectProps.Name == null)
-                throw new ArgumentNullException(nameof(strikethroughSetDiscountPerItemMemberEffectProps.Name), "Property is required for class StrikethroughSetDiscountPerItemMemberEffectProps.");
+                throw new JsonException("Cannot write null property StrikethroughSetDiscountPerItemMemberEffectProps.Name to non-nullable JSON property 'name'.");
 
             writer.WriteString("name", strikethroughSetDiscountPerItemMemberEffectProps.Name);
 

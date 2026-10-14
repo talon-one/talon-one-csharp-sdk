@@ -269,64 +269,64 @@ namespace TalonOneSdk.Model
             }
 
             if (!date.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(date));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: date.");
 
             if (!totalActivePoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(totalActivePoints));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: totalActivePoints.");
 
             if (!totalPendingPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(totalPendingPoints));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: totalPendingPoints.");
 
             if (!totalSpentPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(totalSpentPoints));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: totalSpentPoints.");
 
             if (!totalExpiredPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(totalExpiredPoints));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: totalExpiredPoints.");
 
             if (!totalNegativePoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(totalNegativePoints));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: totalNegativePoints.");
 
             if (!totalMembers.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(totalMembers));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: totalMembers.");
 
             if (!newMembers.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(newMembers));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: newMembers.");
 
             if (!spentPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(spentPoints));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: spentPoints.");
 
             if (!earnedPoints.IsSet)
-                throw new ArgumentException("Property is required for class LoyaltyDashboardData.", nameof(earnedPoints));
+                throw new JsonException("Property is required for class LoyaltyDashboardData: earnedPoints.");
 
             if (date.IsSet && date.Value == null)
-                throw new ArgumentNullException(nameof(date), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: date.");
 
             if (totalActivePoints.IsSet && totalActivePoints.Value == null)
-                throw new ArgumentNullException(nameof(totalActivePoints), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: totalActivePoints.");
 
             if (totalPendingPoints.IsSet && totalPendingPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalPendingPoints), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: totalPendingPoints.");
 
             if (totalSpentPoints.IsSet && totalSpentPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalSpentPoints), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: totalSpentPoints.");
 
             if (totalExpiredPoints.IsSet && totalExpiredPoints.Value == null)
-                throw new ArgumentNullException(nameof(totalExpiredPoints), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: totalExpiredPoints.");
 
             if (totalNegativePoints.IsSet && totalNegativePoints.Value == null)
-                throw new ArgumentNullException(nameof(totalNegativePoints), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: totalNegativePoints.");
 
             if (totalMembers.IsSet && totalMembers.Value == null)
-                throw new ArgumentNullException(nameof(totalMembers), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: totalMembers.");
 
             if (newMembers.IsSet && newMembers.Value == null)
-                throw new ArgumentNullException(nameof(newMembers), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: newMembers.");
 
             if (spentPoints.IsSet && spentPoints.Value == null)
-                throw new ArgumentNullException(nameof(spentPoints), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: spentPoints.");
 
             if (earnedPoints.IsSet && earnedPoints.Value == null)
-                throw new ArgumentNullException(nameof(earnedPoints), "Property is not nullable for class LoyaltyDashboardData.");
+                throw new JsonException("Property is not nullable for class LoyaltyDashboardData: earnedPoints.");
 
             return new LoyaltyDashboardData(date.Value.Value, totalActivePoints.Value.Value, totalPendingPoints.Value.Value, totalSpentPoints.Value.Value, totalExpiredPoints.Value.Value, totalNegativePoints.Value.Value, totalMembers.Value.Value, newMembers.Value.Value, spentPoints.Value, earnedPoints.Value);
         }
@@ -337,7 +337,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyDashboardData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LoyaltyDashboardData loyaltyDashboardData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -352,14 +351,13 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="loyaltyDashboardData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyDashboardData loyaltyDashboardData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (loyaltyDashboardData.SpentPoints == null)
-                throw new ArgumentNullException(nameof(loyaltyDashboardData.SpentPoints), "Property is required for class LoyaltyDashboardData.");
+                throw new JsonException("Cannot write null property LoyaltyDashboardData.SpentPoints to non-nullable JSON property 'spentPoints'.");
 
             if (loyaltyDashboardData.EarnedPoints == null)
-                throw new ArgumentNullException(nameof(loyaltyDashboardData.EarnedPoints), "Property is required for class LoyaltyDashboardData.");
+                throw new JsonException("Cannot write null property LoyaltyDashboardData.EarnedPoints to non-nullable JSON property 'earnedPoints'.");
 
             writer.WriteString("date", loyaltyDashboardData.Date.ToString(DateFormat));
 

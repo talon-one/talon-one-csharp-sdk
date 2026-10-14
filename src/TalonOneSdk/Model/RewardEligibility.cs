@@ -47,7 +47,7 @@ namespace TalonOneSdk.Model
         /// Indicates whether the customer is eligible for the reward.
         /// </summary>
         /// <value>Indicates whether the customer is eligible for the reward.</value>
-        /* <example>true</example> */
+        /* <example>false</example> */
         [JsonPropertyName("passed")]
         public bool Passed { get; set; }
 
@@ -153,10 +153,10 @@ namespace TalonOneSdk.Model
             }
 
             if (!passed.IsSet)
-                throw new ArgumentException("Property is required for class RewardEligibility.", nameof(passed));
+                throw new JsonException("Property is required for class RewardEligibility: passed.");
 
             if (passed.IsSet && passed.Value == null)
-                throw new ArgumentNullException(nameof(passed), "Property is not nullable for class RewardEligibility.");
+                throw new JsonException("Property is not nullable for class RewardEligibility: passed.");
 
             return new RewardEligibility(passed.Value.Value, details);
         }
@@ -167,7 +167,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RewardEligibility rewardEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,7 +181,6 @@ namespace TalonOneSdk.Model
         /// <param name="writer"></param>
         /// <param name="rewardEligibility"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RewardEligibility rewardEligibility, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteBoolean("passed", rewardEligibility.Passed);
