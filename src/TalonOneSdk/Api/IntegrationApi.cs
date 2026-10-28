@@ -837,6 +837,33 @@ namespace TalonOneSdk.Api
         Task<IIntegrationRewardsCatalogApiResponse> IntegrationRewardsCatalogOrDefaultAsync(Option<long> pageSize = default, Option<long> skip = default, Option<decimal> pointsFrom = default, Option<decimal> pointsTo = default, Option<bool> includeFree = default, Option<long> loyaltyProgramId = default, Option<string> subledgerId = default, Option<string> profileIntegrationId = default, Option<string> loyaltyCardId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Update loyalty card
+        /// </summary>
+        /// <remarks>
+        /// Updates the details of a specific loyalty card. Use this endpoint to modify the card&#39;s status and custom attribute values.  You must provide at least one of the following parameters: -   &#x60;status&#x60; -  &#x60;attributes&#x60; 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="loyaltyCardId">Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;. </param>
+        /// <param name="updateLoyaltyCardRequest">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationUpdateLoyaltyCardApiResponse"/>&gt;</returns>
+        Task<IIntegrationUpdateLoyaltyCardApiResponse> IntegrationUpdateLoyaltyCardAsync(long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update loyalty card
+        /// </summary>
+        /// <remarks>
+        /// Updates the details of a specific loyalty card. Use this endpoint to modify the card&#39;s status and custom attribute values.  You must provide at least one of the following parameters: -   &#x60;status&#x60; -  &#x60;attributes&#x60; 
+        /// </remarks>
+        /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="loyaltyCardId">Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;. </param>
+        /// <param name="updateLoyaltyCardRequest">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationUpdateLoyaltyCardApiResponse"/>&gt;</returns>
+        Task<IIntegrationUpdateLoyaltyCardApiResponse> IntegrationUpdateLoyaltyCardOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Join customer profile to loyalty program
         /// </summary>
         /// <remarks>
@@ -1997,6 +2024,36 @@ namespace TalonOneSdk.Api
     }
 
     /// <summary>
+    /// The <see cref="IIntegrationUpdateLoyaltyCardApiResponse"/>
+    /// </summary>
+    public interface IIntegrationUpdateLoyaltyCardApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.LoyaltyCard>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
     /// The <see cref="IJoinLoyaltyProgramApiResponse"/>
     /// </summary>
     public interface IJoinLoyaltyProgramApiResponse : TalonOneSdk.Client.IApiResponse, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>, IUnauthorized<TalonOneSdk.Model.ErrorResponseWithStatus>, INotFound<TalonOneSdk.Model.ErrorResponseWithStatus>
@@ -2989,6 +3046,26 @@ namespace TalonOneSdk.Api
         internal void ExecuteOnErrorIntegrationRewardsCatalog(Exception exception)
         {
             OnErrorIntegrationRewardsCatalog?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs> OnIntegrationUpdateLoyaltyCard;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs> OnErrorIntegrationUpdateLoyaltyCard;
+
+        internal void ExecuteOnIntegrationUpdateLoyaltyCard(IntegrationApi.IntegrationUpdateLoyaltyCardApiResponse apiResponse)
+        {
+            OnIntegrationUpdateLoyaltyCard?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorIntegrationUpdateLoyaltyCard(Exception exception)
+        {
+            OnErrorIntegrationUpdateLoyaltyCard?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -14541,6 +14618,447 @@ namespace TalonOneSdk.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk(out TalonOneSdk.Model.IntegrationRewardsCatalog200Response result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus Unauthorized()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus NotFound()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnNotFound(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultNotFound();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultNotFound()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnNotFound(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryNotFound(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatIntegrationUpdateLoyaltyCard(ref long loyaltyProgramId, ref string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="updateLoyaltyCardRequest"></param>
+        /// <returns></returns>
+        private void ValidateIntegrationUpdateLoyaltyCard(string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest)
+        {
+            if (loyaltyCardId == null)
+                throw new ArgumentNullException(nameof(loyaltyCardId));
+
+            if (updateLoyaltyCardRequest == null)
+                throw new ArgumentNullException(nameof(updateLoyaltyCardRequest));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="updateLoyaltyCardRequest"></param>
+        private void AfterIntegrationUpdateLoyaltyCardDefaultImplementation(IIntegrationUpdateLoyaltyCardApiResponse apiResponseLocalVar, long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest)
+        {
+            bool suppressDefaultLog = false;
+            AfterIntegrationUpdateLoyaltyCard(ref suppressDefaultLog, apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, updateLoyaltyCardRequest);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="updateLoyaltyCardRequest"></param>
+        partial void AfterIntegrationUpdateLoyaltyCard(ref bool suppressDefaultLog, IIntegrationUpdateLoyaltyCardApiResponse apiResponseLocalVar, long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="updateLoyaltyCardRequest"></param>
+        private void OnErrorIntegrationUpdateLoyaltyCardDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorIntegrationUpdateLoyaltyCard(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, loyaltyProgramId, loyaltyCardId, updateLoyaltyCardRequest);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="loyaltyProgramId"></param>
+        /// <param name="loyaltyCardId"></param>
+        /// <param name="updateLoyaltyCardRequest"></param>
+        partial void OnErrorIntegrationUpdateLoyaltyCard(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest);
+
+        /// <summary>
+        /// Update loyalty card Updates the details of a specific loyalty card. Use this endpoint to modify the card&#39;s status and custom attribute values.  You must provide at least one of the following parameters: -   &#x60;status&#x60; -  &#x60;attributes&#x60; 
+        /// </summary>
+        /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="loyaltyCardId">Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;. </param>
+        /// <param name="updateLoyaltyCardRequest">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationUpdateLoyaltyCardApiResponse"/>&gt;</returns>
+        public async Task<IIntegrationUpdateLoyaltyCardApiResponse> IntegrationUpdateLoyaltyCardOrDefaultAsync(long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await IntegrationUpdateLoyaltyCardAsync(loyaltyProgramId, loyaltyCardId, updateLoyaltyCardRequest, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Update loyalty card Updates the details of a specific loyalty card. Use this endpoint to modify the card&#39;s status and custom attribute values.  You must provide at least one of the following parameters: -   &#x60;status&#x60; -  &#x60;attributes&#x60; 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="loyaltyProgramId">Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. </param>
+        /// <param name="loyaltyCardId">Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  **Important**: The loyalty card ID requires [URL encoding](https://www.w3schools.com/tags//ref_urlencode.asp) if it contains special characters. For example, you must encode &#x60;NewCard2026%&#x60; as &#x60;NewCard2026%25&#x60;. </param>
+        /// <param name="updateLoyaltyCardRequest">body</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IIntegrationUpdateLoyaltyCardApiResponse"/>&gt;</returns>
+        public async Task<IIntegrationUpdateLoyaltyCardApiResponse> IntegrationUpdateLoyaltyCardAsync(long loyaltyProgramId, string loyaltyCardId, UpdateLoyaltyCardRequest updateLoyaltyCardRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateIntegrationUpdateLoyaltyCard(loyaltyCardId, updateLoyaltyCardRequest);
+
+                FormatIntegrationUpdateLoyaltyCard(ref loyaltyProgramId, ref loyaltyCardId, updateLoyaltyCardRequest);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/update"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/update");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyProgramId%7D", Uri.EscapeDataString(loyaltyProgramId.ToString()));
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BloyaltyCardId%7D", Uri.EscapeDataString(loyaltyCardId.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (updateLoyaltyCardRequest as object) is TalonOneSdk.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(updateLoyaltyCardRequest, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("Authorization", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+                    httpRequestMessageLocalVar.Method = new HttpMethod("PUT");
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        IntegrationUpdateLoyaltyCardApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync().ConfigureAwait(false);
+                                apiResponseLocalVar = new IntegrationUpdateLoyaltyCardApiResponse(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/update", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterIntegrationUpdateLoyaltyCardDefaultImplementation(apiResponseLocalVar, loyaltyProgramId, loyaltyCardId, updateLoyaltyCardRequest);
+
+                        Events.ExecuteOnIntegrationUpdateLoyaltyCard(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorIntegrationUpdateLoyaltyCardDefaultImplementation(e, "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/update", uriBuilderLocalVar.Path, loyaltyProgramId, loyaltyCardId, updateLoyaltyCardRequest);
+                Events.ExecuteOnErrorIntegrationUpdateLoyaltyCard(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="IntegrationUpdateLoyaltyCardApiResponse"/>
+        /// </summary>
+        public partial class IntegrationUpdateLoyaltyCardApiResponse : TalonOneSdk.Client.ApiResponse, IIntegrationUpdateLoyaltyCardApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<IntegrationApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="IntegrationUpdateLoyaltyCardApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public IntegrationUpdateLoyaltyCardApiResponse(ILogger<IntegrationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="IntegrationUpdateLoyaltyCardApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public IntegrationUpdateLoyaltyCardApiResponse(ILogger<IntegrationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.LoyaltyCard Ok()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.LoyaltyCard result = default;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private TalonOneSdk.Model.LoyaltyCard DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.LoyaltyCard>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref TalonOneSdk.Model.LoyaltyCard result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk(out TalonOneSdk.Model.LoyaltyCard result)
             {
                 result = null;
 

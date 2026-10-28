@@ -381,6 +381,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new EmailEntityJsonConverter());
             _jsonOptions.Converters.Add(new EmbeddedAnalyticsConfigurationJsonConverter());
             _jsonOptions.Converters.Add(new EmbeddedAnalyticsConfigurationDashboardsJsonConverter());
+            _jsonOptions.Converters.Add(new EmbeddedAnalyticsTokenJsonConverter());
             _jsonOptions.Converters.Add(new EmbeddedDashboardConfigurationJsonConverter());
             _jsonOptions.Converters.Add(new EndpointJsonConverter());
             _jsonOptions.Converters.Add(new EntityJsonConverter());

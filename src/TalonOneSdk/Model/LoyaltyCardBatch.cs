@@ -34,13 +34,15 @@ namespace TalonOneSdk.Model
         /// <param name="numberOfCards">Number of loyalty cards in the batch.</param>
         /// <param name="batchId">ID of the loyalty card batch.</param>
         /// <param name="status">Status of the loyalty cards in the batch. (default to StatusEnum.Active)</param>
+        /// <param name="attributes">Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. </param>
         /// <param name="cardCodeSettings">cardCodeSettings</param>
         [JsonConstructor]
-        public LoyaltyCardBatch(long numberOfCards, Option<string> batchId = default, Option<StatusEnum?> status = default, Option<CodeGeneratorSettings> cardCodeSettings = default)
+        public LoyaltyCardBatch(long numberOfCards, Option<string> batchId = default, Option<StatusEnum?> status = default, Option<Object> attributes = default, Option<CodeGeneratorSettings> cardCodeSettings = default)
         {
             NumberOfCards = numberOfCards;
             BatchIdOption = batchId;
             StatusOption = status;
+            AttributesOption = attributes;
             CardCodeSettingsOption = cardCodeSettings;
             OnCreated();
         }
@@ -153,6 +155,21 @@ namespace TalonOneSdk.Model
         public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of Attributes
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> AttributesOption { get; private set; }
+
+        /// <summary>
+        /// Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. 
+        /// </summary>
+        /// <value>Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. </value>
+        /* <example>{PIN&#x3D;1234, Language&#x3D;DE}</example> */
+        [JsonPropertyName("attributes")]
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
+
+        /// <summary>
         /// Used to track the state of CardCodeSettings
         /// </summary>
         [JsonIgnore]
@@ -176,6 +193,7 @@ namespace TalonOneSdk.Model
             sb.Append("  NumberOfCards: ").Append(NumberOfCards).Append("\n");
             sb.Append("  BatchId: ").Append(BatchId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  CardCodeSettings: ").Append(CardCodeSettings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -261,6 +279,7 @@ namespace TalonOneSdk.Model
             Option<long?> numberOfCards = default;
             Option<string> batchId = default;
             Option<LoyaltyCardBatch.StatusEnum?> status = default;
+            Option<Object> attributes = default;
             Option<CodeGeneratorSettings> cardCodeSettings = default;
 
             while (utf8JsonReader.Read())
@@ -294,6 +313,9 @@ namespace TalonOneSdk.Model
                                 status = new Option<LoyaltyCardBatch.StatusEnum?>(statusValue);
                             }
                             break;
+                        case "attributes":
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "cardCodeSettings":
                             cardCodeSettings = new Option<CodeGeneratorSettings>(JsonSerializer.Deserialize<CodeGeneratorSettings>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -309,7 +331,7 @@ namespace TalonOneSdk.Model
             if (numberOfCards.IsSet && numberOfCards.Value == null)
                 throw new JsonException("Property is not nullable for class LoyaltyCardBatch: numberOfCards.");
 
-            return new LoyaltyCardBatch(numberOfCards.Value.Value, batchId, status, cardCodeSettings);
+            return new LoyaltyCardBatch(numberOfCards.Value.Value, batchId, status, attributes, cardCodeSettings);
         }
 
         /// <summary>
@@ -343,6 +365,11 @@ namespace TalonOneSdk.Model
             {
                 var statusRawValue = LoyaltyCardBatch.StatusEnumToJsonValue(loyaltyCardBatch.StatusOption.Value);
                 writer.WriteString("status", statusRawValue);
+            }
+            if (loyaltyCardBatch.AttributesOption.IsSet)
+            {
+                writer.WritePropertyName("attributes");
+                JsonSerializer.Serialize(writer, loyaltyCardBatch.Attributes, jsonSerializerOptions);
             }
             if (loyaltyCardBatch.CardCodeSettingsOption.IsSet)
             {

@@ -33,7 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="message">message</param>
         /// <param name="errors">An array of individual problems encountered during the request.</param>
-        /// <param name="statusCode">The error code</param>
+        /// <param name="statusCode">The error code.</param>
         [JsonConstructor]
         public ErrorResponseWithStatus(Option<string> message = default, Option<List<APIError>> errors = default, Option<long?> statusCode = default)
         {
@@ -80,9 +80,9 @@ namespace TalonOneSdk.Model
         public Option<long?> StatusCodeOption { get; private set; }
 
         /// <summary>
-        /// The error code
+        /// The error code.
         /// </summary>
-        /// <value>The error code</value>
+        /// <value>The error code.</value>
         [JsonPropertyName("StatusCode")]
         public long? StatusCode { get { return this.StatusCodeOption.Value; } set { this.StatusCodeOption = new Option<long?>(value); } }
 

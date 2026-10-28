@@ -821,7 +821,8 @@ namespace TalonOneSdk.Test.Api
             DateTime rangeStart = default;
             DateTime rangeEnd = default;
             Client.Option<string> dateFormat = default;
-            var response = await _instance.ExportLoyaltyCardLedgerAsync(loyaltyProgramId, loyaltyCardId, rangeStart, rangeEnd, dateFormat);
+            Client.Option<bool> includeReferences = default;
+            var response = await _instance.ExportLoyaltyCardLedgerAsync(loyaltyProgramId, loyaltyCardId, rangeStart, rangeEnd, dateFormat, includeReferences);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
@@ -865,7 +866,8 @@ namespace TalonOneSdk.Test.Api
             string loyaltyProgramId = default;
             string integrationId = default;
             Client.Option<string> dateFormat = default;
-            var response = await _instance.ExportLoyaltyLedgerAsync(rangeStart, rangeEnd, loyaltyProgramId, integrationId, dateFormat);
+            Client.Option<bool> includeReferences = default;
+            var response = await _instance.ExportLoyaltyLedgerAsync(rangeStart, rangeEnd, loyaltyProgramId, integrationId, dateFormat, includeReferences);
             var model = response.Ok();
             Assert.IsType<string>(model);
         }
