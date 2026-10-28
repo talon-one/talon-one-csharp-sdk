@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Shared details of an outbound notification or webhook message.
+    /// OutboundLogBase
     /// </summary>
     public partial class OutboundLogBase : IValidatableObject
     {
@@ -32,13 +32,13 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="OutboundLogBase" /> class.
         /// </summary>
         /// <param name="uuid">UUID of the outbound message.</param>
-        /// <param name="notificationType">Type of notification that produced the outbound request.</param>
-        /// <param name="notificationId">ID of the notification that produced the outbound request.</param>
-        /// <param name="notificationName">Name of the notification that produced the outbound request.</param>
-        /// <param name="webhookId">ID of the webhook that produced the outbound request.</param>
-        /// <param name="webhookName">The name of the webhook that produced the outbound request.</param>
-        /// <param name="applicationId">ID of the Application associated with the outbound request.</param>
-        /// <param name="loyaltyProgramId">ID of the loyalty program associated with the outbound request.</param>
+        /// <param name="notificationType">Type of notification that triggered the outbound message.</param>
+        /// <param name="notificationId">ID of the notification that triggered the outbound message.</param>
+        /// <param name="notificationName">Name of the notification that triggered the outbound message.</param>
+        /// <param name="webhookId">ID of the webhook that triggered the outbound message.</param>
+        /// <param name="webhookName">Name of the webhook that triggered the outbound message.</param>
+        /// <param name="applicationId">ID of the Application associated with the outbound message.</param>
+        /// <param name="loyaltyProgramId">ID of the loyalty program associated with the outbound message.</param>
         /// <param name="request">request</param>
         [JsonConstructor]
         public OutboundLogBase(Guid uuid, string notificationType, Option<long?> notificationId = default, Option<string> notificationName = default, Option<long?> webhookId = default, Option<string> webhookName = default, Option<long?> applicationId = default, Option<long?> loyaltyProgramId = default, Option<OutboundLogRequest> request = default)
@@ -66,9 +66,9 @@ namespace TalonOneSdk.Model
         public Guid Uuid { get; set; }
 
         /// <summary>
-        /// Type of notification that produced the outbound request.
+        /// Type of notification that triggered the outbound message.
         /// </summary>
-        /// <value>Type of notification that produced the outbound request.</value>
+        /// <value>Type of notification that triggered the outbound message.</value>
         /* <example>CampaignNotification</example> */
         [JsonPropertyName("notificationType")]
         public string NotificationType { get; set; }
@@ -81,9 +81,9 @@ namespace TalonOneSdk.Model
         public Option<long?> NotificationIdOption { get; private set; }
 
         /// <summary>
-        /// ID of the notification that produced the outbound request.
+        /// ID of the notification that triggered the outbound message.
         /// </summary>
-        /// <value>ID of the notification that produced the outbound request.</value>
+        /// <value>ID of the notification that triggered the outbound message.</value>
         /* <example>1</example> */
         [JsonPropertyName("notificationId")]
         public long? NotificationId { get { return this.NotificationIdOption.Value; } set { this.NotificationIdOption = new Option<long?>(value); } }
@@ -96,9 +96,9 @@ namespace TalonOneSdk.Model
         public Option<string> NotificationNameOption { get; private set; }
 
         /// <summary>
-        /// Name of the notification that produced the outbound request.
+        /// Name of the notification that triggered the outbound message.
         /// </summary>
-        /// <value>Name of the notification that produced the outbound request.</value>
+        /// <value>Name of the notification that triggered the outbound message.</value>
         /* <example>Notification name</example> */
         [JsonPropertyName("notificationName")]
         public string NotificationName { get { return this.NotificationNameOption.Value; } set { this.NotificationNameOption = new Option<string>(value); } }
@@ -111,9 +111,9 @@ namespace TalonOneSdk.Model
         public Option<long?> WebhookIdOption { get; private set; }
 
         /// <summary>
-        /// ID of the webhook that produced the outbound request.
+        /// ID of the webhook that triggered the outbound message.
         /// </summary>
-        /// <value>ID of the webhook that produced the outbound request.</value>
+        /// <value>ID of the webhook that triggered the outbound message.</value>
         /* <example>101</example> */
         [JsonPropertyName("webhookId")]
         public long? WebhookId { get { return this.WebhookIdOption.Value; } set { this.WebhookIdOption = new Option<long?>(value); } }
@@ -126,9 +126,9 @@ namespace TalonOneSdk.Model
         public Option<string> WebhookNameOption { get; private set; }
 
         /// <summary>
-        /// The name of the webhook that produced the outbound request.
+        /// Name of the webhook that triggered the outbound message.
         /// </summary>
-        /// <value>The name of the webhook that produced the outbound request.</value>
+        /// <value>Name of the webhook that triggered the outbound message.</value>
         /* <example>My webhook</example> */
         [JsonPropertyName("webhookName")]
         public string WebhookName { get { return this.WebhookNameOption.Value; } set { this.WebhookNameOption = new Option<string>(value); } }
@@ -141,9 +141,9 @@ namespace TalonOneSdk.Model
         public Option<long?> ApplicationIdOption { get; private set; }
 
         /// <summary>
-        /// ID of the Application associated with the outbound request.
+        /// ID of the Application associated with the outbound message.
         /// </summary>
-        /// <value>ID of the Application associated with the outbound request.</value>
+        /// <value>ID of the Application associated with the outbound message.</value>
         /* <example>1</example> */
         [JsonPropertyName("applicationId")]
         public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
@@ -156,9 +156,9 @@ namespace TalonOneSdk.Model
         public Option<long?> LoyaltyProgramIdOption { get; private set; }
 
         /// <summary>
-        /// ID of the loyalty program associated with the outbound request.
+        /// ID of the loyalty program associated with the outbound message.
         /// </summary>
-        /// <value>ID of the loyalty program associated with the outbound request.</value>
+        /// <value>ID of the loyalty program associated with the outbound message.</value>
         /* <example>2</example> */
         [JsonPropertyName("loyaltyProgramId")]
         public long? LoyaltyProgramId { get { return this.LoyaltyProgramIdOption.Value; } set { this.LoyaltyProgramIdOption = new Option<long?>(value); } }

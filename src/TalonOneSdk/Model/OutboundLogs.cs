@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Paginated list of outbound logs.
+    /// OutboundLogs
     /// </summary>
     public partial class OutboundLogs : IValidatableObject
     {

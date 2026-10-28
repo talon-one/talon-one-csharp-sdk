@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **ProgramName** | **string** | The integration name of the loyalty program that owns this entity. | [optional] 
 **ProgramTitle** | **string** | The Campaign Manager-displayed name of the loyalty program that owns this entity. | [optional] 
 **BlockReason** | **string** | Reason for transferring and blocking the loyalty card.  | [optional] 
+**Attributes** | **Object** | Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint.  | [optional] 
 **Profiles** | [**List&lt;LoyaltyCardProfileRegistration&gt;**](LoyaltyCardProfileRegistration.md) | Integration IDs of the customers profiles linked to the card. | [optional] 
 **Ledger** | [**LedgerInfo**](LedgerInfo.md) | Displays point balances of the card in the main ledger of the loyalty program. | [optional] 
 **Subledgers** | [**Dictionary&lt;string, LedgerInfo&gt;**](LedgerInfo.md) | Displays point balances of the card in the subledgers of the loyalty program. | [optional] 

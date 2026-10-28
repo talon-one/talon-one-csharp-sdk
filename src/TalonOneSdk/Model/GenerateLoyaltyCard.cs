@@ -34,12 +34,14 @@ namespace TalonOneSdk.Model
         /// <param name="status">Status of the loyalty card. (default to StatusEnum.Active)</param>
         /// <param name="customerProfileIds">Integration IDs of the customer profiles linked to the card.</param>
         /// <param name="cardIdentifier">The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;. </param>
+        /// <param name="attributes">Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. </param>
         [JsonConstructor]
-        public GenerateLoyaltyCard(Option<StatusEnum?> status = default, Option<List<string>> customerProfileIds = default, Option<string> cardIdentifier = default)
+        public GenerateLoyaltyCard(Option<StatusEnum?> status = default, Option<List<string>> customerProfileIds = default, Option<string> cardIdentifier = default, Option<Object> attributes = default)
         {
             StatusOption = status;
             CustomerProfileIdsOption = customerProfileIds;
             CardIdentifierOption = cardIdentifier;
+            AttributesOption = attributes;
             OnCreated();
         }
 
@@ -158,6 +160,21 @@ namespace TalonOneSdk.Model
         public string CardIdentifier { get { return this.CardIdentifierOption.Value; } set { this.CardIdentifierOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of Attributes
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> AttributesOption { get; private set; }
+
+        /// <summary>
+        /// Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. 
+        /// </summary>
+        /// <value>Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. </value>
+        /* <example>{preferredReward&#x3D;discount}</example> */
+        [JsonPropertyName("attributes")]
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -168,6 +185,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  CustomerProfileIds: ").Append(CustomerProfileIds).Append("\n");
             sb.Append("  CardIdentifier: ").Append(CardIdentifier).Append("\n");
+            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -240,6 +258,7 @@ namespace TalonOneSdk.Model
             Option<GenerateLoyaltyCard.StatusEnum?> status = default;
             Option<List<string>> customerProfileIds = default;
             Option<string> cardIdentifier = default;
+            Option<Object> attributes = default;
 
             while (utf8JsonReader.Read())
             {
@@ -272,13 +291,16 @@ namespace TalonOneSdk.Model
                         case "cardIdentifier":
                             cardIdentifier = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "attributes":
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            return new GenerateLoyaltyCard(status, customerProfileIds, cardIdentifier);
+            return new GenerateLoyaltyCard(status, customerProfileIds, cardIdentifier, attributes);
         }
 
         /// <summary>
@@ -315,6 +337,12 @@ namespace TalonOneSdk.Model
             }
             if (generateLoyaltyCard.CardIdentifierOption.IsSet)
                 writer.WriteString("cardIdentifier", generateLoyaltyCard.CardIdentifier);
+
+            if (generateLoyaltyCard.AttributesOption.IsSet)
+            {
+                writer.WritePropertyName("attributes");
+                JsonSerializer.Serialize(writer, generateLoyaltyCard.Attributes, jsonSerializerOptions);
+            }
         }
     }
 }

@@ -37,8 +37,10 @@ namespace TalonOneSdk.Model
         /// <param name="description">The customer-facing description of the reward.</param>
         /// <param name="pointsRequired">The loyalty points required to activate the reward.</param>
         /// <param name="eligibility">The customer&#39;s eligibility for the reward. Returned only when the request includes a &#x60;profileIntegrationId&#x60; or &#x60;loyaltyCardId&#x60;. </param>
+        /// <param name="validityDuration">The duration for which the customer rewards unlocked from this reward remain active, relative to when the customer reward was unlocked.  The time format is an **integer** followed by one letter indicating the time unit.  Examples: &#x60;30m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  Certain units can be rounded up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  This field is not returned in combination with &#x60;expiryDate&#x60;. If both &#x60;validityDuration&#x60; and &#x60;expiryDate&#x60; are not returned, customer rewards have unlimited validity. </param>
+        /// <param name="expiryDate">Expiry date of the customer rewards unlocked from this reward. Customer rewards never expire if this is omitted and &#x60;validityDuration&#x60; is not set.  **Note:** - This field is not returned in combination with &#x60;validityDuration&#x60;. </param>
         [JsonConstructor]
-        public RewardCatalogItem(long id, string name, RuleMetadata rule, Option<string> description = default, Option<List<RewardPointsRequired>> pointsRequired = default, Option<RewardEligibility> eligibility = default)
+        public RewardCatalogItem(long id, string name, RuleMetadata rule, Option<string> description = default, Option<List<RewardPointsRequired>> pointsRequired = default, Option<RewardEligibility> eligibility = default, Option<string> validityDuration = default, Option<DateTime?> expiryDate = default)
         {
             Id = id;
             Name = name;
@@ -46,6 +48,8 @@ namespace TalonOneSdk.Model
             DescriptionOption = description;
             PointsRequiredOption = pointsRequired;
             EligibilityOption = eligibility;
+            ValidityDurationOption = validityDuration;
+            ExpiryDateOption = expiryDate;
             OnCreated();
         }
 
@@ -118,6 +122,36 @@ namespace TalonOneSdk.Model
         public RewardEligibility Eligibility { get { return this.EligibilityOption.Value; } set { this.EligibilityOption = new Option<RewardEligibility>(value); } }
 
         /// <summary>
+        /// Used to track the state of ValidityDuration
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ValidityDurationOption { get; private set; }
+
+        /// <summary>
+        /// The duration for which the customer rewards unlocked from this reward remain active, relative to when the customer reward was unlocked.  The time format is an **integer** followed by one letter indicating the time unit.  Examples: &#x60;30m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  Certain units can be rounded up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  This field is not returned in combination with &#x60;expiryDate&#x60;. If both &#x60;validityDuration&#x60; and &#x60;expiryDate&#x60; are not returned, customer rewards have unlimited validity. 
+        /// </summary>
+        /// <value>The duration for which the customer rewards unlocked from this reward remain active, relative to when the customer reward was unlocked.  The time format is an **integer** followed by one letter indicating the time unit.  Examples: &#x60;30m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  Certain units can be rounded up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  This field is not returned in combination with &#x60;expiryDate&#x60;. If both &#x60;validityDuration&#x60; and &#x60;expiryDate&#x60; are not returned, customer rewards have unlimited validity. </value>
+        /* <example>3M_U</example> */
+        [JsonPropertyName("validityDuration")]
+        public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of ExpiryDate
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> ExpiryDateOption { get; private set; }
+
+        /// <summary>
+        /// Expiry date of the customer rewards unlocked from this reward. Customer rewards never expire if this is omitted and &#x60;validityDuration&#x60; is not set.  **Note:** - This field is not returned in combination with &#x60;validityDuration&#x60;. 
+        /// </summary>
+        /// <value>Expiry date of the customer rewards unlocked from this reward. Customer rewards never expire if this is omitted and &#x60;validityDuration&#x60; is not set.  **Note:** - This field is not returned in combination with &#x60;validityDuration&#x60;. </value>
+        /* <example>2026-12-31T00:00:00Z</example> */
+        [JsonPropertyName("expiryDate")]
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -131,6 +165,8 @@ namespace TalonOneSdk.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  PointsRequired: ").Append(PointsRequired).Append("\n");
             sb.Append("  Eligibility: ").Append(Eligibility).Append("\n");
+            sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
+            sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -142,6 +178,16 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.ValidityDurationOption.Value != null) {
+                // ValidityDuration (string) pattern
+                Regex regexValidityDuration = new Regex(@"^[1-9][0-9]*([mh]|D(_[DU])?|[WMY](_U)?)$", RegexOptions.CultureInvariant);
+
+                if (this.ValidityDurationOption.Value != null &&!regexValidityDuration.Match(this.ValidityDurationOption.Value).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ValidityDuration, must match a pattern of " + regexValidityDuration, new [] { "ValidityDuration" });
+                }
+            }
+
             yield break;
         }
     }
@@ -160,6 +206,11 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
+
+        /// <summary>
+        /// The format to use to serialize ExpiryDate
+        /// </summary>
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RewardCatalogItem" />
@@ -184,6 +235,8 @@ namespace TalonOneSdk.Model
             Option<string> description = default;
             Option<List<RewardPointsRequired>> pointsRequired = default;
             Option<RewardEligibility> eligibility = default;
+            Option<string> validityDuration = default;
+            Option<DateTime?> expiryDate = default;
 
             while (utf8JsonReader.Read())
             {
@@ -218,6 +271,12 @@ namespace TalonOneSdk.Model
                         case "eligibility":
                             eligibility = new Option<RewardEligibility>(JsonSerializer.Deserialize<RewardEligibility>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "validityDuration":
+                            validityDuration = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "expiryDate":
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
@@ -242,7 +301,7 @@ namespace TalonOneSdk.Model
             if (rule.IsSet && rule.Value == null)
                 throw new JsonException("Property is not nullable for class RewardCatalogItem: rule.");
 
-            return new RewardCatalogItem(id.Value.Value, name.Value, rule.Value, description, pointsRequired, eligibility);
+            return new RewardCatalogItem(id.Value.Value, name.Value, rule.Value, description, pointsRequired, eligibility, validityDuration, expiryDate);
         }
 
         /// <summary>
@@ -292,6 +351,11 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("eligibility");
                 JsonSerializer.Serialize(writer, rewardCatalogItem.Eligibility, jsonSerializerOptions);
             }
+            if (rewardCatalogItem.ValidityDurationOption.IsSet)
+                writer.WriteString("validityDuration", rewardCatalogItem.ValidityDuration);
+
+            if (rewardCatalogItem.ExpiryDateOption.IsSet)
+                writer.WriteString("expiryDate", rewardCatalogItem.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
         }
     }
 }

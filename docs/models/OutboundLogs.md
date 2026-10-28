@@ -1,5 +1,4 @@
 # TalonOneSdk.Model.OutboundLogs
-Paginated list of outbound logs.
 
 ## Properties
 

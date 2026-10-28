@@ -32,10 +32,12 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="UpdateLoyaltyCardRequest" /> class.
         /// </summary>
         /// <param name="status">Status of the loyalty card. Can be &#x60;active&#x60; or &#x60;inactive&#x60;. </param>
+        /// <param name="attributes">Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. </param>
         [JsonConstructor]
-        public UpdateLoyaltyCardRequest(Option<string> status = default)
+        public UpdateLoyaltyCardRequest(Option<string> status = default, Option<Object> attributes = default)
         {
             StatusOption = status;
+            AttributesOption = attributes;
             OnCreated();
         }
 
@@ -57,6 +59,21 @@ namespace TalonOneSdk.Model
         public string Status { get { return this.StatusOption.Value; } set { this.StatusOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of Attributes
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> AttributesOption { get; private set; }
+
+        /// <summary>
+        /// Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. 
+        /// </summary>
+        /// <value>Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. </value>
+        /* <example>{PIN&#x3D;1234, Language&#x3D;DE}</example> */
+        [JsonPropertyName("attributes")]
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -65,6 +82,7 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateLoyaltyCardRequest {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -113,6 +131,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<string> status = default;
+            Option<Object> attributes = default;
 
             while (utf8JsonReader.Read())
             {
@@ -132,13 +151,16 @@ namespace TalonOneSdk.Model
                         case "status":
                             status = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "attributes":
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            return new UpdateLoyaltyCardRequest(status);
+            return new UpdateLoyaltyCardRequest(status, attributes);
         }
 
         /// <summary>
@@ -165,6 +187,12 @@ namespace TalonOneSdk.Model
         {
             if (updateLoyaltyCardRequest.StatusOption.IsSet)
                 writer.WriteString("status", updateLoyaltyCardRequest.Status);
+
+            if (updateLoyaltyCardRequest.AttributesOption.IsSet)
+            {
+                writer.WritePropertyName("attributes");
+                JsonSerializer.Serialize(writer, updateLoyaltyCardRequest.Attributes, jsonSerializerOptions);
+            }
         }
     }
 }

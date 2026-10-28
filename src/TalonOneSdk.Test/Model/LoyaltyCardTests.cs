@@ -135,6 +135,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Attributes'
+        /// </summary>
+        [Fact]
+        public void AttributesTest()
+        {
+            // TODO unit test for the property 'Attributes'
+        }
+
+        /// <summary>
         /// Test the property 'Profiles'
         /// </summary>
         [Fact]

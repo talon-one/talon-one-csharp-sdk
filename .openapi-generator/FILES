@@ -357,6 +357,7 @@ docs/models/EffectWillAwardGiveaway.md
 docs/models/EmailEntity.md
 docs/models/EmbeddedAnalyticsConfiguration.md
 docs/models/EmbeddedAnalyticsConfigurationDashboards.md
+docs/models/EmbeddedAnalyticsToken.md
 docs/models/EmbeddedDashboardConfiguration.md
 docs/models/Endpoint.md
 docs/models/Entity.md
@@ -1321,6 +1322,7 @@ src/TalonOneSdk.Test/Model/EffectWillAwardGiveawayTests.cs
 src/TalonOneSdk.Test/Model/EmailEntityTests.cs
 src/TalonOneSdk.Test/Model/EmbeddedAnalyticsConfigurationDashboardsTests.cs
 src/TalonOneSdk.Test/Model/EmbeddedAnalyticsConfigurationTests.cs
+src/TalonOneSdk.Test/Model/EmbeddedAnalyticsTokenTests.cs
 src/TalonOneSdk.Test/Model/EmbeddedDashboardConfigurationTests.cs
 src/TalonOneSdk.Test/Model/EndpointTests.cs
 src/TalonOneSdk.Test/Model/EntityTests.cs
@@ -2305,6 +2307,7 @@ src/TalonOneSdk/Model/EffectWillAwardGiveaway.cs
 src/TalonOneSdk/Model/EmailEntity.cs
 src/TalonOneSdk/Model/EmbeddedAnalyticsConfiguration.cs
 src/TalonOneSdk/Model/EmbeddedAnalyticsConfigurationDashboards.cs
+src/TalonOneSdk/Model/EmbeddedAnalyticsToken.cs
 src/TalonOneSdk/Model/EmbeddedDashboardConfiguration.cs
 src/TalonOneSdk/Model/Endpoint.cs
 src/TalonOneSdk/Model/Entity.cs

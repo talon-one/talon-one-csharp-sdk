@@ -40,6 +40,7 @@ namespace TalonOneSdk.Model
         /// <param name="programName">The integration name of the loyalty program that owns this entity.</param>
         /// <param name="programTitle">The Campaign Manager-displayed name of the loyalty program that owns this entity.</param>
         /// <param name="blockReason">Reason for transferring and blocking the loyalty card. </param>
+        /// <param name="attributes">Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. </param>
         /// <param name="profiles">Integration IDs of the customers profiles linked to the card.</param>
         /// <param name="ledger">Displays point balances of the card in the main ledger of the loyalty program.</param>
         /// <param name="subledgers">Displays point balances of the card in the subledgers of the loyalty program.</param>
@@ -48,7 +49,7 @@ namespace TalonOneSdk.Model
         /// <param name="newCardIdentifier">The identifier of the card to which the points were transferred.</param>
         /// <param name="batchId">The ID of the batch in which the loyalty card was created.</param>
         [JsonConstructor]
-        public LoyaltyCard(long id, DateTime created, long programID, string status, string identifier, long usersPerCardLimit, Option<string> programName = default, Option<string> programTitle = default, Option<string> blockReason = default, Option<List<LoyaltyCardProfileRegistration>> profiles = default, Option<LedgerInfo> ledger = default, Option<Dictionary<string, LedgerInfo>> subledgers = default, Option<DateTime?> modified = default, Option<string> oldCardIdentifier = default, Option<string> newCardIdentifier = default, Option<string> batchId = default)
+        public LoyaltyCard(long id, DateTime created, long programID, string status, string identifier, long usersPerCardLimit, Option<string> programName = default, Option<string> programTitle = default, Option<string> blockReason = default, Option<Object> attributes = default, Option<List<LoyaltyCardProfileRegistration>> profiles = default, Option<LedgerInfo> ledger = default, Option<Dictionary<string, LedgerInfo>> subledgers = default, Option<DateTime?> modified = default, Option<string> oldCardIdentifier = default, Option<string> newCardIdentifier = default, Option<string> batchId = default)
         {
             Id = id;
             Created = created;
@@ -59,6 +60,7 @@ namespace TalonOneSdk.Model
             ProgramNameOption = programName;
             ProgramTitleOption = programTitle;
             BlockReasonOption = blockReason;
+            AttributesOption = attributes;
             ProfilesOption = profiles;
             LedgerOption = ledger;
             SubledgersOption = subledgers;
@@ -163,6 +165,21 @@ namespace TalonOneSdk.Model
         /* <example>Current card lost. Customer needs a new card.</example> */
         [JsonPropertyName("blockReason")]
         public string BlockReason { get { return this.BlockReasonOption.Value; } set { this.BlockReasonOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Attributes
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> AttributesOption { get; private set; }
+
+        /// <summary>
+        /// Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. 
+        /// </summary>
+        /// <value>Set values for the [custom attributes](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes) of a loyalty card. These attributes must be created in the Campaign Manager before their values can be updated through this endpoint. </value>
+        /* <example>{PIN&#x3D;1234, Language&#x3D;DE}</example> */
+        [JsonPropertyName("attributes")]
+        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Used to track the state of Profiles
@@ -283,6 +300,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ProgramName: ").Append(ProgramName).Append("\n");
             sb.Append("  ProgramTitle: ").Append(ProgramTitle).Append("\n");
             sb.Append("  BlockReason: ").Append(BlockReason).Append("\n");
+            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  Profiles: ").Append(Profiles).Append("\n");
             sb.Append("  Ledger: ").Append(Ledger).Append("\n");
             sb.Append("  Subledgers: ").Append(Subledgers).Append("\n");
@@ -428,6 +446,7 @@ namespace TalonOneSdk.Model
             Option<string> programName = default;
             Option<string> programTitle = default;
             Option<string> blockReason = default;
+            Option<Object> attributes = default;
             Option<List<LoyaltyCardProfileRegistration>> profiles = default;
             Option<LedgerInfo> ledger = default;
             Option<Dictionary<string, LedgerInfo>> subledgers = default;
@@ -477,6 +496,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "blockReason":
                             blockReason = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "attributes":
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "profiles":
                             profiles = new Option<List<LoyaltyCardProfileRegistration>>(JsonSerializer.Deserialize<List<LoyaltyCardProfileRegistration>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -541,7 +563,7 @@ namespace TalonOneSdk.Model
             if (usersPerCardLimit.IsSet && usersPerCardLimit.Value == null)
                 throw new JsonException("Property is not nullable for class LoyaltyCard: usersPerCardLimit.");
 
-            return new LoyaltyCard(id.Value.Value, created.Value.Value, programID.Value.Value, status.Value, identifier.Value, usersPerCardLimit.Value.Value, programName, programTitle, blockReason, profiles, ledger, subledgers, modified, oldCardIdentifier, newCardIdentifier, batchId);
+            return new LoyaltyCard(id.Value.Value, created.Value.Value, programID.Value.Value, status.Value, identifier.Value, usersPerCardLimit.Value.Value, programName, programTitle, blockReason, attributes, profiles, ledger, subledgers, modified, oldCardIdentifier, newCardIdentifier, batchId);
         }
 
         /// <summary>
@@ -593,6 +615,11 @@ namespace TalonOneSdk.Model
             if (loyaltyCard.BlockReasonOption.IsSet)
                 writer.WriteString("blockReason", loyaltyCard.BlockReason);
 
+            if (loyaltyCard.AttributesOption.IsSet)
+            {
+                writer.WritePropertyName("attributes");
+                JsonSerializer.Serialize(writer, loyaltyCard.Attributes, jsonSerializerOptions);
+            }
             if (loyaltyCard.ProfilesOption.IsSet)
             {
                 writer.WritePropertyName("profiles");

@@ -455,6 +455,20 @@ namespace TalonOneSdk.Test.Api
         }
 
         /// <summary>
+        /// Test IntegrationUpdateLoyaltyCard
+        /// </summary>
+        [Fact (Skip = "not implemented")]
+        public async Task IntegrationUpdateLoyaltyCardAsyncTest()
+        {
+            long loyaltyProgramId = default;
+            string loyaltyCardId = default;
+            UpdateLoyaltyCardRequest updateLoyaltyCardRequest = default;
+            var response = await _instance.IntegrationUpdateLoyaltyCardAsync(loyaltyProgramId, loyaltyCardId, updateLoyaltyCardRequest);
+            var model = response.Ok();
+            Assert.IsType<TalonOneSdk.Model.LoyaltyCard>(model);
+        }
+
+        /// <summary>
         /// Test JoinLoyaltyProgram
         /// </summary>
         [Fact (Skip = "not implemented")]
