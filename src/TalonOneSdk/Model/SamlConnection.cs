@@ -201,24 +201,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             // Issuer (string) minLength
             if (this.Issuer != null && this.Issuer.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Issuer, length must be greater than 1.", new [] { "Issuer" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Issuer, length must be greater than 1.", new [] { "Issuer" });
             }
 
             // SignOnURL (string) minLength
             if (this.SignOnURL != null && this.SignOnURL.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for SignOnURL, length must be greater than 1.", new [] { "SignOnURL" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SignOnURL, length must be greater than 1.", new [] { "SignOnURL" });
             }
 
             yield break;
@@ -239,16 +239,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize CertificateExpiry
-        /// </summary>
-        public string CertificateExpiryFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SamlConnection" />
@@ -445,7 +435,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", samlConnection.Id);
 
-            writer.WriteString("created", samlConnection.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, samlConnection.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteString("assertionConsumerServiceURL", samlConnection.AssertionConsumerServiceURL);
 
@@ -456,7 +449,10 @@ namespace TalonOneSdk.Model
                 writer.WriteString("metadataURL", samlConnection.MetadataURL);
 
             if (samlConnection.CertificateExpiryOption.IsSet)
-                writer.WriteString("certificateExpiry", samlConnection.CertificateExpiryOption.Value.Value.ToString(CertificateExpiryFormat));
+                {
+                            writer.WritePropertyName("certificateExpiry");
+                                JsonSerializer.Serialize(writer, samlConnection.CertificateExpiryOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

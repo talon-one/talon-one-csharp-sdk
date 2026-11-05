@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -95,11 +95,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Generated
-        /// </summary>
-        public string GeneratedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExperimentVerdictResponse" />
@@ -190,7 +185,10 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("verdict");
             JsonSerializer.Serialize(writer, experimentVerdictResponse.Verdict, jsonSerializerOptions);
-            writer.WriteString("generated", experimentVerdictResponse.Generated.ToString(GeneratedFormat));
+            {
+                        writer.WritePropertyName("generated");
+                            JsonSerializer.Serialize(writer, experimentVerdictResponse.Generated, jsonSerializerOptions);
+                        }
         }
     }
 }

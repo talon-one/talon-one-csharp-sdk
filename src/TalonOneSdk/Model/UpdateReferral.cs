@@ -145,24 +145,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // FriendProfileIntegrationId (string) maxLength
             if (this.FriendProfileIntegrationId != null && this.FriendProfileIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for FriendProfileIntegrationId, length must be less than 1000.", new [] { "FriendProfileIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FriendProfileIntegrationId, length must be less than 1000.", new [] { "FriendProfileIntegrationId" });
             }
 
             // UsageLimit (long) maximum
             if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value > (long)999999)
             {
-                yield return new ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
             }
 
             // UsageLimit (long) minimum
             if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value < (long)0)
             {
-                yield return new ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
             }
 
             yield break;
@@ -183,16 +183,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateReferral" />
@@ -282,10 +272,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("friendProfileIntegrationId", updateReferral.FriendProfileIntegrationId);
 
             if (updateReferral.StartDateOption.IsSet)
-                writer.WriteString("startDate", updateReferral.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("startDate");
+                                JsonSerializer.Serialize(writer, updateReferral.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (updateReferral.ExpiryDateOption.IsSet)
-                writer.WriteString("expiryDate", updateReferral.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("expiryDate");
+                                JsonSerializer.Serialize(writer, updateReferral.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (updateReferral.UsageLimitOption.IsSet)
                 writer.WriteNumber("usageLimit", updateReferral.UsageLimitOption.Value.Value);

@@ -74,12 +74,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Value (string) minLength
             if (this.Value != null && this.Value.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for Value, length must be greater than 4.", new [] { "Value" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, length must be greater than 4.", new [] { "Value" });
             }
 
             yield break;

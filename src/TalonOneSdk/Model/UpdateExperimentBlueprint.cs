@@ -239,7 +239,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -359,7 +359,7 @@ namespace TalonOneSdk.Model
 
             if (updateExperimentBlueprint.CategoryOption.IsSet)
             {
-                var categoryRawValue = UpdateExperimentBlueprint.CategoryEnumToJsonValue(updateExperimentBlueprint.CategoryOption.Value);
+                var categoryRawValue = UpdateExperimentBlueprint.CategoryEnumToJsonValue(updateExperimentBlueprint.CategoryOption.Value.Value);
                 writer.WriteString("category", categoryRawValue);
             }
             if (updateExperimentBlueprint.VariantsOption.IsSet)

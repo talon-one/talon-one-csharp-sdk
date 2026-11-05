@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Target type when a specific audience is selected. 
+    /// Target type when a specific audience is selected.  Talon.One logs a separate price record per audience. You can use this object to compare the price records of a price type to those of a [base price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#price-history), for example. 
     /// </summary>
     public partial class LabelTargetAudience : IValidatableObject
     {
@@ -126,7 +126,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

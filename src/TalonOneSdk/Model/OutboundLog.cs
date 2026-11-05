@@ -240,7 +240,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -260,11 +260,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedAt
-        /// </summary>
-        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="OutboundLog" />
@@ -409,7 +404,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("notificationType", outboundLog.NotificationType);
 
-            writer.WriteString("createdAt", outboundLog.CreatedAt.ToString(CreatedAtFormat));
+            {
+                        writer.WritePropertyName("createdAt");
+                            JsonSerializer.Serialize(writer, outboundLog.CreatedAt, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("processingTimeMs", outboundLog.ProcessingTimeMs);
 

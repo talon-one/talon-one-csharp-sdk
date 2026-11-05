@@ -380,7 +380,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -400,31 +400,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastSignedIn
-        /// </summary>
-        public string LastSignedInFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastAccessed
-        /// </summary>
-        public string LastAccessedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LatestFeedTimestamp
-        /// </summary>
-        public string LatestFeedTimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="User" />
@@ -633,9 +608,15 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", user.Id);
 
-            writer.WriteString("created", user.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, user.Created, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("modified", user.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, user.Modified, jsonSerializerOptions);
+                        }
 
             writer.WriteString("email", user.Email);
 
@@ -666,13 +647,22 @@ namespace TalonOneSdk.Model
                 JsonSerializer.Serialize(writer, user.ApplicationNotificationSubscriptions, jsonSerializerOptions);
             }
             if (user.LastSignedInOption.IsSet)
-                writer.WriteString("lastSignedIn", user.LastSignedInOption.Value.Value.ToString(LastSignedInFormat));
+                {
+                            writer.WritePropertyName("lastSignedIn");
+                                JsonSerializer.Serialize(writer, user.LastSignedInOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (user.LastAccessedOption.IsSet)
-                writer.WriteString("lastAccessed", user.LastAccessedOption.Value.Value.ToString(LastAccessedFormat));
+                {
+                            writer.WritePropertyName("lastAccessed");
+                                JsonSerializer.Serialize(writer, user.LastAccessedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (user.LatestFeedTimestampOption.IsSet)
-                writer.WriteString("latestFeedTimestamp", user.LatestFeedTimestampOption.Value.Value.ToString(LatestFeedTimestampFormat));
+                {
+                            writer.WritePropertyName("latestFeedTimestamp");
+                                JsonSerializer.Serialize(writer, user.LatestFeedTimestampOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (user.AdditionalAttributesOption.IsSet)
             {

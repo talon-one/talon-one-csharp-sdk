@@ -259,12 +259,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyProgramID (long) minimum
             if (this.LoyaltyProgramID < (long)1)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
             }
 
             yield break;
@@ -285,16 +285,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize TimestampOfTierChange
-        /// </summary>
-        public string TimestampOfTierChangeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize TierExpirationDate
-        /// </summary>
-        public string TierExpirationDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="TierDowngradeData" />
@@ -460,7 +450,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("OldTier", tierDowngradeData.OldTier);
 
-            writer.WriteString("TimestampOfTierChange", tierDowngradeData.TimestampOfTierChange.ToString(TimestampOfTierChangeFormat));
+            {
+                        writer.WritePropertyName("TimestampOfTierChange");
+                            JsonSerializer.Serialize(writer, tierDowngradeData.TimestampOfTierChange, jsonSerializerOptions);
+                        }
 
             writer.WriteString("SubledgerID", tierDowngradeData.SubledgerID);
 
@@ -468,11 +461,14 @@ namespace TalonOneSdk.Model
                 writer.WriteString("CurrentTier", tierDowngradeData.CurrentTier);
 
             if (tierDowngradeData.TierExpirationDateOption.IsSet)
-                writer.WriteString("TierExpirationDate", tierDowngradeData.TierExpirationDateOption.Value.Value.ToString(TierExpirationDateFormat));
+                {
+                            writer.WritePropertyName("TierExpirationDate");
+                                JsonSerializer.Serialize(writer, tierDowngradeData.TierExpirationDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (tierDowngradeData.SourceOption.IsSet)
             {
-                var sourceRawValue = TierDowngradeData.SourceEnumToJsonValue(tierDowngradeData.SourceOption.Value);
+                var sourceRawValue = TierDowngradeData.SourceEnumToJsonValue(tierDowngradeData.SourceOption.Value.Value);
                 writer.WriteString("Source", sourceRawValue);
             }
             if (tierDowngradeData.ReasonOption.IsSet)

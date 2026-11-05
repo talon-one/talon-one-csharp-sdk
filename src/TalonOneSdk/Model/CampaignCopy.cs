@@ -175,7 +175,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -195,16 +195,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignCopy" />
@@ -316,10 +306,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("description", campaignCopy.Description);
 
             if (campaignCopy.StartTimeOption.IsSet)
-                writer.WriteString("startTime", campaignCopy.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+                {
+                            writer.WritePropertyName("startTime");
+                                JsonSerializer.Serialize(writer, campaignCopy.StartTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaignCopy.EndTimeOption.IsSet)
-                writer.WriteString("endTime", campaignCopy.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+                {
+                            writer.WritePropertyName("endTime");
+                                JsonSerializer.Serialize(writer, campaignCopy.EndTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaignCopy.TagsOption.IsSet)
             {

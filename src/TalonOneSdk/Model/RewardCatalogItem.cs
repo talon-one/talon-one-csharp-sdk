@@ -176,7 +176,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             if (this.ValidityDurationOption.Value != null) {
                 // ValidityDuration (string) pattern
@@ -206,11 +206,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RewardCatalogItem" />
@@ -355,7 +350,10 @@ namespace TalonOneSdk.Model
                 writer.WriteString("validityDuration", rewardCatalogItem.ValidityDuration);
 
             if (rewardCatalogItem.ExpiryDateOption.IsSet)
-                writer.WriteString("expiryDate", rewardCatalogItem.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("expiryDate");
+                                JsonSerializer.Serialize(writer, rewardCatalogItem.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

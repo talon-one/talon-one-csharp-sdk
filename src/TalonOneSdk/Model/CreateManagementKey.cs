@@ -106,7 +106,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -126,11 +126,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateManagementKey" />
@@ -238,7 +233,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("name", createManagementKey.Name);
 
-            writer.WriteString("expiryDate", createManagementKey.ExpiryDate.ToString(ExpiryDateFormat));
+            {
+                        writer.WritePropertyName("expiryDate");
+                            JsonSerializer.Serialize(writer, createManagementKey.ExpiryDate, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("endpoints");
             JsonSerializer.Serialize(writer, createManagementKey.Endpoints, jsonSerializerOptions);

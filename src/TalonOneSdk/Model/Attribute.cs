@@ -713,7 +713,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             if (this.Name != null) {
                 // Name (string) pattern
@@ -753,11 +753,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Attribute" />
@@ -1000,7 +995,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", attribute.Id);
 
-            writer.WriteString("created", attribute.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, attribute.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("accountId", attribute.AccountId);
 

@@ -430,42 +430,42 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
             }
 
             // StartDate (string) maxLength
             if (this.StartDate != null && this.StartDate.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for StartDate, length must be less than 64.", new [] { "StartDate" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartDate, length must be less than 64.", new [] { "StartDate" });
             }
 
             // SubledgerId (string) maxLength
             if (this.SubledgerId != null && this.SubledgerId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for SubledgerId, length must be less than 64.", new [] { "SubledgerId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SubledgerId, length must be less than 64.", new [] { "SubledgerId" });
             }
 
             // CustomerProfileId (string) maxLength
             if (this.CustomerProfileId != null && this.CustomerProfileId.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for CustomerProfileId, length must be less than 255.", new [] { "CustomerProfileId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerProfileId, length must be less than 255.", new [] { "CustomerProfileId" });
             }
 
             // CardIdentifier (string) maxLength
             if (this.CardIdentifier != null && this.CardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
             }
 
             // CardIdentifier (string) minLength
             if (this.CardIdentifier != null && this.CardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
             }
 
             if (this.CardIdentifierOption.Value != null) {
@@ -481,7 +481,7 @@ namespace TalonOneSdk.Model
             // CustomerSessionId (string) maxLength
             if (this.CustomerSessionId != null && this.CustomerSessionId.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for CustomerSessionId, length must be less than 255.", new [] { "CustomerSessionId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerSessionId, length must be less than 255.", new [] { "CustomerSessionId" });
             }
 
             yield break;
@@ -502,11 +502,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyProgramTransaction" />
@@ -744,7 +739,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("programId", loyaltyProgramTransaction.ProgramId);
 
-            writer.WriteString("created", loyaltyProgramTransaction.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, loyaltyProgramTransaction.Created, jsonSerializerOptions);
+                        }
 
             var typeRawValue = LoyaltyProgramTransaction.TypeEnumToJsonValue(loyaltyProgramTransaction.Type);
             writer.WriteString("type", typeRawValue);

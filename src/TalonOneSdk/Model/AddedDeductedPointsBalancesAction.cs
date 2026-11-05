@@ -255,7 +255,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -275,21 +275,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AddedDeductedPointsBalancesAction" />
@@ -434,13 +419,22 @@ namespace TalonOneSdk.Model
             writer.WriteString("TransactionUUID", addedDeductedPointsBalancesAction.TransactionUUID);
 
             if (addedDeductedPointsBalancesAction.StartDateOption.IsSet)
-                writer.WriteString("StartDate", addedDeductedPointsBalancesAction.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("StartDate");
+                                JsonSerializer.Serialize(writer, addedDeductedPointsBalancesAction.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (addedDeductedPointsBalancesAction.ExpiryDateOption.IsSet)
-                writer.WriteString("ExpiryDate", addedDeductedPointsBalancesAction.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("ExpiryDate");
+                                JsonSerializer.Serialize(writer, addedDeductedPointsBalancesAction.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (addedDeductedPointsBalancesAction.CreatedOption.IsSet)
-                writer.WriteString("Created", addedDeductedPointsBalancesAction.CreatedOption.Value.Value.ToString(CreatedFormat));
+                {
+                            writer.WritePropertyName("Created");
+                                JsonSerializer.Serialize(writer, addedDeductedPointsBalancesAction.CreatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (addedDeductedPointsBalancesAction.AwaitsActivationOption.IsSet)
                 writer.WriteBoolean("AwaitsActivation", addedDeductedPointsBalancesAction.AwaitsActivationOption.Value.Value);

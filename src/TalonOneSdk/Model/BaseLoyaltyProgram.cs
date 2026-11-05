@@ -644,12 +644,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // UsersPerCardLimit (long) minimum
             if (this.UsersPerCardLimitOption.IsSet && this.UsersPerCardLimitOption.Value < (long)0)
             {
-                yield return new ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
             }
 
             yield break;
@@ -670,11 +670,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize TierCycleStartDate
-        /// </summary>
-        public string TierCycleStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BaseLoyaltyProgram" />
@@ -856,23 +851,26 @@ namespace TalonOneSdk.Model
 
             if (baseLoyaltyProgram.ProgramJoinPolicyOption.IsSet)
             {
-                var programJoinPolicyRawValue = BaseLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(baseLoyaltyProgram.ProgramJoinPolicyOption.Value);
+                var programJoinPolicyRawValue = BaseLoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(baseLoyaltyProgram.ProgramJoinPolicyOption.Value.Value);
                 writer.WriteString("programJoinPolicy", programJoinPolicyRawValue);
             }
             if (baseLoyaltyProgram.TiersExpirationPolicyOption.IsSet)
             {
-                var tiersExpirationPolicyRawValue = BaseLoyaltyProgram.TiersExpirationPolicyEnumToJsonValue(baseLoyaltyProgram.TiersExpirationPolicyOption.Value);
+                var tiersExpirationPolicyRawValue = BaseLoyaltyProgram.TiersExpirationPolicyEnumToJsonValue(baseLoyaltyProgram.TiersExpirationPolicyOption.Value.Value);
                 writer.WriteString("tiersExpirationPolicy", tiersExpirationPolicyRawValue);
             }
             if (baseLoyaltyProgram.TierCycleStartDateOption.IsSet)
-                writer.WriteString("tierCycleStartDate", baseLoyaltyProgram.TierCycleStartDateOption.Value.Value.ToString(TierCycleStartDateFormat));
+                {
+                            writer.WritePropertyName("tierCycleStartDate");
+                                JsonSerializer.Serialize(writer, baseLoyaltyProgram.TierCycleStartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (baseLoyaltyProgram.TiersExpireInOption.IsSet)
                 writer.WriteString("tiersExpireIn", baseLoyaltyProgram.TiersExpireIn);
 
             if (baseLoyaltyProgram.TiersDowngradePolicyOption.IsSet)
             {
-                var tiersDowngradePolicyRawValue = BaseLoyaltyProgram.TiersDowngradePolicyEnumToJsonValue(baseLoyaltyProgram.TiersDowngradePolicyOption.Value);
+                var tiersDowngradePolicyRawValue = BaseLoyaltyProgram.TiersDowngradePolicyEnumToJsonValue(baseLoyaltyProgram.TiersDowngradePolicyOption.Value.Value);
                 writer.WriteString("tiersDowngradePolicy", tiersDowngradePolicyRawValue);
             }
             if (baseLoyaltyProgram.CardCodeSettingsOption.IsSet)
@@ -882,7 +880,7 @@ namespace TalonOneSdk.Model
             }
             if (baseLoyaltyProgram.ReturnPolicyOption.IsSet)
             {
-                var returnPolicyRawValue = BaseLoyaltyProgram.ReturnPolicyEnumToJsonValue(baseLoyaltyProgram.ReturnPolicyOption.Value);
+                var returnPolicyRawValue = BaseLoyaltyProgram.ReturnPolicyEnumToJsonValue(baseLoyaltyProgram.ReturnPolicyOption.Value.Value);
                 writer.WriteString("returnPolicy", returnPolicyRawValue);
             }
         }

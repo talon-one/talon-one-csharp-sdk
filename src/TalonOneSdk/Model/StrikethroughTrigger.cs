@@ -111,7 +111,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -131,11 +131,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize TriggeredAt
-        /// </summary>
-        public string TriggeredAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughTrigger" />
@@ -261,7 +256,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("type", strikethroughTrigger.Type);
 
-            writer.WriteString("triggeredAt", strikethroughTrigger.TriggeredAt.ToString(TriggeredAtFormat));
+            {
+                        writer.WritePropertyName("triggeredAt");
+                            JsonSerializer.Serialize(writer, strikethroughTrigger.TriggeredAt, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("totalAffectedItems", strikethroughTrigger.TotalAffectedItems);
 

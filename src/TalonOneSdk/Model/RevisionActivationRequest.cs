@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -105,11 +105,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ActivateAt
-        /// </summary>
-        public string ActivateAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RevisionActivationRequest" />
@@ -195,7 +190,10 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("userIds");
             JsonSerializer.Serialize(writer, revisionActivationRequest.UserIds, jsonSerializerOptions);
             if (revisionActivationRequest.ActivateAtOption.IsSet)
-                writer.WriteString("activateAt", revisionActivationRequest.ActivateAtOption.Value.Value.ToString(ActivateAtFormat));
+                {
+                            writer.WritePropertyName("activateAt");
+                                JsonSerializer.Serialize(writer, revisionActivationRequest.ActivateAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

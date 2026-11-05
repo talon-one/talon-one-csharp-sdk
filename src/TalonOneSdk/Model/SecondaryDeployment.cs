@@ -260,12 +260,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             if (this.Name != null) {
@@ -296,26 +296,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedAt
-        /// </summary>
-        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ActiveAt
-        /// </summary>
-        public string ActiveAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize FailedAt
-        /// </summary>
-        public string FailedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize DeletedAt
-        /// </summary>
-        public string DeletedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SecondaryDeployment" />
@@ -461,16 +441,28 @@ namespace TalonOneSdk.Model
 
             var statusRawValue = SecondaryDeployment.StatusEnumToJsonValue(secondaryDeployment.Status);
             writer.WriteString("status", statusRawValue);
-            writer.WriteString("createdAt", secondaryDeployment.CreatedAt.ToString(CreatedAtFormat));
+            {
+                        writer.WritePropertyName("createdAt");
+                            JsonSerializer.Serialize(writer, secondaryDeployment.CreatedAt, jsonSerializerOptions);
+                        }
 
             if (secondaryDeployment.ActiveAtOption.IsSet)
-                writer.WriteString("activeAt", secondaryDeployment.ActiveAtOption.Value.Value.ToString(ActiveAtFormat));
+                {
+                            writer.WritePropertyName("activeAt");
+                                JsonSerializer.Serialize(writer, secondaryDeployment.ActiveAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (secondaryDeployment.FailedAtOption.IsSet)
-                writer.WriteString("failedAt", secondaryDeployment.FailedAtOption.Value.Value.ToString(FailedAtFormat));
+                {
+                            writer.WritePropertyName("failedAt");
+                                JsonSerializer.Serialize(writer, secondaryDeployment.FailedAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (secondaryDeployment.DeletedAtOption.IsSet)
-                writer.WriteString("deletedAt", secondaryDeployment.DeletedAtOption.Value.Value.ToString(DeletedAtFormat));
+                {
+                            writer.WritePropertyName("deletedAt");
+                                JsonSerializer.Serialize(writer, secondaryDeployment.DeletedAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

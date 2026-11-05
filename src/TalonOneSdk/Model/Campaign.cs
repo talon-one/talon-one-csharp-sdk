@@ -1407,12 +1407,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             yield break;
@@ -1433,31 +1433,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastActivity
-        /// </summary>
-        public string LastActivityFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Updated
-        /// </summary>
-        public string UpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Campaign" />
@@ -1870,7 +1845,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", campaign.Id);
 
-            writer.WriteString("created", campaign.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, campaign.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("applicationId", campaign.ApplicationId);
 
@@ -1899,10 +1877,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("description", campaign.Description);
 
             if (campaign.StartTimeOption.IsSet)
-                writer.WriteString("startTime", campaign.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+                {
+                            writer.WritePropertyName("startTime");
+                                JsonSerializer.Serialize(writer, campaign.StartTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaign.EndTimeOption.IsSet)
-                writer.WriteString("endTime", campaign.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+                {
+                            writer.WritePropertyName("endTime");
+                                JsonSerializer.Serialize(writer, campaign.EndTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaign.AttributesOption.IsSet)
             {
@@ -1931,7 +1915,7 @@ namespace TalonOneSdk.Model
             }
             if (campaign.TypeOption.IsSet)
             {
-                var typeRawValue = Campaign.TypeEnumToJsonValue(campaign.TypeOption.Value);
+                var typeRawValue = Campaign.TypeEnumToJsonValue(campaign.TypeOption.Value.Value);
                 writer.WriteString("type", typeRawValue);
             }
             if (campaign.LinkedStoreIdsOption.IsSet)
@@ -1995,10 +1979,16 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("reservecouponEffectCount", campaign.ReservecouponEffectCountOption.Value.Value);
 
             if (campaign.LastActivityOption.IsSet)
-                writer.WriteString("lastActivity", campaign.LastActivityOption.Value.Value.ToString(LastActivityFormat));
+                {
+                            writer.WritePropertyName("lastActivity");
+                                JsonSerializer.Serialize(writer, campaign.LastActivityOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaign.UpdatedOption.IsSet)
-                writer.WriteString("updated", campaign.UpdatedOption.Value.Value.ToString(UpdatedFormat));
+                {
+                            writer.WritePropertyName("updated");
+                                JsonSerializer.Serialize(writer, campaign.UpdatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaign.CreatedByOption.IsSet)
                 writer.WriteString("createdBy", campaign.CreatedBy);
@@ -2019,7 +2009,7 @@ namespace TalonOneSdk.Model
 
             if (campaign.RevisionFrontendStateOption.IsSet)
             {
-                var revisionFrontendStateRawValue = Campaign.RevisionFrontendStateEnumToJsonValue(campaign.RevisionFrontendStateOption.Value);
+                var revisionFrontendStateRawValue = Campaign.RevisionFrontendStateEnumToJsonValue(campaign.RevisionFrontendStateOption.Value.Value);
                 writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
             }
             if (campaign.ActiveRevisionIdOption.IsSet)

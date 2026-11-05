@@ -401,18 +401,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
             }
 
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             if (this.NameOption.Value != null) {
@@ -443,16 +443,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize FixedStartDate
-        /// </summary>
-        public string FixedStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateAchievement" />
@@ -598,19 +588,25 @@ namespace TalonOneSdk.Model
             }
             if (updateAchievement.RecurrencePolicyOption.IsSet)
             {
-                var recurrencePolicyRawValue = UpdateAchievement.RecurrencePolicyEnumToJsonValue(updateAchievement.RecurrencePolicyOption.Value);
+                var recurrencePolicyRawValue = UpdateAchievement.RecurrencePolicyEnumToJsonValue(updateAchievement.RecurrencePolicyOption.Value.Value);
                 writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
             }
             if (updateAchievement.ActivationPolicyOption.IsSet)
             {
-                var activationPolicyRawValue = UpdateAchievement.ActivationPolicyEnumToJsonValue(updateAchievement.ActivationPolicyOption.Value);
+                var activationPolicyRawValue = UpdateAchievement.ActivationPolicyEnumToJsonValue(updateAchievement.ActivationPolicyOption.Value.Value);
                 writer.WriteString("activationPolicy", activationPolicyRawValue);
             }
             if (updateAchievement.FixedStartDateOption.IsSet)
-                writer.WriteString("fixedStartDate", updateAchievement.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
+                {
+                            writer.WritePropertyName("fixedStartDate");
+                                JsonSerializer.Serialize(writer, updateAchievement.FixedStartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (updateAchievement.EndDateOption.IsSet)
-                writer.WriteString("endDate", updateAchievement.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, updateAchievement.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (updateAchievement.AllowRollbackAfterCompletionOption.IsSet)
                 writer.WriteBoolean("allowRollbackAfterCompletion", updateAchievement.AllowRollbackAfterCompletionOption.Value.Value);

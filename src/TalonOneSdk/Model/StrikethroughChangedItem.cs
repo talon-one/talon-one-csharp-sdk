@@ -156,12 +156,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // VarVersion (long) minimum
             if (this.VarVersion < (long)1)
             {
-                yield return new ValidationResult("Invalid value for VarVersion, must be a value greater than or equal to 1.", new [] { "VarVersion" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for VarVersion, must be a value greater than or equal to 1.", new [] { "VarVersion" });
             }
 
             yield break;
@@ -182,11 +182,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize EvaluatedAt
-        /// </summary>
-        public string EvaluatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StrikethroughChangedItem" />
@@ -333,7 +328,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("price", strikethroughChangedItem.Price);
 
-            writer.WriteString("evaluatedAt", strikethroughChangedItem.EvaluatedAt.ToString(EvaluatedAtFormat));
+            {
+                        writer.WritePropertyName("evaluatedAt");
+                            JsonSerializer.Serialize(writer, strikethroughChangedItem.EvaluatedAt, jsonSerializerOptions);
+                        }
 
             if (strikethroughChangedItem.PricesOption.IsSet)
             {

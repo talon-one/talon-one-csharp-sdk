@@ -100,7 +100,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -120,11 +120,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize BatchedAt
-        /// </summary>
-        public string BatchedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubPaginatedEventPayload" />
@@ -235,7 +230,10 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("Data");
             JsonSerializer.Serialize(writer, integrationHubPaginatedEventPayload.Data, jsonSerializerOptions);
             if (integrationHubPaginatedEventPayload.BatchedAtOption.IsSet)
-                writer.WriteString("BatchedAt", integrationHubPaginatedEventPayload.BatchedAtOption.Value.Value.ToString(BatchedAtFormat));
+                {
+                            writer.WritePropertyName("BatchedAt");
+                                JsonSerializer.Serialize(writer, integrationHubPaginatedEventPayload.BatchedAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

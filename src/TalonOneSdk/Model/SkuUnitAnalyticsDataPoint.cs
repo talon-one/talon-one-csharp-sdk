@@ -99,7 +99,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -119,16 +119,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SkuUnitAnalyticsDataPoint" />
@@ -240,9 +230,15 @@ namespace TalonOneSdk.Model
             if (skuUnitAnalyticsDataPoint.Sku == null)
                 throw new JsonException("Cannot write null property SkuUnitAnalyticsDataPoint.Sku to non-nullable JSON property 'sku'.");
 
-            writer.WriteString("startTime", skuUnitAnalyticsDataPoint.StartTime.ToString(StartTimeFormat));
+            {
+                        writer.WritePropertyName("startTime");
+                            JsonSerializer.Serialize(writer, skuUnitAnalyticsDataPoint.StartTime, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("endTime", skuUnitAnalyticsDataPoint.EndTime.ToString(EndTimeFormat));
+            {
+                        writer.WritePropertyName("endTime");
+                            JsonSerializer.Serialize(writer, skuUnitAnalyticsDataPoint.EndTime, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("unitsSold");
             JsonSerializer.Serialize(writer, skuUnitAnalyticsDataPoint.UnitsSold, jsonSerializerOptions);

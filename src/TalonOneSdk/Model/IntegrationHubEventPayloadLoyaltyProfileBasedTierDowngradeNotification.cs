@@ -197,7 +197,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -217,21 +217,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize PublishedAt
-        /// </summary>
-        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize TierExpirationDate
-        /// </summary>
-        public string TierExpirationDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize TimestampOfTierChange
-        /// </summary>
-        public string TimestampOfTierChangeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification" />
@@ -419,7 +404,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("CurrentPoints", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.CurrentPoints);
 
-            writer.WriteString("PublishedAt", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.PublishedAt.ToString(PublishedAtFormat));
+            {
+                        writer.WritePropertyName("PublishedAt");
+                            JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.PublishedAt, jsonSerializerOptions);
+                        }
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.CurrentTierOption.IsSet)
                 writer.WriteString("CurrentTier", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.CurrentTier);
@@ -428,10 +416,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("OldTier", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.OldTier);
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.TierExpirationDateOption.IsSet)
-                writer.WriteString("TierExpirationDate", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.TierExpirationDateOption.Value.Value.ToString(TierExpirationDateFormat));
+                {
+                            writer.WritePropertyName("TierExpirationDate");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.TierExpirationDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.TimestampOfTierChangeOption.IsSet)
-                writer.WriteString("TimestampOfTierChange", integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.TimestampOfTierChangeOption.Value.Value.ToString(TimestampOfTierChangeFormat));
+                {
+                            writer.WritePropertyName("TimestampOfTierChange");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.TimestampOfTierChangeOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

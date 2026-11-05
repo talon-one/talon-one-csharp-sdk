@@ -222,7 +222,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -242,21 +242,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize PublishedAt
-        /// </summary>
-        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize TierExpirationDate
-        /// </summary>
-        public string TierExpirationDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize TimestampOfTierChange
-        /// </summary>
-        public string TimestampOfTierChangeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification" />
@@ -463,7 +448,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("CurrentPoints", integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.CurrentPoints);
 
-            writer.WriteString("PublishedAt", integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.PublishedAt.ToString(PublishedAtFormat));
+            {
+                        writer.WritePropertyName("PublishedAt");
+                            JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.PublishedAt, jsonSerializerOptions);
+                        }
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.OldTierOption.IsSet)
                 writer.WriteString("OldTier", integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.OldTier);
@@ -475,10 +463,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("NextTier", integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.NextTier);
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.TierExpirationDateOption.IsSet)
-                writer.WriteString("TierExpirationDate", integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.TierExpirationDateOption.Value.Value.ToString(TierExpirationDateFormat));
+                {
+                            writer.WritePropertyName("TierExpirationDate");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.TierExpirationDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.TimestampOfTierChangeOption.IsSet)
-                writer.WriteString("TimestampOfTierChange", integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.TimestampOfTierChangeOption.Value.Value.ToString(TimestampOfTierChangeFormat));
+                {
+                            writer.WritePropertyName("TimestampOfTierChange");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.TimestampOfTierChangeOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

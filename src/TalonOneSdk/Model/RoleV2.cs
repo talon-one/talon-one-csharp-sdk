@@ -189,7 +189,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -209,16 +209,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RoleV2" />
@@ -346,9 +336,15 @@ namespace TalonOneSdk.Model
         {
             writer.WriteNumber("id", roleV2.Id);
 
-            writer.WriteString("created", roleV2.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, roleV2.Created, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("modified", roleV2.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, roleV2.Modified, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("accountId", roleV2.AccountId);
 

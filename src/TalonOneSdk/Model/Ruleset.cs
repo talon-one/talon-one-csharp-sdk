@@ -216,7 +216,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -236,16 +236,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ActivatedAt
-        /// </summary>
-        public string ActivatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Ruleset" />
@@ -393,7 +383,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", ruleset.Id);
 
-            writer.WriteString("created", ruleset.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, ruleset.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("userId", ruleset.UserId);
 
@@ -419,7 +412,10 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("templateId", ruleset.TemplateIdOption.Value.Value);
 
             if (ruleset.ActivatedAtOption.IsSet)
-                writer.WriteString("activatedAt", ruleset.ActivatedAtOption.Value.Value.ToString(ActivatedAtFormat));
+                {
+                            writer.WritePropertyName("activatedAt");
+                                JsonSerializer.Serialize(writer, ruleset.ActivatedAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

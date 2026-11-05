@@ -789,7 +789,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -809,31 +809,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize FeatureDate
-        /// </summary>
-        public string FeatureDateFormat { get; private set; } = "yyyy'-'MM'-'dd";
-
-        /// <summary>
-        /// The format to use to serialize ReportedDate
-        /// </summary>
-        public string ReportedDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize StatusChangedAt
-        /// </summary>
-        public string StatusChangedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RiskDetail" />
@@ -1113,11 +1088,17 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", riskDetail.Id);
 
-            writer.WriteString("created", riskDetail.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, riskDetail.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("notificationId", riskDetail.NotificationId);
 
-            writer.WriteString("featureDate", riskDetail.FeatureDate.ToString(FeatureDateFormat));
+            {
+                        writer.WritePropertyName("featureDate");
+                            JsonSerializer.Serialize(writer, riskDetail.FeatureDate, jsonSerializerOptions);
+                        }
 
             writer.WriteString("groupKey", riskDetail.GroupKey);
 
@@ -1131,11 +1112,17 @@ namespace TalonOneSdk.Model
             writer.WriteString("activity", activityRawValue);
             var timeFrameRawValue = RiskDetail.TimeFrameEnumToJsonValue(riskDetail.TimeFrame);
             writer.WriteString("timeFrame", timeFrameRawValue);
-            writer.WriteString("reportedDate", riskDetail.ReportedDate.ToString(ReportedDateFormat));
+            {
+                        writer.WritePropertyName("reportedDate");
+                            JsonSerializer.Serialize(writer, riskDetail.ReportedDate, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("affectedEntityCount", riskDetail.AffectedEntityCount);
 
-            writer.WriteString("modified", riskDetail.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, riskDetail.Modified, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("affectedEntities");
             JsonSerializer.Serialize(writer, riskDetail.AffectedEntities, jsonSerializerOptions);
@@ -1147,7 +1134,7 @@ namespace TalonOneSdk.Model
 
             if (riskDetail.DiscardReasonOption.IsSet)
             {
-                var discardReasonRawValue = RiskDetail.DiscardReasonEnumToJsonValue(riskDetail.DiscardReasonOption.Value);
+                var discardReasonRawValue = RiskDetail.DiscardReasonEnumToJsonValue(riskDetail.DiscardReasonOption.Value.Value);
                 writer.WriteString("discardReason", discardReasonRawValue);
             }
             if (riskDetail.StatusCommentOption.IsSet)
@@ -1157,7 +1144,10 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("statusChangedBy", riskDetail.StatusChangedByOption.Value.Value);
 
             if (riskDetail.StatusChangedAtOption.IsSet)
-                writer.WriteString("statusChangedAt", riskDetail.StatusChangedAtOption.Value.Value.ToString(StatusChangedAtFormat));
+                {
+                            writer.WritePropertyName("statusChangedAt");
+                                JsonSerializer.Serialize(writer, riskDetail.StatusChangedAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -202,16 +202,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedAt
-        /// </summary>
-        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize DisabledUntil
-        /// </summary>
-        public string DisabledUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubFlowResponse" />
@@ -345,7 +335,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", integrationHubFlowResponse.Id);
 
-            writer.WriteString("createdAt", integrationHubFlowResponse.CreatedAt.ToString(CreatedAtFormat));
+            {
+                        writer.WritePropertyName("createdAt");
+                            JsonSerializer.Serialize(writer, integrationHubFlowResponse.CreatedAt, jsonSerializerOptions);
+                        }
 
             writer.WriteString("eventType", integrationHubFlowResponse.EventType);
 
@@ -359,7 +352,10 @@ namespace TalonOneSdk.Model
 
             if (integrationHubFlowResponse.DisabledUntilOption.IsSet)
                 if (integrationHubFlowResponse.DisabledUntilOption.Value != null)
-                    writer.WriteString("disabledUntil", integrationHubFlowResponse.DisabledUntilOption.Value.Value.ToString(DisabledUntilFormat));
+                    {
+                            writer.WritePropertyName("disabledUntil");
+                                JsonSerializer.Serialize(writer, integrationHubFlowResponse.DisabledUntilOption.Value.Value, jsonSerializerOptions);
+                            }
                 else
                     writer.WriteNull("disabledUntil");
 

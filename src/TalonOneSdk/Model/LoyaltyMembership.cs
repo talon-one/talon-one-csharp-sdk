@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -105,11 +105,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Joined
-        /// </summary>
-        public string JoinedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyMembership" />
@@ -192,7 +187,10 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("loyaltyProgramId", loyaltyMembership.LoyaltyProgramId);
 
             if (loyaltyMembership.JoinedOption.IsSet)
-                writer.WriteString("joined", loyaltyMembership.JoinedOption.Value.Value.ToString(JoinedFormat));
+                {
+                            writer.WritePropertyName("joined");
+                                JsonSerializer.Serialize(writer, loyaltyMembership.JoinedOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

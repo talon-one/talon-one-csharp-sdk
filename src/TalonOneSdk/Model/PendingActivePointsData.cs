@@ -208,12 +208,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyProgramID (long) minimum
             if (this.LoyaltyProgramID < (long)1)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
             }
 
             yield break;
@@ -234,21 +234,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ActiveOn
-        /// </summary>
-        public string ActiveOnFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpireOn
-        /// </summary>
-        public string ExpireOnFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PendingActivePointsData" />
@@ -393,16 +378,25 @@ namespace TalonOneSdk.Model
             writer.WriteString("SubledgerID", pendingActivePointsData.SubledgerID);
 
             if (pendingActivePointsData.ActiveOnOption.IsSet)
-                writer.WriteString("ActiveOn", pendingActivePointsData.ActiveOnOption.Value.Value.ToString(ActiveOnFormat));
+                {
+                            writer.WritePropertyName("ActiveOn");
+                                JsonSerializer.Serialize(writer, pendingActivePointsData.ActiveOnOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (pendingActivePointsData.ExpireOnOption.IsSet)
-                writer.WriteString("ExpireOn", pendingActivePointsData.ExpireOnOption.Value.Value.ToString(ExpireOnFormat));
+                {
+                            writer.WritePropertyName("ExpireOn");
+                                JsonSerializer.Serialize(writer, pendingActivePointsData.ExpireOnOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (pendingActivePointsData.SessionIntegrationIDOption.IsSet)
                 writer.WriteString("SessionIntegrationID", pendingActivePointsData.SessionIntegrationID);
 
             if (pendingActivePointsData.CreatedOption.IsSet)
-                writer.WriteString("Created", pendingActivePointsData.CreatedOption.Value.Value.ToString(CreatedFormat));
+                {
+                            writer.WritePropertyName("Created");
+                                JsonSerializer.Serialize(writer, pendingActivePointsData.CreatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (pendingActivePointsData.AwaitsActivationOption.IsSet)
                 writer.WriteBoolean("AwaitsActivation", pendingActivePointsData.AwaitsActivationOption.Value.Value);

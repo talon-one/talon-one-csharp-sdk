@@ -376,7 +376,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -396,16 +396,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RiskNotification" />
@@ -564,7 +554,10 @@ namespace TalonOneSdk.Model
         {
             writer.WriteNumber("id", riskNotification.Id);
 
-            writer.WriteString("created", riskNotification.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, riskNotification.Created, jsonSerializerOptions);
+                        }
 
             var entityRawValue = RiskNotification.EntityEnumToJsonValue(riskNotification.Entity);
             writer.WriteString("entity", entityRawValue);
@@ -574,7 +567,10 @@ namespace TalonOneSdk.Model
             writer.WriteString("timeFrame", timeFrameRawValue);
             writer.WriteBoolean("active", riskNotification.Active);
 
-            writer.WriteString("modified", riskNotification.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, riskNotification.Modified, jsonSerializerOptions);
+                        }
         }
     }
 }

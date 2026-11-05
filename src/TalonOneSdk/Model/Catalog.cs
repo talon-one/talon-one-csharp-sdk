@@ -162,7 +162,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -182,16 +182,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Catalog" />
@@ -349,11 +339,17 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", catalog.Id);
 
-            writer.WriteString("created", catalog.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, catalog.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("accountId", catalog.AccountId);
 
-            writer.WriteString("modified", catalog.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, catalog.Modified, jsonSerializerOptions);
+                        }
 
             writer.WriteString("name", catalog.Name);
 

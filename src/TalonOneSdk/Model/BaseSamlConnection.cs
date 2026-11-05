@@ -158,24 +158,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             // Issuer (string) minLength
             if (this.Issuer != null && this.Issuer.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Issuer, length must be greater than 1.", new [] { "Issuer" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Issuer, length must be greater than 1.", new [] { "Issuer" });
             }
 
             // SignOnURL (string) minLength
             if (this.SignOnURL != null && this.SignOnURL.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for SignOnURL, length must be greater than 1.", new [] { "SignOnURL" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SignOnURL, length must be greater than 1.", new [] { "SignOnURL" });
             }
 
             yield break;

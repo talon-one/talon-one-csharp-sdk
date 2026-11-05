@@ -351,18 +351,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             // ApiName (string) minLength
             if (this.ApiName != null && this.ApiName.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for ApiName, length must be greater than 1.", new [] { "ApiName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApiName, length must be greater than 1.", new [] { "ApiName" });
             }
 
             yield break;
@@ -383,21 +383,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Reward" />
@@ -593,7 +578,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", reward.Id);
 
-            writer.WriteString("created", reward.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, reward.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("accountId", reward.AccountId);
 
@@ -634,10 +622,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("validityDuration", reward.ValidityDuration);
 
             if (reward.ExpiryDateOption.IsSet)
-                writer.WriteString("expiryDate", reward.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("expiryDate");
+                                JsonSerializer.Serialize(writer, reward.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (reward.ModifiedOption.IsSet)
-                writer.WriteString("modified", reward.ModifiedOption.Value.Value.ToString(ModifiedFormat));
+                {
+                            writer.WritePropertyName("modified");
+                                JsonSerializer.Serialize(writer, reward.ModifiedOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

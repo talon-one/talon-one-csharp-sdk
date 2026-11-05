@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="totalResultSize">totalResultSize</param>
         /// <param name="data">data</param>
         [JsonConstructor]
-        public BulkApplicationNotification(long totalResultSize, List<CampaignEvaluationTreeChangedNotification> data)
+        public BulkApplicationNotification(long totalResultSize, List<CampaignEvaluationTreeChangedNotificationData> data)
         {
             TotalResultSize = totalResultSize;
             Data = data;
@@ -54,7 +54,7 @@ namespace TalonOneSdk.Model
         /// Gets or Sets Data
         /// </summary>
         [JsonPropertyName("data")]
-        public List<CampaignEvaluationTreeChangedNotification> Data { get; set; }
+        public List<CampaignEvaluationTreeChangedNotificationData> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -75,7 +75,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -114,7 +114,7 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<long?> totalResultSize = default;
-            Option<List<CampaignEvaluationTreeChangedNotification>> data = default;
+            Option<List<CampaignEvaluationTreeChangedNotificationData>> data = default;
 
             while (utf8JsonReader.Read())
             {
@@ -135,7 +135,7 @@ namespace TalonOneSdk.Model
                             totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "data":
-                            data = new Option<List<CampaignEvaluationTreeChangedNotification>>(JsonSerializer.Deserialize<List<CampaignEvaluationTreeChangedNotification>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<CampaignEvaluationTreeChangedNotificationData>>(JsonSerializer.Deserialize<List<CampaignEvaluationTreeChangedNotificationData>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;

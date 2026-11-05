@@ -114,7 +114,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -134,16 +134,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="FeatureFlag" />
@@ -248,10 +238,16 @@ namespace TalonOneSdk.Model
             writer.WriteString("value", featureFlag.Value);
 
             if (featureFlag.CreatedOption.IsSet)
-                writer.WriteString("created", featureFlag.CreatedOption.Value.Value.ToString(CreatedFormat));
+                {
+                            writer.WritePropertyName("created");
+                                JsonSerializer.Serialize(writer, featureFlag.CreatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (featureFlag.ModifiedOption.IsSet)
-                writer.WriteString("modified", featureFlag.ModifiedOption.Value.Value.ToString(ModifiedFormat));
+                {
+                            writer.WritePropertyName("modified");
+                                JsonSerializer.Serialize(writer, featureFlag.ModifiedOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

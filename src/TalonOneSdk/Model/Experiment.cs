@@ -487,7 +487,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -507,21 +507,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Activated
-        /// </summary>
-        public string ActivatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Deletedat
-        /// </summary>
-        public string DeletedatFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Experiment" />
@@ -688,7 +673,10 @@ namespace TalonOneSdk.Model
         {
             writer.WriteNumber("id", experiment.Id);
 
-            writer.WriteString("created", experiment.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, experiment.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("applicationId", experiment.ApplicationId);
 
@@ -696,7 +684,7 @@ namespace TalonOneSdk.Model
             writer.WriteString("goalType", goalTypeRawValue);
             if (experiment.AssignmentTypeOption.IsSet)
             {
-                var assignmentTypeRawValue = Experiment.AssignmentTypeEnumToJsonValue(experiment.AssignmentTypeOption.Value);
+                var assignmentTypeRawValue = Experiment.AssignmentTypeEnumToJsonValue(experiment.AssignmentTypeOption.Value.Value);
                 writer.WriteString("assignmentType", assignmentTypeRawValue);
             }
             if (experiment.IsVariantAssignmentExternalOption.IsSet)
@@ -708,7 +696,10 @@ namespace TalonOneSdk.Model
                 JsonSerializer.Serialize(writer, experiment.Campaign, jsonSerializerOptions);
             }
             if (experiment.ActivatedOption.IsSet)
-                writer.WriteString("activated", experiment.ActivatedOption.Value.Value.ToString(ActivatedFormat));
+                {
+                            writer.WritePropertyName("activated");
+                                JsonSerializer.Serialize(writer, experiment.ActivatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             var stateRawValue = Experiment.StateEnumToJsonValue(experiment.State);
             writer.WriteString("state", stateRawValue);
@@ -721,7 +712,10 @@ namespace TalonOneSdk.Model
                 writer.WriteString("goalDescription", experiment.GoalDescription);
 
             if (experiment.DeletedatOption.IsSet)
-                writer.WriteString("deletedat", experiment.DeletedatOption.Value.Value.ToString(DeletedatFormat));
+                {
+                            writer.WritePropertyName("deletedat");
+                                JsonSerializer.Serialize(writer, experiment.DeletedatOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

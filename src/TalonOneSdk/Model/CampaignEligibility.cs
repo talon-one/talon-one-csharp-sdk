@@ -418,12 +418,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             yield break;
@@ -444,16 +444,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignEligibility" />
@@ -685,10 +675,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("description", campaignEligibility.Description);
 
             if (campaignEligibility.StartTimeOption.IsSet)
-                writer.WriteString("startTime", campaignEligibility.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+                {
+                            writer.WritePropertyName("startTime");
+                                JsonSerializer.Serialize(writer, campaignEligibility.StartTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaignEligibility.EndTimeOption.IsSet)
-                writer.WriteString("endTime", campaignEligibility.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+                {
+                            writer.WritePropertyName("endTime");
+                                JsonSerializer.Serialize(writer, campaignEligibility.EndTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaignEligibility.AttributesOption.IsSet)
             {

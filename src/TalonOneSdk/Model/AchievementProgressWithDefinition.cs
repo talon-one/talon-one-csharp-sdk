@@ -553,18 +553,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
             }
 
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             if (this.Name != null) {
@@ -595,31 +595,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize CompletionDate
-        /// </summary>
-        public string CompletionDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize AchievementFixedStartDate
-        /// </summary>
-        public string AchievementFixedStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize AchievementEndDate
-        /// </summary>
-        public string AchievementEndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AchievementProgressWithDefinition" />
@@ -874,13 +849,22 @@ namespace TalonOneSdk.Model
             var achievementActivationPolicyRawValue = AchievementProgressWithDefinition.AchievementActivationPolicyEnumToJsonValue(achievementProgressWithDefinition.AchievementActivationPolicy);
             writer.WriteString("achievementActivationPolicy", achievementActivationPolicyRawValue);
             if (achievementProgressWithDefinition.StartDateOption.IsSet)
-                writer.WriteString("startDate", achievementProgressWithDefinition.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("startDate");
+                                JsonSerializer.Serialize(writer, achievementProgressWithDefinition.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (achievementProgressWithDefinition.CompletionDateOption.IsSet)
-                writer.WriteString("completionDate", achievementProgressWithDefinition.CompletionDateOption.Value.Value.ToString(CompletionDateFormat));
+                {
+                            writer.WritePropertyName("completionDate");
+                                JsonSerializer.Serialize(writer, achievementProgressWithDefinition.CompletionDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (achievementProgressWithDefinition.EndDateOption.IsSet)
-                writer.WriteString("endDate", achievementProgressWithDefinition.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, achievementProgressWithDefinition.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (achievementProgressWithDefinition.CampaignIdOption.IsSet)
                 writer.WriteNumber("campaignId", achievementProgressWithDefinition.CampaignIdOption.Value.Value);
@@ -889,10 +873,16 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("target", achievementProgressWithDefinition.TargetOption.Value.Value);
 
             if (achievementProgressWithDefinition.AchievementFixedStartDateOption.IsSet)
-                writer.WriteString("achievementFixedStartDate", achievementProgressWithDefinition.AchievementFixedStartDateOption.Value.Value.ToString(AchievementFixedStartDateFormat));
+                {
+                            writer.WritePropertyName("achievementFixedStartDate");
+                                JsonSerializer.Serialize(writer, achievementProgressWithDefinition.AchievementFixedStartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (achievementProgressWithDefinition.AchievementEndDateOption.IsSet)
-                writer.WriteString("achievementEndDate", achievementProgressWithDefinition.AchievementEndDateOption.Value.Value.ToString(AchievementEndDateFormat));
+                {
+                            writer.WritePropertyName("achievementEndDate");
+                                JsonSerializer.Serialize(writer, achievementProgressWithDefinition.AchievementEndDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (achievementProgressWithDefinition.AchievementAllowRollbackAfterCompletionOption.IsSet)
                 writer.WriteBoolean("achievementAllowRollbackAfterCompletion", achievementProgressWithDefinition.AchievementAllowRollbackAfterCompletionOption.Value.Value);

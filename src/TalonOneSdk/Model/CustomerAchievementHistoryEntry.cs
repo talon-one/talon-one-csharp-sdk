@@ -238,7 +238,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -258,21 +258,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize CompletionDate
-        /// </summary>
-        public string CompletionDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerAchievementHistoryEntry" />
@@ -394,13 +379,22 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("progressTrackerId", customerAchievementHistoryEntry.ProgressTrackerId);
 
             if (customerAchievementHistoryEntry.StartDateOption.IsSet)
-                writer.WriteString("startDate", customerAchievementHistoryEntry.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("startDate");
+                                JsonSerializer.Serialize(writer, customerAchievementHistoryEntry.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (customerAchievementHistoryEntry.CompletionDateOption.IsSet)
-                writer.WriteString("completionDate", customerAchievementHistoryEntry.CompletionDateOption.Value.Value.ToString(CompletionDateFormat));
+                {
+                            writer.WritePropertyName("completionDate");
+                                JsonSerializer.Serialize(writer, customerAchievementHistoryEntry.CompletionDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (customerAchievementHistoryEntry.EndDateOption.IsSet)
-                writer.WriteString("endDate", customerAchievementHistoryEntry.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, customerAchievementHistoryEntry.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

@@ -193,24 +193,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             // IntegrationId (string) minLength
             if (this.IntegrationId != null && this.IntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
             }
 
             yield break;
@@ -231,11 +231,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize LastUpdate
-        /// </summary>
-        public string LastUpdateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewAudience" />
@@ -365,7 +360,10 @@ namespace TalonOneSdk.Model
                 writer.WriteBoolean("createdIn3rdParty", newAudience.CreatedIn3rdPartyOption.Value.Value);
 
             if (newAudience.LastUpdateOption.IsSet)
-                writer.WriteString("lastUpdate", newAudience.LastUpdateOption.Value.Value.ToString(LastUpdateFormat));
+                {
+                            writer.WritePropertyName("lastUpdate");
+                                JsonSerializer.Serialize(writer, newAudience.LastUpdateOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

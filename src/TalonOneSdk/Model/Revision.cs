@@ -194,7 +194,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -214,21 +214,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ActivateAt
-        /// </summary>
-        public string ActivateAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ActivatedAt
-        /// </summary>
-        public string ActivatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Revision" />
@@ -378,15 +363,24 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("campaignId", revision.CampaignId);
 
-            writer.WriteString("created", revision.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, revision.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("createdBy", revision.CreatedBy);
 
             if (revision.ActivateAtOption.IsSet)
-                writer.WriteString("activateAt", revision.ActivateAtOption.Value.Value.ToString(ActivateAtFormat));
+                {
+                            writer.WritePropertyName("activateAt");
+                                JsonSerializer.Serialize(writer, revision.ActivateAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (revision.ActivatedAtOption.IsSet)
-                writer.WriteString("activatedAt", revision.ActivatedAtOption.Value.Value.ToString(ActivatedAtFormat));
+                {
+                            writer.WritePropertyName("activatedAt");
+                                JsonSerializer.Serialize(writer, revision.ActivatedAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (revision.ActivatedByOption.IsSet)
                 writer.WriteNumber("activatedBy", revision.ActivatedByOption.Value.Value);

@@ -366,24 +366,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             // Coupon (string) maxLength
             if (this.Coupon != null && this.Coupon.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for Coupon, length must be less than 100.", new [] { "Coupon" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Coupon, length must be less than 100.", new [] { "Coupon" });
             }
 
             // Referral (string) maxLength
             if (this.Referral != null && this.Referral.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for Referral, length must be less than 100.", new [] { "Referral" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Referral, length must be less than 100.", new [] { "Referral" });
             }
 
             yield break;
@@ -404,16 +404,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Updated
-        /// </summary>
-        public string UpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerSession" />
@@ -596,7 +586,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("integrationId", customerSession.IntegrationId);
 
-            writer.WriteString("created", customerSession.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, customerSession.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("applicationId", customerSession.ApplicationId);
 
@@ -606,7 +599,10 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("discounts");
             JsonSerializer.Serialize(writer, customerSession.Discounts, jsonSerializerOptions);
-            writer.WriteString("updated", customerSession.Updated.ToString(UpdatedFormat));
+            {
+                        writer.WritePropertyName("updated");
+                            JsonSerializer.Serialize(writer, customerSession.Updated, jsonSerializerOptions);
+                        }
 
             if (customerSession.ProfileIdOption.IsSet)
                 writer.WriteString("profileId", customerSession.ProfileId);
@@ -619,7 +615,7 @@ namespace TalonOneSdk.Model
 
             if (customerSession.StateOption.IsSet)
             {
-                var stateRawValue = CustomerSession.StateEnumToJsonValue(customerSession.StateOption.Value);
+                var stateRawValue = CustomerSession.StateEnumToJsonValue(customerSession.StateOption.Value.Value);
                 writer.WriteString("state", stateRawValue);
             }
             if (customerSession.CartItemsOption.IsSet)

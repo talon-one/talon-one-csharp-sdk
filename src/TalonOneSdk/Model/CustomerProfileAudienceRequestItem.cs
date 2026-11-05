@@ -156,12 +156,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ProfileIntegrationId (string) maxLength
             if (this.ProfileIntegrationId != null && this.ProfileIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for ProfileIntegrationId, length must be less than 1000.", new [] { "ProfileIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ProfileIntegrationId, length must be less than 1000.", new [] { "ProfileIntegrationId" });
             }
 
             yield break;

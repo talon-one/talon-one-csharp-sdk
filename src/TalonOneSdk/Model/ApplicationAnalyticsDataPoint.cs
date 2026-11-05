@@ -182,7 +182,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -202,16 +202,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationAnalyticsDataPoint" />
@@ -321,9 +311,15 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, ApplicationAnalyticsDataPoint applicationAnalyticsDataPoint, JsonSerializerOptions jsonSerializerOptions)
         {
-            writer.WriteString("startTime", applicationAnalyticsDataPoint.StartTime.ToString(StartTimeFormat));
+            {
+                        writer.WritePropertyName("startTime");
+                            JsonSerializer.Serialize(writer, applicationAnalyticsDataPoint.StartTime, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("endTime", applicationAnalyticsDataPoint.EndTime.ToString(EndTimeFormat));
+            {
+                        writer.WritePropertyName("endTime");
+                            JsonSerializer.Serialize(writer, applicationAnalyticsDataPoint.EndTime, jsonSerializerOptions);
+                        }
 
             if (applicationAnalyticsDataPoint.TotalRevenueOption.IsSet)
             {

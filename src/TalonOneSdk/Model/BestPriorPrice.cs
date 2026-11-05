@@ -31,10 +31,10 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BestPriorPrice" /> class.
         /// </summary>
-        /// <param name="id">The ID of the historical price.</param>
+        /// <param name="id">The ID of the price record.</param>
         /// <param name="sku">sku</param>
-        /// <param name="observedAt">The date and time when the price was observed.</param>
-        /// <param name="contextIds">The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </param>
+        /// <param name="observedAt">The date and time when the price change was recorded.</param>
+        /// <param name="contextIds">The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price change was recorded. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </param>
         /// <param name="price">Price of the item.</param>
         /// <param name="metadata">metadata</param>
         /// <param name="target">target</param>
@@ -54,9 +54,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The ID of the historical price.
+        /// The ID of the price record.
         /// </summary>
-        /// <value>The ID of the historical price.</value>
+        /// <value>The ID of the price record.</value>
         /* <example>1</example> */
         [JsonPropertyName("id")]
         public long Id { get; set; }
@@ -70,17 +70,17 @@ namespace TalonOneSdk.Model
         public string Sku { get; set; }
 
         /// <summary>
-        /// The date and time when the price was observed.
+        /// The date and time when the price change was recorded.
         /// </summary>
-        /// <value>The date and time when the price was observed.</value>
+        /// <value>The date and time when the price change was recorded.</value>
         /* <example>2025-11-10T23:00:00Z</example> */
         [JsonPropertyName("observedAt")]
         public DateTime ObservedAt { get; set; }
 
         /// <summary>
-        /// The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. 
+        /// The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price change was recorded. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. 
         /// </summary>
-        /// <value>The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </value>
+        /// <value>The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price change was recorded. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </value>
         /* <example>[SpringSale, SummerSale2025]</example> */
         [JsonPropertyName("contextIds")]
         public List<string> ContextIds { get; set; }
@@ -129,7 +129,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -149,11 +149,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ObservedAt
-        /// </summary>
-        public string ObservedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BestPriorPrice" />
@@ -305,7 +300,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("sku", bestPriorPrice.Sku);
 
-            writer.WriteString("observedAt", bestPriorPrice.ObservedAt.ToString(ObservedAtFormat));
+            {
+                        writer.WritePropertyName("observedAt");
+                            JsonSerializer.Serialize(writer, bestPriorPrice.ObservedAt, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("contextIds");
             JsonSerializer.Serialize(writer, bestPriorPrice.ContextIds, jsonSerializerOptions);

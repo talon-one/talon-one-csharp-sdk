@@ -311,12 +311,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ParentId (long) minimum
             if (this.ParentId < (long)1)
             {
-                yield return new ValidationResult("Invalid value for ParentId, must be a value greater than or equal to 1.", new [] { "ParentId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ParentId, must be a value greater than or equal to 1.", new [] { "ParentId" });
             }
 
             yield break;

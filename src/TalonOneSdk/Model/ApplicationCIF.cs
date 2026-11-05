@@ -189,7 +189,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -209,16 +209,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationCIF" />
@@ -349,7 +339,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", applicationCIF.Id);
 
-            writer.WriteString("created", applicationCIF.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, applicationCIF.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteString("name", applicationCIF.Name);
 
@@ -368,7 +361,10 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("createdBy", applicationCIF.CreatedByOption.Value.Value);
 
             if (applicationCIF.ModifiedOption.IsSet)
-                writer.WriteString("modified", applicationCIF.ModifiedOption.Value.Value.ToString(ModifiedFormat));
+                {
+                            writer.WritePropertyName("modified");
+                                JsonSerializer.Serialize(writer, applicationCIF.ModifiedOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

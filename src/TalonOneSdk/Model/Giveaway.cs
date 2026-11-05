@@ -225,7 +225,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -245,21 +245,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Giveaway" />
@@ -398,17 +383,26 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", giveaway.Id);
 
-            writer.WriteString("created", giveaway.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, giveaway.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteString("code", giveaway.Code);
 
             writer.WriteNumber("poolId", giveaway.PoolId);
 
             if (giveaway.StartDateOption.IsSet)
-                writer.WriteString("startDate", giveaway.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("startDate");
+                                JsonSerializer.Serialize(writer, giveaway.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (giveaway.EndDateOption.IsSet)
-                writer.WriteString("endDate", giveaway.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, giveaway.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (giveaway.AttributesOption.IsSet)
             {

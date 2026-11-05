@@ -800,18 +800,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Timezone (string) minLength
             if (this.Timezone != null && this.Timezone.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Timezone, length must be greater than 1.", new [] { "Timezone" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timezone, length must be greater than 1.", new [] { "Timezone" });
             }
 
             // UsersPerCardLimit (long) minimum
             if (this.UsersPerCardLimitOption.IsSet && this.UsersPerCardLimitOption.Value < (long)0)
             {
-                yield return new ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
             }
 
             yield break;
@@ -832,16 +832,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize TierCycleStartDate
-        /// </summary>
-        public string TierCycleStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyProgram" />
@@ -1083,7 +1073,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", loyaltyProgram.Id);
 
-            writer.WriteString("created", loyaltyProgram.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, loyaltyProgram.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("accountID", loyaltyProgram.AccountID);
 
@@ -1119,23 +1112,26 @@ namespace TalonOneSdk.Model
 
             if (loyaltyProgram.ProgramJoinPolicyOption.IsSet)
             {
-                var programJoinPolicyRawValue = LoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(loyaltyProgram.ProgramJoinPolicyOption.Value);
+                var programJoinPolicyRawValue = LoyaltyProgram.ProgramJoinPolicyEnumToJsonValue(loyaltyProgram.ProgramJoinPolicyOption.Value.Value);
                 writer.WriteString("programJoinPolicy", programJoinPolicyRawValue);
             }
             if (loyaltyProgram.TiersExpirationPolicyOption.IsSet)
             {
-                var tiersExpirationPolicyRawValue = LoyaltyProgram.TiersExpirationPolicyEnumToJsonValue(loyaltyProgram.TiersExpirationPolicyOption.Value);
+                var tiersExpirationPolicyRawValue = LoyaltyProgram.TiersExpirationPolicyEnumToJsonValue(loyaltyProgram.TiersExpirationPolicyOption.Value.Value);
                 writer.WriteString("tiersExpirationPolicy", tiersExpirationPolicyRawValue);
             }
             if (loyaltyProgram.TierCycleStartDateOption.IsSet)
-                writer.WriteString("tierCycleStartDate", loyaltyProgram.TierCycleStartDateOption.Value.Value.ToString(TierCycleStartDateFormat));
+                {
+                            writer.WritePropertyName("tierCycleStartDate");
+                                JsonSerializer.Serialize(writer, loyaltyProgram.TierCycleStartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (loyaltyProgram.TiersExpireInOption.IsSet)
                 writer.WriteString("tiersExpireIn", loyaltyProgram.TiersExpireIn);
 
             if (loyaltyProgram.TiersDowngradePolicyOption.IsSet)
             {
-                var tiersDowngradePolicyRawValue = LoyaltyProgram.TiersDowngradePolicyEnumToJsonValue(loyaltyProgram.TiersDowngradePolicyOption.Value);
+                var tiersDowngradePolicyRawValue = LoyaltyProgram.TiersDowngradePolicyEnumToJsonValue(loyaltyProgram.TiersDowngradePolicyOption.Value.Value);
                 writer.WriteString("tiersDowngradePolicy", tiersDowngradePolicyRawValue);
             }
             if (loyaltyProgram.CardCodeSettingsOption.IsSet)
@@ -1145,7 +1141,7 @@ namespace TalonOneSdk.Model
             }
             if (loyaltyProgram.ReturnPolicyOption.IsSet)
             {
-                var returnPolicyRawValue = LoyaltyProgram.ReturnPolicyEnumToJsonValue(loyaltyProgram.ReturnPolicyOption.Value);
+                var returnPolicyRawValue = LoyaltyProgram.ReturnPolicyEnumToJsonValue(loyaltyProgram.ReturnPolicyOption.Value.Value);
                 writer.WriteString("returnPolicy", returnPolicyRawValue);
             }
             if (loyaltyProgram.TiersOption.IsSet)

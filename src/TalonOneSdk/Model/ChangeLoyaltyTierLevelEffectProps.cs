@@ -130,7 +130,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -150,11 +150,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ChangeLoyaltyTierLevelEffectProps" />
@@ -289,7 +284,10 @@ namespace TalonOneSdk.Model
                 writer.WriteString("previousTierName", changeLoyaltyTierLevelEffectProps.PreviousTierName);
 
             if (changeLoyaltyTierLevelEffectProps.ExpiryDateOption.IsSet)
-                writer.WriteString("expiryDate", changeLoyaltyTierLevelEffectProps.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("expiryDate");
+                                JsonSerializer.Serialize(writer, changeLoyaltyTierLevelEffectProps.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

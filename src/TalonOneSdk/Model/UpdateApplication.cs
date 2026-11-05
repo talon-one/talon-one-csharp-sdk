@@ -596,24 +596,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             // Timezone (string) minLength
             if (this.Timezone != null && this.Timezone.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Timezone, length must be greater than 1.", new [] { "Timezone" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timezone, length must be greater than 1.", new [] { "Timezone" });
             }
 
             // Currency (string) minLength
             if (this.Currency != null && this.Currency.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Currency, length must be greater than 1.", new [] { "Currency" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 1.", new [] { "Currency" });
             }
 
             yield break;
@@ -830,7 +830,7 @@ namespace TalonOneSdk.Model
 
             if (updateApplication.CaseSensitivityOption.IsSet)
             {
-                var caseSensitivityRawValue = UpdateApplication.CaseSensitivityEnumToJsonValue(updateApplication.CaseSensitivityOption.Value);
+                var caseSensitivityRawValue = UpdateApplication.CaseSensitivityEnumToJsonValue(updateApplication.CaseSensitivityOption.Value.Value);
                 writer.WriteString("caseSensitivity", caseSensitivityRawValue);
             }
             if (updateApplication.AttributesOption.IsSet)
@@ -845,7 +845,7 @@ namespace TalonOneSdk.Model
             }
             if (updateApplication.DefaultDiscountScopeOption.IsSet)
             {
-                var defaultDiscountScopeRawValue = UpdateApplication.DefaultDiscountScopeEnumToJsonValue(updateApplication.DefaultDiscountScopeOption.Value);
+                var defaultDiscountScopeRawValue = UpdateApplication.DefaultDiscountScopeEnumToJsonValue(updateApplication.DefaultDiscountScopeOption.Value.Value);
                 writer.WriteString("defaultDiscountScope", defaultDiscountScopeRawValue);
             }
             if (updateApplication.EnableCascadingDiscountsOption.IsSet)
@@ -867,7 +867,7 @@ namespace TalonOneSdk.Model
 
             if (updateApplication.DefaultDiscountAdditionalCostPerItemScopeOption.IsSet)
             {
-                var defaultDiscountAdditionalCostPerItemScopeRawValue = UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnumToJsonValue(updateApplication.DefaultDiscountAdditionalCostPerItemScopeOption.Value);
+                var defaultDiscountAdditionalCostPerItemScopeRawValue = UpdateApplication.DefaultDiscountAdditionalCostPerItemScopeEnumToJsonValue(updateApplication.DefaultDiscountAdditionalCostPerItemScopeOption.Value.Value);
                 writer.WriteString("defaultDiscountAdditionalCostPerItemScope", defaultDiscountAdditionalCostPerItemScopeRawValue);
             }
             if (updateApplication.DefaultEvaluationGroupIdOption.IsSet)

@@ -413,18 +413,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Sku (string) minLength
             if (this.Sku != null && this.Sku.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Sku, length must be greater than 1.", new [] { "Sku" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Sku, length must be greater than 1.", new [] { "Sku" });
             }
 
             // Quantity (long) minimum
             if (this.Quantity < (long)1)
             {
-                yield return new ValidationResult("Invalid value for Quantity, must be a value greater than or equal to 1.", new [] { "Quantity" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Quantity, must be a value greater than or equal to 1.", new [] { "Quantity" });
             }
 
             yield break;
@@ -445,16 +445,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize AdjustmentEffectiveFrom
-        /// </summary>
-        public string AdjustmentEffectiveFromFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize AdjustmentEffectiveUntil
-        /// </summary>
-        public string AdjustmentEffectiveUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CartItem" />
@@ -678,10 +668,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("adjustmentReferenceId", cartItem.AdjustmentReferenceIdOption.Value.Value);
 
             if (cartItem.AdjustmentEffectiveFromOption.IsSet)
-                writer.WriteString("adjustmentEffectiveFrom", cartItem.AdjustmentEffectiveFromOption.Value.Value.ToString(AdjustmentEffectiveFromFormat));
+                {
+                            writer.WritePropertyName("adjustmentEffectiveFrom");
+                                JsonSerializer.Serialize(writer, cartItem.AdjustmentEffectiveFromOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (cartItem.AdjustmentEffectiveUntilOption.IsSet)
-                writer.WriteString("adjustmentEffectiveUntil", cartItem.AdjustmentEffectiveUntilOption.Value.Value.ToString(AdjustmentEffectiveUntilFormat));
+                {
+                            writer.WritePropertyName("adjustmentEffectiveUntil");
+                                JsonSerializer.Serialize(writer, cartItem.AdjustmentEffectiveUntilOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (cartItem.PricesOption.IsSet)
             {

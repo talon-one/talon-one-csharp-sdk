@@ -135,24 +135,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AdvocateIntegrationId (string) maxLength
             if (this.AdvocateIntegrationId != null && this.AdvocateIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for AdvocateIntegrationId, length must be less than 1000.", new [] { "AdvocateIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdvocateIntegrationId, length must be less than 1000.", new [] { "AdvocateIntegrationId" });
             }
 
             // FriendIntegrationId (string) maxLength
             if (this.FriendIntegrationId != null && this.FriendIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for FriendIntegrationId, length must be less than 1000.", new [] { "FriendIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FriendIntegrationId, length must be less than 1000.", new [] { "FriendIntegrationId" });
             }
 
             // AdvancedEventIntegrationId (string) maxLength
             if (this.AdvancedEventIntegrationId != null && this.AdvancedEventIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for AdvancedEventIntegrationId, length must be less than 1000.", new [] { "AdvancedEventIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdvancedEventIntegrationId, length must be less than 1000.", new [] { "AdvancedEventIntegrationId" });
             }
 
             yield break;
@@ -173,11 +173,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationReferee" />
@@ -329,7 +324,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("code", applicationReferee.Code);
 
-            writer.WriteString("created", applicationReferee.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, applicationReferee.Created, jsonSerializerOptions);
+                        }
 
             if (applicationReferee.AdvancedEventIntegrationIdOption.IsSet)
                 writer.WriteString("advancedEventIntegrationId", applicationReferee.AdvancedEventIntegrationId);

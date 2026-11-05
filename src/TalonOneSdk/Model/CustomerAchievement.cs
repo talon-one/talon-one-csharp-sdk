@@ -384,18 +384,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
             }
 
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             if (this.Name != null) {
@@ -426,16 +426,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize FixedStartDate
-        /// </summary>
-        public string FixedStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerAchievement" />
@@ -667,10 +657,16 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("referencedByCampaigns");
             JsonSerializer.Serialize(writer, customerAchievement.ReferencedByCampaigns, jsonSerializerOptions);
             if (customerAchievement.FixedStartDateOption.IsSet)
-                writer.WriteString("fixedStartDate", customerAchievement.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
+                {
+                            writer.WritePropertyName("fixedStartDate");
+                                JsonSerializer.Serialize(writer, customerAchievement.FixedStartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (customerAchievement.EndDateOption.IsSet)
-                writer.WriteString("endDate", customerAchievement.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, customerAchievement.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (customerAchievement.CampaignIdOption.IsSet)
                 writer.WriteNumber("campaignId", customerAchievement.CampaignIdOption.Value.Value);

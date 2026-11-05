@@ -118,7 +118,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -138,16 +138,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize UnlockedAt
-        /// </summary>
-        public string UnlockedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize UsedAt
-        /// </summary>
-        public string UsedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerReward" />
@@ -269,10 +259,16 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("integrationId", customerReward.IntegrationId);
 
-            writer.WriteString("unlockedAt", customerReward.UnlockedAt.ToString(UnlockedAtFormat));
+            {
+                        writer.WritePropertyName("unlockedAt");
+                            JsonSerializer.Serialize(writer, customerReward.UnlockedAt, jsonSerializerOptions);
+                        }
 
             if (customerReward.UsedAtOption.IsSet)
-                writer.WriteString("usedAt", customerReward.UsedAtOption.Value.Value.ToString(UsedAtFormat));
+                {
+                            writer.WritePropertyName("usedAt");
+                                JsonSerializer.Serialize(writer, customerReward.UsedAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

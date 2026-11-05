@@ -92,12 +92,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // SessionId (string) minLength
             if (this.SessionId != null && this.SessionId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for SessionId, length must be greater than 1.", new [] { "SessionId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SessionId, length must be greater than 1.", new [] { "SessionId" });
             }
 
             yield break;

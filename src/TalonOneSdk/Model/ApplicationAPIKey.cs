@@ -419,7 +419,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -439,16 +439,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Expires
-        /// </summary>
-        public string ExpiresFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationAPIKey" />
@@ -615,7 +605,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("title", applicationAPIKey.Title);
 
-            writer.WriteString("expires", applicationAPIKey.Expires.ToString(ExpiresFormat));
+            {
+                        writer.WritePropertyName("expires");
+                            JsonSerializer.Serialize(writer, applicationAPIKey.Expires, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("id", applicationAPIKey.Id);
 
@@ -625,16 +618,19 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("applicationID", applicationAPIKey.ApplicationID);
 
-            writer.WriteString("created", applicationAPIKey.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, applicationAPIKey.Created, jsonSerializerOptions);
+                        }
 
             if (applicationAPIKey.PlatformOption.IsSet)
             {
-                var platformRawValue = ApplicationAPIKey.PlatformEnumToJsonValue(applicationAPIKey.PlatformOption.Value);
+                var platformRawValue = ApplicationAPIKey.PlatformEnumToJsonValue(applicationAPIKey.PlatformOption.Value.Value);
                 writer.WriteString("platform", platformRawValue);
             }
             if (applicationAPIKey.TypeOption.IsSet)
             {
-                var typeRawValue = ApplicationAPIKey.TypeEnumToJsonValue(applicationAPIKey.TypeOption.Value);
+                var typeRawValue = ApplicationAPIKey.TypeEnumToJsonValue(applicationAPIKey.TypeOption.Value.Value);
                 writer.WriteString("type", typeRawValue);
             }
             if (applicationAPIKey.TimeOffsetOption.IsSet)

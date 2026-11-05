@@ -380,7 +380,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -400,16 +400,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExperimentBlueprint" />
@@ -626,7 +616,10 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, experimentBlueprint.Variants, jsonSerializerOptions);
             writer.WritePropertyName("cartItemFilters");
             JsonSerializer.Serialize(writer, experimentBlueprint.CartItemFilters, jsonSerializerOptions);
-            writer.WriteString("created", experimentBlueprint.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, experimentBlueprint.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("createdBy", experimentBlueprint.CreatedBy);
 
@@ -634,7 +627,10 @@ namespace TalonOneSdk.Model
                 writer.WriteString("description", experimentBlueprint.Description);
 
             if (experimentBlueprint.ModifiedOption.IsSet)
-                writer.WriteString("modified", experimentBlueprint.ModifiedOption.Value.Value.ToString(ModifiedFormat));
+                {
+                            writer.WritePropertyName("modified");
+                                JsonSerializer.Serialize(writer, experimentBlueprint.ModifiedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (experimentBlueprint.ModifiedByOption.IsSet)
                 writer.WriteNumber("modifiedBy", experimentBlueprint.ModifiedByOption.Value.Value);

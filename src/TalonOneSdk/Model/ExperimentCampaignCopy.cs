@@ -164,7 +164,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -184,16 +184,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExperimentCampaignCopy" />
@@ -290,10 +280,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("description", experimentCampaignCopy.Description);
 
             if (experimentCampaignCopy.StartTimeOption.IsSet)
-                writer.WriteString("startTime", experimentCampaignCopy.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+                {
+                            writer.WritePropertyName("startTime");
+                                JsonSerializer.Serialize(writer, experimentCampaignCopy.StartTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (experimentCampaignCopy.EndTimeOption.IsSet)
-                writer.WriteString("endTime", experimentCampaignCopy.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+                {
+                            writer.WritePropertyName("endTime");
+                                JsonSerializer.Serialize(writer, experimentCampaignCopy.EndTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (experimentCampaignCopy.TagsOption.IsSet)
             {

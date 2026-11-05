@@ -169,7 +169,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             if (this.Name != null) {
                 // Name (string) pattern
@@ -199,16 +199,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PriceType" />
@@ -366,13 +356,19 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", priceType.Id);
 
-            writer.WriteString("created", priceType.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, priceType.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteString("name", priceType.Name);
 
             writer.WriteString("title", priceType.Title);
 
-            writer.WriteString("modified", priceType.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, priceType.Modified, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("subscribedCatalogsIds");
             JsonSerializer.Serialize(writer, priceType.SubscribedCatalogsIds, jsonSerializerOptions);

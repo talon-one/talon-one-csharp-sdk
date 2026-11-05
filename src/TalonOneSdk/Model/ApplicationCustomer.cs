@@ -237,18 +237,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             // AdvocateIntegrationId (string) maxLength
             if (this.AdvocateIntegrationId != null && this.AdvocateIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for AdvocateIntegrationId, length must be less than 1000.", new [] { "AdvocateIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdvocateIntegrationId, length must be less than 1000.", new [] { "AdvocateIntegrationId" });
             }
 
             yield break;
@@ -269,16 +269,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastActivity
-        /// </summary>
-        public string LastActivityFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationCustomer" />
@@ -443,7 +433,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", applicationCustomer.Id);
 
-            writer.WriteString("created", applicationCustomer.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, applicationCustomer.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteString("integrationId", applicationCustomer.IntegrationId);
 
@@ -453,7 +446,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("totalSales", applicationCustomer.TotalSales);
 
-            writer.WriteString("lastActivity", applicationCustomer.LastActivity.ToString(LastActivityFormat));
+            {
+                        writer.WritePropertyName("lastActivity");
+                            JsonSerializer.Serialize(writer, applicationCustomer.LastActivity, jsonSerializerOptions);
+                        }
 
             if (applicationCustomer.AttributesOption.IsSet)
             {

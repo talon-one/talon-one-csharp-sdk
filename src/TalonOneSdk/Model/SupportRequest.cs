@@ -297,7 +297,7 @@ namespace TalonOneSdk.Model
         /// Email address of the customer support agent who created the support request.
         /// </summary>
         /// <value>Email address of the customer support agent who created the support request.</value>
-        /* <example>support.agent.name@company.com</example> */
+        /* <example>jane.smith@example.com</example> */
         [JsonPropertyName("createdByUser")]
         public string CreatedByUser { get; set; }
 
@@ -426,7 +426,7 @@ namespace TalonOneSdk.Model
         /// Email address of the admin who approved or rejected the support request.
         /// </summary>
         /// <value>Email address of the admin who approved or rejected the support request.</value>
-        /* <example>admin.name@company.com</example> */
+        /* <example>john.doe@example.com</example> */
         [JsonPropertyName("processedByUser")]
         public string ProcessedByUser { get { return this.ProcessedByUserOption.Value; } set { this.ProcessedByUserOption = new Option<string>(value); } }
 
@@ -478,12 +478,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // RequestValue (float) minimum
             if (this.RequestValueOption.IsSet && this.RequestValueOption.Value < (float)0)
             {
-                yield return new ValidationResult("Invalid value for RequestValue, must be a value greater than 0.", new [] { "RequestValue" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestValue, must be a value greater than 0.", new [] { "RequestValue" });
             }
 
             yield break;
@@ -504,16 +504,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedAt
-        /// </summary>
-        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ProcessedAt
-        /// </summary>
-        public string ProcessedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SupportRequest" />
@@ -720,7 +710,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("createdByUser", supportRequest.CreatedByUser);
 
-            writer.WriteString("createdAt", supportRequest.CreatedAt.ToString(CreatedAtFormat));
+            {
+                        writer.WritePropertyName("createdAt");
+                            JsonSerializer.Serialize(writer, supportRequest.CreatedAt, jsonSerializerOptions);
+                        }
 
             writer.WriteString("customerProfileId", supportRequest.CustomerProfileId);
 
@@ -743,7 +736,10 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("requestValue", supportRequest.RequestValueOption.Value.Value);
 
             if (supportRequest.ProcessedAtOption.IsSet)
-                writer.WriteString("processedAt", supportRequest.ProcessedAtOption.Value.Value.ToString(ProcessedAtFormat));
+                {
+                            writer.WritePropertyName("processedAt");
+                                JsonSerializer.Serialize(writer, supportRequest.ProcessedAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (supportRequest.ProcessingNoteOption.IsSet)
                 writer.WriteString("processingNote", supportRequest.ProcessingNote);

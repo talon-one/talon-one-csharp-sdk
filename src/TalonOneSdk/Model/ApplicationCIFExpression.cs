@@ -143,7 +143,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -163,11 +163,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationCIFExpression" />
@@ -277,7 +272,10 @@ namespace TalonOneSdk.Model
         {
             writer.WriteNumber("id", applicationCIFExpression.Id);
 
-            writer.WriteString("created", applicationCIFExpression.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, applicationCIFExpression.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("applicationId", applicationCIFExpression.ApplicationId);
 

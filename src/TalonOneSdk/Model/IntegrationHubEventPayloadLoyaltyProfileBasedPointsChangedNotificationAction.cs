@@ -252,7 +252,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -272,21 +272,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction" />
@@ -423,13 +408,22 @@ namespace TalonOneSdk.Model
                 writer.WriteString("Reason", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.Reason);
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.StartDateOption.IsSet)
-                writer.WriteString("StartDate", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("StartDate");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ExpiryDateOption.IsSet)
-                writer.WriteString("ExpiryDate", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("ExpiryDate");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.CreatedOption.IsSet)
-                writer.WriteString("Created", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.CreatedOption.Value.Value.ToString(CreatedFormat));
+                {
+                            writer.WritePropertyName("Created");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.CreatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.AwaitsActivationOption.IsSet)
                 writer.WriteBoolean("AwaitsActivation", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.AwaitsActivationOption.Value.Value);

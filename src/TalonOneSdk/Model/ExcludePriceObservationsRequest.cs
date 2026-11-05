@@ -31,8 +31,8 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ExcludePriceObservationsRequest" /> class.
         /// </summary>
-        /// <param name="ids">A list of historical price IDs to exclude from best prior price calculation. Must contain between 1 and 1000 IDs. All IDs must be valid &#x60;id&#x60; values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, and must not already be excluded from best prior price calculation. </param>
-        /// <param name="reason">The reason for excluding these historical price IDs. Applies to all IDs in the batch. </param>
+        /// <param name="ids">A list of price record IDs to exclude from best prior price calculation. Must contain between 1 and 1000 IDs. All IDs must be valid &#x60;id&#x60; values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, and must not already be excluded from best prior price calculation. </param>
+        /// <param name="reason">The reason for excluding these IDs. Applies to all IDs in the batch. </param>
         [JsonConstructor]
         public ExcludePriceObservationsRequest(List<long> ids, string reason)
         {
@@ -44,16 +44,16 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// A list of historical price IDs to exclude from best prior price calculation. Must contain between 1 and 1000 IDs. All IDs must be valid &#x60;id&#x60; values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, and must not already be excluded from best prior price calculation. 
+        /// A list of price record IDs to exclude from best prior price calculation. Must contain between 1 and 1000 IDs. All IDs must be valid &#x60;id&#x60; values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, and must not already be excluded from best prior price calculation. 
         /// </summary>
-        /// <value>A list of historical price IDs to exclude from best prior price calculation. Must contain between 1 and 1000 IDs. All IDs must be valid &#x60;id&#x60; values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, and must not already be excluded from best prior price calculation. </value>
+        /// <value>A list of price record IDs to exclude from best prior price calculation. Must contain between 1 and 1000 IDs. All IDs must be valid &#x60;id&#x60; values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, and must not already be excluded from best prior price calculation. </value>
         [JsonPropertyName("ids")]
         public List<long> Ids { get; set; }
 
         /// <summary>
-        /// The reason for excluding these historical price IDs. Applies to all IDs in the batch. 
+        /// The reason for excluding these IDs. Applies to all IDs in the batch. 
         /// </summary>
-        /// <value>The reason for excluding these historical price IDs. Applies to all IDs in the batch. </value>
+        /// <value>The reason for excluding these IDs. Applies to all IDs in the batch. </value>
         /* <example>Incorrect contextID value.</example> */
         [JsonPropertyName("reason")]
         public string Reason { get; set; }
@@ -77,12 +77,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Reason (string) minLength
             if (this.Reason != null && this.Reason.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Reason, length must be greater than 1.", new [] { "Reason" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reason, length must be greater than 1.", new [] { "Reason" });
             }
 
             yield break;

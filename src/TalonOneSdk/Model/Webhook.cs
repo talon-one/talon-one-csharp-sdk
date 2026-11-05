@@ -341,7 +341,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             if (this.Title != null) {
                 // Title (string) pattern
@@ -371,16 +371,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Webhook" />
@@ -592,9 +582,15 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", webhook.Id);
 
-            writer.WriteString("created", webhook.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, webhook.Created, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("modified", webhook.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, webhook.Modified, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, webhook.ApplicationIds, jsonSerializerOptions);

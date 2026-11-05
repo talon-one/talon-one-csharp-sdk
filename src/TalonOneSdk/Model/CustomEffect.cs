@@ -230,7 +230,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             if (this.Name != null) {
                 // Name (string) pattern
@@ -270,16 +270,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomEffect" />
@@ -475,11 +465,17 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", customEffect.Id);
 
-            writer.WriteString("created", customEffect.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, customEffect.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("accountId", customEffect.AccountId);
 
-            writer.WriteString("modified", customEffect.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, customEffect.Modified, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("applicationIds");
             JsonSerializer.Serialize(writer, customEffect.ApplicationIds, jsonSerializerOptions);

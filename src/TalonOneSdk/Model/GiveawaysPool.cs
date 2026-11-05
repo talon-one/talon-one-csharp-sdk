@@ -191,7 +191,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -211,16 +211,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="GiveawaysPool" />
@@ -367,7 +357,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", giveawaysPool.Id);
 
-            writer.WriteString("created", giveawaysPool.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, giveawaysPool.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("accountId", giveawaysPool.AccountId);
 
@@ -386,7 +379,10 @@ namespace TalonOneSdk.Model
                 JsonSerializer.Serialize(writer, giveawaysPool.SubscribedApplicationsIds, jsonSerializerOptions);
             }
             if (giveawaysPool.ModifiedOption.IsSet)
-                writer.WriteString("modified", giveawaysPool.ModifiedOption.Value.Value.ToString(ModifiedFormat));
+                {
+                            writer.WritePropertyName("modified");
+                                JsonSerializer.Serialize(writer, giveawaysPool.ModifiedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (giveawaysPool.ModifiedByOption.IsSet)
                 writer.WriteNumber("modifiedBy", giveawaysPool.ModifiedByOption.Value.Value);

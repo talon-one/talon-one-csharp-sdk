@@ -186,7 +186,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -206,11 +206,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize LastUsed
-        /// </summary>
-        public string LastUsedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationApiHealth" />
@@ -305,7 +300,10 @@ namespace TalonOneSdk.Model
         {
             var summaryRawValue = ApplicationApiHealth.SummaryEnumToJsonValue(applicationApiHealth.Summary);
             writer.WriteString("summary", summaryRawValue);
-            writer.WriteString("lastUsed", applicationApiHealth.LastUsed.ToString(LastUsedFormat));
+            {
+                        writer.WritePropertyName("lastUsed");
+                            JsonSerializer.Serialize(writer, applicationApiHealth.LastUsed, jsonSerializerOptions);
+                        }
         }
     }
 }

@@ -93,7 +93,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -113,16 +113,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize NewExpiryDate
-        /// </summary>
-        public string NewExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize PreviousExpiryDate
-        /// </summary>
-        public string PreviousExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyLedgerEntryExpiryDateChange" />
@@ -214,10 +204,16 @@ namespace TalonOneSdk.Model
         {
             writer.WriteString("transactionUUID", loyaltyLedgerEntryExpiryDateChange.TransactionUUID);
 
-            writer.WriteString("newExpiryDate", loyaltyLedgerEntryExpiryDateChange.NewExpiryDate.ToString(NewExpiryDateFormat));
+            {
+                        writer.WritePropertyName("newExpiryDate");
+                            JsonSerializer.Serialize(writer, loyaltyLedgerEntryExpiryDateChange.NewExpiryDate, jsonSerializerOptions);
+                        }
 
             if (loyaltyLedgerEntryExpiryDateChange.PreviousExpiryDateOption.IsSet)
-                writer.WriteString("previousExpiryDate", loyaltyLedgerEntryExpiryDateChange.PreviousExpiryDateOption.Value.Value.ToString(PreviousExpiryDateFormat));
+                {
+                            writer.WritePropertyName("previousExpiryDate");
+                                JsonSerializer.Serialize(writer, loyaltyLedgerEntryExpiryDateChange.PreviousExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

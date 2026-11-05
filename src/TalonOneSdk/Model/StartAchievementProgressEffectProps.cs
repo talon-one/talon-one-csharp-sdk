@@ -136,7 +136,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -156,16 +156,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="StartAchievementProgressEffectProps" />
@@ -288,13 +278,19 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("target", startAchievementProgressEffectProps.Target);
 
-            writer.WriteString("startDate", startAchievementProgressEffectProps.StartDate.ToString(StartDateFormat));
+            {
+                        writer.WritePropertyName("startDate");
+                            JsonSerializer.Serialize(writer, startAchievementProgressEffectProps.StartDate, jsonSerializerOptions);
+                        }
 
             if (startAchievementProgressEffectProps.ProgressTrackerIdOption.IsSet)
                 writer.WriteNumber("progressTrackerId", startAchievementProgressEffectProps.ProgressTrackerIdOption.Value.Value);
 
             if (startAchievementProgressEffectProps.EndDateOption.IsSet)
-                writer.WriteString("endDate", startAchievementProgressEffectProps.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, startAchievementProgressEffectProps.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

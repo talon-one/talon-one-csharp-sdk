@@ -211,42 +211,42 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Type (string) minLength
             if (this.Type != null && this.Type.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
             }
 
             // ConnectedSessionId (string) minLength
             if (this.ConnectedSessionId != null && this.ConnectedSessionId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
             }
 
             // StoreIntegrationId (string) maxLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
             }
 
             // StoreIntegrationId (string) minLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
             }
 
             // IntegrationId (string) minLength
             if (this.IntegrationId != null && this.IntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
             }
 
             // ReferralCode (string) maxLength
             if (this.ReferralCode != null && this.ReferralCode.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
             }
 
             yield break;
@@ -267,11 +267,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="EventV3" />
@@ -428,7 +423,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", eventV3.Id);
 
-            writer.WriteString("created", eventV3.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, eventV3.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("applicationId", eventV3.ApplicationId);
 

@@ -24,55 +24,101 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// Notification about an Application whose campaign evaluation tree changed.
+    /// CampaignEvaluationTreeChangedNotification
     /// </summary>
     public partial class CampaignEvaluationTreeChangedNotification : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CampaignEvaluationTreeChangedNotification" /> class.
         /// </summary>
-        /// <param name="applicationId">The ID of the Application whose campaign evaluation tree changed.</param>
-        /// <param name="evaluationTree">The new campaign evaluation tree.</param>
-        /// <param name="oldEvaluationTree">The previous campaign evaluation tree.</param>
+        /// <param name="notificationType">The type of the notification</param>
+        /// <param name="totalResultSize">The total size of the result set.</param>
+        /// <param name="data">The array of changes.</param>
         [JsonConstructor]
-        public CampaignEvaluationTreeChangedNotification(long applicationId, CampaignSet evaluationTree, Option<CampaignSet> oldEvaluationTree = default)
+        public CampaignEvaluationTreeChangedNotification(NotificationTypeEnum notificationType, long totalResultSize, List<CampaignEvaluationTreeChangedNotificationData> data)
         {
-            ApplicationId = applicationId;
-            EvaluationTree = evaluationTree;
-            OldEvaluationTreeOption = oldEvaluationTree;
+            NotificationType = notificationType;
+            TotalResultSize = totalResultSize;
+            Data = data;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The ID of the Application whose campaign evaluation tree changed.
+        /// The type of the notification
         /// </summary>
-        /// <value>The ID of the Application whose campaign evaluation tree changed.</value>
-        /* <example>78</example> */
-        [JsonPropertyName("applicationId")]
-        public long ApplicationId { get; set; }
+        /// <value>The type of the notification</value>
+        public enum NotificationTypeEnum
+        {
+            /// <summary>
+            /// Enum CampaignEvaluationTreeChanged for value: CampaignEvaluationTreeChanged
+            /// </summary>
+            CampaignEvaluationTreeChanged = 1
+        }
 
         /// <summary>
-        /// The new campaign evaluation tree.
+        /// Returns a <see cref="NotificationTypeEnum"/>
         /// </summary>
-        /// <value>The new campaign evaluation tree.</value>
-        [JsonPropertyName("evaluationTree")]
-        public CampaignSet EvaluationTree { get; set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static NotificationTypeEnum NotificationTypeEnumFromString(string value)
+        {
+            if (value.Equals("CampaignEvaluationTreeChanged"))
+                return NotificationTypeEnum.CampaignEvaluationTreeChanged;
+
+            throw new NotImplementedException($"Could not convert value to type NotificationTypeEnum: '{value}'");
+        }
 
         /// <summary>
-        /// Used to track the state of OldEvaluationTree
+        /// Returns a <see cref="NotificationTypeEnum"/>
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<CampaignSet> OldEvaluationTreeOption { get; private set; }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NotificationTypeEnum? NotificationTypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("CampaignEvaluationTreeChanged"))
+                return NotificationTypeEnum.CampaignEvaluationTreeChanged;
+
+            return null;
+        }
 
         /// <summary>
-        /// The previous campaign evaluation tree.
+        /// Converts the <see cref="NotificationTypeEnum"/> to the json value
         /// </summary>
-        /// <value>The previous campaign evaluation tree.</value>
-        [JsonPropertyName("oldEvaluationTree")]
-        public CampaignSet OldEvaluationTree { get { return this.OldEvaluationTreeOption.Value; } set { this.OldEvaluationTreeOption = new Option<CampaignSet>(value); } }
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string NotificationTypeEnumToJsonValue(NotificationTypeEnum value)
+        {
+            if (value == NotificationTypeEnum.CampaignEvaluationTreeChanged)
+                return "CampaignEvaluationTreeChanged";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// The type of the notification
+        /// </summary>
+        /// <value>The type of the notification</value>
+        /* <example>CampaignEvaluationTreeChanged</example> */
+        [JsonPropertyName("NotificationType")]
+        public NotificationTypeEnum NotificationType { get; set; }
+
+        /// <summary>
+        /// The total size of the result set.
+        /// </summary>
+        /// <value>The total size of the result set.</value>
+        [JsonPropertyName("TotalResultSize")]
+        public long TotalResultSize { get; set; }
+
+        /// <summary>
+        /// The array of changes.
+        /// </summary>
+        /// <value>The array of changes.</value>
+        [JsonPropertyName("Data")]
+        public List<CampaignEvaluationTreeChangedNotificationData> Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -82,9 +128,9 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CampaignEvaluationTreeChangedNotification {\n");
-            sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
-            sb.Append("  EvaluationTree: ").Append(EvaluationTree).Append("\n");
-            sb.Append("  OldEvaluationTree: ").Append(OldEvaluationTree).Append("\n");
+            sb.Append("  NotificationType: ").Append(NotificationType).Append("\n");
+            sb.Append("  TotalResultSize: ").Append(TotalResultSize).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -94,7 +140,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -132,9 +178,9 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<long?> applicationId = default;
-            Option<CampaignSet> evaluationTree = default;
-            Option<CampaignSet> oldEvaluationTree = default;
+            Option<CampaignEvaluationTreeChangedNotification.NotificationTypeEnum?> notificationType = default;
+            Option<long?> totalResultSize = default;
+            Option<List<CampaignEvaluationTreeChangedNotificationData>> data = default;
 
             while (utf8JsonReader.Read())
             {
@@ -151,14 +197,21 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "applicationId":
-                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                        case "NotificationType":
+                            string notificationTypeRawValue = utf8JsonReader.GetString();
+                            if (notificationTypeRawValue != null)
+                            {
+                                CampaignEvaluationTreeChangedNotification.NotificationTypeEnum? notificationTypeValue = CampaignEvaluationTreeChangedNotification.NotificationTypeEnumFromStringOrDefault(notificationTypeRawValue);
+                                if (notificationTypeValue == null)
+                                    throw new JsonException();
+                                notificationType = new Option<CampaignEvaluationTreeChangedNotification.NotificationTypeEnum?>(notificationTypeValue);
+                            }
                             break;
-                        case "evaluationTree":
-                            evaluationTree = new Option<CampaignSet>(JsonSerializer.Deserialize<CampaignSet>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "TotalResultSize":
+                            totalResultSize = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "oldEvaluationTree":
-                            oldEvaluationTree = new Option<CampaignSet>(JsonSerializer.Deserialize<CampaignSet>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "Data":
+                            data = new Option<List<CampaignEvaluationTreeChangedNotificationData>>(JsonSerializer.Deserialize<List<CampaignEvaluationTreeChangedNotificationData>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -166,19 +219,25 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (!applicationId.IsSet)
-                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedNotification: applicationId.");
+            if (!notificationType.IsSet)
+                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedNotification: NotificationType.");
 
-            if (!evaluationTree.IsSet)
-                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedNotification: evaluationTree.");
+            if (!totalResultSize.IsSet)
+                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedNotification: TotalResultSize.");
 
-            if (applicationId.IsSet && applicationId.Value == null)
-                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedNotification: applicationId.");
+            if (!data.IsSet)
+                throw new JsonException("Property is required for class CampaignEvaluationTreeChangedNotification: Data.");
 
-            if (evaluationTree.IsSet && evaluationTree.Value == null)
-                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedNotification: evaluationTree.");
+            if (notificationType.IsSet && notificationType.Value == null)
+                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedNotification: NotificationType.");
 
-            return new CampaignEvaluationTreeChangedNotification(applicationId.Value.Value, evaluationTree.Value, oldEvaluationTree);
+            if (totalResultSize.IsSet && totalResultSize.Value == null)
+                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedNotification: TotalResultSize.");
+
+            if (data.IsSet && data.Value == null)
+                throw new JsonException("Property is not nullable for class CampaignEvaluationTreeChangedNotification: Data.");
+
+            return new CampaignEvaluationTreeChangedNotification(notificationType.Value.Value, totalResultSize.Value.Value, data.Value);
         }
 
         /// <summary>
@@ -203,18 +262,15 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, CampaignEvaluationTreeChangedNotification campaignEvaluationTreeChangedNotification, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (campaignEvaluationTreeChangedNotification.EvaluationTree == null)
-                throw new JsonException("Cannot write null property CampaignEvaluationTreeChangedNotification.EvaluationTree to non-nullable JSON property 'evaluationTree'.");
+            if (campaignEvaluationTreeChangedNotification.Data == null)
+                throw new JsonException("Cannot write null property CampaignEvaluationTreeChangedNotification.Data to non-nullable JSON property 'Data'.");
 
-            writer.WriteNumber("applicationId", campaignEvaluationTreeChangedNotification.ApplicationId);
+            var notificationTypeRawValue = CampaignEvaluationTreeChangedNotification.NotificationTypeEnumToJsonValue(campaignEvaluationTreeChangedNotification.NotificationType);
+            writer.WriteString("NotificationType", notificationTypeRawValue);
+            writer.WriteNumber("TotalResultSize", campaignEvaluationTreeChangedNotification.TotalResultSize);
 
-            writer.WritePropertyName("evaluationTree");
-            JsonSerializer.Serialize(writer, campaignEvaluationTreeChangedNotification.EvaluationTree, jsonSerializerOptions);
-            if (campaignEvaluationTreeChangedNotification.OldEvaluationTreeOption.IsSet)
-            {
-                writer.WritePropertyName("oldEvaluationTree");
-                JsonSerializer.Serialize(writer, campaignEvaluationTreeChangedNotification.OldEvaluationTree, jsonSerializerOptions);
-            }
+            writer.WritePropertyName("Data");
+            JsonSerializer.Serialize(writer, campaignEvaluationTreeChangedNotification.Data, jsonSerializerOptions);
         }
     }
 }

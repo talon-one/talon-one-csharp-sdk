@@ -341,7 +341,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -361,26 +361,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize PublishedAt
-        /// </summary>
-        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadCouponBasedNotifications" />
@@ -607,7 +587,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("Id", integrationHubEventPayloadCouponBasedNotifications.Id);
 
-            writer.WriteString("Created", integrationHubEventPayloadCouponBasedNotifications.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("Created");
+                            JsonSerializer.Serialize(writer, integrationHubEventPayloadCouponBasedNotifications.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("CampaignId", integrationHubEventPayloadCouponBasedNotifications.CampaignId);
 
@@ -617,7 +600,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("UsageCounter", integrationHubEventPayloadCouponBasedNotifications.UsageCounter);
 
-            writer.WriteString("PublishedAt", integrationHubEventPayloadCouponBasedNotifications.PublishedAt.ToString(PublishedAtFormat));
+            {
+                        writer.WritePropertyName("PublishedAt");
+                            JsonSerializer.Serialize(writer, integrationHubEventPayloadCouponBasedNotifications.PublishedAt, jsonSerializerOptions);
+                        }
 
             writer.WriteString("SourceOfEvent", integrationHubEventPayloadCouponBasedNotifications.SourceOfEvent);
 
@@ -630,10 +616,16 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("ReservationLimit", integrationHubEventPayloadCouponBasedNotifications.ReservationLimitOption.Value.Value);
 
             if (integrationHubEventPayloadCouponBasedNotifications.StartDateOption.IsSet)
-                writer.WriteString("StartDate", integrationHubEventPayloadCouponBasedNotifications.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("StartDate");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadCouponBasedNotifications.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (integrationHubEventPayloadCouponBasedNotifications.ExpiryDateOption.IsSet)
-                writer.WriteString("ExpiryDate", integrationHubEventPayloadCouponBasedNotifications.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("ExpiryDate");
+                                JsonSerializer.Serialize(writer, integrationHubEventPayloadCouponBasedNotifications.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (integrationHubEventPayloadCouponBasedNotifications.DiscountCounterOption.IsSet)
                 writer.WriteNumber("DiscountCounter", integrationHubEventPayloadCouponBasedNotifications.DiscountCounterOption.Value.Value);

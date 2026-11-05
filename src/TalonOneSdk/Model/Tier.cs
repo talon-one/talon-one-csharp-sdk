@@ -302,7 +302,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -322,16 +322,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Tier" />
@@ -459,19 +449,25 @@ namespace TalonOneSdk.Model
             writer.WriteString("name", tier.Name);
 
             if (tier.StartDateOption.IsSet)
-                writer.WriteString("startDate", tier.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("startDate");
+                                JsonSerializer.Serialize(writer, tier.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (tier.ExpiryDateOption.IsSet)
-                writer.WriteString("expiryDate", tier.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("expiryDate");
+                                JsonSerializer.Serialize(writer, tier.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (tier.DowngradePolicyOption.IsSet)
             {
-                var downgradePolicyRawValue = Tier.DowngradePolicyEnumToJsonValue(tier.DowngradePolicyOption.Value);
+                var downgradePolicyRawValue = Tier.DowngradePolicyEnumToJsonValue(tier.DowngradePolicyOption.Value.Value);
                 writer.WriteString("downgradePolicy", downgradePolicyRawValue);
             }
             if (tier.SourceOption.IsSet)
             {
-                var sourceRawValue = Tier.SourceEnumToJsonValue(tier.SourceOption.Value);
+                var sourceRawValue = Tier.SourceEnumToJsonValue(tier.SourceOption.Value.Value);
                 writer.WriteString("source", sourceRawValue);
             }
             if (tier.ReasonOption.IsSet)

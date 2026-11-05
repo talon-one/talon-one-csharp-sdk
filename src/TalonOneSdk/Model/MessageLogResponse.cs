@@ -110,7 +110,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -130,11 +130,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedAt
-        /// </summary>
-        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MessageLogResponse" />
@@ -213,7 +208,10 @@ namespace TalonOneSdk.Model
         public void WriteProperties(Utf8JsonWriter writer, MessageLogResponse messageLogResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageLogResponse.CreatedAtOption.IsSet)
-                writer.WriteString("createdAt", messageLogResponse.CreatedAtOption.Value.Value.ToString(CreatedAtFormat));
+                {
+                            writer.WritePropertyName("createdAt");
+                                JsonSerializer.Serialize(writer, messageLogResponse.CreatedAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (messageLogResponse.ResponseOption.IsSet)
             {

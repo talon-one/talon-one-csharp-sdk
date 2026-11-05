@@ -314,18 +314,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Confidence (double) maximum
             if (this.Confidence > (double)100)
             {
-                yield return new ValidationResult("Invalid value for Confidence, must be a value less than or equal to 100.", new [] { "Confidence" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Confidence, must be a value less than or equal to 100.", new [] { "Confidence" });
             }
 
             // Confidence (double) minimum
             if (this.Confidence < (double)95)
             {
-                yield return new ValidationResult("Invalid value for Confidence, must be a value greater than or equal to 95.", new [] { "Confidence" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Confidence, must be a value greater than or equal to 95.", new [] { "Confidence" });
             }
 
             yield break;

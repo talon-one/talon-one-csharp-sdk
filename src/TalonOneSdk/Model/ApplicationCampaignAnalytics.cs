@@ -347,7 +347,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -367,16 +367,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ApplicationCampaignAnalytics" />
@@ -539,9 +529,15 @@ namespace TalonOneSdk.Model
             if (applicationCampaignAnalytics.CampaignTags == null)
                 throw new JsonException("Cannot write null property ApplicationCampaignAnalytics.CampaignTags to non-nullable JSON property 'campaignTags'.");
 
-            writer.WriteString("startTime", applicationCampaignAnalytics.StartTime.ToString(StartTimeFormat));
+            {
+                        writer.WritePropertyName("startTime");
+                            JsonSerializer.Serialize(writer, applicationCampaignAnalytics.StartTime, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("endTime", applicationCampaignAnalytics.EndTime.ToString(EndTimeFormat));
+            {
+                        writer.WritePropertyName("endTime");
+                            JsonSerializer.Serialize(writer, applicationCampaignAnalytics.EndTime, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("campaignId", applicationCampaignAnalytics.CampaignId);
 

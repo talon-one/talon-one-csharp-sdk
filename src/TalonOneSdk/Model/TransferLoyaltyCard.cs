@@ -85,18 +85,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // NewCardIdentifier (string) maxLength
             if (this.NewCardIdentifier != null && this.NewCardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for NewCardIdentifier, length must be less than 108.", new [] { "NewCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NewCardIdentifier, length must be less than 108.", new [] { "NewCardIdentifier" });
             }
 
             // NewCardIdentifier (string) minLength
             if (this.NewCardIdentifier != null && this.NewCardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for NewCardIdentifier, length must be greater than 4.", new [] { "NewCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NewCardIdentifier, length must be greater than 4.", new [] { "NewCardIdentifier" });
             }
 
             if (this.NewCardIdentifier != null) {

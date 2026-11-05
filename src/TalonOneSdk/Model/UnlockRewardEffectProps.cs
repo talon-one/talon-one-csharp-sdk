@@ -129,18 +129,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyCardId (string) maxLength
             if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be less than 108.", new [] { "LoyaltyCardId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardId, length must be less than 108.", new [] { "LoyaltyCardId" });
             }
 
             // LoyaltyCardId (string) minLength
             if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be greater than 4.", new [] { "LoyaltyCardId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardId, length must be greater than 4.", new [] { "LoyaltyCardId" });
             }
 
             if (this.LoyaltyCardIdOption.Value != null) {
@@ -171,11 +171,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize UnlockedAt
-        /// </summary>
-        public string UnlockedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UnlockRewardEffectProps" />
@@ -309,7 +304,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("profileIntegrationId", unlockRewardEffectProps.ProfileIntegrationId);
 
-            writer.WriteString("unlockedAt", unlockRewardEffectProps.UnlockedAt.ToString(UnlockedAtFormat));
+            {
+                        writer.WritePropertyName("unlockedAt");
+                            JsonSerializer.Serialize(writer, unlockRewardEffectProps.UnlockedAt, jsonSerializerOptions);
+                        }
 
             if (unlockRewardEffectProps.LoyaltyCardIdOption.IsSet)
                 writer.WriteString("loyaltyCardId", unlockRewardEffectProps.LoyaltyCardId);

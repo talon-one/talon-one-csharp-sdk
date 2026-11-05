@@ -103,7 +103,7 @@ Content-Type: application/json
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -123,11 +123,6 @@ Content-Type: application/json
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedAt
-        /// </summary>
-        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="OutboundMessageResponse" />
@@ -240,7 +235,10 @@ Content-Type: application/json
 
             writer.WriteString("rawBody", outboundMessageResponse.RawBody);
 
-            writer.WriteString("createdAt", outboundMessageResponse.CreatedAt.ToString(CreatedAtFormat));
+            {
+                        writer.WritePropertyName("createdAt");
+                            JsonSerializer.Serialize(writer, outboundMessageResponse.CreatedAt, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("processingTimeMs", outboundMessageResponse.ProcessingTimeMs);
         }

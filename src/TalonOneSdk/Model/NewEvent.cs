@@ -125,30 +125,30 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Type (string) minLength
             if (this.Type != null && this.Type.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
             }
 
             // SessionId (string) minLength
             if (this.SessionId != null && this.SessionId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for SessionId, length must be greater than 1.", new [] { "SessionId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SessionId, length must be greater than 1.", new [] { "SessionId" });
             }
 
             // StoreIntegrationId (string) maxLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
             }
 
             // StoreIntegrationId (string) minLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
             }
 
             yield break;

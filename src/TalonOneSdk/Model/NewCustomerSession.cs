@@ -292,18 +292,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Coupon (string) maxLength
             if (this.Coupon != null && this.Coupon.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for Coupon, length must be less than 100.", new [] { "Coupon" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Coupon, length must be less than 100.", new [] { "Coupon" });
             }
 
             // Referral (string) maxLength
             if (this.Referral != null && this.Referral.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for Referral, length must be less than 100.", new [] { "Referral" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Referral, length must be less than 100.", new [] { "Referral" });
             }
 
             yield break;
@@ -439,7 +439,7 @@ namespace TalonOneSdk.Model
 
             if (newCustomerSession.StateOption.IsSet)
             {
-                var stateRawValue = NewCustomerSession.StateEnumToJsonValue(newCustomerSession.StateOption.Value);
+                var stateRawValue = NewCustomerSession.StateEnumToJsonValue(newCustomerSession.StateOption.Value.Value);
                 writer.WriteString("state", stateRawValue);
             }
             if (newCustomerSession.CartItemsOption.IsSet)

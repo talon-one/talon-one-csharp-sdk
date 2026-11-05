@@ -163,7 +163,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -183,11 +183,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Date
-        /// </summary>
-        public string DateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyDashboardData" />
@@ -359,7 +354,10 @@ namespace TalonOneSdk.Model
             if (loyaltyDashboardData.EarnedPoints == null)
                 throw new JsonException("Cannot write null property LoyaltyDashboardData.EarnedPoints to non-nullable JSON property 'earnedPoints'.");
 
-            writer.WriteString("date", loyaltyDashboardData.Date.ToString(DateFormat));
+            {
+                        writer.WritePropertyName("date");
+                            JsonSerializer.Serialize(writer, loyaltyDashboardData.Date, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("totalActivePoints", loyaltyDashboardData.TotalActivePoints);
 

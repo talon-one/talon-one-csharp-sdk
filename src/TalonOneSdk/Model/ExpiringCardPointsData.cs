@@ -185,18 +185,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyProgramID (long) minimum
             if (this.LoyaltyProgramID < (long)1)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
             }
 
             // UsersPerCardLimit (long) minimum
             if (this.UsersPerCardLimit < (long)0)
             {
-                yield return new ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
             }
 
             yield break;
@@ -217,16 +217,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd";
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExpiringCardPointsData" />
@@ -383,7 +373,10 @@ namespace TalonOneSdk.Model
             if (expiringCardPointsData.Profiles == null)
                 throw new JsonException("Cannot write null property ExpiringCardPointsData.Profiles to non-nullable JSON property 'Profiles'.");
 
-            writer.WriteString("ExpiryDate", expiringCardPointsData.ExpiryDate.ToString(ExpiryDateFormat));
+            {
+                        writer.WritePropertyName("ExpiryDate");
+                            JsonSerializer.Serialize(writer, expiringCardPointsData.ExpiryDate, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("LoyaltyProgramID", expiringCardPointsData.LoyaltyProgramID);
 
@@ -398,7 +391,10 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("Profiles");
             JsonSerializer.Serialize(writer, expiringCardPointsData.Profiles, jsonSerializerOptions);
             if (expiringCardPointsData.CreatedOption.IsSet)
-                writer.WriteString("Created", expiringCardPointsData.CreatedOption.Value.Value.ToString(CreatedFormat));
+                {
+                            writer.WritePropertyName("Created");
+                                JsonSerializer.Serialize(writer, expiringCardPointsData.CreatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (expiringCardPointsData.AwaitsActivationOption.IsSet)
                 writer.WriteBoolean("AwaitsActivation", expiringCardPointsData.AwaitsActivationOption.Value.Value);

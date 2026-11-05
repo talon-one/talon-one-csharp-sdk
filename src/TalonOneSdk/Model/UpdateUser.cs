@@ -230,7 +230,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -351,7 +351,7 @@ namespace TalonOneSdk.Model
 
             if (updateUser.StateOption.IsSet)
             {
-                var stateRawValue = UpdateUser.StateEnumToJsonValue(updateUser.StateOption.Value);
+                var stateRawValue = UpdateUser.StateEnumToJsonValue(updateUser.StateOption.Value.Value);
                 writer.WriteString("state", stateRawValue);
             }
             if (updateUser.IsAdminOption.IsSet)

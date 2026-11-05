@@ -127,7 +127,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -147,11 +147,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateApplicationCIF" />
@@ -243,7 +238,10 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("modifiedBy", updateApplicationCIF.ModifiedByOption.Value.Value);
 
             if (updateApplicationCIF.ModifiedOption.IsSet)
-                writer.WriteString("modified", updateApplicationCIF.ModifiedOption.Value.Value.ToString(ModifiedFormat));
+                {
+                            writer.WritePropertyName("modified");
+                                JsonSerializer.Serialize(writer, updateApplicationCIF.ModifiedOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

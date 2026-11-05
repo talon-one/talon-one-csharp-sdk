@@ -375,7 +375,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -395,36 +395,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedBefore
-        /// </summary>
-        public string CreatedBeforeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize CreatedAfter
-        /// </summary>
-        public string CreatedAfterFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize StartsAfter
-        /// </summary>
-        public string StartsAfterFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize StartsBefore
-        /// </summary>
-        public string StartsBeforeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiresAfter
-        /// </summary>
-        public string ExpiresAfterFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiresBefore
-        /// </summary>
-        public string ExpiresBeforeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CouponDeletionFilters" />
@@ -554,20 +524,32 @@ namespace TalonOneSdk.Model
         public void WriteProperties(Utf8JsonWriter writer, CouponDeletionFilters couponDeletionFilters, JsonSerializerOptions jsonSerializerOptions)
         {
             if (couponDeletionFilters.CreatedBeforeOption.IsSet)
-                writer.WriteString("createdBefore", couponDeletionFilters.CreatedBeforeOption.Value.Value.ToString(CreatedBeforeFormat));
+                {
+                            writer.WritePropertyName("createdBefore");
+                                JsonSerializer.Serialize(writer, couponDeletionFilters.CreatedBeforeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (couponDeletionFilters.CreatedAfterOption.IsSet)
-                writer.WriteString("createdAfter", couponDeletionFilters.CreatedAfterOption.Value.Value.ToString(CreatedAfterFormat));
+                {
+                            writer.WritePropertyName("createdAfter");
+                                JsonSerializer.Serialize(writer, couponDeletionFilters.CreatedAfterOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (couponDeletionFilters.StartsAfterOption.IsSet)
-                writer.WriteString("startsAfter", couponDeletionFilters.StartsAfterOption.Value.Value.ToString(StartsAfterFormat));
+                {
+                            writer.WritePropertyName("startsAfter");
+                                JsonSerializer.Serialize(writer, couponDeletionFilters.StartsAfterOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (couponDeletionFilters.StartsBeforeOption.IsSet)
-                writer.WriteString("startsBefore", couponDeletionFilters.StartsBeforeOption.Value.Value.ToString(StartsBeforeFormat));
+                {
+                            writer.WritePropertyName("startsBefore");
+                                JsonSerializer.Serialize(writer, couponDeletionFilters.StartsBeforeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (couponDeletionFilters.ValidOption.IsSet)
             {
-                var validRawValue = CouponDeletionFilters.ValidEnumToJsonValue(couponDeletionFilters.ValidOption.Value);
+                var validRawValue = CouponDeletionFilters.ValidEnumToJsonValue(couponDeletionFilters.ValidOption.Value.Value);
                 writer.WriteString("valid", validRawValue);
             }
             if (couponDeletionFilters.UsableOption.IsSet)
@@ -592,10 +574,16 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("referralId", couponDeletionFilters.ReferralIdOption.Value.Value);
 
             if (couponDeletionFilters.ExpiresAfterOption.IsSet)
-                writer.WriteString("expiresAfter", couponDeletionFilters.ExpiresAfterOption.Value.Value.ToString(ExpiresAfterFormat));
+                {
+                            writer.WritePropertyName("expiresAfter");
+                                JsonSerializer.Serialize(writer, couponDeletionFilters.ExpiresAfterOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (couponDeletionFilters.ExpiresBeforeOption.IsSet)
-                writer.WriteString("expiresBefore", couponDeletionFilters.ExpiresBeforeOption.Value.Value.ToString(ExpiresBeforeFormat));
+                {
+                            writer.WritePropertyName("expiresBefore");
+                                JsonSerializer.Serialize(writer, couponDeletionFilters.ExpiresBeforeOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

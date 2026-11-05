@@ -227,7 +227,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -247,21 +247,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize CompletionDate
-        /// </summary>
-        public string CompletionDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AchievementProgress" />
@@ -371,13 +356,22 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("progress", achievementProgress.Progress);
 
             if (achievementProgress.StartDateOption.IsSet)
-                writer.WriteString("startDate", achievementProgress.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("startDate");
+                                JsonSerializer.Serialize(writer, achievementProgress.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (achievementProgress.CompletionDateOption.IsSet)
-                writer.WriteString("completionDate", achievementProgress.CompletionDateOption.Value.Value.ToString(CompletionDateFormat));
+                {
+                            writer.WritePropertyName("completionDate");
+                                JsonSerializer.Serialize(writer, achievementProgress.CompletionDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (achievementProgress.EndDateOption.IsSet)
-                writer.WriteString("endDate", achievementProgress.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, achievementProgress.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

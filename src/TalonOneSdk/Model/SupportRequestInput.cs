@@ -267,12 +267,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // RequestValue (float) minimum
             if (this.RequestValueOption.IsSet && this.RequestValueOption.Value < (float)0)
             {
-                yield return new ValidationResult("Invalid value for RequestValue, must be a value greater than 0.", new [] { "RequestValue" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestValue, must be a value greater than 0.", new [] { "RequestValue" });
             }
 
             yield break;

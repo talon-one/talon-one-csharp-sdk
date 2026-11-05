@@ -186,7 +186,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -206,21 +206,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastUsed
-        /// </summary>
-        public string LastUsedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ManagementKey" />
@@ -376,7 +361,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("name", managementKey.Name);
 
-            writer.WriteString("expiryDate", managementKey.ExpiryDate.ToString(ExpiryDateFormat));
+            {
+                        writer.WritePropertyName("expiryDate");
+                            JsonSerializer.Serialize(writer, managementKey.ExpiryDate, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("endpoints");
             JsonSerializer.Serialize(writer, managementKey.Endpoints, jsonSerializerOptions);
@@ -386,7 +374,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("accountID", managementKey.AccountID);
 
-            writer.WriteString("created", managementKey.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, managementKey.Created, jsonSerializerOptions);
+                        }
 
             if (managementKey.AllowedApplicationIdsOption.IsSet)
             {
@@ -397,7 +388,10 @@ namespace TalonOneSdk.Model
                 writer.WriteBoolean("disabled", managementKey.DisabledOption.Value.Value);
 
             if (managementKey.LastUsedOption.IsSet)
-                writer.WriteString("lastUsed", managementKey.LastUsedOption.Value.Value.ToString(LastUsedFormat));
+                {
+                            writer.WritePropertyName("lastUsed");
+                                JsonSerializer.Serialize(writer, managementKey.LastUsedOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

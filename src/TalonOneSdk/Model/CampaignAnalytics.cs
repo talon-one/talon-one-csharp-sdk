@@ -313,7 +313,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -333,11 +333,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Date
-        /// </summary>
-        public string DateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignAnalytics" />
@@ -653,7 +648,10 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, CampaignAnalytics campaignAnalytics, JsonSerializerOptions jsonSerializerOptions)
         {
-            writer.WriteString("date", campaignAnalytics.Date.ToString(DateFormat));
+            {
+                        writer.WritePropertyName("date");
+                            JsonSerializer.Serialize(writer, campaignAnalytics.Date, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("campaignRevenue", campaignAnalytics.CampaignRevenue);
 

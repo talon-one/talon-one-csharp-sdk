@@ -364,7 +364,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -384,11 +384,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Expires
-        /// </summary>
-        public string ExpiresFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateApplicationAPIKey" />
@@ -505,16 +500,19 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("title", createApplicationAPIKey.Title);
 
-            writer.WriteString("expires", createApplicationAPIKey.Expires.ToString(ExpiresFormat));
+            {
+                        writer.WritePropertyName("expires");
+                            JsonSerializer.Serialize(writer, createApplicationAPIKey.Expires, jsonSerializerOptions);
+                        }
 
             if (createApplicationAPIKey.PlatformOption.IsSet)
             {
-                var platformRawValue = CreateApplicationAPIKey.PlatformEnumToJsonValue(createApplicationAPIKey.PlatformOption.Value);
+                var platformRawValue = CreateApplicationAPIKey.PlatformEnumToJsonValue(createApplicationAPIKey.PlatformOption.Value.Value);
                 writer.WriteString("platform", platformRawValue);
             }
             if (createApplicationAPIKey.TypeOption.IsSet)
             {
-                var typeRawValue = CreateApplicationAPIKey.TypeEnumToJsonValue(createApplicationAPIKey.TypeOption.Value);
+                var typeRawValue = CreateApplicationAPIKey.TypeEnumToJsonValue(createApplicationAPIKey.TypeOption.Value.Value);
                 writer.WriteString("type", typeRawValue);
             }
             if (createApplicationAPIKey.TimeOffsetOption.IsSet)

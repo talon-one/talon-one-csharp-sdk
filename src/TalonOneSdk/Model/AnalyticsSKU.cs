@@ -149,7 +149,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -169,11 +169,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize LastUpdated
-        /// </summary>
-        public string LastUpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AnalyticsSKU" />
@@ -283,7 +278,10 @@ namespace TalonOneSdk.Model
             writer.WriteString("sku", analyticsSKU.Sku);
 
             if (analyticsSKU.LastUpdatedOption.IsSet)
-                writer.WriteString("lastUpdated", analyticsSKU.LastUpdatedOption.Value.Value.ToString(LastUpdatedFormat));
+                {
+                            writer.WritePropertyName("lastUpdated");
+                                JsonSerializer.Serialize(writer, analyticsSKU.LastUpdatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (analyticsSKU.CatalogIdOption.IsSet)
                 writer.WriteNumber("catalogId", analyticsSKU.CatalogIdOption.Value.Value);

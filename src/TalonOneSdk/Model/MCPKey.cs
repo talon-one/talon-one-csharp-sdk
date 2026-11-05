@@ -158,7 +158,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -178,21 +178,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastUsed
-        /// </summary>
-        public string LastUsedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MCPKey" />
@@ -331,7 +316,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("name", mCPKey.Name);
 
-            writer.WriteString("expiryDate", mCPKey.ExpiryDate.ToString(ExpiryDateFormat));
+            {
+                        writer.WritePropertyName("expiryDate");
+                            JsonSerializer.Serialize(writer, mCPKey.ExpiryDate, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("id", mCPKey.Id);
 
@@ -339,13 +327,19 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("accountID", mCPKey.AccountID);
 
-            writer.WriteString("created", mCPKey.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, mCPKey.Created, jsonSerializerOptions);
+                        }
 
             if (mCPKey.DisabledOption.IsSet)
                 writer.WriteBoolean("disabled", mCPKey.DisabledOption.Value.Value);
 
             if (mCPKey.LastUsedOption.IsSet)
-                writer.WriteString("lastUsed", mCPKey.LastUsedOption.Value.Value.ToString(LastUsedFormat));
+                {
+                            writer.WritePropertyName("lastUsed");
+                                JsonSerializer.Serialize(writer, mCPKey.LastUsedOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

@@ -310,7 +310,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -330,21 +330,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyLedgerEntry" />
@@ -523,7 +508,10 @@ namespace TalonOneSdk.Model
             if (loyaltyLedgerEntry.SubLedgerID == null)
                 throw new JsonException("Cannot write null property LoyaltyLedgerEntry.SubLedgerID to non-nullable JSON property 'subLedgerID'.");
 
-            writer.WriteString("created", loyaltyLedgerEntry.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, loyaltyLedgerEntry.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("programID", loyaltyLedgerEntry.ProgramID);
 
@@ -548,10 +536,16 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("eventID", loyaltyLedgerEntry.EventIDOption.Value.Value);
 
             if (loyaltyLedgerEntry.StartDateOption.IsSet)
-                writer.WriteString("startDate", loyaltyLedgerEntry.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("startDate");
+                                JsonSerializer.Serialize(writer, loyaltyLedgerEntry.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (loyaltyLedgerEntry.ExpiryDateOption.IsSet)
-                writer.WriteString("expiryDate", loyaltyLedgerEntry.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("expiryDate");
+                                JsonSerializer.Serialize(writer, loyaltyLedgerEntry.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (loyaltyLedgerEntry.UserIDOption.IsSet)
                 writer.WriteNumber("userID", loyaltyLedgerEntry.UserIDOption.Value.Value);

@@ -95,7 +95,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -115,11 +115,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiresAt
-        /// </summary>
-        public string ExpiresAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MCPOAuthSessionInfo" />
@@ -220,7 +215,10 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("client");
             JsonSerializer.Serialize(writer, mCPOAuthSessionInfo.VarClient, jsonSerializerOptions);
             if (mCPOAuthSessionInfo.ExpiresAtOption.IsSet)
-                writer.WriteString("expires_at", mCPOAuthSessionInfo.ExpiresAtOption.Value.Value.ToString(ExpiresAtFormat));
+                {
+                            writer.WritePropertyName("expires_at");
+                                JsonSerializer.Serialize(writer, mCPOAuthSessionInfo.ExpiresAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

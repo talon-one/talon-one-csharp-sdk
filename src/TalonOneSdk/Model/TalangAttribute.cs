@@ -588,7 +588,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -769,7 +769,7 @@ namespace TalonOneSdk.Model
 
             if (talangAttribute.EntityOption.IsSet)
             {
-                var entityRawValue = TalangAttribute.EntityEnumToJsonValue(talangAttribute.EntityOption.Value);
+                var entityRawValue = TalangAttribute.EntityEnumToJsonValue(talangAttribute.EntityOption.Value.Value);
                 writer.WriteString("entity", entityRawValue);
             }
             if (talangAttribute.TitleOption.IsSet)

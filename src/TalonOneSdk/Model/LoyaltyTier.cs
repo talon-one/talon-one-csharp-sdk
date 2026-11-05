@@ -147,18 +147,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // MinPoints (decimal) maximum
             if (this.MinPoints > (decimal)999999999999.99)
             {
-                yield return new ValidationResult("Invalid value for MinPoints, must be a value less than or equal to 999999999999.99.", new [] { "MinPoints" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MinPoints, must be a value less than or equal to 999999999999.99.", new [] { "MinPoints" });
             }
 
             // MinPoints (decimal) minimum
             if (this.MinPoints < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for MinPoints, must be a value greater than or equal to 0.", new [] { "MinPoints" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MinPoints, must be a value greater than or equal to 0.", new [] { "MinPoints" });
             }
 
             yield break;
@@ -179,11 +179,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyTier" />
@@ -312,7 +307,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", loyaltyTier.Id);
 
-            writer.WriteString("created", loyaltyTier.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, loyaltyTier.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("programID", loyaltyTier.ProgramID);
 

@@ -197,18 +197,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // SessionIntegrationId (string) maxLength
             if (this.SessionIntegrationId != null && this.SessionIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for SessionIntegrationId, length must be less than 1000.", new [] { "SessionIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SessionIntegrationId, length must be less than 1000.", new [] { "SessionIntegrationId" });
             }
 
             // ProfileIntegrationId (string) maxLength
             if (this.ProfileIntegrationId != null && this.ProfileIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for ProfileIntegrationId, length must be less than 1000.", new [] { "ProfileIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ProfileIntegrationId, length must be less than 1000.", new [] { "ProfileIntegrationId" });
             }
 
             yield break;
@@ -229,11 +229,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Return" />
@@ -399,7 +394,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", varReturn.Id);
 
-            writer.WriteString("created", varReturn.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, varReturn.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("applicationId", varReturn.ApplicationId);
 

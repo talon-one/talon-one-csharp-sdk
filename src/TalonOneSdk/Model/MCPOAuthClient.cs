@@ -100,7 +100,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -120,11 +120,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedAt
-        /// </summary>
-        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="MCPOAuthClient" />
@@ -245,7 +240,10 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("redirect_uris");
             JsonSerializer.Serialize(writer, mCPOAuthClient.RedirectUris, jsonSerializerOptions);
-            writer.WriteString("created_at", mCPOAuthClient.CreatedAt.ToString(CreatedAtFormat));
+            {
+                        writer.WritePropertyName("created_at");
+                            JsonSerializer.Serialize(writer, mCPOAuthClient.CreatedAt, jsonSerializerOptions);
+                        }
         }
     }
 }

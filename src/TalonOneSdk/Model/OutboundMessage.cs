@@ -287,7 +287,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -307,16 +307,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize FirstLogAt
-        /// </summary>
-        public string FirstLogAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastLogAt
-        /// </summary>
-        public string LastLogAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="OutboundMessage" />
@@ -482,9 +472,15 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("notificationType", outboundMessage.NotificationType);
 
-            writer.WriteString("firstLogAt", outboundMessage.FirstLogAt.ToString(FirstLogAtFormat));
+            {
+                        writer.WritePropertyName("firstLogAt");
+                            JsonSerializer.Serialize(writer, outboundMessage.FirstLogAt, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("lastLogAt", outboundMessage.LastLogAt.ToString(LastLogAtFormat));
+            {
+                        writer.WritePropertyName("lastLogAt");
+                            JsonSerializer.Serialize(writer, outboundMessage.LastLogAt, jsonSerializerOptions);
+                        }
 
             writer.WriteString("status", outboundMessage.Status);
 

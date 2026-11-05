@@ -288,24 +288,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // RecipientIntegrationId (string) maxLength
             if (this.RecipientIntegrationId != null && this.RecipientIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for RecipientIntegrationId, length must be less than 1000.", new [] { "RecipientIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RecipientIntegrationId, length must be less than 1000.", new [] { "RecipientIntegrationId" });
             }
 
             // CardIdentifier (string) maxLength
             if (this.CardIdentifier != null && this.CardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
             }
 
             // CardIdentifier (string) minLength
             if (this.CardIdentifier != null && this.CardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
             }
 
             if (this.CardIdentifierOption.Value != null) {
@@ -336,16 +336,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartDate
-        /// </summary>
-        public string StartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AddLoyaltyPointsEffectProps" />
@@ -539,10 +529,16 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("desiredValue", addLoyaltyPointsEffectProps.DesiredValueOption.Value.Value);
 
             if (addLoyaltyPointsEffectProps.StartDateOption.IsSet)
-                writer.WriteString("startDate", addLoyaltyPointsEffectProps.StartDateOption.Value.Value.ToString(StartDateFormat));
+                {
+                            writer.WritePropertyName("startDate");
+                                JsonSerializer.Serialize(writer, addLoyaltyPointsEffectProps.StartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (addLoyaltyPointsEffectProps.ExpiryDateOption.IsSet)
-                writer.WriteString("expiryDate", addLoyaltyPointsEffectProps.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("expiryDate");
+                                JsonSerializer.Serialize(writer, addLoyaltyPointsEffectProps.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (addLoyaltyPointsEffectProps.CartItemPositionOption.IsSet)
                 writer.WriteNumber("cartItemPosition", addLoyaltyPointsEffectProps.CartItemPositionOption.Value.Value);

@@ -354,12 +354,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CompanyName (string) minLength
             if (this.CompanyName != null && this.CompanyName.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for CompanyName, length must be greater than 1.", new [] { "CompanyName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CompanyName, length must be greater than 1.", new [] { "CompanyName" });
             }
 
             yield break;
@@ -380,21 +380,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize PlanExpires
-        /// </summary>
-        public string PlanExpiresFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="Account" />
@@ -616,9 +601,15 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", account.Id);
 
-            writer.WriteString("created", account.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, account.Created, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("modified", account.Modified.ToString(ModifiedFormat));
+            {
+                        writer.WritePropertyName("modified");
+                            JsonSerializer.Serialize(writer, account.Modified, jsonSerializerOptions);
+                        }
 
             writer.WriteString("companyName", account.CompanyName);
 
@@ -640,7 +631,10 @@ namespace TalonOneSdk.Model
                 writer.WriteString("planName", account.PlanName);
 
             if (account.PlanExpiresOption.IsSet)
-                writer.WriteString("planExpires", account.PlanExpiresOption.Value.Value.ToString(PlanExpiresFormat));
+                {
+                            writer.WritePropertyName("planExpires");
+                                JsonSerializer.Serialize(writer, account.PlanExpiresOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (account.ApplicationLimitOption.IsSet)
                 writer.WriteNumber("applicationLimit", account.ApplicationLimitOption.Value.Value);

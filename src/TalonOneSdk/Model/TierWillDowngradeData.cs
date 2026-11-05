@@ -259,12 +259,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyProgramID (long) minimum
             if (this.LoyaltyProgramID < (long)1)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
             }
 
             yield break;
@@ -285,11 +285,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize TierExpirationDate
-        /// </summary>
-        public string TierExpirationDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="TierWillDowngradeData" />
@@ -463,11 +458,14 @@ namespace TalonOneSdk.Model
                 writer.WriteString("NextTier", tierWillDowngradeData.NextTier);
 
             if (tierWillDowngradeData.TierExpirationDateOption.IsSet)
-                writer.WriteString("TierExpirationDate", tierWillDowngradeData.TierExpirationDateOption.Value.Value.ToString(TierExpirationDateFormat));
+                {
+                            writer.WritePropertyName("TierExpirationDate");
+                                JsonSerializer.Serialize(writer, tierWillDowngradeData.TierExpirationDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (tierWillDowngradeData.SourceOption.IsSet)
             {
-                var sourceRawValue = TierWillDowngradeData.SourceEnumToJsonValue(tierWillDowngradeData.SourceOption.Value);
+                var sourceRawValue = TierWillDowngradeData.SourceEnumToJsonValue(tierWillDowngradeData.SourceOption.Value.Value);
                 writer.WriteString("Source", sourceRawValue);
             }
             if (tierWillDowngradeData.ReasonOption.IsSet)

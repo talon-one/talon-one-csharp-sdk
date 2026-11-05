@@ -112,7 +112,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -132,11 +132,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ValueMap" />
@@ -235,7 +230,10 @@ namespace TalonOneSdk.Model
             writer.WriteNumber("campaignId", valueMap.CampaignId);
 
             if (valueMap.CreatedOption.IsSet)
-                writer.WriteString("created", valueMap.CreatedOption.Value.Value.ToString(CreatedFormat));
+                {
+                            writer.WritePropertyName("created");
+                                JsonSerializer.Serialize(writer, valueMap.CreatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (valueMap.CreatedByOption.IsSet)
                 writer.WriteNumber("createdBy", valueMap.CreatedByOption.Value.Value);

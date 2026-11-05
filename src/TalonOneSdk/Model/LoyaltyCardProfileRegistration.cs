@@ -78,12 +78,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             yield break;
@@ -104,11 +104,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Timestamp
-        /// </summary>
-        public string TimestampFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyCardProfileRegistration" />
@@ -199,7 +194,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("integrationId", loyaltyCardProfileRegistration.IntegrationId);
 
-            writer.WriteString("timestamp", loyaltyCardProfileRegistration.Timestamp.ToString(TimestampFormat));
+            {
+                        writer.WritePropertyName("timestamp");
+                            JsonSerializer.Serialize(writer, loyaltyCardProfileRegistration.Timestamp, jsonSerializerOptions);
+                        }
         }
     }
 }

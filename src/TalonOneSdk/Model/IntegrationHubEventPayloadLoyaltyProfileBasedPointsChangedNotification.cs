@@ -207,7 +207,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -227,11 +227,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize PublishedAt
-        /// </summary>
-        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification" />
@@ -434,7 +429,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("CurrentPoints", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.CurrentPoints);
 
-            writer.WriteString("PublishedAt", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.PublishedAt.ToString(PublishedAtFormat));
+            {
+                        writer.WritePropertyName("PublishedAt");
+                            JsonSerializer.Serialize(writer, integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.PublishedAt, jsonSerializerOptions);
+                        }
 
             if (integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SessionIntegrationIDOption.IsSet)
                 writer.WriteString("SessionIntegrationID", integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.SessionIntegrationID);

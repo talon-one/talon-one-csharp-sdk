@@ -223,18 +223,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             // ApiName (string) minLength
             if (this.ApiName != null && this.ApiName.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for ApiName, length must be greater than 1.", new [] { "ApiName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApiName, length must be greater than 1.", new [] { "ApiName" });
             }
 
             yield break;
@@ -255,11 +255,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewReward" />
@@ -437,7 +432,10 @@ namespace TalonOneSdk.Model
                 writer.WriteString("validityDuration", newReward.ValidityDuration);
 
             if (newReward.ExpiryDateOption.IsSet)
-                writer.WriteString("expiryDate", newReward.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
+                {
+                            writer.WritePropertyName("expiryDate");
+                                JsonSerializer.Serialize(writer, newReward.ExpiryDateOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

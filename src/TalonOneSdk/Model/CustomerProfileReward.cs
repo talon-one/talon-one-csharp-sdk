@@ -325,18 +325,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyCardId (string) maxLength
             if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be less than 108.", new [] { "LoyaltyCardId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardId, length must be less than 108.", new [] { "LoyaltyCardId" });
             }
 
             // LoyaltyCardId (string) minLength
             if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be greater than 4.", new [] { "LoyaltyCardId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardId, length must be greater than 4.", new [] { "LoyaltyCardId" });
             }
 
             if (this.LoyaltyCardIdOption.Value != null) {
@@ -367,16 +367,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize UnlockedAt
-        /// </summary>
-        public string UnlockedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize UsedAt
-        /// </summary>
-        public string UsedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerProfileReward" />
@@ -568,7 +558,10 @@ namespace TalonOneSdk.Model
 
             var statusRawValue = CustomerProfileReward.StatusEnumToJsonValue(customerProfileReward.Status);
             writer.WriteString("status", statusRawValue);
-            writer.WriteString("unlockedAt", customerProfileReward.UnlockedAt.ToString(UnlockedAtFormat));
+            {
+                        writer.WritePropertyName("unlockedAt");
+                            JsonSerializer.Serialize(writer, customerProfileReward.UnlockedAt, jsonSerializerOptions);
+                        }
 
             if (customerProfileReward.DescriptionOption.IsSet)
                 writer.WriteString("description", customerProfileReward.Description);
@@ -582,7 +575,10 @@ namespace TalonOneSdk.Model
                 writer.WriteString("unlockedByProfileIntegrationId", customerProfileReward.UnlockedByProfileIntegrationId);
 
             if (customerProfileReward.UsedAtOption.IsSet)
-                writer.WriteString("usedAt", customerProfileReward.UsedAtOption.Value.Value.ToString(UsedAtFormat));
+                {
+                            writer.WritePropertyName("usedAt");
+                                JsonSerializer.Serialize(writer, customerProfileReward.UsedAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (customerProfileReward.UsedByProfileIntegrationIdOption.IsSet)
                 writer.WriteString("usedByProfileIntegrationId", customerProfileReward.UsedByProfileIntegrationId);

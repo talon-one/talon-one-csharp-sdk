@@ -76,7 +76,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -96,11 +96,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Date
-        /// </summary>
-        public string DateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExperimentConfidenceTimelineDataPoint" />
@@ -189,7 +184,10 @@ namespace TalonOneSdk.Model
             if (experimentConfidenceTimelineDataPoint.Confidence == null)
                 throw new JsonException("Cannot write null property ExperimentConfidenceTimelineDataPoint.Confidence to non-nullable JSON property 'confidence'.");
 
-            writer.WriteString("date", experimentConfidenceTimelineDataPoint.Date.ToString(DateFormat));
+            {
+                        writer.WritePropertyName("date");
+                            JsonSerializer.Serialize(writer, experimentConfidenceTimelineDataPoint.Date, jsonSerializerOptions);
+                        }
 
             writer.WritePropertyName("confidence");
             JsonSerializer.Serialize(writer, experimentConfidenceTimelineDataPoint.Confidence, jsonSerializerOptions);

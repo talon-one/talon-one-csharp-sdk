@@ -373,18 +373,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
             }
 
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             if (this.Name != null) {
@@ -415,16 +415,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize FixedStartDate
-        /// </summary>
-        public string FixedStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CreateAchievement" />
@@ -599,19 +589,25 @@ namespace TalonOneSdk.Model
             }
             if (createAchievement.RecurrencePolicyOption.IsSet)
             {
-                var recurrencePolicyRawValue = CreateAchievement.RecurrencePolicyEnumToJsonValue(createAchievement.RecurrencePolicyOption.Value);
+                var recurrencePolicyRawValue = CreateAchievement.RecurrencePolicyEnumToJsonValue(createAchievement.RecurrencePolicyOption.Value.Value);
                 writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
             }
             if (createAchievement.ActivationPolicyOption.IsSet)
             {
-                var activationPolicyRawValue = CreateAchievement.ActivationPolicyEnumToJsonValue(createAchievement.ActivationPolicyOption.Value);
+                var activationPolicyRawValue = CreateAchievement.ActivationPolicyEnumToJsonValue(createAchievement.ActivationPolicyOption.Value.Value);
                 writer.WriteString("activationPolicy", activationPolicyRawValue);
             }
             if (createAchievement.FixedStartDateOption.IsSet)
-                writer.WriteString("fixedStartDate", createAchievement.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
+                {
+                            writer.WritePropertyName("fixedStartDate");
+                                JsonSerializer.Serialize(writer, createAchievement.FixedStartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (createAchievement.EndDateOption.IsSet)
-                writer.WriteString("endDate", createAchievement.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, createAchievement.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (createAchievement.AllowRollbackAfterCompletionOption.IsSet)
                 writer.WriteBoolean("allowRollbackAfterCompletion", createAchievement.AllowRollbackAfterCompletionOption.Value.Value);

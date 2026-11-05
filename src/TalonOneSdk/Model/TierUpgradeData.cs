@@ -288,12 +288,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyProgramID (long) minimum
             if (this.LoyaltyProgramID < (long)1)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
             }
 
             yield break;
@@ -314,16 +314,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize TierExpirationDate
-        /// </summary>
-        public string TierExpirationDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize TimestampOfTierChange
-        /// </summary>
-        public string TimestampOfTierChangeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="TierUpgradeData" />
@@ -503,9 +493,15 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("CurrentPoints", tierUpgradeData.CurrentPoints);
 
-            writer.WriteString("TierExpirationDate", tierUpgradeData.TierExpirationDate.ToString(TierExpirationDateFormat));
+            {
+                        writer.WritePropertyName("TierExpirationDate");
+                            JsonSerializer.Serialize(writer, tierUpgradeData.TierExpirationDate, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("TimestampOfTierChange", tierUpgradeData.TimestampOfTierChange.ToString(TimestampOfTierChangeFormat));
+            {
+                        writer.WritePropertyName("TimestampOfTierChange");
+                            JsonSerializer.Serialize(writer, tierUpgradeData.TimestampOfTierChange, jsonSerializerOptions);
+                        }
 
             writer.WriteString("SubledgerID", tierUpgradeData.SubledgerID);
 
@@ -520,7 +516,7 @@ namespace TalonOneSdk.Model
 
             if (tierUpgradeData.SourceOption.IsSet)
             {
-                var sourceRawValue = TierUpgradeData.SourceEnumToJsonValue(tierUpgradeData.SourceOption.Value);
+                var sourceRawValue = TierUpgradeData.SourceEnumToJsonValue(tierUpgradeData.SourceOption.Value.Value);
                 writer.WriteString("Source", sourceRawValue);
             }
             if (tierUpgradeData.ReasonOption.IsSet)

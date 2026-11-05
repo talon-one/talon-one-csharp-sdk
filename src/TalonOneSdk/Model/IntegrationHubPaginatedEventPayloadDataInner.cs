@@ -107,7 +107,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
@@ -117,7 +117,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -177,7 +177,7 @@ namespace TalonOneSdk.Model
                     utf8JsonReaderDiscriminator.Read();
                     if (localVarJsonPropertyName.Equals("EventType"))
                     {
-                        string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        string discriminator = ClientUtils.GetDiscriminatorValue(utf8JsonReaderDiscriminator, "EventType");
                         if (discriminator.Equals("CouponCreated"))
                         {
                             Utf8JsonReader utf8JsonReaderIntegrationHubEventPayloadCouponBasedNotifications = utf8JsonReader;

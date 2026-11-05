@@ -105,12 +105,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // InviteToken (string) minLength
             if (this.InviteToken != null && this.InviteToken.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for InviteToken, length must be greater than 1.", new [] { "InviteToken" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for InviteToken, length must be greater than 1.", new [] { "InviteToken" });
             }
 
             yield break;

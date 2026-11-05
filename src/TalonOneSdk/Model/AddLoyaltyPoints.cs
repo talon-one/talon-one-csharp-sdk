@@ -193,18 +193,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Points (decimal) maximum
             if (this.Points > (decimal)999999999999.99)
             {
-                yield return new ValidationResult("Invalid value for Points, must be a value less than or equal to 999999999999.99.", new [] { "Points" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Points, must be a value less than or equal to 999999999999.99.", new [] { "Points" });
             }
 
             // Points (decimal) minimum
             if (this.Points < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for Points, must be a value greater than 0.", new [] { "Points" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Points, must be a value greater than 0.", new [] { "Points" });
             }
 
             yield break;
@@ -225,16 +225,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ValidUntil
-        /// </summary>
-        public string ValidUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize PendingUntil
-        /// </summary>
-        public string PendingUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AddLoyaltyPoints" />
@@ -347,13 +337,19 @@ namespace TalonOneSdk.Model
                 writer.WriteString("validityDuration", addLoyaltyPoints.ValidityDuration);
 
             if (addLoyaltyPoints.ValidUntilOption.IsSet)
-                writer.WriteString("validUntil", addLoyaltyPoints.ValidUntilOption.Value.Value.ToString(ValidUntilFormat));
+                {
+                            writer.WritePropertyName("validUntil");
+                                JsonSerializer.Serialize(writer, addLoyaltyPoints.ValidUntilOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (addLoyaltyPoints.PendingDurationOption.IsSet)
                 writer.WriteString("pendingDuration", addLoyaltyPoints.PendingDuration);
 
             if (addLoyaltyPoints.PendingUntilOption.IsSet)
-                writer.WriteString("pendingUntil", addLoyaltyPoints.PendingUntilOption.Value.Value.ToString(PendingUntilFormat));
+                {
+                            writer.WritePropertyName("pendingUntil");
+                                JsonSerializer.Serialize(writer, addLoyaltyPoints.PendingUntilOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (addLoyaltyPoints.SubledgerIdOption.IsSet)
                 writer.WriteString("subledgerId", addLoyaltyPoints.SubledgerId);

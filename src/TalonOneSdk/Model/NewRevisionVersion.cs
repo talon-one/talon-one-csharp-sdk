@@ -417,12 +417,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             yield break;
@@ -443,16 +443,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="NewRevisionVersion" />
@@ -596,13 +586,19 @@ namespace TalonOneSdk.Model
 
             if (newRevisionVersion.StartTimeOption.IsSet)
                 if (newRevisionVersion.StartTimeOption.Value != null)
-                    writer.WriteString("startTime", newRevisionVersion.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+                    {
+                            writer.WritePropertyName("startTime");
+                                JsonSerializer.Serialize(writer, newRevisionVersion.StartTimeOption.Value.Value, jsonSerializerOptions);
+                            }
                 else
                     writer.WriteNull("startTime");
 
             if (newRevisionVersion.EndTimeOption.IsSet)
                 if (newRevisionVersion.EndTimeOption.Value != null)
-                    writer.WriteString("endTime", newRevisionVersion.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+                    {
+                            writer.WritePropertyName("endTime");
+                                JsonSerializer.Serialize(writer, newRevisionVersion.EndTimeOption.Value.Value, jsonSerializerOptions);
+                            }
                 else
                     writer.WriteNull("endTime");
 

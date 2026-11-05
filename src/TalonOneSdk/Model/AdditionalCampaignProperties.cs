@@ -629,7 +629,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -649,16 +649,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize LastActivity
-        /// </summary>
-        public string LastActivityFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Updated
-        /// </summary>
-        public string UpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AdditionalCampaignProperties" />
@@ -898,10 +888,16 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("reservecouponEffectCount", additionalCampaignProperties.ReservecouponEffectCountOption.Value.Value);
 
             if (additionalCampaignProperties.LastActivityOption.IsSet)
-                writer.WriteString("lastActivity", additionalCampaignProperties.LastActivityOption.Value.Value.ToString(LastActivityFormat));
+                {
+                            writer.WritePropertyName("lastActivity");
+                                JsonSerializer.Serialize(writer, additionalCampaignProperties.LastActivityOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (additionalCampaignProperties.UpdatedOption.IsSet)
-                writer.WriteString("updated", additionalCampaignProperties.UpdatedOption.Value.Value.ToString(UpdatedFormat));
+                {
+                            writer.WritePropertyName("updated");
+                                JsonSerializer.Serialize(writer, additionalCampaignProperties.UpdatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (additionalCampaignProperties.CreatedByOption.IsSet)
                 writer.WriteString("createdBy", additionalCampaignProperties.CreatedBy);

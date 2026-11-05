@@ -317,18 +317,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Identifier (string) maxLength
             if (this.Identifier != null && this.Identifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for Identifier, length must be less than 108.", new [] { "Identifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Identifier, length must be less than 108.", new [] { "Identifier" });
             }
 
             // Identifier (string) minLength
             if (this.Identifier != null && this.Identifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for Identifier, length must be greater than 4.", new [] { "Identifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Identifier, length must be greater than 4.", new [] { "Identifier" });
             }
 
             if (this.Identifier != null) {
@@ -344,19 +344,19 @@ namespace TalonOneSdk.Model
             // UsersPerCardLimit (long) minimum
             if (this.UsersPerCardLimit < (long)0)
             {
-                yield return new ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
             }
 
             // OldCardIdentifier (string) maxLength
             if (this.OldCardIdentifier != null && this.OldCardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for OldCardIdentifier, length must be less than 108.", new [] { "OldCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OldCardIdentifier, length must be less than 108.", new [] { "OldCardIdentifier" });
             }
 
             // OldCardIdentifier (string) minLength
             if (this.OldCardIdentifier != null && this.OldCardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for OldCardIdentifier, length must be greater than 4.", new [] { "OldCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OldCardIdentifier, length must be greater than 4.", new [] { "OldCardIdentifier" });
             }
 
             if (this.OldCardIdentifierOption.Value != null) {
@@ -372,13 +372,13 @@ namespace TalonOneSdk.Model
             // NewCardIdentifier (string) maxLength
             if (this.NewCardIdentifier != null && this.NewCardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for NewCardIdentifier, length must be less than 108.", new [] { "NewCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NewCardIdentifier, length must be less than 108.", new [] { "NewCardIdentifier" });
             }
 
             // NewCardIdentifier (string) minLength
             if (this.NewCardIdentifier != null && this.NewCardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for NewCardIdentifier, length must be greater than 4.", new [] { "NewCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NewCardIdentifier, length must be greater than 4.", new [] { "NewCardIdentifier" });
             }
 
             if (this.NewCardIdentifierOption.Value != null) {
@@ -409,16 +409,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LoyaltyCard" />
@@ -596,7 +586,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", loyaltyCard.Id);
 
-            writer.WriteString("created", loyaltyCard.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, loyaltyCard.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("programID", loyaltyCard.ProgramID);
 
@@ -636,7 +629,10 @@ namespace TalonOneSdk.Model
                 JsonSerializer.Serialize(writer, loyaltyCard.Subledgers, jsonSerializerOptions);
             }
             if (loyaltyCard.ModifiedOption.IsSet)
-                writer.WriteString("modified", loyaltyCard.ModifiedOption.Value.Value.ToString(ModifiedFormat));
+                {
+                            writer.WritePropertyName("modified");
+                                JsonSerializer.Serialize(writer, loyaltyCard.ModifiedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (loyaltyCard.OldCardIdentifierOption.IsSet)
                 writer.WriteString("oldCardIdentifier", loyaltyCard.OldCardIdentifier);

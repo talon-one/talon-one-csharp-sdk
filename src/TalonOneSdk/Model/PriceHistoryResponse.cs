@@ -31,7 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PriceHistoryResponse" /> class.
         /// </summary>
-        /// <param name="sku">The SKU of the item for which historical prices should be retrieved.</param>
+        /// <param name="sku">The SKU of the item for which price records should be retrieved.</param>
         /// <param name="history">history</param>
         [JsonConstructor]
         public PriceHistoryResponse(string sku, List<History> history)
@@ -44,9 +44,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The SKU of the item for which historical prices should be retrieved.
+        /// The SKU of the item for which price records should be retrieved.
         /// </summary>
-        /// <value>The SKU of the item for which historical prices should be retrieved.</value>
+        /// <value>The SKU of the item for which price records should be retrieved.</value>
         /* <example>SKU1241028</example> */
         [JsonPropertyName("sku")]
         public string Sku { get; set; }
@@ -76,7 +76,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -146,7 +146,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -166,16 +166,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize AdjustmentEffectiveFrom
-        /// </summary>
-        public string AdjustmentEffectiveFromFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize AdjustmentEffectiveUntil
-        /// </summary>
-        public string AdjustmentEffectiveUntilFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="PriceDetail" />
@@ -271,10 +261,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("adjustmentReferenceId", priceDetail.AdjustmentReferenceIdOption.Value.Value);
 
             if (priceDetail.AdjustmentEffectiveFromOption.IsSet)
-                writer.WriteString("adjustmentEffectiveFrom", priceDetail.AdjustmentEffectiveFromOption.Value.Value.ToString(AdjustmentEffectiveFromFormat));
+                {
+                            writer.WritePropertyName("adjustmentEffectiveFrom");
+                                JsonSerializer.Serialize(writer, priceDetail.AdjustmentEffectiveFromOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (priceDetail.AdjustmentEffectiveUntilOption.IsSet)
-                writer.WriteString("adjustmentEffectiveUntil", priceDetail.AdjustmentEffectiveUntilOption.Value.Value.ToString(AdjustmentEffectiveUntilFormat));
+                {
+                            writer.WritePropertyName("adjustmentEffectiveUntil");
+                                JsonSerializer.Serialize(writer, priceDetail.AdjustmentEffectiveUntilOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

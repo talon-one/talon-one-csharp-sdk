@@ -104,7 +104,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -124,11 +124,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize NewExpiryDate
-        /// </summary>
-        public string NewExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="SetLoyaltyPointsExpiryDateEffectProps" />
@@ -235,7 +230,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("subLedgerId", setLoyaltyPointsExpiryDateEffectProps.SubLedgerId);
 
-            writer.WriteString("newExpiryDate", setLoyaltyPointsExpiryDateEffectProps.NewExpiryDate.ToString(NewExpiryDateFormat));
+            {
+                        writer.WritePropertyName("newExpiryDate");
+                            JsonSerializer.Serialize(writer, setLoyaltyPointsExpiryDateEffectProps.NewExpiryDate, jsonSerializerOptions);
+                        }
 
             if (setLoyaltyPointsExpiryDateEffectProps.AffectedTransactionsOption.IsSet)
             {

@@ -164,12 +164,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyProgramID (long) minimum
             if (this.LoyaltyProgramID < (long)1)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramID, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramID" });
             }
 
             yield break;
@@ -190,16 +190,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize ExpiryDate
-        /// </summary>
-        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd";
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="ExpiringPointsData" />
@@ -333,7 +323,10 @@ namespace TalonOneSdk.Model
             if (expiringPointsData.SubledgerID == null)
                 throw new JsonException("Cannot write null property ExpiringPointsData.SubledgerID to non-nullable JSON property 'SubledgerID'.");
 
-            writer.WriteString("ExpiryDate", expiringPointsData.ExpiryDate.ToString(ExpiryDateFormat));
+            {
+                        writer.WritePropertyName("ExpiryDate");
+                            JsonSerializer.Serialize(writer, expiringPointsData.ExpiryDate, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("LoyaltyProgramID", expiringPointsData.LoyaltyProgramID);
 
@@ -344,7 +337,10 @@ namespace TalonOneSdk.Model
             writer.WriteString("SubledgerID", expiringPointsData.SubledgerID);
 
             if (expiringPointsData.CreatedOption.IsSet)
-                writer.WriteString("Created", expiringPointsData.CreatedOption.Value.Value.ToString(CreatedFormat));
+                {
+                            writer.WritePropertyName("Created");
+                                JsonSerializer.Serialize(writer, expiringPointsData.CreatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (expiringPointsData.AwaitsActivationOption.IsSet)
                 writer.WriteBoolean("AwaitsActivation", expiringPointsData.AwaitsActivationOption.Value.Value);

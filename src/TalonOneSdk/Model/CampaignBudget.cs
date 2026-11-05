@@ -89,18 +89,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Limit (decimal) minimum
             if (this.Limit < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for Limit, must be a value greater than or equal to 0.", new [] { "Limit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Limit, must be a value greater than or equal to 0.", new [] { "Limit" });
             }
 
             // Counter (decimal) minimum
             if (this.Counter < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for Counter, must be a value greater than or equal to 0.", new [] { "Counter" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Counter, must be a value greater than or equal to 0.", new [] { "Counter" });
             }
 
             yield break;

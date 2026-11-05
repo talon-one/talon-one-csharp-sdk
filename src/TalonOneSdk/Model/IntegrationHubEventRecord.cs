@@ -193,7 +193,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -213,26 +213,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize PublishedAt
-        /// </summary>
-        public string PublishedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ScheduledTo
-        /// </summary>
-        public string ScheduledToFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ProcessedAt
-        /// </summary>
-        public string ProcessedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize DeliveredAt
-        /// </summary>
-        public string DeliveredAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="IntegrationHubEventRecord" />
@@ -394,9 +374,15 @@ namespace TalonOneSdk.Model
             var eventTypeRawValue = IntegrationHubEventTypeValueConverter.ToJsonValue(integrationHubEventRecord.EventType);
             writer.WriteString("eventType", eventTypeRawValue);
 
-            writer.WriteString("publishedAt", integrationHubEventRecord.PublishedAt.ToString(PublishedAtFormat));
+            {
+                        writer.WritePropertyName("publishedAt");
+                            JsonSerializer.Serialize(writer, integrationHubEventRecord.PublishedAt, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("scheduledTo", integrationHubEventRecord.ScheduledTo.ToString(ScheduledToFormat));
+            {
+                        writer.WritePropertyName("scheduledTo");
+                            JsonSerializer.Serialize(writer, integrationHubEventRecord.ScheduledTo, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("retry", integrationHubEventRecord.Retry);
 
@@ -409,10 +395,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("instanceName", integrationHubEventRecord.InstanceName);
 
             if (integrationHubEventRecord.ProcessedAtOption.IsSet)
-                writer.WriteString("processedAt", integrationHubEventRecord.ProcessedAtOption.Value.Value.ToString(ProcessedAtFormat));
+                {
+                            writer.WritePropertyName("processedAt");
+                                JsonSerializer.Serialize(writer, integrationHubEventRecord.ProcessedAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (integrationHubEventRecord.DeliveredAtOption.IsSet)
-                writer.WriteString("deliveredAt", integrationHubEventRecord.DeliveredAtOption.Value.Value.ToString(DeliveredAtFormat));
+                {
+                            writer.WritePropertyName("deliveredAt");
+                                JsonSerializer.Serialize(writer, integrationHubEventRecord.DeliveredAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

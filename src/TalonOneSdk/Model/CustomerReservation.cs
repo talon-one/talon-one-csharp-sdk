@@ -222,12 +222,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             yield break;
@@ -248,21 +248,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastActivity
-        /// </summary>
-        public string LastActivityFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ReservedAt
-        /// </summary>
-        public string ReservedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerReservation" />
@@ -423,7 +408,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", customerReservation.Id);
 
-            writer.WriteString("created", customerReservation.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, customerReservation.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteString("integrationId", customerReservation.IntegrationId);
 
@@ -433,7 +421,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("totalSales", customerReservation.TotalSales);
 
-            writer.WriteString("lastActivity", customerReservation.LastActivity.ToString(LastActivityFormat));
+            {
+                        writer.WritePropertyName("lastActivity");
+                            JsonSerializer.Serialize(writer, customerReservation.LastActivity, jsonSerializerOptions);
+                        }
 
             if (customerReservation.AttributesOption.IsSet)
             {
@@ -454,7 +445,10 @@ namespace TalonOneSdk.Model
                 writer.WriteBoolean("sandbox", customerReservation.SandboxOption.Value.Value);
 
             if (customerReservation.ReservedAtOption.IsSet)
-                writer.WriteString("reservedAt", customerReservation.ReservedAtOption.Value.Value.ToString(ReservedAtFormat));
+                {
+                            writer.WritePropertyName("reservedAt");
+                                JsonSerializer.Serialize(writer, customerReservation.ReservedAtOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

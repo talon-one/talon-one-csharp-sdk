@@ -340,42 +340,42 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
             }
 
             // StartDate (string) maxLength
             if (this.StartDate != null && this.StartDate.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for StartDate, length must be less than 64.", new [] { "StartDate" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartDate, length must be less than 64.", new [] { "StartDate" });
             }
 
             // SubledgerId (string) maxLength
             if (this.SubledgerId != null && this.SubledgerId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for SubledgerId, length must be less than 64.", new [] { "SubledgerId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SubledgerId, length must be less than 64.", new [] { "SubledgerId" });
             }
 
             // CustomerSessionId (string) maxLength
             if (this.CustomerSessionId != null && this.CustomerSessionId.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for CustomerSessionId, length must be less than 255.", new [] { "CustomerSessionId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerSessionId, length must be less than 255.", new [] { "CustomerSessionId" });
             }
 
             // StoreIntegrationId (string) maxLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
             }
 
             // StoreIntegrationId (string) minLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
             }
 
             yield break;
@@ -396,11 +396,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="LedgerTransactionLogEntryIntegrationAPI" />
@@ -614,7 +609,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("transactionUUID", ledgerTransactionLogEntryIntegrationAPI.TransactionUUID);
 
-            writer.WriteString("created", ledgerTransactionLogEntryIntegrationAPI.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, ledgerTransactionLogEntryIntegrationAPI.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("programId", ledgerTransactionLogEntryIntegrationAPI.ProgramId);
 

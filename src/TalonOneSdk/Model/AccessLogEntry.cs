@@ -138,7 +138,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -158,11 +158,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Time
-        /// </summary>
-        public string TimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="AccessLogEntry" />
@@ -321,7 +316,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("requestUri", accessLogEntry.RequestUri);
 
-            writer.WriteString("time", accessLogEntry.Time.ToString(TimeFormat));
+            {
+                        writer.WritePropertyName("time");
+                            JsonSerializer.Serialize(writer, accessLogEntry.Time, jsonSerializerOptions);
+                        }
 
             writer.WriteString("requestPayload", accessLogEntry.RequestPayload);
 

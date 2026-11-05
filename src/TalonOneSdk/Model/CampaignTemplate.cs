@@ -753,12 +753,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             yield break;
@@ -779,16 +779,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Updated
-        /// </summary>
-        public string UpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CampaignTemplate" />
@@ -1084,7 +1074,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", campaignTemplate.Id);
 
-            writer.WriteString("created", campaignTemplate.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, campaignTemplate.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteNumber("accountId", campaignTemplate.AccountId);
 
@@ -1167,14 +1160,17 @@ namespace TalonOneSdk.Model
 
             if (campaignTemplate.CampaignTypeOption.IsSet)
             {
-                var campaignTypeRawValue = CampaignTemplate.CampaignTypeEnumToJsonValue(campaignTemplate.CampaignTypeOption.Value);
+                var campaignTypeRawValue = CampaignTemplate.CampaignTypeEnumToJsonValue(campaignTemplate.CampaignTypeOption.Value.Value);
                 writer.WriteString("campaignType", campaignTypeRawValue);
             }
             if (campaignTemplate.CampaignsCountOption.IsSet)
                 writer.WriteNumber("campaignsCount", campaignTemplate.CampaignsCountOption.Value.Value);
 
             if (campaignTemplate.UpdatedOption.IsSet)
-                writer.WriteString("updated", campaignTemplate.UpdatedOption.Value.Value.ToString(UpdatedFormat));
+                {
+                            writer.WritePropertyName("updated");
+                                JsonSerializer.Serialize(writer, campaignTemplate.UpdatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (campaignTemplate.UpdatedByOption.IsSet)
                 writer.WriteString("updatedBy", campaignTemplate.UpdatedBy);

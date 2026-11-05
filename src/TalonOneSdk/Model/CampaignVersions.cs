@@ -249,7 +249,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -371,7 +371,7 @@ namespace TalonOneSdk.Model
         {
             if (campaignVersions.RevisionFrontendStateOption.IsSet)
             {
-                var revisionFrontendStateRawValue = CampaignVersions.RevisionFrontendStateEnumToJsonValue(campaignVersions.RevisionFrontendStateOption.Value);
+                var revisionFrontendStateRawValue = CampaignVersions.RevisionFrontendStateEnumToJsonValue(campaignVersions.RevisionFrontendStateOption.Value.Value);
                 writer.WriteString("revisionFrontendState", revisionFrontendStateRawValue);
             }
             if (campaignVersions.ActiveRevisionIdOption.IsSet)

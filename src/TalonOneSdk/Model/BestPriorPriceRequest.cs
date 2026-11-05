@@ -34,7 +34,7 @@ namespace TalonOneSdk.Model
         /// <param name="skus">List of product SKUs to check when determining the best prior price.</param>
         /// <param name="timeframeEndDate">The end date and time that defines the latest time for retrieving historical SKU prices.</param>
         /// <param name="timeframe">The number of days prior to the timeframeEndDate. Only prices within this look back period are considered for the best prior price evaluation.</param>
-        /// <param name="timeframeEndDateType">Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account. </param>
+        /// <param name="timeframeEndDateType">Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account.  For an example, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#best-prior-price-timeframe-selection).  </param>
         /// <param name="target">target</param>
         [JsonConstructor]
         public BestPriorPriceRequest(List<string> skus, DateTime timeframeEndDate, string timeframe, TimeframeEndDateTypeEnum timeframeEndDateType, Option<BestPriorTarget> target = default)
@@ -50,9 +50,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account. 
+        /// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account.  For an example, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#best-prior-price-timeframe-selection).  
         /// </summary>
-        /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account. </value>
+        /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account.  For an example, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#best-prior-price-timeframe-selection).  </value>
         public enum TimeframeEndDateTypeEnum
         {
             /// <summary>
@@ -131,9 +131,9 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account. 
+        /// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account.  For an example, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#best-prior-price-timeframe-selection).  
         /// </summary>
-        /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account. </value>
+        /// <value>Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of the current sales event, as defined by the &#x60;contextId&#x60;. It takes the prices prior to the current sale event into account.  For an example, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#best-prior-price-timeframe-selection).  </value>
         /* <example>sale</example> */
         [JsonPropertyName("timeframeEndDateType")]
         public TimeframeEndDateTypeEnum TimeframeEndDateType { get; set; }
@@ -197,7 +197,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -217,11 +217,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize TimeframeEndDate
-        /// </summary>
-        public string TimeframeEndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="BestPriorPriceRequest" />
@@ -346,7 +341,10 @@ namespace TalonOneSdk.Model
 
             writer.WritePropertyName("skus");
             JsonSerializer.Serialize(writer, bestPriorPriceRequest.Skus, jsonSerializerOptions);
-            writer.WriteString("timeframeEndDate", bestPriorPriceRequest.TimeframeEndDate.ToString(TimeframeEndDateFormat));
+            {
+                        writer.WritePropertyName("timeframeEndDate");
+                            JsonSerializer.Serialize(writer, bestPriorPriceRequest.TimeframeEndDate, jsonSerializerOptions);
+                        }
 
             writer.WriteString("timeframe", bestPriorPriceRequest.Timeframe);
 

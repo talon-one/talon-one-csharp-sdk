@@ -630,12 +630,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             yield break;
@@ -656,16 +656,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize StartTime
-        /// </summary>
-        public string StartTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndTime
-        /// </summary>
-        public string EndTimeFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateCampaign" />
@@ -891,10 +881,16 @@ namespace TalonOneSdk.Model
                 writer.WriteString("description", updateCampaign.Description);
 
             if (updateCampaign.StartTimeOption.IsSet)
-                writer.WriteString("startTime", updateCampaign.StartTimeOption.Value.Value.ToString(StartTimeFormat));
+                {
+                            writer.WritePropertyName("startTime");
+                                JsonSerializer.Serialize(writer, updateCampaign.StartTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (updateCampaign.EndTimeOption.IsSet)
-                writer.WriteString("endTime", updateCampaign.EndTimeOption.Value.Value.ToString(EndTimeFormat));
+                {
+                            writer.WritePropertyName("endTime");
+                                JsonSerializer.Serialize(writer, updateCampaign.EndTimeOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (updateCampaign.AttributesOption.IsSet)
             {
@@ -903,7 +899,7 @@ namespace TalonOneSdk.Model
             }
             if (updateCampaign.StateOption.IsSet)
             {
-                var stateRawValue = UpdateCampaign.StateEnumToJsonValue(updateCampaign.StateOption.Value);
+                var stateRawValue = UpdateCampaign.StateEnumToJsonValue(updateCampaign.StateOption.Value.Value);
                 writer.WriteString("state", stateRawValue);
             }
             if (updateCampaign.ActiveRulesetIdOption.IsSet)
@@ -932,7 +928,7 @@ namespace TalonOneSdk.Model
 
             if (updateCampaign.TypeOption.IsSet)
             {
-                var typeRawValue = UpdateCampaign.TypeEnumToJsonValue(updateCampaign.TypeOption.Value);
+                var typeRawValue = UpdateCampaign.TypeEnumToJsonValue(updateCampaign.TypeOption.Value.Value);
                 writer.WriteString("type", typeRawValue);
             }
             if (updateCampaign.LinkedStoreIdsOption.IsSet)

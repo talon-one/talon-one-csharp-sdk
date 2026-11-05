@@ -180,7 +180,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -200,16 +200,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize CreatedAt
-        /// </summary>
-        public string CreatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize UpdatedAt
-        /// </summary>
-        public string UpdatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CouponFailureSummary" />
@@ -387,9 +377,15 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("summary", couponFailureSummary.Summary);
 
-            writer.WriteString("createdAt", couponFailureSummary.CreatedAt.ToString(CreatedAtFormat));
+            {
+                        writer.WritePropertyName("createdAt");
+                            JsonSerializer.Serialize(writer, couponFailureSummary.CreatedAt, jsonSerializerOptions);
+                        }
 
-            writer.WriteString("updatedAt", couponFailureSummary.UpdatedAt.ToString(UpdatedAtFormat));
+            {
+                        writer.WritePropertyName("updatedAt");
+                            JsonSerializer.Serialize(writer, couponFailureSummary.UpdatedAt, jsonSerializerOptions);
+                        }
 
             if (couponFailureSummary.SessionIDOption.IsSet)
                 writer.WriteString("sessionID", couponFailureSummary.SessionID);

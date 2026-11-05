@@ -504,30 +504,30 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             // StoreIntegrationId (string) maxLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
             }
 
             // StoreIntegrationId (string) minLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
             }
 
             // ReferralCode (string) maxLength
             if (this.ReferralCode != null && this.ReferralCode.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
             }
 
             yield break;
@@ -548,16 +548,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Updated
-        /// </summary>
-        public string UpdatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerSessionV2" />
@@ -797,7 +787,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("id", customerSessionV2.Id);
 
-            writer.WriteString("created", customerSessionV2.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, customerSessionV2.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteString("integrationId", customerSessionV2.IntegrationId);
 
@@ -815,7 +808,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("cartItemAdditionalCostTotal", customerSessionV2.CartItemAdditionalCostTotal);
 
-            writer.WriteString("updated", customerSessionV2.Updated.ToString(UpdatedFormat));
+            {
+                        writer.WritePropertyName("updated");
+                            JsonSerializer.Serialize(writer, customerSessionV2.Updated, jsonSerializerOptions);
+                        }
 
             if (customerSessionV2.ProfileIdOption.IsSet)
                 writer.WriteString("profileId", customerSessionV2.ProfileId);
@@ -848,7 +844,7 @@ namespace TalonOneSdk.Model
             }
             if (customerSessionV2.StateOption.IsSet)
             {
-                var stateRawValue = CustomerSessionV2.StateEnumToJsonValue(customerSessionV2.StateOption.Value);
+                var stateRawValue = CustomerSessionV2.StateEnumToJsonValue(customerSessionV2.StateOption.Value.Value);
                 writer.WriteString("state", stateRawValue);
             }
             if (customerSessionV2.CartItemsOption.IsSet)

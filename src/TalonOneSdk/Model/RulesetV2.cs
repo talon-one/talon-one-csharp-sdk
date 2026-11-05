@@ -240,7 +240,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -260,16 +260,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize ActivatedAt
-        /// </summary>
-        public string ActivatedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="RulesetV2" />
@@ -394,7 +384,10 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("id", rulesetV2.IdOption.Value.Value);
 
             if (rulesetV2.CreatedOption.IsSet)
-                writer.WriteString("created", rulesetV2.CreatedOption.Value.Value.ToString(CreatedFormat));
+                {
+                            writer.WritePropertyName("created");
+                                JsonSerializer.Serialize(writer, rulesetV2.CreatedOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (rulesetV2.UserIdOption.IsSet)
                 writer.WriteNumber("userId", rulesetV2.UserIdOption.Value.Value);
@@ -406,7 +399,10 @@ namespace TalonOneSdk.Model
                 writer.WriteNumber("templateId", rulesetV2.TemplateIdOption.Value.Value);
 
             if (rulesetV2.ActivatedAtOption.IsSet)
-                writer.WriteString("activatedAt", rulesetV2.ActivatedAtOption.Value.Value.ToString(ActivatedAtFormat));
+                {
+                            writer.WritePropertyName("activatedAt");
+                                JsonSerializer.Serialize(writer, rulesetV2.ActivatedAtOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (rulesetV2.StrikethroughRulesOption.IsSet)
             {

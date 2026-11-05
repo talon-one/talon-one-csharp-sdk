@@ -194,12 +194,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CompanyName (string) minLength
             if (this.CompanyName != null && this.CompanyName.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for CompanyName, length must be greater than 1.", new [] { "CompanyName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CompanyName, length must be greater than 1.", new [] { "CompanyName" });
             }
 
             yield break;
@@ -220,11 +220,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize PlanExpires
-        /// </summary>
-        public string PlanExpiresFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateAccount" />
@@ -346,11 +341,14 @@ namespace TalonOneSdk.Model
             }
             if (updateAccount.StateOption.IsSet)
             {
-                var stateRawValue = UpdateAccount.StateEnumToJsonValue(updateAccount.StateOption.Value);
+                var stateRawValue = UpdateAccount.StateEnumToJsonValue(updateAccount.StateOption.Value.Value);
                 writer.WriteString("state", stateRawValue);
             }
             if (updateAccount.PlanExpiresOption.IsSet)
-                writer.WriteString("planExpires", updateAccount.PlanExpiresOption.Value.Value.ToString(PlanExpiresFormat));
+                {
+                            writer.WritePropertyName("planExpires");
+                                JsonSerializer.Serialize(writer, updateAccount.PlanExpiresOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

@@ -367,18 +367,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
             }
 
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             if (this.Name != null) {
@@ -409,16 +409,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize FixedStartDate
-        /// </summary>
-        public string FixedStartDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize EndDate
-        /// </summary>
-        public string EndDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="UpdateAchievementV2" />
@@ -599,19 +589,25 @@ namespace TalonOneSdk.Model
 
             if (updateAchievementV2.RecurrencePolicyOption.IsSet)
             {
-                var recurrencePolicyRawValue = UpdateAchievementV2.RecurrencePolicyEnumToJsonValue(updateAchievementV2.RecurrencePolicyOption.Value);
+                var recurrencePolicyRawValue = UpdateAchievementV2.RecurrencePolicyEnumToJsonValue(updateAchievementV2.RecurrencePolicyOption.Value.Value);
                 writer.WriteString("recurrencePolicy", recurrencePolicyRawValue);
             }
             if (updateAchievementV2.ActivationPolicyOption.IsSet)
             {
-                var activationPolicyRawValue = UpdateAchievementV2.ActivationPolicyEnumToJsonValue(updateAchievementV2.ActivationPolicyOption.Value);
+                var activationPolicyRawValue = UpdateAchievementV2.ActivationPolicyEnumToJsonValue(updateAchievementV2.ActivationPolicyOption.Value.Value);
                 writer.WriteString("activationPolicy", activationPolicyRawValue);
             }
             if (updateAchievementV2.FixedStartDateOption.IsSet)
-                writer.WriteString("fixedStartDate", updateAchievementV2.FixedStartDateOption.Value.Value.ToString(FixedStartDateFormat));
+                {
+                            writer.WritePropertyName("fixedStartDate");
+                                JsonSerializer.Serialize(writer, updateAchievementV2.FixedStartDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (updateAchievementV2.EndDateOption.IsSet)
-                writer.WriteString("endDate", updateAchievementV2.EndDateOption.Value.Value.ToString(EndDateFormat));
+                {
+                            writer.WritePropertyName("endDate");
+                                JsonSerializer.Serialize(writer, updateAchievementV2.EndDateOption.Value.Value, jsonSerializerOptions);
+                            }
 
             if (updateAchievementV2.AllowRollbackAfterCompletionOption.IsSet)
                 writer.WriteBoolean("allowRollbackAfterCompletion", updateAchievementV2.AllowRollbackAfterCompletionOption.Value.Value);

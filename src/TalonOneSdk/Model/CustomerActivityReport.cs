@@ -195,12 +195,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             yield break;
@@ -221,16 +221,6 @@ namespace TalonOneSdk.Model
         {
             OnCreated();
         }
-
-        /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize LastActivity
-        /// </summary>
-        public string LastActivityFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
         /// Deserializes json to <see cref="CustomerActivityReport" />
@@ -431,7 +421,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("integrationId", customerActivityReport.IntegrationId);
 
-            writer.WriteString("created", customerActivityReport.Created.ToString(CreatedFormat));
+            {
+                        writer.WritePropertyName("created");
+                            JsonSerializer.Serialize(writer, customerActivityReport.Created, jsonSerializerOptions);
+                        }
 
             writer.WriteString("name", customerActivityReport.Name);
 
@@ -454,7 +447,10 @@ namespace TalonOneSdk.Model
             writer.WriteString("campaignName", customerActivityReport.CampaignName);
 
             if (customerActivityReport.LastActivityOption.IsSet)
-                writer.WriteString("lastActivity", customerActivityReport.LastActivityOption.Value.Value.ToString(LastActivityFormat));
+                {
+                            writer.WritePropertyName("lastActivity");
+                                JsonSerializer.Serialize(writer, customerActivityReport.LastActivityOption.Value.Value, jsonSerializerOptions);
+                            }
         }
     }
 }

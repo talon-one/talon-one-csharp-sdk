@@ -305,7 +305,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -443,7 +443,7 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, newExperiment.Campaign, jsonSerializerOptions);
             if (newExperiment.AssignmentTypeOption.IsSet)
             {
-                var assignmentTypeRawValue = NewExperiment.AssignmentTypeEnumToJsonValue(newExperiment.AssignmentTypeOption.Value);
+                var assignmentTypeRawValue = NewExperiment.AssignmentTypeEnumToJsonValue(newExperiment.AssignmentTypeOption.Value.Value);
                 writer.WriteString("assignmentType", assignmentTypeRawValue);
             }
             if (newExperiment.IsVariantAssignmentExternalOption.IsSet)

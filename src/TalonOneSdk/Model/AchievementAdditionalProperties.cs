@@ -226,7 +226,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -362,7 +362,7 @@ namespace TalonOneSdk.Model
 
             if (achievementAdditionalProperties.StatusOption.IsSet)
             {
-                var statusRawValue = AchievementAdditionalProperties.StatusEnumToJsonValue(achievementAdditionalProperties.StatusOption.Value);
+                var statusRawValue = AchievementAdditionalProperties.StatusEnumToJsonValue(achievementAdditionalProperties.StatusOption.Value.Value);
                 writer.WriteString("status", statusRawValue);
             }
         }
