@@ -170,6 +170,12 @@ namespace TalonOneSdk.Model
         public long? CreatedBy { get { return this.CreatedByOption.Value; } set { this.CreatedByOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -188,6 +194,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ProfileIntegrationId: ").Append(ProfileIntegrationId).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -197,18 +204,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // SessionIntegrationId (string) maxLength
             if (this.SessionIntegrationId != null && this.SessionIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for SessionIntegrationId, length must be less than 1000.", new [] { "SessionIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SessionIntegrationId, length must be less than 1000.", new [] { "SessionIntegrationId" });
             }
 
             // ProfileIntegrationId (string) maxLength
             if (this.ProfileIntegrationId != null && this.ProfileIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for ProfileIntegrationId, length must be less than 1000.", new [] { "ProfileIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ProfileIntegrationId, length must be less than 1000.", new [] { "ProfileIntegrationId" });
             }
 
             yield break;

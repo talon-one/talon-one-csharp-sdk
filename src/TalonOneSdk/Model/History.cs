@@ -31,14 +31,14 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="History" /> class.
         /// </summary>
-        /// <param name="id">The ID of the historical price.</param>
-        /// <param name="observedAt">The date and time when the price was observed.</param>
-        /// <param name="contextIds">The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </param>
+        /// <param name="id">The ID of the price record.</param>
+        /// <param name="observedAt">The date and time from which the price record is effective.</param>
+        /// <param name="contextIds">The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time from which the price record is effective. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </param>
         /// <param name="price">Price of the item.</param>
         /// <param name="metadata">metadata</param>
         /// <param name="target">target</param>
-        /// <param name="excludedAt">The date and time when the historical price ID was excluded.</param>
-        /// <param name="exclusionReason">The reason for excluding this historical price ID.</param>
+        /// <param name="excludedAt">The date and time when the price record was excluded.</param>
+        /// <param name="exclusionReason">The reason for excluding this price record.</param>
         [JsonConstructor]
         public History(long id, DateTime observedAt, List<string> contextIds, decimal price, BestPriorPriceMetadata metadata, LabelTarget target, Option<DateTime?> excludedAt = default, Option<string> exclusionReason = default)
         {
@@ -56,25 +56,25 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The ID of the historical price.
+        /// The ID of the price record.
         /// </summary>
-        /// <value>The ID of the historical price.</value>
+        /// <value>The ID of the price record.</value>
         /* <example>1</example> */
         [JsonPropertyName("id")]
         public long Id { get; set; }
 
         /// <summary>
-        /// The date and time when the price was observed.
+        /// The date and time from which the price record is effective.
         /// </summary>
-        /// <value>The date and time when the price was observed.</value>
+        /// <value>The date and time from which the price record is effective.</value>
         /* <example>2025-11-10T23:00:00Z</example> */
         [JsonPropertyName("observedAt")]
         public DateTime ObservedAt { get; set; }
 
         /// <summary>
-        /// The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. 
+        /// The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time from which the price record is effective. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. 
         /// </summary>
-        /// <value>The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </value>
+        /// <value>The identifiers of the relevant context (the sales events, e.g. \&quot;Spring Sale\&quot;, \&quot;Summer Sale\&quot;) at the time from which the price record is effective. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price. </value>
         /* <example>[SpringSale, SummerSale2025]</example> */
         [JsonPropertyName("contextIds")]
         public List<string> ContextIds { get; set; }
@@ -107,9 +107,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> ExcludedAtOption { get; private set; }
 
         /// <summary>
-        /// The date and time when the historical price ID was excluded.
+        /// The date and time when the price record was excluded.
         /// </summary>
-        /// <value>The date and time when the historical price ID was excluded.</value>
+        /// <value>The date and time when the price record was excluded.</value>
         /* <example>2025-11-10T23:00:00Z</example> */
         [JsonPropertyName("excludedAt")]
         public DateTime? ExcludedAt { get { return this.ExcludedAtOption.Value; } set { this.ExcludedAtOption = new Option<DateTime?>(value); } }
@@ -122,12 +122,18 @@ namespace TalonOneSdk.Model
         public Option<string> ExclusionReasonOption { get; private set; }
 
         /// <summary>
-        /// The reason for excluding this historical price ID.
+        /// The reason for excluding this price record.
         /// </summary>
-        /// <value>The reason for excluding this historical price ID.</value>
+        /// <value>The reason for excluding this price record.</value>
         /* <example>Incorrect contextID value</example> */
         [JsonPropertyName("exclusionReason")]
         public string ExclusionReason { get { return this.ExclusionReasonOption.Value; } set { this.ExclusionReasonOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -145,6 +151,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Target: ").Append(Target).Append("\n");
             sb.Append("  ExcludedAt: ").Append(ExcludedAt).Append("\n");
             sb.Append("  ExclusionReason: ").Append(ExclusionReason).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -154,7 +161,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

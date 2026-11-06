@@ -24,24 +24,8 @@ namespace TalonOneSdk.Client
         /// The formats used to deserialize the date
         /// </summary>
         public static string[] Formats { get; } = {
-            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK",
-            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffffffK",
-            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffK",
-            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffffK",
-            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffK",
-            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffK",
-            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fK",
-            "yyyy'-'MM'-'dd'T'HH':'mm':'ssK",
-            "yyyy'-'MM'-'dd",
-            "yyyyMMddTHHmmss.fffffffK",
-            "yyyyMMddTHHmmss.ffffffK",
-            "yyyyMMddTHHmmss.fffffK",
-            "yyyyMMddTHHmmss.ffffK",
-            "yyyyMMddTHHmmss.fffK",
-            "yyyyMMddTHHmmss.ffK",
-            "yyyyMMddTHHmmss.fK",
-            "yyyyMMddTHHmmssK",
-            "yyyyMMdd"
+            "yyyy-MM-dd",
+            "yyyy-MM-dd'T'HH:mm:ss.FFFFFFFK",
 
          };
 

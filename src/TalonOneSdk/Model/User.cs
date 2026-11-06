@@ -347,6 +347,12 @@ namespace TalonOneSdk.Model
         public Object AdditionalAttributes { get { return this.AdditionalAttributesOption.Value; } set { this.AdditionalAttributesOption = new Option<Object>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -371,6 +377,7 @@ namespace TalonOneSdk.Model
             sb.Append("  LastAccessed: ").Append(LastAccessed).Append("\n");
             sb.Append("  LatestFeedTimestamp: ").Append(LatestFeedTimestamp).Append("\n");
             sb.Append("  AdditionalAttributes: ").Append(AdditionalAttributes).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -380,7 +387,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

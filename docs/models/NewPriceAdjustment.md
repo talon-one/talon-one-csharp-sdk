@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **ReferenceId** | **string** | A unique reference identifier, e.g. a UUID. | 
 **Price** | **decimal** | The value of the price type applied to the SKU. When set to &#x60;null&#x60;, the defined price type no longer applies to the SKU. | [optional] 
 **CalculatedAt** | **DateTime** | The time at which this price was calculated. If provided, this is used to determine the most recent price adjustment to choose if price adjustments overlap. Defaults to internal creation time if not provided. | [optional] 
-**EffectiveFrom** | **DateTime** | The date and time from which the price adjustment is effective. | [optional] 
-**EffectiveUntil** | **DateTime** | The date and time until which the price adjustment is effective. | [optional] 
+**EffectiveFrom** | **DateTime** | The date and time from which the price adjustment is effective.  **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog.  | [optional] 
+**EffectiveUntil** | **DateTime** | The date and time until which the price adjustment is effective.  **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog.  | [optional] 
 **ContextId** | **string** | Identifier of the context of this price adjustment (the sales event, e.g. \&quot;Summer Sale\&quot;). | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

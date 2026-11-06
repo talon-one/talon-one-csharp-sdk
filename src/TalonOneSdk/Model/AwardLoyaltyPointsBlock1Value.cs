@@ -63,6 +63,12 @@ namespace TalonOneSdk.Model
         public string String { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -70,6 +76,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AwardLoyaltyPointsBlock1Value {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -79,7 +86,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -110,6 +117,8 @@ namespace TalonOneSdk.Model
         /// <exception cref="JsonException"></exception>
         public override AwardLoyaltyPointsBlock1Value Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (utf8JsonReader.TokenType == JsonTokenType.String)
+                return new AwardLoyaltyPointsBlock1Value(utf8JsonReader.GetString());
             int currentDepth = utf8JsonReader.CurrentDepth;
 
             if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
@@ -177,6 +186,16 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public override void Write(Utf8JsonWriter writer, AwardLoyaltyPointsBlock1Value awardLoyaltyPointsBlock1Value, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (awardLoyaltyPointsBlock1Value.Decimal != null)
+            {
+                JsonSerializer.Serialize(writer, awardLoyaltyPointsBlock1Value.Decimal, jsonSerializerOptions);
+                return;
+            }
+            if (awardLoyaltyPointsBlock1Value.String != null)
+            {
+                JsonSerializer.Serialize(writer, awardLoyaltyPointsBlock1Value.String, jsonSerializerOptions);
+                return;
+            }
             writer.WriteStartObject();
 
             WriteProperties(writer, awardLoyaltyPointsBlock1Value, jsonSerializerOptions);

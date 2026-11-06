@@ -85,6 +85,12 @@ namespace TalonOneSdk.Model
         public string Name { get { return this.NameOption.Value; } set { this.NameOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -96,6 +102,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  InviteToken: ").Append(InviteToken).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -105,12 +112,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // InviteToken (string) minLength
             if (this.InviteToken != null && this.InviteToken.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for InviteToken, length must be greater than 1.", new [] { "InviteToken" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for InviteToken, length must be greater than 1.", new [] { "InviteToken" });
             }
 
             yield break;

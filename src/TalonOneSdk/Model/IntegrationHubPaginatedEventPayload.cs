@@ -80,6 +80,12 @@ namespace TalonOneSdk.Model
         public DateTime? BatchedAt { get { return this.BatchedAtOption.Value; } set { this.BatchedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -91,6 +97,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EventType: ").Append(EventType).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  BatchedAt: ").Append(BatchedAt).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -100,7 +107,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

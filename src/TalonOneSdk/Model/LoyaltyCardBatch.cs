@@ -183,6 +183,12 @@ namespace TalonOneSdk.Model
         public CodeGeneratorSettings CardCodeSettings { get { return this.CardCodeSettingsOption.Value; } set { this.CardCodeSettingsOption = new Option<CodeGeneratorSettings>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -195,6 +201,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  CardCodeSettings: ").Append(CardCodeSettings).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -204,30 +211,30 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // NumberOfCards (long) maximum
             if (this.NumberOfCards > (long)20000)
             {
-                yield return new ValidationResult("Invalid value for NumberOfCards, must be a value less than or equal to 20000.", new [] { "NumberOfCards" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NumberOfCards, must be a value less than or equal to 20000.", new [] { "NumberOfCards" });
             }
 
             // NumberOfCards (long) minimum
             if (this.NumberOfCards < (long)1)
             {
-                yield return new ValidationResult("Invalid value for NumberOfCards, must be a value greater than or equal to 1.", new [] { "NumberOfCards" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NumberOfCards, must be a value greater than or equal to 1.", new [] { "NumberOfCards" });
             }
 
             // BatchId (string) maxLength
             if (this.BatchId != null && this.BatchId.Length > 20)
             {
-                yield return new ValidationResult("Invalid value for BatchId, length must be less than 20.", new [] { "BatchId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BatchId, length must be less than 20.", new [] { "BatchId" });
             }
 
             // BatchId (string) minLength
             if (this.BatchId != null && this.BatchId.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for BatchId, length must be greater than 4.", new [] { "BatchId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BatchId, length must be greater than 4.", new [] { "BatchId" });
             }
 
             if (this.BatchIdOption.Value != null) {

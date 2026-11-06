@@ -436,6 +436,12 @@ namespace TalonOneSdk.Model
         public RedeemLoyaltyPointsBlock RedeemLoyaltyPointsBlock { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -443,6 +449,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Block {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -452,7 +459,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
@@ -462,7 +469,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -798,6 +805,18 @@ namespace TalonOneSdk.Model
         {
             writer.WriteStartObject();
 
+            WriteProperties(writer, block, jsonSerializerOptions);
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes the properties of <see cref="Block" />
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="block"></param>
+        /// <param name="jsonSerializerOptions"></param>
+        public void WriteProperties(Utf8JsonWriter writer, Block block, JsonSerializerOptions jsonSerializerOptions)
+        {
             if (block.GroupBlock != null)
             {
                 GroupBlockJsonConverter groupBlockJsonConverter = (GroupBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(block.GroupBlock.GetType()));
@@ -959,20 +978,6 @@ namespace TalonOneSdk.Model
                 RedeemLoyaltyPointsBlockJsonConverter redeemLoyaltyPointsBlockJsonConverter = (RedeemLoyaltyPointsBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(block.RedeemLoyaltyPointsBlock.GetType()));
                 redeemLoyaltyPointsBlockJsonConverter.WriteProperties(writer, block.RedeemLoyaltyPointsBlock, jsonSerializerOptions);
             }
-
-            WriteProperties(writer, block, jsonSerializerOptions);
-            writer.WriteEndObject();
-        }
-
-        /// <summary>
-        /// Serializes the properties of <see cref="Block" />
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="block"></param>
-        /// <param name="jsonSerializerOptions"></param>
-        public void WriteProperties(Utf8JsonWriter writer, Block block, JsonSerializerOptions jsonSerializerOptions)
-        {
-
         }
     }
 }

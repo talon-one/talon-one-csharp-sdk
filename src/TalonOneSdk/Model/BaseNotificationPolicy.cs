@@ -31,70 +31,70 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="expiringCouponsNotificationPolicy"></param>
-        internal BaseNotificationPolicy(ExpiringCouponsNotificationPolicy expiringCouponsNotificationPolicy)
+        /// <param name="couponCodeExpiringNotificationPolicy"></param>
+        internal BaseNotificationPolicy(CouponCodeExpiringNotificationPolicy couponCodeExpiringNotificationPolicy)
         {
-            ExpiringCouponsNotificationPolicy = expiringCouponsNotificationPolicy;
+            CouponCodeExpiringNotificationPolicy = couponCodeExpiringNotificationPolicy;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="cardExpiringPointsNotificationPolicy"></param>
-        internal BaseNotificationPolicy(CardExpiringPointsNotificationPolicy cardExpiringPointsNotificationPolicy)
+        /// <param name="loyaltyCardPointsExpiringNotificationPolicy"></param>
+        internal BaseNotificationPolicy(LoyaltyCardPointsExpiringNotificationPolicy loyaltyCardPointsExpiringNotificationPolicy)
         {
-            CardExpiringPointsNotificationPolicy = cardExpiringPointsNotificationPolicy;
+            LoyaltyCardPointsExpiringNotificationPolicy = loyaltyCardPointsExpiringNotificationPolicy;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="expiringPointsNotificationPolicy"></param>
-        internal BaseNotificationPolicy(ExpiringPointsNotificationPolicy expiringPointsNotificationPolicy)
+        /// <param name="loyaltyPointsExpiringNotificationPolicy"></param>
+        internal BaseNotificationPolicy(LoyaltyPointsExpiringNotificationPolicy loyaltyPointsExpiringNotificationPolicy)
         {
-            ExpiringPointsNotificationPolicy = expiringPointsNotificationPolicy;
+            LoyaltyPointsExpiringNotificationPolicy = loyaltyPointsExpiringNotificationPolicy;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="addedDeductedPointsNotificationPolicy"></param>
-        internal BaseNotificationPolicy(AddedDeductedPointsNotificationPolicy addedDeductedPointsNotificationPolicy)
+        /// <param name="loyaltyPointsAddedDeductedNotificationPolicy"></param>
+        internal BaseNotificationPolicy(LoyaltyPointsAddedDeductedNotificationPolicy loyaltyPointsAddedDeductedNotificationPolicy)
         {
-            AddedDeductedPointsNotificationPolicy = addedDeductedPointsNotificationPolicy;
+            LoyaltyPointsAddedDeductedNotificationPolicy = loyaltyPointsAddedDeductedNotificationPolicy;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="cardAddedDeductedPointsNotificationPolicy"></param>
-        internal BaseNotificationPolicy(CardAddedDeductedPointsNotificationPolicy cardAddedDeductedPointsNotificationPolicy)
+        /// <param name="loyaltyCardPointsAddedDeductedNotificationPolicy"></param>
+        internal BaseNotificationPolicy(LoyaltyCardPointsAddedDeductedNotificationPolicy loyaltyCardPointsAddedDeductedNotificationPolicy)
         {
-            CardAddedDeductedPointsNotificationPolicy = cardAddedDeductedPointsNotificationPolicy;
+            LoyaltyCardPointsAddedDeductedNotificationPolicy = loyaltyCardPointsAddedDeductedNotificationPolicy;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="addedDeductedPointsBalancesNotificationPolicy"></param>
-        internal BaseNotificationPolicy(AddedDeductedPointsBalancesNotificationPolicy addedDeductedPointsBalancesNotificationPolicy)
+        /// <param name="loyaltyAddedDeductedPointsBalancesNotificationPolicy"></param>
+        internal BaseNotificationPolicy(LoyaltyAddedDeductedPointsBalancesNotificationPolicy loyaltyAddedDeductedPointsBalancesNotificationPolicy)
         {
-            AddedDeductedPointsBalancesNotificationPolicy = addedDeductedPointsBalancesNotificationPolicy;
+            LoyaltyAddedDeductedPointsBalancesNotificationPolicy = loyaltyAddedDeductedPointsBalancesNotificationPolicy;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="cardAddedDeductedPointsBalancesNotificationPolicy"></param>
-        internal BaseNotificationPolicy(CardAddedDeductedPointsBalancesNotificationPolicy cardAddedDeductedPointsBalancesNotificationPolicy)
+        /// <param name="loyaltyCardAddedDeductedPointsBalancesNotificationPolicy"></param>
+        internal BaseNotificationPolicy(LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy loyaltyCardAddedDeductedPointsBalancesNotificationPolicy)
         {
-            CardAddedDeductedPointsBalancesNotificationPolicy = cardAddedDeductedPointsBalancesNotificationPolicy;
+            LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy = loyaltyCardAddedDeductedPointsBalancesNotificationPolicy;
             OnCreated();
         }
 
@@ -111,20 +111,20 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="catalogsStrikethroughNotificationPolicy"></param>
-        internal BaseNotificationPolicy(CatalogsStrikethroughNotificationPolicy catalogsStrikethroughNotificationPolicy)
+        /// <param name="strikethroughPriceNotificationPolicy"></param>
+        internal BaseNotificationPolicy(StrikethroughPriceNotificationPolicy strikethroughPriceNotificationPolicy)
         {
-            CatalogsStrikethroughNotificationPolicy = catalogsStrikethroughNotificationPolicy;
+            StrikethroughPriceNotificationPolicy = strikethroughPriceNotificationPolicy;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseNotificationPolicy" /> class.
         /// </summary>
-        /// <param name="pendingPointsNotificationPolicy"></param>
-        internal BaseNotificationPolicy(PendingPointsNotificationPolicy pendingPointsNotificationPolicy)
+        /// <param name="loyaltyPointsPendingToActiveNotificationPolicy"></param>
+        internal BaseNotificationPolicy(LoyaltyPointsPendingToActiveNotificationPolicy loyaltyPointsPendingToActiveNotificationPolicy)
         {
-            PendingPointsNotificationPolicy = pendingPointsNotificationPolicy;
+            LoyaltyPointsPendingToActiveNotificationPolicy = loyaltyPointsPendingToActiveNotificationPolicy;
             OnCreated();
         }
 
@@ -171,39 +171,39 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets ExpiringCouponsNotificationPolicy
+        /// Gets or Sets CouponCodeExpiringNotificationPolicy
         /// </summary>
-        public ExpiringCouponsNotificationPolicy ExpiringCouponsNotificationPolicy { get; set; }
+        public CouponCodeExpiringNotificationPolicy CouponCodeExpiringNotificationPolicy { get; set; }
 
         /// <summary>
-        /// Gets or Sets CardExpiringPointsNotificationPolicy
+        /// Gets or Sets LoyaltyCardPointsExpiringNotificationPolicy
         /// </summary>
-        public CardExpiringPointsNotificationPolicy CardExpiringPointsNotificationPolicy { get; set; }
+        public LoyaltyCardPointsExpiringNotificationPolicy LoyaltyCardPointsExpiringNotificationPolicy { get; set; }
 
         /// <summary>
-        /// Gets or Sets ExpiringPointsNotificationPolicy
+        /// Gets or Sets LoyaltyPointsExpiringNotificationPolicy
         /// </summary>
-        public ExpiringPointsNotificationPolicy ExpiringPointsNotificationPolicy { get; set; }
+        public LoyaltyPointsExpiringNotificationPolicy LoyaltyPointsExpiringNotificationPolicy { get; set; }
 
         /// <summary>
-        /// Gets or Sets AddedDeductedPointsNotificationPolicy
+        /// Gets or Sets LoyaltyPointsAddedDeductedNotificationPolicy
         /// </summary>
-        public AddedDeductedPointsNotificationPolicy AddedDeductedPointsNotificationPolicy { get; set; }
+        public LoyaltyPointsAddedDeductedNotificationPolicy LoyaltyPointsAddedDeductedNotificationPolicy { get; set; }
 
         /// <summary>
-        /// Gets or Sets CardAddedDeductedPointsNotificationPolicy
+        /// Gets or Sets LoyaltyCardPointsAddedDeductedNotificationPolicy
         /// </summary>
-        public CardAddedDeductedPointsNotificationPolicy CardAddedDeductedPointsNotificationPolicy { get; set; }
+        public LoyaltyCardPointsAddedDeductedNotificationPolicy LoyaltyCardPointsAddedDeductedNotificationPolicy { get; set; }
 
         /// <summary>
-        /// Gets or Sets AddedDeductedPointsBalancesNotificationPolicy
+        /// Gets or Sets LoyaltyAddedDeductedPointsBalancesNotificationPolicy
         /// </summary>
-        public AddedDeductedPointsBalancesNotificationPolicy AddedDeductedPointsBalancesNotificationPolicy { get; set; }
+        public LoyaltyAddedDeductedPointsBalancesNotificationPolicy LoyaltyAddedDeductedPointsBalancesNotificationPolicy { get; set; }
 
         /// <summary>
-        /// Gets or Sets CardAddedDeductedPointsBalancesNotificationPolicy
+        /// Gets or Sets LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy
         /// </summary>
-        public CardAddedDeductedPointsBalancesNotificationPolicy CardAddedDeductedPointsBalancesNotificationPolicy { get; set; }
+        public LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy { get; set; }
 
         /// <summary>
         /// Gets or Sets CouponsNotificationPolicy
@@ -211,14 +211,14 @@ namespace TalonOneSdk.Model
         public CouponsNotificationPolicy CouponsNotificationPolicy { get; set; }
 
         /// <summary>
-        /// Gets or Sets CatalogsStrikethroughNotificationPolicy
+        /// Gets or Sets StrikethroughPriceNotificationPolicy
         /// </summary>
-        public CatalogsStrikethroughNotificationPolicy CatalogsStrikethroughNotificationPolicy { get; set; }
+        public StrikethroughPriceNotificationPolicy StrikethroughPriceNotificationPolicy { get; set; }
 
         /// <summary>
-        /// Gets or Sets PendingPointsNotificationPolicy
+        /// Gets or Sets LoyaltyPointsPendingToActiveNotificationPolicy
         /// </summary>
-        public PendingPointsNotificationPolicy PendingPointsNotificationPolicy { get; set; }
+        public LoyaltyPointsPendingToActiveNotificationPolicy LoyaltyPointsPendingToActiveNotificationPolicy { get; set; }
 
         /// <summary>
         /// Gets or Sets CampaignNotificationPolicy
@@ -241,6 +241,12 @@ namespace TalonOneSdk.Model
         public TierWillDowngradeNotificationPolicy TierWillDowngradeNotificationPolicy { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -248,6 +254,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class BaseNotificationPolicy {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -257,7 +264,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -295,16 +302,16 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            ExpiringCouponsNotificationPolicy expiringCouponsNotificationPolicy = default;
-            CardExpiringPointsNotificationPolicy cardExpiringPointsNotificationPolicy = default;
-            ExpiringPointsNotificationPolicy expiringPointsNotificationPolicy = default;
-            AddedDeductedPointsNotificationPolicy addedDeductedPointsNotificationPolicy = default;
-            CardAddedDeductedPointsNotificationPolicy cardAddedDeductedPointsNotificationPolicy = default;
-            AddedDeductedPointsBalancesNotificationPolicy addedDeductedPointsBalancesNotificationPolicy = default;
-            CardAddedDeductedPointsBalancesNotificationPolicy cardAddedDeductedPointsBalancesNotificationPolicy = default;
+            CouponCodeExpiringNotificationPolicy couponCodeExpiringNotificationPolicy = default;
+            LoyaltyCardPointsExpiringNotificationPolicy loyaltyCardPointsExpiringNotificationPolicy = default;
+            LoyaltyPointsExpiringNotificationPolicy loyaltyPointsExpiringNotificationPolicy = default;
+            LoyaltyPointsAddedDeductedNotificationPolicy loyaltyPointsAddedDeductedNotificationPolicy = default;
+            LoyaltyCardPointsAddedDeductedNotificationPolicy loyaltyCardPointsAddedDeductedNotificationPolicy = default;
+            LoyaltyAddedDeductedPointsBalancesNotificationPolicy loyaltyAddedDeductedPointsBalancesNotificationPolicy = default;
+            LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy loyaltyCardAddedDeductedPointsBalancesNotificationPolicy = default;
             CouponsNotificationPolicy couponsNotificationPolicy = default;
-            CatalogsStrikethroughNotificationPolicy catalogsStrikethroughNotificationPolicy = default;
-            PendingPointsNotificationPolicy pendingPointsNotificationPolicy = default;
+            StrikethroughPriceNotificationPolicy strikethroughPriceNotificationPolicy = default;
+            LoyaltyPointsPendingToActiveNotificationPolicy loyaltyPointsPendingToActiveNotificationPolicy = default;
             CampaignNotificationPolicy campaignNotificationPolicy = default;
             TierDowngradeNotificationPolicy tierDowngradeNotificationPolicy = default;
             TierUpgradeNotificationPolicy tierUpgradeNotificationPolicy = default;
@@ -321,35 +328,35 @@ namespace TalonOneSdk.Model
 
                 if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderExpiringCouponsNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<ExpiringCouponsNotificationPolicy>(ref utf8JsonReaderExpiringCouponsNotificationPolicy, jsonSerializerOptions, out expiringCouponsNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderCouponCodeExpiringNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<CouponCodeExpiringNotificationPolicy>(ref utf8JsonReaderCouponCodeExpiringNotificationPolicy, jsonSerializerOptions, out couponCodeExpiringNotificationPolicy);
 
-                    Utf8JsonReader utf8JsonReaderCardExpiringPointsNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CardExpiringPointsNotificationPolicy>(ref utf8JsonReaderCardExpiringPointsNotificationPolicy, jsonSerializerOptions, out cardExpiringPointsNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderLoyaltyCardPointsExpiringNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<LoyaltyCardPointsExpiringNotificationPolicy>(ref utf8JsonReaderLoyaltyCardPointsExpiringNotificationPolicy, jsonSerializerOptions, out loyaltyCardPointsExpiringNotificationPolicy);
 
-                    Utf8JsonReader utf8JsonReaderExpiringPointsNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<ExpiringPointsNotificationPolicy>(ref utf8JsonReaderExpiringPointsNotificationPolicy, jsonSerializerOptions, out expiringPointsNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderLoyaltyPointsExpiringNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<LoyaltyPointsExpiringNotificationPolicy>(ref utf8JsonReaderLoyaltyPointsExpiringNotificationPolicy, jsonSerializerOptions, out loyaltyPointsExpiringNotificationPolicy);
 
-                    Utf8JsonReader utf8JsonReaderAddedDeductedPointsNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AddedDeductedPointsNotificationPolicy>(ref utf8JsonReaderAddedDeductedPointsNotificationPolicy, jsonSerializerOptions, out addedDeductedPointsNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderLoyaltyPointsAddedDeductedNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<LoyaltyPointsAddedDeductedNotificationPolicy>(ref utf8JsonReaderLoyaltyPointsAddedDeductedNotificationPolicy, jsonSerializerOptions, out loyaltyPointsAddedDeductedNotificationPolicy);
 
-                    Utf8JsonReader utf8JsonReaderCardAddedDeductedPointsNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CardAddedDeductedPointsNotificationPolicy>(ref utf8JsonReaderCardAddedDeductedPointsNotificationPolicy, jsonSerializerOptions, out cardAddedDeductedPointsNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderLoyaltyCardPointsAddedDeductedNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<LoyaltyCardPointsAddedDeductedNotificationPolicy>(ref utf8JsonReaderLoyaltyCardPointsAddedDeductedNotificationPolicy, jsonSerializerOptions, out loyaltyCardPointsAddedDeductedNotificationPolicy);
 
-                    Utf8JsonReader utf8JsonReaderAddedDeductedPointsBalancesNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<AddedDeductedPointsBalancesNotificationPolicy>(ref utf8JsonReaderAddedDeductedPointsBalancesNotificationPolicy, jsonSerializerOptions, out addedDeductedPointsBalancesNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderLoyaltyAddedDeductedPointsBalancesNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<LoyaltyAddedDeductedPointsBalancesNotificationPolicy>(ref utf8JsonReaderLoyaltyAddedDeductedPointsBalancesNotificationPolicy, jsonSerializerOptions, out loyaltyAddedDeductedPointsBalancesNotificationPolicy);
 
-                    Utf8JsonReader utf8JsonReaderCardAddedDeductedPointsBalancesNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CardAddedDeductedPointsBalancesNotificationPolicy>(ref utf8JsonReaderCardAddedDeductedPointsBalancesNotificationPolicy, jsonSerializerOptions, out cardAddedDeductedPointsBalancesNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderLoyaltyCardAddedDeductedPointsBalancesNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy>(ref utf8JsonReaderLoyaltyCardAddedDeductedPointsBalancesNotificationPolicy, jsonSerializerOptions, out loyaltyCardAddedDeductedPointsBalancesNotificationPolicy);
 
                     Utf8JsonReader utf8JsonReaderCouponsNotificationPolicy = utf8JsonReader;
                     ClientUtils.TryDeserialize<CouponsNotificationPolicy>(ref utf8JsonReaderCouponsNotificationPolicy, jsonSerializerOptions, out couponsNotificationPolicy);
 
-                    Utf8JsonReader utf8JsonReaderCatalogsStrikethroughNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CatalogsStrikethroughNotificationPolicy>(ref utf8JsonReaderCatalogsStrikethroughNotificationPolicy, jsonSerializerOptions, out catalogsStrikethroughNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderStrikethroughPriceNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<StrikethroughPriceNotificationPolicy>(ref utf8JsonReaderStrikethroughPriceNotificationPolicy, jsonSerializerOptions, out strikethroughPriceNotificationPolicy);
 
-                    Utf8JsonReader utf8JsonReaderPendingPointsNotificationPolicy = utf8JsonReader;
-                    ClientUtils.TryDeserialize<PendingPointsNotificationPolicy>(ref utf8JsonReaderPendingPointsNotificationPolicy, jsonSerializerOptions, out pendingPointsNotificationPolicy);
+                    Utf8JsonReader utf8JsonReaderLoyaltyPointsPendingToActiveNotificationPolicy = utf8JsonReader;
+                    ClientUtils.TryDeserialize<LoyaltyPointsPendingToActiveNotificationPolicy>(ref utf8JsonReaderLoyaltyPointsPendingToActiveNotificationPolicy, jsonSerializerOptions, out loyaltyPointsPendingToActiveNotificationPolicy);
 
                     Utf8JsonReader utf8JsonReaderCampaignNotificationPolicy = utf8JsonReader;
                     ClientUtils.TryDeserialize<CampaignNotificationPolicy>(ref utf8JsonReaderCampaignNotificationPolicy, jsonSerializerOptions, out campaignNotificationPolicy);
@@ -386,35 +393,35 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (expiringCouponsNotificationPolicy != null)
-                return new BaseNotificationPolicy(expiringCouponsNotificationPolicy);
+            if (couponCodeExpiringNotificationPolicy != null)
+                return new BaseNotificationPolicy(couponCodeExpiringNotificationPolicy);
 
-            if (cardExpiringPointsNotificationPolicy != null)
-                return new BaseNotificationPolicy(cardExpiringPointsNotificationPolicy);
+            if (loyaltyCardPointsExpiringNotificationPolicy != null)
+                return new BaseNotificationPolicy(loyaltyCardPointsExpiringNotificationPolicy);
 
-            if (expiringPointsNotificationPolicy != null)
-                return new BaseNotificationPolicy(expiringPointsNotificationPolicy);
+            if (loyaltyPointsExpiringNotificationPolicy != null)
+                return new BaseNotificationPolicy(loyaltyPointsExpiringNotificationPolicy);
 
-            if (addedDeductedPointsNotificationPolicy != null)
-                return new BaseNotificationPolicy(addedDeductedPointsNotificationPolicy);
+            if (loyaltyPointsAddedDeductedNotificationPolicy != null)
+                return new BaseNotificationPolicy(loyaltyPointsAddedDeductedNotificationPolicy);
 
-            if (cardAddedDeductedPointsNotificationPolicy != null)
-                return new BaseNotificationPolicy(cardAddedDeductedPointsNotificationPolicy);
+            if (loyaltyCardPointsAddedDeductedNotificationPolicy != null)
+                return new BaseNotificationPolicy(loyaltyCardPointsAddedDeductedNotificationPolicy);
 
-            if (addedDeductedPointsBalancesNotificationPolicy != null)
-                return new BaseNotificationPolicy(addedDeductedPointsBalancesNotificationPolicy);
+            if (loyaltyAddedDeductedPointsBalancesNotificationPolicy != null)
+                return new BaseNotificationPolicy(loyaltyAddedDeductedPointsBalancesNotificationPolicy);
 
-            if (cardAddedDeductedPointsBalancesNotificationPolicy != null)
-                return new BaseNotificationPolicy(cardAddedDeductedPointsBalancesNotificationPolicy);
+            if (loyaltyCardAddedDeductedPointsBalancesNotificationPolicy != null)
+                return new BaseNotificationPolicy(loyaltyCardAddedDeductedPointsBalancesNotificationPolicy);
 
             if (couponsNotificationPolicy != null)
                 return new BaseNotificationPolicy(couponsNotificationPolicy);
 
-            if (catalogsStrikethroughNotificationPolicy != null)
-                return new BaseNotificationPolicy(catalogsStrikethroughNotificationPolicy);
+            if (strikethroughPriceNotificationPolicy != null)
+                return new BaseNotificationPolicy(strikethroughPriceNotificationPolicy);
 
-            if (pendingPointsNotificationPolicy != null)
-                return new BaseNotificationPolicy(pendingPointsNotificationPolicy);
+            if (loyaltyPointsPendingToActiveNotificationPolicy != null)
+                return new BaseNotificationPolicy(loyaltyPointsPendingToActiveNotificationPolicy);
 
             if (campaignNotificationPolicy != null)
                 return new BaseNotificationPolicy(campaignNotificationPolicy);

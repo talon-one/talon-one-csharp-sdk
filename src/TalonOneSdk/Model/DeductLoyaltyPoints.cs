@@ -101,6 +101,12 @@ namespace TalonOneSdk.Model
         public long? ApplicationId { get { return this.ApplicationIdOption.Value; } set { this.ApplicationIdOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -112,6 +118,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  SubledgerId: ").Append(SubledgerId).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -121,18 +128,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Points (decimal) maximum
             if (this.Points > (decimal)999999999999.99)
             {
-                yield return new ValidationResult("Invalid value for Points, must be a value less than or equal to 999999999999.99.", new [] { "Points" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Points, must be a value less than or equal to 999999999999.99.", new [] { "Points" });
             }
 
             // Points (decimal) minimum
             if (this.Points < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for Points, must be a value greater than 0.", new [] { "Points" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Points, must be a value greater than 0.", new [] { "Points" });
             }
 
             yield break;

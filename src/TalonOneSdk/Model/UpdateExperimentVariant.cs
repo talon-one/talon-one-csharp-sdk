@@ -35,14 +35,16 @@ namespace TalonOneSdk.Model
         /// <param name="name">The name of this variant.</param>
         /// <param name="ruleset">ruleset</param>
         /// <param name="weight">The percentage split of this variant. For &#x60;random&#x60; assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for &#x60;audience&#x60; and &#x60;external&#x60; assignment. </param>
+        /// <param name="order">The position of this variant in the experiment. The variant with &#x60;order: 0&#x60; is the primary variant. </param>
         /// <param name="audienceId">The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. </param>
         [JsonConstructor]
-        public UpdateExperimentVariant(long id, string name, NewRuleset ruleset, long weight, Option<long?> audienceId = default)
+        public UpdateExperimentVariant(long id, string name, NewRuleset ruleset, long weight, Option<long?> order = default, Option<long?> audienceId = default)
         {
             Id = id;
             Name = name;
             Ruleset = ruleset;
             Weight = weight;
+            OrderOption = order;
             AudienceIdOption = audienceId;
             OnCreated();
         }
@@ -79,6 +81,21 @@ namespace TalonOneSdk.Model
         public long Weight { get; set; }
 
         /// <summary>
+        /// Used to track the state of Order
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> OrderOption { get; private set; }
+
+        /// <summary>
+        /// The position of this variant in the experiment. The variant with &#x60;order: 0&#x60; is the primary variant. 
+        /// </summary>
+        /// <value>The position of this variant in the experiment. The variant with &#x60;order: 0&#x60; is the primary variant. </value>
+        /* <example>0</example> */
+        [JsonPropertyName("order")]
+        public long? Order { get { return this.OrderOption.Value; } set { this.OrderOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Used to track the state of AudienceId
         /// </summary>
         [JsonIgnore]
@@ -94,6 +111,12 @@ namespace TalonOneSdk.Model
         public long? AudienceId { get { return this.AudienceIdOption.Value; } set { this.AudienceIdOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -105,7 +128,9 @@ namespace TalonOneSdk.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
             sb.Append("  Weight: ").Append(Weight).Append("\n");
+            sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -115,30 +140,36 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
             }
 
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             // Weight (long) maximum
             if (this.Weight > (long)99)
             {
-                yield return new ValidationResult("Invalid value for Weight, must be a value less than or equal to 99.", new [] { "Weight" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Weight, must be a value less than or equal to 99.", new [] { "Weight" });
             }
 
             // Weight (long) minimum
             if (this.Weight < (long)0)
             {
-                yield return new ValidationResult("Invalid value for Weight, must be a value greater than or equal to 0.", new [] { "Weight" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Weight, must be a value greater than or equal to 0.", new [] { "Weight" });
+            }
+
+            // Order (long) minimum
+            if (this.OrderOption.IsSet && this.OrderOption.Value < (long)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Order, must be a value greater than or equal to 0.", new [] { "Order" });
             }
 
             yield break;
@@ -181,6 +212,7 @@ namespace TalonOneSdk.Model
             Option<string> name = default;
             Option<NewRuleset> ruleset = default;
             Option<long?> weight = default;
+            Option<long?> order = default;
             Option<long?> audienceId = default;
 
             while (utf8JsonReader.Read())
@@ -209,6 +241,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "weight":
                             weight = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "order":
+                            order = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "audienceId":
                             audienceId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -243,7 +278,7 @@ namespace TalonOneSdk.Model
             if (weight.IsSet && weight.Value == null)
                 throw new JsonException("Property is not nullable for class UpdateExperimentVariant: weight.");
 
-            return new UpdateExperimentVariant(id.Value.Value, name.Value, ruleset.Value, weight.Value.Value, audienceId);
+            return new UpdateExperimentVariant(id.Value.Value, name.Value, ruleset.Value, weight.Value.Value, order, audienceId);
         }
 
         /// <summary>
@@ -281,6 +316,9 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("ruleset");
             JsonSerializer.Serialize(writer, updateExperimentVariant.Ruleset, jsonSerializerOptions);
             writer.WriteNumber("weight", updateExperimentVariant.Weight);
+
+            if (updateExperimentVariant.OrderOption.IsSet)
+                writer.WriteNumber("order", updateExperimentVariant.OrderOption.Value.Value);
 
             if (updateExperimentVariant.AudienceIdOption.IsSet)
                 writer.WriteNumber("audienceId", updateExperimentVariant.AudienceIdOption.Value.Value);

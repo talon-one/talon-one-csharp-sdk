@@ -285,6 +285,12 @@ namespace TalonOneSdk.Model
         public string ValidityDuration { get { return this.ValidityDurationOption.Value; } set { this.ValidityDurationOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -307,6 +313,7 @@ namespace TalonOneSdk.Model
             sb.Append("  RulesetId: ").Append(RulesetId).Append("\n");
             sb.Append("  RuleName: ").Append(RuleName).Append("\n");
             sb.Append("  ValidityDuration: ").Append(ValidityDuration).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -316,18 +323,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CardIdentifier (string) maxLength
             if (this.CardIdentifier != null && this.CardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
             }
 
             // CardIdentifier (string) minLength
             if (this.CardIdentifier != null && this.CardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
             }
 
             if (this.CardIdentifier != null) {
@@ -343,25 +350,25 @@ namespace TalonOneSdk.Model
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
             }
 
             // StartDate (string) maxLength
             if (this.StartDate != null && this.StartDate.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for StartDate, length must be less than 64.", new [] { "StartDate" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StartDate, length must be less than 64.", new [] { "StartDate" });
             }
 
             // SubledgerId (string) maxLength
             if (this.SubledgerId != null && this.SubledgerId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for SubledgerId, length must be less than 64.", new [] { "SubledgerId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SubledgerId, length must be less than 64.", new [] { "SubledgerId" });
             }
 
             // CustomerSessionId (string) maxLength
             if (this.CustomerSessionId != null && this.CustomerSessionId.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for CustomerSessionId, length must be less than 255.", new [] { "CustomerSessionId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerSessionId, length must be less than 255.", new [] { "CustomerSessionId" });
             }
 
             yield break;

@@ -186,6 +186,12 @@ namespace TalonOneSdk.Model
         public GeoJSONGeometryCollection GeoJSONGeometryCollection { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -193,6 +199,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class GeoJSONGeometry {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -202,7 +209,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
@@ -212,7 +219,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -341,6 +348,18 @@ namespace TalonOneSdk.Model
         {
             writer.WriteStartObject();
 
+            WriteProperties(writer, geoJSONGeometry, jsonSerializerOptions);
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes the properties of <see cref="GeoJSONGeometry" />
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="geoJSONGeometry"></param>
+        /// <param name="jsonSerializerOptions"></param>
+        public void WriteProperties(Utf8JsonWriter writer, GeoJSONGeometry geoJSONGeometry, JsonSerializerOptions jsonSerializerOptions)
+        {
             if (geoJSONGeometry.GeoJSONPoint != null)
             {
                 GeoJSONPointJsonConverter geoJSONPointJsonConverter = (GeoJSONPointJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(geoJSONGeometry.GeoJSONPoint.GetType()));
@@ -364,20 +383,6 @@ namespace TalonOneSdk.Model
                 GeoJSONGeometryCollectionJsonConverter geoJSONGeometryCollectionJsonConverter = (GeoJSONGeometryCollectionJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(geoJSONGeometry.GeoJSONGeometryCollection.GetType()));
                 geoJSONGeometryCollectionJsonConverter.WriteProperties(writer, geoJSONGeometry.GeoJSONGeometryCollection, jsonSerializerOptions);
             }
-
-            WriteProperties(writer, geoJSONGeometry, jsonSerializerOptions);
-            writer.WriteEndObject();
-        }
-
-        /// <summary>
-        /// Serializes the properties of <see cref="GeoJSONGeometry" />
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="geoJSONGeometry"></param>
-        /// <param name="jsonSerializerOptions"></param>
-        public void WriteProperties(Utf8JsonWriter writer, GeoJSONGeometry geoJSONGeometry, JsonSerializerOptions jsonSerializerOptions)
-        {
-
         }
     }
 }

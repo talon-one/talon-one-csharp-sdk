@@ -273,6 +273,12 @@ namespace TalonOneSdk.Model
         public FilterAndMapValuesSelectorStep FilterAndMapValuesSelectorStep { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -280,6 +286,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SelectorStep {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -289,7 +296,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
@@ -299,7 +306,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -455,6 +462,18 @@ namespace TalonOneSdk.Model
         {
             writer.WriteStartObject();
 
+            WriteProperties(writer, selectorStep, jsonSerializerOptions);
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes the properties of <see cref="SelectorStep" />
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="selectorStep"></param>
+        /// <param name="jsonSerializerOptions"></param>
+        public void WriteProperties(Utf8JsonWriter writer, SelectorStep selectorStep, JsonSerializerOptions jsonSerializerOptions)
+        {
             if (selectorStep.FilterSelectorStep != null)
             {
                 FilterSelectorStepJsonConverter filterSelectorStepJsonConverter = (FilterSelectorStepJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(selectorStep.FilterSelectorStep.GetType()));
@@ -496,20 +515,6 @@ namespace TalonOneSdk.Model
                 FilterAndMapValuesSelectorStepJsonConverter filterAndMapValuesSelectorStepJsonConverter = (FilterAndMapValuesSelectorStepJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(selectorStep.FilterAndMapValuesSelectorStep.GetType()));
                 filterAndMapValuesSelectorStepJsonConverter.WriteProperties(writer, selectorStep.FilterAndMapValuesSelectorStep, jsonSerializerOptions);
             }
-
-            WriteProperties(writer, selectorStep, jsonSerializerOptions);
-            writer.WriteEndObject();
-        }
-
-        /// <summary>
-        /// Serializes the properties of <see cref="SelectorStep" />
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="selectorStep"></param>
-        /// <param name="jsonSerializerOptions"></param>
-        public void WriteProperties(Utf8JsonWriter writer, SelectorStep selectorStep, JsonSerializerOptions jsonSerializerOptions)
-        {
-
         }
     }
 }

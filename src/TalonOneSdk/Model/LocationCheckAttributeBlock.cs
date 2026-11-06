@@ -24,24 +24,113 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// A block variant of &#x60;CheckAttributeBlock&#x60; for operators that check whether a geographical location is inside a set of geometric areas.
+    /// LocationCheckAttributeBlock
     /// </summary>
     public partial class LocationCheckAttributeBlock : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LocationCheckAttributeBlock" /> class.
         /// </summary>
-        /// <param name="values">values</param>
+        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
         /// <param name="operator">The location membership operator applied to the attribute.</param>
+        /// <param name="values">values</param>
+        /// <param name="id">Unique identifier for this block.</param>
+        /// <param name="tags">Semantic labels attached to this block.</param>
+        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
+        /// <param name="value">The comparison value for scalar operators.</param>
+        /// <param name="min">The minimum value allowed for the &#x60;between&#x60; operator.</param>
+        /// <param name="max">The maximum value allowed for the &#x60;between&#x60; operator.</param>
+        /// <param name="start">The start value for the &#x60;within&#x60; operator.</param>
+        /// <param name="end">The end value for the &#x60;within&#x60; operator.</param>
+        /// <param name="startInclusive">When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
+        /// <param name="endInclusive">When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</param>
+        /// <param name="timezoneInsensitive">Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</param>
+        /// <param name="count">The count threshold for &#x60;containsAtLeast&#x60; and &#x60;containsExactly&#x60; operators.</param>
+        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
         [JsonConstructor]
-        public LocationCheckAttributeBlock(LocationCheckAttributeBlockValues values, Option<OperatorEnum?> @operator = default)
+        public LocationCheckAttributeBlock(TypeEnum type, OperatorEnum @operator, LocationCheckAttributeBlock1Values values, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<Object> value = default, Option<Object> min = default, Option<Object> max = default, Option<Object> start = default, Option<Object> end = default, Option<bool?> startInclusive = default, Option<bool?> endInclusive = default, Option<bool?> timezoneInsensitive = default, Option<Object> count = default, Option<List<Block>> onFailure = default)
         {
+            Type = type;
+            Operator = @operator;
             Values = values;
-            OperatorOption = @operator;
+            IdOption = id;
+            TagsOption = tags;
+            Attribute = attribute;
+            ValueOption = value;
+            MinOption = min;
+            MaxOption = max;
+            StartOption = start;
+            EndOption = end;
+            StartInclusiveOption = startInclusive;
+            EndInclusiveOption = endInclusive;
+            TimezoneInsensitiveOption = timezoneInsensitive;
+            CountOption = count;
+            OnFailureOption = onFailure;
             OnCreated();
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// A block discriminator of type &#x60;checkAttribute&#x60;.
+        /// </summary>
+        /// <value>A block discriminator of type &#x60;checkAttribute&#x60;.</value>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum CheckAttribute for value: checkAttribute
+            /// </summary>
+            CheckAttribute = 1
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("checkAttribute"))
+                return TypeEnum.CheckAttribute;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("checkAttribute"))
+                return TypeEnum.CheckAttribute;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.CheckAttribute)
+                return "checkAttribute";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
+        /// A block discriminator of type &#x60;checkAttribute&#x60;.
+        /// </summary>
+        /// <value>A block discriminator of type &#x60;checkAttribute&#x60;.</value>
+        /* <example>checkAttribute</example> */
+        [JsonPropertyName("type")]
+        public TypeEnum Type { get; set; }
 
         /// <summary>
         /// The location membership operator applied to the attribute.
@@ -99,7 +188,7 @@ namespace TalonOneSdk.Model
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string OperatorEnumToJsonValue(OperatorEnum? value)
+        public static string OperatorEnumToJsonValue(OperatorEnum value)
         {
             if (value == OperatorEnum.In)
                 return "in";
@@ -111,24 +200,209 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// Used to track the state of Operator
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<OperatorEnum?> OperatorOption { get; private set; }
-
-        /// <summary>
         /// The location membership operator applied to the attribute.
         /// </summary>
         /// <value>The location membership operator applied to the attribute.</value>
         [JsonPropertyName("operator")]
-        public OperatorEnum? Operator { get { return this.OperatorOption.Value; } set { this.OperatorOption = new Option<OperatorEnum?>(value); } }
+        public OperatorEnum Operator { get; set; }
 
         /// <summary>
         /// Gets or Sets Values
         /// </summary>
         [JsonPropertyName("values")]
-        public LocationCheckAttributeBlockValues Values { get; set; }
+        public LocationCheckAttributeBlock1Values Values { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Id
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> IdOption { get; }
+
+        /// <summary>
+        /// Unique identifier for this block.
+        /// </summary>
+        /// <value>Unique identifier for this block.</value>
+        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
+        [JsonPropertyName("id")]
+        public string Id { get { return this.IdOption.Value; } }
+
+        /// <summary>
+        /// Used to track the state of Tags
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>> TagsOption { get; }
+
+        /// <summary>
+        /// Semantic labels attached to this block.
+        /// </summary>
+        /// <value>Semantic labels attached to this block.</value>
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get { return this.TagsOption.Value; } }
+
+        /// <summary>
+        /// The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).
+        /// </summary>
+        /// <value>The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</value>
+        /* <example>$Session.Total</example> */
+        [JsonPropertyName("attribute")]
+        public Object Attribute { get; set; }
+
+        /// <summary>
+        /// Used to track the state of Value
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> ValueOption { get; private set; }
+
+        /// <summary>
+        /// The comparison value for scalar operators.
+        /// </summary>
+        /// <value>The comparison value for scalar operators.</value>
+        /* <example>100</example> */
+        [JsonPropertyName("value")]
+        public Object Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Min
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> MinOption { get; private set; }
+
+        /// <summary>
+        /// The minimum value allowed for the &#x60;between&#x60; operator.
+        /// </summary>
+        /// <value>The minimum value allowed for the &#x60;between&#x60; operator.</value>
+        /* <example>10</example> */
+        [JsonPropertyName("min")]
+        public Object Min { get { return this.MinOption.Value; } set { this.MinOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Max
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> MaxOption { get; private set; }
+
+        /// <summary>
+        /// The maximum value allowed for the &#x60;between&#x60; operator.
+        /// </summary>
+        /// <value>The maximum value allowed for the &#x60;between&#x60; operator.</value>
+        /* <example>100</example> */
+        [JsonPropertyName("max")]
+        public Object Max { get { return this.MaxOption.Value; } set { this.MaxOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Start
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> StartOption { get; private set; }
+
+        /// <summary>
+        /// The start value for the &#x60;within&#x60; operator.
+        /// </summary>
+        /// <value>The start value for the &#x60;within&#x60; operator.</value>
+        /* <example>2021-09-22T22:00:00Z</example> */
+        [JsonPropertyName("start")]
+        public Object Start { get { return this.StartOption.Value; } set { this.StartOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of End
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> EndOption { get; private set; }
+
+        /// <summary>
+        /// The end value for the &#x60;within&#x60; operator.
+        /// </summary>
+        /// <value>The end value for the &#x60;within&#x60; operator.</value>
+        /* <example>2021-09-22T22:00:00Z</example> */
+        [JsonPropertyName("end")]
+        public Object End { get { return this.EndOption.Value; } set { this.EndOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of StartInclusive
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> StartInclusiveOption { get; private set; }
+
+        /// <summary>
+        /// When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.
+        /// </summary>
+        /// <value>When &#x60;true&#x60;, the &#x60;start&#x60; value is included in the range for the &#x60;within&#x60; operator.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("startInclusive")]
+        public bool? StartInclusive { get { return this.StartInclusiveOption.Value; } set { this.StartInclusiveOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of EndInclusive
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> EndInclusiveOption { get; private set; }
+
+        /// <summary>
+        /// When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.
+        /// </summary>
+        /// <value>When &#x60;true&#x60;, the &#x60;end&#x60; value is included in the range for the &#x60;within&#x60; operator.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("endInclusive")]
+        public bool? EndInclusive { get { return this.EndInclusiveOption.Value; } set { this.EndInclusiveOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of TimezoneInsensitive
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> TimezoneInsensitiveOption { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.
+        /// </summary>
+        /// <value>Indicates whether the &#x60;within&#x60; operator ignores time zones and compares the wall-clock time only. When &#x60;false&#x60;, time zones are taken into account.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("timezoneInsensitive")]
+        public bool? TimezoneInsensitive { get { return this.TimezoneInsensitiveOption.Value; } set { this.TimezoneInsensitiveOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Count
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Object> CountOption { get; private set; }
+
+        /// <summary>
+        /// The count threshold for &#x60;containsAtLeast&#x60; and &#x60;containsExactly&#x60; operators.
+        /// </summary>
+        /// <value>The count threshold for &#x60;containsAtLeast&#x60; and &#x60;containsExactly&#x60; operators.</value>
+        /* <example>2</example> */
+        [JsonPropertyName("count")]
+        public Object Count { get { return this.CountOption.Value; } set { this.CountOption = new Option<Object>(value); } }
+
+        /// <summary>
+        /// Used to track the state of OnFailure
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<Block>> OnFailureOption { get; private set; }
+
+        /// <summary>
+        /// Promotion blocks evaluated when this block fails or returns false.
+        /// </summary>
+        /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
+        [JsonPropertyName("onFailure")]
+        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
+
+        /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,8 +412,23 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class LocationCheckAttributeBlock {\n");
-            sb.Append("  Values: ").Append(Values).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Operator: ").Append(Operator).Append("\n");
+            sb.Append("  Values: ").Append(Values).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  Attribute: ").Append(Attribute).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  Min: ").Append(Min).Append("\n");
+            sb.Append("  Max: ").Append(Max).Append("\n");
+            sb.Append("  Start: ").Append(Start).Append("\n");
+            sb.Append("  End: ").Append(End).Append("\n");
+            sb.Append("  StartInclusive: ").Append(StartInclusive).Append("\n");
+            sb.Append("  EndInclusive: ").Append(EndInclusive).Append("\n");
+            sb.Append("  TimezoneInsensitive: ").Append(TimezoneInsensitive).Append("\n");
+            sb.Append("  Count: ").Append(Count).Append("\n");
+            sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -149,7 +438,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -187,8 +476,22 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<LocationCheckAttributeBlockValues> values = default;
+            Option<LocationCheckAttributeBlock.TypeEnum?> type = default;
             Option<LocationCheckAttributeBlock.OperatorEnum?> varOperator = default;
+            Option<LocationCheckAttributeBlock1Values> values = default;
+            Option<string> id = default;
+            Option<List<string>> tags = default;
+            Option<Object> attribute = default;
+            Option<Object> value = default;
+            Option<Object> min = default;
+            Option<Object> max = default;
+            Option<Object> start = default;
+            Option<Object> end = default;
+            Option<bool?> startInclusive = default;
+            Option<bool?> endInclusive = default;
+            Option<bool?> timezoneInsensitive = default;
+            Option<Object> count = default;
+            Option<List<Block>> onFailure = default;
 
             while (utf8JsonReader.Read())
             {
@@ -205,8 +508,15 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "values":
-                            values = new Option<LocationCheckAttributeBlockValues>(JsonSerializer.Deserialize<LocationCheckAttributeBlockValues>(ref utf8JsonReader, jsonSerializerOptions));
+                        case "type":
+                            string typeRawValue = utf8JsonReader.GetString();
+                            if (typeRawValue != null)
+                            {
+                                LocationCheckAttributeBlock.TypeEnum? typeValue = LocationCheckAttributeBlock.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<LocationCheckAttributeBlock.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "operator":
                             string varOperatorRawValue = utf8JsonReader.GetString();
@@ -218,19 +528,76 @@ namespace TalonOneSdk.Model
                                 varOperator = new Option<LocationCheckAttributeBlock.OperatorEnum?>(varOperatorValue);
                             }
                             break;
+                        case "values":
+                            values = new Option<LocationCheckAttributeBlock1Values>(JsonSerializer.Deserialize<LocationCheckAttributeBlock1Values>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "id":
+                            id = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "tags":
+                            tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "attribute":
+                            attribute = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "value":
+                            value = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "min":
+                            min = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "max":
+                            max = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "start":
+                            start = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "end":
+                            end = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "startInclusive":
+                            startInclusive = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "endInclusive":
+                            endInclusive = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "timezoneInsensitive":
+                            timezoneInsensitive = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "count":
+                            count = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "onFailure":
+                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
+            if (!type.IsSet)
+                throw new JsonException("Property is required for class LocationCheckAttributeBlock: type.");
+
+            if (!varOperator.IsSet)
+                throw new JsonException("Property is required for class LocationCheckAttributeBlock: operator.");
+
             if (!values.IsSet)
                 throw new JsonException("Property is required for class LocationCheckAttributeBlock: values.");
+
+            if (!attribute.IsSet)
+                throw new JsonException("Property is required for class LocationCheckAttributeBlock: attribute.");
+
+            if (type.IsSet && type.Value == null)
+                throw new JsonException("Property is not nullable for class LocationCheckAttributeBlock: type.");
+
+            if (varOperator.IsSet && varOperator.Value == null)
+                throw new JsonException("Property is not nullable for class LocationCheckAttributeBlock: operator.");
 
             if (values.IsSet && values.Value == null)
                 throw new JsonException("Property is not nullable for class LocationCheckAttributeBlock: values.");
 
-            return new LocationCheckAttributeBlock(values.Value, varOperator);
+            return new LocationCheckAttributeBlock(type.Value.Value, varOperator.Value.Value, values.Value, id, tags, attribute.Value, value, min, max, start, end, startInclusive, endInclusive, timezoneInsensitive, count, onFailure);
         }
 
         /// <summary>
@@ -258,12 +625,88 @@ namespace TalonOneSdk.Model
             if (locationCheckAttributeBlock.Values == null)
                 throw new JsonException("Cannot write null property LocationCheckAttributeBlock.Values to non-nullable JSON property 'values'.");
 
+            var typeRawValue = LocationCheckAttributeBlock.TypeEnumToJsonValue(locationCheckAttributeBlock.Type);
+            writer.WriteString("type", typeRawValue);
+            var varOperatorRawValue = LocationCheckAttributeBlock.OperatorEnumToJsonValue(locationCheckAttributeBlock.Operator);
+            writer.WriteString("operator", varOperatorRawValue);
             writer.WritePropertyName("values");
             JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Values, jsonSerializerOptions);
-            if (locationCheckAttributeBlock.OperatorOption.IsSet)
+            if (locationCheckAttributeBlock.IdOption.IsSet)
+                writer.WriteString("id", locationCheckAttributeBlock.Id);
+
+            if (locationCheckAttributeBlock.TagsOption.IsSet)
             {
-                var varOperatorRawValue = LocationCheckAttributeBlock.OperatorEnumToJsonValue(locationCheckAttributeBlock.OperatorOption.Value);
-                writer.WriteString("operator", varOperatorRawValue);
+                writer.WritePropertyName("tags");
+                JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Tags, jsonSerializerOptions);
+            }
+            if (locationCheckAttributeBlock.Attribute != null)
+            {
+                writer.WritePropertyName("attribute");
+                JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Attribute, jsonSerializerOptions);
+            }
+            else
+                writer.WriteNull("attribute");
+            if (locationCheckAttributeBlock.ValueOption.IsSet)
+                if (locationCheckAttributeBlock.ValueOption.Value != null)
+                {
+                    writer.WritePropertyName("value");
+                    JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Value, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("value");
+            if (locationCheckAttributeBlock.MinOption.IsSet)
+                if (locationCheckAttributeBlock.MinOption.Value != null)
+                {
+                    writer.WritePropertyName("min");
+                    JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Min, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("min");
+            if (locationCheckAttributeBlock.MaxOption.IsSet)
+                if (locationCheckAttributeBlock.MaxOption.Value != null)
+                {
+                    writer.WritePropertyName("max");
+                    JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Max, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("max");
+            if (locationCheckAttributeBlock.StartOption.IsSet)
+                if (locationCheckAttributeBlock.StartOption.Value != null)
+                {
+                    writer.WritePropertyName("start");
+                    JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Start, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("start");
+            if (locationCheckAttributeBlock.EndOption.IsSet)
+                if (locationCheckAttributeBlock.EndOption.Value != null)
+                {
+                    writer.WritePropertyName("end");
+                    JsonSerializer.Serialize(writer, locationCheckAttributeBlock.End, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("end");
+            if (locationCheckAttributeBlock.StartInclusiveOption.IsSet)
+                writer.WriteBoolean("startInclusive", locationCheckAttributeBlock.StartInclusiveOption.Value.Value);
+
+            if (locationCheckAttributeBlock.EndInclusiveOption.IsSet)
+                writer.WriteBoolean("endInclusive", locationCheckAttributeBlock.EndInclusiveOption.Value.Value);
+
+            if (locationCheckAttributeBlock.TimezoneInsensitiveOption.IsSet)
+                writer.WriteBoolean("timezoneInsensitive", locationCheckAttributeBlock.TimezoneInsensitiveOption.Value.Value);
+
+            if (locationCheckAttributeBlock.CountOption.IsSet)
+                if (locationCheckAttributeBlock.CountOption.Value != null)
+                {
+                    writer.WritePropertyName("count");
+                    JsonSerializer.Serialize(writer, locationCheckAttributeBlock.Count, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("count");
+            if (locationCheckAttributeBlock.OnFailureOption.IsSet)
+            {
+                writer.WritePropertyName("onFailure");
+                JsonSerializer.Serialize(writer, locationCheckAttributeBlock.OnFailure, jsonSerializerOptions);
             }
         }
     }

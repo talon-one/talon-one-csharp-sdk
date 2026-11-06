@@ -74,6 +74,12 @@ namespace TalonOneSdk.Model
         public string CampaignName { get { return this.CampaignNameOption.Value; } set { this.CampaignNameOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -83,6 +89,7 @@ namespace TalonOneSdk.Model
             sb.Append("class CampaignDetail {\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  CampaignName: ").Append(CampaignName).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,12 +99,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CampaignName (string) minLength
             if (this.CampaignName != null && this.CampaignName.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for CampaignName, length must be greater than 1.", new [] { "CampaignName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CampaignName, length must be greater than 1.", new [] { "CampaignName" });
             }
 
             yield break;

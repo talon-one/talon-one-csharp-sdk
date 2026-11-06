@@ -91,6 +91,12 @@ namespace TalonOneSdk.Model
         public IntegrationHubEventPayloadCouponBasedNotifications IntegrationHubEventPayloadCouponBasedNotifications { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -98,6 +104,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class IntegrationHubPaginatedEventPayloadDataInner {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -107,7 +114,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
@@ -117,7 +124,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -264,6 +271,18 @@ namespace TalonOneSdk.Model
         {
             writer.WriteStartObject();
 
+            WriteProperties(writer, integrationHubPaginatedEventPayloadDataInner, jsonSerializerOptions);
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes the properties of <see cref="IntegrationHubPaginatedEventPayloadDataInner" />
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="integrationHubPaginatedEventPayloadDataInner"></param>
+        /// <param name="jsonSerializerOptions"></param>
+        public void WriteProperties(Utf8JsonWriter writer, IntegrationHubPaginatedEventPayloadDataInner integrationHubPaginatedEventPayloadDataInner, JsonSerializerOptions jsonSerializerOptions)
+        {
             if (integrationHubPaginatedEventPayloadDataInner.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification != null)
             {
                 IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationJsonConverter integrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationJsonConverter = (IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(integrationHubPaginatedEventPayloadDataInner.IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.GetType()));
@@ -287,20 +306,6 @@ namespace TalonOneSdk.Model
                 IntegrationHubEventPayloadCouponBasedNotificationsJsonConverter integrationHubEventPayloadCouponBasedNotificationsJsonConverter = (IntegrationHubEventPayloadCouponBasedNotificationsJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(integrationHubPaginatedEventPayloadDataInner.IntegrationHubEventPayloadCouponBasedNotifications.GetType()));
                 integrationHubEventPayloadCouponBasedNotificationsJsonConverter.WriteProperties(writer, integrationHubPaginatedEventPayloadDataInner.IntegrationHubEventPayloadCouponBasedNotifications, jsonSerializerOptions);
             }
-
-            WriteProperties(writer, integrationHubPaginatedEventPayloadDataInner, jsonSerializerOptions);
-            writer.WriteEndObject();
-        }
-
-        /// <summary>
-        /// Serializes the properties of <see cref="IntegrationHubPaginatedEventPayloadDataInner" />
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="integrationHubPaginatedEventPayloadDataInner"></param>
-        /// <param name="jsonSerializerOptions"></param>
-        public void WriteProperties(Utf8JsonWriter writer, IntegrationHubPaginatedEventPayloadDataInner integrationHubPaginatedEventPayloadDataInner, JsonSerializerOptions jsonSerializerOptions)
-        {
-
         }
     }
 }

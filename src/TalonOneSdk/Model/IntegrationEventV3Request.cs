@@ -356,6 +356,12 @@ namespace TalonOneSdk.Model
         public List<IntegrationEventV3Request.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<IntegrationEventV3Request.ResponseContentEnum>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -374,6 +380,7 @@ namespace TalonOneSdk.Model
             sb.Append("  LoyaltyCards: ").Append(LoyaltyCards).Append("\n");
             sb.Append("  RewardIntegrationIds: ").Append(RewardIntegrationIds).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -383,42 +390,42 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Type (string) minLength
             if (this.Type != null && this.Type.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
             }
 
             // IntegrationId (string) minLength
             if (this.IntegrationId != null && this.IntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be greater than 1.", new [] { "IntegrationId" });
             }
 
             // StoreIntegrationId (string) maxLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
             }
 
             // StoreIntegrationId (string) minLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
             }
 
             // ConnectedSessionId (string) minLength
             if (this.ConnectedSessionId != null && this.ConnectedSessionId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
             }
 
             // ReferralCode (string) maxLength
             if (this.ReferralCode != null && this.ReferralCode.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
             }
 
             yield break;

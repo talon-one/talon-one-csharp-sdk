@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **BundleName** | **string** | _(Discounts with bundles only)_ The name of the bundle definition. | [optional] 
 **TargetedItemPosition** | **decimal** | _(Discounting individual item in bundles only)_ The index of the targeted bundle item on which the applied discount is based. | [optional] 
 **TargetedItemSubPosition** | **decimal** | _(Discounting individual item in bundles only)_ The sub-position of the targeted bundle item on which the applied discount is based. | [optional] 
-**ExcludedFromPriceHistory** | **bool** | When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history. | [optional] 
+**ExcludedFromPriceHistory** | **bool** | When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history. When set to &#x60;false&#x60;, the applied discount is included in the item&#39;s price history. This property is only returned if the [best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price) setting is enabled for the Application. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

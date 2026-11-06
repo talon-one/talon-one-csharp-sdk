@@ -128,6 +128,12 @@ namespace TalonOneSdk.Model
         public string IntegrationName { get { return this.IntegrationNameOption.Value; } set { this.IntegrationNameOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -141,6 +147,7 @@ namespace TalonOneSdk.Model
             sb.Append("  MaxRetries: ").Append(MaxRetries).Append("\n");
             sb.Append("  InstanceName: ").Append(InstanceName).Append("\n");
             sb.Append("  IntegrationName: ").Append(IntegrationName).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -150,30 +157,30 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // WorkerCount (long) maximum
             if (this.WorkerCountOption.IsSet && this.WorkerCountOption.Value > (long)500)
             {
-                yield return new ValidationResult("Invalid value for WorkerCount, must be a value less than or equal to 500.", new [] { "WorkerCount" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for WorkerCount, must be a value less than or equal to 500.", new [] { "WorkerCount" });
             }
 
             // WorkerCount (long) minimum
             if (this.WorkerCountOption.IsSet && this.WorkerCountOption.Value < (long)1)
             {
-                yield return new ValidationResult("Invalid value for WorkerCount, must be a value greater than or equal to 1.", new [] { "WorkerCount" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for WorkerCount, must be a value greater than or equal to 1.", new [] { "WorkerCount" });
             }
 
             // MaxEventsPerMessage (long) minimum
             if (this.MaxEventsPerMessageOption.IsSet && this.MaxEventsPerMessageOption.Value < (long)1)
             {
-                yield return new ValidationResult("Invalid value for MaxEventsPerMessage, must be a value greater than or equal to 1.", new [] { "MaxEventsPerMessage" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MaxEventsPerMessage, must be a value greater than or equal to 1.", new [] { "MaxEventsPerMessage" });
             }
 
             // MaxRetries (long) minimum
             if (this.MaxRetriesOption.IsSet && this.MaxRetriesOption.Value < (long)0)
             {
-                yield return new ValidationResult("Invalid value for MaxRetries, must be a value greater than or equal to 0.", new [] { "MaxRetries" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MaxRetries, must be a value greater than or equal to 0.", new [] { "MaxRetries" });
             }
 
             yield break;

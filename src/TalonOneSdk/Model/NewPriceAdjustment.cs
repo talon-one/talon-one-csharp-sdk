@@ -35,8 +35,8 @@ namespace TalonOneSdk.Model
         /// <param name="referenceId">A unique reference identifier, e.g. a UUID.</param>
         /// <param name="price">The value of the price type applied to the SKU. When set to &#x60;null&#x60;, the defined price type no longer applies to the SKU.</param>
         /// <param name="calculatedAt">The time at which this price was calculated. If provided, this is used to determine the most recent price adjustment to choose if price adjustments overlap. Defaults to internal creation time if not provided.</param>
-        /// <param name="effectiveFrom">The date and time from which the price adjustment is effective.</param>
-        /// <param name="effectiveUntil">The date and time until which the price adjustment is effective.</param>
+        /// <param name="effectiveFrom">The date and time from which the price adjustment is effective.  **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog. </param>
+        /// <param name="effectiveUntil">The date and time until which the price adjustment is effective.  **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog. </param>
         /// <param name="contextId">Identifier of the context of this price adjustment (the sales event, e.g. \&quot;Summer Sale\&quot;).</param>
         [JsonConstructor]
         public NewPriceAdjustment(string priceType, string referenceId, Option<decimal?> price = default, Option<DateTime?> calculatedAt = default, Option<DateTime?> effectiveFrom = default, Option<DateTime?> effectiveUntil = default, Option<string> contextId = default)
@@ -107,9 +107,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> EffectiveFromOption { get; private set; }
 
         /// <summary>
-        /// The date and time from which the price adjustment is effective.
+        /// The date and time from which the price adjustment is effective.  **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog. 
         /// </summary>
-        /// <value>The date and time from which the price adjustment is effective.</value>
+        /// <value>The date and time from which the price adjustment is effective.  **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog. </value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("effectiveFrom")]
         public DateTime? EffectiveFrom { get { return this.EffectiveFromOption.Value; } set { this.EffectiveFromOption = new Option<DateTime?>(value); } }
@@ -122,9 +122,9 @@ namespace TalonOneSdk.Model
         public Option<DateTime?> EffectiveUntilOption { get; private set; }
 
         /// <summary>
-        /// The date and time until which the price adjustment is effective.
+        /// The date and time until which the price adjustment is effective.  **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog. 
         /// </summary>
-        /// <value>The date and time until which the price adjustment is effective.</value>
+        /// <value>The date and time until which the price adjustment is effective.  **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog. </value>
         /* <example>2021-09-12T10:12:42Z</example> */
         [JsonPropertyName("effectiveUntil")]
         public DateTime? EffectiveUntil { get { return this.EffectiveUntilOption.Value; } set { this.EffectiveUntilOption = new Option<DateTime?>(value); } }
@@ -145,6 +145,12 @@ namespace TalonOneSdk.Model
         public string ContextId { get { return this.ContextIdOption.Value; } set { this.ContextIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -159,6 +165,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EffectiveFrom: ").Append(EffectiveFrom).Append("\n");
             sb.Append("  EffectiveUntil: ").Append(EffectiveUntil).Append("\n");
             sb.Append("  ContextId: ").Append(ContextId).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -168,12 +175,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ReferenceId (string) minLength
             if (this.ReferenceId != null && this.ReferenceId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for ReferenceId, length must be greater than 1.", new [] { "ReferenceId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReferenceId, length must be greater than 1.", new [] { "ReferenceId" });
             }
 
             yield break;

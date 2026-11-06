@@ -54,30 +54,30 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ApplicationId'
+        /// Test the property 'NotificationType'
         /// </summary>
         [Fact]
-        public void ApplicationIdTest()
+        public void NotificationTypeTest()
         {
-            // TODO unit test for the property 'ApplicationId'
+            // TODO unit test for the property 'NotificationType'
         }
 
         /// <summary>
-        /// Test the property 'EvaluationTree'
+        /// Test the property 'TotalResultSize'
         /// </summary>
         [Fact]
-        public void EvaluationTreeTest()
+        public void TotalResultSizeTest()
         {
-            // TODO unit test for the property 'EvaluationTree'
+            // TODO unit test for the property 'TotalResultSize'
         }
 
         /// <summary>
-        /// Test the property 'OldEvaluationTree'
+        /// Test the property 'Data'
         /// </summary>
         [Fact]
-        public void OldEvaluationTreeTest()
+        public void DataTest()
         {
-            // TODO unit test for the property 'OldEvaluationTree'
+            // TODO unit test for the property 'Data'
         }
     }
 }
