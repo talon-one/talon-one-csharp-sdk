@@ -90,6 +90,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Order'
+        /// </summary>
+        [Fact]
+        public void OrderTest()
+        {
+            // TODO unit test for the property 'Order'
+        }
+
+        /// <summary>
         /// Test the property 'AudienceId'
         /// </summary>
         [Fact]

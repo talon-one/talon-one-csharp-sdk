@@ -84,6 +84,12 @@ namespace TalonOneSdk.Model
         public decimal? MinPoints { get { return this.MinPointsOption.Value; } set { this.MinPointsOption = new Option<decimal?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -94,6 +100,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  MinPoints: ").Append(MinPoints).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -103,18 +110,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // MinPoints (decimal) maximum
             if (this.MinPointsOption.IsSet && this.MinPointsOption.Value > (decimal)999999999999.99)
             {
-                yield return new ValidationResult("Invalid value for MinPoints, must be a value less than or equal to 999999999999.99.", new [] { "MinPoints" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MinPoints, must be a value less than or equal to 999999999999.99.", new [] { "MinPoints" });
             }
 
             // MinPoints (decimal) minimum
             if (this.MinPointsOption.IsSet && this.MinPointsOption.Value < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for MinPoints, must be a value greater than or equal to 0.", new [] { "MinPoints" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MinPoints, must be a value greater than or equal to 0.", new [] { "MinPoints" });
             }
 
             yield break;

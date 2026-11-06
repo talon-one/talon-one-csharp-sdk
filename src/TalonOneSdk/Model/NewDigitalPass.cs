@@ -181,6 +181,12 @@ namespace TalonOneSdk.Model
         public Dictionary<string, string> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Dictionary<string, string>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -194,6 +200,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  LoyaltyCardId: ").Append(LoyaltyCardId).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -203,24 +210,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyProgramId (long) minimum
             if (this.LoyaltyProgramId < (long)1)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyProgramId, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramId, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramId" });
             }
 
             // PassTemplateId (string) minLength
             if (this.PassTemplateId != null && this.PassTemplateId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for PassTemplateId, length must be greater than 1.", new [] { "PassTemplateId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PassTemplateId, length must be greater than 1.", new [] { "PassTemplateId" });
             }
 
             // ProfileId (string) minLength
             if (this.ProfileId != null && this.ProfileId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for ProfileId, length must be greater than 1.", new [] { "ProfileId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ProfileId, length must be greater than 1.", new [] { "ProfileId" });
             }
 
             yield break;

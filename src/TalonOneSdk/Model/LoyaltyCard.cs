@@ -284,6 +284,12 @@ namespace TalonOneSdk.Model
         public string BatchId { get { return this.BatchIdOption.Value; } set { this.BatchIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -308,6 +314,7 @@ namespace TalonOneSdk.Model
             sb.Append("  OldCardIdentifier: ").Append(OldCardIdentifier).Append("\n");
             sb.Append("  NewCardIdentifier: ").Append(NewCardIdentifier).Append("\n");
             sb.Append("  BatchId: ").Append(BatchId).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -317,18 +324,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Identifier (string) maxLength
             if (this.Identifier != null && this.Identifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for Identifier, length must be less than 108.", new [] { "Identifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Identifier, length must be less than 108.", new [] { "Identifier" });
             }
 
             // Identifier (string) minLength
             if (this.Identifier != null && this.Identifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for Identifier, length must be greater than 4.", new [] { "Identifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Identifier, length must be greater than 4.", new [] { "Identifier" });
             }
 
             if (this.Identifier != null) {
@@ -344,19 +351,19 @@ namespace TalonOneSdk.Model
             // UsersPerCardLimit (long) minimum
             if (this.UsersPerCardLimit < (long)0)
             {
-                yield return new ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsersPerCardLimit, must be a value greater than or equal to 0.", new [] { "UsersPerCardLimit" });
             }
 
             // OldCardIdentifier (string) maxLength
             if (this.OldCardIdentifier != null && this.OldCardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for OldCardIdentifier, length must be less than 108.", new [] { "OldCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OldCardIdentifier, length must be less than 108.", new [] { "OldCardIdentifier" });
             }
 
             // OldCardIdentifier (string) minLength
             if (this.OldCardIdentifier != null && this.OldCardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for OldCardIdentifier, length must be greater than 4.", new [] { "OldCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OldCardIdentifier, length must be greater than 4.", new [] { "OldCardIdentifier" });
             }
 
             if (this.OldCardIdentifierOption.Value != null) {
@@ -372,13 +379,13 @@ namespace TalonOneSdk.Model
             // NewCardIdentifier (string) maxLength
             if (this.NewCardIdentifier != null && this.NewCardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for NewCardIdentifier, length must be less than 108.", new [] { "NewCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NewCardIdentifier, length must be less than 108.", new [] { "NewCardIdentifier" });
             }
 
             // NewCardIdentifier (string) minLength
             if (this.NewCardIdentifier != null && this.NewCardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for NewCardIdentifier, length must be greater than 4.", new [] { "NewCardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NewCardIdentifier, length must be greater than 4.", new [] { "NewCardIdentifier" });
             }
 
             if (this.NewCardIdentifierOption.Value != null) {

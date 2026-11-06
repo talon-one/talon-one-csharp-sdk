@@ -213,6 +213,12 @@ namespace TalonOneSdk.Model
         public List<TemplateParameter> Parameters { get { return this.ParametersOption.Value; } set { this.ParametersOption = new Option<List<TemplateParameter>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -231,6 +237,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Selectors: ").Append(Selectors).Append("\n");
             sb.Append("  Bundles: ").Append(Bundles).Append("\n");
             sb.Append("  Parameters: ").Append(Parameters).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -240,7 +247,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

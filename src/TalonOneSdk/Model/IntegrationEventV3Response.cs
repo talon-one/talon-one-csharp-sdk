@@ -227,6 +227,12 @@ namespace TalonOneSdk.Model
         public InventoryReferral Referral { get { return this.ReferralOption.Value; } set { this.ReferralOption = new Option<InventoryReferral>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -247,6 +253,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Rewards: ").Append(Rewards).Append("\n");
             sb.Append("  AdvancedEvent: ").Append(AdvancedEvent).Append("\n");
             sb.Append("  Referral: ").Append(Referral).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -256,7 +263,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

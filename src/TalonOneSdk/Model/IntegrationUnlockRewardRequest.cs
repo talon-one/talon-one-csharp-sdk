@@ -222,6 +222,12 @@ namespace TalonOneSdk.Model
         public List<IntegrationUnlockRewardRequest.ResponseContentEnum> ResponseContent { get { return this.ResponseContentOption.Value; } set { this.ResponseContentOption = new Option<List<IntegrationUnlockRewardRequest.ResponseContentEnum>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -235,6 +241,7 @@ namespace TalonOneSdk.Model
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("  SubledgerId: ").Append(SubledgerId).Append("\n");
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -244,18 +251,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // LoyaltyCardId (string) maxLength
             if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be less than 108.", new [] { "LoyaltyCardId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardId, length must be less than 108.", new [] { "LoyaltyCardId" });
             }
 
             // LoyaltyCardId (string) minLength
             if (this.LoyaltyCardId != null && this.LoyaltyCardId.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyCardId, length must be greater than 4.", new [] { "LoyaltyCardId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyCardId, length must be greater than 4.", new [] { "LoyaltyCardId" });
             }
 
             if (this.LoyaltyCardIdOption.Value != null) {

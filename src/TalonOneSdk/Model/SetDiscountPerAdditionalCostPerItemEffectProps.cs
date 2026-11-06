@@ -117,6 +117,12 @@ namespace TalonOneSdk.Model
         public decimal? DesiredValue { get { return this.DesiredValueOption.Value; } set { this.DesiredValueOption = new Option<decimal?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -131,6 +137,7 @@ namespace TalonOneSdk.Model
             sb.Append("  AdditionalCost: ").Append(AdditionalCost).Append("\n");
             sb.Append("  SubPosition: ").Append(SubPosition).Append("\n");
             sb.Append("  DesiredValue: ").Append(DesiredValue).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,7 +147,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -111,6 +111,12 @@ namespace TalonOneSdk.Model
         public string DocumentationLink { get { return this.DocumentationLinkOption.Value; } set { this.DocumentationLinkOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -123,6 +129,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  DocumentationLink: ").Append(DocumentationLink).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -132,54 +139,54 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 64.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 64.", new [] { "Name" });
             }
 
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             // Description (string) maxLength
             if (this.Description != null && this.Description.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 1000.", new [] { "Description" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 1000.", new [] { "Description" });
             }
 
             // Description (string) minLength
             if (this.Description != null && this.Description.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
             }
 
             // Category (string) maxLength
             if (this.Category != null && this.Category.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for Category, length must be less than 64.", new [] { "Category" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Category, length must be less than 64.", new [] { "Category" });
             }
 
             // Category (string) minLength
             if (this.Category != null && this.Category.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Category, length must be greater than 1.", new [] { "Category" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Category, length must be greater than 1.", new [] { "Category" });
             }
 
             // DocumentationLink (string) maxLength
             if (this.DocumentationLink != null && this.DocumentationLink.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for DocumentationLink, length must be less than 255.", new [] { "DocumentationLink" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DocumentationLink, length must be less than 255.", new [] { "DocumentationLink" });
             }
 
             // DocumentationLink (string) minLength
             if (this.DocumentationLink != null && this.DocumentationLink.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for DocumentationLink, length must be greater than 1.", new [] { "DocumentationLink" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DocumentationLink, length must be greater than 1.", new [] { "DocumentationLink" });
             }
 
             yield break;

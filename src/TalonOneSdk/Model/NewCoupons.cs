@@ -321,6 +321,12 @@ namespace TalonOneSdk.Model
         public string SupportRequestNote { get { return this.SupportRequestNoteOption.Value; } set { this.SupportRequestNoteOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -345,6 +351,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ImplicitlyReserved: ").Append(ImplicitlyReserved).Append("\n");
             sb.Append("  SupportRequestId: ").Append(SupportRequestId).Append("\n");
             sb.Append("  SupportRequestNote: ").Append(SupportRequestNote).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -354,72 +361,72 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // NumberOfCoupons (long) maximum
             if (this.NumberOfCoupons > (long)20000)
             {
-                yield return new ValidationResult("Invalid value for NumberOfCoupons, must be a value less than or equal to 20000.", new [] { "NumberOfCoupons" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NumberOfCoupons, must be a value less than or equal to 20000.", new [] { "NumberOfCoupons" });
             }
 
             // NumberOfCoupons (long) minimum
             if (this.NumberOfCoupons < (long)1)
             {
-                yield return new ValidationResult("Invalid value for NumberOfCoupons, must be a value greater than or equal to 1.", new [] { "NumberOfCoupons" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NumberOfCoupons, must be a value greater than or equal to 1.", new [] { "NumberOfCoupons" });
             }
 
             // UsageLimit (long) maximum
             if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value > (long)999999)
             {
-                yield return new ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
             }
 
             // UsageLimit (long) minimum
             if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value < (long)0)
             {
-                yield return new ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
             }
 
             // DiscountLimit (decimal) maximum
             if (this.DiscountLimitOption.IsSet && this.DiscountLimitOption.Value > (decimal)1000000000000000)
             {
-                yield return new ValidationResult("Invalid value for DiscountLimit, must be a value less than or equal to 1000000000000000.", new [] { "DiscountLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DiscountLimit, must be a value less than or equal to 1000000000000000.", new [] { "DiscountLimit" });
             }
 
             // DiscountLimit (decimal) minimum
             if (this.DiscountLimitOption.IsSet && this.DiscountLimitOption.Value < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for DiscountLimit, must be a value greater than or equal to 0.", new [] { "DiscountLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DiscountLimit, must be a value greater than or equal to 0.", new [] { "DiscountLimit" });
             }
 
             // ReservationLimit (long) maximum
             if (this.ReservationLimitOption.IsSet && this.ReservationLimitOption.Value > (long)999999)
             {
-                yield return new ValidationResult("Invalid value for ReservationLimit, must be a value less than or equal to 999999.", new [] { "ReservationLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReservationLimit, must be a value less than or equal to 999999.", new [] { "ReservationLimit" });
             }
 
             // ReservationLimit (long) minimum
             if (this.ReservationLimitOption.IsSet && this.ReservationLimitOption.Value < (long)0)
             {
-                yield return new ValidationResult("Invalid value for ReservationLimit, must be a value greater than or equal to 0.", new [] { "ReservationLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReservationLimit, must be a value greater than or equal to 0.", new [] { "ReservationLimit" });
             }
 
             // RecipientIntegrationId (string) maxLength
             if (this.RecipientIntegrationId != null && this.RecipientIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for RecipientIntegrationId, length must be less than 1000.", new [] { "RecipientIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RecipientIntegrationId, length must be less than 1000.", new [] { "RecipientIntegrationId" });
             }
 
             // CouponPattern (string) maxLength
             if (this.CouponPattern != null && this.CouponPattern.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for CouponPattern, length must be less than 100.", new [] { "CouponPattern" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CouponPattern, length must be less than 100.", new [] { "CouponPattern" });
             }
 
             // CouponPattern (string) minLength
             if (this.CouponPattern != null && this.CouponPattern.Length < 3)
             {
-                yield return new ValidationResult("Invalid value for CouponPattern, length must be greater than 3.", new [] { "CouponPattern" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CouponPattern, length must be greater than 3.", new [] { "CouponPattern" });
             }
 
             yield break;

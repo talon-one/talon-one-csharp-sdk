@@ -84,6 +84,12 @@ namespace TalonOneSdk.Model
         public List<LoyaltyLedgerEntryExpiryDateChange> AffectedTransactions { get { return this.AffectedTransactionsOption.Value; } set { this.AffectedTransactionsOption = new Option<List<LoyaltyLedgerEntryExpiryDateChange>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,6 +101,7 @@ namespace TalonOneSdk.Model
             sb.Append("  SubLedgerId: ").Append(SubLedgerId).Append("\n");
             sb.Append("  NewExpiryDate: ").Append(NewExpiryDate).Append("\n");
             sb.Append("  AffectedTransactions: ").Append(AffectedTransactions).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -104,7 +111,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

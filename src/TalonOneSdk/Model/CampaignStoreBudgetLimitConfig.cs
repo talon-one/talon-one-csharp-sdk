@@ -313,6 +313,12 @@ namespace TalonOneSdk.Model
         public bool Imported { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -325,6 +331,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Entities: ").Append(Entities).Append("\n");
             sb.Append("  Imported: ").Append(Imported).Append("\n");
             sb.Append("  Period: ").Append(Period).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -334,12 +341,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Limit (decimal) minimum
             if (this.Limit < (decimal)0)
             {
-                yield return new ValidationResult("Invalid value for Limit, must be a value greater than or equal to 0.", new [] { "Limit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Limit, must be a value greater than or equal to 0.", new [] { "Limit" });
             }
 
             yield break;

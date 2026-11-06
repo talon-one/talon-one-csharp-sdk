@@ -95,6 +95,12 @@ namespace TalonOneSdk.Model
         public string Language { get { return this.LanguageOption.Value; } set { this.LanguageOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -107,6 +113,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EventID: ").Append(EventID).Append("\n");
             sb.Append("  Coupon: ").Append(Coupon).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -116,12 +123,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // SessionID (string) maxLength
             if (this.SessionID != null && this.SessionID.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for SessionID, length must be less than 255.", new [] { "SessionID" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SessionID, length must be less than 255.", new [] { "SessionID" });
             }
 
             yield break;

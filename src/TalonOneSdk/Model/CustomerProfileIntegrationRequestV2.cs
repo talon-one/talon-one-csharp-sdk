@@ -288,6 +288,12 @@ namespace TalonOneSdk.Model
         public List<string> RewardIntegrationIds { get { return this.RewardIntegrationIdsOption.Value; } set { this.RewardIntegrationIdsOption = new Option<List<string>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -300,6 +306,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ResponseContent: ").Append(ResponseContent).Append("\n");
             sb.Append("  AudiencesChanges: ").Append(AudiencesChanges).Append("\n");
             sb.Append("  RewardIntegrationIds: ").Append(RewardIntegrationIds).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -309,7 +316,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
