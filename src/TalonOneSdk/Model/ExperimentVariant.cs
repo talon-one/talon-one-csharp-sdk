@@ -34,21 +34,23 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="name">name</param>
-        /// <param name="isPrimary">isPrimary</param>
         /// <param name="experimentId">experimentId</param>
         /// <param name="ruleset">ruleset</param>
         /// <param name="weight">weight</param>
+        /// <param name="isPrimary">**Deprecated.** Use &#x60;order&#x60; instead. Indicates whether this is the primary variant. This is computed as &#x60;order &#x3D;&#x3D; 0&#x60;. </param>
+        /// <param name="order">The position of this variant in the experiment. The variant with &#x60;order: 0&#x60; is the primary variant. </param>
         /// <param name="audienceId">The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;. </param>
         [JsonConstructor]
-        public ExperimentVariant(long id, DateTime created, string name, bool isPrimary, Option<long?> experimentId = default, Option<Ruleset> ruleset = default, Option<long?> weight = default, Option<long?> audienceId = default)
+        public ExperimentVariant(long id, DateTime created, string name, Option<long?> experimentId = default, Option<Ruleset> ruleset = default, Option<long?> weight = default, Option<bool?> isPrimary = default, Option<long?> order = default, Option<long?> audienceId = default)
         {
             Id = id;
             Created = created;
             Name = name;
-            IsPrimary = isPrimary;
             ExperimentIdOption = experimentId;
             RulesetOption = ruleset;
             WeightOption = weight;
+            IsPrimaryOption = isPrimary;
+            OrderOption = order;
             AudienceIdOption = audienceId;
             OnCreated();
         }
@@ -77,13 +79,6 @@ namespace TalonOneSdk.Model
         /* <example>Variant A</example> */
         [JsonPropertyName("name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or Sets IsPrimary
-        /// </summary>
-        /* <example>true</example> */
-        [JsonPropertyName("isPrimary")]
-        public bool IsPrimary { get; set; }
 
         /// <summary>
         /// Used to track the state of ExperimentId
@@ -127,6 +122,37 @@ namespace TalonOneSdk.Model
         public long? Weight { get { return this.WeightOption.Value; } set { this.WeightOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Used to track the state of IsPrimary
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> IsPrimaryOption { get; private set; }
+
+        /// <summary>
+        /// **Deprecated.** Use &#x60;order&#x60; instead. Indicates whether this is the primary variant. This is computed as &#x60;order &#x3D;&#x3D; 0&#x60;. 
+        /// </summary>
+        /// <value>**Deprecated.** Use &#x60;order&#x60; instead. Indicates whether this is the primary variant. This is computed as &#x60;order &#x3D;&#x3D; 0&#x60;. </value>
+        /* <example>true</example> */
+        [JsonPropertyName("isPrimary")]
+        [Obsolete]
+        public bool? IsPrimary { get { return this.IsPrimaryOption.Value; } set { this.IsPrimaryOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Used to track the state of Order
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<long?> OrderOption { get; private set; }
+
+        /// <summary>
+        /// The position of this variant in the experiment. The variant with &#x60;order: 0&#x60; is the primary variant. 
+        /// </summary>
+        /// <value>The position of this variant in the experiment. The variant with &#x60;order: 0&#x60; is the primary variant. </value>
+        /* <example>0</example> */
+        [JsonPropertyName("order")]
+        public long? Order { get { return this.OrderOption.Value; } set { this.OrderOption = new Option<long?>(value); } }
+
+        /// <summary>
         /// Used to track the state of AudienceId
         /// </summary>
         [JsonIgnore]
@@ -142,6 +168,12 @@ namespace TalonOneSdk.Model
         public long? AudienceId { get { return this.AudienceIdOption.Value; } set { this.AudienceIdOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -152,11 +184,13 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  IsPrimary: ").Append(IsPrimary).Append("\n");
             sb.Append("  ExperimentId: ").Append(ExperimentId).Append("\n");
             sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
             sb.Append("  Weight: ").Append(Weight).Append("\n");
+            sb.Append("  IsPrimary: ").Append(IsPrimary).Append("\n");
+            sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -166,8 +200,14 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Order (long) minimum
+            if (this.OrderOption.IsSet && this.OrderOption.Value < (long)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Order, must be a value greater than or equal to 0.", new [] { "Order" });
+            }
+
             yield break;
         }
     }
@@ -212,10 +252,11 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<string> name = default;
-            Option<bool?> isPrimary = default;
             Option<long?> experimentId = default;
             Option<Ruleset> ruleset = default;
             Option<long?> weight = default;
+            Option<bool?> isPrimary = default;
+            Option<long?> order = default;
             Option<long?> audienceId = default;
 
             while (utf8JsonReader.Read())
@@ -242,9 +283,6 @@ namespace TalonOneSdk.Model
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
                             break;
-                        case "isPrimary":
-                            isPrimary = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
-                            break;
                         case "experimentId":
                             experimentId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -253,6 +291,12 @@ namespace TalonOneSdk.Model
                             break;
                         case "weight":
                             weight = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "isPrimary":
+                            isPrimary = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "order":
+                            order = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "audienceId":
                             audienceId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
@@ -272,9 +316,6 @@ namespace TalonOneSdk.Model
             if (!name.IsSet)
                 throw new JsonException("Property is required for class ExperimentVariant: name.");
 
-            if (!isPrimary.IsSet)
-                throw new JsonException("Property is required for class ExperimentVariant: isPrimary.");
-
             if (id.IsSet && id.Value == null)
                 throw new JsonException("Property is not nullable for class ExperimentVariant: id.");
 
@@ -284,10 +325,7 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new JsonException("Property is not nullable for class ExperimentVariant: name.");
 
-            if (isPrimary.IsSet && isPrimary.Value == null)
-                throw new JsonException("Property is not nullable for class ExperimentVariant: isPrimary.");
-
-            return new ExperimentVariant(id.Value.Value, created.Value.Value, name.Value, isPrimary.Value.Value, experimentId, ruleset, weight, audienceId);
+            return new ExperimentVariant(id.Value.Value, created.Value.Value, name.Value, experimentId, ruleset, weight, isPrimary, order, audienceId);
         }
 
         /// <summary>
@@ -321,8 +359,6 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("name", experimentVariant.Name);
 
-            writer.WriteBoolean("isPrimary", experimentVariant.IsPrimary);
-
             if (experimentVariant.ExperimentIdOption.IsSet)
                 writer.WriteNumber("experimentId", experimentVariant.ExperimentIdOption.Value.Value);
 
@@ -333,6 +369,12 @@ namespace TalonOneSdk.Model
             }
             if (experimentVariant.WeightOption.IsSet)
                 writer.WriteNumber("weight", experimentVariant.WeightOption.Value.Value);
+
+            if (experimentVariant.IsPrimaryOption.IsSet)
+                writer.WriteBoolean("isPrimary", experimentVariant.IsPrimaryOption.Value.Value);
+
+            if (experimentVariant.OrderOption.IsSet)
+                writer.WriteNumber("order", experimentVariant.OrderOption.Value.Value);
 
             if (experimentVariant.AudienceIdOption.IsSet)
                 writer.WriteNumber("audienceId", experimentVariant.AudienceIdOption.Value.Value);

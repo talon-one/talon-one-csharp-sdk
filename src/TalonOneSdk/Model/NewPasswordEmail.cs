@@ -48,6 +48,12 @@ namespace TalonOneSdk.Model
         public string Email { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -56,6 +62,7 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class NewPasswordEmail {\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -65,12 +72,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Email (string) minLength
             if (this.Email != null && this.Email.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Email, length must be greater than 1.", new [] { "Email" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Email, length must be greater than 1.", new [] { "Email" });
             }
 
             yield break;

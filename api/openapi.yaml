@@ -4158,8 +4158,8 @@ paths:
       - description: |
           Filter results by the state of the campaign.
 
-          - `enabled`: Campaigns that are scheduled, running (activated), or expired.
-          - `running`: Campaigns that are running (activated).
+          - `enabled`: Campaigns that are scheduled, running (active), or expired.
+          - `running`: Campaigns that are running (active).
           - `disabled`: Campaigns that are disabled.
           - `expired`: Campaigns that are expired.
           - `archived`: Campaigns that are archived.
@@ -4447,8 +4447,8 @@ paths:
       - description: |
           Filter results by the state of the campaign.
 
-          - `enabled`: Campaigns that are scheduled, running (activated), or expired.
-          - `running`: Campaigns that are running (activated).
+          - `enabled`: Campaigns that are scheduled, running (active), or expired.
+          - `running`: Campaigns that are running (active).
           - `disabled`: Campaigns that are disabled.
           - `expired`: Campaigns that are expired.
           - `archived`: Campaigns that are archived.
@@ -5383,8 +5383,8 @@ paths:
       - description: |
           Filter results by the state of the campaign.
 
-          - `enabled`: Campaigns that are scheduled, running (activated), or expired.
-          - `running`: Campaigns that are running (activated).
+          - `enabled`: Campaigns that are scheduled, running (active), or expired.
+          - `running`: Campaigns that are running (active).
           - `disabled`: Campaigns that are disabled.
           - `expired`: Campaigns that are expired.
           - `archived`: Campaigns that are archived.
@@ -6424,8 +6424,8 @@ paths:
         - `campaignid`: The ID of the campaign.
         - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance.
         - `transactionUUID`: Unique identifier of the transaction in the UUID format.
-        - `validityduration`: The duration for which the points remain active, relative to the activation date.
-        - `remainingamount`: The current unused amount of points, when applicable to `addition` transactions.
+        - `validityDuration`: The duration for which the points remain active, relative to the activation date.
+        - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions.
         - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`.
       operationId: exportLoyaltyLedger
       parameters:
@@ -6513,7 +6513,7 @@ paths:
               examples:
                 response:
                   value: |
-                    customerprofileid,customersessionid,rulesetid,rulename,programid,type,name,subledgerid,startdate,expirydate,id,created,amount,archived,campaignid,flags,transactionuuid,validityduration,remainingamount,referencetransactionuuids
+                    customerprofileid,customersessionid,rulesetid,rulename,programid,type,name,subledgerid,startdate,expirydate,id,created,amount,archived,campaignid,flags,transactionuuid,validityDuration,remainingAmount,referencetransactionuuids
                     8NHOS78H,06b0fafb-ccbf-42c7-b44b-d858e8b525022,1691,test,37,addition,Reimbursed loyalty points,,on_action,unlimited,60803,2022-11-29 16:16:10,100.00,false,5,,8c122fb1-1874-4ee2-b7e2-e7b5f8b7b801,"30D",0.00,""
                     8NHOS78H,06b0fafb-ccbf-42c7-b44b-d858e8b525022,1691,test,37,subtraction,10% of current total,,immediate,unlimited,60804,2022-11-29 16:16:23,100.00,false,5,,6d3d42d1-9078-49d5-b959-960205a6e3e3,"",,8c122fb1-1874-4ee2-b7e2-e7b5f8b7b801
               schema:
@@ -7848,8 +7848,8 @@ paths:
         - `archived`: Whether the session related to the transaction is archived.
         - `campaignid`: The ID of the campaign.
         - `transactionUUID`: Unique identifier of the transaction in the UUID format.
-        - `validityduration`: The duration for which the points remain active, relative to the activation date.
-        - `remainingamount`: The current unused amount of points, when applicable to `addition` transactions.
+        - `validityDuration`: The duration for which the points remain active, relative to the activation date.
+        - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions.
         - `referencetransactionuuids`: The UUIDs of the addition transactions from which points were deducted by the subtraction, separated by semicolons. Included only when `includeReferences` is `true`.
       operationId: exportLoyaltyCardLedger
       parameters:
@@ -7944,7 +7944,7 @@ paths:
               examples:
                 response:
                   value: |
-                    cardidentifier,applicationid,sessionid,customersessionid,rulesetid,rulename,programid,type,name,subledgerid,startdate,expirydate,id,created,amount,archived,campaignid,transactionuuid,validityduration,remainingamount
+                    cardidentifier,applicationid,sessionid,customersessionid,rulesetid,rulename,programid,type,name,subledgerid,startdate,expirydate,id,created,amount,archived,campaignid,transactionuuid,validityDuration,remainingAmount
                     summer-card-0543,1,10,session-123,1691,test,37,addition,Add points,,immediate,unlimited,60804,2022-11-29 16:16:23,100.00,false,5,8c122fb1-1874-4ee2-b7e2-e7b5f8b7b801,"",100.00
               schema:
                 format: csv
@@ -10222,7 +10222,9 @@ paths:
   /v1/best_prior_price:
     post:
       description: |
-        Returns the best prior price based on historical pricing data for the specified SKUs within a defined timeframe.
+        Returns the best prior price based on price records (historical price data) for the specified SKUs within a defined timeframe.
+
+        For more information, see the [docs](https://docs.talon.one/docs/dev/integration-guides/best-prior-price).
       operationId: bestPriorPrice
       requestBody:
         $ref: "#/components/requestBodies/BestPriorPrice"
@@ -10240,7 +10242,11 @@ paths:
   /v1/applications/{applicationId}/price_history:
     post:
       description: |
-        Fetch the historical price data for a given SKU within a defined timeframe.
+        Fetch the price records (historical price data) for a given SKU within a defined timeframe.
+
+        You can use this endpoint for auditing purposes and for ensuring that evaluation produced correct price records.
+
+        For more information, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price).
       operationId: priceHistory
       parameters:
       - $ref: "#/components/parameters/applicationId"
@@ -10260,7 +10266,11 @@ paths:
   /v1/applications/{applicationId}/price_history/exclusions:
     post:
       description: |
-        Select a batch of historical price IDs to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice). All IDs in the batch must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification.
+        Select a batch of price records (historical price data) to exclude from [best prior price calculation](https://docs.talon.one/integration-api#tag/Catalogs/operation/bestPriorPrice).
+
+        All IDs in the batch must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, must not already be excluded from best prior price calculation, and must not be associated with a scheduled strikethrough pricing notification.
+
+        For more information, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price).
       operationId: excludePriceHistory
       parameters:
       - $ref: "#/components/parameters/applicationId"
@@ -10581,16 +10591,20 @@ paths:
         - Update the attributes of multiple items in the catalog.
         - Remove an item from the catalog.
         - Remove multiple items from the catalog.
+        - Add a [price adjustment](https://docs.talon.one/docs/dev/integration-guides/set-up-price-types#price-adjustments)
+          to an item in the catalog.
 
         You can either add, update, or delete up to 1000 cart items in a single
         request. Each item synced to a catalog must have a unique `SKU`.
+
+        For examples of each action, see the request body.
 
         > [!important] You can perform only one type of action in a single sync
         request. Syncing items with duplicate `SKU` values in a single request
         returns an error message with a `400` status code.
 
-        For more information, read [managing cart item
-        catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).
+
+        For more information, see [Sync a cart item catalog best practices](https://docs.talon.one/docs/dev/integration-guides/sync-cic#best-practices) and [Managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).
 
         ### Filtering cart items
 
@@ -10617,8 +10631,6 @@ paths:
 
           **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only.
         - `value`: The value of the attribute selected in `attr`.
-
-        For request examples of each action, see the **Request Body** examples.
       operationId: syncCatalog
       parameters:
       - description: The ID of the catalog. You can find the ID in the Campaign Manager
@@ -11391,8 +11403,8 @@ paths:
       - description: |
           Filter results by the state of the campaign.
 
-          - `enabled`: Campaigns that are scheduled, running (activated), or expired.
-          - `running`: Campaigns that are running (activated).
+          - `enabled`: Campaigns that are scheduled, running (active), or expired.
+          - `running`: Campaigns that are running (active).
           - `disabled`: Campaigns that are disabled.
           - `expired`: Campaigns that are expired.
           - `archived`: Campaigns that are archived.
@@ -15463,7 +15475,7 @@ components:
       required: true
   schemas:
     ApplicationNotification:
-      $ref: "#/components/schemas/CampaignEvaluationTreeChangedNotification"
+      $ref: "#/components/schemas/CampaignEvaluationTreeChangedNotificationData"
     ApplicationSessionEntity:
       properties:
         sessionId:
@@ -15785,7 +15797,7 @@ components:
       required:
       - RoleID
       - UserID
-    StrikethroughLabelingNotification:
+    StrikethroughPriceNotification:
       description: The strikethrough labels notification for an application.
       properties:
         version:
@@ -18863,7 +18875,10 @@ components:
           type: number
         excludedFromPriceHistory:
           description: "When set to `true`, the applied discount is excluded from\
-            \ the item's price history."
+            \ the item's price history. When set to `false`, the applied discount\
+            \ is included in the item's price history. This property is only returned\
+            \ if the [best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price)\
+            \ setting is enabled for the Application."
           type: boolean
       required:
       - name
@@ -20913,7 +20928,7 @@ components:
         description: Campaign for all summer 2021 promotions
         startTime: 2021-07-20T22:00:00Z
         endTime: 2021-09-22T22:00:00Z
-        attributes: "{}"
+        attributes: {}
         state: enabled
         activeRulesetId: 6
         tags:
@@ -21019,7 +21034,7 @@ components:
         - 1
         - 2
         - 3
-        couponAttributes: "{}"
+        couponAttributes: {}
         budgets:
         - action: createCoupon
           limit: 1000
@@ -21361,7 +21376,7 @@ components:
         description: Campaign for all summer 2021 promotions
         startTime: 2021-07-20T22:00:00Z
         endTime: 2021-09-22T22:00:00Z
-        attributes: null
+        attributes: {}
         state: enabled
         tags:
         - summer
@@ -21687,7 +21702,7 @@ components:
         discountCounter: 10
         discountRemainder: 5
         reservationCounter: 1
-        attributes: null
+        attributes: {}
         referralId: 326632952
         recipientIntegrationId: URNGV8294NV
         importId: 4
@@ -21857,7 +21872,7 @@ components:
         poolId: 1
         startDate: 2022-01-02T15:04:05Z07:00
         endDate: 2023-01-02T15:04:05Z07:00
-        attributes: null
+        attributes: {}
         used: true
         importId: 4
         profileIntegrationId: R195412
@@ -22435,8 +22450,8 @@ components:
       - referralId
     Meta:
       example:
-        campaigns: "{}"
-        coupons: "{}"
+        campaigns: {}
+        coupons: {}
         couponRejectionReason:
           campaignId: 244
           couponId: 4928
@@ -22445,7 +22460,7 @@ components:
           campaignId: 1
           referralId: 5
           reason: ReferralNotFound
-        warnings: "{}"
+        warnings: {}
       properties:
         campaigns:
           description: Maps each evaluated campaign ID to a key-value list of that
@@ -22503,8 +22518,8 @@ components:
         integrationId: 175KJPS947296
         sessionId: 175KJPS947296
         effects:
-        - "{}"
-        - "{}"
+        - {}
+        - {}
         ledgerEntries:
         - id: 6
           created: 2020-06-10T09:05:27.993483Z
@@ -22527,8 +22542,8 @@ components:
           expiryDate: 2022-04-26T11:02:38Z
           referenceId: 6
         meta:
-          campaigns: "{}"
-          coupons: "{}"
+          campaigns: {}
+          coupons: {}
           couponRejectionReason:
             campaignId: 244
             couponId: 4928
@@ -22537,7 +22552,7 @@ components:
             campaignId: 1
             referralId: 5
             reason: ReferralNotFound
-          warnings: "{}"
+          warnings: {}
     EventV3Connections:
       properties:
         connectedSessionId:
@@ -22586,8 +22601,8 @@ components:
         integrationId: 175KJPS947296
         referralCode: NT2K54D9
         effects:
-        - "{}"
-        - "{}"
+        - {}
+        - {}
     AccountEntity:
       properties:
         accountId:
@@ -22750,7 +22765,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -22856,7 +22871,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -22905,7 +22920,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -23011,7 +23026,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -23059,7 +23074,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -23107,7 +23122,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -23248,7 +23263,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -23280,7 +23295,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -23322,7 +23337,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -23333,7 +23348,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -23647,8 +23662,8 @@ components:
           integrationId: 175KJPS947296
           sessionId: 175KJPS947296
           effects:
-          - "{}"
-          - "{}"
+          - {}
+          - {}
           ledgerEntries:
           - id: 6
             created: 2020-06-10T09:05:27.993483Z
@@ -23671,8 +23686,8 @@ components:
             expiryDate: 2022-04-26T11:02:38Z
             referenceId: 6
           meta:
-            campaigns: "{}"
-            coupons: "{}"
+            campaigns: {}
+            coupons: {}
             couponRejectionReason:
               campaignId: 244
               couponId: 4928
@@ -23681,7 +23696,7 @@ components:
               campaignId: 1
               referralId: 5
               reason: ReferralNotFound
-            warnings: "{}"
+            warnings: {}
         loyalty:
           cards:
           - id: 6
@@ -23783,7 +23798,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -23889,7 +23904,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -23938,7 +23953,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -24044,7 +24059,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -24125,7 +24140,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -24173,7 +24188,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -24222,7 +24237,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -24233,7 +24248,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -24305,7 +24320,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -24337,7 +24352,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -24807,7 +24822,7 @@ components:
         description: Campaign for all summer 2021 promotions
         startTime: 2021-07-20T22:00:00Z
         endTime: 2021-09-22T22:00:00Z
-        attributes: null
+        attributes: {}
         state: enabled
         tags:
         - summer
@@ -25102,7 +25117,7 @@ components:
         discountCounter: 10
         discountRemainder: 5
         reservationCounter: 1
-        attributes: null
+        attributes: {}
         referralId: 326632952
         recipientIntegrationId: URNGV8294NV
         importId: 4
@@ -25780,7 +25795,7 @@ components:
         timezone: Europe/Berlin
         currency: EUR
         caseSensitivity: sensitive
-        attributes: "{}"
+        attributes: {}
         limits:
         - action: createCoupon
           limit: 1000
@@ -26279,7 +26294,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -26385,7 +26400,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -26434,7 +26449,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -26540,7 +26555,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -26588,7 +26603,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -26636,7 +26651,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -26777,7 +26792,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -26809,7 +26824,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -26851,7 +26866,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -26862,7 +26877,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -27106,7 +27121,7 @@ components:
         discountCounter: 10
         discountRemainder: 5
         reservationCounter: 1
-        attributes: null
+        attributes: {}
         referralId: 326632952
         recipientIntegrationId: URNGV8294NV
         importId: 4
@@ -27464,7 +27479,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -27498,7 +27513,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -27515,7 +27530,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -27526,7 +27541,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -28790,7 +28805,7 @@ components:
         description: Campaign for all summer 2021 promotions
         startTime: 2021-07-20T22:00:00Z
         endTime: 2021-09-22T22:00:00Z
-        attributes: "{}"
+        attributes: {}
         state: enabled
         activeRulesetId: 6
         tags:
@@ -28896,7 +28911,7 @@ components:
         - 1
         - 2
         - 3
-        couponAttributes: "{}"
+        couponAttributes: {}
         evaluationGroupId: 2
     IdentifiableEntity:
       properties:
@@ -29435,7 +29450,7 @@ components:
         - 1
         - 2
         - 3
-        couponAttributes: "{}"
+        couponAttributes: {}
       properties:
         name:
           description: A user-facing name for this campaign.
@@ -30106,7 +30121,7 @@ components:
         params: []
         enabled: true
         authenticationId: 1
-    ExpiringCouponsNotificationTrigger:
+    CouponCodeExpiringNotificationTrigger:
       properties:
         amount:
           description: The amount of period.
@@ -30123,7 +30138,7 @@ components:
       required:
       - amount
       - period
-    ExpiringCouponsNotificationPolicy:
+    CouponCodeExpiringNotificationPolicy:
       properties:
         name:
           description: Notification name.
@@ -30132,7 +30147,7 @@ components:
           type: string
         triggers:
           items:
-            $ref: "#/components/schemas/ExpiringCouponsNotificationTrigger"
+            $ref: "#/components/schemas/CouponCodeExpiringNotificationTrigger"
           maxItems: 3
           minItems: 1
           type: array
@@ -30152,7 +30167,7 @@ components:
       required:
       - name
       - triggers
-    CardExpiringPointsNotificationTrigger:
+    LoyaltyCardPointsExpiringNotificationTrigger:
       properties:
         amount:
           description: The amount of period.
@@ -30169,7 +30184,7 @@ components:
       required:
       - amount
       - period
-    CardExpiringPointsNotificationPolicy:
+    LoyaltyCardPointsExpiringNotificationPolicy:
       properties:
         name:
           description: Notification name.
@@ -30178,7 +30193,7 @@ components:
           type: string
         triggers:
           items:
-            $ref: "#/components/schemas/CardExpiringPointsNotificationTrigger"
+            $ref: "#/components/schemas/LoyaltyCardPointsExpiringNotificationTrigger"
           maxItems: 3
           minItems: 1
           type: array
@@ -30198,7 +30213,7 @@ components:
       required:
       - name
       - triggers
-    ExpiringPointsNotificationTrigger:
+    LoyaltyPointsExpiringNotificationTrigger:
       properties:
         amount:
           description: The amount of period.
@@ -30215,7 +30230,7 @@ components:
       required:
       - amount
       - period
-    ExpiringPointsNotificationPolicy:
+    LoyaltyPointsExpiringNotificationPolicy:
       properties:
         name:
           description: Notification name.
@@ -30224,7 +30239,7 @@ components:
           type: string
         triggers:
           items:
-            $ref: "#/components/schemas/ExpiringPointsNotificationTrigger"
+            $ref: "#/components/schemas/LoyaltyPointsExpiringNotificationTrigger"
           maxItems: 3
           minItems: 1
           type: array
@@ -30244,7 +30259,7 @@ components:
       required:
       - name
       - triggers
-    AddedDeductedPointsNotificationPolicy:
+    LoyaltyPointsAddedDeductedNotificationPolicy:
       properties:
         name:
           description: Notification name.
@@ -30266,7 +30281,7 @@ components:
       required:
       - name
       - scopes
-    CardAddedDeductedPointsNotificationPolicy:
+    LoyaltyCardPointsAddedDeductedNotificationPolicy:
       properties:
         name:
           description: Notification name.
@@ -30288,12 +30303,12 @@ components:
       required:
       - name
       - scopes
-    AddedDeductedPointsBalancesNotificationPolicy:
+    LoyaltyAddedDeductedPointsBalancesNotificationPolicy:
       allOf:
-      - $ref: "#/components/schemas/AddedDeductedPointsNotificationPolicy"
-    CardAddedDeductedPointsBalancesNotificationPolicy:
+      - $ref: "#/components/schemas/LoyaltyPointsAddedDeductedNotificationPolicy"
+    LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy:
       allOf:
-      - $ref: "#/components/schemas/CardAddedDeductedPointsNotificationPolicy"
+      - $ref: "#/components/schemas/LoyaltyCardPointsAddedDeductedNotificationPolicy"
     CouponsNotificationPolicy:
       properties:
         name:
@@ -30333,7 +30348,7 @@ components:
       required:
       - name
       - scopes
-    CatalogsStrikethroughNotificationPolicy:
+    StrikethroughPriceNotificationPolicy:
       properties:
         name:
           description: Notification name.
@@ -30355,7 +30370,7 @@ components:
           type: integer
       required:
       - name
-    PendingPointsNotificationPolicy:
+    LoyaltyPointsPendingToActiveNotificationPolicy:
       properties:
         name:
           description: Notification name.
@@ -30487,16 +30502,16 @@ components:
     BaseNotificationPolicy:
       description: Indicates which notification properties to apply.
       oneOf:
-      - $ref: "#/components/schemas/ExpiringCouponsNotificationPolicy"
-      - $ref: "#/components/schemas/CardExpiringPointsNotificationPolicy"
-      - $ref: "#/components/schemas/ExpiringPointsNotificationPolicy"
-      - $ref: "#/components/schemas/AddedDeductedPointsNotificationPolicy"
-      - $ref: "#/components/schemas/CardAddedDeductedPointsNotificationPolicy"
-      - $ref: "#/components/schemas/AddedDeductedPointsBalancesNotificationPolicy"
-      - $ref: "#/components/schemas/CardAddedDeductedPointsBalancesNotificationPolicy"
+      - $ref: "#/components/schemas/CouponCodeExpiringNotificationPolicy"
+      - $ref: "#/components/schemas/LoyaltyCardPointsExpiringNotificationPolicy"
+      - $ref: "#/components/schemas/LoyaltyPointsExpiringNotificationPolicy"
+      - $ref: "#/components/schemas/LoyaltyPointsAddedDeductedNotificationPolicy"
+      - $ref: "#/components/schemas/LoyaltyCardPointsAddedDeductedNotificationPolicy"
+      - $ref: "#/components/schemas/LoyaltyAddedDeductedPointsBalancesNotificationPolicy"
+      - $ref: "#/components/schemas/LoyaltyCardAddedDeductedPointsBalancesNotificationPolicy"
       - $ref: "#/components/schemas/CouponsNotificationPolicy"
-      - $ref: "#/components/schemas/CatalogsStrikethroughNotificationPolicy"
-      - $ref: "#/components/schemas/PendingPointsNotificationPolicy"
+      - $ref: "#/components/schemas/StrikethroughPriceNotificationPolicy"
+      - $ref: "#/components/schemas/LoyaltyPointsPendingToActiveNotificationPolicy"
       - $ref: "#/components/schemas/CampaignNotificationPolicy"
       - $ref: "#/components/schemas/TierDowngradeNotificationPolicy"
       - $ref: "#/components/schemas/TierUpgradeNotificationPolicy"
@@ -30684,6 +30699,8 @@ components:
     LabelTargetAudience:
       description: |
         Target type when a specific audience is selected.
+
+        Talon.One logs a separate price record per audience. You can use this object to compare the price records of a price type to those of a [base price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#price-history), for example.
       properties:
         type:
           enum:
@@ -31020,7 +31037,7 @@ components:
       - httpStatus
     CampaignSearch:
       example:
-        attributes: "{}"
+        attributes: {}
       properties:
         attributes:
           description: Properties to match against a campaign. All provided attributes
@@ -32002,143 +32019,209 @@ components:
         - webhook
         title: TriggerWebhookBlock
     ScalarCheckAttributeBlock:
-      description: Variant of `CheckAttributeBlock` for operators that compare an
-        attribute against a single value.
-      properties:
-        operator:
-          description: The comparison operator applied to the attribute.
-          enum:
-          - equals
-          - not(equals)
-          - lessThan
-          - lessThanOrEqual
-          - greaterThan
-          - greaterThanOrEqual
-          - contains
-          - not(contains)
-          - matchesRegexp
-          - startsWith
-          - endsWith
-          - oneOf
-          - not(oneOf)
-          - inCollection
-          - not(inCollection)
-          - after
-          - before
-          type: string
-        value:
-          description: The comparison value for this operator.
-          example: 100
-      required:
-      - value
-      title: ScalarCheckAttributeBlock
+      allOf:
+      - $ref: "#/components/schemas/CheckAttributeBlockBase"
+      - properties:
+          type:
+            description: A block discriminator of type `checkAttribute`.
+            enum:
+            - checkAttribute
+            example: checkAttribute
+            type: string
+        required:
+        - type
+      - description: Variant of `CheckAttributeBlock` for operators that compare an
+          attribute against a single value.
+        properties:
+          operator:
+            description: The comparison operator applied to the attribute.
+            enum:
+            - equals
+            - not(equals)
+            - lessThan
+            - lessThanOrEqual
+            - greaterThan
+            - greaterThanOrEqual
+            - contains
+            - not(contains)
+            - matchesRegexp
+            - startsWith
+            - endsWith
+            - oneOf
+            - not(oneOf)
+            - inCollection
+            - not(inCollection)
+            - after
+            - before
+            type: string
+          value:
+            description: The comparison value for this operator.
+            example: 100
+        required:
+        - value
+        title: ScalarCheckAttributeBlock
     BetweenCheckAttributeBlock:
-      description: "Variant of `CheckAttributeBlock` for the `between` operator, which\
-        \ requires both a minimum and maximum value."
-      properties:
-        operator:
-          description: The range comparison operator. Must be `between`.
-          enum:
-          - between
-          type: string
-        min:
-          description: The minimum value allowed for the `between` operator.
-          example: 10
-        max:
-          description: The maximum value allowed for the `between` operator.
-          example: 100
-      required:
-      - max
-      - min
-      title: BetweenCheckAttributeBlock
+      allOf:
+      - $ref: "#/components/schemas/CheckAttributeBlockBase"
+      - properties:
+          type:
+            description: A block discriminator of type `checkAttribute`.
+            enum:
+            - checkAttribute
+            example: checkAttribute
+            type: string
+        required:
+        - type
+      - description: "Variant of `CheckAttributeBlock` for the `between` operator,\
+          \ which requires both a minimum and maximum value."
+        properties:
+          operator:
+            description: The range comparison operator. Must be `between`.
+            enum:
+            - between
+            type: string
+          min:
+            description: The minimum value allowed for the `between` operator.
+            example: 10
+          max:
+            description: The maximum value allowed for the `between` operator.
+            example: 100
+        required:
+        - max
+        - min
+        title: BetweenCheckAttributeBlock
     ListCheckAttributeBlock:
-      description: Variant of `CheckAttributeBlock` for operators that test list membership
-        against a set of values.
-      properties:
-        operator:
-          description: The list membership operator applied to the attribute.
-          enum:
-          - containsOneOf
-          - containsNoneOf
-          - containsAllOf
-          type: string
-        values:
-          description: The set of values to match against.
-      required:
-      - values
-      title: ListCheckAttributeBlock
+      allOf:
+      - $ref: "#/components/schemas/CheckAttributeBlockBase"
+      - properties:
+          type:
+            description: A block discriminator of type `checkAttribute`.
+            enum:
+            - checkAttribute
+            example: checkAttribute
+            type: string
+        required:
+        - type
+      - description: Variant of `CheckAttributeBlock` for operators that test list
+          membership against a set of values.
+        properties:
+          operator:
+            description: The list membership operator applied to the attribute.
+            enum:
+            - containsOneOf
+            - containsNoneOf
+            - containsAllOf
+            type: string
+          values:
+            description: The set of values to match against.
+        required:
+        - values
+        title: ListCheckAttributeBlock
     ListWithCountCheckAttributeBlock:
-      description: Variant of `CheckAttributeBlock` for operators that test list membership
-        with a minimum or exact count threshold.
-      properties:
-        operator:
-          description: The list membership operator with a count threshold applied
-            to the attribute.
-          enum:
-          - containsAtLeast
-          - containsExactly
-          type: string
-        values:
-          description: The set of values to match against.
-        count:
-          description: The count threshold for this operator.
-          example: 2
-      required:
-      - count
-      - values
-      title: ListWithCountCheckAttributeBlock
+      allOf:
+      - $ref: "#/components/schemas/CheckAttributeBlockBase"
+      - properties:
+          type:
+            description: A block discriminator of type `checkAttribute`.
+            enum:
+            - checkAttribute
+            example: checkAttribute
+            type: string
+        required:
+        - type
+      - description: Variant of `CheckAttributeBlock` for operators that test list
+          membership with a minimum or exact count threshold.
+        properties:
+          operator:
+            description: The list membership operator with a count threshold applied
+              to the attribute.
+            enum:
+            - containsAtLeast
+            - containsExactly
+            type: string
+          values:
+            description: The set of values to match against.
+          count:
+            description: The count threshold for this operator.
+            example: 2
+        required:
+        - count
+        - values
+        title: ListWithCountCheckAttributeBlock
     UnaryCheckAttributeBlock:
-      description: Variant of `CheckAttributeBlock` for operators that test a property
-        of the attribute itself with no comparison value.
-      properties:
-        operator:
-          description: The unary operator applied to the attribute. These operators
-            require no comparison value.
-          enum:
-          - empty
-          - not(empty)
-          - exists
-          - not(exists)
-          - isTrue
-          - isFalse
-          type: string
-      title: UnaryCheckAttributeBlock
+      allOf:
+      - $ref: "#/components/schemas/CheckAttributeBlockBase"
+      - properties:
+          type:
+            description: A block discriminator of type `checkAttribute`.
+            enum:
+            - checkAttribute
+            example: checkAttribute
+            type: string
+        required:
+        - type
+      - description: Variant of `CheckAttributeBlock` for operators that test a property
+          of the attribute itself with no comparison value.
+        properties:
+          operator:
+            description: The unary operator applied to the attribute. These operators
+              require no comparison value.
+            enum:
+            - empty
+            - not(empty)
+            - exists
+            - not(exists)
+            - isTrue
+            - isFalse
+            type: string
+        title: UnaryCheckAttributeBlock
     WithinCheckAttributeBlock:
-      description: "Variant of `CheckAttributeBlock` for the `within` and `not(within)`\
-        \ operators, which require both a start and end value."
-      properties:
-        operator:
-          description: The range comparison operator. Must be `within` or `not(within)`.
-          enum:
-          - within
-          - not(within)
-          type: string
-        start:
-          description: The start value for the `within` operator.
-          example: 2021-09-22T22:00:00Z
-        end:
-          description: The end value for the `within` operator.
-          example: 2021-09-22T22:00:00Z
-        startInclusive:
-          description: "When `true`, the `start` value is included in the range for\
-            \ the `within` operator."
-          example: true
-          type: boolean
-        endInclusive:
-          description: "When `true`, the `end` value is included in the range for\
-            \ the `within` operator."
-          example: true
-          type: boolean
-        timezoneInsensitive:
-          description: "Indicates whether the `within` operator ignores time zones\
-            \ and compares the wall-clock time only. When `false`, time zones are\
-            \ taken into account."
-          example: false
-          type: boolean
-      required:
-      - end
-      - start
-      title: WithinCheckAttributeBlock
+      allOf:
+      - $ref: "#/components/schemas/CheckAttributeBlockBase"
+      - properties:
+          type:
+            description: A block discriminator of type `checkAttribute`.
+            enum:
+            - checkAttribute
+            example: checkAttribute
+            type: string
+        required:
+        - type
+      - description: "Variant of `CheckAttributeBlock` for the `within` and `not(within)`\
+          \ operators, which require both a start and end value."
+        properties:
+          operator:
+            description: The range comparison operator. Must be `within` or `not(within)`.
+            enum:
+            - within
+            - not(within)
+            type: string
+          start:
+            description: The start value for the `within` operator.
+            example: 2021-09-22T22:00:00Z
+          end:
+            description: The end value for the `within` operator.
+            example: 2021-09-22T22:00:00Z
+          startInclusive:
+            description: "When `true`, the `start` value is included in the range\
+              \ for the `within` operator."
+            example: true
+            type: boolean
+          endInclusive:
+            description: "When `true`, the `end` value is included in the range for\
+              \ the `within` operator."
+            example: true
+            type: boolean
+          timezoneInsensitive:
+            description: "Indicates whether the `within` operator ignores time zones\
+              \ and compares the wall-clock time only. When `false`, time zones are\
+              \ taken into account."
+            example: false
+            type: boolean
+        required:
+        - end
+        - start
+        title: WithinCheckAttributeBlock
     GeoJSONPoint:
       description: "A single point on a map, defined by its longitude and latitude\
         \ coordinates, following the GeoJSON format."
@@ -32282,20 +32365,31 @@ components:
       - type
       title: GeoJSONGeometryCollection
     LocationCheckAttributeBlock:
-      description: A block variant of `CheckAttributeBlock` for operators that check
-        whether a geographical location is inside a set of geometric areas.
-      properties:
-        operator:
-          description: The location membership operator applied to the attribute.
-          enum:
-          - in
-          - not(in)
-          type: string
-        values:
-          $ref: "#/components/schemas/LocationCheckAttributeBlock_values"
-      required:
-      - values
-      title: LocationCheckAttributeBlock
+      allOf:
+      - $ref: "#/components/schemas/CheckAttributeBlockBase"
+      - properties:
+          type:
+            description: A block discriminator of type `checkAttribute`.
+            enum:
+            - checkAttribute
+            example: checkAttribute
+            type: string
+        required:
+        - type
+      - description: A block variant of `CheckAttributeBlock` for operators that check
+          whether a geographical location is inside a set of geometric areas.
+        properties:
+          operator:
+            description: The location membership operator applied to the attribute.
+            enum:
+            - in
+            - not(in)
+            type: string
+          values:
+            $ref: "#/components/schemas/LocationCheckAttributeBlock_1_values"
+        required:
+        - values
+        title: LocationCheckAttributeBlock
     CheckAttributeBlockBase:
       allOf:
       - $ref: "#/components/schemas/BaseBlock"
@@ -32408,17 +32502,6 @@ components:
         - operator
         title: CheckAttributeBlockBase
     CheckAttributeBlock:
-      allOf:
-      - $ref: "#/components/schemas/CheckAttributeBlockBase"
-      - properties:
-          type:
-            description: A block discriminator of type `checkAttribute`.
-            enum:
-            - checkAttribute
-            example: checkAttribute
-            type: string
-        required:
-        - type
       discriminator:
         mapping:
           equals: "#/components/schemas/ScalarCheckAttributeBlock"
@@ -34091,7 +34174,7 @@ components:
         reservationLimit: 45
         startDate: 2020-01-24T14:15:22Z
         expiryDate: 2023-08-24T14:15:22Z
-        attributes: null
+        attributes: {}
         batchID: batchID
     NewCoupons:
       allOf:
@@ -34381,7 +34464,7 @@ components:
           - "8"
           - "9"
           couponPattern: SUMMER-####-####
-        attributes: null
+        attributes: {}
         isReservationMandatory: false
     AsyncCouponCreationResponse:
       example:
@@ -34574,7 +34657,7 @@ components:
           entities:
           - Coupon
         recipientIntegrationId: URNGV8294NV
-        attributes: null
+        attributes: {}
         isReservationMandatory: false
         implicitlyReserved: false
     CouponSearch:
@@ -34625,7 +34708,7 @@ components:
         startDate: 2020-11-10T23:00:00Z
         expiryDate: 2021-11-10T23:00:00Z
         usageLimit: 1
-        attributes: "{}"
+        attributes: {}
       properties:
         friendProfileIntegrationId:
           description: An optional Integration ID of the Friend's Profile.
@@ -35038,8 +35121,8 @@ components:
         instructions: "Use this template for discount campaigns. Set the campaign\
           \ properties according to the campaign goals, and don't forget to set an\
           \ end date."
-        campaignAttributes: "{}"
-        couponAttributes: "{}"
+        campaignAttributes: {}
+        couponAttributes: {}
         state: draft
         activeRulesetId: 5
         tags:
@@ -35592,8 +35675,19 @@ components:
             format: int64
             type: integer
           isPrimary:
+            deprecated: true
+            description: |
+              **Deprecated.** Use `order` instead.
+              Indicates whether this is the primary variant. This is computed as `order == 0`.
             example: true
             type: boolean
+          order:
+            description: |
+              The position of this variant in the experiment. The variant with `order: 0` is the primary variant.
+            example: 0
+            format: int64
+            minimum: 0
+            type: integer
           audienceId:
             description: |
               The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
@@ -35601,7 +35695,6 @@ components:
             format: int64
             type: integer
         required:
-        - isPrimary
         - name
       example:
         id: 6
@@ -35782,6 +35875,7 @@ components:
           activatedAt: 2000-01-23T04:56:07.000+00:00
         weight: 12
         isPrimary: true
+        order: 0
         audienceId: 55
     Experiment:
       allOf:
@@ -35862,7 +35956,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -35968,7 +36062,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -36190,6 +36284,7 @@ components:
             activatedAt: 2000-01-23T04:56:07.000+00:00
           weight: 12
           isPrimary: true
+          order: 0
           audienceId: 55
         - id: 6
           created: 2020-06-10T09:05:27.993483Z
@@ -36369,6 +36464,7 @@ components:
             activatedAt: 2000-01-23T04:56:07.000+00:00
           weight: 12
           isPrimary: true
+          order: 0
           audienceId: 55
         goalType: other
         goalDescription: Offering free shipping will increase average order revenue
@@ -36574,6 +36670,13 @@ components:
             maximum: 99
             minimum: 0
             type: integer
+          order:
+            description: |
+              The position of this variant in the experiment. The variant with `order: 0` is the primary variant.
+            example: 0
+            format: int64
+            minimum: 0
+            type: integer
           audienceId:
             description: |
               The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
@@ -36614,8 +36717,19 @@ components:
         ruleset:
           $ref: "#/components/schemas/NewRuleset"
         isPrimary:
+          deprecated: true
+          description: |
+            **Deprecated.** Use `order` instead.
+            Indicates whether this is the primary variant. This is computed as `order == 0`.
           example: true
           type: boolean
+        order:
+          description: |
+            The position of this variant in the experiment. The variant with `order: 0` is the primary variant. When omitted, the backend assigns order based on the array position.
+          example: 0
+          format: int64
+          minimum: 0
+          type: integer
         audienceId:
           description: |
             The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
@@ -36623,7 +36737,6 @@ components:
           format: int64
           type: integer
       required:
-      - isPrimary
       - name
       - ruleset
       - weight
@@ -36916,7 +37029,7 @@ components:
         name: Discount campaign
         description: This template is for discount campaigns.
         templateId: 4
-        campaignAttributesOverrides: "{}"
+        campaignAttributesOverrides: {}
         templateParamValues:
         - name: Discount percentage
           type: templateParameter
@@ -37173,7 +37286,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -37279,7 +37392,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -39411,7 +39524,7 @@ components:
           loyaltyProgramId: 323414846
     CustomerProfileSearchQuery:
       example:
-        attributes: "{}"
+        attributes: {}
         integrationIDs:
         - integrationIDs
         - integrationIDs
@@ -39711,7 +39824,7 @@ components:
           key: 0.8008281904610115
         totalDiscounts: 100
         total: 200
-        attributes: null
+        attributes: {}
     ApplicationStoreEntity:
       properties:
         storeId:
@@ -39766,7 +39879,7 @@ components:
         integrationId: 175KJPS947296
         sessionId: 6
         type: type
-        attributes: null
+        attributes: {}
         effects:
         - experimentId: 12
           campaignId: 244
@@ -40426,11 +40539,15 @@ components:
           example: "30"
           type: string
         timeframeEndDateType:
-          description: |
-            Sets the timeframe for retrieving historical pricing data. Can be one of the following values:
-            - `strict`: The timeframe ends at the `timeframeEndDate` value.
-            - `price`: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account.
-            - `sale`:  The timeframe ends at the start of the current sales event, as defined by the `contextId`. It takes the prices prior to the current sale event into account.
+          description: "Sets the timeframe for retrieving historical pricing data.\
+            \ Can be one of the following values:\n- `strict`: The timeframe ends\
+            \ at the `timeframeEndDate` value.\n- `price`: The timeframe ends at the\
+            \ start of current price value and takes the prices prior to the start\
+            \ of the current price value into account.\n- `sale`:  The timeframe ends\
+            \ at the start of the current sales event, as defined by the `contextId`.\
+            \ It takes the prices prior to the current sale event into account.\n\n\
+            For an example, see [Best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#best-prior-price-timeframe-selection).\
+            \ \n"
           enum:
           - strict
           - price
@@ -40480,7 +40597,7 @@ components:
       - selectedPriceType
       - value
     BestPriorPriceMetadata:
-      description: Auxiliary data for found price observation.
+      description: Auxiliary data for the found price record.
       example:
         influencingCampaignDetails:
         - campaignId: 0
@@ -40521,7 +40638,7 @@ components:
           type: NONE
       properties:
         id:
-          description: The ID of the historical price.
+          description: The ID of the price record.
           example: 1
           format: int64
           type: integer
@@ -40530,13 +40647,13 @@ components:
           example: SKU7345278
           type: string
         observedAt:
-          description: The date and time when the price was observed.
+          description: The date and time when the price change was recorded.
           example: 2025-11-10T23:00:00Z
           format: date-time
           type: string
         contextIds:
           description: |
-            The identifiers of the relevant context (the sales events, e.g. "Spring Sale", "Summer Sale") at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+            The identifiers of the relevant context (the sales events, e.g. "Spring Sale", "Summer Sale") at the time the price change was recorded. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
           example:
           - SpringSale
           - SummerSale2025
@@ -40572,19 +40689,18 @@ components:
         endDate: 2020-12-10T23:00:00Z
       properties:
         sku:
-          description: The SKU of the item for which the historical prices are being
-            retrieved.
+          description: The SKU of the item for which the price records are being retrieved.
           example: SKU1241028
           type: string
         startDate:
-          description: The start date of the period for which historical prices should
+          description: The start date of the period for which price records should
             be retrieved.
           example: 2020-11-10T23:00:00Z
           format: date-time
           type: string
         endDate:
-          description: The end date of the period for which historical prices should
-            be retrieved.
+          description: The end date of the period for which price records should be
+            retrieved.
           example: 2020-12-10T23:00:00Z
           format: date-time
           type: string
@@ -40613,18 +40729,18 @@ components:
         exclusionReason: Incorrect contextID value
       properties:
         id:
-          description: The ID of the historical price.
+          description: The ID of the price record.
           example: 1
           format: int64
           type: integer
         observedAt:
-          description: The date and time when the price was observed.
+          description: The date and time from which the price record is effective.
           example: 2025-11-10T23:00:00Z
           format: date-time
           type: string
         contextIds:
           description: |
-            The identifiers of the relevant context (the sales events, e.g. "Spring Sale", "Summer Sale") at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+            The identifiers of the relevant context (the sales events, e.g. "Spring Sale", "Summer Sale") at the time from which the price record is effective. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
           example:
           - SpringSale
           - SummerSale2025
@@ -40641,12 +40757,12 @@ components:
         target:
           $ref: "#/components/schemas/LabelTarget"
         excludedAt:
-          description: The date and time when the historical price ID was excluded.
+          description: The date and time when the price record was excluded.
           example: 2025-11-10T23:00:00Z
           format: date-time
           type: string
         exclusionReason:
-          description: The reason for excluding this historical price ID.
+          description: The reason for excluding this price record.
           example: Incorrect contextID value
           type: string
       required:
@@ -40696,7 +40812,7 @@ components:
           exclusionReason: Incorrect contextID value
       properties:
         sku:
-          description: The SKU of the item for which historical prices should be retrieved.
+          description: The SKU of the item for which price records should be retrieved.
           example: SKU1241028
           type: string
         history:
@@ -40719,7 +40835,7 @@ components:
       properties:
         ids:
           description: |
-            A list of historical price IDs to exclude from best prior price calculation. Must contain between 1 and 1000 IDs. All IDs must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, and must not already be excluded from best prior price calculation.
+            A list of price record IDs to exclude from best prior price calculation. Must contain between 1 and 1000 IDs. All IDs must be valid `id` values obtained from the [Get summary of price history](https://docs.talon.one/management-api#tag/Catalogs/operation/priceHistory.responses.200.history) endpoint, must belong to the specified Application, and must not already be excluded from best prior price calculation.
           items:
             format: int64
             minimum: 1
@@ -40731,7 +40847,7 @@ components:
           default: null
         reason:
           description: |
-            The reason for excluding these historical price IDs. Applies to all IDs in the batch.
+            The reason for excluding these IDs. Applies to all IDs in the batch.
           example: Incorrect contextID value.
           minLength: 1
           type: string
@@ -41186,12 +41302,18 @@ components:
           format: date-time
           type: string
         effectiveFrom:
-          description: The date and time from which the price adjustment is effective.
+          description: |
+            The date and time from which the price adjustment is effective.
+
+            **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog.
           example: 2021-09-12T10:12:42Z
           format: date-time
           type: string
         effectiveUntil:
-          description: The date and time until which the price adjustment is effective.
+          description: |
+            The date and time until which the price adjustment is effective.
+
+            **Note**: If no timeframe is defined, the price adjustment is applied immediately and is effective until another, more recent, price adjustment is synced with the catalog.
           example: 2021-09-12T10:12:42Z
           format: date-time
           type: string
@@ -41819,7 +41941,7 @@ components:
         roles:
         - 1
         - 3
-        applicationNotificationSubscriptions: "{}"
+        applicationNotificationSubscriptions: {}
       properties:
         name:
           description: Name of the user.
@@ -43003,7 +43125,7 @@ components:
         userCount: 2
         campaignsActiveCount: 7
         campaignsInactiveCount: 9
-        attributes: null
+        attributes: {}
     AccountAnalytics:
       example:
         applications: 11
@@ -43262,7 +43384,7 @@ components:
         accountId: 3886
         userId: 388
         entity: Coupon
-        filter: null
+        filter: {}
     ManagerConfig:
       properties:
         schemaVersion:
@@ -45957,6 +46079,130 @@ components:
         required:
         - applicationId
         - applicationName
+    requestType:
+      description: "Type of reward requested, including gift cards, personal coupons,\
+        \ and loyalty point additions or deductions."
+      enum:
+      - gift_card
+      - personal_coupon
+      - loyalty_points_added
+      - loyalty_points_deducted
+      example: personal_coupon
+      type: string
+    requestStatus:
+      description: Current status of the support request.
+      enum:
+      - pending_approval
+      - approved
+      - rejected
+      - expired
+      example: approved
+      type: string
+    SupportRequest:
+      description: Summary of a support request created by a customer support agent.
+      properties:
+        id:
+          description: Identifier of the support request.
+          example: 1
+          format: int64
+          type: integer
+        applicationId:
+          description: Identifier of the Application connected to the loyalty program
+            or the campaign. It is displayed in your Talon.One deployment URL.
+          example: 322
+          format: int64
+          type: integer
+        campaignId:
+          description: Identifier of the campaign where the coupon or gift card is
+            created.
+          example: 100
+          format: int64
+          type: integer
+        loyaltyProgramId:
+          description: Identifier of the loyalty program where the points are added
+            or deducted.
+          example: 8
+          format: int64
+          type: integer
+        subledgerId:
+          description: ID of the subledger the points are added to or deducted from.
+            Must be combined with `loyaltyProgramId`. The subledger must already exist
+            in the given loyalty program.
+          example: sub-123
+          type: string
+        createdByUser:
+          description: Email address of the customer support agent who created the
+            support request.
+          example: jane.smith@example.com
+          type: string
+        createdAt:
+          description: Timestamp when the request was made.
+          example: 2025-07-20T22:00:00Z
+          format: date-time
+          type: string
+        customerProfileId:
+          description: Integration ID of the customer profile linked to the support
+            request.
+          example: URNGV8294NV
+          type: string
+        requestType:
+          description: "Type of reward requested, including gift cards, personal coupons,\
+            \ and loyalty point additions or deductions."
+          enum:
+          - gift_card
+          - personal_coupon
+          - loyalty_points_added
+          - loyalty_points_deducted
+          example: personal_coupon
+          type: string
+        requestValue:
+          description: Requested monetary balance of the gift card or the number of
+            loyalty points to be added or deducted.
+          example: 20.5
+          exclusiveMinimum: true
+          format: float
+          minimum: 0
+          type: number
+        requestNote:
+          description: Notes attached to the support request.
+          example: Support request for coupon failure.
+          type: string
+        requestStatus:
+          description: Current status of the support request.
+          enum:
+          - pending_approval
+          - approved
+          - rejected
+          - expired
+          example: approved
+          type: string
+        processedAt:
+          description: Timestamp when the request was approved or rejected.
+          example: 2025-07-20T22:10:00Z
+          format: date-time
+          type: string
+        processingNote:
+          description: Notes attached by the admin when rejecting or approving a request.
+          example: Rejected as the customer was awarded points already.
+          type: string
+        processedByUser:
+          description: Email address of the admin who approved or rejected the support
+            request.
+          example: john.doe@example.com
+          type: string
+        couponCode:
+          description: Coupon code associated with the approved support request.
+          example: SUMMER-2025-XYZ
+          type: string
+      required:
+      - applicationId
+      - createdAt
+      - createdByUser
+      - customerProfileId
+      - id
+      - requestNote
+      - requestStatus
+      - requestType
     SupportRequestInput:
       properties:
         applicationId:
@@ -46015,111 +46261,6 @@ components:
       - applicationId
       - customerProfileId
       - requestNote
-      - requestType
-    SupportRequest:
-      description: Summary of a support request created by a customer support agent.
-      properties:
-        id:
-          description: Identifier of the support request.
-          example: 1
-          format: int64
-          type: integer
-        applicationId:
-          description: Identifier of the Application connected to the loyalty program
-            or the campaign. It is displayed in your Talon.One deployment URL.
-          example: 322
-          format: int64
-          type: integer
-        campaignId:
-          description: Identifier of the campaign where the coupon or gift card is
-            created.
-          example: 100
-          format: int64
-          type: integer
-        loyaltyProgramId:
-          description: Identifier of the loyalty program where the points are added
-            or deducted.
-          example: 8
-          format: int64
-          type: integer
-        subledgerId:
-          description: ID of the subledger the points are added to or deducted from.
-            Must be combined with `loyaltyProgramId`. The subledger must already exist
-            in the given loyalty program.
-          example: sub-123
-          type: string
-        createdByUser:
-          description: Email address of the customer support agent who created the
-            support request.
-          example: support.agent.name@company.com
-          type: string
-        createdAt:
-          description: Timestamp when the request was made.
-          example: 2025-07-20T22:00:00Z
-          format: date-time
-          type: string
-        customerProfileId:
-          description: Integration ID of the customer profile linked to the support
-            request.
-          example: URNGV8294NV
-          type: string
-        requestType:
-          description: "Type of reward requested, including gift cards, personal coupons,\
-            \ and loyalty point additions or deductions."
-          enum:
-          - gift_card
-          - personal_coupon
-          - loyalty_points_added
-          - loyalty_points_deducted
-          example: personal_coupon
-          type: string
-        requestValue:
-          description: Requested monetary balance of the gift card or the number of
-            loyalty points to be added or deducted.
-          example: 20.5
-          exclusiveMinimum: true
-          format: float
-          minimum: 0
-          type: number
-        requestNote:
-          description: Notes attached to the support request.
-          example: Support request for coupon failure.
-          type: string
-        requestStatus:
-          description: Current status of the support request.
-          enum:
-          - pending_approval
-          - approved
-          - rejected
-          - expired
-          example: approved
-          type: string
-        processedAt:
-          description: Timestamp when the request was approved or rejected.
-          example: 2025-07-20T22:10:00Z
-          format: date-time
-          type: string
-        processingNote:
-          description: Notes attached by the admin when rejecting or approving a request.
-          example: Rejected as the customer was awarded points already.
-          type: string
-        processedByUser:
-          description: Email address of the admin who approved or rejected the support
-            request.
-          example: admin.name@company.com
-          type: string
-        couponCode:
-          description: Coupon code associated with the approved support request.
-          example: SUMMER-2025-XYZ
-          type: string
-      required:
-      - applicationId
-      - createdAt
-      - createdByUser
-      - customerProfileId
-      - id
-      - requestNote
-      - requestStatus
       - requestType
     UpdateSupportRequest:
       properties:
@@ -46966,7 +47107,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -47072,7 +47213,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -47121,7 +47262,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -47227,7 +47368,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -47275,7 +47416,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -47323,7 +47464,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -47464,7 +47605,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -47496,7 +47637,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -47538,7 +47679,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -47549,7 +47690,7 @@ components:
           poolId: 1
           startDate: 2022-01-02T15:04:05Z07:00
           endDate: 2023-01-02T15:04:05Z07:00
-          attributes: null
+          attributes: {}
           used: true
           importId: 4
           profileIntegrationId: R195412
@@ -48163,7 +48304,7 @@ components:
             default: null
         required:
         - TotalResultSize
-    CampaignEvaluationTreeChangedNotification:
+    CampaignEvaluationTreeChangedNotificationData:
       description: Notification about an Application whose campaign evaluation tree
         changed.
       properties:
@@ -48183,7 +48324,7 @@ components:
       required:
       - applicationId
       - evaluationTree
-    CampaignEvaluationTreeChangedMessage:
+    CampaignEvaluationTreeChangedNotification:
       properties:
         NotificationType:
           description: The type of the notification
@@ -48311,7 +48452,7 @@ components:
             type: integer
         required:
         - ApplicationId
-    CreateCouponData:
+    CouponCreatedNotification:
       properties:
         data:
           description: "The array of coupons codes. If 1000 or fewer coupons are requested,\
@@ -48375,7 +48516,7 @@ components:
       - NotificationType
       - Operation
       - TypeOfChange
-    CouponsNotificationData:
+    CouponUpdatedDeletedNotification:
       properties:
         TypeOfChange:
           description: The type of change that occurred.
@@ -48411,7 +48552,7 @@ components:
       - NotificationType
       - Operation
       - TypeOfChange
-    AsyncCouponsData:
+    AsyncCouponsCreatedNotification:
       properties:
         BatchID:
           description: |
@@ -48443,7 +48584,7 @@ components:
       - NotificationType
       - Operation
       - TypeOfChange
-    UpdateCouponsData:
+    CouponsUpdatedNotification:
       properties:
         BatchID:
           type: string
@@ -48472,7 +48613,7 @@ components:
       - NotificationType
       - Operation
       - TypeOfChange
-    DeleteCouponsData:
+    CouponsDeletedNotification:
       properties:
         TypeOfChange:
           type: string
@@ -48555,7 +48696,7 @@ components:
       - ExpiryDate
       - LoyaltyProgramID
       - SubledgerID
-    ExpiringPointsNotification:
+    LoyaltyPointsExpiringNotification:
       properties:
         TotalResultSize:
           example: 1
@@ -48643,7 +48784,7 @@ components:
       - Profiles
       - SubledgerID
       - UsersPerCardLimit
-    ExpiringCardPointsNotification:
+    LoyaltyCardPointsExpiringNotification:
       properties:
         TotalResultSize:
           example: 1
@@ -48664,7 +48805,7 @@ components:
       - Data
       - NotificationType
       - TotalResultSize
-    AddedDeductedPointsNotification:
+    LoyaltyPointsAddedDeductedNotification:
       properties:
         EmployeeName:
           description: The name of the employee who added or deducted points.
@@ -48830,7 +48971,7 @@ components:
       - Operation
       - Reason
       - TransactionUUID
-    AddedDeductedPointsBalancesNotification:
+    LoyaltyAddedDeductedPointsBalancesNotification:
       properties:
         EmployeeName:
           description: The name of the employee who added or deducted points.
@@ -48962,7 +49103,7 @@ components:
       - LoyaltyProgramID
       - Points
       - SubledgerID
-    PendingActivePointsNotification:
+    LoyaltyPointsPendingToActiveNotification:
       properties:
         TotalResultSize:
           example: 1
@@ -49318,7 +49459,7 @@ components:
       - Data
       - NotificationType
       - TotalResultSize
-    ExpiringCouponsData:
+    CouponCodeExpiringNotificationData:
       properties:
         CouponValue:
           description: The coupon code.
@@ -49383,7 +49524,7 @@ components:
       - CouponValue
       - UsageCounter
       - UsageLimit
-    ExpiringCouponsNotification:
+    CouponCodeExpiringNotification:
       properties:
         TotalResultSize:
           example: 1
@@ -49392,7 +49533,7 @@ components:
         Data:
           description: The array of expiring coupon notifications.
           items:
-            $ref: "#/components/schemas/ExpiringCouponsData"
+            $ref: "#/components/schemas/CouponCodeExpiringNotificationData"
           type: array
           default: null
         NotificationType:
@@ -49404,7 +49545,7 @@ components:
       - Data
       - NotificationType
       - TotalResultSize
-    CardAddedDeductedPointsNotification:
+    LoyaltyCardPointsAddedDeductedNotification:
       properties:
         CardIdentifier:
           description: Loyalty card identification number.
@@ -49533,7 +49674,7 @@ components:
       - TypeOfChange
       - UserID
       - UsersPerCardLimit
-    CardAddedDeductedPointsBalancesNotification:
+    LoyaltyCardAddedDeductedPointsBalancesNotification:
       properties:
         CardIdentifier:
           description: Loyalty card identification number.
@@ -49971,7 +50112,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -50001,7 +50142,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: null
+          attributes: {}
           state: enabled
           tags:
           - summer
@@ -50522,7 +50663,7 @@ components:
           timezone: Europe/Berlin
           currency: EUR
           caseSensitivity: sensitive
-          attributes: "{}"
+          attributes: {}
           limits:
           - action: createCoupon
             limit: 1000
@@ -50725,7 +50866,7 @@ components:
           timezone: Europe/Berlin
           currency: EUR
           caseSensitivity: sensitive
-          attributes: "{}"
+          attributes: {}
           limits:
           - action: createCoupon
             limit: 1000
@@ -50944,7 +51085,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -51050,7 +51191,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -51099,7 +51240,7 @@ components:
           description: Campaign for all summer 2021 promotions
           startTime: 2021-07-20T22:00:00Z
           endTime: 2021-09-22T22:00:00Z
-          attributes: "{}"
+          attributes: {}
           state: enabled
           activeRulesetId: 6
           tags:
@@ -51205,7 +51346,7 @@ components:
           - 1
           - 2
           - 3
-          couponAttributes: "{}"
+          couponAttributes: {}
           budgets:
           - action: createCoupon
             limit: 1000
@@ -51646,7 +51787,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -51678,7 +51819,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -51727,7 +51868,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -51759,7 +51900,7 @@ components:
           discountCounter: 10
           discountRemainder: 5
           reservationCounter: 1
-          attributes: null
+          attributes: {}
           referralId: 326632952
           recipientIntegrationId: URNGV8294NV
           importId: 4
@@ -51881,8 +52022,8 @@ components:
           instructions: "Use this template for discount campaigns. Set the campaign\
             \ properties according to the campaign goals, and don't forget to set\
             \ an end date."
-          campaignAttributes: "{}"
-          couponAttributes: "{}"
+          campaignAttributes: {}
+          couponAttributes: {}
           state: draft
           activeRulesetId: 5
           tags:
@@ -52020,8 +52161,8 @@ components:
           instructions: "Use this template for discount campaigns. Set the campaign\
             \ properties according to the campaign goals, and don't forget to set\
             \ an end date."
-          campaignAttributes: "{}"
-          couponAttributes: "{}"
+          campaignAttributes: {}
+          couponAttributes: {}
           state: draft
           activeRulesetId: 5
           tags:
@@ -52180,7 +52321,7 @@ components:
             description: Campaign for all summer 2021 promotions
             startTime: 2021-07-20T22:00:00Z
             endTime: 2021-09-22T22:00:00Z
-            attributes: "{}"
+            attributes: {}
             state: enabled
             activeRulesetId: 6
             tags:
@@ -52286,7 +52427,7 @@ components:
             - 1
             - 2
             - 3
-            couponAttributes: "{}"
+            couponAttributes: {}
             budgets:
             - action: createCoupon
               limit: 1000
@@ -52508,6 +52649,7 @@ components:
               activatedAt: 2000-01-23T04:56:07.000+00:00
             weight: 12
             isPrimary: true
+            order: 0
             audienceId: 55
           - id: 6
             created: 2020-06-10T09:05:27.993483Z
@@ -52687,6 +52829,7 @@ components:
               activatedAt: 2000-01-23T04:56:07.000+00:00
             weight: 12
             isPrimary: true
+            order: 0
             audienceId: 55
           goalType: other
           goalDescription: Offering free shipping will increase average order revenue
@@ -52706,7 +52849,7 @@ components:
             description: Campaign for all summer 2021 promotions
             startTime: 2021-07-20T22:00:00Z
             endTime: 2021-09-22T22:00:00Z
-            attributes: "{}"
+            attributes: {}
             state: enabled
             activeRulesetId: 6
             tags:
@@ -52812,7 +52955,7 @@ components:
             - 1
             - 2
             - 3
-            couponAttributes: "{}"
+            couponAttributes: {}
             budgets:
             - action: createCoupon
               limit: 1000
@@ -53034,6 +53177,7 @@ components:
               activatedAt: 2000-01-23T04:56:07.000+00:00
             weight: 12
             isPrimary: true
+            order: 0
             audienceId: 55
           - id: 6
             created: 2020-06-10T09:05:27.993483Z
@@ -53213,6 +53357,7 @@ components:
               activatedAt: 2000-01-23T04:56:07.000+00:00
             weight: 12
             isPrimary: true
+            order: 0
             audienceId: 55
           goalType: other
           goalDescription: Offering free shipping will increase average order revenue
@@ -54244,7 +54389,7 @@ components:
             key: 0.8008281904610115
           totalDiscounts: 100
           total: 200
-          attributes: null
+          attributes: {}
         - id: 6
           created: 2020-02-07T08:15:22Z
           integrationId: URNGV8294NV
@@ -54324,7 +54469,7 @@ components:
             key: 0.8008281904610115
           totalDiscounts: 100
           total: 200
-          attributes: null
+          attributes: {}
       properties:
         hasMore:
           type: boolean
@@ -54419,7 +54564,7 @@ components:
             key: 0.8008281904610115
           totalDiscounts: 100
           total: 200
-          attributes: null
+          attributes: {}
         - id: 6
           created: 2020-02-07T08:15:22Z
           integrationId: URNGV8294NV
@@ -54499,7 +54644,7 @@ components:
             key: 0.8008281904610115
           totalDiscounts: 100
           total: 200
-          attributes: null
+          attributes: {}
       properties:
         hasMore:
           type: boolean
@@ -54526,7 +54671,7 @@ components:
           integrationId: 175KJPS947296
           sessionId: 6
           type: type
-          attributes: null
+          attributes: {}
           effects:
           - experimentId: 12
             campaignId: 244
@@ -54610,7 +54755,7 @@ components:
           integrationId: 175KJPS947296
           sessionId: 6
           type: type
-          attributes: null
+          attributes: {}
           effects:
           - experimentId: 12
             campaignId: 244
@@ -55215,13 +55360,13 @@ components:
           accountId: 3886
           userId: 388
           entity: Coupon
-          filter: null
+          filter: {}
         - id: 6
           created: 2020-06-10T09:05:27.993483Z
           accountId: 3886
           userId: 388
           entity: Coupon
-          filter: null
+          filter: {}
       properties:
         totalResultSize:
           example: 1
@@ -55771,9 +55916,11 @@ components:
       - $ref: "#/components/schemas/IntegrationHubEventPayloadCouponBasedNotifications"
     IntegrationCampaignBase_allOf_attributes:
       description: Arbitrary properties associated with this campaign.
+      example: {}
       type: object
     Attributes_of_coupon:
       description: Custom attributes associated with this coupon.
+      example: {}
       title: Attributes of coupon
       type: object
     NewReferral_allOf_attributes:
@@ -55782,6 +55929,7 @@ components:
       type: object
     Giveaway_allOf_attributes:
       description: Arbitrary properties associated with this giveaway.
+      example: {}
       type: object
     IntegrationEvent_allOf_attributes:
       description: Arbitrary additional JSON data associated with the event.
@@ -55822,7 +55970,7 @@ components:
         type: number
       - example: "{{$Session.CartTotal * 0.1}}"
         type: string
-    LocationCheckAttributeBlock_values_oneOf_inner:
+    LocationCheckAttributeBlock_1_values_oneOf_inner:
       properties:
         name:
           description: A human-readable label for this location.
@@ -55832,11 +55980,11 @@ components:
           $ref: "#/components/schemas/GeoJSONGeometry"
       required:
       - geometry
-    LocationCheckAttributeBlock_values:
+    LocationCheckAttributeBlock_1_values:
       description: The geometric areas to check the location against.
       oneOf:
       - items:
-          $ref: "#/components/schemas/LocationCheckAttributeBlock_values_oneOf_inner"
+          $ref: "#/components/schemas/LocationCheckAttributeBlock_1_values_oneOf_inner"
         type: array
         default: null
       - description: A reference to a list attribute that contains locations.
@@ -56056,6 +56204,7 @@ components:
 
         Coupon attributes can also be set to _mandatory_ in your Application [settings](https://docs.talon.one/docs/product/applications/using-attributes#making-attributes-mandatory).
         If your Application uses mandatory attributes, you must use this property to set their value.
+      example: {}
       type: object
     NewCoupons_allOf_attributes:
       description: Arbitrary properties associated with this item.
@@ -56063,9 +56212,11 @@ components:
       type: object
     NewCouponCreationJob_allOf_attributes:
       description: Arbitrary properties associated with coupons.
+      example: {}
       type: object
     UpdateCoupon_allOf_attributes:
       description: Arbitrary properties associated with this item.
+      example: {}
       type: object
     Role_allOf_acl:
       description: The `Access Control List` json defining the role of the user. This
@@ -56114,6 +56265,7 @@ components:
       type: object
     ApplicationEvent_allOf_attributes:
       description: Additional JSON serialized data associated with the event.
+      example: {}
       type: object
     WebhookAuthentication_allOf_data:
       oneOf:
@@ -56208,6 +56360,7 @@ components:
       type: object
     Export_allOf_filter:
       description: Map of keys and values that were used to filter the exported rows.
+      example: {}
       type: object
     ProductUnitAnalytics_totals:
       properties:

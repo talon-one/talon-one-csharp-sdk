@@ -175,6 +175,12 @@ namespace TalonOneSdk.Model
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -186,6 +192,7 @@ namespace TalonOneSdk.Model
             sb.Append("  CustomerProfileIds: ").Append(CustomerProfileIds).Append("\n");
             sb.Append("  CardIdentifier: ").Append(CardIdentifier).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -195,18 +202,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CardIdentifier (string) maxLength
             if (this.CardIdentifier != null && this.CardIdentifier.Length > 108)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, length must be less than 108.", new [] { "CardIdentifier" });
             }
 
             // CardIdentifier (string) minLength
             if (this.CardIdentifier != null && this.CardIdentifier.Length < 4)
             {
-                yield return new ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardIdentifier, length must be greater than 4.", new [] { "CardIdentifier" });
             }
 
             if (this.CardIdentifierOption.Value != null) {

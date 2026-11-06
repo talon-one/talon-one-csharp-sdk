@@ -112,6 +112,12 @@ namespace TalonOneSdk.Model
         public string AdvancedEventIntegrationId { get { return this.AdvancedEventIntegrationIdOption.Value; } set { this.AdvancedEventIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -126,6 +132,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  AdvancedEventIntegrationId: ").Append(AdvancedEventIntegrationId).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -135,24 +142,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AdvocateIntegrationId (string) maxLength
             if (this.AdvocateIntegrationId != null && this.AdvocateIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for AdvocateIntegrationId, length must be less than 1000.", new [] { "AdvocateIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdvocateIntegrationId, length must be less than 1000.", new [] { "AdvocateIntegrationId" });
             }
 
             // FriendIntegrationId (string) maxLength
             if (this.FriendIntegrationId != null && this.FriendIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for FriendIntegrationId, length must be less than 1000.", new [] { "FriendIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FriendIntegrationId, length must be less than 1000.", new [] { "FriendIntegrationId" });
             }
 
             // AdvancedEventIntegrationId (string) maxLength
             if (this.AdvancedEventIntegrationId != null && this.AdvancedEventIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for AdvancedEventIntegrationId, length must be less than 1000.", new [] { "AdvancedEventIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdvancedEventIntegrationId, length must be less than 1000.", new [] { "AdvancedEventIntegrationId" });
             }
 
             yield break;

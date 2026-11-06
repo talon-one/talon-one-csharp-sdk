@@ -243,6 +243,12 @@ namespace TalonOneSdk.Model
         public float? RequestValue { get { return this.RequestValueOption.Value; } set { this.RequestValueOption = new Option<float?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -258,6 +264,7 @@ namespace TalonOneSdk.Model
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("  SubledgerId: ").Append(SubledgerId).Append("\n");
             sb.Append("  RequestValue: ").Append(RequestValue).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -267,12 +274,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // RequestValue (float) minimum
             if (this.RequestValueOption.IsSet && this.RequestValueOption.Value < (float)0)
             {
-                yield return new ValidationResult("Invalid value for RequestValue, must be a value greater than 0.", new [] { "RequestValue" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestValue, must be a value greater than 0.", new [] { "RequestValue" });
             }
 
             yield break;

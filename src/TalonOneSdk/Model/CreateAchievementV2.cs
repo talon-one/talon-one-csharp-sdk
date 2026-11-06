@@ -395,6 +395,12 @@ namespace TalonOneSdk.Model
         public List<long> SubscribedApplications { get { return this.SubscribedApplicationsOption.Value; } set { this.SubscribedApplicationsOption = new Option<List<long>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -415,6 +421,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
             sb.Append("  AllowRollbackAfterCompletion: ").Append(AllowRollbackAfterCompletion).Append("\n");
             sb.Append("  SubscribedApplications: ").Append(SubscribedApplications).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -424,24 +431,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Timezone (string) minLength
             if (this.Timezone != null && this.Timezone.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Timezone, length must be greater than 1.", new [] { "Timezone" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timezone, length must be greater than 1.", new [] { "Timezone" });
             }
 
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 1000.", new [] { "Name" });
             }
 
             // Name (string) minLength
             if (this.Name != null && this.Name.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             if (this.NameOption.Value != null) {

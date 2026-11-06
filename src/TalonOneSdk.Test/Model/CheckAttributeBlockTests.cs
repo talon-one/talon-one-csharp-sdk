@@ -54,57 +54,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Type'
-        /// </summary>
-        [Fact]
-        public void TypeTest()
-        {
-            // TODO unit test for the property 'Type'
-        }
-
-        /// <summary>
         /// Test the property 'Operator'
         /// </summary>
         [Fact]
         public void OperatorTest()
         {
             // TODO unit test for the property 'Operator'
-        }
-
-        /// <summary>
-        /// Test the property 'Id'
-        /// </summary>
-        [Fact]
-        public void IdTest()
-        {
-            // TODO unit test for the property 'Id'
-        }
-
-        /// <summary>
-        /// Test the property 'Tags'
-        /// </summary>
-        [Fact]
-        public void TagsTest()
-        {
-            // TODO unit test for the property 'Tags'
-        }
-
-        /// <summary>
-        /// Test the property 'Attribute'
-        /// </summary>
-        [Fact]
-        public void AttributeTest()
-        {
-            // TODO unit test for the property 'Attribute'
-        }
-
-        /// <summary>
-        /// Test the property 'OnFailure'
-        /// </summary>
-        [Fact]
-        public void OnFailureTest()
-        {
-            // TODO unit test for the property 'OnFailure'
         }
     }
 }

@@ -344,6 +344,12 @@ namespace TalonOneSdk.Model
         public long? CampaignId { get { return this.CampaignIdOption.Value; } set { this.CampaignIdOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -366,6 +372,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -375,24 +382,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ApplicationId (long) minimum
             if (this.ApplicationIdOption.IsSet && this.ApplicationIdOption.Value < (long)1)
             {
-                yield return new ValidationResult("Invalid value for ApplicationId, must be a value greater than or equal to 1.", new [] { "ApplicationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationId, must be a value greater than or equal to 1.", new [] { "ApplicationId" });
             }
 
             // LoyaltyProgramId (long) minimum
             if (this.LoyaltyProgramIdOption.IsSet && this.LoyaltyProgramIdOption.Value < (long)1)
             {
-                yield return new ValidationResult("Invalid value for LoyaltyProgramId, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramId, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramId" });
             }
 
             // CampaignId (long) minimum
             if (this.CampaignIdOption.IsSet && this.CampaignIdOption.Value < (long)1)
             {
-                yield return new ValidationResult("Invalid value for CampaignId, must be a value greater than or equal to 1.", new [] { "CampaignId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CampaignId, must be a value greater than or equal to 1.", new [] { "CampaignId" });
             }
 
             yield break;

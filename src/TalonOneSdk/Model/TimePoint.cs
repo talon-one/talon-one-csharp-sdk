@@ -120,6 +120,12 @@ namespace TalonOneSdk.Model
         public long? DayOfWeek { get { return this.DayOfWeekOption.Value; } set { this.DayOfWeekOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -133,6 +139,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Month: ").Append(Month).Append("\n");
             sb.Append("  DayOfMonth: ").Append(DayOfMonth).Append("\n");
             sb.Append("  DayOfWeek: ").Append(DayOfWeek).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -142,42 +149,42 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Month (long) maximum
             if (this.MonthOption.IsSet && this.MonthOption.Value > (long)12)
             {
-                yield return new ValidationResult("Invalid value for Month, must be a value less than or equal to 12.", new [] { "Month" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Month, must be a value less than or equal to 12.", new [] { "Month" });
             }
 
             // Month (long) minimum
             if (this.MonthOption.IsSet && this.MonthOption.Value < (long)1)
             {
-                yield return new ValidationResult("Invalid value for Month, must be a value greater than or equal to 1.", new [] { "Month" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Month, must be a value greater than or equal to 1.", new [] { "Month" });
             }
 
             // DayOfMonth (long) maximum
             if (this.DayOfMonthOption.IsSet && this.DayOfMonthOption.Value > (long)31)
             {
-                yield return new ValidationResult("Invalid value for DayOfMonth, must be a value less than or equal to 31.", new [] { "DayOfMonth" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DayOfMonth, must be a value less than or equal to 31.", new [] { "DayOfMonth" });
             }
 
             // DayOfMonth (long) minimum
             if (this.DayOfMonthOption.IsSet && this.DayOfMonthOption.Value < (long)1)
             {
-                yield return new ValidationResult("Invalid value for DayOfMonth, must be a value greater than or equal to 1.", new [] { "DayOfMonth" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DayOfMonth, must be a value greater than or equal to 1.", new [] { "DayOfMonth" });
             }
 
             // DayOfWeek (long) maximum
             if (this.DayOfWeekOption.IsSet && this.DayOfWeekOption.Value > (long)7)
             {
-                yield return new ValidationResult("Invalid value for DayOfWeek, must be a value less than or equal to 7.", new [] { "DayOfWeek" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DayOfWeek, must be a value less than or equal to 7.", new [] { "DayOfWeek" });
             }
 
             // DayOfWeek (long) minimum
             if (this.DayOfWeekOption.IsSet && this.DayOfWeekOption.Value < (long)1)
             {
-                yield return new ValidationResult("Invalid value for DayOfWeek, must be a value greater than or equal to 1.", new [] { "DayOfWeek" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DayOfWeek, must be a value greater than or equal to 1.", new [] { "DayOfWeek" });
             }
 
             yield break;

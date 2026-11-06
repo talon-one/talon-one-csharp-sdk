@@ -774,6 +774,12 @@ namespace TalonOneSdk.Model
         public EffectWillAwardGiveaway EffectWillAwardGiveaway { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -781,6 +787,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Effect {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -790,7 +797,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
@@ -800,7 +807,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -1307,6 +1314,18 @@ namespace TalonOneSdk.Model
         {
             writer.WriteStartObject();
 
+            WriteProperties(writer, effect, jsonSerializerOptions);
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes the properties of <see cref="Effect" />
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="effect"></param>
+        /// <param name="jsonSerializerOptions"></param>
+        public void WriteProperties(Utf8JsonWriter writer, Effect effect, JsonSerializerOptions jsonSerializerOptions)
+        {
             if (effect.EffectAcceptCoupon != null)
             {
                 EffectAcceptCouponJsonConverter effectAcceptCouponJsonConverter = (EffectAcceptCouponJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectAcceptCoupon.GetType()));
@@ -1582,20 +1601,6 @@ namespace TalonOneSdk.Model
                 EffectWillAwardGiveawayJsonConverter effectWillAwardGiveawayJsonConverter = (EffectWillAwardGiveawayJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(effect.EffectWillAwardGiveaway.GetType()));
                 effectWillAwardGiveawayJsonConverter.WriteProperties(writer, effect.EffectWillAwardGiveaway, jsonSerializerOptions);
             }
-
-            WriteProperties(writer, effect, jsonSerializerOptions);
-            writer.WriteEndObject();
-        }
-
-        /// <summary>
-        /// Serializes the properties of <see cref="Effect" />
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="effect"></param>
-        /// <param name="jsonSerializerOptions"></param>
-        public void WriteProperties(Utf8JsonWriter writer, Effect effect, JsonSerializerOptions jsonSerializerOptions)
-        {
-
         }
     }
 }

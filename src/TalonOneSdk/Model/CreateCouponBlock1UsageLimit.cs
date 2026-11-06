@@ -63,6 +63,12 @@ namespace TalonOneSdk.Model
         public string String { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -70,6 +76,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateCouponBlock1UsageLimit {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -79,7 +86,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -110,6 +117,8 @@ namespace TalonOneSdk.Model
         /// <exception cref="JsonException"></exception>
         public override CreateCouponBlock1UsageLimit Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (utf8JsonReader.TokenType == JsonTokenType.String)
+                return new CreateCouponBlock1UsageLimit(utf8JsonReader.GetString());
             int currentDepth = utf8JsonReader.CurrentDepth;
 
             if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
@@ -177,6 +186,16 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public override void Write(Utf8JsonWriter writer, CreateCouponBlock1UsageLimit createCouponBlock1UsageLimit, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (createCouponBlock1UsageLimit.Decimal != null)
+            {
+                JsonSerializer.Serialize(writer, createCouponBlock1UsageLimit.Decimal, jsonSerializerOptions);
+                return;
+            }
+            if (createCouponBlock1UsageLimit.String != null)
+            {
+                JsonSerializer.Serialize(writer, createCouponBlock1UsageLimit.String, jsonSerializerOptions);
+                return;
+            }
             writer.WriteStartObject();
 
             WriteProperties(writer, createCouponBlock1UsageLimit, jsonSerializerOptions);

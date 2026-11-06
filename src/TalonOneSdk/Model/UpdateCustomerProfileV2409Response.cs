@@ -87,6 +87,12 @@ namespace TalonOneSdk.Model
         public long? StatusCode { get { return this.StatusCodeOption.Value; } set { this.StatusCodeOption = new Option<long?>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -97,6 +103,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("  StatusCode: ").Append(StatusCode).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -106,7 +113,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

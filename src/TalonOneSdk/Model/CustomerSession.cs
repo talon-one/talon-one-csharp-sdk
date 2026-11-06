@@ -335,6 +335,12 @@ namespace TalonOneSdk.Model
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -357,6 +363,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Identifiers: ").Append(Identifiers).Append("\n");
             sb.Append("  Total: ").Append(Total).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -366,24 +373,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             // Coupon (string) maxLength
             if (this.Coupon != null && this.Coupon.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for Coupon, length must be less than 100.", new [] { "Coupon" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Coupon, length must be less than 100.", new [] { "Coupon" });
             }
 
             // Referral (string) maxLength
             if (this.Referral != null && this.Referral.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for Referral, length must be less than 100.", new [] { "Referral" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Referral, length must be less than 100.", new [] { "Referral" });
             }
 
             yield break;

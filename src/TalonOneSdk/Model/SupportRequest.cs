@@ -297,7 +297,7 @@ namespace TalonOneSdk.Model
         /// Email address of the customer support agent who created the support request.
         /// </summary>
         /// <value>Email address of the customer support agent who created the support request.</value>
-        /* <example>support.agent.name@company.com</example> */
+        /* <example>jane.smith@example.com</example> */
         [JsonPropertyName("createdByUser")]
         public string CreatedByUser { get; set; }
 
@@ -426,7 +426,7 @@ namespace TalonOneSdk.Model
         /// Email address of the admin who approved or rejected the support request.
         /// </summary>
         /// <value>Email address of the admin who approved or rejected the support request.</value>
-        /* <example>admin.name@company.com</example> */
+        /* <example>john.doe@example.com</example> */
         [JsonPropertyName("processedByUser")]
         public string ProcessedByUser { get { return this.ProcessedByUserOption.Value; } set { this.ProcessedByUserOption = new Option<string>(value); } }
 
@@ -444,6 +444,12 @@ namespace TalonOneSdk.Model
         /* <example>SUMMER-2025-XYZ</example> */
         [JsonPropertyName("couponCode")]
         public string CouponCode { get { return this.CouponCodeOption.Value; } set { this.CouponCodeOption = new Option<string>(value); } }
+
+        /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -469,6 +475,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ProcessingNote: ").Append(ProcessingNote).Append("\n");
             sb.Append("  ProcessedByUser: ").Append(ProcessedByUser).Append("\n");
             sb.Append("  CouponCode: ").Append(CouponCode).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -478,12 +485,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // RequestValue (float) minimum
             if (this.RequestValueOption.IsSet && this.RequestValueOption.Value < (float)0)
             {
-                yield return new ValidationResult("Invalid value for RequestValue, must be a value greater than 0.", new [] { "RequestValue" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestValue, must be a value greater than 0.", new [] { "RequestValue" });
             }
 
             yield break;

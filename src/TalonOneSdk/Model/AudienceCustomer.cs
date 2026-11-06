@@ -211,6 +211,12 @@ namespace TalonOneSdk.Model
         public List<long> ConnectedAudiences { get { return this.ConnectedAudiencesOption.Value; } set { this.ConnectedAudiencesOption = new Option<List<long>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -231,6 +237,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("  ConnectedApplicationsIds: ").Append(ConnectedApplicationsIds).Append("\n");
             sb.Append("  ConnectedAudiences: ").Append(ConnectedAudiences).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -240,12 +247,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // IntegrationId (string) maxLength
             if (this.IntegrationId != null && this.IntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IntegrationId, length must be less than 1000.", new [] { "IntegrationId" });
             }
 
             yield break;

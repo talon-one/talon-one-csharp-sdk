@@ -57,6 +57,12 @@ namespace TalonOneSdk.Model
         public string ConnectedSessionId { get { return this.ConnectedSessionIdOption.Value; } set { this.ConnectedSessionIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -65,6 +71,7 @@ namespace TalonOneSdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class EventV3Connections {\n");
             sb.Append("  ConnectedSessionId: ").Append(ConnectedSessionId).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -74,12 +81,12 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ConnectedSessionId (string) minLength
             if (this.ConnectedSessionId != null && this.ConnectedSessionId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ConnectedSessionId, length must be greater than 1.", new [] { "ConnectedSessionId" });
             }
 
             yield break;

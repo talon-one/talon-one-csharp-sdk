@@ -239,6 +239,12 @@ namespace TalonOneSdk.Model
         public OutgoingIntegrationConfigurationPolicy Policy { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -255,6 +261,7 @@ namespace TalonOneSdk.Model
             sb.Append("  RelativeUrl: ").Append(RelativeUrl).Append("\n");
             sb.Append("  Headers: ").Append(Headers).Append("\n");
             sb.Append("  Policy: ").Append(Policy).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -264,30 +271,30 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Title (string) maxLength
             if (this.Title != null && this.Title.Length > 255)
             {
-                yield return new ValidationResult("Invalid value for Title, length must be less than 255.", new [] { "Title" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Title, length must be less than 255.", new [] { "Title" });
             }
 
             // Title (string) minLength
             if (this.Title != null && this.Title.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Title, length must be greater than 1.", new [] { "Title" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Title, length must be greater than 1.", new [] { "Title" });
             }
 
             // Description (string) maxLength
             if (this.Description != null && this.Description.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 1000.", new [] { "Description" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 1000.", new [] { "Description" });
             }
 
             // Description (string) minLength
             if (this.Description != null && this.Description.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
             }
 
             yield break;

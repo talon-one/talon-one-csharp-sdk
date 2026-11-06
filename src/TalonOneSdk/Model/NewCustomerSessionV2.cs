@@ -354,6 +354,12 @@ namespace TalonOneSdk.Model
         public Dictionary<string, Object> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -374,6 +380,7 @@ namespace TalonOneSdk.Model
             sb.Append("  AdditionalCosts: ").Append(AdditionalCosts).Append("\n");
             sb.Append("  Identifiers: ").Append(Identifiers).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -383,24 +390,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // StoreIntegrationId (string) maxLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be less than 1000.", new [] { "StoreIntegrationId" });
             }
 
             // StoreIntegrationId (string) minLength
             if (this.StoreIntegrationId != null && this.StoreIntegrationId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoreIntegrationId, length must be greater than 1.", new [] { "StoreIntegrationId" });
             }
 
             // ReferralCode (string) maxLength
             if (this.ReferralCode != null && this.ReferralCode.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReferralCode, length must be less than 100.", new [] { "ReferralCode" });
             }
 
             yield break;

@@ -145,6 +145,12 @@ namespace TalonOneSdk.Model
         public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -159,6 +165,7 @@ namespace TalonOneSdk.Model
             sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
             sb.Append("  FriendProfileIntegrationId: ").Append(FriendProfileIntegrationId).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -168,24 +175,24 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AdvocateProfileIntegrationId (string) maxLength
             if (this.AdvocateProfileIntegrationId != null && this.AdvocateProfileIntegrationId.Length > 1000)
             {
-                yield return new ValidationResult("Invalid value for AdvocateProfileIntegrationId, length must be less than 1000.", new [] { "AdvocateProfileIntegrationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdvocateProfileIntegrationId, length must be less than 1000.", new [] { "AdvocateProfileIntegrationId" });
             }
 
             // UsageLimit (long) maximum
             if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value > (long)999999)
             {
-                yield return new ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
             }
 
             // UsageLimit (long) minimum
             if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value < (long)0)
             {
-                yield return new ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
             }
 
             yield break;

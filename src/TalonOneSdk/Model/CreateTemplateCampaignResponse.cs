@@ -71,6 +71,12 @@ namespace TalonOneSdk.Model
         public List<Collection> Collections { get { return this.CollectionsOption.Value; } set { this.CollectionsOption = new Option<List<Collection>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,6 +87,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("  Ruleset: ").Append(Ruleset).Append("\n");
             sb.Append("  Collections: ").Append(Collections).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,7 +97,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

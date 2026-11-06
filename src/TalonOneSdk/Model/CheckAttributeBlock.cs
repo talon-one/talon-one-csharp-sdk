@@ -32,19 +32,9 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="scalarCheckAttributeBlock"></param>
-        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
-        /// <param name="id">Unique identifier for this block.</param>
-        /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
-        public CheckAttributeBlock(ScalarCheckAttributeBlock scalarCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
+        public CheckAttributeBlock(ScalarCheckAttributeBlock scalarCheckAttributeBlock)
         {
             ScalarCheckAttributeBlock = scalarCheckAttributeBlock;
-            Type = type;
-            IdOption = id;
-            TagsOption = tags;
-            Attribute = attribute;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -52,19 +42,9 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="betweenCheckAttributeBlock"></param>
-        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
-        /// <param name="id">Unique identifier for this block.</param>
-        /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
-        public CheckAttributeBlock(BetweenCheckAttributeBlock betweenCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
+        public CheckAttributeBlock(BetweenCheckAttributeBlock betweenCheckAttributeBlock)
         {
             BetweenCheckAttributeBlock = betweenCheckAttributeBlock;
-            Type = type;
-            IdOption = id;
-            TagsOption = tags;
-            Attribute = attribute;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -72,19 +52,9 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="listCheckAttributeBlock"></param>
-        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
-        /// <param name="id">Unique identifier for this block.</param>
-        /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
-        public CheckAttributeBlock(ListCheckAttributeBlock listCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
+        public CheckAttributeBlock(ListCheckAttributeBlock listCheckAttributeBlock)
         {
             ListCheckAttributeBlock = listCheckAttributeBlock;
-            Type = type;
-            IdOption = id;
-            TagsOption = tags;
-            Attribute = attribute;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -92,19 +62,9 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="listWithCountCheckAttributeBlock"></param>
-        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
-        /// <param name="id">Unique identifier for this block.</param>
-        /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
-        public CheckAttributeBlock(ListWithCountCheckAttributeBlock listWithCountCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
+        public CheckAttributeBlock(ListWithCountCheckAttributeBlock listWithCountCheckAttributeBlock)
         {
             ListWithCountCheckAttributeBlock = listWithCountCheckAttributeBlock;
-            Type = type;
-            IdOption = id;
-            TagsOption = tags;
-            Attribute = attribute;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -112,19 +72,9 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="unaryCheckAttributeBlock"></param>
-        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
-        /// <param name="id">Unique identifier for this block.</param>
-        /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
-        public CheckAttributeBlock(UnaryCheckAttributeBlock unaryCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
+        public CheckAttributeBlock(UnaryCheckAttributeBlock unaryCheckAttributeBlock)
         {
             UnaryCheckAttributeBlock = unaryCheckAttributeBlock;
-            Type = type;
-            IdOption = id;
-            TagsOption = tags;
-            Attribute = attribute;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -132,19 +82,9 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="withinCheckAttributeBlock"></param>
-        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
-        /// <param name="id">Unique identifier for this block.</param>
-        /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
-        public CheckAttributeBlock(WithinCheckAttributeBlock withinCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
+        public CheckAttributeBlock(WithinCheckAttributeBlock withinCheckAttributeBlock)
         {
             WithinCheckAttributeBlock = withinCheckAttributeBlock;
-            Type = type;
-            IdOption = id;
-            TagsOption = tags;
-            Attribute = attribute;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
@@ -152,255 +92,29 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="CheckAttributeBlock" /> class.
         /// </summary>
         /// <param name="locationCheckAttributeBlock"></param>
-        /// <param name="type">A block discriminator of type &#x60;checkAttribute&#x60;.</param>
-        /// <param name="id">Unique identifier for this block.</param>
-        /// <param name="tags">Semantic labels attached to this block.</param>
-        /// <param name="attribute">The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</param>
-        /// <param name="onFailure">Promotion blocks evaluated when this block fails or returns false.</param>
-        public CheckAttributeBlock(LocationCheckAttributeBlock locationCheckAttributeBlock, TypeEnum type, Option<string> id = default, Option<List<string>> tags = default, Object attribute = default, Option<List<Block>> onFailure = default)
+        public CheckAttributeBlock(LocationCheckAttributeBlock locationCheckAttributeBlock)
         {
             LocationCheckAttributeBlock = locationCheckAttributeBlock;
-            Type = type;
-            IdOption = id;
-            TagsOption = tags;
-            Attribute = attribute;
-            OnFailureOption = onFailure;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// A block discriminator of type &#x60;checkAttribute&#x60;.
+        /// The location membership operator applied to the attribute.
         /// </summary>
-        /// <value>A block discriminator of type &#x60;checkAttribute&#x60;.</value>
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum CheckAttribute for value: checkAttribute
-            /// </summary>
-            CheckAttribute = 1
-        }
-
-        /// <summary>
-        /// Returns a <see cref="TypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static TypeEnum TypeEnumFromString(string value)
-        {
-            if (value.Equals("checkAttribute"))
-                return TypeEnum.CheckAttribute;
-
-            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
-        }
-
-        /// <summary>
-        /// Returns a <see cref="TypeEnum"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
-        {
-            if (value.Equals("checkAttribute"))
-                return TypeEnum.CheckAttribute;
-
-            return null;
-        }
-
-        /// <summary>
-        /// Converts the <see cref="TypeEnum"/> to the json value
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public static string TypeEnumToJsonValue(TypeEnum value)
-        {
-            if (value == TypeEnum.CheckAttribute)
-                return "checkAttribute";
-
-            throw new NotImplementedException($"Value could not be handled: '{value}'");
-        }
-
-        /// <summary>
-        /// A block discriminator of type &#x60;checkAttribute&#x60;.
-        /// </summary>
-        /// <value>A block discriminator of type &#x60;checkAttribute&#x60;.</value>
-        /* <example>checkAttribute</example> */
-        [JsonPropertyName("type")]
-        public TypeEnum Type { get; set; }
-
-        /// <summary>
-        /// The comparison operator applied to the attribute.
-        /// </summary>
-        /// <value>The comparison operator applied to the attribute.</value>
+        /// <value>The location membership operator applied to the attribute.</value>
         public enum OperatorEnum
         {
             /// <summary>
-            /// Enum Equals for value: equals
-            /// </summary>
-            Equals = 1,
-
-            /// <summary>
-            /// Enum Notequals for value: not(equals)
-            /// </summary>
-            Notequals = 2,
-
-            /// <summary>
-            /// Enum LessThan for value: lessThan
-            /// </summary>
-            LessThan = 3,
-
-            /// <summary>
-            /// Enum LessThanOrEqual for value: lessThanOrEqual
-            /// </summary>
-            LessThanOrEqual = 4,
-
-            /// <summary>
-            /// Enum GreaterThan for value: greaterThan
-            /// </summary>
-            GreaterThan = 5,
-
-            /// <summary>
-            /// Enum GreaterThanOrEqual for value: greaterThanOrEqual
-            /// </summary>
-            GreaterThanOrEqual = 6,
-
-            /// <summary>
-            /// Enum Between for value: between
-            /// </summary>
-            Between = 7,
-
-            /// <summary>
-            /// Enum Contains for value: contains
-            /// </summary>
-            Contains = 8,
-
-            /// <summary>
-            /// Enum Notcontains for value: not(contains)
-            /// </summary>
-            Notcontains = 9,
-
-            /// <summary>
-            /// Enum MatchesRegexp for value: matchesRegexp
-            /// </summary>
-            MatchesRegexp = 10,
-
-            /// <summary>
-            /// Enum StartsWith for value: startsWith
-            /// </summary>
-            StartsWith = 11,
-
-            /// <summary>
-            /// Enum EndsWith for value: endsWith
-            /// </summary>
-            EndsWith = 12,
-
-            /// <summary>
-            /// Enum OneOf for value: oneOf
-            /// </summary>
-            OneOf = 13,
-
-            /// <summary>
-            /// Enum NotoneOf for value: not(oneOf)
-            /// </summary>
-            NotoneOf = 14,
-
-            /// <summary>
-            /// Enum InCollection for value: inCollection
-            /// </summary>
-            InCollection = 15,
-
-            /// <summary>
-            /// Enum NotinCollection for value: not(inCollection)
-            /// </summary>
-            NotinCollection = 16,
-
-            /// <summary>
-            /// Enum Empty for value: empty
-            /// </summary>
-            Empty = 17,
-
-            /// <summary>
-            /// Enum Notempty for value: not(empty)
-            /// </summary>
-            Notempty = 18,
-
-            /// <summary>
-            /// Enum Exists for value: exists
-            /// </summary>
-            Exists = 19,
-
-            /// <summary>
-            /// Enum Notexists for value: not(exists)
-            /// </summary>
-            Notexists = 20,
-
-            /// <summary>
-            /// Enum IsTrue for value: isTrue
-            /// </summary>
-            IsTrue = 21,
-
-            /// <summary>
-            /// Enum IsFalse for value: isFalse
-            /// </summary>
-            IsFalse = 22,
-
-            /// <summary>
-            /// Enum ContainsAtLeast for value: containsAtLeast
-            /// </summary>
-            ContainsAtLeast = 23,
-
-            /// <summary>
-            /// Enum ContainsExactly for value: containsExactly
-            /// </summary>
-            ContainsExactly = 24,
-
-            /// <summary>
-            /// Enum ContainsOneOf for value: containsOneOf
-            /// </summary>
-            ContainsOneOf = 25,
-
-            /// <summary>
-            /// Enum ContainsNoneOf for value: containsNoneOf
-            /// </summary>
-            ContainsNoneOf = 26,
-
-            /// <summary>
-            /// Enum ContainsAllOf for value: containsAllOf
-            /// </summary>
-            ContainsAllOf = 27,
-
-            /// <summary>
-            /// Enum After for value: after
-            /// </summary>
-            After = 28,
-
-            /// <summary>
-            /// Enum Before for value: before
-            /// </summary>
-            Before = 29,
-
-            /// <summary>
-            /// Enum Within for value: within
-            /// </summary>
-            Within = 30,
-
-            /// <summary>
-            /// Enum Notwithin for value: not(within)
-            /// </summary>
-            Notwithin = 31,
-
-            /// <summary>
             /// Enum In for value: in
             /// </summary>
-            In = 32,
+            In = 1,
 
             /// <summary>
             /// Enum Notin for value: not(in)
             /// </summary>
-            Notin = 33
+            Notin = 2
         }
 
         /// <summary>
@@ -411,99 +125,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static OperatorEnum OperatorEnumFromString(string value)
         {
-            if (value.Equals("equals"))
-                return OperatorEnum.Equals;
-
-            if (value.Equals("not(equals)"))
-                return OperatorEnum.Notequals;
-
-            if (value.Equals("lessThan"))
-                return OperatorEnum.LessThan;
-
-            if (value.Equals("lessThanOrEqual"))
-                return OperatorEnum.LessThanOrEqual;
-
-            if (value.Equals("greaterThan"))
-                return OperatorEnum.GreaterThan;
-
-            if (value.Equals("greaterThanOrEqual"))
-                return OperatorEnum.GreaterThanOrEqual;
-
-            if (value.Equals("between"))
-                return OperatorEnum.Between;
-
-            if (value.Equals("contains"))
-                return OperatorEnum.Contains;
-
-            if (value.Equals("not(contains)"))
-                return OperatorEnum.Notcontains;
-
-            if (value.Equals("matchesRegexp"))
-                return OperatorEnum.MatchesRegexp;
-
-            if (value.Equals("startsWith"))
-                return OperatorEnum.StartsWith;
-
-            if (value.Equals("endsWith"))
-                return OperatorEnum.EndsWith;
-
-            if (value.Equals("oneOf"))
-                return OperatorEnum.OneOf;
-
-            if (value.Equals("not(oneOf)"))
-                return OperatorEnum.NotoneOf;
-
-            if (value.Equals("inCollection"))
-                return OperatorEnum.InCollection;
-
-            if (value.Equals("not(inCollection)"))
-                return OperatorEnum.NotinCollection;
-
-            if (value.Equals("empty"))
-                return OperatorEnum.Empty;
-
-            if (value.Equals("not(empty)"))
-                return OperatorEnum.Notempty;
-
-            if (value.Equals("exists"))
-                return OperatorEnum.Exists;
-
-            if (value.Equals("not(exists)"))
-                return OperatorEnum.Notexists;
-
-            if (value.Equals("isTrue"))
-                return OperatorEnum.IsTrue;
-
-            if (value.Equals("isFalse"))
-                return OperatorEnum.IsFalse;
-
-            if (value.Equals("containsAtLeast"))
-                return OperatorEnum.ContainsAtLeast;
-
-            if (value.Equals("containsExactly"))
-                return OperatorEnum.ContainsExactly;
-
-            if (value.Equals("containsOneOf"))
-                return OperatorEnum.ContainsOneOf;
-
-            if (value.Equals("containsNoneOf"))
-                return OperatorEnum.ContainsNoneOf;
-
-            if (value.Equals("containsAllOf"))
-                return OperatorEnum.ContainsAllOf;
-
-            if (value.Equals("after"))
-                return OperatorEnum.After;
-
-            if (value.Equals("before"))
-                return OperatorEnum.Before;
-
-            if (value.Equals("within"))
-                return OperatorEnum.Within;
-
-            if (value.Equals("not(within)"))
-                return OperatorEnum.Notwithin;
-
             if (value.Equals("in"))
                 return OperatorEnum.In;
 
@@ -520,99 +141,6 @@ namespace TalonOneSdk.Model
         /// <returns></returns>
         public static OperatorEnum? OperatorEnumFromStringOrDefault(string value)
         {
-            if (value.Equals("equals"))
-                return OperatorEnum.Equals;
-
-            if (value.Equals("not(equals)"))
-                return OperatorEnum.Notequals;
-
-            if (value.Equals("lessThan"))
-                return OperatorEnum.LessThan;
-
-            if (value.Equals("lessThanOrEqual"))
-                return OperatorEnum.LessThanOrEqual;
-
-            if (value.Equals("greaterThan"))
-                return OperatorEnum.GreaterThan;
-
-            if (value.Equals("greaterThanOrEqual"))
-                return OperatorEnum.GreaterThanOrEqual;
-
-            if (value.Equals("between"))
-                return OperatorEnum.Between;
-
-            if (value.Equals("contains"))
-                return OperatorEnum.Contains;
-
-            if (value.Equals("not(contains)"))
-                return OperatorEnum.Notcontains;
-
-            if (value.Equals("matchesRegexp"))
-                return OperatorEnum.MatchesRegexp;
-
-            if (value.Equals("startsWith"))
-                return OperatorEnum.StartsWith;
-
-            if (value.Equals("endsWith"))
-                return OperatorEnum.EndsWith;
-
-            if (value.Equals("oneOf"))
-                return OperatorEnum.OneOf;
-
-            if (value.Equals("not(oneOf)"))
-                return OperatorEnum.NotoneOf;
-
-            if (value.Equals("inCollection"))
-                return OperatorEnum.InCollection;
-
-            if (value.Equals("not(inCollection)"))
-                return OperatorEnum.NotinCollection;
-
-            if (value.Equals("empty"))
-                return OperatorEnum.Empty;
-
-            if (value.Equals("not(empty)"))
-                return OperatorEnum.Notempty;
-
-            if (value.Equals("exists"))
-                return OperatorEnum.Exists;
-
-            if (value.Equals("not(exists)"))
-                return OperatorEnum.Notexists;
-
-            if (value.Equals("isTrue"))
-                return OperatorEnum.IsTrue;
-
-            if (value.Equals("isFalse"))
-                return OperatorEnum.IsFalse;
-
-            if (value.Equals("containsAtLeast"))
-                return OperatorEnum.ContainsAtLeast;
-
-            if (value.Equals("containsExactly"))
-                return OperatorEnum.ContainsExactly;
-
-            if (value.Equals("containsOneOf"))
-                return OperatorEnum.ContainsOneOf;
-
-            if (value.Equals("containsNoneOf"))
-                return OperatorEnum.ContainsNoneOf;
-
-            if (value.Equals("containsAllOf"))
-                return OperatorEnum.ContainsAllOf;
-
-            if (value.Equals("after"))
-                return OperatorEnum.After;
-
-            if (value.Equals("before"))
-                return OperatorEnum.Before;
-
-            if (value.Equals("within"))
-                return OperatorEnum.Within;
-
-            if (value.Equals("not(within)"))
-                return OperatorEnum.Notwithin;
-
             if (value.Equals("in"))
                 return OperatorEnum.In;
 
@@ -630,99 +158,6 @@ namespace TalonOneSdk.Model
         /// <exception cref="NotImplementedException"></exception>
         public static string OperatorEnumToJsonValue(OperatorEnum value)
         {
-            if (value == OperatorEnum.Equals)
-                return "equals";
-
-            if (value == OperatorEnum.Notequals)
-                return "not(equals)";
-
-            if (value == OperatorEnum.LessThan)
-                return "lessThan";
-
-            if (value == OperatorEnum.LessThanOrEqual)
-                return "lessThanOrEqual";
-
-            if (value == OperatorEnum.GreaterThan)
-                return "greaterThan";
-
-            if (value == OperatorEnum.GreaterThanOrEqual)
-                return "greaterThanOrEqual";
-
-            if (value == OperatorEnum.Between)
-                return "between";
-
-            if (value == OperatorEnum.Contains)
-                return "contains";
-
-            if (value == OperatorEnum.Notcontains)
-                return "not(contains)";
-
-            if (value == OperatorEnum.MatchesRegexp)
-                return "matchesRegexp";
-
-            if (value == OperatorEnum.StartsWith)
-                return "startsWith";
-
-            if (value == OperatorEnum.EndsWith)
-                return "endsWith";
-
-            if (value == OperatorEnum.OneOf)
-                return "oneOf";
-
-            if (value == OperatorEnum.NotoneOf)
-                return "not(oneOf)";
-
-            if (value == OperatorEnum.InCollection)
-                return "inCollection";
-
-            if (value == OperatorEnum.NotinCollection)
-                return "not(inCollection)";
-
-            if (value == OperatorEnum.Empty)
-                return "empty";
-
-            if (value == OperatorEnum.Notempty)
-                return "not(empty)";
-
-            if (value == OperatorEnum.Exists)
-                return "exists";
-
-            if (value == OperatorEnum.Notexists)
-                return "not(exists)";
-
-            if (value == OperatorEnum.IsTrue)
-                return "isTrue";
-
-            if (value == OperatorEnum.IsFalse)
-                return "isFalse";
-
-            if (value == OperatorEnum.ContainsAtLeast)
-                return "containsAtLeast";
-
-            if (value == OperatorEnum.ContainsExactly)
-                return "containsExactly";
-
-            if (value == OperatorEnum.ContainsOneOf)
-                return "containsOneOf";
-
-            if (value == OperatorEnum.ContainsNoneOf)
-                return "containsNoneOf";
-
-            if (value == OperatorEnum.ContainsAllOf)
-                return "containsAllOf";
-
-            if (value == OperatorEnum.After)
-                return "after";
-
-            if (value == OperatorEnum.Before)
-                return "before";
-
-            if (value == OperatorEnum.Within)
-                return "within";
-
-            if (value == OperatorEnum.Notwithin)
-                return "not(within)";
-
             if (value == OperatorEnum.In)
                 return "in";
 
@@ -768,55 +203,10 @@ namespace TalonOneSdk.Model
         public LocationCheckAttributeBlock LocationCheckAttributeBlock { get; set; }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// Gets or Sets additional properties
         /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> IdOption { get; }
-
-        /// <summary>
-        /// Unique identifier for this block.
-        /// </summary>
-        /// <value>Unique identifier for this block.</value>
-        /* <example>a1b2c3d4-e5f6-7890-abcd-ef1234567890</example> */
-        [JsonPropertyName("id")]
-        public string Id { get { return this.IdOption.Value; } }
-
-        /// <summary>
-        /// Used to track the state of Tags
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<string>> TagsOption { get; }
-
-        /// <summary>
-        /// Semantic labels attached to this block.
-        /// </summary>
-        /// <value>Semantic labels attached to this block.</value>
-        [JsonPropertyName("tags")]
-        public List<string> Tags { get { return this.TagsOption.Value; } }
-
-        /// <summary>
-        /// The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).
-        /// </summary>
-        /// <value>The attribute path identifier (e.g. \&quot;$Session.Total\&quot;).</value>
-        /* <example>$Session.Total</example> */
-        [JsonPropertyName("attribute")]
-        public Object Attribute { get; set; }
-
-        /// <summary>
-        /// Used to track the state of OnFailure
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<Block>> OnFailureOption { get; private set; }
-
-        /// <summary>
-        /// Promotion blocks evaluated when this block fails or returns false.
-        /// </summary>
-        /// <value>Promotion blocks evaluated when this block fails or returns false.</value>
-        [JsonPropertyName("onFailure")]
-        public List<Block> OnFailure { get { return this.OnFailureOption.Value; } set { this.OnFailureOption = new Option<List<Block>>(value); } }
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -826,11 +216,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckAttributeBlock {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Tags: ").Append(Tags).Append("\n");
-            sb.Append("  Attribute: ").Append(Attribute).Append("\n");
-            sb.Append("  OnFailure: ").Append(OnFailure).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -840,7 +226,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
@@ -850,7 +236,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -887,12 +273,6 @@ namespace TalonOneSdk.Model
                 throw new JsonException();
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
-
-            Option<CheckAttributeBlock.TypeEnum?> type = default;
-            Option<string> id = default;
-            Option<List<string>> tags = default;
-            Option<Object> attribute = default;
-            Option<List<Block>> onFailure = default;
 
             ScalarCheckAttributeBlock afterScalarCheckAttributeBlock = null;
             ScalarCheckAttributeBlock beforeScalarCheckAttributeBlock = null;
@@ -1128,141 +508,110 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                            {
-                                CheckAttributeBlock.TypeEnum? typeValue = CheckAttributeBlock.TypeEnumFromStringOrDefault(typeRawValue);
-                                if (typeValue == null)
-                                    throw new JsonException();
-                                type = new Option<CheckAttributeBlock.TypeEnum?>(typeValue);
-                            }
-                            break;
-                        case "id":
-                            id = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "tags":
-                            tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "attribute":
-                            attribute = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "onFailure":
-                            onFailure = new Option<List<Block>>(JsonSerializer.Deserialize<List<Block>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            if (!type.IsSet)
-                throw new JsonException("Property is required for class CheckAttributeBlock: type.");
-
-            if (!attribute.IsSet)
-                throw new JsonException("Property is required for class CheckAttributeBlock: attribute.");
-
-            if (type.IsSet && type.Value == null)
-                throw new JsonException("Property is not nullable for class CheckAttributeBlock: type.");
-
             if (afterScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(afterScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(afterScalarCheckAttributeBlock);
 
             if (beforeScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(beforeScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(beforeScalarCheckAttributeBlock);
 
             if (betweenBetweenCheckAttributeBlock != null)
-                return new CheckAttributeBlock(betweenBetweenCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(betweenBetweenCheckAttributeBlock);
 
             if (containsScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(containsScalarCheckAttributeBlock);
 
             if (containsAllOfListCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsAllOfListCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(containsAllOfListCheckAttributeBlock);
 
             if (containsAtLeastListWithCountCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsAtLeastListWithCountCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(containsAtLeastListWithCountCheckAttributeBlock);
 
             if (containsExactlyListWithCountCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsExactlyListWithCountCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(containsExactlyListWithCountCheckAttributeBlock);
 
             if (containsNoneOfListCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsNoneOfListCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(containsNoneOfListCheckAttributeBlock);
 
             if (containsOneOfListCheckAttributeBlock != null)
-                return new CheckAttributeBlock(containsOneOfListCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(containsOneOfListCheckAttributeBlock);
 
             if (emptyUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(emptyUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(emptyUnaryCheckAttributeBlock);
 
             if (endsWithScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(endsWithScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(endsWithScalarCheckAttributeBlock);
 
             if (equalsScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(equalsScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(equalsScalarCheckAttributeBlock);
 
             if (existsUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(existsUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(existsUnaryCheckAttributeBlock);
 
             if (greaterThanScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(greaterThanScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(greaterThanScalarCheckAttributeBlock);
 
             if (greaterThanOrEqualScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(greaterThanOrEqualScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(greaterThanOrEqualScalarCheckAttributeBlock);
 
             if (inLocationCheckAttributeBlock != null)
-                return new CheckAttributeBlock(inLocationCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(inLocationCheckAttributeBlock);
 
             if (inCollectionScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(inCollectionScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(inCollectionScalarCheckAttributeBlock);
 
             if (isFalseUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(isFalseUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(isFalseUnaryCheckAttributeBlock);
 
             if (isTrueUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(isTrueUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(isTrueUnaryCheckAttributeBlock);
 
             if (lessThanScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(lessThanScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(lessThanScalarCheckAttributeBlock);
 
             if (lessThanOrEqualScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(lessThanOrEqualScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(lessThanOrEqualScalarCheckAttributeBlock);
 
             if (matchesRegexpScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(matchesRegexpScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(matchesRegexpScalarCheckAttributeBlock);
 
             if (notContainsScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notContainsScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(notContainsScalarCheckAttributeBlock);
 
             if (notEmptyUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notEmptyUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(notEmptyUnaryCheckAttributeBlock);
 
             if (notEqualsScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notEqualsScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(notEqualsScalarCheckAttributeBlock);
 
             if (notExistsUnaryCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notExistsUnaryCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(notExistsUnaryCheckAttributeBlock);
 
             if (notInLocationCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notInLocationCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(notInLocationCheckAttributeBlock);
 
             if (notInCollectionScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notInCollectionScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(notInCollectionScalarCheckAttributeBlock);
 
             if (notOneOfScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notOneOfScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(notOneOfScalarCheckAttributeBlock);
 
             if (notWithinWithinCheckAttributeBlock != null)
-                return new CheckAttributeBlock(notWithinWithinCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(notWithinWithinCheckAttributeBlock);
 
             if (oneOfScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(oneOfScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(oneOfScalarCheckAttributeBlock);
 
             if (startsWithScalarCheckAttributeBlock != null)
-                return new CheckAttributeBlock(startsWithScalarCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(startsWithScalarCheckAttributeBlock);
 
             if (withinWithinCheckAttributeBlock != null)
-                return new CheckAttributeBlock(withinWithinCheckAttributeBlock, type.Value.Value, id, tags, attribute.Value, onFailure);
+                return new CheckAttributeBlock(withinWithinCheckAttributeBlock);
 
             throw new JsonException();
         }
@@ -1277,6 +626,18 @@ namespace TalonOneSdk.Model
         {
             writer.WriteStartObject();
 
+            WriteProperties(writer, checkAttributeBlock, jsonSerializerOptions);
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes the properties of <see cref="CheckAttributeBlock" />
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="checkAttributeBlock"></param>
+        /// <param name="jsonSerializerOptions"></param>
+        public void WriteProperties(Utf8JsonWriter writer, CheckAttributeBlock checkAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
+        {
             if (checkAttributeBlock.ScalarCheckAttributeBlock != null)
             {
                 ScalarCheckAttributeBlockJsonConverter scalarCheckAttributeBlockJsonConverter = (ScalarCheckAttributeBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(checkAttributeBlock.ScalarCheckAttributeBlock.GetType()));
@@ -1317,41 +678,6 @@ namespace TalonOneSdk.Model
             {
                 LocationCheckAttributeBlockJsonConverter locationCheckAttributeBlockJsonConverter = (LocationCheckAttributeBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(checkAttributeBlock.LocationCheckAttributeBlock.GetType()));
                 locationCheckAttributeBlockJsonConverter.WriteProperties(writer, checkAttributeBlock.LocationCheckAttributeBlock, jsonSerializerOptions);
-            }
-
-            WriteProperties(writer, checkAttributeBlock, jsonSerializerOptions);
-            writer.WriteEndObject();
-        }
-
-        /// <summary>
-        /// Serializes the properties of <see cref="CheckAttributeBlock" />
-        /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="checkAttributeBlock"></param>
-        /// <param name="jsonSerializerOptions"></param>
-        public void WriteProperties(Utf8JsonWriter writer, CheckAttributeBlock checkAttributeBlock, JsonSerializerOptions jsonSerializerOptions)
-        {
-            var typeRawValue = CheckAttributeBlock.TypeEnumToJsonValue(checkAttributeBlock.Type);
-            writer.WriteString("type", typeRawValue);
-            if (checkAttributeBlock.IdOption.IsSet)
-                writer.WriteString("id", checkAttributeBlock.Id);
-
-            if (checkAttributeBlock.TagsOption.IsSet)
-            {
-                writer.WritePropertyName("tags");
-                JsonSerializer.Serialize(writer, checkAttributeBlock.Tags, jsonSerializerOptions);
-            }
-            if (checkAttributeBlock.Attribute != null)
-            {
-                writer.WritePropertyName("attribute");
-                JsonSerializer.Serialize(writer, checkAttributeBlock.Attribute, jsonSerializerOptions);
-            }
-            else
-                writer.WriteNull("attribute");
-            if (checkAttributeBlock.OnFailureOption.IsSet)
-            {
-                writer.WritePropertyName("onFailure");
-                JsonSerializer.Serialize(writer, checkAttributeBlock.OnFailure, jsonSerializerOptions);
             }
         }
     }

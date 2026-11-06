@@ -43,7 +43,7 @@ namespace TalonOneSdk.Model
         /// <param name="bundleName">_(Discounts with bundles only)_ The name of the bundle definition.</param>
         /// <param name="targetedItemPosition">_(Discounting individual item in bundles only)_ The index of the targeted bundle item on which the applied discount is based.</param>
         /// <param name="targetedItemSubPosition">_(Discounting individual item in bundles only)_ The sub-position of the targeted bundle item on which the applied discount is based.</param>
-        /// <param name="excludedFromPriceHistory">When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</param>
+        /// <param name="excludedFromPriceHistory">When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history. When set to &#x60;false&#x60;, the applied discount is included in the item&#39;s price history. This property is only returned if the [best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price) setting is enabled for the Application.</param>
         [JsonConstructor]
         public SetDiscountPerItemEffectProps(string name, decimal value, decimal position, Option<decimal?> subPosition = default, Option<decimal?> desiredValue = default, Option<string> scope = default, Option<decimal?> totalDiscount = default, Option<decimal?> desiredTotalDiscount = default, Option<long?> bundleIndex = default, Option<string> bundleName = default, Option<decimal?> targetedItemPosition = default, Option<decimal?> targetedItemSubPosition = default, Option<bool?> excludedFromPriceHistory = default)
         {
@@ -220,11 +220,17 @@ namespace TalonOneSdk.Model
         public Option<bool?> ExcludedFromPriceHistoryOption { get; private set; }
 
         /// <summary>
-        /// When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.
+        /// When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history. When set to &#x60;false&#x60;, the applied discount is included in the item&#39;s price history. This property is only returned if the [best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price) setting is enabled for the Application.
         /// </summary>
-        /// <value>When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history.</value>
+        /// <value>When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history. When set to &#x60;false&#x60;, the applied discount is included in the item&#39;s price history. This property is only returned if the [best prior price](https://docs.talon.one/docs/dev/integration-guides/best-prior-price) setting is enabled for the Application.</value>
         [JsonPropertyName("excludedFromPriceHistory")]
         public bool? ExcludedFromPriceHistory { get { return this.ExcludedFromPriceHistoryOption.Value; } set { this.ExcludedFromPriceHistoryOption = new Option<bool?>(value); } }
+
+        /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -247,6 +253,7 @@ namespace TalonOneSdk.Model
             sb.Append("  TargetedItemPosition: ").Append(TargetedItemPosition).Append("\n");
             sb.Append("  TargetedItemSubPosition: ").Append(TargetedItemSubPosition).Append("\n");
             sb.Append("  ExcludedFromPriceHistory: ").Append(ExcludedFromPriceHistory).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -256,7 +263,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

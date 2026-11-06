@@ -94,6 +94,12 @@ namespace TalonOneSdk.Model
         public List<long> TargetedAudiencesIds { get { return this.TargetedAudiencesIdsOption.Value; } set { this.TargetedAudiencesIdsOption = new Option<List<long>>(value); } }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -105,6 +111,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  TargetedAudiencesIds: ").Append(TargetedAudiencesIds).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -114,7 +121,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             if (this.Name != null) {
                 // Name (string) pattern

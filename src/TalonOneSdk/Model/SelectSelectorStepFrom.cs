@@ -63,6 +63,12 @@ namespace TalonOneSdk.Model
         public int? Int { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -70,6 +76,7 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SelectSelectorStepFrom {\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -79,7 +86,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -177,6 +184,16 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public override void Write(Utf8JsonWriter writer, SelectSelectorStepFrom selectSelectorStepFrom, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (selectSelectorStepFrom.String != null)
+            {
+                JsonSerializer.Serialize(writer, selectSelectorStepFrom.String, jsonSerializerOptions);
+                return;
+            }
+            if (selectSelectorStepFrom.Int != null)
+            {
+                JsonSerializer.Serialize(writer, selectSelectorStepFrom.Int, jsonSerializerOptions);
+                return;
+            }
             writer.WriteStartObject();
 
             WriteProperties(writer, selectSelectorStepFrom, jsonSerializerOptions);

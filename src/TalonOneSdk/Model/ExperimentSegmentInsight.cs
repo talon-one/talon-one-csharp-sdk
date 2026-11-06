@@ -293,6 +293,12 @@ namespace TalonOneSdk.Model
         public List<ExperimentSegmentInsightVariant> Variants { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public Dictionary<string, JsonElement> AdditionalProperties { get; } = new Dictionary<string, JsonElement>();
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -305,6 +311,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Confidence: ").Append(Confidence).Append("\n");
             sb.Append("  WinnerVariantId: ").Append(WinnerVariantId).Append("\n");
             sb.Append("  Variants: ").Append(Variants).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -314,18 +321,18 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Confidence (double) maximum
             if (this.Confidence > (double)100)
             {
-                yield return new ValidationResult("Invalid value for Confidence, must be a value less than or equal to 100.", new [] { "Confidence" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Confidence, must be a value less than or equal to 100.", new [] { "Confidence" });
             }
 
             // Confidence (double) minimum
             if (this.Confidence < (double)95)
             {
-                yield return new ValidationResult("Invalid value for Confidence, must be a value greater than or equal to 95.", new [] { "Confidence" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Confidence, must be a value greater than or equal to 95.", new [] { "Confidence" });
             }
 
             yield break;
