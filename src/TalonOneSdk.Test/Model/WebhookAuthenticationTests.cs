@@ -54,84 +54,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Id'
-        /// </summary>
-        [Fact]
-        public void IdTest()
-        {
-            // TODO unit test for the property 'Id'
-        }
-
-        /// <summary>
-        /// Test the property 'Created'
-        /// </summary>
-        [Fact]
-        public void CreatedTest()
-        {
-            // TODO unit test for the property 'Created'
-        }
-
-        /// <summary>
-        /// Test the property 'Modified'
-        /// </summary>
-        [Fact]
-        public void ModifiedTest()
-        {
-            // TODO unit test for the property 'Modified'
-        }
-
-        /// <summary>
-        /// Test the property 'CreatedBy'
-        /// </summary>
-        [Fact]
-        public void CreatedByTest()
-        {
-            // TODO unit test for the property 'CreatedBy'
-        }
-
-        /// <summary>
-        /// Test the property 'ModifiedBy'
-        /// </summary>
-        [Fact]
-        public void ModifiedByTest()
-        {
-            // TODO unit test for the property 'ModifiedBy'
-        }
-
-        /// <summary>
-        /// Test the property 'Webhooks'
-        /// </summary>
-        [Fact]
-        public void WebhooksTest()
-        {
-            // TODO unit test for the property 'Webhooks'
-        }
-
-        /// <summary>
-        /// Test the property 'Name'
-        /// </summary>
-        [Fact]
-        public void NameTest()
-        {
-            // TODO unit test for the property 'Name'
-        }
-
-        /// <summary>
         /// Test the property 'Type'
         /// </summary>
         [Fact]
         public void TypeTest()
         {
             // TODO unit test for the property 'Type'
-        }
-
-        /// <summary>
-        /// Test the property 'Data'
-        /// </summary>
-        [Fact]
-        public void DataTest()
-        {
-            // TODO unit test for the property 'Data'
         }
     }
 }

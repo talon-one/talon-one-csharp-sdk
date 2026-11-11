@@ -1,0 +1,17 @@
+# TalonOneSdk.Model.MCPOAuthStaticClientWithSecret
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**ClientId** | **string** | Unique identifier for the OAuth2 client. | 
+**ClientName** | **string** | Human-readable name for the OAuth2 client. | 
+**RedirectUris** | **List&lt;string&gt;** | List of allowed redirect URIs for the authorization code flow. | 
+**CreatedAt** | **DateTime** | Timestamp of when the client was registered. | 
+**Id** | **long** | Numeric ID of the OAuth client, used to delete it. | 
+**CreatedBy** | **long** | ID of the user who created the client. | 
+**ClientSecret** | **string** | The generated client secret. Only returned once on creation. | 
+**ExpiryDate** | **DateTime** | The date the client credentials expire. | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

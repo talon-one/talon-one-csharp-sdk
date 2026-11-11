@@ -24,41 +24,30 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// WebhookAuthenticationAllOfData
+    /// Cursor for the next page of results.
     /// </summary>
-    public partial class WebhookAuthenticationAllOfData : IValidatableObject
+    public partial class OutboundLogStreamCursor : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookAuthenticationAllOfData" /> class.
+        /// Initializes a new instance of the <see cref="OutboundLogStreamCursor" /> class.
         /// </summary>
-        /// <param name="webhookAuthenticationDataBasic"></param>
-        internal WebhookAuthenticationAllOfData(WebhookAuthenticationDataBasic webhookAuthenticationDataBasic)
+        /// <param name="nextCursor">Cursor for the next page of results. Pass it as the &#x60;cursor&#x60; parameter to fetch the next page.</param>
+        [JsonConstructor]
+        public OutboundLogStreamCursor(byte[] nextCursor)
         {
-            WebhookAuthenticationDataBasic = webhookAuthenticationDataBasic;
-            OnCreated();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookAuthenticationAllOfData" /> class.
-        /// </summary>
-        /// <param name="webhookAuthenticationDataCustom"></param>
-        internal WebhookAuthenticationAllOfData(WebhookAuthenticationDataCustom webhookAuthenticationDataCustom)
-        {
-            WebhookAuthenticationDataCustom = webhookAuthenticationDataCustom;
+            NextCursor = nextCursor;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets WebhookAuthenticationDataBasic
+        /// Cursor for the next page of results. Pass it as the &#x60;cursor&#x60; parameter to fetch the next page.
         /// </summary>
-        public WebhookAuthenticationDataBasic WebhookAuthenticationDataBasic { get; set; }
-
-        /// <summary>
-        /// Gets or Sets WebhookAuthenticationDataCustom
-        /// </summary>
-        public WebhookAuthenticationDataCustom WebhookAuthenticationDataCustom { get; set; }
+        /// <value>Cursor for the next page of results. Pass it as the &#x60;cursor&#x60; parameter to fetch the next page.</value>
+        /* <example>SmJlNERRMHdyNWFsTmRDZDVYU0c&#x3D;</example> */
+        [JsonPropertyName("nextCursor")]
+        public byte[] NextCursor { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -73,7 +62,8 @@ namespace TalonOneSdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class WebhookAuthenticationAllOfData {\n");
+            sb.Append("class OutboundLogStreamCursor {\n");
+            sb.Append("  NextCursor: ").Append(NextCursor).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -91,29 +81,29 @@ namespace TalonOneSdk.Model
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="WebhookAuthenticationAllOfData" />
+    /// A Json converter for type <see cref="OutboundLogStreamCursor" />
     /// </summary>
-    public partial class WebhookAuthenticationAllOfDataJsonConverter : JsonConverter<WebhookAuthenticationAllOfData>
+    public partial class OutboundLogStreamCursorJsonConverter : JsonConverter<OutboundLogStreamCursor>
     {
         partial void OnCreated();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookAuthenticationAllOfDataJsonConverter" /> class.
+        /// Initializes a new instance of the <see cref="OutboundLogStreamCursorJsonConverter" /> class.
         /// </summary>
-        public WebhookAuthenticationAllOfDataJsonConverter()
+        public OutboundLogStreamCursorJsonConverter()
         {
             OnCreated();
         }
 
         /// <summary>
-        /// Deserializes json to <see cref="WebhookAuthenticationAllOfData" />
+        /// Deserializes json to <see cref="OutboundLogStreamCursor" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
         /// <param name="typeToConvert"></param>
         /// <param name="jsonSerializerOptions"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override WebhookAuthenticationAllOfData Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override OutboundLogStreamCursor Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -122,27 +112,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            WebhookAuthenticationDataBasic webhookAuthenticationDataBasic = default;
-            WebhookAuthenticationDataCustom webhookAuthenticationDataCustom = default;
-
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
-            {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
-                    break;
-
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
-                {
-                    Utf8JsonReader utf8JsonReaderWebhookAuthenticationDataBasic = utf8JsonReader;
-                    ClientUtils.TryDeserialize<WebhookAuthenticationDataBasic>(ref utf8JsonReaderWebhookAuthenticationDataBasic, jsonSerializerOptions, out webhookAuthenticationDataBasic);
-
-                    Utf8JsonReader utf8JsonReaderWebhookAuthenticationDataCustom = utf8JsonReader;
-                    ClientUtils.TryDeserialize<WebhookAuthenticationDataCustom>(ref utf8JsonReaderWebhookAuthenticationDataCustom, jsonSerializerOptions, out webhookAuthenticationDataCustom);
-                }
-            }
+            Option<byte[]> nextCursor = default;
 
             while (utf8JsonReader.Read())
             {
@@ -159,44 +129,51 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "nextCursor":
+                            nextCursor = new Option<byte[]>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            if (webhookAuthenticationDataBasic != null)
-                return new WebhookAuthenticationAllOfData(webhookAuthenticationDataBasic);
+            if (!nextCursor.IsSet)
+                throw new JsonException("Property is required for class OutboundLogStreamCursor: nextCursor.");
 
-            if (webhookAuthenticationDataCustom != null)
-                return new WebhookAuthenticationAllOfData(webhookAuthenticationDataCustom);
+            if (nextCursor.IsSet && nextCursor.Value == null)
+                throw new JsonException("Property is not nullable for class OutboundLogStreamCursor: nextCursor.");
 
-            throw new JsonException();
+            return new OutboundLogStreamCursor(nextCursor.Value);
         }
 
         /// <summary>
-        /// Serializes a <see cref="WebhookAuthenticationAllOfData" />
+        /// Serializes a <see cref="OutboundLogStreamCursor" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="webhookAuthenticationAllOfData"></param>
+        /// <param name="outboundLogStreamCursor"></param>
         /// <param name="jsonSerializerOptions"></param>
-        public override void Write(Utf8JsonWriter writer, WebhookAuthenticationAllOfData webhookAuthenticationAllOfData, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, OutboundLogStreamCursor outboundLogStreamCursor, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
 
-            WriteProperties(writer, webhookAuthenticationAllOfData, jsonSerializerOptions);
+            WriteProperties(writer, outboundLogStreamCursor, jsonSerializerOptions);
             writer.WriteEndObject();
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="WebhookAuthenticationAllOfData" />
+        /// Serializes the properties of <see cref="OutboundLogStreamCursor" />
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="webhookAuthenticationAllOfData"></param>
+        /// <param name="outboundLogStreamCursor"></param>
         /// <param name="jsonSerializerOptions"></param>
-        public void WriteProperties(Utf8JsonWriter writer, WebhookAuthenticationAllOfData webhookAuthenticationAllOfData, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, OutboundLogStreamCursor outboundLogStreamCursor, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (outboundLogStreamCursor.NextCursor == null)
+                throw new JsonException("Cannot write null property OutboundLogStreamCursor.NextCursor to non-nullable JSON property 'nextCursor'.");
 
+            writer.WritePropertyName("nextCursor");
+            JsonSerializer.Serialize(writer, outboundLogStreamCursor.NextCursor, jsonSerializerOptions);
         }
     }
 }

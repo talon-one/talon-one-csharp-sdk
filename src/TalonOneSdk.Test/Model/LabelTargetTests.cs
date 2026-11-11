@@ -52,5 +52,14 @@ namespace TalonOneSdk.Test.Model
             // TODO uncomment below to test "IsType" LabelTarget
             //Assert.IsType<LabelTarget>(instance);
         }
+
+        /// <summary>
+        /// Test the property 'Type'
+        /// </summary>
+        [Fact]
+        public void TypeTest()
+        {
+            // TODO unit test for the property 'Type'
+        }
     }
 }

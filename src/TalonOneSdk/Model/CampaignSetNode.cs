@@ -86,6 +86,16 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            return this.BaseValidate(validationContext);
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
+        {
             yield break;
         }
     }
@@ -122,25 +132,36 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            CampaignSetBranchNode campaignSetBranchNode = default;
-            CampaignSetLeafNode campaignSetLeafNode = default;
+            CampaignSetLeafNode cAMPAIGNCampaignSetLeafNode = null;
+            CampaignSetBranchNode sETCampaignSetBranchNode = null;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderCampaignSetBranchNode = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CampaignSetBranchNode>(ref utf8JsonReaderCampaignSetBranchNode, jsonSerializerOptions, out campaignSetBranchNode);
-
-                    Utf8JsonReader utf8JsonReaderCampaignSetLeafNode = utf8JsonReader;
-                    ClientUtils.TryDeserialize<CampaignSetLeafNode>(ref utf8JsonReaderCampaignSetLeafNode, jsonSerializerOptions, out campaignSetLeafNode);
+                    string localVarJsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (localVarJsonPropertyName.Equals("type"))
+                    {
+                        string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("CAMPAIGN"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCampaignSetLeafNode = utf8JsonReader;
+                            cAMPAIGNCampaignSetLeafNode = JsonSerializer.Deserialize<CampaignSetLeafNode>(ref utf8JsonReaderCampaignSetLeafNode, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("SET"))
+                        {
+                            Utf8JsonReader utf8JsonReaderCampaignSetBranchNode = utf8JsonReader;
+                            sETCampaignSetBranchNode = JsonSerializer.Deserialize<CampaignSetBranchNode>(ref utf8JsonReaderCampaignSetBranchNode, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -165,11 +186,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (campaignSetBranchNode != null)
-                return new CampaignSetNode(campaignSetBranchNode);
+            if (cAMPAIGNCampaignSetLeafNode != null)
+                return new CampaignSetNode(cAMPAIGNCampaignSetLeafNode);
 
-            if (campaignSetLeafNode != null)
-                return new CampaignSetNode(campaignSetLeafNode);
+            if (sETCampaignSetBranchNode != null)
+                return new CampaignSetNode(sETCampaignSetBranchNode);
 
             throw new JsonException();
         }
@@ -196,7 +217,17 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, CampaignSetNode campaignSetNode, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (campaignSetNode.CampaignSetBranchNode != null)
+            {
+                CampaignSetBranchNodeJsonConverter campaignSetBranchNodeJsonConverter = (CampaignSetBranchNodeJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(campaignSetNode.CampaignSetBranchNode.GetType()));
+                campaignSetBranchNodeJsonConverter.WriteProperties(writer, campaignSetNode.CampaignSetBranchNode, jsonSerializerOptions);
+            }
 
+            if (campaignSetNode.CampaignSetLeafNode != null)
+            {
+                CampaignSetLeafNodeJsonConverter campaignSetLeafNodeJsonConverter = (CampaignSetLeafNodeJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(campaignSetNode.CampaignSetLeafNode.GetType()));
+                campaignSetLeafNodeJsonConverter.WriteProperties(writer, campaignSetNode.CampaignSetLeafNode, jsonSerializerOptions);
+            }
         }
     }
 }
