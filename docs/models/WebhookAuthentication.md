@@ -1,18 +1,11 @@
 # TalonOneSdk.Model.WebhookAuthentication
+A webhook authentication. The `type` field selects the concrete authentication variant.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **long** | The internal ID of this entity. | 
-**Created** | **DateTime** | The time this entity was created. | 
-**Modified** | **DateTime** | The time this entity was last modified. | 
-**CreatedBy** | **string** | The name of the user who created the webhook authentication. | 
-**ModifiedBy** | **string** | The name of the user who last modified the webhook authentication. | 
-**Webhooks** | [**List&lt;WebhookAuthenticationWebhookRef&gt;**](WebhookAuthenticationWebhookRef.md) |  | 
-**Name** | **string** | The name of the webhook authentication. | 
-**Type** | **string** |  | 
-**Data** | [**WebhookAuthenticationAllOfData**](WebhookAuthenticationAllOfData.md) |  | 
+**Type** | **string** | A webhook authentication discriminator of type &#x60;basic&#x60;. | 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

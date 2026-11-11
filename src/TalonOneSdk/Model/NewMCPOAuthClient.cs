@@ -55,7 +55,7 @@ namespace TalonOneSdk.Model
         /// List of allowed redirect URIs for the authorization code flow. At least one URI is required.
         /// </summary>
         /// <value>List of allowed redirect URIs for the authorization code flow. At least one URI is required.</value>
-        /* <example>[&quot;http://localhost:3000/callback&quot;]</example> */
+        /* <example>[http://localhost:3000/callback]</example> */
         [JsonPropertyName("redirect_uris")]
         public List<string> RedirectUris { get; set; }
 

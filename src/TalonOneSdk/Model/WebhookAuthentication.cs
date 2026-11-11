@@ -24,42 +24,36 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// WebhookAuthentication
+    /// A webhook authentication. The &#x60;type&#x60; field selects the concrete authentication variant.
     /// </summary>
     public partial class WebhookAuthentication : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookAuthentication" /> class.
         /// </summary>
-        /// <param name="id">The internal ID of this entity.</param>
-        /// <param name="created">The time this entity was created.</param>
-        /// <param name="modified">The time this entity was last modified.</param>
-        /// <param name="createdBy">The name of the user who created the webhook authentication.</param>
-        /// <param name="modifiedBy">The name of the user who last modified the webhook authentication.</param>
-        /// <param name="webhooks">webhooks</param>
-        /// <param name="name">The name of the webhook authentication.</param>
-        /// <param name="type">type</param>
-        /// <param name="data">data</param>
-        [JsonConstructor]
-        public WebhookAuthentication(long id, DateTime created, DateTime modified, string createdBy, string modifiedBy, List<WebhookAuthenticationWebhookRef> webhooks, string name, TypeEnum type, WebhookAuthenticationAllOfData data)
+        /// <param name="webhookAuthenticationBasic"></param>
+        internal WebhookAuthentication(WebhookAuthenticationBasic webhookAuthenticationBasic)
         {
-            Id = id;
-            Created = created;
-            Modified = modified;
-            CreatedBy = createdBy;
-            ModifiedBy = modifiedBy;
-            Webhooks = webhooks;
-            Name = name;
-            Type = type;
-            Data = data;
+            WebhookAuthenticationBasic = webhookAuthenticationBasic;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebhookAuthentication" /> class.
+        /// </summary>
+        /// <param name="webhookAuthenticationCustom"></param>
+        internal WebhookAuthentication(WebhookAuthenticationCustom webhookAuthenticationCustom)
+        {
+            WebhookAuthenticationCustom = webhookAuthenticationCustom;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Defines Type
+        /// A webhook authentication discriminator of type &#x60;basic&#x60;.
         /// </summary>
+        /// <value>A webhook authentication discriminator of type &#x60;basic&#x60;.</value>
         public enum TypeEnum
         {
             /// <summary>
@@ -124,68 +118,14 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// Gets or Sets Type
+        /// Gets or Sets WebhookAuthenticationBasic
         /// </summary>
-        [JsonPropertyName("type")]
-        public TypeEnum Type { get; set; }
+        public WebhookAuthenticationBasic WebhookAuthenticationBasic { get; set; }
 
         /// <summary>
-        /// The internal ID of this entity.
+        /// Gets or Sets WebhookAuthenticationCustom
         /// </summary>
-        /// <value>The internal ID of this entity.</value>
-        /* <example>6</example> */
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
-
-        /// <summary>
-        /// The time this entity was created.
-        /// </summary>
-        /// <value>The time this entity was created.</value>
-        /* <example>2020-06-10T09:05:27.993483Z</example> */
-        [JsonPropertyName("created")]
-        public DateTime Created { get; set; }
-
-        /// <summary>
-        /// The time this entity was last modified.
-        /// </summary>
-        /// <value>The time this entity was last modified.</value>
-        /* <example>2021-09-12T10:12:42Z</example> */
-        [JsonPropertyName("modified")]
-        public DateTime Modified { get; set; }
-
-        /// <summary>
-        /// The name of the user who created the webhook authentication.
-        /// </summary>
-        /// <value>The name of the user who created the webhook authentication.</value>
-        [JsonPropertyName("createdBy")]
-        public string CreatedBy { get; set; }
-
-        /// <summary>
-        /// The name of the user who last modified the webhook authentication.
-        /// </summary>
-        /// <value>The name of the user who last modified the webhook authentication.</value>
-        [JsonPropertyName("modifiedBy")]
-        public string ModifiedBy { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Webhooks
-        /// </summary>
-        [JsonPropertyName("webhooks")]
-        public List<WebhookAuthenticationWebhookRef> Webhooks { get; set; }
-
-        /// <summary>
-        /// The name of the webhook authentication.
-        /// </summary>
-        /// <value>The name of the webhook authentication.</value>
-        /* <example>My basic auth</example> */
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Data
-        /// </summary>
-        [JsonPropertyName("data")]
-        public WebhookAuthenticationAllOfData Data { get; set; }
+        public WebhookAuthenticationCustom WebhookAuthenticationCustom { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -201,15 +141,6 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookAuthentication {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Created: ").Append(Created).Append("\n");
-            sb.Append("  Modified: ").Append(Modified).Append("\n");
-            sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
-            sb.Append("  ModifiedBy: ").Append(ModifiedBy).Append("\n");
-            sb.Append("  Webhooks: ").Append(Webhooks).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -221,6 +152,16 @@ namespace TalonOneSdk.Model
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            return this.BaseValidate(validationContext);
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -242,16 +183,6 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// The format to use to serialize Created
-        /// </summary>
-        public string CreatedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
-        /// The format to use to serialize Modified
-        /// </summary>
-        public string ModifiedFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-
-        /// <summary>
         /// Deserializes json to <see cref="WebhookAuthentication" />
         /// </summary>
         /// <param name="utf8JsonReader"></param>
@@ -268,15 +199,38 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<long?> id = default;
-            Option<DateTime?> created = default;
-            Option<DateTime?> modified = default;
-            Option<string> createdBy = default;
-            Option<string> modifiedBy = default;
-            Option<List<WebhookAuthenticationWebhookRef>> webhooks = default;
-            Option<string> name = default;
-            Option<WebhookAuthentication.TypeEnum?> type = default;
-            Option<WebhookAuthenticationAllOfData> data = default;
+            WebhookAuthenticationBasic basicWebhookAuthenticationBasic = null;
+            WebhookAuthenticationCustom customWebhookAuthenticationCustom = null;
+
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
+            {
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
+                    break;
+
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
+                    break;
+
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
+                {
+                    string localVarJsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (localVarJsonPropertyName.Equals("type"))
+                    {
+                        string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("basic"))
+                        {
+                            Utf8JsonReader utf8JsonReaderWebhookAuthenticationBasic = utf8JsonReader;
+                            basicWebhookAuthenticationBasic = JsonSerializer.Deserialize<WebhookAuthenticationBasic>(ref utf8JsonReaderWebhookAuthenticationBasic, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("custom"))
+                        {
+                            Utf8JsonReader utf8JsonReaderWebhookAuthenticationCustom = utf8JsonReader;
+                            customWebhookAuthenticationCustom = JsonSerializer.Deserialize<WebhookAuthenticationCustom>(ref utf8JsonReaderWebhookAuthenticationCustom, jsonSerializerOptions);
+                        }
+                    }
+                }
+            }
 
             while (utf8JsonReader.Read())
             {
@@ -293,101 +247,19 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
-                        case "id":
-                            id = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "created":
-                            created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "modified":
-                            modified = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "createdBy":
-                            createdBy = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "modifiedBy":
-                            modifiedBy = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "webhooks":
-                            webhooks = new Option<List<WebhookAuthenticationWebhookRef>>(JsonSerializer.Deserialize<List<WebhookAuthenticationWebhookRef>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "name":
-                            name = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "type":
-                            string typeRawValue = utf8JsonReader.GetString();
-                            if (typeRawValue != null)
-                            {
-                                WebhookAuthentication.TypeEnum? typeValue = WebhookAuthentication.TypeEnumFromStringOrDefault(typeRawValue);
-                                if (typeValue == null)
-                                    throw new JsonException();
-                                type = new Option<WebhookAuthentication.TypeEnum?>(typeValue);
-                            }
-                            break;
-                        case "data":
-                            data = new Option<WebhookAuthenticationAllOfData>(JsonSerializer.Deserialize<WebhookAuthenticationAllOfData>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         default:
                             break;
                     }
                 }
             }
 
-            if (!id.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: id.");
+            if (basicWebhookAuthenticationBasic != null)
+                return new WebhookAuthentication(basicWebhookAuthenticationBasic);
 
-            if (!created.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: created.");
+            if (customWebhookAuthenticationCustom != null)
+                return new WebhookAuthentication(customWebhookAuthenticationCustom);
 
-            if (!modified.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: modified.");
-
-            if (!createdBy.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: createdBy.");
-
-            if (!modifiedBy.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: modifiedBy.");
-
-            if (!webhooks.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: webhooks.");
-
-            if (!name.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: name.");
-
-            if (!type.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: type.");
-
-            if (!data.IsSet)
-                throw new JsonException("Property is required for class WebhookAuthentication: data.");
-
-            if (id.IsSet && id.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: id.");
-
-            if (created.IsSet && created.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: created.");
-
-            if (modified.IsSet && modified.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: modified.");
-
-            if (createdBy.IsSet && createdBy.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: createdBy.");
-
-            if (modifiedBy.IsSet && modifiedBy.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: modifiedBy.");
-
-            if (webhooks.IsSet && webhooks.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: webhooks.");
-
-            if (name.IsSet && name.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: name.");
-
-            if (type.IsSet && type.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: type.");
-
-            if (data.IsSet && data.Value == null)
-                throw new JsonException("Property is not nullable for class WebhookAuthentication: data.");
-
-            return new WebhookAuthentication(id.Value.Value, created.Value.Value, modified.Value.Value, createdBy.Value, modifiedBy.Value, webhooks.Value, name.Value, type.Value.Value, data.Value);
+            throw new JsonException();
         }
 
         /// <summary>
@@ -412,39 +284,17 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, WebhookAuthentication webhookAuthentication, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (webhookAuthentication.CreatedBy == null)
-                throw new JsonException("Cannot write null property WebhookAuthentication.CreatedBy to non-nullable JSON property 'createdBy'.");
+            if (webhookAuthentication.WebhookAuthenticationBasic != null)
+            {
+                WebhookAuthenticationBasicJsonConverter webhookAuthenticationBasicJsonConverter = (WebhookAuthenticationBasicJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(webhookAuthentication.WebhookAuthenticationBasic.GetType()));
+                webhookAuthenticationBasicJsonConverter.WriteProperties(writer, webhookAuthentication.WebhookAuthenticationBasic, jsonSerializerOptions);
+            }
 
-            if (webhookAuthentication.ModifiedBy == null)
-                throw new JsonException("Cannot write null property WebhookAuthentication.ModifiedBy to non-nullable JSON property 'modifiedBy'.");
-
-            if (webhookAuthentication.Webhooks == null)
-                throw new JsonException("Cannot write null property WebhookAuthentication.Webhooks to non-nullable JSON property 'webhooks'.");
-
-            if (webhookAuthentication.Name == null)
-                throw new JsonException("Cannot write null property WebhookAuthentication.Name to non-nullable JSON property 'name'.");
-
-            if (webhookAuthentication.Data == null)
-                throw new JsonException("Cannot write null property WebhookAuthentication.Data to non-nullable JSON property 'data'.");
-
-            writer.WriteNumber("id", webhookAuthentication.Id);
-
-            writer.WriteString("created", webhookAuthentication.Created.ToString(CreatedFormat));
-
-            writer.WriteString("modified", webhookAuthentication.Modified.ToString(ModifiedFormat));
-
-            writer.WriteString("createdBy", webhookAuthentication.CreatedBy);
-
-            writer.WriteString("modifiedBy", webhookAuthentication.ModifiedBy);
-
-            writer.WritePropertyName("webhooks");
-            JsonSerializer.Serialize(writer, webhookAuthentication.Webhooks, jsonSerializerOptions);
-            writer.WriteString("name", webhookAuthentication.Name);
-
-            var typeRawValue = WebhookAuthentication.TypeEnumToJsonValue(webhookAuthentication.Type);
-            writer.WriteString("type", typeRawValue);
-            writer.WritePropertyName("data");
-            JsonSerializer.Serialize(writer, webhookAuthentication.Data, jsonSerializerOptions);
+            if (webhookAuthentication.WebhookAuthenticationCustom != null)
+            {
+                WebhookAuthenticationCustomJsonConverter webhookAuthenticationCustomJsonConverter = (WebhookAuthenticationCustomJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(webhookAuthentication.WebhookAuthenticationCustom.GetType()));
+                webhookAuthenticationCustomJsonConverter.WriteProperties(writer, webhookAuthentication.WebhookAuthenticationCustom, jsonSerializerOptions);
+            }
         }
     }
 }

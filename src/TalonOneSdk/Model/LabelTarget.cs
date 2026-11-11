@@ -51,6 +51,72 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
+        /// Defines Type
+        /// </summary>
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum NONE for value: NONE
+            /// </summary>
+            NONE = 1,
+
+            /// <summary>
+            /// Enum AUDIENCE for value: AUDIENCE
+            /// </summary>
+            AUDIENCE = 2
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static TypeEnum TypeEnumFromString(string value)
+        {
+            if (value.Equals("NONE"))
+                return TypeEnum.NONE;
+
+            if (value.Equals("AUDIENCE"))
+                return TypeEnum.AUDIENCE;
+
+            throw new NotImplementedException($"Could not convert value to type TypeEnum: '{value}'");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="TypeEnum"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static TypeEnum? TypeEnumFromStringOrDefault(string value)
+        {
+            if (value.Equals("NONE"))
+                return TypeEnum.NONE;
+
+            if (value.Equals("AUDIENCE"))
+                return TypeEnum.AUDIENCE;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts the <see cref="TypeEnum"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static string TypeEnumToJsonValue(TypeEnum value)
+        {
+            if (value == TypeEnum.NONE)
+                return "NONE";
+
+            if (value == TypeEnum.AUDIENCE)
+                return "AUDIENCE";
+
+            throw new NotImplementedException($"Value could not be handled: '{value}'");
+        }
+
+        /// <summary>
         /// Gets or Sets LabelTargetNone
         /// </summary>
         public LabelTargetNone LabelTargetNone { get; set; }
@@ -85,6 +151,16 @@ namespace TalonOneSdk.Model
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            return this.BaseValidate(validationContext);
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -122,25 +198,36 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            LabelTargetNone labelTargetNone = default;
-            LabelTargetAudience labelTargetAudience = default;
+            LabelTargetAudience aUDIENCELabelTargetAudience = null;
+            LabelTargetNone nONELabelTargetNone = null;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderLabelTargetNone = utf8JsonReader;
-                    ClientUtils.TryDeserialize<LabelTargetNone>(ref utf8JsonReaderLabelTargetNone, jsonSerializerOptions, out labelTargetNone);
-
-                    Utf8JsonReader utf8JsonReaderLabelTargetAudience = utf8JsonReader;
-                    ClientUtils.TryDeserialize<LabelTargetAudience>(ref utf8JsonReaderLabelTargetAudience, jsonSerializerOptions, out labelTargetAudience);
+                    string localVarJsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (localVarJsonPropertyName.Equals("type"))
+                    {
+                        string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("AUDIENCE"))
+                        {
+                            Utf8JsonReader utf8JsonReaderLabelTargetAudience = utf8JsonReader;
+                            aUDIENCELabelTargetAudience = JsonSerializer.Deserialize<LabelTargetAudience>(ref utf8JsonReaderLabelTargetAudience, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("NONE"))
+                        {
+                            Utf8JsonReader utf8JsonReaderLabelTargetNone = utf8JsonReader;
+                            nONELabelTargetNone = JsonSerializer.Deserialize<LabelTargetNone>(ref utf8JsonReaderLabelTargetNone, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -165,11 +252,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (labelTargetNone != null)
-                return new LabelTarget(labelTargetNone);
+            if (aUDIENCELabelTargetAudience != null)
+                return new LabelTarget(aUDIENCELabelTargetAudience);
 
-            if (labelTargetAudience != null)
-                return new LabelTarget(labelTargetAudience);
+            if (nONELabelTargetNone != null)
+                return new LabelTarget(nONELabelTargetNone);
 
             throw new JsonException();
         }
@@ -196,7 +283,17 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, LabelTarget labelTarget, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (labelTarget.LabelTargetNone != null)
+            {
+                LabelTargetNoneJsonConverter labelTargetNoneJsonConverter = (LabelTargetNoneJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(labelTarget.LabelTargetNone.GetType()));
+                labelTargetNoneJsonConverter.WriteProperties(writer, labelTarget.LabelTargetNone, jsonSerializerOptions);
+            }
 
+            if (labelTarget.LabelTargetAudience != null)
+            {
+                LabelTargetAudienceJsonConverter labelTargetAudienceJsonConverter = (LabelTargetAudienceJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(labelTarget.LabelTargetAudience.GetType()));
+                labelTargetAudienceJsonConverter.WriteProperties(writer, labelTarget.LabelTargetAudience, jsonSerializerOptions);
+            }
         }
     }
 }

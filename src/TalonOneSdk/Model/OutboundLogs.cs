@@ -31,10 +31,10 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OutboundLogs" /> class.
         /// </summary>
-        /// <param name="data">List of outbound logs.</param>
+        /// <param name="data">List of outbound logs. When an error ends the response, an &#x60;OutboundLogStreamError&#x60; is the last item and the response is incomplete.</param>
         /// <param name="nextCursor">Cursor for the next page of results. Omitted when there are no more results.</param>
         [JsonConstructor]
-        public OutboundLogs(List<OutboundLog> data, Option<byte[]> nextCursor = default)
+        public OutboundLogs(List<OutboundLogsDataInner> data, Option<byte[]> nextCursor = default)
         {
             Data = data;
             NextCursorOption = nextCursor;
@@ -44,11 +44,11 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// List of outbound logs.
+        /// List of outbound logs. When an error ends the response, an &#x60;OutboundLogStreamError&#x60; is the last item and the response is incomplete.
         /// </summary>
-        /// <value>List of outbound logs.</value>
+        /// <value>List of outbound logs. When an error ends the response, an &#x60;OutboundLogStreamError&#x60; is the last item and the response is incomplete.</value>
         [JsonPropertyName("data")]
-        public List<OutboundLog> Data { get; set; }
+        public List<OutboundLogsDataInner> Data { get; set; }
 
         /// <summary>
         /// Used to track the state of NextCursor
@@ -129,7 +129,7 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<List<OutboundLog>> data = default;
+            Option<List<OutboundLogsDataInner>> data = default;
             Option<byte[]> nextCursor = default;
 
             while (utf8JsonReader.Read())
@@ -148,7 +148,7 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "data":
-                            data = new Option<List<OutboundLog>>(JsonSerializer.Deserialize<List<OutboundLog>>(ref utf8JsonReader, jsonSerializerOptions));
+                            data = new Option<List<OutboundLogsDataInner>>(JsonSerializer.Deserialize<List<OutboundLogsDataInner>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "nextCursor":
                             nextCursor = new Option<byte[]>(JsonSerializer.Deserialize<byte[]>(ref utf8JsonReader, jsonSerializerOptions));

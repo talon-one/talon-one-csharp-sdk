@@ -604,6 +604,8 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.IntegrationRequest.ResponseContentEnumToJsonValue(integrationRequestResponseContentEnum);
             if (obj is TalonOneSdk.Model.IntegrationUnlockRewardRequest.ResponseContentEnum integrationUnlockRewardRequestResponseContentEnum)
                 return TalonOneSdk.Model.IntegrationUnlockRewardRequest.ResponseContentEnumToJsonValue(integrationUnlockRewardRequestResponseContentEnum);
+            if (obj is TalonOneSdk.Model.LabelTarget.TypeEnum labelTargetTypeEnum)
+                return TalonOneSdk.Model.LabelTarget.TypeEnumToJsonValue(labelTargetTypeEnum);
             if (obj is TalonOneSdk.Model.LabelTargetAudience.TypeEnum labelTargetAudienceTypeEnum)
                 return TalonOneSdk.Model.LabelTargetAudience.TypeEnumToJsonValue(labelTargetAudienceTypeEnum);
             if (obj is TalonOneSdk.Model.LabelTargetNone.TypeEnum labelTargetNoneTypeEnum)
@@ -768,6 +770,10 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.NewRiskNotification.TimeFrameEnumToJsonValue(newRiskNotificationTimeFrameEnum);
             if (obj is TalonOneSdk.Model.NewWebhook.VerbEnum newWebhookVerbEnum)
                 return TalonOneSdk.Model.NewWebhook.VerbEnumToJsonValue(newWebhookVerbEnum);
+            if (obj is TalonOneSdk.Model.OutboundLogStreamEntryType outboundLogStreamEntryType)
+                return TalonOneSdk.Model.OutboundLogStreamEntryTypeValueConverter.ToJsonValue(outboundLogStreamEntryType);
+            if (obj is TalonOneSdk.Model.OutboundLogsFormat outboundLogsFormat)
+                return TalonOneSdk.Model.OutboundLogsFormatValueConverter.ToJsonValue(outboundLogsFormat);
             if (obj is TalonOneSdk.Model.OutgoingIntegrationTemplate.MethodEnum outgoingIntegrationTemplateMethodEnum)
                 return TalonOneSdk.Model.OutgoingIntegrationTemplate.MethodEnumToJsonValue(outgoingIntegrationTemplateMethodEnum);
             if (obj is TalonOneSdk.Model.OutgoingIntegrationTemplateWithConfigurationDetails.MethodEnum outgoingIntegrationTemplateWithConfigurationDetailsMethodEnum)
@@ -990,6 +996,10 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.WebhookAuthenticationBaseBasic.TypeEnumToJsonValue(webhookAuthenticationBaseBasicTypeEnum);
             if (obj is TalonOneSdk.Model.WebhookAuthenticationBaseCustom.TypeEnum webhookAuthenticationBaseCustomTypeEnum)
                 return TalonOneSdk.Model.WebhookAuthenticationBaseCustom.TypeEnumToJsonValue(webhookAuthenticationBaseCustomTypeEnum);
+            if (obj is TalonOneSdk.Model.WebhookAuthenticationBasic.TypeEnum webhookAuthenticationBasicTypeEnum)
+                return TalonOneSdk.Model.WebhookAuthenticationBasic.TypeEnumToJsonValue(webhookAuthenticationBasicTypeEnum);
+            if (obj is TalonOneSdk.Model.WebhookAuthenticationCustom.TypeEnum webhookAuthenticationCustomTypeEnum)
+                return TalonOneSdk.Model.WebhookAuthenticationCustom.TypeEnumToJsonValue(webhookAuthenticationCustomTypeEnum);
             if (obj is TalonOneSdk.Model.WebhookWithOutgoingIntegrationDetails.VerbEnum webhookWithOutgoingIntegrationDetailsVerbEnum)
                 return TalonOneSdk.Model.WebhookWithOutgoingIntegrationDetails.VerbEnumToJsonValue(webhookWithOutgoingIntegrationDetailsVerbEnum);
             if (obj is TalonOneSdk.Model.WithinCheckAttributeBlock.TypeEnum withinCheckAttributeBlockTypeEnum)
