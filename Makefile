@@ -23,7 +23,7 @@ endif
 				--configuration Release \
 				--include-source
 
-publish:
+publish: pack
 ifeq ($(VERSION),)
 	@echo "***\033[0;31mERROR:\033[0m NO VERSION COULD BE EXTRACTED. Check out the TalonOneSdk.csproj file"
 	@exit 1

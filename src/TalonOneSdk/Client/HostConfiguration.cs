@@ -720,6 +720,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new NewReturnJsonConverter());
             _jsonOptions.Converters.Add(new NewRevisionVersionJsonConverter());
             _jsonOptions.Converters.Add(new NewRewardJsonConverter());
+            _jsonOptions.Converters.Add(new NewRewardBudgetJsonConverter());
             _jsonOptions.Converters.Add(new NewRiskNotificationJsonConverter());
             _jsonOptions.Converters.Add(new NewRoleJsonConverter());
             _jsonOptions.Converters.Add(new NewRoleV2JsonConverter());
@@ -821,11 +822,15 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new RevisionActivationRequestJsonConverter());
             _jsonOptions.Converters.Add(new RevisionVersionJsonConverter());
             _jsonOptions.Converters.Add(new RewardJsonConverter());
+            _jsonOptions.Converters.Add(new RewardBudgetJsonConverter());
+            _jsonOptions.Converters.Add(new RewardBudgetLimitCounterJsonConverter());
+            _jsonOptions.Converters.Add(new RewardBudgetWithLimitCounterJsonConverter());
             _jsonOptions.Converters.Add(new RewardCatalogItemJsonConverter());
             _jsonOptions.Converters.Add(new RewardEligibilityJsonConverter());
             _jsonOptions.Converters.Add(new RewardEligibilityFailureDetailsJsonConverter());
             _jsonOptions.Converters.Add(new RewardPointsRequiredJsonConverter());
             _jsonOptions.Converters.Add(new RewardUnlockRejectionJsonConverter());
+            _jsonOptions.Converters.Add(new RewardWithBudgetsJsonConverter());
             _jsonOptions.Converters.Add(new RewardWithUnlocksJsonConverter());
             _jsonOptions.Converters.Add(new RiskJsonConverter());
             _jsonOptions.Converters.Add(new RiskAffectedEntityItemJsonConverter());
@@ -994,6 +999,7 @@ namespace TalonOneSdk.Client
             _jsonOptions.Converters.Add(new UpdateReferralJsonConverter());
             _jsonOptions.Converters.Add(new UpdateReferralBatchJsonConverter());
             _jsonOptions.Converters.Add(new UpdateRewardJsonConverter());
+            _jsonOptions.Converters.Add(new UpdateRewardBudgetJsonConverter());
             _jsonOptions.Converters.Add(new UpdateRiskNotificationJsonConverter());
             _jsonOptions.Converters.Add(new UpdateRoleJsonConverter());
             _jsonOptions.Converters.Add(new UpdateStoreJsonConverter());

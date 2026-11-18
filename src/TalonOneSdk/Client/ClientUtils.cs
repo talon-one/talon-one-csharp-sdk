@@ -762,6 +762,12 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.NewPicklist.TypeEnumToJsonValue(newPicklistTypeEnum);
             if (obj is TalonOneSdk.Model.NewRevisionVersion.FeaturesEnum newRevisionVersionFeaturesEnum)
                 return TalonOneSdk.Model.NewRevisionVersion.FeaturesEnumToJsonValue(newRevisionVersionFeaturesEnum);
+            if (obj is TalonOneSdk.Model.NewRewardBudget.ScopeEnum newRewardBudgetScopeEnum)
+                return TalonOneSdk.Model.NewRewardBudget.ScopeEnumToJsonValue(newRewardBudgetScopeEnum);
+            if (obj is TalonOneSdk.Model.NewRewardBudget.PeriodEnum newRewardBudgetPeriodEnum)
+                return TalonOneSdk.Model.NewRewardBudget.PeriodEnumToJsonValue(newRewardBudgetPeriodEnum);
+            if (obj is TalonOneSdk.Model.NewRewardBudget.MetricEnum newRewardBudgetMetricEnum)
+                return TalonOneSdk.Model.NewRewardBudget.MetricEnumToJsonValue(newRewardBudgetMetricEnum);
             if (obj is TalonOneSdk.Model.NewRiskNotification.EntityEnum newRiskNotificationEntityEnum)
                 return TalonOneSdk.Model.NewRiskNotification.EntityEnumToJsonValue(newRiskNotificationEntityEnum);
             if (obj is TalonOneSdk.Model.NewRiskNotification.ActivityEnum newRiskNotificationActivityEnum)
@@ -804,8 +810,22 @@ namespace TalonOneSdk.Client
                 return TalonOneSdk.Model.RevisionVersion.FeaturesEnumToJsonValue(revisionVersionFeaturesEnum);
             if (obj is TalonOneSdk.Model.Reward.StatusEnum rewardStatusEnum)
                 return TalonOneSdk.Model.Reward.StatusEnumToJsonValue(rewardStatusEnum);
+            if (obj is TalonOneSdk.Model.RewardBudget.MetricEnum rewardBudgetMetricEnum)
+                return TalonOneSdk.Model.RewardBudget.MetricEnumToJsonValue(rewardBudgetMetricEnum);
+            if (obj is TalonOneSdk.Model.RewardBudget.ScopeEnum rewardBudgetScopeEnum)
+                return TalonOneSdk.Model.RewardBudget.ScopeEnumToJsonValue(rewardBudgetScopeEnum);
+            if (obj is TalonOneSdk.Model.RewardBudget.PeriodEnum rewardBudgetPeriodEnum)
+                return TalonOneSdk.Model.RewardBudget.PeriodEnumToJsonValue(rewardBudgetPeriodEnum);
+            if (obj is TalonOneSdk.Model.RewardBudgetWithLimitCounter.MetricEnum rewardBudgetWithLimitCounterMetricEnum)
+                return TalonOneSdk.Model.RewardBudgetWithLimitCounter.MetricEnumToJsonValue(rewardBudgetWithLimitCounterMetricEnum);
+            if (obj is TalonOneSdk.Model.RewardBudgetWithLimitCounter.ScopeEnum rewardBudgetWithLimitCounterScopeEnum)
+                return TalonOneSdk.Model.RewardBudgetWithLimitCounter.ScopeEnumToJsonValue(rewardBudgetWithLimitCounterScopeEnum);
+            if (obj is TalonOneSdk.Model.RewardBudgetWithLimitCounter.PeriodEnum rewardBudgetWithLimitCounterPeriodEnum)
+                return TalonOneSdk.Model.RewardBudgetWithLimitCounter.PeriodEnumToJsonValue(rewardBudgetWithLimitCounterPeriodEnum);
             if (obj is TalonOneSdk.Model.RewardEligibilityFailureDetails.FailureCodeEnum rewardEligibilityFailureDetailsFailureCodeEnum)
                 return TalonOneSdk.Model.RewardEligibilityFailureDetails.FailureCodeEnumToJsonValue(rewardEligibilityFailureDetailsFailureCodeEnum);
+            if (obj is TalonOneSdk.Model.RewardWithBudgets.StatusEnum rewardWithBudgetsStatusEnum)
+                return TalonOneSdk.Model.RewardWithBudgets.StatusEnumToJsonValue(rewardWithBudgetsStatusEnum);
             if (obj is TalonOneSdk.Model.Risk.StatusEnum riskStatusEnum)
                 return TalonOneSdk.Model.Risk.StatusEnumToJsonValue(riskStatusEnum);
             if (obj is TalonOneSdk.Model.Risk.CriticalityEnum riskCriticalityEnum)

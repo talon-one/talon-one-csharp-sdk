@@ -36,17 +36,18 @@ namespace TalonOneSdk.Model
         /// <param name="rewardId">The ID of the reward this instance belongs to.</param>
         /// <param name="rewardIntegrationId">The integration ID of the reward this instance belongs to.</param>
         /// <param name="rewardName">The name of the reward.</param>
-        /// <param name="status">The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. </param>
+        /// <param name="status">The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. - &#x60;expired&#x60;: The reward was not used before its expiry date. </param>
         /// <param name="unlockedAt">The date and time when the reward was unlocked.</param>
         /// <param name="description">The customer-facing description of the reward.</param>
         /// <param name="rule">Customer-facing rule metadata for the reward. Only returned when the reward defines a rule.</param>
         /// <param name="unlockedByProfileIntegrationId">The integration ID of the customer profile that unlocked the reward.   For rewards unlocked with a loyalty card, this can be any customer profile  linked to that loyalty card. </param>
+        /// <param name="expiryDate">The date and time when the customer reward expires, based on the  &#x60;validityDuration&#x60; or &#x60;expiryDate&#x60; of the reward when the reward was  unlocked. If the reward does not specify either property, the customer reward  has unlimited validity and this field is omitted.  **Note**: The expiry date is calculated using the time zone of the  Application connected to the reward. </param>
         /// <param name="usedAt">The date and time when the reward was used.</param>
         /// <param name="usedByProfileIntegrationId">The integration ID of the customer profile that used the reward.   For rewards unlocked with a loyalty card, this can be any customer profile  linked to that loyalty card.   Only returned when the reward has been used. </param>
         /// <param name="loyaltyProgramId">The ID of the loyalty program that the loyalty card belongs to. Only returned for rewards unlocked with a loyalty card.</param>
         /// <param name="loyaltyCardId">The identifier of the loyalty card that the reward was unlocked with. Only returned for rewards unlocked with a loyalty card.</param>
         [JsonConstructor]
-        public CustomerProfileReward(long id, string integrationId, long rewardId, string rewardIntegrationId, string rewardName, StatusEnum status, DateTime unlockedAt, Option<string> description = default, Option<RuleMetadata> rule = default, Option<string> unlockedByProfileIntegrationId = default, Option<DateTime?> usedAt = default, Option<string> usedByProfileIntegrationId = default, Option<long?> loyaltyProgramId = default, Option<string> loyaltyCardId = default)
+        public CustomerProfileReward(long id, string integrationId, long rewardId, string rewardIntegrationId, string rewardName, StatusEnum status, DateTime unlockedAt, Option<string> description = default, Option<RuleMetadata> rule = default, Option<string> unlockedByProfileIntegrationId = default, Option<DateTime?> expiryDate = default, Option<DateTime?> usedAt = default, Option<string> usedByProfileIntegrationId = default, Option<long?> loyaltyProgramId = default, Option<string> loyaltyCardId = default)
         {
             Id = id;
             IntegrationId = integrationId;
@@ -58,6 +59,7 @@ namespace TalonOneSdk.Model
             DescriptionOption = description;
             RuleOption = rule;
             UnlockedByProfileIntegrationIdOption = unlockedByProfileIntegrationId;
+            ExpiryDateOption = expiryDate;
             UsedAtOption = usedAt;
             UsedByProfileIntegrationIdOption = usedByProfileIntegrationId;
             LoyaltyProgramIdOption = loyaltyProgramId;
@@ -68,9 +70,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. 
+        /// The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. - &#x60;expired&#x60;: The reward was not used before its expiry date. 
         /// </summary>
-        /// <value>The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. </value>
+        /// <value>The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. - &#x60;expired&#x60;: The reward was not used before its expiry date. </value>
         public enum StatusEnum
         {
             /// <summary>
@@ -81,7 +83,12 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Used for value: used
             /// </summary>
-            Used = 2
+            Used = 2,
+
+            /// <summary>
+            /// Enum Expired for value: expired
+            /// </summary>
+            Expired = 3
         }
 
         /// <summary>
@@ -98,6 +105,9 @@ namespace TalonOneSdk.Model
             if (value.Equals("used"))
                 return StatusEnum.Used;
 
+            if (value.Equals("expired"))
+                return StatusEnum.Expired;
+
             throw new NotImplementedException($"Could not convert value to type StatusEnum: '{value}'");
         }
 
@@ -113,6 +123,9 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("used"))
                 return StatusEnum.Used;
+
+            if (value.Equals("expired"))
+                return StatusEnum.Expired;
 
             return null;
         }
@@ -131,13 +144,16 @@ namespace TalonOneSdk.Model
             if (value == StatusEnum.Used)
                 return "used";
 
+            if (value == StatusEnum.Expired)
+                return "expired";
+
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }
 
         /// <summary>
-        /// The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. 
+        /// The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. - &#x60;expired&#x60;: The reward was not used before its expiry date. 
         /// </summary>
-        /// <value>The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. </value>
+        /// <value>The status of the customer reward: - &#x60;unlocked&#x60;: The reward is available for use. - &#x60;used&#x60;: The reward has been used. - &#x60;expired&#x60;: The reward was not used before its expiry date. </value>
         /* <example>unlocked</example> */
         [JsonPropertyName("status")]
         public StatusEnum Status { get; set; }
@@ -235,6 +251,21 @@ namespace TalonOneSdk.Model
         public string UnlockedByProfileIntegrationId { get { return this.UnlockedByProfileIntegrationIdOption.Value; } set { this.UnlockedByProfileIntegrationIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of ExpiryDate
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<DateTime?> ExpiryDateOption { get; private set; }
+
+        /// <summary>
+        /// The date and time when the customer reward expires, based on the  &#x60;validityDuration&#x60; or &#x60;expiryDate&#x60; of the reward when the reward was  unlocked. If the reward does not specify either property, the customer reward  has unlimited validity and this field is omitted.  **Note**: The expiry date is calculated using the time zone of the  Application connected to the reward. 
+        /// </summary>
+        /// <value>The date and time when the customer reward expires, based on the  &#x60;validityDuration&#x60; or &#x60;expiryDate&#x60; of the reward when the reward was  unlocked. If the reward does not specify either property, the customer reward  has unlimited validity and this field is omitted.  **Note**: The expiry date is calculated using the time zone of the  Application connected to the reward. </value>
+        /* <example>2026-08-31T23:59:59Z</example> */
+        [JsonPropertyName("expiryDate")]
+        public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
+
+        /// <summary>
         /// Used to track the state of UsedAt
         /// </summary>
         [JsonIgnore]
@@ -318,6 +349,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Rule: ").Append(Rule).Append("\n");
             sb.Append("  UnlockedByProfileIntegrationId: ").Append(UnlockedByProfileIntegrationId).Append("\n");
+            sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("  UsedAt: ").Append(UsedAt).Append("\n");
             sb.Append("  UsedByProfileIntegrationId: ").Append(UsedByProfileIntegrationId).Append("\n");
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
@@ -381,6 +413,11 @@ namespace TalonOneSdk.Model
         public string UnlockedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
+        /// The format to use to serialize ExpiryDate
+        /// </summary>
+        public string ExpiryDateFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
+        /// <summary>
         /// The format to use to serialize UsedAt
         /// </summary>
         public string UsedAtFormat { get; private set; } = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
@@ -412,6 +449,7 @@ namespace TalonOneSdk.Model
             Option<string> description = default;
             Option<RuleMetadata> rule = default;
             Option<string> unlockedByProfileIntegrationId = default;
+            Option<DateTime?> expiryDate = default;
             Option<DateTime?> usedAt = default;
             Option<string> usedByProfileIntegrationId = default;
             Option<long?> loyaltyProgramId = default;
@@ -468,6 +506,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "unlockedByProfileIntegrationId":
                             unlockedByProfileIntegrationId = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "expiryDate":
+                            expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "usedAt":
                             usedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -529,7 +570,7 @@ namespace TalonOneSdk.Model
             if (unlockedAt.IsSet && unlockedAt.Value == null)
                 throw new JsonException("Property is not nullable for class CustomerProfileReward: unlockedAt.");
 
-            return new CustomerProfileReward(id.Value.Value, integrationId.Value, rewardId.Value.Value, rewardIntegrationId.Value, rewardName.Value, status.Value.Value, unlockedAt.Value.Value, description, rule, unlockedByProfileIntegrationId, usedAt, usedByProfileIntegrationId, loyaltyProgramId, loyaltyCardId);
+            return new CustomerProfileReward(id.Value.Value, integrationId.Value, rewardId.Value.Value, rewardIntegrationId.Value, rewardName.Value, status.Value.Value, unlockedAt.Value.Value, description, rule, unlockedByProfileIntegrationId, expiryDate, usedAt, usedByProfileIntegrationId, loyaltyProgramId, loyaltyCardId);
         }
 
         /// <summary>
@@ -587,6 +628,9 @@ namespace TalonOneSdk.Model
             }
             if (customerProfileReward.UnlockedByProfileIntegrationIdOption.IsSet)
                 writer.WriteString("unlockedByProfileIntegrationId", customerProfileReward.UnlockedByProfileIntegrationId);
+
+            if (customerProfileReward.ExpiryDateOption.IsSet)
+                writer.WriteString("expiryDate", customerProfileReward.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
 
             if (customerProfileReward.UsedAtOption.IsSet)
                 writer.WriteString("usedAt", customerProfileReward.UsedAtOption.Value.Value.ToString(UsedAtFormat));

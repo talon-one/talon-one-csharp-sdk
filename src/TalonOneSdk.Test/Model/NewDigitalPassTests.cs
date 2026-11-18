@@ -72,12 +72,12 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'ProfileId'
+        /// Test the property 'ProfileIntegrationId'
         /// </summary>
         [Fact]
-        public void ProfileIdTest()
+        public void ProfileIntegrationIdTest()
         {
-            // TODO unit test for the property 'ProfileId'
+            // TODO unit test for the property 'ProfileIntegrationId'
         }
 
         /// <summary>

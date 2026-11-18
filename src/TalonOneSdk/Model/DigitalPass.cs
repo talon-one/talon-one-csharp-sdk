@@ -34,9 +34,9 @@ namespace TalonOneSdk.Model
         /// <param name="passId">The ID of the generated digital pass.</param>
         /// <param name="passTemplateId">The ID of the digital pass template used to generate the pass.</param>
         /// <param name="status">The status of the digital pass.  &#x60;created&#x60; indicates that the pass was generated and is ready to be added to a wallet. </param>
-        /// <param name="passUrl">The URL you can use to let the customer add the digital pass to their wallet.</param>
+        /// <param name="passUrl">The URL you can use to let the customer add the digital pass to their wallet.  **Note**: For Google Wallet, the URL is valid for 30 days. After 30 days, create the pass again to get a new URL. </param>
         [JsonConstructor]
-        public DigitalPass(string passId, string passTemplateId, StatusEnum status, string passUrl)
+        public DigitalPass(Guid passId, Guid passTemplateId, StatusEnum status, string passUrl)
         {
             PassId = passId;
             PassTemplateId = passTemplateId;
@@ -112,23 +112,23 @@ namespace TalonOneSdk.Model
         /// The ID of the generated digital pass.
         /// </summary>
         /// <value>The ID of the generated digital pass.</value>
-        /* <example>pass_9c3f1a2b</example> */
+        /* <example>9c3f1a2b-4d5e-4f60-8a71-b2c3d4e5f607</example> */
         [JsonPropertyName("passId")]
-        public string PassId { get; set; }
+        public Guid PassId { get; set; }
 
         /// <summary>
         /// The ID of the digital pass template used to generate the pass.
         /// </summary>
         /// <value>The ID of the digital pass template used to generate the pass.</value>
-        /* <example>tmpl_summer_loyalty</example> */
+        /* <example>3fa85f64-5717-4562-b3fc-2c963f66afa6</example> */
         [JsonPropertyName("passTemplateId")]
-        public string PassTemplateId { get; set; }
+        public Guid PassTemplateId { get; set; }
 
         /// <summary>
-        /// The URL you can use to let the customer add the digital pass to their wallet.
+        /// The URL you can use to let the customer add the digital pass to their wallet.  **Note**: For Google Wallet, the URL is valid for 30 days. After 30 days, create the pass again to get a new URL. 
         /// </summary>
-        /// <value>The URL you can use to let the customer add the digital pass to their wallet.</value>
-        /* <example>https://wallet.example.com/passes/pass_9c3f1a2b</example> */
+        /// <value>The URL you can use to let the customer add the digital pass to their wallet.  **Note**: For Google Wallet, the URL is valid for 30 days. After 30 days, create the pass again to get a new URL. </value>
+        /* <example>https://wallet.example.com/passes/9c3f1a2b-4d5e-4f60-8a71-b2c3d4e5f607</example> */
         [JsonPropertyName("passUrl")]
         public string PassUrl { get; set; }
 
@@ -198,8 +198,8 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string> passId = default;
-            Option<string> passTemplateId = default;
+            Option<Guid?> passId = default;
+            Option<Guid?> passTemplateId = default;
             Option<DigitalPass.StatusEnum?> status = default;
             Option<string> passUrl = default;
 
@@ -219,10 +219,10 @@ namespace TalonOneSdk.Model
                     switch (localVarJsonPropertyName)
                     {
                         case "passId":
-                            passId = new Option<string>(utf8JsonReader.GetString());
+                            passId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                             break;
                         case "passTemplateId":
-                            passTemplateId = new Option<string>(utf8JsonReader.GetString());
+                            passTemplateId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                             break;
                         case "status":
                             string statusRawValue = utf8JsonReader.GetString();
@@ -267,7 +267,7 @@ namespace TalonOneSdk.Model
             if (passUrl.IsSet && passUrl.Value == null)
                 throw new JsonException("Property is not nullable for class DigitalPass: passUrl.");
 
-            return new DigitalPass(passId.Value, passTemplateId.Value, status.Value.Value, passUrl.Value);
+            return new DigitalPass(passId.Value.Value, passTemplateId.Value.Value, status.Value.Value, passUrl.Value);
         }
 
         /// <summary>
@@ -292,12 +292,6 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, DigitalPass digitalPass, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (digitalPass.PassId == null)
-                throw new JsonException("Cannot write null property DigitalPass.PassId to non-nullable JSON property 'passId'.");
-
-            if (digitalPass.PassTemplateId == null)
-                throw new JsonException("Cannot write null property DigitalPass.PassTemplateId to non-nullable JSON property 'passTemplateId'.");
-
             if (digitalPass.PassUrl == null)
                 throw new JsonException("Cannot write null property DigitalPass.PassUrl to non-nullable JSON property 'passUrl'.");
 

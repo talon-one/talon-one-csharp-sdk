@@ -6,6 +6,7 @@
 .github/workflows/test.yml
 .gitignore
 .openapi-generator-ignore
+LICENSE
 MIGRATION.md
 Makefile
 README.md
@@ -695,6 +696,7 @@ docs/models/NewReferralsForMultipleAdvocates.md
 docs/models/NewReturn.md
 docs/models/NewRevisionVersion.md
 docs/models/NewReward.md
+docs/models/NewRewardBudget.md
 docs/models/NewRiskNotification.md
 docs/models/NewRole.md
 docs/models/NewRoleV2.md
@@ -792,11 +794,15 @@ docs/models/RevisionActivation.md
 docs/models/RevisionActivationRequest.md
 docs/models/RevisionVersion.md
 docs/models/Reward.md
+docs/models/RewardBudget.md
+docs/models/RewardBudgetLimitCounter.md
+docs/models/RewardBudgetWithLimitCounter.md
 docs/models/RewardCatalogItem.md
 docs/models/RewardEligibility.md
 docs/models/RewardEligibilityFailureDetails.md
 docs/models/RewardPointsRequired.md
 docs/models/RewardUnlockRejection.md
+docs/models/RewardWithBudgets.md
 docs/models/RewardWithUnlocks.md
 docs/models/Risk.md
 docs/models/RiskAffectedEntityItem.md
@@ -965,6 +971,7 @@ docs/models/UpdatePriceType.md
 docs/models/UpdateReferral.md
 docs/models/UpdateReferralBatch.md
 docs/models/UpdateReward.md
+docs/models/UpdateRewardBudget.md
 docs/models/UpdateRiskNotification.md
 docs/models/UpdateRole.md
 docs/models/UpdateStore.md
@@ -1675,6 +1682,7 @@ src/TalonOneSdk.Test/Model/NewReferralTests.cs
 src/TalonOneSdk.Test/Model/NewReferralsForMultipleAdvocatesTests.cs
 src/TalonOneSdk.Test/Model/NewReturnTests.cs
 src/TalonOneSdk.Test/Model/NewRevisionVersionTests.cs
+src/TalonOneSdk.Test/Model/NewRewardBudgetTests.cs
 src/TalonOneSdk.Test/Model/NewRewardTests.cs
 src/TalonOneSdk.Test/Model/NewRiskNotificationTests.cs
 src/TalonOneSdk.Test/Model/NewRoleTests.cs
@@ -1772,12 +1780,16 @@ src/TalonOneSdk.Test/Model/RevisionActivationRequestTests.cs
 src/TalonOneSdk.Test/Model/RevisionActivationTests.cs
 src/TalonOneSdk.Test/Model/RevisionTests.cs
 src/TalonOneSdk.Test/Model/RevisionVersionTests.cs
+src/TalonOneSdk.Test/Model/RewardBudgetLimitCounterTests.cs
+src/TalonOneSdk.Test/Model/RewardBudgetTests.cs
+src/TalonOneSdk.Test/Model/RewardBudgetWithLimitCounterTests.cs
 src/TalonOneSdk.Test/Model/RewardCatalogItemTests.cs
 src/TalonOneSdk.Test/Model/RewardEligibilityFailureDetailsTests.cs
 src/TalonOneSdk.Test/Model/RewardEligibilityTests.cs
 src/TalonOneSdk.Test/Model/RewardPointsRequiredTests.cs
 src/TalonOneSdk.Test/Model/RewardTests.cs
 src/TalonOneSdk.Test/Model/RewardUnlockRejectionTests.cs
+src/TalonOneSdk.Test/Model/RewardWithBudgetsTests.cs
 src/TalonOneSdk.Test/Model/RewardWithUnlocksTests.cs
 src/TalonOneSdk.Test/Model/RiskAffectedEntityItemTests.cs
 src/TalonOneSdk.Test/Model/RiskCriticalityUpdateTests.cs
@@ -1945,6 +1957,7 @@ src/TalonOneSdk.Test/Model/UpdatePicklistTests.cs
 src/TalonOneSdk.Test/Model/UpdatePriceTypeTests.cs
 src/TalonOneSdk.Test/Model/UpdateReferralBatchTests.cs
 src/TalonOneSdk.Test/Model/UpdateReferralTests.cs
+src/TalonOneSdk.Test/Model/UpdateRewardBudgetTests.cs
 src/TalonOneSdk.Test/Model/UpdateRewardTests.cs
 src/TalonOneSdk.Test/Model/UpdateRiskNotificationTests.cs
 src/TalonOneSdk.Test/Model/UpdateRoleTests.cs
@@ -2678,6 +2691,7 @@ src/TalonOneSdk/Model/NewReferralsForMultipleAdvocates.cs
 src/TalonOneSdk/Model/NewReturn.cs
 src/TalonOneSdk/Model/NewRevisionVersion.cs
 src/TalonOneSdk/Model/NewReward.cs
+src/TalonOneSdk/Model/NewRewardBudget.cs
 src/TalonOneSdk/Model/NewRiskNotification.cs
 src/TalonOneSdk/Model/NewRole.cs
 src/TalonOneSdk/Model/NewRoleV2.cs
@@ -2775,11 +2789,15 @@ src/TalonOneSdk/Model/RevisionActivation.cs
 src/TalonOneSdk/Model/RevisionActivationRequest.cs
 src/TalonOneSdk/Model/RevisionVersion.cs
 src/TalonOneSdk/Model/Reward.cs
+src/TalonOneSdk/Model/RewardBudget.cs
+src/TalonOneSdk/Model/RewardBudgetLimitCounter.cs
+src/TalonOneSdk/Model/RewardBudgetWithLimitCounter.cs
 src/TalonOneSdk/Model/RewardCatalogItem.cs
 src/TalonOneSdk/Model/RewardEligibility.cs
 src/TalonOneSdk/Model/RewardEligibilityFailureDetails.cs
 src/TalonOneSdk/Model/RewardPointsRequired.cs
 src/TalonOneSdk/Model/RewardUnlockRejection.cs
+src/TalonOneSdk/Model/RewardWithBudgets.cs
 src/TalonOneSdk/Model/RewardWithUnlocks.cs
 src/TalonOneSdk/Model/Risk.cs
 src/TalonOneSdk/Model/RiskAffectedEntityItem.cs
@@ -2948,6 +2966,7 @@ src/TalonOneSdk/Model/UpdatePriceType.cs
 src/TalonOneSdk/Model/UpdateReferral.cs
 src/TalonOneSdk/Model/UpdateReferralBatch.cs
 src/TalonOneSdk/Model/UpdateReward.cs
+src/TalonOneSdk/Model/UpdateRewardBudget.cs
 src/TalonOneSdk/Model/UpdateRiskNotification.cs
 src/TalonOneSdk/Model/UpdateRole.cs
 src/TalonOneSdk/Model/UpdateStore.cs
