@@ -34,10 +34,10 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of the coupon.</param>
         /// <param name="created">The time the coupon was created.</param>
         /// <param name="campaignId">The ID of the campaign that owns this entity.</param>
-        /// <param name="usageCounter">The number of times the coupon has been successfully redeemed.</param>
-        /// <param name="applicationId">The ID of the application.</param>
         /// <param name="value">The coupon code.</param>
         /// <param name="usageLimit">The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </param>
+        /// <param name="usageCounter">The number of times the coupon has been successfully redeemed.</param>
+        /// <param name="applicationId">The ID of the application.</param>
         /// <param name="discountLimit">The total discount value that the code can give. Typically used to represent a gift card value. </param>
         /// <param name="reservationLimit">The number of reservations that can be made with this coupon code. </param>
         /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
@@ -55,15 +55,15 @@ namespace TalonOneSdk.Model
         /// <param name="isReservationMandatory">An indication of whether the code can be redeemed only if it has been reserved first. (default to false)</param>
         /// <param name="implicitlyReserved">An indication of whether the coupon is implicitly reserved for all customers.</param>
         [JsonConstructor]
-        public ExtendedCoupon(long id, DateTime created, long campaignId, long usageCounter, long applicationId, Option<string> value = default, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<List<LimitConfig>> limits = default, Option<decimal?> discountCounter = default, Option<decimal?> discountRemainder = default, Option<decimal?> reservationCounter = default, Option<Object> attributes = default, Option<long?> referralId = default, Option<string> recipientIntegrationId = default, Option<long?> importId = default, Option<bool?> reservation = default, Option<string> batchId = default, Option<bool?> isReservationMandatory = default, Option<bool?> implicitlyReserved = default)
+        public ExtendedCoupon(long id, DateTime created, long campaignId, string value, long usageLimit, long usageCounter, long applicationId, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<List<LimitConfig>> limits = default, Option<decimal?> discountCounter = default, Option<decimal?> discountRemainder = default, Option<decimal?> reservationCounter = default, Option<Object> attributes = default, Option<long?> referralId = default, Option<string> recipientIntegrationId = default, Option<long?> importId = default, Option<bool?> reservation = default, Option<string> batchId = default, Option<bool?> isReservationMandatory = default, Option<bool?> implicitlyReserved = default)
         {
             Id = id;
             Created = created;
             CampaignId = campaignId;
+            Value = value;
+            UsageLimit = usageLimit;
             UsageCounter = usageCounter;
             ApplicationId = applicationId;
-            ValueOption = value;
-            UsageLimitOption = usageLimit;
             DiscountLimitOption = discountLimit;
             ReservationLimitOption = reservationLimit;
             StartDateOption = startDate;
@@ -110,6 +110,22 @@ namespace TalonOneSdk.Model
         public long CampaignId { get; set; }
 
         /// <summary>
+        /// The coupon code.
+        /// </summary>
+        /// <value>The coupon code.</value>
+        /* <example>XMAS-20-2021</example> */
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
+
+        /// <summary>
+        /// The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. 
+        /// </summary>
+        /// <value>The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </value>
+        /* <example>100</example> */
+        [JsonPropertyName("usageLimit")]
+        public long UsageLimit { get; set; }
+
+        /// <summary>
         /// The number of times the coupon has been successfully redeemed.
         /// </summary>
         /// <value>The number of times the coupon has been successfully redeemed.</value>
@@ -123,36 +139,6 @@ namespace TalonOneSdk.Model
         /// <value>The ID of the application.</value>
         [JsonPropertyName("ApplicationId")]
         public long ApplicationId { get; set; }
-
-        /// <summary>
-        /// Used to track the state of Value
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> ValueOption { get; private set; }
-
-        /// <summary>
-        /// The coupon code.
-        /// </summary>
-        /// <value>The coupon code.</value>
-        /* <example>XMAS-20-2021</example> */
-        [JsonPropertyName("value")]
-        public string Value { get { return this.ValueOption.Value; } set { this.ValueOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of UsageLimit
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> UsageLimitOption { get; private set; }
-
-        /// <summary>
-        /// The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. 
-        /// </summary>
-        /// <value>The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </value>
-        /* <example>100</example> */
-        [JsonPropertyName("usageLimit")]
-        public long? UsageLimit { get { return this.UsageLimitOption.Value; } set { this.UsageLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountLimit
@@ -409,10 +395,10 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  UsageCounter: ").Append(UsageCounter).Append("\n");
-            sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
+            sb.Append("  UsageCounter: ").Append(UsageCounter).Append("\n");
+            sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  DiscountLimit: ").Append(DiscountLimit).Append("\n");
             sb.Append("  ReservationLimit: ").Append(ReservationLimit).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
@@ -448,13 +434,13 @@ namespace TalonOneSdk.Model
             }
 
             // UsageLimit (long) maximum
-            if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value > (long)999999)
+            if (this.UsageLimit > (long)999999)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
             }
 
             // UsageLimit (long) minimum
-            if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value < (long)0)
+            if (this.UsageLimit < (long)0)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
             }
@@ -543,10 +529,10 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<long?> campaignId = default;
-            Option<long?> usageCounter = default;
-            Option<long?> applicationId = default;
             Option<string> value = default;
             Option<long?> usageLimit = default;
+            Option<long?> usageCounter = default;
+            Option<long?> applicationId = default;
             Option<decimal?> discountLimit = default;
             Option<long?> reservationLimit = default;
             Option<DateTime?> startDate = default;
@@ -588,17 +574,17 @@ namespace TalonOneSdk.Model
                         case "campaignId":
                             campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "usageCounter":
-                            usageCounter = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "ApplicationId":
-                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
                         case "value":
                             value = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "usageLimit":
                             usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "usageCounter":
+                            usageCounter = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "ApplicationId":
+                            applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "discountLimit":
                             discountLimit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -663,6 +649,12 @@ namespace TalonOneSdk.Model
             if (!campaignId.IsSet)
                 throw new JsonException("Property is required for class ExtendedCoupon: campaignId.");
 
+            if (!value.IsSet)
+                throw new JsonException("Property is required for class ExtendedCoupon: value.");
+
+            if (!usageLimit.IsSet)
+                throw new JsonException("Property is required for class ExtendedCoupon: usageLimit.");
+
             if (!usageCounter.IsSet)
                 throw new JsonException("Property is required for class ExtendedCoupon: usageCounter.");
 
@@ -678,13 +670,19 @@ namespace TalonOneSdk.Model
             if (campaignId.IsSet && campaignId.Value == null)
                 throw new JsonException("Property is not nullable for class ExtendedCoupon: campaignId.");
 
+            if (value.IsSet && value.Value == null)
+                throw new JsonException("Property is not nullable for class ExtendedCoupon: value.");
+
+            if (usageLimit.IsSet && usageLimit.Value == null)
+                throw new JsonException("Property is not nullable for class ExtendedCoupon: usageLimit.");
+
             if (usageCounter.IsSet && usageCounter.Value == null)
                 throw new JsonException("Property is not nullable for class ExtendedCoupon: usageCounter.");
 
             if (applicationId.IsSet && applicationId.Value == null)
                 throw new JsonException("Property is not nullable for class ExtendedCoupon: ApplicationId.");
 
-            return new ExtendedCoupon(id.Value.Value, created.Value.Value, campaignId.Value.Value, usageCounter.Value.Value, applicationId.Value.Value, value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, limits, discountCounter, discountRemainder, reservationCounter, attributes, referralId, recipientIntegrationId, importId, reservation, batchId, isReservationMandatory, implicitlyReserved);
+            return new ExtendedCoupon(id.Value.Value, created.Value.Value, campaignId.Value.Value, value.Value, usageLimit.Value.Value, usageCounter.Value.Value, applicationId.Value.Value, discountLimit, reservationLimit, startDate, expiryDate, limits, discountCounter, discountRemainder, reservationCounter, attributes, referralId, recipientIntegrationId, importId, reservation, batchId, isReservationMandatory, implicitlyReserved);
         }
 
         /// <summary>
@@ -709,21 +707,22 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, ExtendedCoupon extendedCoupon, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (extendedCoupon.Value == null)
+                throw new JsonException("Cannot write null property ExtendedCoupon.Value to non-nullable JSON property 'value'.");
+
             writer.WriteNumber("id", extendedCoupon.Id);
 
             writer.WriteString("created", extendedCoupon.Created.ToString(CreatedFormat));
 
             writer.WriteNumber("campaignId", extendedCoupon.CampaignId);
 
+            writer.WriteString("value", extendedCoupon.Value);
+
+            writer.WriteNumber("usageLimit", extendedCoupon.UsageLimit);
+
             writer.WriteNumber("usageCounter", extendedCoupon.UsageCounter);
 
             writer.WriteNumber("ApplicationId", extendedCoupon.ApplicationId);
-
-            if (extendedCoupon.ValueOption.IsSet)
-                writer.WriteString("value", extendedCoupon.Value);
-
-            if (extendedCoupon.UsageLimitOption.IsSet)
-                writer.WriteNumber("usageLimit", extendedCoupon.UsageLimitOption.Value.Value);
 
             if (extendedCoupon.DiscountLimitOption.IsSet)
                 writer.WriteNumber("discountLimit", extendedCoupon.DiscountLimitOption.Value.Value);

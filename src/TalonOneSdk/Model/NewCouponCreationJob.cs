@@ -31,9 +31,9 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NewCouponCreationJob" /> class.
         /// </summary>
+        /// <param name="usageLimit">The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </param>
         /// <param name="numberOfCoupons">The number of new coupon codes to generate for the campaign.</param>
         /// <param name="attributes">Arbitrary properties associated with coupons.</param>
-        /// <param name="usageLimit">The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </param>
         /// <param name="discountLimit">The total discount value that the code can give. Typically used to represent a gift card value. </param>
         /// <param name="reservationLimit">The number of reservations that can be made with this coupon code. </param>
         /// <param name="startDate">Timestamp at which point the coupon becomes valid.</param>
@@ -41,11 +41,11 @@ namespace TalonOneSdk.Model
         /// <param name="couponSettings">couponSettings</param>
         /// <param name="isReservationMandatory">An indication of whether the code can be redeemed only if it has been reserved first. (default to false)</param>
         [JsonConstructor]
-        public NewCouponCreationJob(long numberOfCoupons, Object attributes, Option<long?> usageLimit = default, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<CodeGeneratorSettings> couponSettings = default, Option<bool?> isReservationMandatory = default)
+        public NewCouponCreationJob(long usageLimit, long numberOfCoupons, Object attributes, Option<decimal?> discountLimit = default, Option<long?> reservationLimit = default, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<CodeGeneratorSettings> couponSettings = default, Option<bool?> isReservationMandatory = default)
         {
+            UsageLimit = usageLimit;
             NumberOfCoupons = numberOfCoupons;
             Attributes = attributes;
-            UsageLimitOption = usageLimit;
             DiscountLimitOption = discountLimit;
             ReservationLimitOption = reservationLimit;
             StartDateOption = startDate;
@@ -56,6 +56,14 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. 
+        /// </summary>
+        /// <value>The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </value>
+        /* <example>100</example> */
+        [JsonPropertyName("usageLimit")]
+        public long UsageLimit { get; set; }
 
         /// <summary>
         /// The number of new coupon codes to generate for the campaign.
@@ -71,21 +79,6 @@ namespace TalonOneSdk.Model
         /// <value>Arbitrary properties associated with coupons.</value>
         [JsonPropertyName("attributes")]
         public Object Attributes { get; set; }
-
-        /// <summary>
-        /// Used to track the state of UsageLimit
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> UsageLimitOption { get; private set; }
-
-        /// <summary>
-        /// The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. 
-        /// </summary>
-        /// <value>The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply. </value>
-        /* <example>100</example> */
-        [JsonPropertyName("usageLimit")]
-        public long? UsageLimit { get { return this.UsageLimitOption.Value; } set { this.UsageLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of DiscountLimit
@@ -189,9 +182,9 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class NewCouponCreationJob {\n");
+            sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
             sb.Append("  NumberOfCoupons: ").Append(NumberOfCoupons).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
-            sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
             sb.Append("  DiscountLimit: ").Append(DiscountLimit).Append("\n");
             sb.Append("  ReservationLimit: ").Append(ReservationLimit).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
@@ -210,6 +203,18 @@ namespace TalonOneSdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // UsageLimit (long) maximum
+            if (this.UsageLimit > (long)999999)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
+            }
+
+            // UsageLimit (long) minimum
+            if (this.UsageLimit < (long)0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
+            }
+
             // NumberOfCoupons (long) maximum
             if (this.NumberOfCoupons > (long)5000000)
             {
@@ -220,18 +225,6 @@ namespace TalonOneSdk.Model
             if (this.NumberOfCoupons < (long)1)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for NumberOfCoupons, must be a value greater than or equal to 1.", new [] { "NumberOfCoupons" });
-            }
-
-            // UsageLimit (long) maximum
-            if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value > (long)999999)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
-            }
-
-            // UsageLimit (long) minimum
-            if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value < (long)0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
             }
 
             // DiscountLimit (decimal) maximum
@@ -304,9 +297,9 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<long?> usageLimit = default;
             Option<long?> numberOfCoupons = default;
             Option<Object> attributes = default;
-            Option<long?> usageLimit = default;
             Option<decimal?> discountLimit = default;
             Option<long?> reservationLimit = default;
             Option<DateTime?> startDate = default;
@@ -329,14 +322,14 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "usageLimit":
+                            usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "numberOfCoupons":
                             numberOfCoupons = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "attributes":
                             attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "usageLimit":
-                            usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "discountLimit":
                             discountLimit = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -362,11 +355,17 @@ namespace TalonOneSdk.Model
                 }
             }
 
+            if (!usageLimit.IsSet)
+                throw new JsonException("Property is required for class NewCouponCreationJob: usageLimit.");
+
             if (!numberOfCoupons.IsSet)
                 throw new JsonException("Property is required for class NewCouponCreationJob: numberOfCoupons.");
 
             if (!attributes.IsSet)
                 throw new JsonException("Property is required for class NewCouponCreationJob: attributes.");
+
+            if (usageLimit.IsSet && usageLimit.Value == null)
+                throw new JsonException("Property is not nullable for class NewCouponCreationJob: usageLimit.");
 
             if (numberOfCoupons.IsSet && numberOfCoupons.Value == null)
                 throw new JsonException("Property is not nullable for class NewCouponCreationJob: numberOfCoupons.");
@@ -374,7 +373,7 @@ namespace TalonOneSdk.Model
             if (attributes.IsSet && attributes.Value == null)
                 throw new JsonException("Property is not nullable for class NewCouponCreationJob: attributes.");
 
-            return new NewCouponCreationJob(numberOfCoupons.Value.Value, attributes.Value, usageLimit, discountLimit, reservationLimit, startDate, expiryDate, couponSettings, isReservationMandatory);
+            return new NewCouponCreationJob(usageLimit.Value.Value, numberOfCoupons.Value.Value, attributes.Value, discountLimit, reservationLimit, startDate, expiryDate, couponSettings, isReservationMandatory);
         }
 
         /// <summary>
@@ -402,13 +401,12 @@ namespace TalonOneSdk.Model
             if (newCouponCreationJob.Attributes == null)
                 throw new JsonException("Cannot write null property NewCouponCreationJob.Attributes to non-nullable JSON property 'attributes'.");
 
+            writer.WriteNumber("usageLimit", newCouponCreationJob.UsageLimit);
+
             writer.WriteNumber("numberOfCoupons", newCouponCreationJob.NumberOfCoupons);
 
             writer.WritePropertyName("attributes");
             JsonSerializer.Serialize(writer, newCouponCreationJob.Attributes, jsonSerializerOptions);
-            if (newCouponCreationJob.UsageLimitOption.IsSet)
-                writer.WriteNumber("usageLimit", newCouponCreationJob.UsageLimitOption.Value.Value);
-
             if (newCouponCreationJob.DiscountLimitOption.IsSet)
                 writer.WriteNumber("discountLimit", newCouponCreationJob.DiscountLimitOption.Value.Value);
 

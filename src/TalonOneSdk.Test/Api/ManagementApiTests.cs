@@ -235,7 +235,8 @@ namespace TalonOneSdk.Test.Api
             long campaignId = default;
             NewCoupons newCoupons = default;
             Client.Option<string> silent = default;
-            var response = await _instance.CreateCouponsAsync(applicationId, campaignId, newCoupons, silent);
+            Client.Option<string> full = default;
+            var response = await _instance.CreateCouponsAsync(applicationId, campaignId, newCoupons, silent, full);
             var model = response.Ok();
             Assert.IsType<TalonOneSdk.Model.CreateCoupons200Response>(model);
         }

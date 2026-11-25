@@ -144,6 +144,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ExpiryDate'
+        /// </summary>
+        [Fact]
+        public void ExpiryDateTest()
+        {
+            // TODO unit test for the property 'ExpiryDate'
+        }
+
+        /// <summary>
         /// Test the property 'UsedAt'
         /// </summary>
         [Fact]

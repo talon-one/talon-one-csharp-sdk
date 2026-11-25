@@ -115,5 +115,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'CodeChallengeMethodsSupported'
         }
+
+        /// <summary>
+        /// Test the property 'TokenEndpointAuthMethodsSupported'
+        /// </summary>
+        [Fact]
+        public void TokenEndpointAuthMethodsSupportedTest()
+        {
+            // TODO unit test for the property 'TokenEndpointAuthMethodsSupported'
+        }
     }
 }

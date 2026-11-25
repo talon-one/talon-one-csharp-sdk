@@ -54,21 +54,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'NumberOfCoupons'
-        /// </summary>
-        [Fact]
-        public void NumberOfCouponsTest()
-        {
-            // TODO unit test for the property 'NumberOfCoupons'
-        }
-
-        /// <summary>
         /// Test the property 'UsageLimit'
         /// </summary>
         [Fact]
         public void UsageLimitTest()
         {
             // TODO unit test for the property 'UsageLimit'
+        }
+
+        /// <summary>
+        /// Test the property 'NumberOfCoupons'
+        /// </summary>
+        [Fact]
+        public void NumberOfCouponsTest()
+        {
+            // TODO unit test for the property 'NumberOfCoupons'
         }
 
         /// <summary>

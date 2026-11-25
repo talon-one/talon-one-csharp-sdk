@@ -31,34 +31,34 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OutboundLogsDataInner" /> class.
         /// </summary>
-        /// <param name="outboundLog"></param>
-        internal OutboundLogsDataInner(OutboundLog outboundLog)
+        /// <param name="outboundLogStreamLogEntry"></param>
+        internal OutboundLogsDataInner(OutboundLogStreamLogEntry outboundLogStreamLogEntry)
         {
-            OutboundLog = outboundLog;
+            OutboundLogStreamLogEntry = outboundLogStreamLogEntry;
             OnCreated();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OutboundLogsDataInner" /> class.
         /// </summary>
-        /// <param name="outboundLogStreamError"></param>
-        internal OutboundLogsDataInner(OutboundLogStreamError outboundLogStreamError)
+        /// <param name="outboundLogStreamErrorEntry"></param>
+        internal OutboundLogsDataInner(OutboundLogStreamErrorEntry outboundLogStreamErrorEntry)
         {
-            OutboundLogStreamError = outboundLogStreamError;
+            OutboundLogStreamErrorEntry = outboundLogStreamErrorEntry;
             OnCreated();
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets OutboundLog
+        /// Gets or Sets OutboundLogStreamLogEntry
         /// </summary>
-        public OutboundLog OutboundLog { get; set; }
+        public OutboundLogStreamLogEntry OutboundLogStreamLogEntry { get; set; }
 
         /// <summary>
-        /// Gets or Sets OutboundLogStreamError
+        /// Gets or Sets OutboundLogStreamErrorEntry
         /// </summary>
-        public OutboundLogStreamError OutboundLogStreamError { get; set; }
+        public OutboundLogStreamErrorEntry OutboundLogStreamErrorEntry { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -85,6 +85,16 @@ namespace TalonOneSdk.Model
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            return this.BaseValidate(validationContext);
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }
@@ -122,25 +132,36 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            OutboundLog outboundLog = default;
-            OutboundLogStreamError outboundLogStreamError = default;
+            OutboundLogStreamErrorEntry errorOutboundLogStreamErrorEntry = null;
+            OutboundLogStreamLogEntry logOutboundLogStreamLogEntry = null;
 
-            Utf8JsonReader utf8JsonReaderOneOf = utf8JsonReader;
-            while (utf8JsonReaderOneOf.Read())
+            Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
+            while (utf8JsonReaderDiscriminator.Read())
             {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderOneOf.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderOneOf.CurrentDepth)
+                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReaderDiscriminator.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth)
                     break;
 
-                if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
+                if (utf8JsonReaderDiscriminator.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderDiscriminator.CurrentDepth - 1)
                 {
-                    Utf8JsonReader utf8JsonReaderOutboundLog = utf8JsonReader;
-                    ClientUtils.TryDeserialize<OutboundLog>(ref utf8JsonReaderOutboundLog, jsonSerializerOptions, out outboundLog);
-
-                    Utf8JsonReader utf8JsonReaderOutboundLogStreamError = utf8JsonReader;
-                    ClientUtils.TryDeserialize<OutboundLogStreamError>(ref utf8JsonReaderOutboundLogStreamError, jsonSerializerOptions, out outboundLogStreamError);
+                    string localVarJsonPropertyName = utf8JsonReaderDiscriminator.GetString();
+                    utf8JsonReaderDiscriminator.Read();
+                    if (localVarJsonPropertyName.Equals("type"))
+                    {
+                        string discriminator = utf8JsonReaderDiscriminator.GetString();
+                        if (discriminator.Equals("error"))
+                        {
+                            Utf8JsonReader utf8JsonReaderOutboundLogStreamErrorEntry = utf8JsonReader;
+                            errorOutboundLogStreamErrorEntry = JsonSerializer.Deserialize<OutboundLogStreamErrorEntry>(ref utf8JsonReaderOutboundLogStreamErrorEntry, jsonSerializerOptions);
+                        }
+                        if (discriminator.Equals("log"))
+                        {
+                            Utf8JsonReader utf8JsonReaderOutboundLogStreamLogEntry = utf8JsonReader;
+                            logOutboundLogStreamLogEntry = JsonSerializer.Deserialize<OutboundLogStreamLogEntry>(ref utf8JsonReaderOutboundLogStreamLogEntry, jsonSerializerOptions);
+                        }
+                    }
                 }
             }
 
@@ -165,11 +186,11 @@ namespace TalonOneSdk.Model
                 }
             }
 
-            if (outboundLog != null)
-                return new OutboundLogsDataInner(outboundLog);
+            if (errorOutboundLogStreamErrorEntry != null)
+                return new OutboundLogsDataInner(errorOutboundLogStreamErrorEntry);
 
-            if (outboundLogStreamError != null)
-                return new OutboundLogsDataInner(outboundLogStreamError);
+            if (logOutboundLogStreamLogEntry != null)
+                return new OutboundLogsDataInner(logOutboundLogStreamLogEntry);
 
             throw new JsonException();
         }
@@ -196,7 +217,17 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, OutboundLogsDataInner outboundLogsDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (outboundLogsDataInner.OutboundLogStreamLogEntry != null)
+            {
+                OutboundLogStreamLogEntryJsonConverter outboundLogStreamLogEntryJsonConverter = (OutboundLogStreamLogEntryJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(outboundLogsDataInner.OutboundLogStreamLogEntry.GetType()));
+                outboundLogStreamLogEntryJsonConverter.WriteProperties(writer, outboundLogsDataInner.OutboundLogStreamLogEntry, jsonSerializerOptions);
+            }
 
+            if (outboundLogsDataInner.OutboundLogStreamErrorEntry != null)
+            {
+                OutboundLogStreamErrorEntryJsonConverter outboundLogStreamErrorEntryJsonConverter = (OutboundLogStreamErrorEntryJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(outboundLogsDataInner.OutboundLogStreamErrorEntry.GetType()));
+                outboundLogStreamErrorEntryJsonConverter.WriteProperties(writer, outboundLogsDataInner.OutboundLogStreamErrorEntry, jsonSerializerOptions);
+            }
         }
     }
 }

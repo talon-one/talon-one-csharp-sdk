@@ -99,6 +99,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Description'
+        /// </summary>
+        [Fact]
+        public void DescriptionTest()
+        {
+            // TODO unit test for the property 'Description'
+        }
+
+        /// <summary>
         /// Test the property 'Tags'
         /// </summary>
         [Fact]
@@ -150,15 +159,6 @@ namespace TalonOneSdk.Test.Model
         public void StoresImportedTest()
         {
             // TODO unit test for the property 'StoresImported'
-        }
-
-        /// <summary>
-        /// Test the property 'Description'
-        /// </summary>
-        [Fact]
-        public void DescriptionTest()
-        {
-            // TODO unit test for the property 'Description'
         }
 
         /// <summary>

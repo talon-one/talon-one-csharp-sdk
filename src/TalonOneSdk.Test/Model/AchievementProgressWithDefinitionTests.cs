@@ -189,6 +189,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AchievementPeriod'
+        /// </summary>
+        [Fact]
+        public void AchievementPeriodTest()
+        {
+            // TODO unit test for the property 'AchievementPeriod'
+        }
+
+        /// <summary>
         /// Test the property 'AchievementFixedStartDate'
         /// </summary>
         [Fact]

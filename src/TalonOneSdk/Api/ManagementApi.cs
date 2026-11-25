@@ -399,10 +399,11 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="newCoupons">body</param>
-        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. Requires &#x60;full&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns a 200 response that contains the created coupons.  (optional, default to &quot;no&quot;)</param>
+        /// <param name="full">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Returns all created coupons. Requires &#x60;silent&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns at most 1000 created coupons.  (optional, default to &quot;no&quot;)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsApiResponse"/>&gt;</returns>
-        Task<ICreateCouponsApiResponse> CreateCouponsAsync(long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateCouponsApiResponse> CreateCouponsAsync(long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent = default, Option<string> full = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create coupons
@@ -413,10 +414,11 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="newCoupons">body</param>
-        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. Requires &#x60;full&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns a 200 response that contains the created coupons.  (optional, default to &quot;no&quot;)</param>
+        /// <param name="full">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Returns all created coupons. Requires &#x60;silent&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns at most 1000 created coupons.  (optional, default to &quot;no&quot;)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsApiResponse"/>&gt;</returns>
-        Task<ICreateCouponsApiResponse> CreateCouponsOrDefaultAsync(long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateCouponsApiResponse> CreateCouponsOrDefaultAsync(long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent = default, Option<string> full = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create coupons asynchronously
@@ -5982,7 +5984,7 @@ namespace TalonOneSdk.Api
     /// <summary>
     /// The <see cref="ICreateCouponsApiResponse"/>
     /// </summary>
-    public interface ICreateCouponsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.CreateCoupons200Response>
+    public interface ICreateCouponsApiResponse : TalonOneSdk.Client.IApiResponse, IOk<TalonOneSdk.Model.CreateCoupons200Response>, IBadRequest<TalonOneSdk.Model.ErrorResponseWithStatus>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -5995,6 +5997,12 @@ namespace TalonOneSdk.Api
         /// </summary>
         /// <returns></returns>
         bool IsNoContent { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
     }
 
     /// <summary>
@@ -17715,21 +17723,25 @@ namespace TalonOneSdk.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateCoupons(ref long applicationId, ref long campaignId, NewCoupons newCoupons, ref Option<string> silent);
+        partial void FormatCreateCoupons(ref long applicationId, ref long campaignId, NewCoupons newCoupons, ref Option<string> silent, ref Option<string> full);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="newCoupons"></param>
         /// <param name="silent"></param>
+        /// <param name="full"></param>
         /// <returns></returns>
-        private void ValidateCreateCoupons(NewCoupons newCoupons, Option<string> silent)
+        private void ValidateCreateCoupons(NewCoupons newCoupons, Option<string> silent, Option<string> full)
         {
             if (newCoupons == null)
                 throw new ArgumentNullException(nameof(newCoupons));
 
             if (silent.IsSet && silent.Value == null)
                 throw new ArgumentNullException(nameof(silent));
+
+            if (full.IsSet && full.Value == null)
+                throw new ArgumentNullException(nameof(full));
         }
 
         /// <summary>
@@ -17740,10 +17752,11 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="newCoupons"></param>
         /// <param name="silent"></param>
-        private void AfterCreateCouponsDefaultImplementation(ICreateCouponsApiResponse apiResponseLocalVar, long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent)
+        /// <param name="full"></param>
+        private void AfterCreateCouponsDefaultImplementation(ICreateCouponsApiResponse apiResponseLocalVar, long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent, Option<string> full)
         {
             bool suppressDefaultLog = false;
-            AfterCreateCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCoupons, silent);
+            AfterCreateCoupons(ref suppressDefaultLog, apiResponseLocalVar, applicationId, campaignId, newCoupons, silent, full);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -17757,7 +17770,8 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="newCoupons"></param>
         /// <param name="silent"></param>
-        partial void AfterCreateCoupons(ref bool suppressDefaultLog, ICreateCouponsApiResponse apiResponseLocalVar, long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent);
+        /// <param name="full"></param>
+        partial void AfterCreateCoupons(ref bool suppressDefaultLog, ICreateCouponsApiResponse apiResponseLocalVar, long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent, Option<string> full);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -17769,10 +17783,11 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="newCoupons"></param>
         /// <param name="silent"></param>
-        private void OnErrorCreateCouponsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent)
+        /// <param name="full"></param>
+        private void OnErrorCreateCouponsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent, Option<string> full)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateCoupons(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, newCoupons, silent);
+            OnErrorCreateCoupons(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, applicationId, campaignId, newCoupons, silent, full);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -17788,7 +17803,8 @@ namespace TalonOneSdk.Api
         /// <param name="campaignId"></param>
         /// <param name="newCoupons"></param>
         /// <param name="silent"></param>
-        partial void OnErrorCreateCoupons(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent);
+        /// <param name="full"></param>
+        partial void OnErrorCreateCoupons(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent, Option<string> full);
 
         /// <summary>
         /// Create coupons Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupons can be created.
@@ -17796,14 +17812,15 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="newCoupons">body</param>
-        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. Requires &#x60;full&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns a 200 response that contains the created coupons.  (optional, default to &quot;no&quot;)</param>
+        /// <param name="full">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Returns all created coupons. Requires &#x60;silent&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns at most 1000 created coupons.  (optional, default to &quot;no&quot;)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsApiResponse"/>&gt;</returns>
-        public async Task<ICreateCouponsApiResponse> CreateCouponsOrDefaultAsync(long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateCouponsApiResponse> CreateCouponsOrDefaultAsync(long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent = default, Option<string> full = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateCouponsAsync(applicationId, campaignId, newCoupons, silent, cancellationToken).ConfigureAwait(false);
+                return await CreateCouponsAsync(applicationId, campaignId, newCoupons, silent, full, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -17818,18 +17835,19 @@ namespace TalonOneSdk.Api
         /// <param name="applicationId">The ID of the Application. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="campaignId">The ID of the campaign. It is displayed in your Talon.One deployment URL.</param>
         /// <param name="newCoupons">body</param>
-        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  (optional, default to &quot;yes&quot;)</param>
+        /// <param name="silent">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. Requires &#x60;full&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns a 200 response that contains the created coupons.  (optional, default to &quot;no&quot;)</param>
+        /// <param name="full">Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Returns all created coupons. Requires &#x60;silent&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns at most 1000 created coupons.  (optional, default to &quot;no&quot;)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateCouponsApiResponse"/>&gt;</returns>
-        public async Task<ICreateCouponsApiResponse> CreateCouponsAsync(long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateCouponsApiResponse> CreateCouponsAsync(long applicationId, long campaignId, NewCoupons newCoupons, Option<string> silent = default, Option<string> full = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateCoupons(newCoupons, silent);
+                ValidateCreateCoupons(newCoupons, silent, full);
 
-                FormatCreateCoupons(ref applicationId, ref campaignId, newCoupons, ref silent);
+                FormatCreateCoupons(ref applicationId, ref campaignId, newCoupons, ref silent, ref full);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -17846,6 +17864,9 @@ namespace TalonOneSdk.Api
 
                     if (silent.IsSet)
                         parseQueryStringLocalVar["silent"] = ClientUtils.ParameterToString(silent.Value);
+
+                    if (full.IsSet)
+                        parseQueryStringLocalVar["full"] = ClientUtils.ParameterToString(full.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -17894,7 +17915,7 @@ namespace TalonOneSdk.Api
                             }
                         }
 
-                        AfterCreateCouponsDefaultImplementation(apiResponseLocalVar, applicationId, campaignId, newCoupons, silent);
+                        AfterCreateCouponsDefaultImplementation(apiResponseLocalVar, applicationId, campaignId, newCoupons, silent, full);
 
                         Events.ExecuteOnCreateCoupons(apiResponseLocalVar);
 
@@ -17908,7 +17929,7 @@ namespace TalonOneSdk.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateCouponsDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns/{campaignId}/coupons", uriBuilderLocalVar.Path, applicationId, campaignId, newCoupons, silent);
+                OnErrorCreateCouponsDefaultImplementation(e, "/v1/applications/{applicationId}/campaigns/{campaignId}/coupons", uriBuilderLocalVar.Path, applicationId, campaignId, newCoupons, silent, full);
                 Events.ExecuteOnErrorCreateCoupons(e);
                 throw;
             }
@@ -18013,6 +18034,56 @@ namespace TalonOneSdk.Api
             /// </summary>
             /// <returns></returns>
             public bool IsNoContent => 204 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public TalonOneSdk.Model.ErrorResponseWithStatus BadRequest()
+            {
+                bool suppressDefault = false;
+                TalonOneSdk.Model.ErrorResponseWithStatus result = default;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private TalonOneSdk.Model.ErrorResponseWithStatus DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<TalonOneSdk.Model.ErrorResponseWithStatus>(RawContent, _jsonSerializerOptions)
+                    : default;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref TalonOneSdk.Model.ErrorResponseWithStatus result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest(out TalonOneSdk.Model.ErrorResponseWithStatus result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

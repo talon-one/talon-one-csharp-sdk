@@ -31,7 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OutboundLogs" /> class.
         /// </summary>
-        /// <param name="data">List of outbound logs. When an error ends the response, an &#x60;OutboundLogStreamError&#x60; is the last item and the response is incomplete.</param>
+        /// <param name="data">List of outbound log entries. The &#x60;type&#x60; field determines the kind of entry. When an error ends the response, an &#x60;OutboundLogStreamErrorEntry&#x60; is the last item and the response is incomplete.</param>
         /// <param name="nextCursor">Cursor for the next page of results. Omitted when there are no more results.</param>
         [JsonConstructor]
         public OutboundLogs(List<OutboundLogsDataInner> data, Option<byte[]> nextCursor = default)
@@ -44,9 +44,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// List of outbound logs. When an error ends the response, an &#x60;OutboundLogStreamError&#x60; is the last item and the response is incomplete.
+        /// List of outbound log entries. The &#x60;type&#x60; field determines the kind of entry. When an error ends the response, an &#x60;OutboundLogStreamErrorEntry&#x60; is the last item and the response is incomplete.
         /// </summary>
-        /// <value>List of outbound logs. When an error ends the response, an &#x60;OutboundLogStreamError&#x60; is the last item and the response is incomplete.</value>
+        /// <value>List of outbound log entries. The &#x60;type&#x60; field determines the kind of entry. When an error ends the response, an &#x60;OutboundLogStreamErrorEntry&#x60; is the last item and the response is incomplete.</value>
         [JsonPropertyName("data")]
         public List<OutboundLogsDataInner> Data { get; set; }
 

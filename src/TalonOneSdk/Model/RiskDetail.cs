@@ -51,8 +51,9 @@ namespace TalonOneSdk.Model
         /// <param name="statusComment">The free-text details of the latest reclassification action: the description for resolving confirmed risks, or the details for discarding risks. </param>
         /// <param name="statusChangedBy">The ID of the user who performed the latest reclassification action.</param>
         /// <param name="statusChangedAt">The time of the latest reclassification action.</param>
+        /// <param name="applicationName">The current name of the Application this risk belongs to. Shown even if the user does not have access to that Application. Omitted if the Application has been deleted or the risk is not associated with an Application. </param>
         [JsonConstructor]
-        public RiskDetail(long id, DateTime created, long notificationId, DateTime featureDate, string groupKey, StatusEnum status, CriticalityEnum criticality, EntityEnum entity, ActivityEnum activity, TimeFrameEnum timeFrame, DateTime reportedDate, long affectedEntityCount, DateTime modified, List<RiskAffectedEntityItem> affectedEntities, Option<long?> applicationId = default, Option<string> description = default, Option<DiscardReasonEnum?> discardReason = default, Option<string> statusComment = default, Option<long?> statusChangedBy = default, Option<DateTime?> statusChangedAt = default)
+        public RiskDetail(long id, DateTime created, long notificationId, DateTime featureDate, string groupKey, StatusEnum status, CriticalityEnum criticality, EntityEnum entity, ActivityEnum activity, TimeFrameEnum timeFrame, DateTime reportedDate, long affectedEntityCount, DateTime modified, List<RiskAffectedEntityItem> affectedEntities, Option<long?> applicationId = default, Option<string> description = default, Option<DiscardReasonEnum?> discardReason = default, Option<string> statusComment = default, Option<long?> statusChangedBy = default, Option<DateTime?> statusChangedAt = default, Option<string> applicationName = default)
         {
             Id = id;
             Created = created;
@@ -74,6 +75,7 @@ namespace TalonOneSdk.Model
             StatusCommentOption = statusComment;
             StatusChangedByOption = statusChangedBy;
             StatusChangedAtOption = statusChangedAt;
+            ApplicationNameOption = applicationName;
             OnCreated();
         }
 
@@ -753,6 +755,21 @@ namespace TalonOneSdk.Model
         public DateTime? StatusChangedAt { get { return this.StatusChangedAtOption.Value; } set { this.StatusChangedAtOption = new Option<DateTime?>(value); } }
 
         /// <summary>
+        /// Used to track the state of ApplicationName
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ApplicationNameOption { get; private set; }
+
+        /// <summary>
+        /// The current name of the Application this risk belongs to. Shown even if the user does not have access to that Application. Omitted if the Application has been deleted or the risk is not associated with an Application. 
+        /// </summary>
+        /// <value>The current name of the Application this risk belongs to. Shown even if the user does not have access to that Application. Omitted if the Application has been deleted or the risk is not associated with an Application. </value>
+        /* <example>My Application</example> */
+        [JsonPropertyName("applicationName")]
+        public string ApplicationName { get { return this.ApplicationNameOption.Value; } set { this.ApplicationNameOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Gets or Sets additional properties
         /// </summary>
         [JsonExtensionData]
@@ -786,6 +803,7 @@ namespace TalonOneSdk.Model
             sb.Append("  StatusComment: ").Append(StatusComment).Append("\n");
             sb.Append("  StatusChangedBy: ").Append(StatusChangedBy).Append("\n");
             sb.Append("  StatusChangedAt: ").Append(StatusChangedAt).Append("\n");
+            sb.Append("  ApplicationName: ").Append(ApplicationName).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -879,6 +897,7 @@ namespace TalonOneSdk.Model
             Option<string> statusComment = default;
             Option<long?> statusChangedBy = default;
             Option<DateTime?> statusChangedAt = default;
+            Option<string> applicationName = default;
 
             while (utf8JsonReader.Read())
             {
@@ -997,6 +1016,9 @@ namespace TalonOneSdk.Model
                         case "statusChangedAt":
                             statusChangedAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "applicationName":
+                            applicationName = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         default:
                             break;
                     }
@@ -1087,7 +1109,7 @@ namespace TalonOneSdk.Model
             if (affectedEntities.IsSet && affectedEntities.Value == null)
                 throw new JsonException("Property is not nullable for class RiskDetail: affectedEntities.");
 
-            return new RiskDetail(id.Value.Value, created.Value.Value, notificationId.Value.Value, featureDate.Value.Value, groupKey.Value, status.Value.Value, criticality.Value.Value, entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, reportedDate.Value.Value, affectedEntityCount.Value.Value, modified.Value.Value, affectedEntities.Value, applicationId, description, discardReason, statusComment, statusChangedBy, statusChangedAt);
+            return new RiskDetail(id.Value.Value, created.Value.Value, notificationId.Value.Value, featureDate.Value.Value, groupKey.Value, status.Value.Value, criticality.Value.Value, entity.Value.Value, activity.Value.Value, timeFrame.Value.Value, reportedDate.Value.Value, affectedEntityCount.Value.Value, modified.Value.Value, affectedEntities.Value, applicationId, description, discardReason, statusComment, statusChangedBy, statusChangedAt, applicationName);
         }
 
         /// <summary>
@@ -1165,6 +1187,9 @@ namespace TalonOneSdk.Model
 
             if (riskDetail.StatusChangedAtOption.IsSet)
                 writer.WriteString("statusChangedAt", riskDetail.StatusChangedAtOption.Value.Value.ToString(StatusChangedAtFormat));
+
+            if (riskDetail.ApplicationNameOption.IsSet)
+                writer.WriteString("applicationName", riskDetail.ApplicationName);
         }
     }
 }

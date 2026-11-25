@@ -743,7 +743,7 @@ Create a campaign-level collection in a given campaign.
 
 <a id="createcoupons"></a>
 # **CreateCoupons**
-> CreateCoupons200Response CreateCoupons (long applicationId, long campaignId, NewCoupons newCoupons, string silent = null)
+> CreateCoupons200Response CreateCoupons (long applicationId, long campaignId, NewCoupons newCoupons, string silent = null, string full = null)
 
 Create coupons
 
@@ -757,7 +757,8 @@ Create coupons according to some pattern. Up to 20.000 coupons can be created wi
 | **applicationId** | **long** | The ID of the Application. It is displayed in your Talon.One deployment URL. |  |
 | **campaignId** | **long** | The ID of the campaign. It is displayed in your Talon.One deployment URL. |  |
 | **newCoupons** | [**NewCoupons**](NewCoupons.md) | body |  |
-| **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [optional] [default to &quot;yes&quot;] |
+| **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. Requires &#x60;full&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns a 200 response that contains the created coupons.  | [optional] [default to &quot;no&quot;] |
+| **full** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Returns all created coupons. Requires &#x60;silent&#x60; to be &#x60;no&#x60;; otherwise a 400 error is returned. - &#x60;no&#x60;: Returns at most 1000 created coupons.  | [optional] [default to &quot;no&quot;] |
 
 ### Return type
 
@@ -778,6 +779,7 @@ Create coupons according to some pattern. Up to 20.000 coupons can be created wi
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **204** | No Content |  -  |
+| **400** | Bad request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

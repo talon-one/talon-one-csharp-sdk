@@ -31,7 +31,7 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleEligibilityFailureDetails" /> class.
         /// </summary>
-        /// <param name="failureCode">A code identifying why the customer was not eligible for the rule in the current session.</param>
+        /// <param name="failureCode">A code identifying why the customer was not eligible for the rule in the current session.  - &#x60;CONDITION_NOT_MET&#x60;: One or more conditions of the rule did not evaluate  to &#x60;true&#x60; for the customer.  - &#x60;EFFECT_FAILED&#x60;: The conditions of the rule were met but one of its effects  could not be applied. </param>
         /// <param name="details">Additional details about the failure.</param>
         /// <param name="couponID">The ID of the coupon that was being evaluated when the rule failed. </param>
         /// <param name="couponValue">The coupon code that was being evaluated when the rule failed. </param>
@@ -60,9 +60,9 @@ namespace TalonOneSdk.Model
         partial void OnCreated();
 
         /// <summary>
-        /// A code identifying why the customer was not eligible for the rule in the current session.
+        /// A code identifying why the customer was not eligible for the rule in the current session.  - &#x60;CONDITION_NOT_MET&#x60;: One or more conditions of the rule did not evaluate  to &#x60;true&#x60; for the customer.  - &#x60;EFFECT_FAILED&#x60;: The conditions of the rule were met but one of its effects  could not be applied. 
         /// </summary>
-        /// <value>A code identifying why the customer was not eligible for the rule in the current session.</value>
+        /// <value>A code identifying why the customer was not eligible for the rule in the current session.  - &#x60;CONDITION_NOT_MET&#x60;: One or more conditions of the rule did not evaluate  to &#x60;true&#x60; for the customer.  - &#x60;EFFECT_FAILED&#x60;: The conditions of the rule were met but one of its effects  could not be applied. </value>
         public enum FailureCodeEnum
         {
             /// <summary>
@@ -127,9 +127,9 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// A code identifying why the customer was not eligible for the rule in the current session.
+        /// A code identifying why the customer was not eligible for the rule in the current session.  - &#x60;CONDITION_NOT_MET&#x60;: One or more conditions of the rule did not evaluate  to &#x60;true&#x60; for the customer.  - &#x60;EFFECT_FAILED&#x60;: The conditions of the rule were met but one of its effects  could not be applied. 
         /// </summary>
-        /// <value>A code identifying why the customer was not eligible for the rule in the current session.</value>
+        /// <value>A code identifying why the customer was not eligible for the rule in the current session.  - &#x60;CONDITION_NOT_MET&#x60;: One or more conditions of the rule did not evaluate  to &#x60;true&#x60; for the customer.  - &#x60;EFFECT_FAILED&#x60;: The conditions of the rule were met but one of its effects  could not be applied. </value>
         [JsonPropertyName("failureCode")]
         public FailureCodeEnum FailureCode { get; set; }
 

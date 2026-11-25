@@ -232,5 +232,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'StatusChangedAt'
         }
+
+        /// <summary>
+        /// Test the property 'ApplicationName'
+        /// </summary>
+        [Fact]
+        public void ApplicationNameTest()
+        {
+            // TODO unit test for the property 'ApplicationName'
+        }
     }
 }

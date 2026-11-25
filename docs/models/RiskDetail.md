@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **StatusComment** | **string** | The free-text details of the latest reclassification action: the description for resolving confirmed risks, or the details for discarding risks.  | [optional] 
 **StatusChangedBy** | **long** | The ID of the user who performed the latest reclassification action. | [optional] 
 **StatusChangedAt** | **DateTime** | The time of the latest reclassification action. | [optional] 
+**ApplicationName** | **string** | The current name of the Application this risk belongs to. Shown even if the user does not have access to that Application. Omitted if the Application has been deleted or the risk is not associated with an Application.  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

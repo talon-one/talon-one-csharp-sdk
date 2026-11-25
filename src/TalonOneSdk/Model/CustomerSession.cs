@@ -34,36 +34,36 @@ namespace TalonOneSdk.Model
         /// <param name="integrationId">integrationId</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
+        /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
+        /// <param name="coupon">Any coupon code entered.</param>
+        /// <param name="referral">Any referral code entered.</param>
+        /// <param name="cartItems">Serialized JSON representation.</param>
+        /// <param name="total">The total sum of the cart in one session.</param>
+        /// <param name="attributes">A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </param>
         /// <param name="firstSession">Indicates whether this is the first session for the customer&#39;s profile. Will always be true for anonymous sessions.</param>
         /// <param name="updateCount">The number of times the session was updated. When the session is created, this value is initialized to &#x60;1&#x60;.</param>
         /// <param name="discounts">A map of labelled discount values, values will be in the same currency as the application associated with the session.</param>
         /// <param name="updated">Timestamp of the most recent event received on this session.</param>
-        /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
-        /// <param name="coupon">Any coupon code entered.</param>
-        /// <param name="referral">Any referral code entered.</param>
         /// <param name="state">Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; -&gt; &#x60;closed&#x60; 2. &#x60;open&#x60; -&gt; &#x60;cancelled&#x60; 3. &#x60;closed&#x60; -&gt; &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; -&gt; &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  (default to StateEnum.Open)</param>
-        /// <param name="cartItems">Serialized JSON representation.</param>
         /// <param name="identifiers">Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers). </param>
-        /// <param name="total">The total sum of the cart in one session.</param>
-        /// <param name="attributes">A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </param>
         [JsonConstructor]
-        public CustomerSession(string integrationId, DateTime created, long applicationId, bool firstSession, long updateCount, Dictionary<string, decimal> discounts, DateTime updated, Option<string> profileId = default, Option<string> coupon = default, Option<string> referral = default, Option<StateEnum?> state = default, Option<List<CartItem>> cartItems = default, Option<List<string>> identifiers = default, Option<decimal?> total = default, Option<Object> attributes = default)
+        public CustomerSession(string integrationId, DateTime created, long applicationId, string profileId, string coupon, string referral, List<CartItem> cartItems, decimal total, Object attributes, bool firstSession, long updateCount, Dictionary<string, decimal> discounts, DateTime updated, StateEnum state = StateEnum.Open, Option<List<string>> identifiers = default)
         {
             IntegrationId = integrationId;
             Created = created;
             ApplicationId = applicationId;
+            ProfileId = profileId;
+            Coupon = coupon;
+            Referral = referral;
+            CartItems = cartItems;
+            Total = total;
+            Attributes = attributes;
             FirstSession = firstSession;
             UpdateCount = updateCount;
             Discounts = discounts;
             Updated = updated;
-            ProfileIdOption = profileId;
-            CouponOption = coupon;
-            ReferralOption = referral;
-            StateOption = state;
-            CartItemsOption = cartItems;
+            State = state;
             IdentifiersOption = identifiers;
-            TotalOption = total;
-            AttributesOption = attributes;
             OnCreated();
         }
 
@@ -147,7 +147,7 @@ namespace TalonOneSdk.Model
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string StateEnumToJsonValue(StateEnum? value)
+        public static string StateEnumToJsonValue(StateEnum value)
         {
             if (value == StateEnum.Open)
                 return "open";
@@ -165,19 +165,12 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// Used to track the state of State
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<StateEnum?> StateOption { get; private set; }
-
-        /// <summary>
         /// Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; -&gt; &#x60;closed&#x60; 2. &#x60;open&#x60; -&gt; &#x60;cancelled&#x60; 3. &#x60;closed&#x60; -&gt; &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; -&gt; &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). 
         /// </summary>
         /// <value>Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; -&gt; &#x60;closed&#x60; 2. &#x60;open&#x60; -&gt; &#x60;cancelled&#x60; 3. &#x60;closed&#x60; -&gt; &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; -&gt; &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). </value>
         /* <example>open</example> */
         [JsonPropertyName("state")]
-        public StateEnum? State { get { return this.StateOption.Value; } set { this.StateOption = new Option<StateEnum?>(value); } }
+        public StateEnum State { get; set; }
 
         /// <summary>
         /// Gets or Sets IntegrationId
@@ -200,6 +193,51 @@ namespace TalonOneSdk.Model
         /* <example>322</example> */
         [JsonPropertyName("applicationId")]
         public long ApplicationId { get; set; }
+
+        /// <summary>
+        /// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. 
+        /// </summary>
+        /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
+        /* <example>URNGV8294NV</example> */
+        [JsonPropertyName("profileId")]
+        public string ProfileId { get; set; }
+
+        /// <summary>
+        /// Any coupon code entered.
+        /// </summary>
+        /// <value>Any coupon code entered.</value>
+        /* <example>XMAS-2021</example> */
+        [JsonPropertyName("coupon")]
+        public string Coupon { get; set; }
+
+        /// <summary>
+        /// Any referral code entered.
+        /// </summary>
+        /// <value>Any referral code entered.</value>
+        /* <example>2740-tbjua-6720</example> */
+        [JsonPropertyName("referral")]
+        public string Referral { get; set; }
+
+        /// <summary>
+        /// Serialized JSON representation.
+        /// </summary>
+        /// <value>Serialized JSON representation.</value>
+        [JsonPropertyName("cartItems")]
+        public List<CartItem> CartItems { get; set; }
+
+        /// <summary>
+        /// The total sum of the cart in one session.
+        /// </summary>
+        /// <value>The total sum of the cart in one session.</value>
+        [JsonPropertyName("total")]
+        public decimal Total { get; set; }
+
+        /// <summary>
+        /// A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. 
+        /// </summary>
+        /// <value>A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </value>
+        [JsonPropertyName("attributes")]
+        public Object Attributes { get; set; }
 
         /// <summary>
         /// Indicates whether this is the first session for the customer&#39;s profile. Will always be true for anonymous sessions.
@@ -233,65 +271,6 @@ namespace TalonOneSdk.Model
         public DateTime Updated { get; set; }
 
         /// <summary>
-        /// Used to track the state of ProfileId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> ProfileIdOption { get; private set; }
-
-        /// <summary>
-        /// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. 
-        /// </summary>
-        /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
-        /* <example>URNGV8294NV</example> */
-        [JsonPropertyName("profileId")]
-        public string ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Coupon
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> CouponOption { get; private set; }
-
-        /// <summary>
-        /// Any coupon code entered.
-        /// </summary>
-        /// <value>Any coupon code entered.</value>
-        /* <example>XMAS-2021</example> */
-        [JsonPropertyName("coupon")]
-        public string Coupon { get { return this.CouponOption.Value; } set { this.CouponOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Referral
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> ReferralOption { get; private set; }
-
-        /// <summary>
-        /// Any referral code entered.
-        /// </summary>
-        /// <value>Any referral code entered.</value>
-        /* <example>2740-tbjua-6720</example> */
-        [JsonPropertyName("referral")]
-        public string Referral { get { return this.ReferralOption.Value; } set { this.ReferralOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of CartItems
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<CartItem>> CartItemsOption { get; private set; }
-
-        /// <summary>
-        /// Serialized JSON representation.
-        /// </summary>
-        /// <value>Serialized JSON representation.</value>
-        [JsonPropertyName("cartItems")]
-        public List<CartItem> CartItems { get { return this.CartItemsOption.Value; } set { this.CartItemsOption = new Option<List<CartItem>>(value); } }
-
-        /// <summary>
         /// Used to track the state of Identifiers
         /// </summary>
         [JsonIgnore]
@@ -305,34 +284,6 @@ namespace TalonOneSdk.Model
         /* <example>[91.11.156.141]</example> */
         [JsonPropertyName("identifiers")]
         public List<string> Identifiers { get { return this.IdentifiersOption.Value; } set { this.IdentifiersOption = new Option<List<string>>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Total
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<decimal?> TotalOption { get; private set; }
-
-        /// <summary>
-        /// The total sum of the cart in one session.
-        /// </summary>
-        /// <value>The total sum of the cart in one session.</value>
-        [JsonPropertyName("total")]
-        public decimal? Total { get { return this.TotalOption.Value; } set { this.TotalOption = new Option<decimal?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Attributes
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Object> AttributesOption { get; private set; }
-
-        /// <summary>
-        /// A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. 
-        /// </summary>
-        /// <value>A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings. </value>
-        [JsonPropertyName("attributes")]
-        public Object Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Object>(value); } }
 
         /// <summary>
         /// Gets or Sets additional properties
@@ -351,18 +302,18 @@ namespace TalonOneSdk.Model
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
+            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
+            sb.Append("  Coupon: ").Append(Coupon).Append("\n");
+            sb.Append("  Referral: ").Append(Referral).Append("\n");
+            sb.Append("  CartItems: ").Append(CartItems).Append("\n");
+            sb.Append("  Total: ").Append(Total).Append("\n");
+            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  FirstSession: ").Append(FirstSession).Append("\n");
             sb.Append("  UpdateCount: ").Append(UpdateCount).Append("\n");
             sb.Append("  Discounts: ").Append(Discounts).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
-            sb.Append("  Coupon: ").Append(Coupon).Append("\n");
-            sb.Append("  Referral: ").Append(Referral).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  CartItems: ").Append(CartItems).Append("\n");
             sb.Append("  Identifiers: ").Append(Identifiers).Append("\n");
-            sb.Append("  Total: ").Append(Total).Append("\n");
-            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -442,18 +393,18 @@ namespace TalonOneSdk.Model
             Option<string> integrationId = default;
             Option<DateTime?> created = default;
             Option<long?> applicationId = default;
+            Option<string> profileId = default;
+            Option<string> coupon = default;
+            Option<string> referral = default;
+            Option<List<CartItem>> cartItems = default;
+            Option<decimal?> total = default;
+            Option<Object> attributes = default;
             Option<bool?> firstSession = default;
             Option<long?> updateCount = default;
             Option<Dictionary<string, decimal>> discounts = default;
             Option<DateTime?> updated = default;
-            Option<string> profileId = default;
-            Option<string> coupon = default;
-            Option<string> referral = default;
             Option<CustomerSession.StateEnum?> state = default;
-            Option<List<CartItem>> cartItems = default;
             Option<List<string>> identifiers = default;
-            Option<decimal?> total = default;
-            Option<Object> attributes = default;
 
             while (utf8JsonReader.Read())
             {
@@ -479,6 +430,24 @@ namespace TalonOneSdk.Model
                         case "applicationId":
                             applicationId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
+                        case "profileId":
+                            profileId = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "coupon":
+                            coupon = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "referral":
+                            referral = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "cartItems":
+                            cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "total":
+                            total = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
+                            break;
+                        case "attributes":
+                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "firstSession":
                             firstSession = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
@@ -491,15 +460,6 @@ namespace TalonOneSdk.Model
                         case "updated":
                             updated = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "profileId":
-                            profileId = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "coupon":
-                            coupon = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "referral":
-                            referral = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "state":
                             string stateRawValue = utf8JsonReader.GetString();
                             if (stateRawValue != null)
@@ -510,17 +470,8 @@ namespace TalonOneSdk.Model
                                 state = new Option<CustomerSession.StateEnum?>(stateValue);
                             }
                             break;
-                        case "cartItems":
-                            cartItems = new Option<List<CartItem>>(JsonSerializer.Deserialize<List<CartItem>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "identifiers":
                             identifiers = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "total":
-                            total = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
-                            break;
-                        case "attributes":
-                            attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -537,6 +488,24 @@ namespace TalonOneSdk.Model
             if (!applicationId.IsSet)
                 throw new JsonException("Property is required for class CustomerSession: applicationId.");
 
+            if (!profileId.IsSet)
+                throw new JsonException("Property is required for class CustomerSession: profileId.");
+
+            if (!coupon.IsSet)
+                throw new JsonException("Property is required for class CustomerSession: coupon.");
+
+            if (!referral.IsSet)
+                throw new JsonException("Property is required for class CustomerSession: referral.");
+
+            if (!cartItems.IsSet)
+                throw new JsonException("Property is required for class CustomerSession: cartItems.");
+
+            if (!total.IsSet)
+                throw new JsonException("Property is required for class CustomerSession: total.");
+
+            if (!attributes.IsSet)
+                throw new JsonException("Property is required for class CustomerSession: attributes.");
+
             if (!firstSession.IsSet)
                 throw new JsonException("Property is required for class CustomerSession: firstSession.");
 
@@ -549,6 +518,9 @@ namespace TalonOneSdk.Model
             if (!updated.IsSet)
                 throw new JsonException("Property is required for class CustomerSession: updated.");
 
+            if (!state.IsSet)
+                throw new JsonException("Property is required for class CustomerSession: state.");
+
             if (integrationId.IsSet && integrationId.Value == null)
                 throw new JsonException("Property is not nullable for class CustomerSession: integrationId.");
 
@@ -557,6 +529,24 @@ namespace TalonOneSdk.Model
 
             if (applicationId.IsSet && applicationId.Value == null)
                 throw new JsonException("Property is not nullable for class CustomerSession: applicationId.");
+
+            if (profileId.IsSet && profileId.Value == null)
+                throw new JsonException("Property is not nullable for class CustomerSession: profileId.");
+
+            if (coupon.IsSet && coupon.Value == null)
+                throw new JsonException("Property is not nullable for class CustomerSession: coupon.");
+
+            if (referral.IsSet && referral.Value == null)
+                throw new JsonException("Property is not nullable for class CustomerSession: referral.");
+
+            if (cartItems.IsSet && cartItems.Value == null)
+                throw new JsonException("Property is not nullable for class CustomerSession: cartItems.");
+
+            if (total.IsSet && total.Value == null)
+                throw new JsonException("Property is not nullable for class CustomerSession: total.");
+
+            if (attributes.IsSet && attributes.Value == null)
+                throw new JsonException("Property is not nullable for class CustomerSession: attributes.");
 
             if (firstSession.IsSet && firstSession.Value == null)
                 throw new JsonException("Property is not nullable for class CustomerSession: firstSession.");
@@ -570,7 +560,10 @@ namespace TalonOneSdk.Model
             if (updated.IsSet && updated.Value == null)
                 throw new JsonException("Property is not nullable for class CustomerSession: updated.");
 
-            return new CustomerSession(integrationId.Value, created.Value.Value, applicationId.Value.Value, firstSession.Value.Value, updateCount.Value.Value, discounts.Value, updated.Value.Value, profileId, coupon, referral, state, cartItems, identifiers, total, attributes);
+            if (state.IsSet && state.Value == null)
+                throw new JsonException("Property is not nullable for class CustomerSession: state.");
+
+            return new CustomerSession(integrationId.Value, created.Value.Value, applicationId.Value.Value, profileId.Value, coupon.Value, referral.Value, cartItems.Value, total.Value.Value, attributes.Value, firstSession.Value.Value, updateCount.Value.Value, discounts.Value, updated.Value.Value, state.Value.Value, identifiers);
         }
 
         /// <summary>
@@ -598,6 +591,21 @@ namespace TalonOneSdk.Model
             if (customerSession.IntegrationId == null)
                 throw new JsonException("Cannot write null property CustomerSession.IntegrationId to non-nullable JSON property 'integrationId'.");
 
+            if (customerSession.ProfileId == null)
+                throw new JsonException("Cannot write null property CustomerSession.ProfileId to non-nullable JSON property 'profileId'.");
+
+            if (customerSession.Coupon == null)
+                throw new JsonException("Cannot write null property CustomerSession.Coupon to non-nullable JSON property 'coupon'.");
+
+            if (customerSession.Referral == null)
+                throw new JsonException("Cannot write null property CustomerSession.Referral to non-nullable JSON property 'referral'.");
+
+            if (customerSession.CartItems == null)
+                throw new JsonException("Cannot write null property CustomerSession.CartItems to non-nullable JSON property 'cartItems'.");
+
+            if (customerSession.Attributes == null)
+                throw new JsonException("Cannot write null property CustomerSession.Attributes to non-nullable JSON property 'attributes'.");
+
             if (customerSession.Discounts == null)
                 throw new JsonException("Cannot write null property CustomerSession.Discounts to non-nullable JSON property 'discounts'.");
 
@@ -607,6 +615,18 @@ namespace TalonOneSdk.Model
 
             writer.WriteNumber("applicationId", customerSession.ApplicationId);
 
+            writer.WriteString("profileId", customerSession.ProfileId);
+
+            writer.WriteString("coupon", customerSession.Coupon);
+
+            writer.WriteString("referral", customerSession.Referral);
+
+            writer.WritePropertyName("cartItems");
+            JsonSerializer.Serialize(writer, customerSession.CartItems, jsonSerializerOptions);
+            writer.WriteNumber("total", customerSession.Total);
+
+            writer.WritePropertyName("attributes");
+            JsonSerializer.Serialize(writer, customerSession.Attributes, jsonSerializerOptions);
             writer.WriteBoolean("firstSession", customerSession.FirstSession);
 
             writer.WriteNumber("updateCount", customerSession.UpdateCount);
@@ -615,37 +635,12 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, customerSession.Discounts, jsonSerializerOptions);
             writer.WriteString("updated", customerSession.Updated.ToString(UpdatedFormat));
 
-            if (customerSession.ProfileIdOption.IsSet)
-                writer.WriteString("profileId", customerSession.ProfileId);
-
-            if (customerSession.CouponOption.IsSet)
-                writer.WriteString("coupon", customerSession.Coupon);
-
-            if (customerSession.ReferralOption.IsSet)
-                writer.WriteString("referral", customerSession.Referral);
-
-            if (customerSession.StateOption.IsSet)
-            {
-                var stateRawValue = CustomerSession.StateEnumToJsonValue(customerSession.StateOption.Value);
-                writer.WriteString("state", stateRawValue);
-            }
-            if (customerSession.CartItemsOption.IsSet)
-            {
-                writer.WritePropertyName("cartItems");
-                JsonSerializer.Serialize(writer, customerSession.CartItems, jsonSerializerOptions);
-            }
+            var stateRawValue = CustomerSession.StateEnumToJsonValue(customerSession.State);
+            writer.WriteString("state", stateRawValue);
             if (customerSession.IdentifiersOption.IsSet)
             {
                 writer.WritePropertyName("identifiers");
                 JsonSerializer.Serialize(writer, customerSession.Identifiers, jsonSerializerOptions);
-            }
-            if (customerSession.TotalOption.IsSet)
-                writer.WriteNumber("total", customerSession.TotalOption.Value.Value);
-
-            if (customerSession.AttributesOption.IsSet)
-            {
-                writer.WritePropertyName("attributes");
-                JsonSerializer.Serialize(writer, customerSession.Attributes, jsonSerializerOptions);
             }
         }
     }

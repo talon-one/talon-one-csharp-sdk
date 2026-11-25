@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **Id** | **long** | The internal ID of the coupon. | 
 **Created** | **DateTime** | The time the coupon was created. | 
 **CampaignId** | **long** | The ID of the campaign that owns this entity. | 
+**Value** | **string** | The coupon code. | 
+**UsageLimit** | **long** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | 
 **UsageCounter** | **long** | The number of times the coupon has been successfully redeemed. | 
 **ApplicationId** | **long** | The ID of the application. | 
-**Value** | **string** | The coupon code. | [optional] 
-**UsageLimit** | **long** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | [optional] 
 **DiscountLimit** | **decimal** | The total discount value that the code can give. Typically used to represent a gift card value.  | [optional] 
 **ReservationLimit** | **long** | The number of reservations that can be made with this coupon code.  | [optional] 
 **StartDate** | **DateTime** | Timestamp at which point the coupon becomes valid. | [optional] 

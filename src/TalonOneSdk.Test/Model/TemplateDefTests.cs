@@ -90,6 +90,24 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Description'
+        /// </summary>
+        [Fact]
+        public void DescriptionTest()
+        {
+            // TODO unit test for the property 'Description'
+        }
+
+        /// <summary>
+        /// Test the property 'Help'
+        /// </summary>
+        [Fact]
+        public void HelpTest()
+        {
+            // TODO unit test for the property 'Help'
+        }
+
+        /// <summary>
         /// Test the property 'Category'
         /// </summary>
         [Fact]
@@ -123,24 +141,6 @@ namespace TalonOneSdk.Test.Model
         public void NameTest()
         {
             // TODO unit test for the property 'Name'
-        }
-
-        /// <summary>
-        /// Test the property 'Description'
-        /// </summary>
-        [Fact]
-        public void DescriptionTest()
-        {
-            // TODO unit test for the property 'Description'
-        }
-
-        /// <summary>
-        /// Test the property 'Help'
-        /// </summary>
-        [Fact]
-        public void HelpTest()
-        {
-            // TODO unit test for the property 'Help'
         }
 
         /// <summary>

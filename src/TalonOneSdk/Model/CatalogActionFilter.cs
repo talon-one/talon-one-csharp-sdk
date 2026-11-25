@@ -31,9 +31,9 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogActionFilter" /> class.
         /// </summary>
-        /// <param name="attr">The name of the attribute to filter on.</param>
+        /// <param name="attr">The name of the attribute to filter on. The attribute must exist in the catalog. For the &#x60;LT&#x60;, &#x60;LE&#x60;, &#x60;GT&#x60;, and &#x60;GE&#x60; comparison operators, the attribute must be of type &#x60;number&#x60;.</param>
         /// <param name="op">The filtering operator.</param>
-        /// <param name="value">The value to filter for.</param>
+        /// <param name="value">The value to filter for. For the &#x60;LT&#x60;, &#x60;LE&#x60;, &#x60;GT&#x60;, and &#x60;GE&#x60; comparison operators, the value must be a number or a numeric string.</param>
         [JsonConstructor]
         public CatalogActionFilter(string attr, OpEnum op, Object value = default)
         {
@@ -172,20 +172,23 @@ namespace TalonOneSdk.Model
         /// The filtering operator.
         /// </summary>
         /// <value>The filtering operator.</value>
+        /* <example>EQ</example> */
         [JsonPropertyName("op")]
         public OpEnum Op { get; set; }
 
         /// <summary>
-        /// The name of the attribute to filter on.
+        /// The name of the attribute to filter on. The attribute must exist in the catalog. For the &#x60;LT&#x60;, &#x60;LE&#x60;, &#x60;GT&#x60;, and &#x60;GE&#x60; comparison operators, the attribute must be of type &#x60;number&#x60;.
         /// </summary>
-        /// <value>The name of the attribute to filter on.</value>
+        /// <value>The name of the attribute to filter on. The attribute must exist in the catalog. For the &#x60;LT&#x60;, &#x60;LE&#x60;, &#x60;GT&#x60;, and &#x60;GE&#x60; comparison operators, the attribute must be of type &#x60;number&#x60;.</value>
+        /* <example>color</example> */
         [JsonPropertyName("attr")]
         public string Attr { get; set; }
 
         /// <summary>
-        /// The value to filter for.
+        /// The value to filter for. For the &#x60;LT&#x60;, &#x60;LE&#x60;, &#x60;GT&#x60;, and &#x60;GE&#x60; comparison operators, the value must be a number or a numeric string.
         /// </summary>
-        /// <value>The value to filter for.</value>
+        /// <value>The value to filter for. For the &#x60;LT&#x60;, &#x60;LE&#x60;, &#x60;GT&#x60;, and &#x60;GE&#x60; comparison operators, the value must be a number or a numeric string.</value>
+        /* <example>blue</example> */
         [JsonPropertyName("value")]
         public Object Value { get; set; }
 

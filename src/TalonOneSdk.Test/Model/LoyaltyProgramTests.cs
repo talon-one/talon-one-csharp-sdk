@@ -72,33 +72,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'AccountID'
-        /// </summary>
-        [Fact]
-        public void AccountIDTest()
-        {
-            // TODO unit test for the property 'AccountID'
-        }
-
-        /// <summary>
-        /// Test the property 'Name'
-        /// </summary>
-        [Fact]
-        public void NameTest()
-        {
-            // TODO unit test for the property 'Name'
-        }
-
-        /// <summary>
-        /// Test the property 'Timezone'
-        /// </summary>
-        [Fact]
-        public void TimezoneTest()
-        {
-            // TODO unit test for the property 'Timezone'
-        }
-
-        /// <summary>
         /// Test the property 'Title'
         /// </summary>
         [Fact]
@@ -153,21 +126,48 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'UsersPerCardLimit'
-        /// </summary>
-        [Fact]
-        public void UsersPerCardLimitTest()
-        {
-            // TODO unit test for the property 'UsersPerCardLimit'
-        }
-
-        /// <summary>
         /// Test the property 'Sandbox'
         /// </summary>
         [Fact]
         public void SandboxTest()
         {
             // TODO unit test for the property 'Sandbox'
+        }
+
+        /// <summary>
+        /// Test the property 'AccountID'
+        /// </summary>
+        [Fact]
+        public void AccountIDTest()
+        {
+            // TODO unit test for the property 'AccountID'
+        }
+
+        /// <summary>
+        /// Test the property 'Name'
+        /// </summary>
+        [Fact]
+        public void NameTest()
+        {
+            // TODO unit test for the property 'Name'
+        }
+
+        /// <summary>
+        /// Test the property 'Timezone'
+        /// </summary>
+        [Fact]
+        public void TimezoneTest()
+        {
+            // TODO unit test for the property 'Timezone'
+        }
+
+        /// <summary>
+        /// Test the property 'UsersPerCardLimit'
+        /// </summary>
+        [Fact]
+        public void UsersPerCardLimitTest()
+        {
+            // TODO unit test for the property 'UsersPerCardLimit'
         }
 
         /// <summary>

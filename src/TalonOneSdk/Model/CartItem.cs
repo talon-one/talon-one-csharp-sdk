@@ -371,7 +371,7 @@ namespace TalonOneSdk.Model
         /// A map of keys and values representing the price types and related price adjustment details for this cart item. The keys correspond to the &#x60;priceType&#x60; names. 
         /// </summary>
         /// <value>A map of keys and values representing the price types and related price adjustment details for this cart item. The keys correspond to the &#x60;priceType&#x60; names. </value>
-        /* <example>{member&#x3D;{price&#x3D;90, adjustmentReferenceId&#x3D;68851723-e6fa-488f-ace9-112581e6c19b, effectiveFrom&#x3D;2025-05-25T00:00:00Z, effectiveUntil&#x3D;2025-05-30T00:00:00Z}, base&#x3D;{price&#x3D;100}}</example> */
+        /* <example>{member&#x3D;{price&#x3D;90, adjustmentReferenceId&#x3D;68851723-e6fa-488f-ace9-112581e6c19b, adjustmentEffectiveFrom&#x3D;2025-05-25T00:00:00Z, adjustmentEffectiveUntil&#x3D;2025-05-30T00:00:00Z}, base&#x3D;{price&#x3D;100}}</example> */
         [JsonPropertyName("prices")]
         public Dictionary<string, PriceDetail> Prices { get { return this.PricesOption.Value; } }
 

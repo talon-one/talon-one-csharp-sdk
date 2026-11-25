@@ -33,17 +33,17 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="id">The ID of loyalty program.</param>
         /// <param name="created">The time this entity was created.</param>
-        /// <param name="accountID">The ID of the Talon.One account that owns this program.</param>
-        /// <param name="name">The internal name for the Loyalty Program. This is an immutable value.</param>
-        /// <param name="timezone">A string containing an IANA timezone descriptor.</param>
         /// <param name="title">The display title for the Loyalty Program.</param>
         /// <param name="description">Description of our Loyalty Program.</param>
         /// <param name="subscribedApplications">A list containing the IDs of all applications that are subscribed to this Loyalty Program.</param>
         /// <param name="defaultValidity">The default duration after which new loyalty points should expire. Can be &#39;unlimited&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. </param>
         /// <param name="defaultPending">The default duration of the pending time after which points should be valid. Accepted values: &#39;immediate&#39;, &#39;on_action&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. </param>
         /// <param name="allowSubledger">Indicates if this program supports subledgers inside the program.</param>
-        /// <param name="usersPerCardLimit">The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit. This property is only used when &#x60;cardBased&#x60; is &#x60;true&#x60;. </param>
         /// <param name="sandbox">Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.</param>
+        /// <param name="accountID">The ID of the Talon.One account that owns this program.</param>
+        /// <param name="name">The internal name for the Loyalty Program. This is an immutable value.</param>
+        /// <param name="timezone">A string containing an IANA timezone descriptor.</param>
+        /// <param name="usersPerCardLimit">The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit. This property is only used when &#x60;cardBased&#x60; is &#x60;true&#x60;. </param>
         /// <param name="programJoinPolicy">The policy that defines when the customer joins the loyalty program.   - &#x60;not_join&#x60;: The customer does not join the loyalty program but can still earn and spend loyalty points.       **Note**: The customer does not have a program join date.   - &#x60;points_activated&#x60;: The customer joins the loyalty program only when their earned loyalty points become active for the first time.   - &#x60;points_earned&#x60;: The customer joins the loyalty program when they earn loyalty points for the first time. </param>
         /// <param name="tiersExpirationPolicy">The policy that defines how tier expiration, used to reevaluate the customer&#39;s current tier, is determined.  - &#x60;tier_start_date&#x60;: The tier expiration is relative to when the customer joined the current tier.  - &#x60;program_join_date&#x60;: The tier expiration is relative to when the customer joined the loyalty program.  - &#x60;customer_attribute&#x60;: The tier expiration is determined by a custom customer attribute.  - &#x60;absolute_expiration&#x60;: The tier is reevaluated at the start of each tier cycle. For this policy, it is required to provide a &#x60;tierCycleStartDate&#x60;. </param>
         /// <param name="tierCycleStartDate">Timestamp at which the tier cycle starts for all customers in the loyalty program.  **Note**: This is only required when the tier expiration policy is set to &#x60;absolute_expiration&#x60;. </param>
@@ -58,21 +58,21 @@ namespace TalonOneSdk.Model
         /// <param name="canUpgradeToAdvancedTiers">&#x60;True&#x60; if the program can be upgraded to use the &#x60;tiersExpireIn&#x60; and &#x60;tiersDowngradePolicy&#x60; properties.  (default to false)</param>
         /// <param name="canUpdateSubledgers">&#x60;True&#x60; if the &#x60;allowSubledger&#x60; property can be updated in the loyalty program.  (default to false)</param>
         [JsonConstructor]
-        public LoyaltyProgram(long id, DateTime created, long accountID, string name, string timezone, Option<string> title = default, Option<string> description = default, Option<List<long>> subscribedApplications = default, Option<string> defaultValidity = default, Option<string> defaultPending = default, Option<bool?> allowSubledger = default, Option<long?> usersPerCardLimit = default, Option<bool?> sandbox = default, Option<ProgramJoinPolicyEnum?> programJoinPolicy = default, Option<TiersExpirationPolicyEnum?> tiersExpirationPolicy = default, Option<DateTime?> tierCycleStartDate = default, Option<string> tiersExpireIn = default, Option<TiersDowngradePolicyEnum?> tiersDowngradePolicy = default, Option<CodeGeneratorSettings> cardCodeSettings = default, Option<ReturnPolicyEnum?> returnPolicy = default, Option<List<LoyaltyTier>> tiers = default, bool cardBased = false, Option<bool?> canUpdateTiers = default, Option<bool?> canUpdateTierExpirationPolicy = default, Option<bool?> canUpgradeToAdvancedTiers = default, Option<bool?> canUpdateSubledgers = default)
+        public LoyaltyProgram(long id, DateTime created, string title, string description, List<long> subscribedApplications, string defaultValidity, string defaultPending, bool allowSubledger, bool sandbox, long accountID, string name, string timezone, Option<long?> usersPerCardLimit = default, Option<ProgramJoinPolicyEnum?> programJoinPolicy = default, Option<TiersExpirationPolicyEnum?> tiersExpirationPolicy = default, Option<DateTime?> tierCycleStartDate = default, Option<string> tiersExpireIn = default, Option<TiersDowngradePolicyEnum?> tiersDowngradePolicy = default, Option<CodeGeneratorSettings> cardCodeSettings = default, Option<ReturnPolicyEnum?> returnPolicy = default, Option<List<LoyaltyTier>> tiers = default, bool cardBased = false, Option<bool?> canUpdateTiers = default, Option<bool?> canUpdateTierExpirationPolicy = default, Option<bool?> canUpgradeToAdvancedTiers = default, Option<bool?> canUpdateSubledgers = default)
         {
             Id = id;
             Created = created;
+            Title = title;
+            Description = description;
+            SubscribedApplications = subscribedApplications;
+            DefaultValidity = defaultValidity;
+            DefaultPending = defaultPending;
+            AllowSubledger = allowSubledger;
+            Sandbox = sandbox;
             AccountID = accountID;
             Name = name;
             Timezone = timezone;
-            TitleOption = title;
-            DescriptionOption = description;
-            SubscribedApplicationsOption = subscribedApplications;
-            DefaultValidityOption = defaultValidity;
-            DefaultPendingOption = defaultPending;
-            AllowSubledgerOption = allowSubledger;
             UsersPerCardLimitOption = usersPerCardLimit;
-            SandboxOption = sandbox;
             ProgramJoinPolicyOption = programJoinPolicy;
             TiersExpirationPolicyOption = tiersExpirationPolicy;
             TierCycleStartDateOption = tierCycleStartDate;
@@ -488,6 +488,62 @@ namespace TalonOneSdk.Model
         public DateTime Created { get; set; }
 
         /// <summary>
+        /// The display title for the Loyalty Program.
+        /// </summary>
+        /// <value>The display title for the Loyalty Program.</value>
+        /* <example>Point collection</example> */
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Description of our Loyalty Program.
+        /// </summary>
+        /// <value>Description of our Loyalty Program.</value>
+        /* <example>Customers collect 10 points per 1$ spent</example> */
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// A list containing the IDs of all applications that are subscribed to this Loyalty Program.
+        /// </summary>
+        /// <value>A list containing the IDs of all applications that are subscribed to this Loyalty Program.</value>
+        /* <example>[132, 97]</example> */
+        [JsonPropertyName("subscribedApplications")]
+        public List<long> SubscribedApplications { get; set; }
+
+        /// <summary>
+        /// The default duration after which new loyalty points should expire. Can be &#39;unlimited&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. 
+        /// </summary>
+        /// <value>The default duration after which new loyalty points should expire. Can be &#39;unlimited&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. </value>
+        /* <example>2W_U</example> */
+        [JsonPropertyName("defaultValidity")]
+        public string DefaultValidity { get; set; }
+
+        /// <summary>
+        /// The default duration of the pending time after which points should be valid. Accepted values: &#39;immediate&#39;, &#39;on_action&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. 
+        /// </summary>
+        /// <value>The default duration of the pending time after which points should be valid. Accepted values: &#39;immediate&#39;, &#39;on_action&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. </value>
+        /* <example>immediate</example> */
+        [JsonPropertyName("defaultPending")]
+        public string DefaultPending { get; set; }
+
+        /// <summary>
+        /// Indicates if this program supports subledgers inside the program.
+        /// </summary>
+        /// <value>Indicates if this program supports subledgers inside the program.</value>
+        /* <example>false</example> */
+        [JsonPropertyName("allowSubledger")]
+        public bool AllowSubledger { get; set; }
+
+        /// <summary>
+        /// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
+        /// </summary>
+        /// <value>Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.</value>
+        /* <example>true</example> */
+        [JsonPropertyName("sandbox")]
+        public bool Sandbox { get; set; }
+
+        /// <summary>
         /// The ID of the Talon.One account that owns this program.
         /// </summary>
         /// <value>The ID of the Talon.One account that owns this program.</value>
@@ -512,96 +568,6 @@ namespace TalonOneSdk.Model
         public string Timezone { get; set; }
 
         /// <summary>
-        /// Used to track the state of Title
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> TitleOption { get; private set; }
-
-        /// <summary>
-        /// The display title for the Loyalty Program.
-        /// </summary>
-        /// <value>The display title for the Loyalty Program.</value>
-        /* <example>Point collection</example> */
-        [JsonPropertyName("title")]
-        public string Title { get { return this.TitleOption.Value; } set { this.TitleOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Description
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> DescriptionOption { get; private set; }
-
-        /// <summary>
-        /// Description of our Loyalty Program.
-        /// </summary>
-        /// <value>Description of our Loyalty Program.</value>
-        /* <example>Customers collect 10 points per 1$ spent</example> */
-        [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of SubscribedApplications
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<List<long>> SubscribedApplicationsOption { get; private set; }
-
-        /// <summary>
-        /// A list containing the IDs of all applications that are subscribed to this Loyalty Program.
-        /// </summary>
-        /// <value>A list containing the IDs of all applications that are subscribed to this Loyalty Program.</value>
-        /* <example>[132, 97]</example> */
-        [JsonPropertyName("subscribedApplications")]
-        public List<long> SubscribedApplications { get { return this.SubscribedApplicationsOption.Value; } set { this.SubscribedApplicationsOption = new Option<List<long>>(value); } }
-
-        /// <summary>
-        /// Used to track the state of DefaultValidity
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> DefaultValidityOption { get; private set; }
-
-        /// <summary>
-        /// The default duration after which new loyalty points should expire. Can be &#39;unlimited&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. 
-        /// </summary>
-        /// <value>The default duration after which new loyalty points should expire. Can be &#39;unlimited&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. </value>
-        /* <example>2W_U</example> */
-        [JsonPropertyName("defaultValidity")]
-        public string DefaultValidity { get { return this.DefaultValidityOption.Value; } set { this.DefaultValidityOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of DefaultPending
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> DefaultPendingOption { get; private set; }
-
-        /// <summary>
-        /// The default duration of the pending time after which points should be valid. Accepted values: &#39;immediate&#39;, &#39;on_action&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. 
-        /// </summary>
-        /// <value>The default duration of the pending time after which points should be valid. Accepted values: &#39;immediate&#39;, &#39;on_action&#39; or a specific time. The time format is a number followed by one letter indicating the time unit, like &#39;30s&#39;, &#39;40m&#39;, &#39;1h&#39;, &#39;5D&#39;, &#39;7W&#39;, or 10M&#39;. These rounding suffixes are also supported: - &#39;_D&#39; for rounding down. Can be used as a suffix after &#39;D&#39;, and signifies the start of the day. - &#39;_U&#39; for rounding up. Can be used as a suffix after &#39;D&#39;, &#39;W&#39;, and &#39;M&#39;, and signifies the end of the day, week, and month. </value>
-        /* <example>immediate</example> */
-        [JsonPropertyName("defaultPending")]
-        public string DefaultPending { get { return this.DefaultPendingOption.Value; } set { this.DefaultPendingOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of AllowSubledger
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> AllowSubledgerOption { get; private set; }
-
-        /// <summary>
-        /// Indicates if this program supports subledgers inside the program.
-        /// </summary>
-        /// <value>Indicates if this program supports subledgers inside the program.</value>
-        /* <example>false</example> */
-        [JsonPropertyName("allowSubledger")]
-        public bool? AllowSubledger { get { return this.AllowSubledgerOption.Value; } set { this.AllowSubledgerOption = new Option<bool?>(value); } }
-
-        /// <summary>
         /// Used to track the state of UsersPerCardLimit
         /// </summary>
         [JsonIgnore]
@@ -615,21 +581,6 @@ namespace TalonOneSdk.Model
         /* <example>111</example> */
         [JsonPropertyName("usersPerCardLimit")]
         public long? UsersPerCardLimit { get { return this.UsersPerCardLimitOption.Value; } set { this.UsersPerCardLimitOption = new Option<long?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Sandbox
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<bool?> SandboxOption { get; private set; }
-
-        /// <summary>
-        /// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
-        /// </summary>
-        /// <value>Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.</value>
-        /* <example>true</example> */
-        [JsonPropertyName("sandbox")]
-        public bool? Sandbox { get { return this.SandboxOption.Value; } set { this.SandboxOption = new Option<bool?>(value); } }
 
         /// <summary>
         /// Used to track the state of TierCycleStartDate
@@ -773,17 +724,17 @@ namespace TalonOneSdk.Model
             sb.Append("class LoyaltyProgram {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
-            sb.Append("  AccountID: ").Append(AccountID).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Timezone: ").Append(Timezone).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  SubscribedApplications: ").Append(SubscribedApplications).Append("\n");
             sb.Append("  DefaultValidity: ").Append(DefaultValidity).Append("\n");
             sb.Append("  DefaultPending: ").Append(DefaultPending).Append("\n");
             sb.Append("  AllowSubledger: ").Append(AllowSubledger).Append("\n");
-            sb.Append("  UsersPerCardLimit: ").Append(UsersPerCardLimit).Append("\n");
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
+            sb.Append("  AccountID: ").Append(AccountID).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Timezone: ").Append(Timezone).Append("\n");
+            sb.Append("  UsersPerCardLimit: ").Append(UsersPerCardLimit).Append("\n");
             sb.Append("  ProgramJoinPolicy: ").Append(ProgramJoinPolicy).Append("\n");
             sb.Append("  TiersExpirationPolicy: ").Append(TiersExpirationPolicy).Append("\n");
             sb.Append("  TierCycleStartDate: ").Append(TierCycleStartDate).Append("\n");
@@ -869,17 +820,17 @@ namespace TalonOneSdk.Model
 
             Option<long?> id = default;
             Option<DateTime?> created = default;
-            Option<long?> accountID = default;
-            Option<string> name = default;
-            Option<string> timezone = default;
             Option<string> title = default;
             Option<string> description = default;
             Option<List<long>> subscribedApplications = default;
             Option<string> defaultValidity = default;
             Option<string> defaultPending = default;
             Option<bool?> allowSubledger = default;
-            Option<long?> usersPerCardLimit = default;
             Option<bool?> sandbox = default;
+            Option<long?> accountID = default;
+            Option<string> name = default;
+            Option<string> timezone = default;
+            Option<long?> usersPerCardLimit = default;
             Option<LoyaltyProgram.ProgramJoinPolicyEnum?> programJoinPolicy = default;
             Option<LoyaltyProgram.TiersExpirationPolicyEnum?> tiersExpirationPolicy = default;
             Option<DateTime?> tierCycleStartDate = default;
@@ -915,15 +866,6 @@ namespace TalonOneSdk.Model
                         case "created":
                             created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "accountID":
-                            accountID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
-                        case "name":
-                            name = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "timezone":
-                            timezone = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -942,11 +884,20 @@ namespace TalonOneSdk.Model
                         case "allowSubledger":
                             allowSubledger = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
-                        case "usersPerCardLimit":
-                            usersPerCardLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
-                            break;
                         case "sandbox":
                             sandbox = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "accountID":
+                            accountID = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
+                        case "name":
+                            name = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "timezone":
+                            timezone = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "usersPerCardLimit":
+                            usersPerCardLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "programJoinPolicy":
                             string programJoinPolicyRawValue = utf8JsonReader.GetString();
@@ -1027,6 +978,27 @@ namespace TalonOneSdk.Model
             if (!created.IsSet)
                 throw new JsonException("Property is required for class LoyaltyProgram: created.");
 
+            if (!title.IsSet)
+                throw new JsonException("Property is required for class LoyaltyProgram: title.");
+
+            if (!description.IsSet)
+                throw new JsonException("Property is required for class LoyaltyProgram: description.");
+
+            if (!subscribedApplications.IsSet)
+                throw new JsonException("Property is required for class LoyaltyProgram: subscribedApplications.");
+
+            if (!defaultValidity.IsSet)
+                throw new JsonException("Property is required for class LoyaltyProgram: defaultValidity.");
+
+            if (!defaultPending.IsSet)
+                throw new JsonException("Property is required for class LoyaltyProgram: defaultPending.");
+
+            if (!allowSubledger.IsSet)
+                throw new JsonException("Property is required for class LoyaltyProgram: allowSubledger.");
+
+            if (!sandbox.IsSet)
+                throw new JsonException("Property is required for class LoyaltyProgram: sandbox.");
+
             if (!accountID.IsSet)
                 throw new JsonException("Property is required for class LoyaltyProgram: accountID.");
 
@@ -1045,6 +1017,27 @@ namespace TalonOneSdk.Model
             if (created.IsSet && created.Value == null)
                 throw new JsonException("Property is not nullable for class LoyaltyProgram: created.");
 
+            if (title.IsSet && title.Value == null)
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: title.");
+
+            if (description.IsSet && description.Value == null)
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: description.");
+
+            if (subscribedApplications.IsSet && subscribedApplications.Value == null)
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: subscribedApplications.");
+
+            if (defaultValidity.IsSet && defaultValidity.Value == null)
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: defaultValidity.");
+
+            if (defaultPending.IsSet && defaultPending.Value == null)
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: defaultPending.");
+
+            if (allowSubledger.IsSet && allowSubledger.Value == null)
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: allowSubledger.");
+
+            if (sandbox.IsSet && sandbox.Value == null)
+                throw new JsonException("Property is not nullable for class LoyaltyProgram: sandbox.");
+
             if (accountID.IsSet && accountID.Value == null)
                 throw new JsonException("Property is not nullable for class LoyaltyProgram: accountID.");
 
@@ -1057,7 +1050,7 @@ namespace TalonOneSdk.Model
             if (cardBased.IsSet && cardBased.Value == null)
                 throw new JsonException("Property is not nullable for class LoyaltyProgram: cardBased.");
 
-            return new LoyaltyProgram(id.Value.Value, created.Value.Value, accountID.Value.Value, name.Value, timezone.Value, title, description, subscribedApplications, defaultValidity, defaultPending, allowSubledger, usersPerCardLimit, sandbox, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers, cardBased.Value.Value, canUpdateTiers, canUpdateTierExpirationPolicy, canUpgradeToAdvancedTiers, canUpdateSubledgers);
+            return new LoyaltyProgram(id.Value.Value, created.Value.Value, title.Value, description.Value, subscribedApplications.Value, defaultValidity.Value, defaultPending.Value, allowSubledger.Value.Value, sandbox.Value.Value, accountID.Value.Value, name.Value, timezone.Value, usersPerCardLimit, programJoinPolicy, tiersExpirationPolicy, tierCycleStartDate, tiersExpireIn, tiersDowngradePolicy, cardCodeSettings, returnPolicy, tiers, cardBased.Value.Value, canUpdateTiers, canUpdateTierExpirationPolicy, canUpgradeToAdvancedTiers, canUpdateSubledgers);
         }
 
         /// <summary>
@@ -1082,6 +1075,21 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, LoyaltyProgram loyaltyProgram, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (loyaltyProgram.Title == null)
+                throw new JsonException("Cannot write null property LoyaltyProgram.Title to non-nullable JSON property 'title'.");
+
+            if (loyaltyProgram.Description == null)
+                throw new JsonException("Cannot write null property LoyaltyProgram.Description to non-nullable JSON property 'description'.");
+
+            if (loyaltyProgram.SubscribedApplications == null)
+                throw new JsonException("Cannot write null property LoyaltyProgram.SubscribedApplications to non-nullable JSON property 'subscribedApplications'.");
+
+            if (loyaltyProgram.DefaultValidity == null)
+                throw new JsonException("Cannot write null property LoyaltyProgram.DefaultValidity to non-nullable JSON property 'defaultValidity'.");
+
+            if (loyaltyProgram.DefaultPending == null)
+                throw new JsonException("Cannot write null property LoyaltyProgram.DefaultPending to non-nullable JSON property 'defaultPending'.");
+
             if (loyaltyProgram.Name == null)
                 throw new JsonException("Cannot write null property LoyaltyProgram.Name to non-nullable JSON property 'name'.");
 
@@ -1092,37 +1100,28 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("created", loyaltyProgram.Created.ToString(CreatedFormat));
 
+            writer.WriteString("title", loyaltyProgram.Title);
+
+            writer.WriteString("description", loyaltyProgram.Description);
+
+            writer.WritePropertyName("subscribedApplications");
+            JsonSerializer.Serialize(writer, loyaltyProgram.SubscribedApplications, jsonSerializerOptions);
+            writer.WriteString("defaultValidity", loyaltyProgram.DefaultValidity);
+
+            writer.WriteString("defaultPending", loyaltyProgram.DefaultPending);
+
+            writer.WriteBoolean("allowSubledger", loyaltyProgram.AllowSubledger);
+
+            writer.WriteBoolean("sandbox", loyaltyProgram.Sandbox);
+
             writer.WriteNumber("accountID", loyaltyProgram.AccountID);
 
             writer.WriteString("name", loyaltyProgram.Name);
 
             writer.WriteString("timezone", loyaltyProgram.Timezone);
 
-            if (loyaltyProgram.TitleOption.IsSet)
-                writer.WriteString("title", loyaltyProgram.Title);
-
-            if (loyaltyProgram.DescriptionOption.IsSet)
-                writer.WriteString("description", loyaltyProgram.Description);
-
-            if (loyaltyProgram.SubscribedApplicationsOption.IsSet)
-            {
-                writer.WritePropertyName("subscribedApplications");
-                JsonSerializer.Serialize(writer, loyaltyProgram.SubscribedApplications, jsonSerializerOptions);
-            }
-            if (loyaltyProgram.DefaultValidityOption.IsSet)
-                writer.WriteString("defaultValidity", loyaltyProgram.DefaultValidity);
-
-            if (loyaltyProgram.DefaultPendingOption.IsSet)
-                writer.WriteString("defaultPending", loyaltyProgram.DefaultPending);
-
-            if (loyaltyProgram.AllowSubledgerOption.IsSet)
-                writer.WriteBoolean("allowSubledger", loyaltyProgram.AllowSubledgerOption.Value.Value);
-
             if (loyaltyProgram.UsersPerCardLimitOption.IsSet)
                 writer.WriteNumber("usersPerCardLimit", loyaltyProgram.UsersPerCardLimitOption.Value.Value);
-
-            if (loyaltyProgram.SandboxOption.IsSet)
-                writer.WriteBoolean("sandbox", loyaltyProgram.SandboxOption.Value.Value);
 
             if (loyaltyProgram.ProgramJoinPolicyOption.IsSet)
             {

@@ -24,7 +24,7 @@ using TalonOneSdk.Client;
 namespace TalonOneSdk.Model
 {
     /// <summary>
-    /// An outbound log entry in an &#x60;ndjson&#x60; stream.
+    /// An outbound log entry in a stream of outbound logs.
     /// </summary>
     public partial class OutboundLogStreamLogEntry : IValidatableObject
     {

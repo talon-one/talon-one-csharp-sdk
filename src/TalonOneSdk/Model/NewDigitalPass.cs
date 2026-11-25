@@ -32,17 +32,17 @@ namespace TalonOneSdk.Model
         /// Initializes a new instance of the <see cref="NewDigitalPass" /> class.
         /// </summary>
         /// <param name="loyaltyProgramId">The ID of the associated loyalty program.</param>
-        /// <param name="passTemplateId">The ID of the digital pass template used to generate the pass. </param>
-        /// <param name="profileId">The integration ID of the customer profile the pass is issued for.</param>
+        /// <param name="passTemplateId">The ID of the digital pass template used to generate the pass.</param>
+        /// <param name="profileIntegrationId">The integration ID of the customer profile the pass is issued for.</param>
         /// <param name="platform">The wallet platform the pass is generated for. Possible values:  - &#x60;apple&#x60;: The digital pass is generated for Apple Wallet. - &#x60;google&#x60;: The digital pass is generated for Google Wallet. </param>
         /// <param name="loyaltyCardId">The identifier of the loyalty card the pass is issued for.  **Note**: Only applicable for card-based loyalty programs. </param>
-        /// <param name="attributes">A map of placeholder values that you provide to fill in the pass template. These values are not validated against the template. </param>
+        /// <param name="attributes">A map of placeholder values that you provide to fill in the pass template. Pass templates reference each value as &#x60;CustomerProfile.Attributes.&lt;key&gt;&#x60;.  Each key must start with a letter or an underscore and can contain only letters, digits, and underscores. If the template requires a value that is missing, the request fails with a &#x60;422&#x60; error. </param>
         [JsonConstructor]
-        public NewDigitalPass(long loyaltyProgramId, string passTemplateId, string profileId, PlatformEnum platform, Option<string> loyaltyCardId = default, Option<Dictionary<string, string>> attributes = default)
+        public NewDigitalPass(long loyaltyProgramId, Guid passTemplateId, string profileIntegrationId, PlatformEnum platform, Option<string> loyaltyCardId = default, Option<Dictionary<string, string>> attributes = default)
         {
             LoyaltyProgramId = loyaltyProgramId;
             PassTemplateId = passTemplateId;
-            ProfileId = profileId;
+            ProfileIntegrationId = profileIntegrationId;
             Platform = platform;
             LoyaltyCardIdOption = loyaltyCardId;
             AttributesOption = attributes;
@@ -135,20 +135,20 @@ namespace TalonOneSdk.Model
         public long LoyaltyProgramId { get; set; }
 
         /// <summary>
-        /// The ID of the digital pass template used to generate the pass. 
+        /// The ID of the digital pass template used to generate the pass.
         /// </summary>
-        /// <value>The ID of the digital pass template used to generate the pass. </value>
-        /* <example>tmpl_summer_loyalty</example> */
+        /// <value>The ID of the digital pass template used to generate the pass.</value>
+        /* <example>3fa85f64-5717-4562-b3fc-2c963f66afa6</example> */
         [JsonPropertyName("passTemplateId")]
-        public string PassTemplateId { get; set; }
+        public Guid PassTemplateId { get; set; }
 
         /// <summary>
         /// The integration ID of the customer profile the pass is issued for.
         /// </summary>
         /// <value>The integration ID of the customer profile the pass is issued for.</value>
         /* <example>12412412421</example> */
-        [JsonPropertyName("profileId")]
-        public string ProfileId { get; set; }
+        [JsonPropertyName("profileIntegrationId")]
+        public string ProfileIntegrationId { get; set; }
 
         /// <summary>
         /// Used to track the state of LoyaltyCardId
@@ -173,9 +173,9 @@ namespace TalonOneSdk.Model
         public Option<Dictionary<string, string>> AttributesOption { get; private set; }
 
         /// <summary>
-        /// A map of placeholder values that you provide to fill in the pass template. These values are not validated against the template. 
+        /// A map of placeholder values that you provide to fill in the pass template. Pass templates reference each value as &#x60;CustomerProfile.Attributes.&lt;key&gt;&#x60;.  Each key must start with a letter or an underscore and can contain only letters, digits, and underscores. If the template requires a value that is missing, the request fails with a &#x60;422&#x60; error. 
         /// </summary>
-        /// <value>A map of placeholder values that you provide to fill in the pass template. These values are not validated against the template. </value>
+        /// <value>A map of placeholder values that you provide to fill in the pass template. Pass templates reference each value as &#x60;CustomerProfile.Attributes.&lt;key&gt;&#x60;.  Each key must start with a letter or an underscore and can contain only letters, digits, and underscores. If the template requires a value that is missing, the request fails with a &#x60;422&#x60; error. </value>
         /* <example>{hm_member_name&#x3D;Jane Doe}</example> */
         [JsonPropertyName("attributes")]
         public Dictionary<string, string> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Dictionary<string, string>>(value); } }
@@ -196,7 +196,7 @@ namespace TalonOneSdk.Model
             sb.Append("class NewDigitalPass {\n");
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("  PassTemplateId: ").Append(PassTemplateId).Append("\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
+            sb.Append("  ProfileIntegrationId: ").Append(ProfileIntegrationId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  LoyaltyCardId: ").Append(LoyaltyCardId).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
@@ -218,16 +218,10 @@ namespace TalonOneSdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LoyaltyProgramId, must be a value greater than or equal to 1.", new [] { "LoyaltyProgramId" });
             }
 
-            // PassTemplateId (string) minLength
-            if (this.PassTemplateId != null && this.PassTemplateId.Length < 1)
+            // ProfileIntegrationId (string) minLength
+            if (this.ProfileIntegrationId != null && this.ProfileIntegrationId.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PassTemplateId, length must be greater than 1.", new [] { "PassTemplateId" });
-            }
-
-            // ProfileId (string) minLength
-            if (this.ProfileId != null && this.ProfileId.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ProfileId, length must be greater than 1.", new [] { "ProfileId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ProfileIntegrationId, length must be greater than 1.", new [] { "ProfileIntegrationId" });
             }
 
             yield break;
@@ -267,8 +261,8 @@ namespace TalonOneSdk.Model
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
             Option<long?> loyaltyProgramId = default;
-            Option<string> passTemplateId = default;
-            Option<string> profileId = default;
+            Option<Guid?> passTemplateId = default;
+            Option<string> profileIntegrationId = default;
             Option<NewDigitalPass.PlatformEnum?> platform = default;
             Option<string> loyaltyCardId = default;
             Option<Dictionary<string, string>> attributes = default;
@@ -292,10 +286,10 @@ namespace TalonOneSdk.Model
                             loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "passTemplateId":
-                            passTemplateId = new Option<string>(utf8JsonReader.GetString());
+                            passTemplateId = new Option<Guid?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (Guid?)null : utf8JsonReader.GetGuid());
                             break;
-                        case "profileId":
-                            profileId = new Option<string>(utf8JsonReader.GetString());
+                        case "profileIntegrationId":
+                            profileIntegrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "platform":
                             string platformRawValue = utf8JsonReader.GetString();
@@ -325,8 +319,8 @@ namespace TalonOneSdk.Model
             if (!passTemplateId.IsSet)
                 throw new JsonException("Property is required for class NewDigitalPass: passTemplateId.");
 
-            if (!profileId.IsSet)
-                throw new JsonException("Property is required for class NewDigitalPass: profileId.");
+            if (!profileIntegrationId.IsSet)
+                throw new JsonException("Property is required for class NewDigitalPass: profileIntegrationId.");
 
             if (!platform.IsSet)
                 throw new JsonException("Property is required for class NewDigitalPass: platform.");
@@ -337,13 +331,13 @@ namespace TalonOneSdk.Model
             if (passTemplateId.IsSet && passTemplateId.Value == null)
                 throw new JsonException("Property is not nullable for class NewDigitalPass: passTemplateId.");
 
-            if (profileId.IsSet && profileId.Value == null)
-                throw new JsonException("Property is not nullable for class NewDigitalPass: profileId.");
+            if (profileIntegrationId.IsSet && profileIntegrationId.Value == null)
+                throw new JsonException("Property is not nullable for class NewDigitalPass: profileIntegrationId.");
 
             if (platform.IsSet && platform.Value == null)
                 throw new JsonException("Property is not nullable for class NewDigitalPass: platform.");
 
-            return new NewDigitalPass(loyaltyProgramId.Value.Value, passTemplateId.Value, profileId.Value, platform.Value.Value, loyaltyCardId, attributes);
+            return new NewDigitalPass(loyaltyProgramId.Value.Value, passTemplateId.Value.Value, profileIntegrationId.Value, platform.Value.Value, loyaltyCardId, attributes);
         }
 
         /// <summary>
@@ -368,17 +362,14 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, NewDigitalPass newDigitalPass, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (newDigitalPass.PassTemplateId == null)
-                throw new JsonException("Cannot write null property NewDigitalPass.PassTemplateId to non-nullable JSON property 'passTemplateId'.");
-
-            if (newDigitalPass.ProfileId == null)
-                throw new JsonException("Cannot write null property NewDigitalPass.ProfileId to non-nullable JSON property 'profileId'.");
+            if (newDigitalPass.ProfileIntegrationId == null)
+                throw new JsonException("Cannot write null property NewDigitalPass.ProfileIntegrationId to non-nullable JSON property 'profileIntegrationId'.");
 
             writer.WriteNumber("loyaltyProgramId", newDigitalPass.LoyaltyProgramId);
 
             writer.WriteString("passTemplateId", newDigitalPass.PassTemplateId);
 
-            writer.WriteString("profileId", newDigitalPass.ProfileId);
+            writer.WriteString("profileIntegrationId", newDigitalPass.ProfileIntegrationId);
 
             var platformRawValue = NewDigitalPass.PlatformEnumToJsonValue(newDigitalPass.Platform);
             writer.WriteString("platform", platformRawValue);

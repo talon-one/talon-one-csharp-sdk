@@ -33,6 +33,7 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="uuid">UUID of the outbound message.</param>
         /// <param name="notificationType">Type of notification that triggered the outbound message.</param>
+        /// <param name="request">request</param>
         /// <param name="firstLogAt">Timestamp of the first log entry for this message.</param>
         /// <param name="lastLogAt">Timestamp of the last log entry for this message.</param>
         /// <param name="status">status</param>
@@ -42,15 +43,15 @@ namespace TalonOneSdk.Model
         /// <param name="webhookName">Name of the webhook that triggered the outbound message.</param>
         /// <param name="applicationId">ID of the Application associated with the outbound message.</param>
         /// <param name="loyaltyProgramId">ID of the loyalty program associated with the outbound message.</param>
-        /// <param name="request">request</param>
         /// <param name="lastResponseCode">HTTP status code from the latest response.</param>
         /// <param name="retryCount">Number of retries.</param>
         /// <param name="responses">Log entries for this message. One entry per delivery attempt. Empty when &#x60;includeLogs&#x3D;false&#x60;.</param>
         [JsonConstructor]
-        public OutboundMessage(Guid uuid, string notificationType, DateTime firstLogAt, DateTime lastLogAt, string status, Option<long?> notificationId = default, Option<string> notificationName = default, Option<long?> webhookId = default, Option<string> webhookName = default, Option<long?> applicationId = default, Option<long?> loyaltyProgramId = default, Option<OutboundLogRequest> request = default, Option<long?> lastResponseCode = default, Option<long?> retryCount = default, Option<List<OutboundMessageResponse>> responses = default)
+        public OutboundMessage(Guid uuid, string notificationType, OutboundLogRequest request, DateTime firstLogAt, DateTime lastLogAt, string status, Option<long?> notificationId = default, Option<string> notificationName = default, Option<long?> webhookId = default, Option<string> webhookName = default, Option<long?> applicationId = default, Option<long?> loyaltyProgramId = default, Option<long?> lastResponseCode = default, Option<long?> retryCount = default, Option<List<OutboundMessageResponse>> responses = default)
         {
             Uuid = uuid;
             NotificationType = notificationType;
+            Request = request;
             FirstLogAt = firstLogAt;
             LastLogAt = lastLogAt;
             Status = status;
@@ -60,7 +61,6 @@ namespace TalonOneSdk.Model
             WebhookNameOption = webhookName;
             ApplicationIdOption = applicationId;
             LoyaltyProgramIdOption = loyaltyProgramId;
-            RequestOption = request;
             LastResponseCodeOption = lastResponseCode;
             RetryCountOption = retryCount;
             ResponsesOption = responses;
@@ -84,6 +84,12 @@ namespace TalonOneSdk.Model
         /* <example>CampaignNotification</example> */
         [JsonPropertyName("notificationType")]
         public string NotificationType { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Request
+        /// </summary>
+        [JsonPropertyName("request")]
+        public OutboundLogRequest Request { get; set; }
 
         /// <summary>
         /// Timestamp of the first log entry for this message.
@@ -199,19 +205,6 @@ namespace TalonOneSdk.Model
         public long? LoyaltyProgramId { get { return this.LoyaltyProgramIdOption.Value; } set { this.LoyaltyProgramIdOption = new Option<long?>(value); } }
 
         /// <summary>
-        /// Used to track the state of Request
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<OutboundLogRequest> RequestOption { get; private set; }
-
-        /// <summary>
-        /// Gets or Sets Request
-        /// </summary>
-        [JsonPropertyName("request")]
-        public OutboundLogRequest Request { get { return this.RequestOption.Value; } set { this.RequestOption = new Option<OutboundLogRequest>(value); } }
-
-        /// <summary>
         /// Used to track the state of LastResponseCode
         /// </summary>
         [JsonIgnore]
@@ -271,6 +264,7 @@ namespace TalonOneSdk.Model
             sb.Append("class OutboundMessage {\n");
             sb.Append("  Uuid: ").Append(Uuid).Append("\n");
             sb.Append("  NotificationType: ").Append(NotificationType).Append("\n");
+            sb.Append("  Request: ").Append(Request).Append("\n");
             sb.Append("  FirstLogAt: ").Append(FirstLogAt).Append("\n");
             sb.Append("  LastLogAt: ").Append(LastLogAt).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -280,7 +274,6 @@ namespace TalonOneSdk.Model
             sb.Append("  WebhookName: ").Append(WebhookName).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
-            sb.Append("  Request: ").Append(Request).Append("\n");
             sb.Append("  LastResponseCode: ").Append(LastResponseCode).Append("\n");
             sb.Append("  RetryCount: ").Append(RetryCount).Append("\n");
             sb.Append("  Responses: ").Append(Responses).Append("\n");
@@ -344,6 +337,7 @@ namespace TalonOneSdk.Model
 
             Option<Guid?> uuid = default;
             Option<string> notificationType = default;
+            Option<OutboundLogRequest> request = default;
             Option<DateTime?> firstLogAt = default;
             Option<DateTime?> lastLogAt = default;
             Option<string> status = default;
@@ -353,7 +347,6 @@ namespace TalonOneSdk.Model
             Option<string> webhookName = default;
             Option<long?> applicationId = default;
             Option<long?> loyaltyProgramId = default;
-            Option<OutboundLogRequest> request = default;
             Option<long?> lastResponseCode = default;
             Option<long?> retryCount = default;
             Option<List<OutboundMessageResponse>> responses = default;
@@ -378,6 +371,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "notificationType":
                             notificationType = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "request":
+                            request = new Option<OutboundLogRequest>(JsonSerializer.Deserialize<OutboundLogRequest>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "firstLogAt":
                             firstLogAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
@@ -406,9 +402,6 @@ namespace TalonOneSdk.Model
                         case "loyaltyProgramId":
                             loyaltyProgramId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
-                        case "request":
-                            request = new Option<OutboundLogRequest>(JsonSerializer.Deserialize<OutboundLogRequest>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
                         case "lastResponseCode":
                             lastResponseCode = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -430,6 +423,9 @@ namespace TalonOneSdk.Model
             if (!notificationType.IsSet)
                 throw new JsonException("Property is required for class OutboundMessage: notificationType.");
 
+            if (!request.IsSet)
+                throw new JsonException("Property is required for class OutboundMessage: request.");
+
             if (!firstLogAt.IsSet)
                 throw new JsonException("Property is required for class OutboundMessage: firstLogAt.");
 
@@ -445,6 +441,9 @@ namespace TalonOneSdk.Model
             if (notificationType.IsSet && notificationType.Value == null)
                 throw new JsonException("Property is not nullable for class OutboundMessage: notificationType.");
 
+            if (request.IsSet && request.Value == null)
+                throw new JsonException("Property is not nullable for class OutboundMessage: request.");
+
             if (firstLogAt.IsSet && firstLogAt.Value == null)
                 throw new JsonException("Property is not nullable for class OutboundMessage: firstLogAt.");
 
@@ -454,7 +453,7 @@ namespace TalonOneSdk.Model
             if (status.IsSet && status.Value == null)
                 throw new JsonException("Property is not nullable for class OutboundMessage: status.");
 
-            return new OutboundMessage(uuid.Value.Value, notificationType.Value, firstLogAt.Value.Value, lastLogAt.Value.Value, status.Value, notificationId, notificationName, webhookId, webhookName, applicationId, loyaltyProgramId, request, lastResponseCode, retryCount, responses);
+            return new OutboundMessage(uuid.Value.Value, notificationType.Value, request.Value, firstLogAt.Value.Value, lastLogAt.Value.Value, status.Value, notificationId, notificationName, webhookId, webhookName, applicationId, loyaltyProgramId, lastResponseCode, retryCount, responses);
         }
 
         /// <summary>
@@ -482,6 +481,9 @@ namespace TalonOneSdk.Model
             if (outboundMessage.NotificationType == null)
                 throw new JsonException("Cannot write null property OutboundMessage.NotificationType to non-nullable JSON property 'notificationType'.");
 
+            if (outboundMessage.Request == null)
+                throw new JsonException("Cannot write null property OutboundMessage.Request to non-nullable JSON property 'request'.");
+
             if (outboundMessage.Status == null)
                 throw new JsonException("Cannot write null property OutboundMessage.Status to non-nullable JSON property 'status'.");
 
@@ -489,6 +491,8 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("notificationType", outboundMessage.NotificationType);
 
+            writer.WritePropertyName("request");
+            JsonSerializer.Serialize(writer, outboundMessage.Request, jsonSerializerOptions);
             writer.WriteString("firstLogAt", outboundMessage.FirstLogAt.ToString(FirstLogAtFormat));
 
             writer.WriteString("lastLogAt", outboundMessage.LastLogAt.ToString(LastLogAtFormat));
@@ -513,11 +517,6 @@ namespace TalonOneSdk.Model
             if (outboundMessage.LoyaltyProgramIdOption.IsSet)
                 writer.WriteNumber("loyaltyProgramId", outboundMessage.LoyaltyProgramIdOption.Value.Value);
 
-            if (outboundMessage.RequestOption.IsSet)
-            {
-                writer.WritePropertyName("request");
-                JsonSerializer.Serialize(writer, outboundMessage.Request, jsonSerializerOptions);
-            }
             if (outboundMessage.LastResponseCodeOption.IsSet)
                 writer.WriteNumber("lastResponseCode", outboundMessage.LastResponseCodeOption.Value.Value);
 

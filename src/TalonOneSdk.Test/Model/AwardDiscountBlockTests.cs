@@ -115,5 +115,14 @@ namespace TalonOneSdk.Test.Model
         {
             // TODO unit test for the property 'Tags'
         }
+
+        /// <summary>
+        /// Test the property 'ExcludedFromPriceHistory'
+        /// </summary>
+        [Fact]
+        public void ExcludedFromPriceHistoryTest()
+        {
+            // TODO unit test for the property 'ExcludedFromPriceHistory'
+        }
     }
 }

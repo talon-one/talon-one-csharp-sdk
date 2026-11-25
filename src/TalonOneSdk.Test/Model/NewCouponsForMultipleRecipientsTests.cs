@@ -54,21 +54,21 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'RecipientsIntegrationIds'
-        /// </summary>
-        [Fact]
-        public void RecipientsIntegrationIdsTest()
-        {
-            // TODO unit test for the property 'RecipientsIntegrationIds'
-        }
-
-        /// <summary>
         /// Test the property 'UsageLimit'
         /// </summary>
         [Fact]
         public void UsageLimitTest()
         {
             // TODO unit test for the property 'UsageLimit'
+        }
+
+        /// <summary>
+        /// Test the property 'RecipientsIntegrationIds'
+        /// </summary>
+        [Fact]
+        public void RecipientsIntegrationIdsTest()
+        {
+            // TODO unit test for the property 'RecipientsIntegrationIds'
         }
 
         /// <summary>

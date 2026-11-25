@@ -60,7 +60,7 @@ namespace TalonOneSdk.Model
         /// <param name="updatedBy">Name of the user who last updated this campaign template, if available.</param>
         /// <param name="isUserFavorite">A flag indicating whether the user marked the template as a favorite. (default to false)</param>
         [JsonConstructor]
-        public CampaignTemplate(long id, DateTime created, long accountId, long userId, string name, string description, string instructions, StateEnum state, bool reevaluateOnReturn, List<long> applicationsIds, List<long> validApplicationIds, Option<Object> campaignAttributes = default, Option<Object> couponAttributes = default, Option<long?> activeRulesetId = default, Option<List<string>> tags = default, Option<List<CampaignTemplate.FeaturesEnum>> features = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CampaignTemplateCouponReservationSettings> couponReservationSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<TemplateLimitConfig>> limits = default, Option<List<CampaignTemplateParams>> templateParams = default, Option<List<CampaignTemplateCollection>> campaignCollections = default, Option<long?> defaultCampaignGroupId = default, Option<CampaignTypeEnum?> campaignType = default, Option<long?> campaignsCount = default, Option<DateTime?> updated = default, Option<string> updatedBy = default, Option<bool?> isUserFavorite = default)
+        public CampaignTemplate(long id, DateTime created, long accountId, long userId, string name, string description, string instructions, StateEnum state, bool reevaluateOnReturn, List<long> applicationsIds, List<long> validApplicationIds, Option<Object> campaignAttributes = default, Option<Object> couponAttributes = default, Option<long?> activeRulesetId = default, Option<List<string>> tags = default, Option<List<CampaignTemplate.FeaturesEnum>> features = default, Option<CodeGeneratorSettings> couponSettings = default, Option<CampaignTemplateCouponReservationSettings> couponReservationSettings = default, Option<CodeGeneratorSettings> referralSettings = default, Option<List<TemplateLimitConfig>> limits = default, Option<List<CampaignTemplateParams>> templateParams = default, Option<List<CampaignTemplateCollection>> campaignCollections = default, Option<long?> defaultCampaignGroupId = default, CampaignTypeEnum campaignType = CampaignTypeEnum.Advanced, Option<long?> campaignsCount = default, Option<DateTime?> updated = default, Option<string> updatedBy = default, Option<bool?> isUserFavorite = default)
         {
             Id = id;
             Created = created;
@@ -85,7 +85,7 @@ namespace TalonOneSdk.Model
             TemplateParamsOption = templateParams;
             CampaignCollectionsOption = campaignCollections;
             DefaultCampaignGroupIdOption = defaultCampaignGroupId;
-            CampaignTypeOption = campaignType;
+            CampaignType = campaignType;
             CampaignsCountOption = campaignsCount;
             UpdatedOption = updated;
             UpdatedByOption = updatedBy;
@@ -375,7 +375,7 @@ namespace TalonOneSdk.Model
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static string CampaignTypeEnumToJsonValue(CampaignTypeEnum? value)
+        public static string CampaignTypeEnumToJsonValue(CampaignTypeEnum value)
         {
             if (value == CampaignTypeEnum.CartItem)
                 return "cartItem";
@@ -387,19 +387,12 @@ namespace TalonOneSdk.Model
         }
 
         /// <summary>
-        /// Used to track the state of CampaignType
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<CampaignTypeEnum?> CampaignTypeOption { get; private set; }
-
-        /// <summary>
         /// The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items. 
         /// </summary>
         /// <value>The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items. </value>
         /* <example>advanced</example> */
         [JsonPropertyName("campaignType")]
-        public CampaignTypeEnum? CampaignType { get { return this.CampaignTypeOption.Value; } set { this.CampaignTypeOption = new Option<CampaignTypeEnum?>(value); } }
+        public CampaignTypeEnum CampaignType { get; set; }
 
         /// <summary>
         /// The internal ID of this entity.
@@ -1016,6 +1009,9 @@ namespace TalonOneSdk.Model
             if (!validApplicationIds.IsSet)
                 throw new JsonException("Property is required for class CampaignTemplate: validApplicationIds.");
 
+            if (!campaignType.IsSet)
+                throw new JsonException("Property is required for class CampaignTemplate: campaignType.");
+
             if (id.IsSet && id.Value == null)
                 throw new JsonException("Property is not nullable for class CampaignTemplate: id.");
 
@@ -1049,7 +1045,10 @@ namespace TalonOneSdk.Model
             if (validApplicationIds.IsSet && validApplicationIds.Value == null)
                 throw new JsonException("Property is not nullable for class CampaignTemplate: validApplicationIds.");
 
-            return new CampaignTemplate(id.Value.Value, created.Value.Value, accountId.Value.Value, userId.Value.Value, name.Value, description.Value, instructions.Value, state.Value.Value, reevaluateOnReturn.Value.Value, applicationsIds.Value, validApplicationIds.Value, campaignAttributes, couponAttributes, activeRulesetId, tags, features, couponSettings, couponReservationSettings, referralSettings, limits, templateParams, campaignCollections, defaultCampaignGroupId, campaignType, campaignsCount, updated, updatedBy, isUserFavorite);
+            if (campaignType.IsSet && campaignType.Value == null)
+                throw new JsonException("Property is not nullable for class CampaignTemplate: campaignType.");
+
+            return new CampaignTemplate(id.Value.Value, created.Value.Value, accountId.Value.Value, userId.Value.Value, name.Value, description.Value, instructions.Value, state.Value.Value, reevaluateOnReturn.Value.Value, applicationsIds.Value, validApplicationIds.Value, campaignAttributes, couponAttributes, activeRulesetId, tags, features, couponSettings, couponReservationSettings, referralSettings, limits, templateParams, campaignCollections, defaultCampaignGroupId, campaignType.Value.Value, campaignsCount, updated, updatedBy, isUserFavorite);
         }
 
         /// <summary>
@@ -1172,11 +1171,8 @@ namespace TalonOneSdk.Model
             if (campaignTemplate.DefaultCampaignGroupIdOption.IsSet)
                 writer.WriteNumber("defaultCampaignGroupId", campaignTemplate.DefaultCampaignGroupIdOption.Value.Value);
 
-            if (campaignTemplate.CampaignTypeOption.IsSet)
-            {
-                var campaignTypeRawValue = CampaignTemplate.CampaignTypeEnumToJsonValue(campaignTemplate.CampaignTypeOption.Value);
-                writer.WriteString("campaignType", campaignTypeRawValue);
-            }
+            var campaignTypeRawValue = CampaignTemplate.CampaignTypeEnumToJsonValue(campaignTemplate.CampaignType);
+            writer.WriteString("campaignType", campaignTypeRawValue);
             if (campaignTemplate.CampaignsCountOption.IsSet)
                 writer.WriteNumber("campaignsCount", campaignTemplate.CampaignsCountOption.Value.Value);
 
