@@ -90,6 +90,33 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ProfileId'
+        /// </summary>
+        [Fact]
+        public void ProfileIdTest()
+        {
+            // TODO unit test for the property 'ProfileId'
+        }
+
+        /// <summary>
+        /// Test the property 'CartItems'
+        /// </summary>
+        [Fact]
+        public void CartItemsTest()
+        {
+            // TODO unit test for the property 'CartItems'
+        }
+
+        /// <summary>
+        /// Test the property 'Attributes'
+        /// </summary>
+        [Fact]
+        public void AttributesTest()
+        {
+            // TODO unit test for the property 'Attributes'
+        }
+
+        /// <summary>
         /// Test the property 'FirstSession'
         /// </summary>
         [Fact]
@@ -150,15 +177,6 @@ namespace TalonOneSdk.Test.Model
         public void UpdatedTest()
         {
             // TODO unit test for the property 'Updated'
-        }
-
-        /// <summary>
-        /// Test the property 'ProfileId'
-        /// </summary>
-        [Fact]
-        public void ProfileIdTest()
-        {
-            // TODO unit test for the property 'ProfileId'
         }
 
         /// <summary>
@@ -225,15 +243,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'CartItems'
-        /// </summary>
-        [Fact]
-        public void CartItemsTest()
-        {
-            // TODO unit test for the property 'CartItems'
-        }
-
-        /// <summary>
         /// Test the property 'ExperimentVariantAllocations'
         /// </summary>
         [Fact]
@@ -258,15 +267,6 @@ namespace TalonOneSdk.Test.Model
         public void IdentifiersTest()
         {
             // TODO unit test for the property 'Identifiers'
-        }
-
-        /// <summary>
-        /// Test the property 'Attributes'
-        /// </summary>
-        [Fact]
-        public void AttributesTest()
-        {
-            // TODO unit test for the property 'Attributes'
         }
     }
 }

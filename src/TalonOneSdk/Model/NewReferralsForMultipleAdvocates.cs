@@ -31,22 +31,22 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="NewReferralsForMultipleAdvocates" /> class.
         /// </summary>
+        /// <param name="usageLimit">The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply. </param>
         /// <param name="campaignId">The ID of the campaign from which the referral received the referral code.</param>
         /// <param name="advocateProfileIntegrationIds">An array containing all the respective advocate profiles.</param>
         /// <param name="startDate">Timestamp at which point the referral code becomes valid.</param>
         /// <param name="expiryDate">Expiration date of the referral code. Referral never expires if this is omitted.</param>
-        /// <param name="usageLimit">The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply. </param>
         /// <param name="attributes">Arbitrary properties associated with this referral code.</param>
         /// <param name="validCharacters">List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression. </param>
         /// <param name="referralPattern">The pattern used to generate referrals. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set. </param>
         [JsonConstructor]
-        public NewReferralsForMultipleAdvocates(long campaignId, List<string> advocateProfileIntegrationIds, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<long?> usageLimit = default, Option<Object> attributes = default, Option<List<string>> validCharacters = default, Option<string> referralPattern = default)
+        public NewReferralsForMultipleAdvocates(long usageLimit, long campaignId, List<string> advocateProfileIntegrationIds, Option<DateTime?> startDate = default, Option<DateTime?> expiryDate = default, Option<Object> attributes = default, Option<List<string>> validCharacters = default, Option<string> referralPattern = default)
         {
+            UsageLimit = usageLimit;
             CampaignId = campaignId;
             AdvocateProfileIntegrationIds = advocateProfileIntegrationIds;
             StartDateOption = startDate;
             ExpiryDateOption = expiryDate;
-            UsageLimitOption = usageLimit;
             AttributesOption = attributes;
             ValidCharactersOption = validCharacters;
             ReferralPatternOption = referralPattern;
@@ -54,6 +54,14 @@ namespace TalonOneSdk.Model
         }
 
         partial void OnCreated();
+
+        /// <summary>
+        /// The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply. 
+        /// </summary>
+        /// <value>The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply. </value>
+        /* <example>1</example> */
+        [JsonPropertyName("usageLimit")]
+        public long UsageLimit { get; set; }
 
         /// <summary>
         /// The ID of the campaign from which the referral received the referral code.
@@ -100,21 +108,6 @@ namespace TalonOneSdk.Model
         /* <example>2021-11-10T23:00:00Z</example> */
         [JsonPropertyName("expiryDate")]
         public DateTime? ExpiryDate { get { return this.ExpiryDateOption.Value; } set { this.ExpiryDateOption = new Option<DateTime?>(value); } }
-
-        /// <summary>
-        /// Used to track the state of UsageLimit
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<long?> UsageLimitOption { get; private set; }
-
-        /// <summary>
-        /// The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply. 
-        /// </summary>
-        /// <value>The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply. </value>
-        /* <example>1</example> */
-        [JsonPropertyName("usageLimit")]
-        public long? UsageLimit { get { return this.UsageLimitOption.Value; } set { this.UsageLimitOption = new Option<long?>(value); } }
 
         /// <summary>
         /// Used to track the state of Attributes
@@ -175,11 +168,11 @@ namespace TalonOneSdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class NewReferralsForMultipleAdvocates {\n");
+            sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  AdvocateProfileIntegrationIds: ").Append(AdvocateProfileIntegrationIds).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
-            sb.Append("  UsageLimit: ").Append(UsageLimit).Append("\n");
             sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  ValidCharacters: ").Append(ValidCharacters).Append("\n");
             sb.Append("  ReferralPattern: ").Append(ReferralPattern).Append("\n");
@@ -196,13 +189,13 @@ namespace TalonOneSdk.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // UsageLimit (long) maximum
-            if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value > (long)999999)
+            if (this.UsageLimit > (long)999999)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value less than or equal to 999999.", new [] { "UsageLimit" });
             }
 
             // UsageLimit (long) minimum
-            if (this.UsageLimitOption.IsSet && this.UsageLimitOption.Value < (long)0)
+            if (this.UsageLimit < (long)0)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UsageLimit, must be a value greater than or equal to 0.", new [] { "UsageLimit" });
             }
@@ -265,11 +258,11 @@ namespace TalonOneSdk.Model
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            Option<long?> usageLimit = default;
             Option<long?> campaignId = default;
             Option<List<string>> advocateProfileIntegrationIds = default;
             Option<DateTime?> startDate = default;
             Option<DateTime?> expiryDate = default;
-            Option<long?> usageLimit = default;
             Option<Object> attributes = default;
             Option<List<string>> validCharacters = default;
             Option<string> referralPattern = default;
@@ -289,6 +282,9 @@ namespace TalonOneSdk.Model
 
                     switch (localVarJsonPropertyName)
                     {
+                        case "usageLimit":
+                            usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                            break;
                         case "campaignId":
                             campaignId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -300,9 +296,6 @@ namespace TalonOneSdk.Model
                             break;
                         case "expiryDate":
                             expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "usageLimit":
-                            usageLimit = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "attributes":
                             attributes = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));
@@ -319,11 +312,17 @@ namespace TalonOneSdk.Model
                 }
             }
 
+            if (!usageLimit.IsSet)
+                throw new JsonException("Property is required for class NewReferralsForMultipleAdvocates: usageLimit.");
+
             if (!campaignId.IsSet)
                 throw new JsonException("Property is required for class NewReferralsForMultipleAdvocates: campaignId.");
 
             if (!advocateProfileIntegrationIds.IsSet)
                 throw new JsonException("Property is required for class NewReferralsForMultipleAdvocates: advocateProfileIntegrationIds.");
+
+            if (usageLimit.IsSet && usageLimit.Value == null)
+                throw new JsonException("Property is not nullable for class NewReferralsForMultipleAdvocates: usageLimit.");
 
             if (campaignId.IsSet && campaignId.Value == null)
                 throw new JsonException("Property is not nullable for class NewReferralsForMultipleAdvocates: campaignId.");
@@ -331,7 +330,7 @@ namespace TalonOneSdk.Model
             if (advocateProfileIntegrationIds.IsSet && advocateProfileIntegrationIds.Value == null)
                 throw new JsonException("Property is not nullable for class NewReferralsForMultipleAdvocates: advocateProfileIntegrationIds.");
 
-            return new NewReferralsForMultipleAdvocates(campaignId.Value.Value, advocateProfileIntegrationIds.Value, startDate, expiryDate, usageLimit, attributes, validCharacters, referralPattern);
+            return new NewReferralsForMultipleAdvocates(usageLimit.Value.Value, campaignId.Value.Value, advocateProfileIntegrationIds.Value, startDate, expiryDate, attributes, validCharacters, referralPattern);
         }
 
         /// <summary>
@@ -359,6 +358,8 @@ namespace TalonOneSdk.Model
             if (newReferralsForMultipleAdvocates.AdvocateProfileIntegrationIds == null)
                 throw new JsonException("Cannot write null property NewReferralsForMultipleAdvocates.AdvocateProfileIntegrationIds to non-nullable JSON property 'advocateProfileIntegrationIds'.");
 
+            writer.WriteNumber("usageLimit", newReferralsForMultipleAdvocates.UsageLimit);
+
             writer.WriteNumber("campaignId", newReferralsForMultipleAdvocates.CampaignId);
 
             writer.WritePropertyName("advocateProfileIntegrationIds");
@@ -368,9 +369,6 @@ namespace TalonOneSdk.Model
 
             if (newReferralsForMultipleAdvocates.ExpiryDateOption.IsSet)
                 writer.WriteString("expiryDate", newReferralsForMultipleAdvocates.ExpiryDateOption.Value.Value.ToString(ExpiryDateFormat));
-
-            if (newReferralsForMultipleAdvocates.UsageLimitOption.IsSet)
-                writer.WriteNumber("usageLimit", newReferralsForMultipleAdvocates.UsageLimitOption.Value.Value);
 
             if (newReferralsForMultipleAdvocates.AttributesOption.IsSet)
             {

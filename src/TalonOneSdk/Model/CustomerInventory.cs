@@ -36,8 +36,8 @@ namespace TalonOneSdk.Model
         /// <param name="referrals">referrals</param>
         /// <param name="coupons">The coupons reserved by this profile. This array includes hard and soft reservations. </param>
         /// <param name="giveaways">giveaways</param>
-        /// <param name="achievements">achievements</param>
-        /// <param name="rewards">The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.</param>
+        /// <param name="achievements">The customer&#39;s progress in each achievement they have participated in.  Only achievements the customer has started are included, whether they  are in progress, completed, or expired. Recurring achievements can appear  more than once, once per iteration. </param>
+        /// <param name="rewards">The rewards that the customer has unlocked but not used. Expired customer rewards are not returned.</param>
         [JsonConstructor]
         public CustomerInventory(Option<CustomerProfile> profile = default, Option<Loyalty> loyalty = default, Option<List<InventoryReferral>> referrals = default, Option<List<InventoryCoupon>> coupons = default, Option<List<Giveaway>> giveaways = default, Option<List<AchievementProgressWithDefinition>> achievements = default, Option<List<RewardWithUnlocks>> rewards = default)
         {
@@ -127,8 +127,9 @@ namespace TalonOneSdk.Model
         public Option<List<AchievementProgressWithDefinition>> AchievementsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Achievements
+        /// The customer&#39;s progress in each achievement they have participated in.  Only achievements the customer has started are included, whether they  are in progress, completed, or expired. Recurring achievements can appear  more than once, once per iteration. 
         /// </summary>
+        /// <value>The customer&#39;s progress in each achievement they have participated in.  Only achievements the customer has started are included, whether they  are in progress, completed, or expired. Recurring achievements can appear  more than once, once per iteration. </value>
         [JsonPropertyName("achievements")]
         public List<AchievementProgressWithDefinition> Achievements { get { return this.AchievementsOption.Value; } set { this.AchievementsOption = new Option<List<AchievementProgressWithDefinition>>(value); } }
 
@@ -140,9 +141,9 @@ namespace TalonOneSdk.Model
         public Option<List<RewardWithUnlocks>> RewardsOption { get; private set; }
 
         /// <summary>
-        /// The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.
+        /// The rewards that the customer has unlocked but not used. Expired customer rewards are not returned.
         /// </summary>
-        /// <value>The customer rewards that are &#x60;unlocked&#x60; and not yet &#x60;used&#x60;.</value>
+        /// <value>The rewards that the customer has unlocked but not used. Expired customer rewards are not returned.</value>
         [JsonPropertyName("rewards")]
         public List<RewardWithUnlocks> Rewards { get { return this.RewardsOption.Value; } set { this.RewardsOption = new Option<List<RewardWithUnlocks>>(value); } }
 

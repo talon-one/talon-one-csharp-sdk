@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'UsageLimit'
+        /// </summary>
+        [Fact]
+        public void UsageLimitTest()
+        {
+            // TODO unit test for the property 'UsageLimit'
+        }
+
+        /// <summary>
         /// Test the property 'CampaignId'
         /// </summary>
         [Fact]
@@ -132,15 +141,6 @@ namespace TalonOneSdk.Test.Model
         public void ExpiryDateTest()
         {
             // TODO unit test for the property 'ExpiryDate'
-        }
-
-        /// <summary>
-        /// Test the property 'UsageLimit'
-        /// </summary>
-        [Fact]
-        public void UsageLimitTest()
-        {
-            // TODO unit test for the property 'UsageLimit'
         }
 
         /// <summary>

@@ -261,6 +261,16 @@ namespace TalonOneSdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Block" /> class.
         /// </summary>
+        /// <param name="updateLoyaltyProgramMembershipBlock"></param>
+        public Block(UpdateLoyaltyProgramMembershipBlock updateLoyaltyProgramMembershipBlock)
+        {
+            UpdateLoyaltyProgramMembershipBlock = updateLoyaltyProgramMembershipBlock;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Block" /> class.
+        /// </summary>
         /// <param name="checkLoyaltyCardBlock"></param>
         public Block(CheckLoyaltyCardBlock checkLoyaltyCardBlock)
         {
@@ -416,6 +426,11 @@ namespace TalonOneSdk.Model
         public UpdateLoyaltyPointsExpiryBlock UpdateLoyaltyPointsExpiryBlock { get; set; }
 
         /// <summary>
+        /// Gets or Sets UpdateLoyaltyProgramMembershipBlock
+        /// </summary>
+        public UpdateLoyaltyProgramMembershipBlock UpdateLoyaltyProgramMembershipBlock { get; set; }
+
+        /// <summary>
         /// Gets or Sets CheckLoyaltyCardBlock
         /// </summary>
         public CheckLoyaltyCardBlock CheckLoyaltyCardBlock { get; set; }
@@ -534,6 +549,7 @@ namespace TalonOneSdk.Model
             UpdateAttributeValueBlock updateAttributeValueUpdateAttributeValueBlock = null;
             UpdateAudienceMembershipBlock updateAudienceMembershipUpdateAudienceMembershipBlock = null;
             UpdateLoyaltyPointsExpiryBlock updateLoyaltyPointsExpiryUpdateLoyaltyPointsExpiryBlock = null;
+            UpdateLoyaltyProgramMembershipBlock updateLoyaltyProgramMembershipUpdateLoyaltyProgramMembershipBlock = null;
 
             Utf8JsonReader utf8JsonReaderDiscriminator = utf8JsonReader;
             while (utf8JsonReaderDiscriminator.Read())
@@ -686,6 +702,11 @@ namespace TalonOneSdk.Model
                             Utf8JsonReader utf8JsonReaderUpdateLoyaltyPointsExpiryBlock = utf8JsonReader;
                             updateLoyaltyPointsExpiryUpdateLoyaltyPointsExpiryBlock = JsonSerializer.Deserialize<UpdateLoyaltyPointsExpiryBlock>(ref utf8JsonReaderUpdateLoyaltyPointsExpiryBlock, jsonSerializerOptions);
                         }
+                        if (discriminator.Equals("updateLoyaltyProgramMembership"))
+                        {
+                            Utf8JsonReader utf8JsonReaderUpdateLoyaltyProgramMembershipBlock = utf8JsonReader;
+                            updateLoyaltyProgramMembershipUpdateLoyaltyProgramMembershipBlock = JsonSerializer.Deserialize<UpdateLoyaltyProgramMembershipBlock>(ref utf8JsonReaderUpdateLoyaltyProgramMembershipBlock, jsonSerializerOptions);
+                        }
                     }
                 }
             }
@@ -791,6 +812,9 @@ namespace TalonOneSdk.Model
 
             if (updateLoyaltyPointsExpiryUpdateLoyaltyPointsExpiryBlock != null)
                 return new Block(updateLoyaltyPointsExpiryUpdateLoyaltyPointsExpiryBlock);
+
+            if (updateLoyaltyProgramMembershipUpdateLoyaltyProgramMembershipBlock != null)
+                return new Block(updateLoyaltyProgramMembershipUpdateLoyaltyProgramMembershipBlock);
 
             throw new JsonException();
         }
@@ -953,6 +977,12 @@ namespace TalonOneSdk.Model
             {
                 UpdateLoyaltyPointsExpiryBlockJsonConverter updateLoyaltyPointsExpiryBlockJsonConverter = (UpdateLoyaltyPointsExpiryBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(block.UpdateLoyaltyPointsExpiryBlock.GetType()));
                 updateLoyaltyPointsExpiryBlockJsonConverter.WriteProperties(writer, block.UpdateLoyaltyPointsExpiryBlock, jsonSerializerOptions);
+            }
+
+            if (block.UpdateLoyaltyProgramMembershipBlock != null)
+            {
+                UpdateLoyaltyProgramMembershipBlockJsonConverter updateLoyaltyProgramMembershipBlockJsonConverter = (UpdateLoyaltyProgramMembershipBlockJsonConverter) jsonSerializerOptions.Converters.First(c => c.CanConvert(block.UpdateLoyaltyProgramMembershipBlock.GetType()));
+                updateLoyaltyProgramMembershipBlockJsonConverter.WriteProperties(writer, block.UpdateLoyaltyProgramMembershipBlock, jsonSerializerOptions);
             }
 
             if (block.CheckLoyaltyCardBlock != null)

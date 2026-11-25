@@ -54,6 +54,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'UsageLimit'
+        /// </summary>
+        [Fact]
+        public void UsageLimitTest()
+        {
+            // TODO unit test for the property 'UsageLimit'
+        }
+
+        /// <summary>
         /// Test the property 'NumberOfCoupons'
         /// </summary>
         [Fact]
@@ -69,15 +78,6 @@ namespace TalonOneSdk.Test.Model
         public void AttributesTest()
         {
             // TODO unit test for the property 'Attributes'
-        }
-
-        /// <summary>
-        /// Test the property 'UsageLimit'
-        /// </summary>
-        [Fact]
-        public void UsageLimitTest()
-        {
-            // TODO unit test for the property 'UsageLimit'
         }
 
         /// <summary>

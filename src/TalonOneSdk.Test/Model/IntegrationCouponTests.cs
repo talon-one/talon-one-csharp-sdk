@@ -81,24 +81,6 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'UsageCounter'
-        /// </summary>
-        [Fact]
-        public void UsageCounterTest()
-        {
-            // TODO unit test for the property 'UsageCounter'
-        }
-
-        /// <summary>
-        /// Test the property 'ProfileRedemptionCount'
-        /// </summary>
-        [Fact]
-        public void ProfileRedemptionCountTest()
-        {
-            // TODO unit test for the property 'ProfileRedemptionCount'
-        }
-
-        /// <summary>
         /// Test the property 'Value'
         /// </summary>
         [Fact]
@@ -114,6 +96,24 @@ namespace TalonOneSdk.Test.Model
         public void UsageLimitTest()
         {
             // TODO unit test for the property 'UsageLimit'
+        }
+
+        /// <summary>
+        /// Test the property 'UsageCounter'
+        /// </summary>
+        [Fact]
+        public void UsageCounterTest()
+        {
+            // TODO unit test for the property 'UsageCounter'
+        }
+
+        /// <summary>
+        /// Test the property 'ProfileRedemptionCount'
+        /// </summary>
+        [Fact]
+        public void ProfileRedemptionCountTest()
+        {
+            // TODO unit test for the property 'ProfileRedemptionCount'
         }
 
         /// <summary>

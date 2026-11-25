@@ -90,7 +90,17 @@ namespace TalonOneSdk.Model
             /// <summary>
             /// Enum Notcompleted for value: not(completed)
             /// </summary>
-            Notcompleted = 7
+            Notcompleted = 7,
+
+            /// <summary>
+            /// Enum Expired for value: expired
+            /// </summary>
+            Expired = 8,
+
+            /// <summary>
+            /// Enum Notexpired for value: not(expired)
+            /// </summary>
+            Notexpired = 9
         }
 
         /// <summary>
@@ -121,6 +131,12 @@ namespace TalonOneSdk.Model
 
             if (value.Equals("not(completed)"))
                 return OperatorEnum.Notcompleted;
+
+            if (value.Equals("expired"))
+                return OperatorEnum.Expired;
+
+            if (value.Equals("not(expired)"))
+                return OperatorEnum.Notexpired;
 
             throw new NotImplementedException($"Could not convert value to type OperatorEnum: '{value}'");
         }
@@ -153,6 +169,12 @@ namespace TalonOneSdk.Model
             if (value.Equals("not(completed)"))
                 return OperatorEnum.Notcompleted;
 
+            if (value.Equals("expired"))
+                return OperatorEnum.Expired;
+
+            if (value.Equals("not(expired)"))
+                return OperatorEnum.Notexpired;
+
             return null;
         }
 
@@ -184,6 +206,12 @@ namespace TalonOneSdk.Model
 
             if (value == OperatorEnum.Notcompleted)
                 return "not(completed)";
+
+            if (value == OperatorEnum.Expired)
+                return "expired";
+
+            if (value == OperatorEnum.Notexpired)
+                return "not(expired)";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

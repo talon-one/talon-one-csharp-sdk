@@ -81,6 +81,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ClientSecret'
+        /// </summary>
+        [Fact]
+        public void ClientSecretTest()
+        {
+            // TODO unit test for the property 'ClientSecret'
+        }
+
+        /// <summary>
         /// Test the property 'RedirectUri'
         /// </summary>
         [Fact]

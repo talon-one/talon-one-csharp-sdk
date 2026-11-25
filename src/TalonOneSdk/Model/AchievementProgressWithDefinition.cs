@@ -46,11 +46,12 @@ namespace TalonOneSdk.Model
         /// <param name="endDate">Timestamp at which point the achievement ends and resets for the customer.</param>
         /// <param name="campaignId">This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. This field contains the first campaign ID from the related &#x60;campaignIds&#x60;, and is omitted when &#x60;campaignIds&#x60; is empty.</param>
         /// <param name="target">The required number of actions or the transactional milestone to complete the achievement.</param>
+        /// <param name="achievementPeriod">The relative duration after which the achievement ends and resets for a particular customer profile. This property is omitted for on-completion achievements which have no specified period.  The period is a positive real number followed by one letter indicating the time unit, and an optional rounding suffix.  Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;, &#x60;30D_D&#x60;, &#x60;1W_U&#x60;.  The letters indicate the following time units:  - &#x60;s&#x60;: Seconds.  - &#x60;m&#x60;: Minutes.  - &#x60;h&#x60;: Hours.  - &#x60;D&#x60;: Days.  - &#x60;W&#x60;: Weeks.  - &#x60;M&#x60;: Months.  - &#x60;Y&#x60;: Years.  If a suffix is present, it indicates the following rounding:  - &#x60;_D&#x60;: Rounds down, to the start of the day. It applies to days only. For example, &#x60;30D_D&#x60; ends at the start of the day, 30 days after the customer starts the achievement.  - &#x60;_U&#x60;: Rounds up, to the end of the day, week, month or year. It applies to days, weeks, months and years. For example, &#x60;1W_U&#x60; ends at the end of the week in which the one-week period would end. </param>
         /// <param name="achievementFixedStartDate">The achievement&#39;s start date when &#x60;achievementActivationPolicy&#x60; is equal to &#x60;fixed_schedule&#x60;.  **Note:** It is an RFC3339 timestamp string. </param>
         /// <param name="achievementEndDate">The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It is an RFC3339 timestamp string. </param>
         /// <param name="achievementAllowRollbackAfterCompletion">When &#x60;true&#x60;, customer progress can be rolled back in completed achievements.</param>
         [JsonConstructor]
-        public AchievementProgressWithDefinition(StatusEnum status, decimal progress, long achievementId, string name, string title, string description, List<long> campaignIds, List<CampaignReference> referencedByCampaigns, AchievementRecurrencePolicyEnum achievementRecurrencePolicy, AchievementActivationPolicyEnum achievementActivationPolicy, Option<DateTime?> startDate = default, Option<DateTime?> completionDate = default, Option<DateTime?> endDate = default, Option<long?> campaignId = default, Option<decimal?> target = default, Option<DateTime?> achievementFixedStartDate = default, Option<DateTime?> achievementEndDate = default, Option<bool?> achievementAllowRollbackAfterCompletion = default)
+        public AchievementProgressWithDefinition(StatusEnum status, decimal progress, long achievementId, string name, string title, string description, List<long> campaignIds, List<CampaignReference> referencedByCampaigns, AchievementRecurrencePolicyEnum achievementRecurrencePolicy, AchievementActivationPolicyEnum achievementActivationPolicy, Option<DateTime?> startDate = default, Option<DateTime?> completionDate = default, Option<DateTime?> endDate = default, Option<long?> campaignId = default, Option<decimal?> target = default, Option<string> achievementPeriod = default, Option<DateTime?> achievementFixedStartDate = default, Option<DateTime?> achievementEndDate = default, Option<bool?> achievementAllowRollbackAfterCompletion = default)
         {
             Status = status;
             Progress = progress;
@@ -67,6 +68,7 @@ namespace TalonOneSdk.Model
             EndDateOption = endDate;
             CampaignIdOption = campaignId;
             TargetOption = target;
+            AchievementPeriodOption = achievementPeriod;
             AchievementFixedStartDateOption = achievementFixedStartDate;
             AchievementEndDateOption = achievementEndDate;
             AchievementAllowRollbackAfterCompletionOption = achievementAllowRollbackAfterCompletion;
@@ -474,6 +476,21 @@ namespace TalonOneSdk.Model
         public decimal? Target { get { return this.TargetOption.Value; } set { this.TargetOption = new Option<decimal?>(value); } }
 
         /// <summary>
+        /// Used to track the state of AchievementPeriod
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> AchievementPeriodOption { get; private set; }
+
+        /// <summary>
+        /// The relative duration after which the achievement ends and resets for a particular customer profile. This property is omitted for on-completion achievements which have no specified period.  The period is a positive real number followed by one letter indicating the time unit, and an optional rounding suffix.  Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;, &#x60;30D_D&#x60;, &#x60;1W_U&#x60;.  The letters indicate the following time units:  - &#x60;s&#x60;: Seconds.  - &#x60;m&#x60;: Minutes.  - &#x60;h&#x60;: Hours.  - &#x60;D&#x60;: Days.  - &#x60;W&#x60;: Weeks.  - &#x60;M&#x60;: Months.  - &#x60;Y&#x60;: Years.  If a suffix is present, it indicates the following rounding:  - &#x60;_D&#x60;: Rounds down, to the start of the day. It applies to days only. For example, &#x60;30D_D&#x60; ends at the start of the day, 30 days after the customer starts the achievement.  - &#x60;_U&#x60;: Rounds up, to the end of the day, week, month or year. It applies to days, weeks, months and years. For example, &#x60;1W_U&#x60; ends at the end of the week in which the one-week period would end. 
+        /// </summary>
+        /// <value>The relative duration after which the achievement ends and resets for a particular customer profile. This property is omitted for on-completion achievements which have no specified period.  The period is a positive real number followed by one letter indicating the time unit, and an optional rounding suffix.  Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;, &#x60;30D_D&#x60;, &#x60;1W_U&#x60;.  The letters indicate the following time units:  - &#x60;s&#x60;: Seconds.  - &#x60;m&#x60;: Minutes.  - &#x60;h&#x60;: Hours.  - &#x60;D&#x60;: Days.  - &#x60;W&#x60;: Weeks.  - &#x60;M&#x60;: Months.  - &#x60;Y&#x60;: Years.  If a suffix is present, it indicates the following rounding:  - &#x60;_D&#x60;: Rounds down, to the start of the day. It applies to days only. For example, &#x60;30D_D&#x60; ends at the start of the day, 30 days after the customer starts the achievement.  - &#x60;_U&#x60;: Rounds up, to the end of the day, week, month or year. It applies to days, weeks, months and years. For example, &#x60;1W_U&#x60; ends at the end of the week in which the one-week period would end. </value>
+        /* <example>1W</example> */
+        [JsonPropertyName("achievementPeriod")]
+        public string AchievementPeriod { get { return this.AchievementPeriodOption.Value; } set { this.AchievementPeriodOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of AchievementFixedStartDate
         /// </summary>
         [JsonIgnore]
@@ -547,6 +564,7 @@ namespace TalonOneSdk.Model
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  Target: ").Append(Target).Append("\n");
+            sb.Append("  AchievementPeriod: ").Append(AchievementPeriod).Append("\n");
             sb.Append("  AchievementFixedStartDate: ").Append(AchievementFixedStartDate).Append("\n");
             sb.Append("  AchievementEndDate: ").Append(AchievementEndDate).Append("\n");
             sb.Append("  AchievementAllowRollbackAfterCompletion: ").Append(AchievementAllowRollbackAfterCompletion).Append("\n");
@@ -660,6 +678,7 @@ namespace TalonOneSdk.Model
             Option<DateTime?> endDate = default;
             Option<long?> campaignId = default;
             Option<decimal?> target = default;
+            Option<string> achievementPeriod = default;
             Option<DateTime?> achievementFixedStartDate = default;
             Option<DateTime?> achievementEndDate = default;
             Option<bool?> achievementAllowRollbackAfterCompletion = default;
@@ -745,6 +764,9 @@ namespace TalonOneSdk.Model
                         case "target":
                             target = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
                             break;
+                        case "achievementPeriod":
+                            achievementPeriod = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "achievementFixedStartDate":
                             achievementFixedStartDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -820,7 +842,7 @@ namespace TalonOneSdk.Model
             if (achievementActivationPolicy.IsSet && achievementActivationPolicy.Value == null)
                 throw new JsonException("Property is not nullable for class AchievementProgressWithDefinition: achievementActivationPolicy.");
 
-            return new AchievementProgressWithDefinition(status.Value.Value, progress.Value.Value, achievementId.Value.Value, name.Value, title.Value, description.Value, campaignIds.Value, referencedByCampaigns.Value, achievementRecurrencePolicy.Value.Value, achievementActivationPolicy.Value.Value, startDate, completionDate, endDate, campaignId, target, achievementFixedStartDate, achievementEndDate, achievementAllowRollbackAfterCompletion);
+            return new AchievementProgressWithDefinition(status.Value.Value, progress.Value.Value, achievementId.Value.Value, name.Value, title.Value, description.Value, campaignIds.Value, referencedByCampaigns.Value, achievementRecurrencePolicy.Value.Value, achievementActivationPolicy.Value.Value, startDate, completionDate, endDate, campaignId, target, achievementPeriod, achievementFixedStartDate, achievementEndDate, achievementAllowRollbackAfterCompletion);
         }
 
         /// <summary>
@@ -894,6 +916,9 @@ namespace TalonOneSdk.Model
 
             if (achievementProgressWithDefinition.TargetOption.IsSet)
                 writer.WriteNumber("target", achievementProgressWithDefinition.TargetOption.Value.Value);
+
+            if (achievementProgressWithDefinition.AchievementPeriodOption.IsSet)
+                writer.WriteString("achievementPeriod", achievementProgressWithDefinition.AchievementPeriod);
 
             if (achievementProgressWithDefinition.AchievementFixedStartDateOption.IsSet)
                 writer.WriteString("achievementFixedStartDate", achievementProgressWithDefinition.AchievementFixedStartDateOption.Value.Value.ToString(AchievementFixedStartDateFormat));

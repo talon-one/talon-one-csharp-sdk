@@ -35,26 +35,26 @@ namespace TalonOneSdk.Model
         /// <param name="created">The time this entity was created.</param>
         /// <param name="applicationId">The ID of the Application that owns this entity.</param>
         /// <param name="title">Campaigner-friendly name for the template that will be shown in the rule editor.</param>
+        /// <param name="description">A short description of the template that will be shown in the rule editor.</param>
+        /// <param name="help">Extended help text for the template.</param>
         /// <param name="category">Used for grouping templates in the rule editor sidebar.</param>
         /// <param name="expr">A Talang expression that contains variable bindings referring to args.</param>
         /// <param name="args">An array of argument definitions.</param>
         /// <param name="name">The template name used in Talang.</param>
-        /// <param name="description">A short description of the template that will be shown in the rule editor.</param>
-        /// <param name="help">Extended help text for the template.</param>
         /// <param name="expose">A flag to control exposure in Rule Builder. (default to false)</param>
         [JsonConstructor]
-        public TemplateDef(long id, DateTime created, long applicationId, string title, string category, List<Object> expr, List<TemplateArgDef> args, string name, Option<string> description = default, Option<string> help = default, Option<bool?> expose = default)
+        public TemplateDef(long id, DateTime created, long applicationId, string title, string description, string help, string category, List<Object> expr, List<TemplateArgDef> args, string name, Option<bool?> expose = default)
         {
             Id = id;
             Created = created;
             ApplicationId = applicationId;
             Title = title;
+            Description = description;
+            Help = help;
             Category = category;
             Expr = expr;
             Args = args;
             Name = name;
-            DescriptionOption = description;
-            HelpOption = help;
             ExposeOption = expose;
             OnCreated();
         }
@@ -93,6 +93,20 @@ namespace TalonOneSdk.Model
         public string Title { get; set; }
 
         /// <summary>
+        /// A short description of the template that will be shown in the rule editor.
+        /// </summary>
+        /// <value>A short description of the template that will be shown in the rule editor.</value>
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Extended help text for the template.
+        /// </summary>
+        /// <value>Extended help text for the template.</value>
+        [JsonPropertyName("help")]
+        public string Help { get; set; }
+
+        /// <summary>
         /// Used for grouping templates in the rule editor sidebar.
         /// </summary>
         /// <value>Used for grouping templates in the rule editor sidebar.</value>
@@ -119,34 +133,6 @@ namespace TalonOneSdk.Model
         /// <value>The template name used in Talang.</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Used to track the state of Description
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> DescriptionOption { get; private set; }
-
-        /// <summary>
-        /// A short description of the template that will be shown in the rule editor.
-        /// </summary>
-        /// <value>A short description of the template that will be shown in the rule editor.</value>
-        [JsonPropertyName("description")]
-        public string Description { get { return this.DescriptionOption.Value; } set { this.DescriptionOption = new Option<string>(value); } }
-
-        /// <summary>
-        /// Used to track the state of Help
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> HelpOption { get; private set; }
-
-        /// <summary>
-        /// Extended help text for the template.
-        /// </summary>
-        /// <value>Extended help text for the template.</value>
-        [JsonPropertyName("help")]
-        public string Help { get { return this.HelpOption.Value; } set { this.HelpOption = new Option<string>(value); } }
 
         /// <summary>
         /// Used to track the state of Expose
@@ -180,12 +166,12 @@ namespace TalonOneSdk.Model
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Help: ").Append(Help).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Expr: ").Append(Expr).Append("\n");
             sb.Append("  Args: ").Append(Args).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Help: ").Append(Help).Append("\n");
             sb.Append("  Expose: ").Append(Expose).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
@@ -262,12 +248,12 @@ namespace TalonOneSdk.Model
             Option<DateTime?> created = default;
             Option<long?> applicationId = default;
             Option<string> title = default;
+            Option<string> description = default;
+            Option<string> help = default;
             Option<string> category = default;
             Option<List<Object>> expr = default;
             Option<List<TemplateArgDef>> args = default;
             Option<string> name = default;
-            Option<string> description = default;
-            Option<string> help = default;
             Option<bool?> expose = default;
 
             while (utf8JsonReader.Read())
@@ -297,6 +283,12 @@ namespace TalonOneSdk.Model
                         case "title":
                             title = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "description":
+                            description = new Option<string>(utf8JsonReader.GetString());
+                            break;
+                        case "help":
+                            help = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "category":
                             category = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -308,12 +300,6 @@ namespace TalonOneSdk.Model
                             break;
                         case "name":
                             name = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "description":
-                            description = new Option<string>(utf8JsonReader.GetString());
-                            break;
-                        case "help":
-                            help = new Option<string>(utf8JsonReader.GetString());
                             break;
                         case "expose":
                             expose = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -335,6 +321,12 @@ namespace TalonOneSdk.Model
 
             if (!title.IsSet)
                 throw new JsonException("Property is required for class TemplateDef: title.");
+
+            if (!description.IsSet)
+                throw new JsonException("Property is required for class TemplateDef: description.");
+
+            if (!help.IsSet)
+                throw new JsonException("Property is required for class TemplateDef: help.");
 
             if (!category.IsSet)
                 throw new JsonException("Property is required for class TemplateDef: category.");
@@ -360,6 +352,12 @@ namespace TalonOneSdk.Model
             if (title.IsSet && title.Value == null)
                 throw new JsonException("Property is not nullable for class TemplateDef: title.");
 
+            if (description.IsSet && description.Value == null)
+                throw new JsonException("Property is not nullable for class TemplateDef: description.");
+
+            if (help.IsSet && help.Value == null)
+                throw new JsonException("Property is not nullable for class TemplateDef: help.");
+
             if (category.IsSet && category.Value == null)
                 throw new JsonException("Property is not nullable for class TemplateDef: category.");
 
@@ -372,7 +370,7 @@ namespace TalonOneSdk.Model
             if (name.IsSet && name.Value == null)
                 throw new JsonException("Property is not nullable for class TemplateDef: name.");
 
-            return new TemplateDef(id.Value.Value, created.Value.Value, applicationId.Value.Value, title.Value, category.Value, expr.Value, args.Value, name.Value, description, help, expose);
+            return new TemplateDef(id.Value.Value, created.Value.Value, applicationId.Value.Value, title.Value, description.Value, help.Value, category.Value, expr.Value, args.Value, name.Value, expose);
         }
 
         /// <summary>
@@ -400,6 +398,12 @@ namespace TalonOneSdk.Model
             if (templateDef.Title == null)
                 throw new JsonException("Cannot write null property TemplateDef.Title to non-nullable JSON property 'title'.");
 
+            if (templateDef.Description == null)
+                throw new JsonException("Cannot write null property TemplateDef.Description to non-nullable JSON property 'description'.");
+
+            if (templateDef.Help == null)
+                throw new JsonException("Cannot write null property TemplateDef.Help to non-nullable JSON property 'help'.");
+
             if (templateDef.Category == null)
                 throw new JsonException("Cannot write null property TemplateDef.Category to non-nullable JSON property 'category'.");
 
@@ -420,6 +424,10 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("title", templateDef.Title);
 
+            writer.WriteString("description", templateDef.Description);
+
+            writer.WriteString("help", templateDef.Help);
+
             writer.WriteString("category", templateDef.Category);
 
             writer.WritePropertyName("expr");
@@ -427,12 +435,6 @@ namespace TalonOneSdk.Model
             writer.WritePropertyName("args");
             JsonSerializer.Serialize(writer, templateDef.Args, jsonSerializerOptions);
             writer.WriteString("name", templateDef.Name);
-
-            if (templateDef.DescriptionOption.IsSet)
-                writer.WriteString("description", templateDef.Description);
-
-            if (templateDef.HelpOption.IsSet)
-                writer.WriteString("help", templateDef.Help);
 
             if (templateDef.ExposeOption.IsSet)
                 writer.WriteBoolean("expose", templateDef.ExposeOption.Value.Value);

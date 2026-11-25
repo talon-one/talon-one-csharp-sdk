@@ -38,8 +38,9 @@ namespace TalonOneSdk.Model
         /// <param name="target">target</param>
         /// <param name="id">Unique identifier for this block.</param>
         /// <param name="tags">Semantic labels attached to this block.</param>
+        /// <param name="excludedFromPriceHistory">When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s [price history](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#price-history).</param>
         [JsonConstructor]
-        public AwardDiscountBlock(string type, string name, AwardDiscountBlock1Value value, bool partial, AwardDiscountTarget target, Option<string> id = default, Option<List<string>> tags = default)
+        public AwardDiscountBlock(string type, string name, AwardDiscountBlock1Value value, bool partial, AwardDiscountTarget target, Option<string> id = default, Option<List<string>> tags = default, Option<bool?> excludedFromPriceHistory = default)
         {
             Type = type;
             Name = name;
@@ -48,6 +49,7 @@ namespace TalonOneSdk.Model
             Target = target;
             IdOption = id;
             TagsOption = tags;
+            ExcludedFromPriceHistoryOption = excludedFromPriceHistory;
             OnCreated();
         }
 
@@ -118,6 +120,21 @@ namespace TalonOneSdk.Model
         public List<string> Tags { get { return this.TagsOption.Value; } }
 
         /// <summary>
+        /// Used to track the state of ExcludedFromPriceHistory
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> ExcludedFromPriceHistoryOption { get; private set; }
+
+        /// <summary>
+        /// When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s [price history](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#price-history).
+        /// </summary>
+        /// <value>When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s [price history](https://docs.talon.one/docs/dev/integration-guides/best-prior-price#price-history).</value>
+        /* <example>false</example> */
+        [JsonPropertyName("excludedFromPriceHistory")]
+        public bool? ExcludedFromPriceHistory { get { return this.ExcludedFromPriceHistoryOption.Value; } set { this.ExcludedFromPriceHistoryOption = new Option<bool?>(value); } }
+
+        /// <summary>
         /// Gets or Sets additional properties
         /// </summary>
         [JsonExtensionData]
@@ -138,6 +155,7 @@ namespace TalonOneSdk.Model
             sb.Append("  Target: ").Append(Target).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  ExcludedFromPriceHistory: ").Append(ExcludedFromPriceHistory).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -193,6 +211,7 @@ namespace TalonOneSdk.Model
             Option<AwardDiscountTarget> target = default;
             Option<string> id = default;
             Option<List<string>> tags = default;
+            Option<bool?> excludedFromPriceHistory = default;
 
             while (utf8JsonReader.Read())
             {
@@ -230,6 +249,9 @@ namespace TalonOneSdk.Model
                         case "tags":
                             tags = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "excludedFromPriceHistory":
+                            excludedFromPriceHistory = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         default:
                             break;
                     }
@@ -266,7 +288,7 @@ namespace TalonOneSdk.Model
             if (target.IsSet && target.Value == null)
                 throw new JsonException("Property is not nullable for class AwardDiscountBlock: target.");
 
-            return new AwardDiscountBlock(type.Value, name.Value, value.Value, partial.Value.Value, target.Value, id, tags);
+            return new AwardDiscountBlock(type.Value, name.Value, value.Value, partial.Value.Value, target.Value, id, tags, excludedFromPriceHistory);
         }
 
         /// <summary>
@@ -321,6 +343,8 @@ namespace TalonOneSdk.Model
                 writer.WritePropertyName("tags");
                 JsonSerializer.Serialize(writer, awardDiscountBlock.Tags, jsonSerializerOptions);
             }
+            if (awardDiscountBlock.ExcludedFromPriceHistoryOption.IsSet)
+                writer.WriteBoolean("excludedFromPriceHistory", awardDiscountBlock.ExcludedFromPriceHistoryOption.Value.Value);
         }
     }
 }

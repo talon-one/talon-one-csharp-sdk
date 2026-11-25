@@ -34,27 +34,27 @@ namespace TalonOneSdk.Model
         /// <param name="id">The internal ID of the customer profile.</param>
         /// <param name="created">The time this entity was created.</param>
         /// <param name="integrationId">The integration ID set by your integration layer.</param>
+        /// <param name="attributes">Arbitrary properties associated with this item.</param>
         /// <param name="accountId">The ID of the Talon.One account that owns this profile.</param>
         /// <param name="closedSessions">The total number of closed sessions. Does not include closed sessions that have been cancelled or reopened. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states).</param>
         /// <param name="totalSales">The total amount of money spent by the customer **before** discounts are applied.  The total sales amount excludes the following: - Cancelled or reopened sessions. - Returned items. </param>
         /// <param name="lastActivity">Timestamp of the most recent event received from this customer. This field is updated on calls that trigger the Rule Engine and that are not [dry requests](https://docs.talon.one/docs/dev/integration-api/dry-requests/#overlay).  For example, [reserving a coupon](https://docs.talon.one/integration-api#tag/Coupons/operation/createCouponReservation) for a customer doesn&#39;t impact this field. </param>
-        /// <param name="attributes">Arbitrary properties associated with this item.</param>
         /// <param name="loyaltyMemberships">**DEPRECATED. Always returns &#x60;null&#x60;.** A list of loyalty programs joined by the customer. </param>
         /// <param name="audienceMemberships">The audiences the customer belongs to.</param>
         /// <param name="sandbox">An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments). </param>
         /// <param name="advocateIntegrationId">The Integration ID of the Customer Profile that referred this Customer in the Application.</param>
         /// <param name="loyaltyProgramJoinDates">The dates on which the customer joined the profile-based loyalty programs they are part of. Returned only when the &#x60;withLoyaltyMemberships&#x60; query parameter is &#x60;true&#x60;.</param>
         [JsonConstructor]
-        public ApplicationCustomer(long id, DateTime created, string integrationId, long accountId, long closedSessions, decimal totalSales, DateTime lastActivity, Option<Dictionary<string, Object>> attributes = default, Option<List<LoyaltyMembership>> loyaltyMemberships = default, Option<List<AudienceMembership>> audienceMemberships = default, Option<bool?> sandbox = default, Option<string> advocateIntegrationId = default, Option<List<LoyaltyMembership>> loyaltyProgramJoinDates = default)
+        public ApplicationCustomer(long id, DateTime created, string integrationId, Dictionary<string, Object> attributes, long accountId, long closedSessions, decimal totalSales, DateTime lastActivity, Option<List<LoyaltyMembership>> loyaltyMemberships = default, Option<List<AudienceMembership>> audienceMemberships = default, Option<bool?> sandbox = default, Option<string> advocateIntegrationId = default, Option<List<LoyaltyMembership>> loyaltyProgramJoinDates = default)
         {
             Id = id;
             Created = created;
             IntegrationId = integrationId;
+            Attributes = attributes;
             AccountId = accountId;
             ClosedSessions = closedSessions;
             TotalSales = totalSales;
             LastActivity = lastActivity;
-            AttributesOption = attributes;
             LoyaltyMembershipsOption = loyaltyMemberships;
             AudienceMembershipsOption = audienceMemberships;
             SandboxOption = sandbox;
@@ -90,6 +90,14 @@ namespace TalonOneSdk.Model
         public string IntegrationId { get; set; }
 
         /// <summary>
+        /// Arbitrary properties associated with this item.
+        /// </summary>
+        /// <value>Arbitrary properties associated with this item.</value>
+        /* <example>{Language&#x3D;english, ShippingCountry&#x3D;DE}</example> */
+        [JsonPropertyName("attributes")]
+        public Dictionary<string, Object> Attributes { get; set; }
+
+        /// <summary>
         /// The ID of the Talon.One account that owns this profile.
         /// </summary>
         /// <value>The ID of the Talon.One account that owns this profile.</value>
@@ -119,21 +127,6 @@ namespace TalonOneSdk.Model
         /* <example>2020-02-08T14:15:20Z</example> */
         [JsonPropertyName("lastActivity")]
         public DateTime LastActivity { get; set; }
-
-        /// <summary>
-        /// Used to track the state of Attributes
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Dictionary<string, Object>> AttributesOption { get; private set; }
-
-        /// <summary>
-        /// Arbitrary properties associated with this item.
-        /// </summary>
-        /// <value>Arbitrary properties associated with this item.</value>
-        /* <example>{Language&#x3D;english, ShippingCountry&#x3D;DE}</example> */
-        [JsonPropertyName("attributes")]
-        public Dictionary<string, Object> Attributes { get { return this.AttributesOption.Value; } set { this.AttributesOption = new Option<Dictionary<string, Object>>(value); } }
 
         /// <summary>
         /// Used to track the state of LoyaltyMemberships
@@ -224,11 +217,11 @@ namespace TalonOneSdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  IntegrationId: ").Append(IntegrationId).Append("\n");
+            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  ClosedSessions: ").Append(ClosedSessions).Append("\n");
             sb.Append("  TotalSales: ").Append(TotalSales).Append("\n");
             sb.Append("  LastActivity: ").Append(LastActivity).Append("\n");
-            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("  LoyaltyMemberships: ").Append(LoyaltyMemberships).Append("\n");
             sb.Append("  AudienceMemberships: ").Append(AudienceMemberships).Append("\n");
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
@@ -307,11 +300,11 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<DateTime?> created = default;
             Option<string> integrationId = default;
+            Option<Dictionary<string, Object>> attributes = default;
             Option<long?> accountId = default;
             Option<long?> closedSessions = default;
             Option<decimal?> totalSales = default;
             Option<DateTime?> lastActivity = default;
-            Option<Dictionary<string, Object>> attributes = default;
             Option<List<LoyaltyMembership>> loyaltyMemberships = default;
             Option<List<AudienceMembership>> audienceMemberships = default;
             Option<bool?> sandbox = default;
@@ -342,6 +335,9 @@ namespace TalonOneSdk.Model
                         case "integrationId":
                             integrationId = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "attributes":
+                            attributes = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "accountId":
                             accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -353,9 +349,6 @@ namespace TalonOneSdk.Model
                             break;
                         case "lastActivity":
                             lastActivity = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
-                            break;
-                        case "attributes":
-                            attributes = new Option<Dictionary<string, Object>>(JsonSerializer.Deserialize<Dictionary<string, Object>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "loyaltyMemberships":
                             loyaltyMemberships = new Option<List<LoyaltyMembership>>(JsonSerializer.Deserialize<List<LoyaltyMembership>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -387,6 +380,9 @@ namespace TalonOneSdk.Model
             if (!integrationId.IsSet)
                 throw new JsonException("Property is required for class ApplicationCustomer: integrationId.");
 
+            if (!attributes.IsSet)
+                throw new JsonException("Property is required for class ApplicationCustomer: attributes.");
+
             if (!accountId.IsSet)
                 throw new JsonException("Property is required for class ApplicationCustomer: accountId.");
 
@@ -408,6 +404,9 @@ namespace TalonOneSdk.Model
             if (integrationId.IsSet && integrationId.Value == null)
                 throw new JsonException("Property is not nullable for class ApplicationCustomer: integrationId.");
 
+            if (attributes.IsSet && attributes.Value == null)
+                throw new JsonException("Property is not nullable for class ApplicationCustomer: attributes.");
+
             if (accountId.IsSet && accountId.Value == null)
                 throw new JsonException("Property is not nullable for class ApplicationCustomer: accountId.");
 
@@ -420,7 +419,7 @@ namespace TalonOneSdk.Model
             if (lastActivity.IsSet && lastActivity.Value == null)
                 throw new JsonException("Property is not nullable for class ApplicationCustomer: lastActivity.");
 
-            return new ApplicationCustomer(id.Value.Value, created.Value.Value, integrationId.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, attributes, loyaltyMemberships, audienceMemberships, sandbox, advocateIntegrationId, loyaltyProgramJoinDates);
+            return new ApplicationCustomer(id.Value.Value, created.Value.Value, integrationId.Value, attributes.Value, accountId.Value.Value, closedSessions.Value.Value, totalSales.Value.Value, lastActivity.Value.Value, loyaltyMemberships, audienceMemberships, sandbox, advocateIntegrationId, loyaltyProgramJoinDates);
         }
 
         /// <summary>
@@ -448,12 +447,17 @@ namespace TalonOneSdk.Model
             if (applicationCustomer.IntegrationId == null)
                 throw new JsonException("Cannot write null property ApplicationCustomer.IntegrationId to non-nullable JSON property 'integrationId'.");
 
+            if (applicationCustomer.Attributes == null)
+                throw new JsonException("Cannot write null property ApplicationCustomer.Attributes to non-nullable JSON property 'attributes'.");
+
             writer.WriteNumber("id", applicationCustomer.Id);
 
             writer.WriteString("created", applicationCustomer.Created.ToString(CreatedFormat));
 
             writer.WriteString("integrationId", applicationCustomer.IntegrationId);
 
+            writer.WritePropertyName("attributes");
+            JsonSerializer.Serialize(writer, applicationCustomer.Attributes, jsonSerializerOptions);
             writer.WriteNumber("accountId", applicationCustomer.AccountId);
 
             writer.WriteNumber("closedSessions", applicationCustomer.ClosedSessions);
@@ -462,11 +466,6 @@ namespace TalonOneSdk.Model
 
             writer.WriteString("lastActivity", applicationCustomer.LastActivity.ToString(LastActivityFormat));
 
-            if (applicationCustomer.AttributesOption.IsSet)
-            {
-                writer.WritePropertyName("attributes");
-                JsonSerializer.Serialize(writer, applicationCustomer.Attributes, jsonSerializerOptions);
-            }
             if (applicationCustomer.LoyaltyMembershipsOption.IsSet)
             {
                 writer.WritePropertyName("loyaltyMemberships");

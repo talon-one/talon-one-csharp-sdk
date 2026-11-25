@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ProfileId'
+        /// </summary>
+        [Fact]
+        public void ProfileIdTest()
+        {
+            // TODO unit test for the property 'ProfileId'
+        }
+
+        /// <summary>
         /// Test the property 'AccountId'
         /// </summary>
         [Fact]
@@ -123,15 +132,6 @@ namespace TalonOneSdk.Test.Model
         public void ExpiryDateTest()
         {
             // TODO unit test for the property 'ExpiryDate'
-        }
-
-        /// <summary>
-        /// Test the property 'ProfileId'
-        /// </summary>
-        [Fact]
-        public void ProfileIdTest()
-        {
-            // TODO unit test for the property 'ProfileId'
         }
 
         /// <summary>

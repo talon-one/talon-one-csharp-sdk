@@ -81,6 +81,24 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Value'
+        /// </summary>
+        [Fact]
+        public void ValueTest()
+        {
+            // TODO unit test for the property 'Value'
+        }
+
+        /// <summary>
+        /// Test the property 'UsageLimit'
+        /// </summary>
+        [Fact]
+        public void UsageLimitTest()
+        {
+            // TODO unit test for the property 'UsageLimit'
+        }
+
+        /// <summary>
         /// Test the property 'UsageCounter'
         /// </summary>
         [Fact]
@@ -105,24 +123,6 @@ namespace TalonOneSdk.Test.Model
         public void StateTest()
         {
             // TODO unit test for the property 'State'
-        }
-
-        /// <summary>
-        /// Test the property 'Value'
-        /// </summary>
-        [Fact]
-        public void ValueTest()
-        {
-            // TODO unit test for the property 'Value'
-        }
-
-        /// <summary>
-        /// Test the property 'UsageLimit'
-        /// </summary>
-        [Fact]
-        public void UsageLimitTest()
-        {
-            // TODO unit test for the property 'UsageLimit'
         }
 
         /// <summary>

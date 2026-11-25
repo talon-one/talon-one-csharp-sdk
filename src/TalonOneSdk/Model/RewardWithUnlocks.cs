@@ -36,7 +36,7 @@ namespace TalonOneSdk.Model
         /// <param name="name">The customer-facing name of the reward.</param>
         /// <param name="rule">Customer-facing rule metadata for the reward.</param>
         /// <param name="description">Customer-facing description of the reward.</param>
-        /// <param name="unlocked">The customer profile&#39;s unlocks of this reward that are not yet &#x60;used&#x60;.</param>
+        /// <param name="unlocked">The instances of this reward that the customer has unlocked but not used. Expired customer rewards are not returned.</param>
         [JsonConstructor]
         public RewardWithUnlocks(long id, string integrationId, string name, RuleMetadata rule, Option<string> description = default, Option<List<CustomerReward>> unlocked = default)
         {
@@ -105,9 +105,9 @@ namespace TalonOneSdk.Model
         public Option<List<CustomerReward>> UnlockedOption { get; private set; }
 
         /// <summary>
-        /// The customer profile&#39;s unlocks of this reward that are not yet &#x60;used&#x60;.
+        /// The instances of this reward that the customer has unlocked but not used. Expired customer rewards are not returned.
         /// </summary>
-        /// <value>The customer profile&#39;s unlocks of this reward that are not yet &#x60;used&#x60;.</value>
+        /// <value>The instances of this reward that the customer has unlocked but not used. Expired customer rewards are not returned.</value>
         [JsonPropertyName("unlocked")]
         public List<CustomerReward> Unlocked { get { return this.UnlockedOption.Value; } set { this.UnlockedOption = new Option<List<CustomerReward>>(value); } }
 

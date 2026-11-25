@@ -37,7 +37,7 @@ namespace TalonOneSdk.Model
         /// <param name="totalAffectedItems">The total number of items affected by the event that triggered the strikethrough labeling.</param>
         /// <param name="payload">The arbitrary properties associated with this trigger type.</param>
         [JsonConstructor]
-        public StrikethroughTrigger(long id, string type, DateTime triggeredAt, int totalAffectedItems, Object payload)
+        public StrikethroughTrigger(long id, string type, DateTime triggeredAt, long totalAffectedItems, Object payload)
         {
             Id = id;
             Type = type;
@@ -79,7 +79,7 @@ namespace TalonOneSdk.Model
         /// <value>The total number of items affected by the event that triggered the strikethrough labeling.</value>
         /* <example>1500</example> */
         [JsonPropertyName("totalAffectedItems")]
-        public int TotalAffectedItems { get; set; }
+        public long TotalAffectedItems { get; set; }
 
         /// <summary>
         /// The arbitrary properties associated with this trigger type.
@@ -164,7 +164,7 @@ namespace TalonOneSdk.Model
             Option<long?> id = default;
             Option<string> type = default;
             Option<DateTime?> triggeredAt = default;
-            Option<int?> totalAffectedItems = default;
+            Option<long?> totalAffectedItems = default;
             Option<Object> payload = default;
 
             while (utf8JsonReader.Read())
@@ -192,7 +192,7 @@ namespace TalonOneSdk.Model
                             triggeredAt = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         case "totalAffectedItems":
-                            totalAffectedItems = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            totalAffectedItems = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
                         case "payload":
                             payload = new Option<Object>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions));

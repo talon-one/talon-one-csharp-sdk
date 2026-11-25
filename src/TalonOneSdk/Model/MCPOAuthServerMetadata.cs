@@ -38,8 +38,9 @@ namespace TalonOneSdk.Model
         /// <param name="responseTypesSupported">List of supported OAuth2 response types.</param>
         /// <param name="grantTypesSupported">List of supported OAuth2 grant types.</param>
         /// <param name="codeChallengeMethodsSupported">List of supported PKCE code challenge methods.</param>
+        /// <param name="tokenEndpointAuthMethodsSupported">List of supported client authentication methods at the token endpoint. Public clients use &#x60;none&#x60;; confidential clients use &#x60;client_secret_post&#x60; or &#x60;client_secret_basic&#x60;.</param>
         [JsonConstructor]
-        public MCPOAuthServerMetadata(string issuer, string authorizationEndpoint, string tokenEndpoint, string registrationEndpoint, List<string> responseTypesSupported, List<string> grantTypesSupported, List<string> codeChallengeMethodsSupported)
+        public MCPOAuthServerMetadata(string issuer, string authorizationEndpoint, string tokenEndpoint, string registrationEndpoint, List<string> responseTypesSupported, List<string> grantTypesSupported, List<string> codeChallengeMethodsSupported, Option<List<string>> tokenEndpointAuthMethodsSupported = default)
         {
             Issuer = issuer;
             AuthorizationEndpoint = authorizationEndpoint;
@@ -48,6 +49,7 @@ namespace TalonOneSdk.Model
             ResponseTypesSupported = responseTypesSupported;
             GrantTypesSupported = grantTypesSupported;
             CodeChallengeMethodsSupported = codeChallengeMethodsSupported;
+            TokenEndpointAuthMethodsSupportedOption = tokenEndpointAuthMethodsSupported;
             OnCreated();
         }
 
@@ -110,6 +112,21 @@ namespace TalonOneSdk.Model
         public List<string> CodeChallengeMethodsSupported { get; set; }
 
         /// <summary>
+        /// Used to track the state of TokenEndpointAuthMethodsSupported
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<string>> TokenEndpointAuthMethodsSupportedOption { get; private set; }
+
+        /// <summary>
+        /// List of supported client authentication methods at the token endpoint. Public clients use &#x60;none&#x60;; confidential clients use &#x60;client_secret_post&#x60; or &#x60;client_secret_basic&#x60;.
+        /// </summary>
+        /// <value>List of supported client authentication methods at the token endpoint. Public clients use &#x60;none&#x60;; confidential clients use &#x60;client_secret_post&#x60; or &#x60;client_secret_basic&#x60;.</value>
+        /* <example>[&quot;none&quot;,&quot;client_secret_post&quot;,&quot;client_secret_basic&quot;]</example> */
+        [JsonPropertyName("token_endpoint_auth_methods_supported")]
+        public List<string> TokenEndpointAuthMethodsSupported { get { return this.TokenEndpointAuthMethodsSupportedOption.Value; } set { this.TokenEndpointAuthMethodsSupportedOption = new Option<List<string>>(value); } }
+
+        /// <summary>
         /// Gets or Sets additional properties
         /// </summary>
         [JsonExtensionData]
@@ -130,6 +147,7 @@ namespace TalonOneSdk.Model
             sb.Append("  ResponseTypesSupported: ").Append(ResponseTypesSupported).Append("\n");
             sb.Append("  GrantTypesSupported: ").Append(GrantTypesSupported).Append("\n");
             sb.Append("  CodeChallengeMethodsSupported: ").Append(CodeChallengeMethodsSupported).Append("\n");
+            sb.Append("  TokenEndpointAuthMethodsSupported: ").Append(TokenEndpointAuthMethodsSupported).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -185,6 +203,7 @@ namespace TalonOneSdk.Model
             Option<List<string>> responseTypesSupported = default;
             Option<List<string>> grantTypesSupported = default;
             Option<List<string>> codeChallengeMethodsSupported = default;
+            Option<List<string>> tokenEndpointAuthMethodsSupported = default;
 
             while (utf8JsonReader.Read())
             {
@@ -221,6 +240,9 @@ namespace TalonOneSdk.Model
                             break;
                         case "code_challenge_methods_supported":
                             codeChallengeMethodsSupported = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
+                        case "token_endpoint_auth_methods_supported":
+                            tokenEndpointAuthMethodsSupported = new Option<List<string>>(JsonSerializer.Deserialize<List<string>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
                         default:
                             break;
@@ -270,7 +292,7 @@ namespace TalonOneSdk.Model
             if (codeChallengeMethodsSupported.IsSet && codeChallengeMethodsSupported.Value == null)
                 throw new JsonException("Property is not nullable for class MCPOAuthServerMetadata: code_challenge_methods_supported.");
 
-            return new MCPOAuthServerMetadata(issuer.Value, authorizationEndpoint.Value, tokenEndpoint.Value, registrationEndpoint.Value, responseTypesSupported.Value, grantTypesSupported.Value, codeChallengeMethodsSupported.Value);
+            return new MCPOAuthServerMetadata(issuer.Value, authorizationEndpoint.Value, tokenEndpoint.Value, registrationEndpoint.Value, responseTypesSupported.Value, grantTypesSupported.Value, codeChallengeMethodsSupported.Value, tokenEndpointAuthMethodsSupported);
         }
 
         /// <summary>
@@ -330,6 +352,11 @@ namespace TalonOneSdk.Model
             JsonSerializer.Serialize(writer, mCPOAuthServerMetadata.GrantTypesSupported, jsonSerializerOptions);
             writer.WritePropertyName("code_challenge_methods_supported");
             JsonSerializer.Serialize(writer, mCPOAuthServerMetadata.CodeChallengeMethodsSupported, jsonSerializerOptions);
+            if (mCPOAuthServerMetadata.TokenEndpointAuthMethodsSupportedOption.IsSet)
+            {
+                writer.WritePropertyName("token_endpoint_auth_methods_supported");
+                JsonSerializer.Serialize(writer, mCPOAuthServerMetadata.TokenEndpointAuthMethodsSupported, jsonSerializerOptions);
+            }
         }
     }
 }

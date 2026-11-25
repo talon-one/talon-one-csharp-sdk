@@ -72,6 +72,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Request'
+        /// </summary>
+        [Fact]
+        public void RequestTest()
+        {
+            // TODO unit test for the property 'Request'
+        }
+
+        /// <summary>
         /// Test the property 'FirstLogAt'
         /// </summary>
         [Fact]
@@ -150,15 +159,6 @@ namespace TalonOneSdk.Test.Model
         public void LoyaltyProgramIdTest()
         {
             // TODO unit test for the property 'LoyaltyProgramId'
-        }
-
-        /// <summary>
-        /// Test the property 'Request'
-        /// </summary>
-        [Fact]
-        public void RequestTest()
-        {
-            // TODO unit test for the property 'Request'
         }
 
         /// <summary>

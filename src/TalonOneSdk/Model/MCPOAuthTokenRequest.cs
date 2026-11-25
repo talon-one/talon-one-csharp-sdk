@@ -34,15 +34,17 @@ namespace TalonOneSdk.Model
         /// <param name="grantType">OAuth2 grant type.</param>
         /// <param name="code">Authorization code. Required for &#x60;authorization_code&#x60; grant.</param>
         /// <param name="clientId">Client ID. Required for &#x60;authorization_code&#x60; grant.</param>
+        /// <param name="clientSecret">Client secret for confidential (static) clients. May also be supplied via HTTP Basic authentication. Public clients registered via dynamic client registration omit it.</param>
         /// <param name="redirectUri">Redirect URI. Required for &#x60;authorization_code&#x60; grant.</param>
         /// <param name="codeVerifier">PKCE code verifier. Required for &#x60;authorization_code&#x60; grant.</param>
         /// <param name="refreshToken">Refresh token. Required for &#x60;refresh_token&#x60; grant.</param>
         [JsonConstructor]
-        public MCPOAuthTokenRequest(GrantTypeEnum grantType, Option<string> code = default, Option<string> clientId = default, Option<string> redirectUri = default, Option<string> codeVerifier = default, Option<string> refreshToken = default)
+        public MCPOAuthTokenRequest(GrantTypeEnum grantType, Option<string> code = default, Option<string> clientId = default, Option<string> clientSecret = default, Option<string> redirectUri = default, Option<string> codeVerifier = default, Option<string> refreshToken = default)
         {
             GrantType = grantType;
             CodeOption = code;
             ClientIdOption = clientId;
+            ClientSecretOption = clientSecret;
             RedirectUriOption = redirectUri;
             CodeVerifierOption = codeVerifier;
             RefreshTokenOption = refreshToken;
@@ -157,6 +159,21 @@ namespace TalonOneSdk.Model
         public string ClientId { get { return this.ClientIdOption.Value; } set { this.ClientIdOption = new Option<string>(value); } }
 
         /// <summary>
+        /// Used to track the state of ClientSecret
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string> ClientSecretOption { get; private set; }
+
+        /// <summary>
+        /// Client secret for confidential (static) clients. May also be supplied via HTTP Basic authentication. Public clients registered via dynamic client registration omit it.
+        /// </summary>
+        /// <value>Client secret for confidential (static) clients. May also be supplied via HTTP Basic authentication. Public clients registered via dynamic client registration omit it.</value>
+        /* <example>7b1f0c9d8e2a4f6b1c3d5e7f9a0b2c4d</example> */
+        [JsonPropertyName("client_secret")]
+        public string ClientSecret { get { return this.ClientSecretOption.Value; } set { this.ClientSecretOption = new Option<string>(value); } }
+
+        /// <summary>
         /// Used to track the state of RedirectUri
         /// </summary>
         [JsonIgnore]
@@ -218,6 +235,7 @@ namespace TalonOneSdk.Model
             sb.Append("  GrantType: ").Append(GrantType).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  ClientId: ").Append(ClientId).Append("\n");
+            sb.Append("  ClientSecret: ").Append(ClientSecret).Append("\n");
             sb.Append("  RedirectUri: ").Append(RedirectUri).Append("\n");
             sb.Append("  CodeVerifier: ").Append(CodeVerifier).Append("\n");
             sb.Append("  RefreshToken: ").Append(RefreshToken).Append("\n");
@@ -272,6 +290,7 @@ namespace TalonOneSdk.Model
             Option<MCPOAuthTokenRequest.GrantTypeEnum?> grantType = default;
             Option<string> code = default;
             Option<string> clientId = default;
+            Option<string> clientSecret = default;
             Option<string> redirectUri = default;
             Option<string> codeVerifier = default;
             Option<string> refreshToken = default;
@@ -307,6 +326,9 @@ namespace TalonOneSdk.Model
                         case "client_id":
                             clientId = new Option<string>(utf8JsonReader.GetString());
                             break;
+                        case "client_secret":
+                            clientSecret = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "redirect_uri":
                             redirectUri = new Option<string>(utf8JsonReader.GetString());
                             break;
@@ -328,7 +350,7 @@ namespace TalonOneSdk.Model
             if (grantType.IsSet && grantType.Value == null)
                 throw new JsonException("Property is not nullable for class MCPOAuthTokenRequest: grant_type.");
 
-            return new MCPOAuthTokenRequest(grantType.Value.Value, code, clientId, redirectUri, codeVerifier, refreshToken);
+            return new MCPOAuthTokenRequest(grantType.Value.Value, code, clientId, clientSecret, redirectUri, codeVerifier, refreshToken);
         }
 
         /// <summary>
@@ -360,6 +382,9 @@ namespace TalonOneSdk.Model
 
             if (mCPOAuthTokenRequest.ClientIdOption.IsSet)
                 writer.WriteString("client_id", mCPOAuthTokenRequest.ClientId);
+
+            if (mCPOAuthTokenRequest.ClientSecretOption.IsSet)
+                writer.WriteString("client_secret", mCPOAuthTokenRequest.ClientSecret);
 
             if (mCPOAuthTokenRequest.RedirectUriOption.IsSet)
                 writer.WriteString("redirect_uri", mCPOAuthTokenRequest.RedirectUri);

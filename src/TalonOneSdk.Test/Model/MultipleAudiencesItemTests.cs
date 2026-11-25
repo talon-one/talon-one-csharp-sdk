@@ -81,6 +81,15 @@ namespace TalonOneSdk.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IntegrationId'
+        /// </summary>
+        [Fact]
+        public void IntegrationIdTest()
+        {
+            // TODO unit test for the property 'IntegrationId'
+        }
+
+        /// <summary>
         /// Test the property 'Status'
         /// </summary>
         [Fact]
@@ -96,15 +105,6 @@ namespace TalonOneSdk.Test.Model
         public void SubscribedApplicationsIdsTest()
         {
             // TODO unit test for the property 'SubscribedApplicationsIds'
-        }
-
-        /// <summary>
-        /// Test the property 'IntegrationId'
-        /// </summary>
-        [Fact]
-        public void IntegrationIdTest()
-        {
-            // TODO unit test for the property 'IntegrationId'
         }
     }
 }

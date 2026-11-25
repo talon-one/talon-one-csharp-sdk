@@ -33,26 +33,26 @@ namespace TalonOneSdk.Model
         /// </summary>
         /// <param name="id">The internal ID of this entity.</param>
         /// <param name="created">The time this entity was created.</param>
+        /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
         /// <param name="accountId">The ID of the Talon.One account that owns this profile.</param>
         /// <param name="loyaltyProgramId">ID of the ledger.</param>
         /// <param name="eventId">ID of the related event.</param>
         /// <param name="amount">Amount of loyalty points.</param>
         /// <param name="reason">reason for awarding/deducting points.</param>
         /// <param name="expiryDate">Expiration date of the points.</param>
-        /// <param name="profileId">ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </param>
         /// <param name="referenceId">The ID of the balancing ledgerEntry.</param>
         [JsonConstructor]
-        public LedgerEntry(long id, DateTime created, long accountId, long loyaltyProgramId, long eventId, long amount, string reason, DateTime expiryDate, Option<string> profileId = default, Option<long?> referenceId = default)
+        public LedgerEntry(long id, DateTime created, string profileId, long accountId, long loyaltyProgramId, long eventId, long amount, string reason, DateTime expiryDate, Option<long?> referenceId = default)
         {
             Id = id;
             Created = created;
+            ProfileId = profileId;
             AccountId = accountId;
             LoyaltyProgramId = loyaltyProgramId;
             EventId = eventId;
             Amount = amount;
             Reason = reason;
             ExpiryDate = expiryDate;
-            ProfileIdOption = profileId;
             ReferenceIdOption = referenceId;
             OnCreated();
         }
@@ -74,6 +74,14 @@ namespace TalonOneSdk.Model
         /* <example>2020-06-10T09:05:27.993483Z</example> */
         [JsonPropertyName("created")]
         public DateTime Created { get; set; }
+
+        /// <summary>
+        /// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. 
+        /// </summary>
+        /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
+        /* <example>URNGV8294NV</example> */
+        [JsonPropertyName("profileId")]
+        public string ProfileId { get; set; }
 
         /// <summary>
         /// The ID of the Talon.One account that owns this profile.
@@ -123,21 +131,6 @@ namespace TalonOneSdk.Model
         public DateTime ExpiryDate { get; set; }
 
         /// <summary>
-        /// Used to track the state of ProfileId
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string> ProfileIdOption { get; private set; }
-
-        /// <summary>
-        /// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. 
-        /// </summary>
-        /// <value>ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;. </value>
-        /* <example>URNGV8294NV</example> */
-        [JsonPropertyName("profileId")]
-        public string ProfileId { get { return this.ProfileIdOption.Value; } set { this.ProfileIdOption = new Option<string>(value); } }
-
-        /// <summary>
         /// Used to track the state of ReferenceId
         /// </summary>
         [JsonIgnore]
@@ -167,13 +160,13 @@ namespace TalonOneSdk.Model
             sb.Append("class LedgerEntry {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
+            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  LoyaltyProgramId: ").Append(LoyaltyProgramId).Append("\n");
             sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ReferenceId: ").Append(ReferenceId).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
@@ -235,13 +228,13 @@ namespace TalonOneSdk.Model
 
             Option<long?> id = default;
             Option<DateTime?> created = default;
+            Option<string> profileId = default;
             Option<long?> accountId = default;
             Option<long?> loyaltyProgramId = default;
             Option<long?> eventId = default;
             Option<long?> amount = default;
             Option<string> reason = default;
             Option<DateTime?> expiryDate = default;
-            Option<string> profileId = default;
             Option<long?> referenceId = default;
 
             while (utf8JsonReader.Read())
@@ -265,6 +258,9 @@ namespace TalonOneSdk.Model
                         case "created":
                             created = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "profileId":
+                            profileId = new Option<string>(utf8JsonReader.GetString());
+                            break;
                         case "accountId":
                             accountId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -283,9 +279,6 @@ namespace TalonOneSdk.Model
                         case "expiryDate":
                             expiryDate = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
-                        case "profileId":
-                            profileId = new Option<string>(utf8JsonReader.GetString());
-                            break;
                         case "referenceId":
                             referenceId = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
                             break;
@@ -300,6 +293,9 @@ namespace TalonOneSdk.Model
 
             if (!created.IsSet)
                 throw new JsonException("Property is required for class LedgerEntry: created.");
+
+            if (!profileId.IsSet)
+                throw new JsonException("Property is required for class LedgerEntry: profileId.");
 
             if (!accountId.IsSet)
                 throw new JsonException("Property is required for class LedgerEntry: accountId.");
@@ -325,6 +321,9 @@ namespace TalonOneSdk.Model
             if (created.IsSet && created.Value == null)
                 throw new JsonException("Property is not nullable for class LedgerEntry: created.");
 
+            if (profileId.IsSet && profileId.Value == null)
+                throw new JsonException("Property is not nullable for class LedgerEntry: profileId.");
+
             if (accountId.IsSet && accountId.Value == null)
                 throw new JsonException("Property is not nullable for class LedgerEntry: accountId.");
 
@@ -343,7 +342,7 @@ namespace TalonOneSdk.Model
             if (expiryDate.IsSet && expiryDate.Value == null)
                 throw new JsonException("Property is not nullable for class LedgerEntry: expiryDate.");
 
-            return new LedgerEntry(id.Value.Value, created.Value.Value, accountId.Value.Value, loyaltyProgramId.Value.Value, eventId.Value.Value, amount.Value.Value, reason.Value, expiryDate.Value.Value, profileId, referenceId);
+            return new LedgerEntry(id.Value.Value, created.Value.Value, profileId.Value, accountId.Value.Value, loyaltyProgramId.Value.Value, eventId.Value.Value, amount.Value.Value, reason.Value, expiryDate.Value.Value, referenceId);
         }
 
         /// <summary>
@@ -368,12 +367,17 @@ namespace TalonOneSdk.Model
         /// <param name="jsonSerializerOptions"></param>
         public void WriteProperties(Utf8JsonWriter writer, LedgerEntry ledgerEntry, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (ledgerEntry.ProfileId == null)
+                throw new JsonException("Cannot write null property LedgerEntry.ProfileId to non-nullable JSON property 'profileId'.");
+
             if (ledgerEntry.Reason == null)
                 throw new JsonException("Cannot write null property LedgerEntry.Reason to non-nullable JSON property 'reason'.");
 
             writer.WriteNumber("id", ledgerEntry.Id);
 
             writer.WriteString("created", ledgerEntry.Created.ToString(CreatedFormat));
+
+            writer.WriteString("profileId", ledgerEntry.ProfileId);
 
             writer.WriteNumber("accountId", ledgerEntry.AccountId);
 
@@ -386,9 +390,6 @@ namespace TalonOneSdk.Model
             writer.WriteString("reason", ledgerEntry.Reason);
 
             writer.WriteString("expiryDate", ledgerEntry.ExpiryDate.ToString(ExpiryDateFormat));
-
-            if (ledgerEntry.ProfileIdOption.IsSet)
-                writer.WriteString("profileId", ledgerEntry.ProfileId);
 
             if (ledgerEntry.ReferenceIdOption.IsSet)
                 writer.WriteNumber("referenceId", ledgerEntry.ReferenceIdOption.Value.Value);
